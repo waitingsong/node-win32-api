@@ -1,0 +1,50 @@
+{
+  "name": "win32-api",
+  "version": "0.1.0",
+  "description": "windows win32 api for node-ffi",
+  "main": "./dist/index.js",
+  "bin": {},
+  "scripts": {
+    "lint": "tslint -e **/*.d.ts -t stylish src/**/*.ts test/**/*.ts",
+    "jslint": "eslint --fix dist/**/*.js",
+    "test": "npm run lint",
+    "prepublishOnly": "npm run build",
+    "build": "npm run test && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint"
+  },
+  "keywords": [
+    "windows",
+    "win32",
+    "api"
+  ],
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "author": "waiting",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waitingsong/node-win32-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/waitingsong/node-win32-api/issues"
+  },
+  "homepage": "https://github.com/waitingsong/node-win32-api#readme",
+  "engines": {
+    "node": ">=6.5.0"
+  },
+  "os": [
+    "win32"
+  ],
+  "dependencies": {
+    "ffi": "^2.2.0",
+    "ref-struct": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/ffi": "^0.0.19",
+    "@types/node": "^8.0.25",
+    "eslint": "^4.8.0",
+    "rimraf": "^2.6.1",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.3"
+  }
+}
