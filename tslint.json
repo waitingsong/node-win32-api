@@ -4,6 +4,7 @@
     "jsRules": {},
     "rules": {
       "align": false,
+      "array-type": false,
       "arrow-parens": false,
       "ban-types": [true, ["Object", "Use {} instead."]],
       "comment-format": false,
@@ -14,7 +15,7 @@
       "member-access": false,
       "max-line-length": false,
       "no-angle-bracket-type-assertion": false, // true for .tsx 
-      "no-bitwise": true,
+      "no-bitwise": false,
       "no-consecutive-blank-lines": [true, 3],
       "no-console": false,
       "no-debugger": true,
