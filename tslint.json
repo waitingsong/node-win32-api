@@ -12,8 +12,9 @@
       "interface-name": false,
       "interface-over-type-literal": false,
       "max-classes-per-file": false,
-      "member-access": false,
       "max-line-length": false,
+      "member-access": false,
+      "member-ordering": false,
       "no-angle-bracket-type-assertion": false, // true for .tsx 
       "no-bitwise": false,
       "no-consecutive-blank-lines": [true, 3],
