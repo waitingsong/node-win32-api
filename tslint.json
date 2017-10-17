@@ -8,6 +8,7 @@
       "arrow-parens": false,
       "ban-types": [true, ["Object", "Use {} instead."]],
       "comment-format": false,
+      "eofline": false,
       "indent": [true, "spaces", 4],
       "interface-name": false,
       "interface-over-type-literal": false,
