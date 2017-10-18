@@ -1,6 +1,6 @@
 {
   "name": "win32-api",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "windows win32 api for node-ffi",
   "main": "./dist/index.js",
   "bin": {},
