@@ -23,7 +23,7 @@ export interface FFIBuffer extends Buffer {
     ref(): FFIBuffer;
     reinterpret(size: number, offset?: number): FFIBuffer;
     reinterpretUntilZeros(size: number, offset?: number): FFIBuffer;
-    writeCString(offset: number, string: string, encoding?: string): void;
+    writeCString(offset: number, input: string, encoding?: string): void;
     writeInt64BE(offset: number, input: number | string): any;
     writeInt64LE(offset: number, input: number | string): any;
     writeObject(offset: number, object: Object): void;  // tslint:disable-line
