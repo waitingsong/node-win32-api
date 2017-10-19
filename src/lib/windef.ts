@@ -17,7 +17,7 @@ export const WORD = 'int16';
 export const BOOL = 'int';
 export const BOOLEAN = 'bool';
 export const BYTE = 'byte';
-// export const CALLBACK;
+export const CALLBACK = 'pointer';  // https://msdn.microsoft.com/en-us/library/windows/desktop/ms633573(v=vs.85).aspx
 export const CCHAR = 'char';
 export const CHAR = 'char';
 export const COLORREF = DWORD;

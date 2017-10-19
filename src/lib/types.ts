@@ -64,8 +64,7 @@ export type WORD = string;
 export type BOOL = number;  // ?
 export type BOOLEAN = boolean;
 export type BYTE = number;
-// export type CALLBACK;
-
+export type CALLBACK = Buffer;  // https://msdn.microsoft.com/en-us/library/windows/desktop/ms633573(v=vs.85).aspx
 export type CCHAR = string;
 export type CHAR = string;
 export type COLORREF = number;
