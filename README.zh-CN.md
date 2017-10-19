@@ -106,3 +106,7 @@ Check out [node-gyp](https://github.com/nodejs/node-gyp) and [windows-build-tool
 
 ## 版权
 [MIT](LICENSE)
+
+### Languages
+- [English](README.md)
+- [中文](README.zh-CN.md)
