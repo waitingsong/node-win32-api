@@ -15,9 +15,10 @@ npm install --save win32-api
 // find calc's hWnd, need run a calculator program manually at first
 /**
  * expose module:
- * U, User32 for user32
- * K, Kernel32 for kernel32
- * C, Comctl32 for Comctl32
+ * U, User32 for user32 from lib/user32/api
+ * K, Kernel32 for kernel32 from lib/kernel32/api
+ * C, Comctl32 for Comctl32 from lib/comctl32/api
+ * DS, DStruct for dict of defined struct from lib/struct
  */
 const {K, U} = require('win32-api');   // or {Kernel32, User32}
 const ref = require('ref');
@@ -69,6 +70,17 @@ buf.type = ref.types.int;  // @ts-ignore
 
 // now we can dereference to get the "meaningful" value
 console.log(buf.deref());  // ← 12345
+```
+
+```js
+// struct usage by ref-struct
+import Struct from 'ref-struct';
+import {DS} from 'win32-api';
+
+const point = (new Struct(DS.POINT))();
+point.x = 100;
+point.y = 200;
+console.log(point);
 ```
 
 ## Dependencies Troubleshooting
