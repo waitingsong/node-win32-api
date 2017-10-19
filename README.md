@@ -1,8 +1,8 @@
 # win32-api
-Windows win32 apis for [node-ffi](https://github.com/node-ffi/node-ffi)
+FFI Definitions of Windows win32 apis for calling by NodeJS via [node-ffi](https://github.com/node-ffi/node-ffi)
 
 ## What can I do with this?
-Calling win32 native functions come from user32.dll, kernel32.dll by javascript
+Calling win32 native functions come from user32.dll, kernel32.dll, comctl32.dll by javascript
 
 ## Installing
 ```powershell
@@ -19,9 +19,11 @@ npm install --save win32-api
  * K, Kernel32 for kernel32
  * C, Comctl32 for Comctl32
  */
+const {K} = require('win32-api');   // or {Kernel32}
 const {U} = require('win32-api');   // or {User32}
 const ref = require('ref');
 
+const knl32 = K();
 const user32 = U();  // load all apis defined in lib/{dll}/api from user32.dll
 // const user32 = U(['FindWindowExW']);  // load only one api defined in lib/{dll}/api from user32.dll
 
@@ -30,12 +32,23 @@ const title = 'Calculator\0';    // null-terminated string
 
 const lpszWindow = Buffer.from(title, 'ucs2');
 const hWnd = user32.FindWindowExW(null, null, null, lpszWindow);
-console.log('buf: ', hWnd);
 
-// It's unnecessary to retrive the value of hWnd from the buffer usually, but can be this if needed:
-if (hWnd) {
+if (hWnd && hWnd.length) {
+    // Caution: output hWnd will cuase exception in the following process, even next script!
+    // So do NOT do this in the production code!
+    console.log('buf: ', hWnd); // be careful this cmd will cause
+
+    // It's unnecessary to retrive the value of hWnd from the buffer usually, but can be this if needed:
     const hWndDec = process.arch === 'x64' ? hWnd.ref().readUInt64LE() : hWnd.ref().readUInt32LE(0);    // readUInt32LE() need offset param cause of native buffer
     console.log(hWndDec);
+
+    // Change title of the Calculator
+    const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'));
+    if ( ! res) {
+        // See: [System Error Codes] below
+        const errcode = knl32.GetLastError();
+    }
+
 }
 ```
 
@@ -66,6 +79,7 @@ Check out [node-gyp](https://github.com/nodejs/node-gyp) and [windows-build-tool
 ## Relevant
 - [Windows Api documentation](https://msdn.microsoft.com/en-us/library/windows/desktop/ff468919%28v=vs.85%29.aspx)
 - [Windows Data Types](https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751#DWORD)
+- [System Error Codes](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681381%28v=vs.85%29.aspx)
 - [FFI doc](https://github.com/node-ffi/node-ffi/wiki/Node-FFI-Tutorial)
 - [ref doc](https://tootallnate.github.io/ref/)
 - [ref-struct](https://github.com/TooTallNate/ref-struct)
