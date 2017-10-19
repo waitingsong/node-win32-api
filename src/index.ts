@@ -17,3 +17,7 @@ export {Kernel32};
 import * as Comctl32 from './lib/comctl32/index';
 export {Comctl32 as C};
 export {Comctl32};
+
+import * as DStruct from './lib/struct';
+export {DStruct as DS}; // Dict of Struct
+export {DStruct};

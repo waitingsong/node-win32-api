@@ -1,4 +1,4 @@
-// windows data types struct for ref module https://github.com/TooTallNate/ref
+// windows data types struct for ref-struct module https://github.com/TooTallNate/ref-struct
 
 import * as D from './windef';
 
@@ -6,9 +6,9 @@ import * as D from './windef';
  * Struct usage:
  *
  * import Struct from 'ref-struct';
- * import {User32 as U} from 'win32-api';
+ * import {DS} from 'win32-api';
  *
- * const point = new Struct(U.POINT)();
+ * const point = (new Struct(DS.POINT))();
  * point.x = 100;
  * point.y = 200;
  *
