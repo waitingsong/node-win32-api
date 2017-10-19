@@ -37,6 +37,8 @@ export const fnDef: GT.Win32FnDef = {
 
     SetWindowTextW: [D.BOOL, [D.HWND, D.LPCTSTR]],
 
+    SetWinEventHook: [D.HWINEVENTHOOK, [D.UINT, D.UINT, D.HMODULE, D.WINEVENTPROC, D.DWORD, D.DWORD, D.UINT]],
+
     ShowWindow: [D.BOOL, [D.HWND, D.INT]],
 
     TranslateMessage: [D.BOOL, [D.LPMSG]],
@@ -89,6 +91,16 @@ export interface Win32Fn {
     RegisterClassExW(lpwcx: GT.WNDCLASSEX): GT.ATOM;
 
     SetWindowTextW(hWnd: GT.HWND, lpString: GT.LPCTSTR | null): GT.BOOL;
+
+    SetWinEventHook(
+        eventMin: GT.UINT,
+        eventMax: GT.UINT,
+        hmodWinEventProc: GT.HMODULE,
+        lpfnWinEventProc: GT.WINEVENTPROC,
+        idProcess: GT.DWORD,
+        idThread: GT.DWORD,
+        dwflags: GT.UINT 
+    ): GT.HWINEVENTHOOK;
 
     ShowWindow(hWnd: GT.HWND, nCmdShow: GT.INT): GT.BOOL;
 
