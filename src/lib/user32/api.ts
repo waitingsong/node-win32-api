@@ -78,7 +78,7 @@ export interface Win32Fn {
 
     GetParent(hWnd: GT.HWND): GT.HWND;
 
-    GetWindowInfo(hwnd: GT.HWND, pwi: GT.PWINDOWINFO): GT.BOOL;
+    GetWindowInfo(hwnd: GT.HWND, pwi: GT.PWINDOWINFO): GT.BOOL;   // Note that you must set the cbSize
 
     GetWindowTextW(hWnd: GT.HWND, lpString: GT.LPCTSTR, nMaxCount: GT.INT): GT.INT;
 
