@@ -39,6 +39,8 @@ export const fnDef: GT.Win32FnDef = {
 
     ShowWindow: [D.BOOL, [D.HWND, D.INT]],
 
+    TranslateMessage: [D.BOOL, [D.LPMSG]],
+
     TranslateMessageEx: [D.BOOL, [D.LPMSG]],
 
     UpdateWindow: [D.BOOL, [D.HWND]],
@@ -89,6 +91,8 @@ export interface Win32Fn {
     SetWindowTextW(hWnd: GT.HWND, lpString: GT.LPCTSTR | null): GT.BOOL;
 
     ShowWindow(hWnd: GT.HWND, nCmdShow: GT.INT): GT.BOOL;
+
+    TranslateMessage(lpMsg: GT.LPMSG): GT.BOOL;
 
     TranslateMessageEx(lpMsg: GT.LPMSG): GT.BOOL;
 
