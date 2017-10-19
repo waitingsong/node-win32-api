@@ -137,6 +137,7 @@ export type LPDWORD = Buffer;
 export type LPHANDLE = Buffer;
 export type LPINT = Buffer;
 export type LPLONG = Buffer;
+export type LPMSG = Buffer;
 export type LPSTR = Buffer;
 export type LPWSTR = Buffer;
 export type LPTSTR = Buffer;
@@ -224,6 +225,8 @@ export type USHORT = number;
 export type USN = number;
 // export type WINAPI;
 export type WPARAM = Buffer;
+export type WNDENUMPROC = Buffer;
+export type WNDPROC = Buffer;
 
 export type LPINITCOMMONCONTROLSEX = Buffer;  // A pointer to an INITCOMMONCONTROLSEX
 export type LPWNDCLASSEX = Buffer;  // A pointer to a WNDCLASSEX
@@ -231,14 +234,11 @@ export type PWINDOWINFO = Buffer;    // A pointer to a WINDOWINFO structure
 
 export type va_list = Buffer;
 
-/* ------------------ structure ---------------------- */
+/* ------------------ struct ---------------------- */
 export type INITCOMMONCONTROLSEX = Buffer;
-export type LPMSG = Buffer;
+export type MSG = Buffer;
 export type POINT = Buffer;
 export type WNDCLASSEX = Buffer;
 
-export type WNDENUMPROC = Buffer;
-export type WNDPROC = Buffer;
 export type WINDOWINFO = Buffer;
 export type RECT = Buffer;
-export type MSG = Buffer;

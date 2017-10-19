@@ -187,7 +187,7 @@ export const PWINDOWINFO = 'pointer';    // A pointer to a WINDOWINFO structure
 
 export const va_list = 'char*';
 
-/* ------------------ structure ---------------------- */
+/* ------------------ struct ---------------------- */
 export const INITCOMMONCONTROLSEX = 'pointer';
 export const MSG = 'pointer';
 export const POINT  = 'pointer';
@@ -195,4 +195,3 @@ export const WNDCLASSEX = 'pointer';
 
 export const WINDOWINFO = 'pointer';
 export const RECT = 'pointer';  // _RECT
-
