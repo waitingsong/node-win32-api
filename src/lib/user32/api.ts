@@ -35,6 +35,8 @@ export const fnDef: GT.Win32FnDef = {
 
     RegisterClassExW: [D.ATOM, [D.WNDCLASSEX]],
 
+    SetWindowTextW: [D.BOOL, [D.HWND, D.LPCTSTR]],
+
     ShowWindow: [D.BOOL, [D.HWND, D.INT]],
 
     TranslateMessageEx: [D.BOOL, [D.LPMSG]],
@@ -83,6 +85,8 @@ export interface Win32Fn {
     IsWindowVisible(hWnd: GT.HWND): GT.BOOL;
 
     RegisterClassExW(lpwcx: GT.WNDCLASSEX): GT.ATOM;
+
+    SetWindowTextW(hWnd: GT.HWND, lpString: GT.LPCTSTR | null): GT.BOOL;
 
     ShowWindow(hWnd: GT.HWND, nCmdShow: GT.INT): GT.BOOL;
 
