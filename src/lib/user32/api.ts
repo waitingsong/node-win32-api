@@ -11,6 +11,8 @@ export const fnDef: GT.Win32FnDef = {
 
     DefWindowProcW: [D.LRESULT, [D.HWND, D.UINT, D.WPARAM, D.LPARAM]],
 
+    DispatchMessageW: [D.LRESULT, [D.LPMSG]],
+
     EnumWindows: [D.BOOL, [D.WNDENUMPROC, D.LPARAM]],
 
     FindWindowExW: [D.HWND, [D.HWND, D.HWND, D.LPCTSTR, D.LPCTSTR]],
@@ -35,11 +37,9 @@ export const fnDef: GT.Win32FnDef = {
 
     ShowWindow: [D.BOOL, [D.HWND, D.INT]],
 
-    UpdateWindow: [D.BOOL, [D.HWND]],
-
     TranslateMessageEx: [D.BOOL, [D.LPMSG]],
 
-    DispatchMessageW: [D.LRESULT, [D.LPMSG]],
+    UpdateWindow: [D.BOOL, [D.HWND]],
 };
 
 export interface Win32Fn {
@@ -59,6 +59,8 @@ export interface Win32Fn {
     ): GT.HWND;
 
     DefWindowProcW(hWnd: GT.HWND, Msg: GT.UINT, wParam: GT.WPARAM, lParam: GT.LPARAM): GT.LRESULT;
+
+    DispatchMessageW(lpMsg: GT.LPMSG): GT.LRESULT;
 
     EnumWindows: EnumWindows;
 
@@ -84,11 +86,9 @@ export interface Win32Fn {
 
     ShowWindow(hWnd: GT.HWND, nCmdShow: GT.INT): GT.BOOL;
 
-    UpdateWindow(hWnd: GT.HWND): GT.BOOL;
-
     TranslateMessageEx(lpMsg: GT.LPMSG): GT.BOOL;
 
-    DispatchMessageW(lpMsg: GT.LPMSG): GT.LRESULT;
+    UpdateWindow(hWnd: GT.HWND): GT.BOOL;
 }
 
 
