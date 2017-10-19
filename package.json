@@ -39,8 +39,6 @@
     "win32"
   ],
   "dependencies": {
-    "ffi": "^2.2.0",
-    "ref-struct": "^1.1.0"
   },
   "devDependencies": {
     "@types/ffi": "^0.0.19",
@@ -48,6 +46,8 @@
     "@types/ref": "^0.0.28",
     "@types/ref-struct": "^0.0.28",
     "eslint": "^4.8.0",
+    "ffi": "^2.2.0",
+    "ref-struct": "^1.1.0",
     "rimraf": "^2.6.1",
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
