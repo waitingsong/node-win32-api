@@ -233,6 +233,7 @@ export type LPINITCOMMONCONTROLSEX = Buffer;  // A pointer to an INITCOMMONCONTR
 export type LPWNDCLASSEX = Buffer;  // A pointer to a WNDCLASSEX
 export type PWINDOWINFO = Buffer;    // A pointer to a WINDOWINFO structure
 
+export type va_list = Buffer;
 
 /* ------------------ structure ---------------------- */
 export type INITCOMMONCONTROLSEX = Buffer;

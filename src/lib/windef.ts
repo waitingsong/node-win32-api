@@ -185,6 +185,7 @@ export const LPINITCOMMONCONTROLSEX = 'pointer';  // A pointer to an INITCOMMONC
 export const LPWNDCLASSEX = 'pointer';  // A pointer to a WNDCLASSEX
 export const PWINDOWINFO = 'pointer';    // A pointer to a WINDOWINFO structure
 
+export const va_list = 'char*';
 
 /* ------------------ structure ---------------------- */
 export const INITCOMMONCONTROLSEX = 'pointer';
