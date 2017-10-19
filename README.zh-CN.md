@@ -85,6 +85,7 @@ console.log(buf.deref());  // ← 12345
 import Struct from 'ref-struct';
 import {DS} from 'win32-api';
 
+// https://msdn.microsoft.com/zh-cn/library/windows/desktop/dd162805(v=vs.85).aspx
 const point = (new Struct(DS.POINT))();
 point.x = 100;
 point.y = 200;

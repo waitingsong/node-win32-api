@@ -28,6 +28,7 @@ export const MSG = {
     pt: D.POINT,
 };
 
+// https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx
 export const POINT = {
     x: D.LONG,
     y: D.LONG,
