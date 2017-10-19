@@ -14,13 +14,6 @@ import * as D from './windef';
  *
  */
 
-export const UNICODE_STRING = {
-    Length: D.USHORT,
-    MaximumLength: D.USHORT,
-    Buffer: D.PWSTR,
-};
-
-
 export const INITCOMMONCONTROLSEX = {
     dwSize: D.DWORD,
     dwICC: D.DWORD,
@@ -40,6 +33,25 @@ export const POINT = {
     y: D.LONG,
 };
 
+export const UNICODE_STRING = {
+    Length: D.USHORT,
+    MaximumLength: D.USHORT,
+    Buffer: D.PWSTR,
+};
+
+export const WINDOWINFO = {
+    cbSize: D.DWORD,
+    rcWindow: D.RECT,
+    rcClient: D.RECT,
+    dwStyle: D.DWORD,
+    dwExStyle: D.DWORD,
+    dwWindowStatus: D.DWORD ,
+    cxWindowBorders: D.UINT,
+    cyWindowBorders: D.UINT,
+    atomWindowType: D.ATOM,
+    wCreatorVersion: D.WORD,
+};
+
 // https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms633577(v=vs.85).aspx
 export const WNDCLASSEX = {
     cbSize: D.UINT,
@@ -55,19 +67,6 @@ export const WNDCLASSEX = {
     lpszMenuName: D.LPCTSTR,
     lpszClassName: D.LPCTSTR,
     hIconSm: D.HICON,
-};
-
-export const WINDOWINFO = {
-    cbSize: D.DWORD,
-    rcWindow: D.RECT,
-    rcClient: D.RECT,
-    dwStyle: D.DWORD,
-    dwExStyle: D.DWORD,
-    dwWindowStatus: D.DWORD ,
-    cxWindowBorders: D.UINT,
-    cyWindowBorders: D.UINT,
-    atomWindowType: D.ATOM,
-    wCreatorVersion: D.WORD,
 };
 
 export const _RECT = {
