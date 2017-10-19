@@ -238,6 +238,7 @@ export type POINT = Buffer;
 export type WNDCLASSEX = Buffer;
 
 export type WNDENUMPROC = Buffer;
+export type WNDPROC = Buffer;
 export type WINDOWINFO = Buffer;
 export type RECT = Buffer;
 export type MSG = Buffer;
