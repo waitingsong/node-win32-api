@@ -219,11 +219,7 @@ export type ULONG = Buffer;
 export type ULONGLONG = Buffer;
 export type ULONG32 = Buffer;
 export type ULONG64 = Buffer;
-export type UNICODE_STRING = {
-    Length: USHORT,
-    MaximumLength: USHORT,
-    Buffer: PWSTR,
-};
+export type UNICODE_STRING = Buffer;
 export type USHORT = number;
 export type USN = number;
 // export type WINAPI;
