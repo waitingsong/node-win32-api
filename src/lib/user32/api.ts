@@ -82,7 +82,7 @@ export interface Win32Fn {
 
     GetWindowTextW(hWnd: GT.HWND, lpString: GT.LPCTSTR, nMaxCount: GT.INT): GT.INT;
 
-    GetWindowThreadProcessId(hWnd: GT.HWND, lpdwProcessId: GT.LPDWORD): GT.DWORD;
+    GetWindowThreadProcessId(hWnd: GT.HWND, lpdwProcessId: GT.LPDWORD | null): GT.DWORD;
 
     IsWindowVisible(hWnd: GT.HWND): GT.BOOL;
 
