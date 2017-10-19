@@ -33,7 +33,7 @@ const title = 'Calculator\0';    // null-terminated string
 const lpszWindow = Buffer.from(title, 'ucs2');
 const hWnd = user32.FindWindowExW(null, null, null, lpszWindow);
 
-if (hWnd && hWnd.length) {
+if (hWnd && ! hWnd.isNull()) {
     // Caution: output hWnd will cuase exception in the following process, even next script!
     // So do NOT do this in the production code!
     console.log('buf: ', hWnd); // be careful this cmd will cause
