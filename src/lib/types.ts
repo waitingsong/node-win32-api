@@ -237,7 +237,7 @@ export type LPMSG = Buffer;
 export type POINT = Buffer;
 export type WNDCLASSEX = Buffer;
 
-export type WNDENUMPROC = Function;
+export type WNDENUMPROC = Buffer;
 export type WINDOWINFO = Buffer;
 export type RECT = Buffer;
 export type MSG = Buffer;
