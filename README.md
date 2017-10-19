@@ -19,8 +19,7 @@ npm install --save win32-api
  * K, Kernel32 for kernel32
  * C, Comctl32 for Comctl32
  */
-const {K} = require('win32-api');   // or {Kernel32}
-const {U} = require('win32-api');   // or {User32}
+const {K, U} = require('win32-api');   // or {Kernel32, User32}
 const ref = require('ref');
 
 const knl32 = K();
