@@ -47,9 +47,17 @@ if (hWnd && ! hWnd.isNull()) {
     if ( ! res) {
         // See: [System Error Codes] below
         const errcode = knl32.GetLastError();
+        const len = 255;
+        const buf = Buffer.alloc(len);
+        const p = 0x00001000 | 0x00000200;  // FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
+        const langid = 0x0409;              // 0x0409: US, 0x0000: Neutral locale language
+        const msglen = knl32.FormatMessageW(p, null, errcode, langid, buf, len, null);
+        if (msglen) {
+            console.log(ref.reinterpretUntilZeros(buf, 2).toString('ucs2'));
+        }
     }
-
 }
+
 ```
 
 ```js
