@@ -1,7 +1,7 @@
 {
   "name": "win32-api",
   "version": "1.1.0",
-  "description": "windows win32 api for node-ffi",
+  "description": "FFI definitions of windows win32 api for node-ffi",
   "main": "./dist/index.js",
   "bin": {},
   "scripts": {
@@ -14,7 +14,11 @@
   "keywords": [
     "windows",
     "win32",
-    "api"
+    "api",
+    "kernel32",
+    "user32",
+    "comctl32",
+    "ffi"
   ],
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
