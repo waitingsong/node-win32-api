@@ -31,7 +31,7 @@ export interface Win32Fn {
 
     GetLastError(): GT.DWORD;
 
-    GetModuleHandleW(lpModuleName: GT.LPCTSTR): GT.HMODULE;
+    GetModuleHandleW(lpModuleName: GT.LPCTSTR | null): GT.HMODULE;
 
     GetModuleHandleExW(dwFlags: GT.DWORD, lpModuleName: GT.LPCTSTR | null, phModule: GT.HMODULE): GT.BOOL;
 
