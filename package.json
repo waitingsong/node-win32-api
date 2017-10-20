@@ -3,6 +3,7 @@
   "version": "1.2.0",
   "description": "FFI definitions of windows win32 api for node-ffi",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "bin": {},
   "scripts": {
     "lint": "tslint -e **/*.d.ts -t stylish src/**/*.ts test/**/*.ts",
