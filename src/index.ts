@@ -21,3 +21,9 @@ export {Comctl32};
 import * as DStruct from './lib/struct';
 export {DStruct as DS}; // Dict of Struct
 export {DStruct};
+
+import * as types from './lib/types';
+export {types};
+
+import * as windef from './lib/windef';
+export { windef };
