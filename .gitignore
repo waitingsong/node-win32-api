@@ -19,6 +19,7 @@ node_modules*
 npm-debug.log
 coverage
 .idea
+package-lock.json
 
 
 # files for the dex VM
