@@ -1,9 +1,9 @@
-import * as D from '../windef';
+import * as W from '../windef';
 import * as GT from '../types';
 // import * as LT from './types';
 
 export const fnDef: GT.Win32FnDef = {
-    InitCommonControlsEx: [D.BOOL, [D.LPINITCOMMONCONTROLSEX]],
+    InitCommonControlsEx: [W.BOOL, [W.LPINITCOMMONCONTROLSEX]],
 };
 
 

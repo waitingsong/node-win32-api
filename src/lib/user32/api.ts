@@ -1,53 +1,53 @@
-import * as D from '../windef';
+import * as W from '../windef';
 import * as GT from '../types';
 // import * as LT from './types';
 
 export const fnDef: GT.Win32FnDef = {
-    CreateWindowExW: [D.HWND, [
-        D.DWORD, D.LPCTSTR, D.LPCTSTR, D.DWORD,
-        D.INT, D.INT, D.INT, D.INT,
-        D.HWND, D.HMENU, D.HINSTANCE, D.LPVOID,
+    CreateWindowExW: [W.HWND, [
+        W.DWORD, W.LPCTSTR, W.LPCTSTR, W.DWORD,
+        W.INT, W.INT, W.INT, W.INT,
+        W.HWND, W.HMENU, W.HINSTANCE, W.LPVOID,
     ]],
 
-    DefWindowProcW: [D.LRESULT, [D.HWND, D.UINT, D.WPARAM, D.LPARAM]],
+    DefWindowProcW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM]],
 
-    DispatchMessageW: [D.LRESULT, [D.LPMSG]],
+    DispatchMessageW: [W.LRESULT, [W.LPMSG]],
 
-    EnumWindows: [D.BOOL, [D.WNDENUMPROC, D.LPARAM]],
+    EnumWindows: [W.BOOL, [W.WNDENUMPROC, W.LPARAM]],
 
-    FindWindowExW: [D.HWND, [D.HWND, D.HWND, D.LPCTSTR, D.LPCTSTR]],
+    FindWindowExW: [W.HWND, [W.HWND, W.HWND, W.LPCTSTR, W.LPCTSTR]],
 
-    GetAncestor: [D.HWND, [D.HWND, D.UINT]],
+    GetAncestor: [W.HWND, [W.HWND, W.UINT]],
 
-    GetClassInfoExW: [D.BOOL, [D.HINSTANCE, D.LPCTSTR, D.LPWNDCLASSEX]],
+    GetClassInfoExW: [W.BOOL, [W.HINSTANCE, W.LPCTSTR, W.LPWNDCLASSEX]],
 
-    GetMessageW: [D.BOOL, [D.LPMSG, D.HWND, D.UINT, D.UINT]],
+    GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT]],
 
-    GetParent: [D.HWND, [D.HWND]],
+    GetParent: [W.HWND, [W.HWND]],
 
-    GetWindowInfo: [D.BOOL, [D.HWND, D.PWINDOWINFO]],
+    GetWindowInfo: [W.BOOL, [W.HWND, W.PWINDOWINFO]],
 
-    GetWindowTextW: [D.INT, [D.HWND, D.LPTSTR, D.INT]],
+    GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT]],
 
-    GetWindowThreadProcessId: [D.DWORD, [D.HWND, D.LPDWORD]],
+    GetWindowThreadProcessId: [W.DWORD, [W.HWND, W.LPDWORD]],
 
-    IsWindowVisible: [D.BOOL, [D.HWND]],
+    IsWindowVisible: [W.BOOL, [W.HWND]],
 
-    RegisterClassExW: [D.ATOM, [D.WNDCLASSEX]],
+    RegisterClassExW: [W.ATOM, [W.WNDCLASSEX]],
 
-    SetWindowTextW: [D.BOOL, [D.HWND, D.LPCTSTR]],
+    SetWindowTextW: [W.BOOL, [W.HWND, W.LPCTSTR]],
 
-    SetWinEventHook: [D.HWINEVENTHOOK, [D.UINT, D.UINT, D.HMODULE, D.WINEVENTPROC, D.DWORD, D.DWORD, D.UINT]],
+    SetWinEventHook: [W.HWINEVENTHOOK, [W.UINT, W.UINT, W.HMODULE, W.WINEVENTPROC, W.DWORD, W.DWORD, W.UINT]],
 
-    ShowWindow: [D.BOOL, [D.HWND, D.INT]],
+    ShowWindow: [W.BOOL, [W.HWND, W.INT]],
 
-    TranslateMessage: [D.BOOL, [D.LPMSG]],
+    TranslateMessage: [W.BOOL, [W.LPMSG]],
 
-    TranslateMessageEx: [D.BOOL, [D.LPMSG]],
+    TranslateMessageEx: [W.BOOL, [W.LPMSG]],
 
-    UnhookWinEvent: [D.BOOL, [D.HWINEVENTHOOK]], 
+    UnhookWinEvent: [W.BOOL, [W.HWINEVENTHOOK]], 
 
-    UpdateWindow: [D.BOOL, [D.HWND]],
+    UpdateWindow: [W.BOOL, [W.HWND]],
 };
 
 export interface Win32Fn {

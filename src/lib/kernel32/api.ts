@@ -1,19 +1,19 @@
-import * as D from '../windef';
+import * as W from '../windef';
 import * as GT from '../types';
 
 
 export const fnDef: GT.Win32FnDef = {
-    FormatMessageW: [D.DWORD, [D.DWORD, D.LPCVOID, D.DWORD, D.DWORD, D.LPTSTR, D.DWORD, D.va_list]],
+    FormatMessageW: [W.DWORD, [W.DWORD, W.LPCVOID, W.DWORD, W.DWORD, W.LPTSTR, W.DWORD, W.va_list]],
 
-    GetLastError: [D.DWORD, []], // err code: https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms681381(v=vs.85).aspx
+    GetLastError: [W.DWORD, []], // err code: https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms681381(v=vs.85).aspx
 
-    GetModuleHandleW: [D.HMODULE, [D.LPCTSTR]],    // retrive value from buf by ret.ref().readUInt32()
+    GetModuleHandleW: [W.HMODULE, [W.LPCTSTR]],    // retrive value from buf by ret.ref().readUInt32()
 
-    GetModuleHandleExW: [D.BOOL, [D.DWORD, D.LPCTSTR, D.HMODULE]],     // flags, optional LPCTSTR name, ref hModule
+    GetModuleHandleExW: [W.BOOL, [W.DWORD, W.LPCTSTR, W.HMODULE]],     // flags, optional LPCTSTR name, ref hModule
 
-    GetProcessHeaps: [D.DWORD, [D.DWORD, D.PHANDLE]],
+    GetProcessHeaps: [W.DWORD, [W.DWORD, W.PHANDLE]],
 
-    HeapFree: [D.BOOL, [D.HANDLE, D.DWORD, D.LPVOID]],
+    HeapFree: [W.BOOL, [W.HANDLE, W.DWORD, W.LPVOID]],
 };
 
 export interface Win32Fn {
