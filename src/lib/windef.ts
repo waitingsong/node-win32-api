@@ -1,8 +1,8 @@
 // windows data types for ref module https://github.com/TooTallNate/ref
 // https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751
 
-const _WIN64 = process.arch === 'x64' ? true : false;
-const _UNICODE = true;
+export const _WIN64 = process.arch === 'x64' ? true : false;
+export const _UNICODE = true;
 
 export const ATOM = 'uint16';
 export const DWORD = 'uint32';
