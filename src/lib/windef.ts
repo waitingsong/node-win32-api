@@ -181,7 +181,14 @@ export const USN = LONGLONG;
 export const WINEVENTPROC = 'pointer';
 export const WNDENUMPROC = 'pointer';
 export const WNDPROC = 'pointer';
-export const WPARAM = UINT_PTR;
+
+/**
+ * Caution: original be  typedef UINT_PTR WPARAM; 
+ * but the CALLBACK WNDCLASSEX.lpfnWndProc will pass negative number and cause process exit. 
+ * so change to int
+ */
+//export const WPARAM = UINT_PTR;
+export const WPARAM = 'int';
 
 export const LPINITCOMMONCONTROLSEX = 'pointer';  // A pointer to an INITCOMMONCONTROLSEX
 export const LPWNDCLASSEX = 'pointer';  // A pointer to a WNDCLASSEX
