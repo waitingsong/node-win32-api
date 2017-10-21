@@ -185,10 +185,10 @@ export const WNDPROC = 'pointer';
 /**
  * Caution: original be  typedef UINT_PTR WPARAM; 
  * but the CALLBACK WNDCLASSEX.lpfnWndProc will pass negative number and cause process exit. 
- * so change to int
+ * so change to LONG_PTR
  */
 //export const WPARAM = UINT_PTR;
-export const WPARAM = 'int';
+export const WPARAM = LONG_PTR;
 
 export const LPINITCOMMONCONTROLSEX = 'pointer';  // A pointer to an INITCOMMONCONTROLSEX
 export const LPWNDCLASSEX = 'pointer';  // A pointer to a WNDCLASSEX
