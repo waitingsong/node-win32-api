@@ -183,8 +183,8 @@ export const WNDENUMPROC = 'pointer';
 export const WNDPROC = 'pointer';
 
 /**
- * Caution: original be  typedef UINT_PTR WPARAM; 
- * but the CALLBACK WNDCLASSEX.lpfnWndProc will pass negative number and cause process exit. 
+ * Caution: original be  typedef UINT_PTR WPARAM;
+ * but the CALLBACK WNDCLASSEX.lpfnWndProc will pass negative number and cause process exit.
  * so change to LONG_PTR
  */
 //export const WPARAM = UINT_PTR;
@@ -199,7 +199,7 @@ export const va_list = 'char*';
 /* ------------------ struct ---------------------- */
 export const INITCOMMONCONTROLSEX = 'pointer';
 export const MSG = 'pointer';
-export const POINT  = 'pointer';
+export const POINT = 'pointer';
 export const WNDCLASSEX = 'pointer';
 
 export const WINDOWINFO = 'pointer';

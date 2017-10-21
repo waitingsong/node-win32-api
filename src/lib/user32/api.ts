@@ -45,7 +45,7 @@ export const fnDef: GT.Win32FnDef = {
 
     TranslateMessageEx: [W.BOOL, [W.LPMSG]],
 
-    UnhookWinEvent: [W.BOOL, [W.HWINEVENTHOOK]], 
+    UnhookWinEvent: [W.BOOL, [W.HWINEVENTHOOK]],
 
     UpdateWindow: [W.BOOL, [W.HWND]],
 };
@@ -101,7 +101,7 @@ export interface Win32Fn {
         lpfnWinEventProc: GT.WINEVENTPROC,
         idProcess: GT.DWORD,
         idThread: GT.DWORD,
-        dwflags: GT.UINT 
+        dwflags: GT.UINT
     ): GT.HWINEVENTHOOK;
 
     ShowWindow(hWnd: GT.HWND, nCmdShow: GT.INT): GT.BOOL;
