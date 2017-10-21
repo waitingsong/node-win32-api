@@ -23,9 +23,9 @@ npm install --save win32-api
 const {K, U} = require('win32-api');   // or {Kernel32, User32}
 const ref = require('ref');
 
-const knl32 = K();
-const user32 = U();  // load all apis defined in lib/{dll}/api from user32.dll
-// const user32 = U(['FindWindowExW']);  // load only one api defined in lib/{dll}/api from user32.dll
+const knl32 = K.load();
+const user32 = U.load();  // load all apis defined in lib/{dll}/api from user32.dll
+// const user32 = U.load(['FindWindowExW']);  // load only one api defined in lib/{dll}/api from user32.dll
 
 const title = 'Calculator\0';    // null-terminated string
 // const title = '计算器\0';    // string in chinese
@@ -86,11 +86,27 @@ import Struct from 'ref-struct';
 import {DS} from 'win32-api';
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx
-const point = (new Struct(DS.POINT))();
+const point = new Struct(DS.POINT)();
 point.x = 100;
 point.y = 200;
 console.log(point);
 ```
+
+```js
+// usage of types and windef:
+import {K, types as GT, windef as W} from 'win32-api';
+import * as ref from 'ref';
+
+const knl32 = K.load();
+
+const buf  = <GT.FFIBuffer> Buffer.alloc(4);   // ← here the types
+buf.writeInt32LE(12345, 0);
+
+// const hInstance =<GT.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4);
+const hInstance = <GT.FFIBuffer> ref.alloc(W.HINSTANCE);    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
+knl32.GetModuleHandleExW(0, null, hInstance);
+```
+
 
 ## Dependencies Troubleshooting
 - If installation of node-gyp fails:
@@ -107,6 +123,7 @@ Check out [node-gyp](https://github.com/nodejs/node-gyp) and [windows-build-tool
 
 ## License
 [MIT](LICENSE)
+
 
 ### Languages
 - [English](README.md)

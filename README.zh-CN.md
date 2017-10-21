@@ -22,9 +22,9 @@ npm install --save win32-api
 const {K, U} = require('win32-api');   // or {Kernel32, User32}
 const ref = require('ref');
 
-const knl32 = K();
-const user32 = U();  // 初始化 lib/{dll}/api 文件中定义的所有函数
-// const user32 = U(['FindWindowExW']);  // 仅加载 user32.dll 的 FindWindowExW 函数
+const knl32 = K.load();
+const user32 = U.load();  // 初始化 lib/{dll}/api 文件中定义的所有函数
+// const user32 = U.load(['FindWindowExW']);  // 仅加载 user32.dll 的 FindWindowExW 函数
 
 const title = '计算器\0';    // null-terminated string 字符串必须以\0即null结尾!
 // const title = 'Calculator\0';
@@ -90,6 +90,21 @@ const point = (new Struct(DS.POINT))();
 point.x = 100;
 point.y = 200;
 console.log(point);
+```
+
+```js
+// usage of types and windef:
+import {K, types as GT, windef as W} from 'win32-api';
+import * as ref from 'ref';
+
+const knl32 = K.load();
+
+const buf  = <GT.FFIBuffer> Buffer.alloc(4);   // ← here the types
+buf.writeInt32LE(12345, 0);
+
+// const hInstance =<GT.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4);
+const hInstance = <GT.FFIBuffer> ref.alloc(W.HINSTANCE);    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
+knl32.GetModuleHandleExW(0, null, hInstance);
 ```
 
 ## 依赖安装问题
