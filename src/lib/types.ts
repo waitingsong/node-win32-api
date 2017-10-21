@@ -124,7 +124,7 @@ export type LONG = number;
 export type LONGLONG = number;
 export type LONG32 = number;
 export type LONG64 = number;
-export type LPARAM = Buffer;
+export type LPARAM = number | Buffer;
 export type LPBOOL = Buffer;
 export type LPBYTE = Buffer;
 export type LPCOLORREF = Buffer;
@@ -225,7 +225,7 @@ export type USHORT = number;
 export type USN = number;
 // export type WINAPI;
 export type WINEVENTPROC = Buffer;
-export type WPARAM = Buffer;
+export type WPARAM = number | Buffer;
 export type WNDENUMPROC = Buffer;
 export type WNDPROC = Buffer;
 
