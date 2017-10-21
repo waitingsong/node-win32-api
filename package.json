@@ -22,7 +22,6 @@
     "ffi"
   ],
   "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "author": "waiting",
   "license": "MIT",
   "repository": {
