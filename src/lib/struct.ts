@@ -8,7 +8,7 @@ import * as D from './windef';
  * import Struct from 'ref-struct';
  * import {DS} from 'win32-api';
  *
- * const point = (new Struct(DS.POINT))();
+ * const point = new Struct(DS.POINT)();
  * point.x = 100;
  * point.y = 200;
  *
