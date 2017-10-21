@@ -2,53 +2,6 @@ import * as W from '../windef';
 import * as GT from '../types';
 // import * as LT from './types';
 
-export const fnDef: GT.Win32FnDef = {
-    CreateWindowExW: [W.HWND, [
-        W.DWORD, W.LPCTSTR, W.LPCTSTR, W.DWORD,
-        W.INT, W.INT, W.INT, W.INT,
-        W.HWND, W.HMENU, W.HINSTANCE, W.LPVOID,
-    ]],
-
-    DefWindowProcW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM]],
-
-    DispatchMessageW: [W.LRESULT, [W.LPMSG]],
-
-    EnumWindows: [W.BOOL, [W.WNDENUMPROC, W.LPARAM]],
-
-    FindWindowExW: [W.HWND, [W.HWND, W.HWND, W.LPCTSTR, W.LPCTSTR]],
-
-    GetAncestor: [W.HWND, [W.HWND, W.UINT]],
-
-    GetClassInfoExW: [W.BOOL, [W.HINSTANCE, W.LPCTSTR, W.LPWNDCLASSEX]],
-
-    GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT]],
-
-    GetParent: [W.HWND, [W.HWND]],
-
-    GetWindowInfo: [W.BOOL, [W.HWND, W.PWINDOWINFO]],
-
-    GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT]],
-
-    GetWindowThreadProcessId: [W.DWORD, [W.HWND, W.LPDWORD]],
-
-    IsWindowVisible: [W.BOOL, [W.HWND]],
-
-    RegisterClassExW: [W.ATOM, [W.WNDCLASSEX]],
-
-    SetWindowTextW: [W.BOOL, [W.HWND, W.LPCTSTR]],
-
-    SetWinEventHook: [W.HWINEVENTHOOK, [W.UINT, W.UINT, W.HMODULE, W.WINEVENTPROC, W.DWORD, W.DWORD, W.UINT]],
-
-    ShowWindow: [W.BOOL, [W.HWND, W.INT]],
-
-    TranslateMessage: [W.BOOL, [W.LPMSG]],
-
-    TranslateMessageEx: [W.BOOL, [W.LPMSG]],
-
-    UnhookWinEvent: [W.BOOL, [W.HWINEVENTHOOK]],
-
-    UpdateWindow: [W.BOOL, [W.HWND]],
-};
 
 export interface Win32Fn {
     CreateWindowExW(
@@ -115,6 +68,55 @@ export interface Win32Fn {
     UpdateWindow(hWnd: GT.HWND): GT.BOOL;
 }
 
+
+
+export const fnDef: GT.Win32FnDef = {
+    CreateWindowExW: [W.HWND, [
+        W.DWORD, W.LPCTSTR, W.LPCTSTR, W.DWORD,
+        W.INT, W.INT, W.INT, W.INT,
+        W.HWND, W.HMENU, W.HINSTANCE, W.LPVOID,
+    ]],
+
+    DefWindowProcW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM]],
+
+    DispatchMessageW: [W.LRESULT, [W.LPMSG]],
+
+    EnumWindows: [W.BOOL, [W.WNDENUMPROC, W.LPARAM]],
+
+    FindWindowExW: [W.HWND, [W.HWND, W.HWND, W.LPCTSTR, W.LPCTSTR]],
+
+    GetAncestor: [W.HWND, [W.HWND, W.UINT]],
+
+    GetClassInfoExW: [W.BOOL, [W.HINSTANCE, W.LPCTSTR, W.LPWNDCLASSEX]],
+
+    GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT]],
+
+    GetParent: [W.HWND, [W.HWND]],
+
+    GetWindowInfo: [W.BOOL, [W.HWND, W.PWINDOWINFO]],
+
+    GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT]],
+
+    GetWindowThreadProcessId: [W.DWORD, [W.HWND, W.LPDWORD]],
+
+    IsWindowVisible: [W.BOOL, [W.HWND]],
+
+    RegisterClassExW: [W.ATOM, [W.WNDCLASSEX]],
+
+    SetWindowTextW: [W.BOOL, [W.HWND, W.LPCTSTR]],
+
+    SetWinEventHook: [W.HWINEVENTHOOK, [W.UINT, W.UINT, W.HMODULE, W.WINEVENTPROC, W.DWORD, W.DWORD, W.UINT]],
+
+    ShowWindow: [W.BOOL, [W.HWND, W.INT]],
+
+    TranslateMessage: [W.BOOL, [W.LPMSG]],
+
+    TranslateMessageEx: [W.BOOL, [W.LPMSG]],
+
+    UnhookWinEvent: [W.BOOL, [W.HWINEVENTHOOK]],
+
+    UpdateWindow: [W.BOOL, [W.HWND]],
+};
 
 export interface EnumWindows {
     (lpEnumFunc: GT.WNDENUMPROC, lParam: GT.LPARAM): GT.BOOL;
