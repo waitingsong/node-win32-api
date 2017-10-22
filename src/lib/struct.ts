@@ -1,6 +1,6 @@
 // windows data types struct for ref-struct module https://github.com/TooTallNate/ref-struct
 
-import * as D from './windef';
+import * as W from './windef';
 
 /**
  * Struct usage:
@@ -15,64 +15,64 @@ import * as D from './windef';
  */
 
 export const INITCOMMONCONTROLSEX = {
-    dwSize: D.DWORD,
-    dwICC: D.DWORD,
+    dwSize: W.DWORD,
+    dwICC: W.DWORD,
 };
 
 export const MSG = {
-    hwnd: D.HWND,
-    message: D.UINT,
-    wParam: D.WPARAM,
-    lParam: D.LPARAM,
-    time: D.DWORD,
-    pt: D.POINT,
+    hwnd: W.HWND,
+    message: W.UINT,
+    wParam: W.WPARAM,
+    lParam: W.LPARAM,
+    time: W.DWORD,
+    pt: W.POINT,
 };
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx
 export const POINT = {
-    x: D.LONG,
-    y: D.LONG,
+    x: W.LONG,
+    y: W.LONG,
 };
 
 export const UNICODE_STRING = {
-    Length: D.USHORT,
-    MaximumLength: D.USHORT,
-    Buffer: D.PWSTR,
+    Length: W.USHORT,
+    MaximumLength: W.USHORT,
+    Buffer: W.PWSTR,
 };
 
 export const WINDOWINFO = {
-    cbSize: D.DWORD,
-    rcWindow: D.RECT,
-    rcClient: D.RECT,
-    dwStyle: D.DWORD,
-    dwExStyle: D.DWORD,
-    dwWindowStatus: D.DWORD ,
-    cxWindowBorders: D.UINT,
-    cyWindowBorders: D.UINT,
-    atomWindowType: D.ATOM,
-    wCreatorVersion: D.WORD,
+    cbSize: W.DWORD,
+    rcWindow: W.RECT,
+    rcClient: W.RECT,
+    dwStyle: W.DWORD,
+    dwExStyle: W.DWORD,
+    dwWindowStatus: W.DWORD ,
+    cxWindowBorders: W.UINT,
+    cyWindowBorders: W.UINT,
+    atomWindowType: W.ATOM,
+    wCreatorVersion: W.WORD,
 };
 
 // https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms633577(v=vs.85).aspx
 export const WNDCLASSEX = {
-    cbSize: D.UINT,
-    style: D.UINT,
+    cbSize: W.UINT,
+    style: W.UINT,
     //'lpfnWndProc': ffi.Function('int32', ['pointer', 'uint32', 'int32', 'uint32']) ,
-    lpfnWndProc: D.WNDPROC,
-    cbClsExtra: D.INT,
-    cbWndExtra: D.INT,
-    hInstance: D.HINSTANCE, // can be 0?
-    hIcon: D.HICON,
-    hCursor: D.HCURSOR,
-    hbrBackground: D.HBRUSH,
-    lpszMenuName: D.LPCTSTR,
-    lpszClassName: D.LPCTSTR,
-    hIconSm: D.HICON,
+    lpfnWndProc: W.WNDPROC,
+    cbClsExtra: W.INT,
+    cbWndExtra: W.INT,
+    hInstance: W.HINSTANCE, // can be 0?
+    hIcon: W.HICON,
+    hCursor: W.HCURSOR,
+    hbrBackground: W.HBRUSH,
+    lpszMenuName: W.LPCTSTR,
+    lpszClassName: W.LPCTSTR,
+    hIconSm: W.HICON,
 };
 
 export const _RECT = {
-    left: D.LONG,
-    top: D.LONG,
-    right: D.LONG,
-    bottom: D.LONG,
+    left: W.LONG,
+    top: W.LONG,
+    right: W.LONG,
+    bottom: W.LONG,
 };
