@@ -5,7 +5,7 @@ import * as W from './windef';
 /**
  * Struct usage:
  *
- * import Struct from 'ref-struct';
+ * import * as Struct from 'ref-struct';
  * import {DS} from 'win32-api';
  *
  * const point = new Struct(DS.POINT)();
