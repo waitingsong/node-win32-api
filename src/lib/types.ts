@@ -1,7 +1,5 @@
 // data types for TypeScript
 
-
-
 /**
  * node-ffi-buffer extends from Buffer
  *
@@ -39,11 +37,15 @@ export interface FFIBuffer extends Buffer {
 // custome
 export type PID = number;
 export type PPID = number;
+
 export type Win32FnName = string;
-export type Win32FnParam = [Win32FnName, (string | object)[]];   // [returnType, [param]]
+export type Win32FnRetType = string;
+export type Win32FnCallParam = string[] | [void];
+export type Win32FnParam = [Win32FnRetType, Win32FnCallParam];
 export interface Win32FnDef {
     [fn: string]: Win32FnParam;
 }
+
 export type _WIN64 = boolean;
 export type _UNICODE = boolean;
 
