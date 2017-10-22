@@ -3,3 +3,14 @@ node_js:
 - '6.5'
 - '7'
 - '8'
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install
+  - npm install typescript
+
+script:
+  - npm run build
