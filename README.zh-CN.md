@@ -2,7 +2,7 @@
 Windows win32 api 接口定义
 
 ## 用途
-用于 NodeJS 通过 [node-ffi](https://github.com/node-ffi/node-ffi) 调用系统user32.dll, kerner32.dll等动态链接库提供的函数
+用于 Node.js 通过 [node-ffi](https://github.com/node-ffi/node-ffi) 调用系统user32.dll, kerner32.dll, comctl32.dll 等动态链接库提供的函数
 
 ## 安装
 ```powershell
@@ -106,6 +106,10 @@ buf.writeInt32LE(12345, 0);
 const hInstance = <GT.FFIBuffer> ref.alloc(W.HINSTANCE);    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
 knl32.GetModuleHandleExW(0, null, hInstance);
 ```
+
+## Demo
+- [create_window](https://github.com/waitingsong/node-win32-api/blob/master/demo/create_window.ts)
+
 
 ## 依赖安装问题
 - If installation of node-gyp fails:

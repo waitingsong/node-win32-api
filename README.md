@@ -1,14 +1,13 @@
 # win32-api
-FFI Definitions of Windows win32 apis for calling by NodeJS via [node-ffi](https://github.com/node-ffi/node-ffi)
+FFI Definitions of Windows win32 api for [node-ffi](https://github.com/node-ffi/node-ffi)
 
 ## What can I do with this?
-Calling win32 native functions come from user32.dll, kernel32.dll, comctl32.dll by javascript
+Calling win32 native functions come from user32.dll, kernel32.dll, comctl32.dll by Node.js
 
 ## Installing
 ```powershell
 npm install --save win32-api
 ```
-
 
 ## Usage
 ```js
@@ -106,6 +105,9 @@ buf.writeInt32LE(12345, 0);
 const hInstance = <GT.FFIBuffer> ref.alloc(W.HINSTANCE);    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
 knl32.GetModuleHandleExW(0, null, hInstance);
 ```
+
+## Demo
+- [create_window](https://github.com/waitingsong/node-win32-api/blob/master/demo/create_window.ts)
 
 
 ## Dependencies Troubleshooting
