@@ -6,10 +6,10 @@
     // "lib": [],                             /* Specify library files to be included in the compilation:  */
     "declaration": true,                   /* Generates corresponding '.d.ts' file. */
     // "sourceMap": true,                     /* Generates corresponding '.map' file. */
-    // "outFile": "./",                       /* Concatenate and emit output to single file. */
     "outDir": "./dist",                        /* Redirect output structure to the directory. */
     // "importHelpers": true,                 /* Import emit helpers from 'tslib'. */
     // "noImplicitAny": false,                 /* Raise error on expressions and declarations with an implied 'any' type. */
+    // "noImplicitThis": false,
     "alwaysStrict": true,                  /* Parse in strict mode and emit "use strict" for each source file. */
     // "inlineSourceMap": true,               /* Emit a single file with source maps instead of having a separate file. */
     // "inlineSources": true,                 /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
@@ -23,6 +23,7 @@
   ],
   "exclude": [
     "dist/",
+    "test/",
     "node_modules",
     "**/*.spec.ts"
   ]

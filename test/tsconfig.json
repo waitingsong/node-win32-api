@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'. */
+    "module": "commonjs",                     /* Specify module code generation: 'commonjs', 'amd', 'system', 'umd' or 'es2015'. */
+    "noImplicitAny": false,                 /* Raise error on expressions and declarations with an implied 'any' type. */
+    "noImplicitThis": false,
+    "alwaysStrict": true,                  /* Parse in strict mode and emit "use strict" for each source file. */
+    "newLine": "lf",
+    "maxNodeModuleJsDepth": 1,
+    "strict": true,                            /* Enable all strict type-checking options. */
+    "pretty": true
+  },
+  "include": [
+  ],
+  "exclude": [
+    "dist/",
+    "test/",
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
