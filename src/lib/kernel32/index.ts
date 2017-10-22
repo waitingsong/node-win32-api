@@ -7,6 +7,7 @@ import * as H from '../helper';
 import * as Api from './api';
 export {GT as types};
 export {W as windef};
+export {Api as api};
 
 export const dllName = basename(__dirname);
 
