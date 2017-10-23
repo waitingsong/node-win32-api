@@ -1,6 +1,13 @@
 # win32-api
 Windows win32 api 接口定义
 
+[![Version](https://img.shields.io/npm/v/win32-api.svg)](https://www.npmjs.com/package/win32-api)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+![Available platform](https://img.shields.io/badge/platform-win32-blue.svg)
+[![Build Status](https://travis-ci.org/waitingsong/node-win32-api.svg?branch=master)](https://travis-ci.org/waitingsong/node-win32-api)
+
+
+
 ## 用途
 用于 Node.js 通过 [node-ffi](https://github.com/node-ffi/node-ffi) 调用系统user32.dll, kerner32.dll, comctl32.dll 等动态链接库提供的函数
 

@@ -1,6 +1,13 @@
 # win32-api
 FFI Definitions of Windows win32 api for [node-ffi](https://github.com/node-ffi/node-ffi)
 
+[![Version](https://img.shields.io/npm/v/win32-api.svg)](https://www.npmjs.com/package/win32-api)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+![Available platform](https://img.shields.io/badge/platform-win32-blue.svg)
+[![Build Status](https://travis-ci.org/waitingsong/node-win32-api.svg?branch=master)](https://travis-ci.org/waitingsong/node-win32-api)
+
+
+
 ## What can I do with this?
 Calling win32 native functions come from user32.dll, kernel32.dll, comctl32.dll by Node.js
 
