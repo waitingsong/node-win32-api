@@ -8,9 +8,10 @@ cache:
   directories:
     - node_modules
 
+before_script:
+  - npm install -g typescript
 install:
   - npm install
-  - npm install typescript
 
 script:
   - npm run build
