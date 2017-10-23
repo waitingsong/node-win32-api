@@ -20,8 +20,8 @@ const comctl32 = C.load();  // load all apis defined in lib/{dll}/api from user3
 
 // WndProc
 const WndProc = ffi.Callback('uint32',
-    ['uint32*', 'uint32', 'int64', 'int64'],
-    (hwnd: GT.HWND, uMsg: number, wParam: GT.WPARAM, lParam: GT.LPARAM) => {
+    [W.HWND, W.UINT, W.WPARAM, W.LPARAM],
+    (hwnd: GT.HWND, uMsg: GT.UINT, wParam: GT.WPARAM, lParam: GT.LPARAM) => {
         console.log('WndProc callback: ', uMsg, wParam, lParam);
         let result = 0;
         switch (uMsg) {
