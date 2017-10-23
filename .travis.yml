@@ -9,10 +9,12 @@ cache:
     - node_modules
 
 before_install:
-  - npm install -g typescript
-
-install:
+  - npm install -g ffi 
+  - npm install rimraf ts-node typescript intelli-espower-loader tslint eslint power-assert mocha
   - npm install
+
+
+install: true
 
 script:
   - npm run build-ci
