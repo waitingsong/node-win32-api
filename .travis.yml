@@ -9,8 +9,7 @@ cache:
     - node_modules
 
 before_install:
-  - npm install -g ffi 
-  - npm install rimraf ts-node typescript intelli-espower-loader tslint eslint power-assert mocha
+  - npm install ffi rimraf ts-node typescript intelli-espower-loader tslint eslint power-assert mocha
   - npm install
 
 
