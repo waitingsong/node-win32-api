@@ -37,7 +37,6 @@
     "node": ">=6.5.0"
   },
   "os": [
-    "win32"
   ],
   "dependencies": {},
   "devDependencies": {
