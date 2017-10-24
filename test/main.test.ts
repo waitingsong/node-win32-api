@@ -23,7 +23,7 @@ for (let key of fs.readdirSync(dllDir)) {
 describe(filename, () => {
     for (let dll of dlls) {
         const apiName: string = dll.slice(0, 1).toUpperCase() + dll.slice(1).toLowerCase(); // User32, Kernel32, ...
-        const module = Win[apiName];
+        const module: any = Win[apiName];
 
         if (module && module.api) {
             const apiDef = <GT.Win32FnDef> module.api;
@@ -103,7 +103,7 @@ describe(filename, () => {
 describe(filename, () => {
     for (let dll of dlls) {
         const apiName: string = dll.slice(0, 1).toUpperCase() + dll.slice(1).toLowerCase(); // User32, Kernel32, ...
-        const module = Win[apiName];
+        const module: any = Win[apiName];
 
         if (module && module.api) {
             try {
