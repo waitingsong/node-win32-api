@@ -20,8 +20,6 @@ for (let key of fs.readdirSync(dllDir)) {
 }
 
 describe(filename, () => {
-    this.windefSet = windefSet;
-
     for (let dll of dlls) {
         const apiName: string = dll.slice(0, 1).toUpperCase() + dll.slice(1).toLowerCase(); // User32, Kernel32, ...
         const module = Win[apiName];
