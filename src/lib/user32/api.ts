@@ -1,5 +1,5 @@
-import * as W from '../windef';
 import * as GT from '../types';
+import * as W from '../windef';
 // import * as LT from './types';
 
 
