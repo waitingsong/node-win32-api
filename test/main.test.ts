@@ -37,27 +37,28 @@ describe(filename, () => {
             it(`Should ${apiName}: Win32FnParam of definition be array`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     const p = apiDef[x];
-                    assert(typeof p === 'object' && Array.isArray(p));
+                    assert(typeof p === 'object' && Array.isArray(p), `${x}()`);
                 }
             });
 
             it(`Should ${apiName}: Win32FnRetType of definition be string and not epmty`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     const p = apiDef[x];
-                    assert(typeof p[0] === 'string' && p[0]);
+                    assert(typeof p[0] === 'string' && p[0], `${x}() p[0]`);
                 }
             });
 
             it(`Should ${apiName}: Win32FnRetType of definition exists in conf.windefSet`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
-                    assert(windefSet.has(apiDef[x][0]));
+                    const p = apiDef[x][0];
+                    assert(windefSet.has(p), `${x}() value: "${p}"`);
                 }
             });
 
             it(`Should ${apiName}: Win32FnCallParam of definition be array`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     const p = apiDef[x];
-                    assert(typeof p[1] === 'object' && Array.isArray(p[1]));
+                    assert(typeof p[1] === 'object' && Array.isArray(p[1]), `${x}()`);
                 }
             });
 
@@ -68,7 +69,7 @@ describe(filename, () => {
 
                     if (len) {
                         for (let i = 0; i < len; i++) {
-                            assert(typeof arr[i] === 'string' && arr[i]);
+                            assert(typeof arr[i] === 'string' && arr[i], `${x}() [${i}]`);
                         }
                     }
                 }
@@ -85,7 +86,7 @@ describe(filename, () => {
                                 const p = arr[i];
 
                                 if (typeof p === 'string') {
-                                    assert(windefSet.has(p));
+                                    assert(windefSet.has(p), `${x}() value: "${p}"`);
                                 }
                             }
                         }
