@@ -49,6 +49,12 @@ describe(filename, () => {
                 }
             });
 
+            it(`Should ${apiName}: Win32FnRetType of definition exists in conf.windefSet`, function() {
+                for (let x in apiDef) {    // tslint:disable-line
+                    assert(windefSet.has(apiDef[x][0]));
+                }
+            });
+
             it(`Should ${apiName}: Win32FnCallParam of definition be array`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     const p = apiDef[x];
