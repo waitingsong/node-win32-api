@@ -34,14 +34,5 @@ describe(`${dllName}/${filename}`, () => {
             console.error(ex);
             process.exit(1);
         }
-
-        // it(`Should ${apiName}: dll initialized by load() ready`, function() {
-        //     for (let x in apiDef) {    // tslint:disable-line
-        //         assert(typeof x === 'string');
-        //     }
-        // });
-
-
     }
-
 });
