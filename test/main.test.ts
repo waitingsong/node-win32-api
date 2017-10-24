@@ -1,4 +1,5 @@
 /// <reference types="mocha" />
+/// <reference types="node" />
 
 import * as fs from 'fs';
 import {basename, normalize} from 'path';
