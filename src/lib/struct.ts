@@ -46,7 +46,7 @@ export const WINDOWINFO = {
     rcClient: W.RECT,
     dwStyle: W.DWORD,
     dwExStyle: W.DWORD,
-    dwWindowStatus: W.DWORD ,
+    dwWindowStatus: W.DWORD,
     cxWindowBorders: W.UINT,
     cyWindowBorders: W.UINT,
     atomWindowType: W.ATOM,

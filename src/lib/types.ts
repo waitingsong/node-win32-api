@@ -60,7 +60,7 @@ export type HANDLE = Buffer;
 export type LONG_PTR = number;
 export type ULONG_PTR = number;
 export type VOID = any;
-export type WCHAR  = string;
+export type WCHAR = string;
 export type WORD = string;
 
 export type BOOL = number;  // ?

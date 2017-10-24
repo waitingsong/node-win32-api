@@ -22,7 +22,7 @@ export interface Win32Fn {
 
     GetProcessHeaps(NumberOfHeaps: GT.DWORD, ProcessHeaps: GT.PHANDLE): GT.DWORD;
 
-    HeapFree( hHeap: GT.HANDLE, dwFlags: GT.DWORD, lpMem: GT.LPVOID | null): GT.BOOL;
+    HeapFree(hHeap: GT.HANDLE, dwFlags: GT.DWORD, lpMem: GT.LPVOID | null): GT.BOOL;
 }
 
 export const fnDef: GT.Win32FnDef = {

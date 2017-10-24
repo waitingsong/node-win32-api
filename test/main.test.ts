@@ -9,11 +9,11 @@ import * as H from '../src/lib/helper';
 import {windefSet} from '../src/lib/conf';
 
 const filename = basename(__filename);
-const dllDir = normalize( __dirname + '/../src/lib/');
+const dllDir = normalize(__dirname + '/../src/lib/');
 const dlls = <string[]> [];
 
 for (let key of fs.readdirSync(dllDir)) {
-    const stat = fs.statSync(normalize(dllDir + key) );
+    const stat = fs.statSync(normalize(dllDir + key));
     if (stat.isDirectory()) {
         dlls.push(key);
     }

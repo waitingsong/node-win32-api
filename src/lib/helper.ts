@@ -8,10 +8,10 @@ export function gen_api_opts(fnDef: GT.Win32FnDef, fns?: GT.Win32FnName[]): GT.W
             const v = fnDef[fn];
             if (v) {
                 Object.defineProperty(opts, <string> fn, {
-                    value:  <GT.Win32FnParam> v,
+                    value: <GT.Win32FnParam> v,
                     writable: false,
-                    enumerable : true,
-                    configurable : false,
+                    enumerable: true,
+                    configurable: false,
                 });
             }
         }
