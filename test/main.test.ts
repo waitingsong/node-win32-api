@@ -69,6 +69,25 @@ describe(filename, () => {
                 }
             });
 
+            it(`Should ${apiName}: item of Win32FnCallParam of definition exists in conf.windefSet`, function() {
+                if (windefSet && windefSet.size) {
+                    for (let x in apiDef) {    // tslint:disable-line
+                        const arr = apiDef[x][1];
+                        const len = arr.length;
+
+                        if (len) {
+                            for (let i = 0; i < len; i++) {
+                                const p = arr[i];
+
+                                if (typeof p === 'string') {
+                                    assert(windefSet.has(p));
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
         }
 
     }   // loop END
