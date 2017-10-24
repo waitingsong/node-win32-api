@@ -20,6 +20,7 @@ npm-debug.log
 coverage
 .idea
 package-lock.json
+.nyc_output
 
 
 # files for the dex VM
