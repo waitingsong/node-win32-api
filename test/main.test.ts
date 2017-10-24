@@ -98,3 +98,31 @@ describe(filename, () => {
 
     }   // loop END
 });
+
+
+describe(filename, () => {
+    for (let dll of dlls) {
+        const apiName: string = dll.slice(0, 1).toUpperCase() + dll.slice(1).toLowerCase(); // User32, Kernel32, ...
+        const module = Win[apiName];
+
+        if (module && module.api) {
+            try {
+                const api: GT.Win32FnDef = module.load();
+
+                for (let fn in api) {
+                    if (!{}.hasOwnProperty.call(api, fn)) {
+                        continue;
+                    }
+                    it(`Should ${apiName}.${fn}() be typeof "function"`, function() {
+                        assert(typeof api[fn] === 'function', `${fn}`);
+                    });
+                }
+            }
+            catch (ex) {
+                assert.throws(() => {
+                    throw ex;
+                }, /dll init failed/);
+            }
+        }
+    }
+});
