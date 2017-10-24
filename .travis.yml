@@ -19,5 +19,5 @@ script:
   - npm run test-travis
 
 after_success:
-  - npm run cov
+  - npm run cov:coveralls
 

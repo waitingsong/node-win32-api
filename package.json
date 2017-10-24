@@ -13,7 +13,8 @@
     "prepublishOnly": "npm run build",
     "test-travis": "mocha --config test/mocha.travis.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
     "test-appveyor": "mocha --config test/mocha.appveyor.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
-    "cov": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
+    "cov": "nyc mocha",
+    "cov:coveralls": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
     "build": "npm run test && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint"
   },
   "nyc": {
