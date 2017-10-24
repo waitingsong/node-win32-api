@@ -13,7 +13,7 @@
     "prepublishOnly": "npm run build",
     "test-travis": "mocha --config test/mocha.travis.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
     "test-appveyor": "mocha --config test/mocha.appveyor.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
-    "cov": "nyc mocha",
+    "cov": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
     "build": "npm run test && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint"
   },
   "nyc": {
@@ -65,11 +65,13 @@
     "@types/power-assert": "^1.4.29",
     "@types/ref": "^0.0.28",
     "@types/ref-struct": "^0.0.28",
+    "coveralls": "^3.0.0",
     "eslint": "^4.8.0",
     "ffi": "^2.2.0",
     "intelli-espower-loader": "^1.0.1",
     "istanbul": "^0.4.5",
     "mocha": "^4.0.1",
+    "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^11.2.1",
     "power-assert": "^1.4.4",
     "rimraf": "^2.6.1",

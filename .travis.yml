@@ -15,5 +15,9 @@ before_install:
 install: true
 
 script:
+  - npm run build
   - npm run test-travis
+
+after_success:
+  - npm run cov
 
