@@ -28,11 +28,11 @@ describe(`${dllName}/${filename}`, () => {
                     assert(typeof api[fn] === 'function', `${fn}`);
                 });
             }
-
         }
         catch (ex) {
-            console.error(ex);
-            process.exit(1);
+            assert.throws(() => {
+                throw ex;
+            }, /dll init failed/);
         }
     }
 });
