@@ -14,3 +14,32 @@ install:
 
 test_script:
   - c:\projects\myproject\test\appveyor.cmd
+clone_folder: c:\projects\myproject
+
+image:
+  - Visual Studio 2015
+
+init:
+  - git config --global core.autocrlf input
+
+environment:
+  matrix:
+    - nodejs_version: "6"
+    - nodejs_version: "8"
+
+platform:
+  - x86
+  - x64
+
+install:
+  - ps: Install-Product node $env:nodejs_version $env:platform
+  - npm install typescript
+  - npm install
+
+test_script:
+  - node --version
+  - npm --version
+  - npm run test-appveyor
+
+build: off
+deploy: off

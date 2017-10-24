@@ -6,7 +6,6 @@ import * as assert from 'power-assert';
 import * as Win from '../src/index';
 import * as GT from '../src/lib/types';
 import * as H from '../src/lib/helper';
-// import * as Api from '../src/lib/user32/api';
 import {windefSet} from '../src/lib/conf';
 
 const filename = basename(__filename);
