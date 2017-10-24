@@ -40,10 +40,10 @@ describe(filename, () => {
                 }
             });
 
-            it(`Should ${apiName}: Win32FnRetType of definition be string`, function() {
+            it(`Should ${apiName}: Win32FnRetType of definition be string and not epmty`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     const p = apiDef[x];
-                    assert(typeof p[0] === 'string');
+                    assert(typeof p[0] === 'string' && p[0]);
                 }
             });
 
