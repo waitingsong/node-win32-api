@@ -9,7 +9,7 @@
     "lint": "tslint -e **/*.d.ts -t stylish src/**/*.ts test/**/*.ts",
     "jslint": "eslint --fix dist/**/*.js",
     "test": "npm run test-local",
-    "test-local": "mocha --config test/mocha.opts",
+    "test-local": "mocha --config test/mocha.appveyor.opts",
     "prepublishOnly": "npm run build",
     "test-travis": "mocha --config test/mocha.travis.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
     "test-appveyor": "mocha --config test/mocha.appveyor.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
