@@ -33,6 +33,7 @@
       "object-literal-shorthand": false,  // Enforces use of ES6 object literal shorthand when possible
       "object-literal-sort-keys": false,
       "one-line": false,
+      "only-arrow-functions": false,
       "ordered-imports": false,
       "prefer-const": false,
       "prefer-for-of": false,
