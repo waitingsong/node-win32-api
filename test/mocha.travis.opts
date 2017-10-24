@@ -1,4 +1,5 @@
 --require test/tshook.js 
 --timeout 10000 
 --bail
--r intelli-espower-loader test/main.ts
+-r intelli-espower-loader 
+test/main.test.ts
