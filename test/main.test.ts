@@ -2,6 +2,7 @@
 /// <reference types="node" />
 
 import * as fs from 'fs';
+import * as ffi from 'ffi';
 import {basename, normalize} from 'path';
 import * as assert from 'power-assert';
 import * as Win from '../src/index';
@@ -123,6 +124,32 @@ describe(filename, () => {
                     throw ex;
                 }, /dll init failed/);
             }
+        }
+    }
+});
+
+describe('gen_api_opts()', () => {
+    for (let dll of dlls) {
+        const apiName: string = dll.slice(0, 1).toUpperCase() + dll.slice(1).toLowerCase(); // User32, Kernel32, ...
+        const module: any = Win[apiName];
+
+        if (module && module.api) {
+            const api = module.api;
+            let n = 0;
+
+            for (let fn in api) {
+                if (!{}.hasOwnProperty.call(api, fn)) {
+                    continue;
+                }
+                n += 1;
+            }
+
+            it(`Should ${apiName} the number fns equal to the nuber of fns return by gen_api_opts, during load all`, function() {
+                const fns: GT.Win32FnDef = H.gen_api_opts(api);
+
+                assert(typeof fns === 'object' && fns, `fns return by gen_api_opts() not object`);
+                assert(Object.keys(fns).length === n, `the items of fns return by gen_api_opts() not equal to the ${n} numbers of item of the Win.${apiName}`);
+            });
         }
     }
 });
