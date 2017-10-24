@@ -15,7 +15,8 @@
     "test-appveyor": "mocha --config test/mocha.appveyor.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
     "cov": "nyc mocha",
     "cov:coveralls": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
-    "build": "npm run test && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint"
+    "rm:lock": "rm -rf package-lock.json",
+    "build": "npm run test && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint && npm run rm:lock"
   },
   "nyc": {
     "exclude": [
