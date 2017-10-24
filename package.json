@@ -12,8 +12,7 @@
     "test-local": "mocha --config test/mocha.opts",
     "prepublishOnly": "npm run build",
     "build": "npm run test && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
-    "test-ci": "mocha --config test/mocha.travis.opts",
-    "build-ci": "npm run test-ci && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
+    "test-travis": "mocha --config test/mocha.travis.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
     "test-appveyor": "mocha --config test/mocha.appveyor.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint"
   },
   "keywords": [

@@ -15,5 +15,5 @@ before_install:
 install: true
 
 script:
-  - npm run build-ci
+  - npm run test-travis
 
