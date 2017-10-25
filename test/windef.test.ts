@@ -47,7 +47,7 @@ function test_arch(_WIN64: boolean, types64_32: Set<string>) {
 
         it(`Should ${vv}: value mathes nodejs ${ _WIN64 ? 'x64' : 'ia32' }`, function() {
             if (_WIN64) {
-                assert(param.indexOf('64') > 2 && param.indexOf('32') === -1, `${vv}: ${param} at arch x64`);   // muset use param not W[vv]
+                assert(param.indexOf('64') > 2 && param.indexOf('32') === -1, `${vv}: ${param} at arch x64`);   // must use param not W[vv]
             }
             else {
                 assert(param.indexOf('32') > 2 && param.indexOf('64') === -1, `${vv}: ${param} at arch ia32`);
@@ -68,7 +68,7 @@ function test_arch_half(_WIN64: boolean, typesHalf: Set<string>) {
         it(`Should ${vv}: value mathes nodejs ${ _WIN64 ? 'x64' : 'ia32' }`, function() {
             if (_WIN64) {
                 const cond: boolean = param.indexOf('32') > 2 && param.indexOf('16') === -1 && param.indexOf('64') === -1;
-                assert(cond, `${vv}: ${param} at arch x64`);   // muset use param not W[vv]
+                assert(cond, `${vv}: ${param} at arch x64`);   // must use param not W[vv]
             }
             else {
                 const cond: boolean = param.indexOf('16') > 2 && param.indexOf('32') === -1 && param.indexOf('64') === -1;
