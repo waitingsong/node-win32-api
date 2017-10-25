@@ -128,7 +128,7 @@ describe(filename, () => {
     }
 });
 
-describe('gen_api_opts()', () => {
+describe('gen_api_opts() all', () => {
     for (let dll of dlls) {
         const apiName: string = dll.slice(0, 1).toUpperCase() + dll.slice(1).toLowerCase(); // User32, Kernel32, ...
         const module: any = Win[apiName];
@@ -144,11 +144,12 @@ describe('gen_api_opts()', () => {
                 n += 1;
             }
 
-            it(`Should ${apiName} the number fns equal to the nuber of fns return by gen_api_opts, during load all`, function() {
+            it(`Should ${apiName} number of fns equal to the number of fns return by gen_api_opts`, function() {
                 const fns: GT.Win32FnDef = H.gen_api_opts(api);
+                const keysize = Object.keys(fns).length;
 
                 assert(typeof fns === 'object' && fns, `fns return by gen_api_opts() not object`);
-                assert(Object.keys(fns).length === n, `the items of fns return by gen_api_opts() not equal to the ${n} numbers of item of the Win.${apiName}`);
+                assert(keysize === n, `the items of fns ${keysize} not equal to the ${n} numbers of item of the Win.${apiName}`);
             });
         }
     }
