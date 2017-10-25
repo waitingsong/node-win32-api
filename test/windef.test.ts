@@ -21,6 +21,7 @@ describe(filename, () => {
         'HRSRC', 'HSZ', 'HWINEVENTHOOK', 'HWINSTA',
         'HWND', 'LPHANDLE', 'SC_HANDLE', 'SERVICE_STATUS_HANDLE',
         'ULONG_PTR', 'DWORD_PTR', 'PDWORD_PTR', 'PSIZE_T', 'SIZE_T',
+        'POINTER_32', 'POINTER_64', 'PHKEY',
     ]);
     const typesHalf = new Set([
         'HALF_PTR', 'UHALF_PTR',
@@ -41,6 +42,10 @@ describe(filename, () => {
         });
     }
 
+    test_arch(_WIN64, types64_32);
+});
+
+function test_arch(_WIN64: boolean, types64_32: Set<string>) {
     for (let vv of types64_32) {
         it(`Should ${vv}: value mathes nodejs arch type (x64 or ia32)`, function() {
             if (_WIN64) {
@@ -51,7 +56,7 @@ describe(filename, () => {
             }
         });
     }
-});
+}
 
 describe(filename, () => {
     const typesUnicode = new Set([

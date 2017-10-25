@@ -23,6 +23,7 @@
       "**/*.js",
       "**/*.js",
       "**/*.test.js",
+      "**/*.test.ts",
       "**/*.d.ts"
     ],
     "extension": [

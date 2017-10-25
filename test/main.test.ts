@@ -89,12 +89,18 @@ describe(filename, () => {
                                 if (typeof p === 'string') {
                                     assert(windefSet.has(p), `${x}() value: "${p}"`);
                                 }
+                                else {
+                                    assert(false, `${p} not typeof string`);
+                                }
                             }
                         }
                     }
                 }
             });
 
+        }
+        else {
+            assert(true);
         }
 
     }   // loop END
@@ -152,6 +158,9 @@ describe('gen_api_opts() all', () => {
                 assert(keysize === n, `the items of fns ${keysize} not equal to the ${n} numbers of item of the Win.${apiName}`);
             });
         }
+        else {
+            assert(true);
+        }
     }
 });
 
@@ -180,5 +189,8 @@ describe('gen_api_opts() specify', () => {
             assert(keysize === 0);
             assert(typeof fns[fakeFn] === 'undefined');
         });
+    }
+    else {
+        assert(true);
     }
 });
