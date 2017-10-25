@@ -50,6 +50,10 @@ export interface Win32FnDef {
 export type _WIN64 = boolean;
 export type _UNICODE = boolean;
 
+export interface LoadSettings {
+    _UNICODE?: boolean; // default true
+    _WIN64?: boolean;   // default from process.arch
+}
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751
 export type HWND = FFIBuffer;   // for use of hWnd.ref(), deref() etc
