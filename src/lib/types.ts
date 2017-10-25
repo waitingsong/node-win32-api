@@ -41,8 +41,8 @@ export type PPID = number;
 
 export type Win32FnName = string;
 export type Win32FnRetType = string;
-export type Win32FnCallParam = string[] | [void];
-export type Win32FnParam = [Win32FnRetType, Win32FnCallParam];
+export type Win32FnCallParams = string[] | [void];
+export type Win32FnParam = [Win32FnRetType, Win32FnCallParams];
 export interface Win32FnDef {
     [fn: string]: Win32FnParam;
 }

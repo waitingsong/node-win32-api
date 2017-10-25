@@ -63,7 +63,7 @@ export function gen_api_opts(fnDef: GT.Win32FnDef, fns?: GT.Win32FnName[], setti
 
 export function parse_placeholder(ps: GT.Win32FnParam, settings: GT.LoadSettings): void {
     const returnParam: GT.Win32FnRetType | GT.Win32FnRetType[] = ps[0];
-    const callParams: GT.Win32FnCallParam = ps[1];
+    const callParams: GT.Win32FnCallParams = ps[1];
 
     if (returnParam && Array.isArray(returnParam)) {
         switch (returnParam[0]) {

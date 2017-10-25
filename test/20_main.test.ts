@@ -56,14 +56,14 @@ describe(filename, () => {
                 }
             });
 
-            it(`Should ${apiName}: Win32FnCallParam of definition be array`, function() {
+            it(`Should ${apiName}: Win32FnCallParams of definition be array`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     const p = apiDef[x];
                     assert(typeof p[1] === 'object' && Array.isArray(p[1]), `${x}()`);
                 }
             });
 
-            it(`Should ${apiName}: item of Win32FnCallParam of definition be string or void`, function() {
+            it(`Should ${apiName}: item of Win32FnCallParams of definition be string or void`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     const arr = apiDef[x][1];
                     const len = arr.length;
@@ -76,7 +76,7 @@ describe(filename, () => {
                 }
             });
 
-            it(`Should ${apiName}: item of Win32FnCallParam of definition exists in conf.windefSet`, function() {
+            it(`Should ${apiName}: item of Win32FnCallParams of definition exists in conf.windefSet`, function() {
                 if (windefSet && windefSet.size) {
                     for (let x in apiDef) {    // tslint:disable-line
                         const arr = apiDef[x][1];
