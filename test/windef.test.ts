@@ -54,20 +54,24 @@ describe(filename, () => {
 });
 
 describe(filename, () => {
-    const _UNICODE = true;
     const typesUnicode = new Set([
         'LPCTSTR', 'LPTSTR', 'PTBYTE', 'PTCHAR',
         'PTSTR', 'TBYTE', 'TCHAR',
     ]);
 
+    unicode(true, typesUnicode);
+    // unicode(false, typesUnicode);
+});
+
+function unicode(_UNICODE: boolean, typesUnicode: Set<string>) {
     for (let vv of typesUnicode) {
         it(`Should ${vv}: value mathes setting of ANSI/UNICODE`, function() {
             if (_UNICODE) {
-                assert(W[vv].indexOf('16') > 2, `${vv}: ${W[vv]} at UNICODE`);
+                assert(W[vv].indexOf('16') > 2 && W[vv].indexOf('8') === -1, `${vv}: ${W[vv]} at UNICODE`);
             }
             else {
-                assert(W[vv].indexOf('8') > 2, `${vv}: ${W[vv]} at ANSI `);
+                assert(W[vv].indexOf('8') > 2 && W[vv].indexOf('16') === -1, `${vv}: ${W[vv]} at ANSI`);
             }
         });
     }
-});
+}
