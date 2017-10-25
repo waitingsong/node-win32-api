@@ -22,18 +22,32 @@ describe(filename, () => {
         'HWND', 'LPHANDLE', 'SC_HANDLE', 'SERVICE_STATUS_HANDLE',
         'ULONG_PTR', 'DWORD_PTR', 'PDWORD_PTR', 'PSIZE_T', 'SIZE_T',
     ]);
+    const typesHalf = new Set([
+        'HALF_PTR', 'UHALF_PTR',
+    ]);
 
     it(`Should windef._WIN64 mathes running nodejs arch type (x64 or ia32)`, function() {
         assert(_WIN64 === W._WIN64);
     });
 
-    for (let t of types64_32) {
-        it(`Should ${t}: value mathes nodejs arch type (x64 or ia32)`, function() {
+    for (let vv of typesHalf) {
+        it(`Should ${vv}: value mathes nodejs arch type (x64 or ia32)`, function() {
             if (_WIN64) {
-                assert(W[t].indexOf('64') > 0, `${t}: ${W[t]} at arch x64`);
+                assert(W[vv].indexOf('32') > 2 && W[vv].indexOf('16') === -1, `${vv}: ${W[vv]} at arch x64`);
             }
             else {
-                assert(W[t].indexOf('32') > 0, `${t}: ${W[t]} at arch ia32`);
+                assert(W[vv].indexOf('16') > 2 && W[vv].indexOf('32') === -1, `${vv}: ${W[vv]} at arch ia32`);
+            }
+        });
+    }
+
+    for (let vv of types64_32) {
+        it(`Should ${vv}: value mathes nodejs arch type (x64 or ia32)`, function() {
+            if (_WIN64) {
+                assert(W[vv].indexOf('64') > 2 && W[vv].indexOf('32') === -1, `${vv}: ${W[vv]} at arch x64`);
+            }
+            else {
+                assert(W[vv].indexOf('32') > 2 && W[vv].indexOf('64') === -1, `${vv}: ${W[vv]} at arch ia32`);
             }
         });
     }
