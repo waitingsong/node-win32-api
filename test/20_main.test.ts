@@ -35,7 +35,7 @@ describe(filename, () => {
                 }
             });
 
-            it(`Should ${apiName}: Win32FnParam of definition be array`, function() {
+            it(`Should ${apiName}: Win32FnParams of definition be array`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     const p = apiDef[x];
                     assert(typeof p === 'object' && Array.isArray(p), `${x}()`);

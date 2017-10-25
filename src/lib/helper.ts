@@ -26,12 +26,12 @@ export function gen_api_opts(fnDef: GT.Win32FnDef, fns?: GT.Win32FnName[], setti
 
     if (fns && Array.isArray(fns) && fns.length) {
         for (let fn of fns) {
-            const ps: GT.Win32FnParam = fnDef[fn];
+            const ps: GT.Win32FnParams = fnDef[fn];
 
             if (ps) {
                 parse_placeholder(ps, settings);
                 Object.defineProperty(opts, <string> fn, {
-                    value: <GT.Win32FnParam> ps,
+                    value: <GT.Win32FnParams> ps,
                     writable: false,
                     enumerable: true,
                     configurable: false,
@@ -44,12 +44,12 @@ export function gen_api_opts(fnDef: GT.Win32FnDef, fns?: GT.Win32FnName[], setti
             if ( ! {}.hasOwnProperty.call(fnDef, fn)) {
                 continue;
             }
-            const ps: GT.Win32FnParam = fnDef[fn];
+            const ps: GT.Win32FnParams = fnDef[fn];
 
             if (ps) {
                 parse_placeholder(ps, settings);
                 Object.defineProperty(opts, <string> fn, {
-                    value: <GT.Win32FnParam> ps,
+                    value: <GT.Win32FnParams> ps,
                     writable: false,
                     enumerable: true,
                     configurable: false,
@@ -61,7 +61,7 @@ export function gen_api_opts(fnDef: GT.Win32FnDef, fns?: GT.Win32FnName[], setti
     return opts;
 }
 
-export function parse_placeholder(ps: GT.Win32FnParam, settings: GT.LoadSettings): void {
+export function parse_placeholder(ps: GT.Win32FnParams, settings: GT.LoadSettings): void {
     const returnParam: GT.Win32FnRetType | GT.Win32FnRetType[] = ps[0];
     const callParams: GT.Win32FnCallParams = ps[1];
 
