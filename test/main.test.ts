@@ -154,3 +154,31 @@ describe('gen_api_opts() all', () => {
         }
     }
 });
+
+
+describe('gen_api_opts() specify', () => {
+    const apiName = 'Kernel32';
+    const module: any = Win[apiName];
+    const fn = 'GetLastError';
+    const fakeFn = fn + Math.random();
+
+    if (module && module.api) {
+        const api = module.api;
+
+        it(`Should ${apiName} gen_api_opts(["${fn}"]) correctly)`, function() {
+            const fns: GT.Win32FnDef = H.gen_api_opts(api, [fn]);
+            const keysize = Object.keys(fns).length;
+
+            assert(keysize === 1);
+            assert(typeof fns[fn] === 'object' && fns[fn]);
+        });
+
+        it(`Should ${apiName} gen_api_opts(["${fakeFn}"]) return none)`, function() {
+            const fns: GT.Win32FnDef = H.gen_api_opts(api, [fakeFn]);
+            const keysize = Object.keys(fns).length;
+
+            assert(keysize === 0);
+            assert(typeof fns[fakeFn] === 'undefined');
+        });
+    }
+});
