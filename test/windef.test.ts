@@ -17,9 +17,10 @@ describe(filename, () => {
         'HFONT', 'HGDIOBJ', 'HGLOBAL', 'HHOOK',
         'HICON', 'HINSTANCE', 'HKEY', 'HKL',
         'HLOCAL', 'HMENU', 'HMETAFILE', 'HMODULE',
-        'HMONITOR', 'HPALETTE', 'HPEN', 'HRGN', 
-        'HRSRC', 'HSZ', 'HWINEVENTHOOK', 'HWINSTA', 
+        'HMONITOR', 'HPALETTE', 'HPEN', 'HRGN',
+        'HRSRC', 'HSZ', 'HWINEVENTHOOK', 'HWINSTA',
         'HWND', 'LPHANDLE', 'SC_HANDLE', 'SERVICE_STATUS_HANDLE',
+        'ULONG_PTR', 'DWORD_PTR', 'PDWORD_PTR', 'PSIZE_T', 'SIZE_T',
     ]);
 
     it(`Should windef._WIN64 mathes running nodejs arch type (x64 or ia32)`, function() {
@@ -33,6 +34,25 @@ describe(filename, () => {
             }
             else {
                 assert(W[t].indexOf('32') > 0, `${t}: ${W[t]} at arch ia32`);
+            }
+        });
+    }
+});
+
+describe(filename, () => {
+    const _UNICODE = true;
+    const typesUnicode = new Set([
+        'LPCTSTR', 'LPTSTR', 'PTBYTE', 'PTCHAR',
+        'PTSTR', 'TBYTE', 'TCHAR',
+    ]);
+
+    for (let vv of typesUnicode) {
+        it(`Should ${vv}: value mathes setting of ANSI/UNICODE`, function() {
+            if (_UNICODE) {
+                assert(W[vv].indexOf('16') > 2, `${vv}: ${W[vv]} at UNICODE`);
+            }
+            else {
+                assert(W[vv].indexOf('8') > 2, `${vv}: ${W[vv]} at ANSI `);
             }
         });
     }
