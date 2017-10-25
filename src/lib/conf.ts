@@ -1,5 +1,8 @@
 // dict of windef value
 
+export const _WIN64_HOLDER = '_WIN64_HOLDER_';
+export const _UNICODE_HOLDER = '_UNICODE_HOLDER_';
+
 export const _WIN64 = process.arch === 'x64' ? true : false;
 export const _UNICODE = true;
 
@@ -19,7 +22,7 @@ export const windefSet = new Set([
     'int8',
     'int16',
     'int32',
-    'int64' , 
+    'int64' ,
 
     'int*',
     'int32*',
@@ -27,7 +30,7 @@ export const windefSet = new Set([
 
     'uint',
     'uint8',
-    'uint16', 
+    'uint16',
     'uint32',
     'uint64',
 

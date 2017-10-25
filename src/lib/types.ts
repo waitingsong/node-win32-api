@@ -1,4 +1,5 @@
-// data types for TypeScript
+/*  ---------- data types for TypeScript ----------- */
+
 
 /**
  * node-ffi-buffer extends from Buffer

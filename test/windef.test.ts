@@ -4,13 +4,13 @@
 import {basename, normalize} from 'path';
 import * as assert from 'power-assert';
 import * as Conf from '../src/lib/conf';
+import * as GT from '../src/lib/types';
+import * as H from '../src/lib/helper';
 import * as W from '../src/lib/windef';
 
 const filename = basename(__filename);
 
 describe(filename, () => {
-    // const _WIN64 = process.arch === 'x64' ? true : false;
-    const _WIN64 = Conf._WIN64;
     const types64_32 = new Set([
         'PVOID', 'HANDLE', 'HACCEL', 'HBITMAP',
         'HBRUSH', 'HCOLORSPACE', 'HCONV', 'HCONVLIST',
@@ -29,32 +29,50 @@ describe(filename, () => {
         'HALF_PTR', 'UHALF_PTR',
     ]);
 
-    // it(`Should windef._WIN64 mathes running nodejs arch type (x64 or ia32)`, function() {
-    //     assert(_WIN64 === W._WIN64);
-    // });
+    test_arch(true, types64_32);
+    test_arch(false, types64_32);
 
-    for (let vv of typesHalf) {
-        it(`Should ${vv}: value mathes nodejs arch type (x64 or ia32)`, function() {
-            if (_WIN64) {
-                assert(W[vv].indexOf('32') > 2 && W[vv].indexOf('16') === -1, `${vv}: ${W[vv]} at arch x64`);
-            }
-            else {
-                assert(W[vv].indexOf('16') > 2 && W[vv].indexOf('32') === -1, `${vv}: ${W[vv]} at arch ia32`);
-            }
-        });
-    }
-
-    test_arch(_WIN64, types64_32);
+    test_arch_half(true, typesHalf);
+    test_arch_half(false, typesHalf);
 });
 
 function test_arch(_WIN64: boolean, types64_32: Set<string>) {
     for (let vv of types64_32) {
-        it(`Should ${vv}: value mathes nodejs arch type (x64 or ia32)`, function() {
+        let param = W[vv];
+
+        // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
+        if (param && Array.isArray(param)) {
+            param = H.parse_placeholder_arch(<GT.Win32FnRetType[]> param, <boolean> _WIN64);
+        }
+
+        it(`Should ${vv}: value mathes nodejs ${ _WIN64 ? 'x64' : 'ia32' }`, function() {
             if (_WIN64) {
-                assert(W[vv].indexOf('64') > 2 && W[vv].indexOf('32') === -1, `${vv}: ${W[vv]} at arch x64`);
+                assert(param.indexOf('64') > 2 && param.indexOf('32') === -1, `${vv}: ${param} at arch x64`);   // muset use param not W[vv]
             }
             else {
-                assert(W[vv].indexOf('32') > 2 && W[vv].indexOf('64') === -1, `${vv}: ${W[vv]} at arch ia32`);
+                assert(param.indexOf('32') > 2 && param.indexOf('64') === -1, `${vv}: ${param} at arch ia32`);
+            }
+        });
+    }
+}
+
+function test_arch_half(_WIN64: boolean, typesHalf: Set<string>) {
+    for (let vv of typesHalf) {
+        let param = W[vv];
+
+        // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
+        if (param && Array.isArray(param)) {
+            param = H.parse_placeholder_arch(<GT.Win32FnRetType[]> param, <boolean> _WIN64);
+        }
+
+        it(`Should ${vv}: value mathes nodejs ${ _WIN64 ? 'x64' : 'ia32' }`, function() {
+            if (_WIN64) {
+                const cond: boolean = param.indexOf('32') > 2 && param.indexOf('16') === -1 && param.indexOf('64') === -1;
+                assert(cond, `${vv}: ${param} at arch x64`);   // muset use param not W[vv]
+            }
+            else {
+                const cond: boolean = param.indexOf('16') > 2 && param.indexOf('32') === -1 && param.indexOf('64') === -1;
+                assert(cond, `${vv}: ${param} at arch ia32`);
             }
         });
     }
@@ -67,17 +85,27 @@ describe(filename, () => {
     ]);
 
     unicode(true, typesUnicode);
-    // unicode(false, typesUnicode);
+    unicode(false, typesUnicode);
 });
 
 function unicode(_UNICODE: boolean, typesUnicode: Set<string>) {
     for (let vv of typesUnicode) {
-        it(`Should ${vv}: value mathes setting of ANSI/UNICODE`, function() {
+        let param = W[vv];
+
+        // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
+        if (param && Array.isArray(param)) {
+            param = H.parse_placeholder_unicode(<GT.Win32FnRetType[]> param, <boolean> _UNICODE);
+        }
+
+        it(`Should macro ${vv}: value mathes setting of ANSI/UNICODE`, function() {
             if (_UNICODE) {
-                assert(W[vv].indexOf('16') > 2 && W[vv].indexOf('8') === -1, `${vv}: ${W[vv]} at UNICODE`);
+                const cond: boolean = param.indexOf('16') > 2 && param.indexOf('8') === -1;
+                assert(cond, `${vv}: ${param} at UNICODE`);
             }
             else {
-                assert(W[vv].indexOf('8') > 2 && W[vv].indexOf('16') === -1, `${vv}: ${W[vv]} at ANSI`);
+                // PTSTR == 'char*' under ia32
+                const cond: boolean = (param.indexOf('8') > 2 || param === 'char*') && param.indexOf('16') === -1;
+                assert(cond, `${vv}: ${param} at ANSI`);
             }
         });
     }

@@ -176,6 +176,7 @@ describe('gen_api_opts() specify', () => {
 
         it(`Should ${apiName} gen_api_opts(["${fn}"]) correctly)`, function() {
             const fns: GT.Win32FnDef = H.gen_api_opts(api, [fn]);
+
             const keysize = Object.keys(fns).length;
 
             assert(keysize === 1);
