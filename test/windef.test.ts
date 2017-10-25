@@ -3,12 +3,14 @@
 
 import {basename, normalize} from 'path';
 import * as assert from 'power-assert';
+import * as Conf from '../src/lib/conf';
 import * as W from '../src/lib/windef';
 
 const filename = basename(__filename);
 
 describe(filename, () => {
-    const _WIN64 = process.arch === 'x64' ? true : false;
+    // const _WIN64 = process.arch === 'x64' ? true : false;
+    const _WIN64 = Conf._WIN64;
     const types64_32 = new Set([
         'PVOID', 'HANDLE', 'HACCEL', 'HBITMAP',
         'HBRUSH', 'HCOLORSPACE', 'HCONV', 'HCONVLIST',
@@ -27,9 +29,9 @@ describe(filename, () => {
         'HALF_PTR', 'UHALF_PTR',
     ]);
 
-    it(`Should windef._WIN64 mathes running nodejs arch type (x64 or ia32)`, function() {
-        assert(_WIN64 === W._WIN64);
-    });
+    // it(`Should windef._WIN64 mathes running nodejs arch type (x64 or ia32)`, function() {
+    //     assert(_WIN64 === W._WIN64);
+    // });
 
     for (let vv of typesHalf) {
         it(`Should ${vv}: value mathes nodejs arch type (x64 or ia32)`, function() {

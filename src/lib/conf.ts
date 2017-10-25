@@ -1,5 +1,8 @@
 // dict of windef value
 
+export const _WIN64 = process.arch === 'x64' ? true : false;
+export const _UNICODE = true;
+
 export const windefSet = new Set([
     'bool',
     'bool*',
