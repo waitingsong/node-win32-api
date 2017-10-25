@@ -42,17 +42,23 @@ describe(filename, () => {
                 }
             });
 
-            it(`Should ${apiName}: Win32FnRetType of definition be string and not epmty`, function() {
+            it(`Should ${apiName}: Win32FnRetType of definition be string and not epmty or array`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
-                    const p = apiDef[x];
-                    assert(typeof p[0] === 'string' && p[0], `${x}() p[0]`);
+                    test_param_return_type(apiDef[x][0], x);
                 }
             });
 
             it(`Should ${apiName}: Win32FnRetType of definition exists in conf.windefSet`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     const p = apiDef[x][0];
-                    assert(windefSet.has(p), `${x}() value: "${p}"`);
+                    let _WIN64 = true;
+                    let param: GT.Win32FnRetType;
+
+                    param = H.parse_placeholder_arch(<GT.Win32FnRetTypeMacro> p, _WIN64);
+                    _WIN64 = false;
+                    assert(windefSet.has(param), `${x}() value: "${param}" ${_WIN64 ? 'x64' : 'ia32'}`);
+                    param = H.parse_placeholder_arch(<GT.Win32FnRetTypeMacro> p, !_WIN64);
+                    assert(windefSet.has(param), `${x}() value: "${param} ${_WIN64 ? 'x64' : 'ia32'}"`);
                 }
             });
 
@@ -63,20 +69,7 @@ describe(filename, () => {
                 }
             });
 
-            it(`Should ${apiName}: item of Win32FnCallParams of definition be string or void`, function() {
-                for (let x in apiDef) {    // tslint:disable-line
-                    const arr = apiDef[x][1];
-                    const len = arr.length;
-
-                    if (len) {
-                        for (let i = 0; i < len; i++) {
-                            assert(typeof arr[i] === 'string' && arr[i], `${x}() [${i}]`);
-                        }
-                    }
-                }
-            });
-
-            it(`Should ${apiName}: item of Win32FnCallParams of definition exists in conf.windefSet`, function() {
+            it(`Should ${apiName}: item of Win32FnCallParams of definition exists in conf.windefSet and valid`, function() {
                 if (windefSet && windefSet.size) {
                     for (let x in apiDef) {    // tslint:disable-line
                         const arr = apiDef[x][1];
@@ -84,13 +77,19 @@ describe(filename, () => {
 
                         if (len) {
                             for (let i = 0; i < len; i++) {
-                                const p = arr[i];
+                                let param = arr[i];
 
-                                if (typeof p === 'string') {
-                                    assert(windefSet.has(p), `${x}() value: "${p}"`);
+                                // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
+                                if (param && Array.isArray(param)) {
+                                    let _WIN64 = true;
+                                    param = H.parse_placeholder_arch(<GT.Win32FnRetTypeMacro> param, _WIN64);
+                                    test_call_param(param, x, i);
+                                    _WIN64 = false;
+                                    param = H.parse_placeholder_arch(<GT.Win32FnRetTypeMacro> param, _WIN64);
+                                    test_call_param(param, x, i);
                                 }
                                 else {
-                                    assert(false, `${p} not typeof string`);
+                                    test_call_param(param, x, i);
                                 }
                             }
                         }
@@ -133,4 +132,34 @@ describe(filename, () => {
         }
     }
 });
+
+
+function test_param_return_type(param: GT.MacroParam<string>, x: string): void {
+    if (typeof param === 'string') {
+        assert(param, `${x}() string value of returnType (p[0]) is empty string`);
+    }
+    else if (typeof param === 'object' && Array.isArray(param) && param.length) {
+        for (let p of param) {
+            test_param_return_type(p, x);
+        }
+    }
+    else {
+        assert(false, `${x}() string value of returnType (p[0]) is NEITHER string NOR array`);
+    }
+}
+
+function test_call_param(param: GT.MacroParam<string>, x: string, i: number): void {
+    if (typeof param === 'string') {
+        assert(windefSet.has(param), `${x}() value: "${param} index: ${i}" is string but not exists in windefSet`);
+    }
+    // else if (typeof param === 'object' && Array.isArray(param) && param.length) {
+    //     for (let p of param) {
+    //         test_call_param(p, x, i);
+    //     }
+    // }
+    else {
+        assert(false, `${x}() string value of param (index: ${i}) is NEIGHER string NOR array`);
+    }
+}
+
 

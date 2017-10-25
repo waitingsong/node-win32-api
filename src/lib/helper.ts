@@ -1,7 +1,8 @@
 import * as Conf from './conf';
 import * as GT from './types';
 
-export function gen_api_opts(fnDef: GT.Win32FnDef, fns?: GT.Win32FnName[], settings?: GT.LoadSettings): GT.Win32FnDef {
+
+export function gen_api_opts(fnDef: GT.Win32FnDefMacro, fns?: GT.Win32FnName[], settings?: GT.LoadSettings): GT.Win32FnDef {
     if (typeof settings === 'undefined' || ! settings) {
         settings = {
             _UNICODE: true,
@@ -26,12 +27,11 @@ export function gen_api_opts(fnDef: GT.Win32FnDef, fns?: GT.Win32FnName[], setti
 
     if (fns && Array.isArray(fns) && fns.length) {
         for (let fn of fns) {
-            const ps: GT.Win32FnParams = fnDef[fn];
+            const ps: GT.Win32FnParamsMacro = fnDef[fn];
 
             if (ps) {
-                parse_placeholder(ps, settings);
                 Object.defineProperty(opts, <string> fn, {
-                    value: <GT.Win32FnParams> ps,
+                    value: <GT.Win32FnParams> parse_placeholder(ps, settings),
                     writable: false,
                     enumerable: true,
                     configurable: false,
@@ -44,74 +44,98 @@ export function gen_api_opts(fnDef: GT.Win32FnDef, fns?: GT.Win32FnName[], setti
             if ( ! {}.hasOwnProperty.call(fnDef, fn)) {
                 continue;
             }
-            const ps: GT.Win32FnParams = fnDef[fn];
+            const ps: GT.Win32FnParamsMacro = fnDef[fn];
 
             if (ps) {
-                parse_placeholder(ps, settings);
                 Object.defineProperty(opts, <string> fn, {
-                    value: <GT.Win32FnParams> ps,
+                    value: <GT.Win32FnParams> parse_placeholder(ps, settings),
                     writable: false,
                     enumerable: true,
                     configurable: false,
                 });
             }
         }
-        opts = fnDef;
     }
+
     return opts;
 }
 
-export function parse_placeholder(ps: GT.Win32FnParams, settings: GT.LoadSettings): void {
-    const returnParam: GT.Win32FnRetType | GT.Win32FnRetType[] = ps[0];
-    const callParams: GT.Win32FnCallParams = ps[1];
+export function parse_placeholder(ps: GT.Win32FnParamsMacro, settings: GT.LoadSettings): GT.Win32FnParams {
+    const returnParam: GT.Win32FnRetTypeMacro = ps[0];
+    const callParams: GT.Win32FnCallParamsMacro = ps[1];
+    let res = <GT.Win32FnParams> new Array(2);
 
     if (returnParam && Array.isArray(returnParam)) {
         switch (returnParam[0]) {
             case Conf._WIN64_HOLDER:
-                ps[0] = parse_placeholder_arch(<GT.Win32FnRetType[]> returnParam, <boolean> settings._WIN64);
+                res[0] = <GT.Win32FnRetType> parse_placeholder_arch(<GT.Win32FnRetTypeMacro> returnParam, <boolean> settings._WIN64);
                 break;
             case Conf._UNICODE_HOLDER:
-                ps[0] = parse_placeholder_unicode(<GT.Win32FnRetType[]> returnParam, <boolean> settings._UNICODE);
+                res[0] = <GT.Win32FnRetType> parse_placeholder_unicode(<GT.Win32FnRetTypeMacro> returnParam, <boolean> settings._UNICODE);
                 break;
             default:
                 throw new Error('returnParam value invlaid:' + returnParam[0]);
         }
     }
+    else {
+        res[0] = returnParam;
+    }
 
-    if (callParams && Array.isArray(callParams)) {  // [ [placeholder, string, string],  [placeholder, string, string], string]
-        for (let i = 0, len = callParams.length; i < len; i++) {
-            const param = callParams[i];
+    if (callParams) {
+        if (Array.isArray(callParams)) {  // [ [placeholder, string, string],  [placeholder, string, string], string]
+            let targetParams = <GT.Win32FnCallParams> new Array();
 
-            if (param && Array.isArray(param)) {    // [placeholder, string, string]
-                switch (param[0]) {
-                    case Conf._WIN64_HOLDER:
-                        callParams[i] = parse_placeholder_arch(<GT.Win32FnRetType[]> param, <boolean> settings._WIN64);
-                        break;
-                    case Conf._UNICODE_HOLDER:
-                        callParams[i] = parse_placeholder_unicode(<GT.Win32FnRetType[]> param, <boolean> settings._UNICODE);
-                        break;
-                    default:
-                        console.error(callParams);
-                        throw new Error('callParams value invlaid:' + param);
+            for (let i = 0, len = callParams.length; i < len; i++) {
+                if (callParams[i] &&  typeof callParams[i] === 'string') {
+                    targetParams[i] = <string> callParams[i];   // how generic?
+                    continue;
+                }
+                const param = <GT.Win32FnCallParamMacro> callParams[i];
+                let paramNew: GT.Win32FnCallParam = '';
+
+                if (param && Array.isArray(param)) {    // [placeholder, string, string]
+                    switch (param[0]) {
+                        case Conf._WIN64_HOLDER:
+                            paramNew = parse_placeholder_arch(<GT.Win32FnRetTypeMacro> param, <boolean> settings._WIN64);
+                            break;
+                        case Conf._UNICODE_HOLDER:
+                            paramNew = parse_placeholder_unicode(<GT.Win32FnRetTypeMacro> param, <boolean> settings._UNICODE);
+                            break;
+                        default:
+                            console.error(callParams);
+                            throw new Error('callParams value invlaid:' + param);
+                    }
+                    targetParams[i] = paramNew;
+                }
+                else {
+                    paramNew = <GT.Win32FnCallParam> param;
                 }
             }
+            res[1] = targetParams;
         }
     }
 
+    return res;
 }
 
 // convert param like ['_WIN64_HOLDER_', 'int64', 'int32] to 'int64' or 'int32'
-export function parse_placeholder_arch(param: GT.Win32FnRetType[], _WIN64: boolean): string {
-    if ( ! param || param.length !== 3) {
-        console.error(param);
+export function parse_placeholder_arch(param: GT.Win32FnRetTypeMacro, _WIN64: boolean): GT.Win32FnRetType {
+    if (typeof param === 'string') {
+        return param;
+    }
+    else if ( ! param || param.length !== 3) {
         throw new Error('_WIN64 macro should be Array and has 3 items');
     }
+
     return _WIN64 ? param[1] : param[2];
 }
 
 // convert param like ['_UNICODE_HOLDER_', 'uint16*', 'uint8*'] to 'uint16*' or 'uint8*'
-export function parse_placeholder_unicode(param: GT.Win32FnRetType[], _UNICODE: boolean): string {
-    if ( ! param || param.length !== 3) {
+export function parse_placeholder_unicode(param: GT.Win32FnRetTypeMacro, _UNICODE: boolean): GT.Win32FnRetType {
+    if (typeof param === 'string') {
+        return param;
+    }
+    else if ( ! param || param.length !== 3) {
         console.error(param);
         throw new Error('_UNICODE macro should be Array and has 3 items');
     }

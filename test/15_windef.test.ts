@@ -42,7 +42,7 @@ function test_arch(_WIN64: boolean, types64_32: Set<string>) {
 
         // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
         if (param && Array.isArray(param)) {
-            param = H.parse_placeholder_arch(<GT.Win32FnRetType[]> param, <boolean> _WIN64);
+            param = H.parse_placeholder_arch(<GT.Win32FnRetTypeMacro> param, <boolean> _WIN64);
         }
 
         it(`Should ${vv}: value mathes nodejs ${ _WIN64 ? 'x64' : 'ia32' }`, function() {
@@ -62,7 +62,7 @@ function test_arch_half(_WIN64: boolean, typesHalf: Set<string>) {
 
         // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
         if (param && Array.isArray(param)) {
-            param = H.parse_placeholder_arch(<GT.Win32FnRetType[]> param, <boolean> _WIN64);
+            param = H.parse_placeholder_arch(<GT.Win32FnRetTypeMacro> param, <boolean> _WIN64);
         }
 
         it(`Should ${vv}: value mathes nodejs ${ _WIN64 ? 'x64' : 'ia32' }`, function() {
@@ -94,7 +94,7 @@ function unicode(_UNICODE: boolean, typesUnicode: Set<string>) {
 
         // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
         if (param && Array.isArray(param)) {
-            param = H.parse_placeholder_unicode(<GT.Win32FnRetType[]> param, <boolean> _UNICODE);
+            param = H.parse_placeholder_unicode(<GT.Win32FnRetTypeMacro> param, <boolean> _UNICODE);
         }
 
         it(`Should macro ${vv}: value mathes setting of ANSI/UNICODE`, function() {

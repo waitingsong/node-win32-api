@@ -41,10 +41,19 @@ export type PPID = number;
 
 export type Win32FnName = string;
 export type Win32FnRetType = string;
-export type Win32FnCallParams = string[] | [void];
+export type Win32FnCallParam = string;
+export type Win32FnCallParams = Win32FnCallParam[] | never[];
 export type Win32FnParams = [Win32FnRetType, Win32FnCallParams];
 export interface Win32FnDef {
     [fn: string]: Win32FnParams;
+}
+export type MacroParam<T> = T | [T, T, T];  // [s,s,s] for conversion of macro windows data like LPCTSTR
+export type Win32FnRetTypeMacro = MacroParam<Win32FnRetType>;
+export type Win32FnCallParamMacro = MacroParam<Win32FnCallParam>;
+export type Win32FnCallParamsMacro = Win32FnCallParamMacro[] | never[];
+export type Win32FnParamsMacro = [Win32FnRetType | Win32FnRetTypeMacro, Win32FnCallParams | Win32FnCallParamsMacro];
+export interface Win32FnDefMacro {
+    [fn: string]: Win32FnParamsMacro;  // [s,s,s] for conversion of macro windows data like LPCTSTR
 }
 
 export type _WIN64 = boolean;

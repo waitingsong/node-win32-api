@@ -40,7 +40,7 @@
     "no-sequences": 2,
     "no-throw-literal": 2,
     "no-unmodified-loop-condition": 2,
-    "no-array-constructor": 2,
+    "no-array-constructor": 1,  // for let foo = <T> new Array()
     "no-confusing-arrow": 2,
     "no-duplicate-imports": 2,
     "no-useless-computed-key": 0, // 0 for destructuring assignment

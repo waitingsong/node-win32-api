@@ -69,8 +69,7 @@ export interface Win32Fn {
 }
 
 
-
-export const fnDef: GT.Win32FnDef = {
+export const fnDef: GT.Win32FnDefMacro = {
     CreateWindowExW: [W.HWND, [
         W.DWORD, W.LPCTSTR, W.LPCTSTR, W.DWORD,
         W.INT, W.INT, W.INT, W.INT,
