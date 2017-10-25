@@ -20,9 +20,9 @@
   },
   "nyc": {
     "exclude": [
-      "dist/**/*",
-      "coverage/**/*",
-      "test/**/*",
+      "**/*.js",
+      "**/*.js",
+      "**/*.test.js",
       "**/*.d.ts"
     ],
     "extension": [
