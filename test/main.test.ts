@@ -1,5 +1,5 @@
-/// <reference types="mocha" />
 /// <reference types="node" />
+/// <reference types="mocha" />
 
 import * as fs from 'fs';
 import * as ffi from 'ffi';
