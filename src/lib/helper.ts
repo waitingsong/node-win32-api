@@ -89,23 +89,21 @@ export function parse_param_placeholder(param: GT.FFIParamMacro, settings?: GT.L
     if (typeof param === 'string') {
         return param;
     }
+    else if ( ! param || ! Array.isArray(param) || param.length !== 3) {
+        throw new Error('parse_param_placeholder(ps, settings) value of ps invalid');
+    }
 
     let p: GT.FFIParam = '';
 
-    if (param && Array.isArray(param)) {
-        switch (param[0]) {
-            case Conf._WIN64_HOLDER:
-                p = parse_placeholder_arch(param, <boolean> settings._WIN64);
-                break;
-            case Conf._UNICODE_HOLDER:
-                p = parse_placeholder_unicode(param, <boolean> settings._UNICODE);
-                break;
-            default:
-                throw new Error('the value of param placeholder invlaid:' + param[0]);
-        }
-    }
-    else {
-        throw new Error('the value of param placeholder invlaid');
+    switch (param[0]) {
+        case Conf._WIN64_HOLDER:
+            p = parse_placeholder_arch(param, <boolean> settings._WIN64);
+            break;
+        case Conf._UNICODE_HOLDER:
+            p = parse_placeholder_unicode(param, <boolean> settings._UNICODE);
+            break;
+        default:
+            throw new Error('the value of param placeholder invlaid:' + param[0]);
     }
 
     return p;
