@@ -41,12 +41,12 @@ function test_arch(types64_32: Set<string>) {
 
     for (let k of Object.keys(st)) {
         if (st[k]) {
-            _test_arch(types64_32, {...st, [k]: false});
+            _test_arch(types64_32, {...st, [k]: ! st[k]});
         }
     }
     for (let k of Object.keys(st)) {
         if ( ! st[k]) {
-            _test_arch(types64_32, {...st, [k]: true});
+            _test_arch(types64_32, {...st, [k]: ! st[k]});
         }
     }
 }
@@ -75,12 +75,12 @@ function test_arch_half(values: Set<string>) {
 
     for (let k of Object.keys(st)) {
         if (st[k]) {
-            _test_arch_half(values, {...st, [k]: false});
+            _test_arch_half(values, {...st, [k]: ! st[k]});
         }
     }
     for (let k of Object.keys(st)) {
         if ( ! st[k]) {
-            _test_arch_half(values, {...st, [k]: true});
+            _test_arch_half(values, {...st, [k]: ! st[k]});
         }
     }
 }
