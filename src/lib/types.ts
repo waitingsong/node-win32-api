@@ -40,10 +40,11 @@ export type PID = number;
 export type PPID = number;
 
 export type FnName = string;
-export type FnRetType = string;
-export type FnCallParam = string;
-export type FnCallParams = FnCallParam[] | never[];
-export type FnParams = [FnRetType, FnCallParams];
+export type FFIParam = string;  // param type for definition of FFI
+export type FnRetType = FFIParam;
+export type FnCallParam = FFIParam;   // each param of calling function
+export type FnCallParams = FnCallParam[] | never[]; // calling params
+export type FnParams = [FnRetType, FnCallParams]; // def for ffi [returnType, [calling param, ...]]
 export interface Win32FnDef {
     [fn: string]: FnParams;
 }
