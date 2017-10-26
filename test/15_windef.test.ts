@@ -38,19 +38,15 @@ describe(filename, () => {
 
 function test_arch(_WIN64: boolean, types64_32: Set<string>) {
     for (let vv of types64_32) {
-        let param = W[vv];
-
         // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
-        if (param && Array.isArray(param)) {
-            param = H.parse_placeholder_arch(<GT.FnRetTypeMacro> param, <boolean> _WIN64);
-        }
+        const param = H.parse_placeholder_arch(<GT.FFIParamMacro> W[vv], <boolean> _WIN64);
 
-        it(`Should ${vv}: value mathes nodejs ${ _WIN64 ? 'x64' : 'ia32' }`, function() {
+        it(`Should ${vv}: value converted correctly under nodejs ${ _WIN64 ? 'x64' : 'ia32' }`, function() {
             if (_WIN64) {
-                assert(param.indexOf('64') > 2 && param.indexOf('32') === -1, `${vv}: ${param} at arch x64`);   // must use param not W[vv]
+                assert(param.indexOf('64') > 2 && param.indexOf('32') === -1, `${vv}: ${param} during x64`);   // must use param not W[vv]
             }
             else {
-                assert(param.indexOf('32') > 2 && param.indexOf('64') === -1, `${vv}: ${param} at arch ia32`);
+                assert(param.indexOf('32') > 2 && param.indexOf('64') === -1, `${vv}: ${param} during ia32`);
             }
         });
     }
