@@ -26,8 +26,10 @@ test_script:
   - npm --version
   - npm run test-appveyor
 
-build: off
-deploy: off
-
 on_success:
   - npm run cov:coveralls
+
+build: off
+deploy: off
+skip_tags: true
+
