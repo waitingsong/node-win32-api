@@ -245,3 +245,15 @@ describe(filename + ' :parse_placeholder_unicode(param, _WIN64)', () => {
 
 });
 
+describe(filename + ' :parse_windef()', () => {
+    const fn = 'parse_windef';
+
+    it(`Should ${fn} process windef correctly)`, function() {
+        const windef: GT.Windef = H.parse_windef();
+        const lenRes = Object.keys(windef).length;
+        const lenW = Object.keys(W).length;
+        assert(lenRes === lenW, `lenRes:${lenRes}, lenW:${lenW} `);
+    });
+
+});
+

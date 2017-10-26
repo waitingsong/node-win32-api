@@ -142,11 +142,11 @@ export function parse_windef(): GT.Windef {
     const windef = <GT.Windef> {};
 
     for (let [x, v] of Object.entries(W)) {
-        if (typeof x === 'string' && typeof v === 'object' && Array.isArray(v)) {
+        if (typeof x === 'string') {
             if (typeof v === 'string') {
                 windef[x] = <GT.FFIParam> v;
             }
-            else if (v.length === 3) {
+            else if (typeof v === 'object' && Array.isArray(v) && v.length === 3) {
                 windef[x] = <GT.FFIParam> parse_param_placeholder(<GT.FFIParamMacro> v);
             }
             else {
