@@ -176,3 +176,70 @@ function test_settings(fn: string, st: GT.LoadSettings): void {
         assert(st._WIN64 === (process.arch === 'x64' ? true : false), 'st._WIN64 not match process.arch');
     });
 }
+
+describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
+    const fn = 'parse_placeholder_arch';
+
+    it(`Should ${fn} handle value of param correctly)`, function() {
+        let p: any = 'test';
+        const res = H[fn](p, true);
+        assert(res === p, 'should ${p} got ${res}');
+    });
+
+    it(`Should ${fn} handle value of param correctly)`, function() {
+        try {
+            let p: any;
+            H[fn](p, true);
+            assert(false, 'should throw Error by invalid param, but not');
+        }
+        catch (ex) {
+            assert(true);
+        }
+    });
+
+    it(`Should ${fn} handle value of param correctly)`, function() {
+        try {
+            let p: any = [1, 2];    // should 3 items
+            H[fn](p, true);
+            assert(false, 'should throw Error by invalid param, but not');
+        }
+        catch (ex) {
+            assert(true);
+        }
+    });
+
+});
+
+describe(filename + ' :parse_placeholder_unicode(param, _WIN64)', () => {
+    const fn = 'parse_placeholder_unicode';
+
+    it(`Should ${fn} handle value of param correctly)`, function() {
+        let p: any = 'test';
+        const res = H[fn](p, true);
+        assert(res === p, 'should ${p} got ${res}');
+    });
+
+    it(`Should ${fn} handle value of param correctly)`, function() {
+        try {
+            let p: any;
+            H[fn](p, true);
+            assert(false, 'should throw Error by invalid param, but not');
+        }
+        catch (ex) {
+            assert(true);
+        }
+    });
+
+    it(`Should ${fn} handle value of param correctly)`, function() {
+        try {
+            let p: any = [1, 2];    // should 3 items
+            H[fn](p, true);
+            assert(false, 'should throw Error by invalid param, but not');
+        }
+        catch (ex) {
+            assert(true);
+        }
+    });
+
+});
+
