@@ -26,12 +26,7 @@ export function gen_api_opts(fnDef: GT.Win32FnDefMacro, fns?: GT.FnName[], setti
         }
     }
     else {
-        for (let fn in fnDef) {
-            if ( ! {}.hasOwnProperty.call(fnDef, fn)) {
-                continue;
-            }
-            const ps: GT.FnParamsMacro = fnDef[fn];
-
+        for (let [fn, ps] of Object.entries(fnDef)) {
             if (ps) {
                 Object.defineProperty(opts, <string> fn, {
                     value: <GT.FnParams> parse_placeholder(ps, settings),
