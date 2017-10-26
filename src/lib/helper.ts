@@ -39,6 +39,9 @@ export function gen_api_opts(fnDef: GT.Win32FnDefMacro, fns?: GT.FnName[], setti
                     configurable: false,
                 });
             }
+            else {
+                throw new Error(`the value of fnDef[${fn}] empty`);
+            }
         }
     }
 
