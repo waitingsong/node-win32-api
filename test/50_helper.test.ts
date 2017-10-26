@@ -84,6 +84,22 @@ describe(filename + ' :gen_api_opts() specify', () => {
     }
 });
 
+describe(filename + ' :parse_placeholder() ', () => {
+    const fn = 'parse_placeholder(ps, settings)';
+
+    it(`Should ${fn} handle value of ps correctly)`, function() {
+        let ps: any;
+        try {
+            H.parse_placeholder(ps);
+            assert(false, 'function should throw error with invalid value of ps, but not');
+        }
+        catch (ex) {
+            assert(true);
+        }
+    });
+
+});
+
 describe(filename + ' :parse_param_placeholder() ', () => {
     const fn = 'parse_param_placeholder(param, settings)';
     const st = <GT.LoadSettings> {};
@@ -118,19 +134,3 @@ function test_settings(fn: string, st: GT.LoadSettings): void {
         assert(st._WIN64 === (process.arch === 'x64' ? true : false), 'st._WIN64 not match process.arch');
     });
 }
-
-describe(filename + ' :parse_placeholder() ', () => {
-    const fn = 'parse_placeholder(ps, settings)';
-
-    it(`Should ${fn} handle value of ps correctly)`, function() {
-        let ps: any;
-        try {
-            H.parse_placeholder(ps);
-            assert(false, 'function should throw error with invalid value of ps, but not');
-        }
-        catch (ex) {
-            assert(true);
-        }
-    });
-
-});
