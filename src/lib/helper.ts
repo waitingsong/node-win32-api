@@ -49,18 +49,16 @@ export function parse_placeholder(ps: GT.FnParamsMacro, settings?: GT.LoadSettin
     res[0] = parse_param_placeholder(returnParam, settings);
 
     // callling params
-    if (callParams) {
-        if (Array.isArray(callParams)) {  // [ [placeholder, string, string],  [placeholder, string, string], string]
-            let targetParams = <GT.FnCallParams> new Array();
+    if (callParams && Array.isArray(callParams)) {  // [ [placeholder, string, string],  [placeholder, string, string], string]
+        let targetParams = <GT.FnCallParams> new Array();
 
-            for (let i = 0, len = callParams.length; i < len; i++) {
-                targetParams[i] = parse_param_placeholder(returnParam, settings);
-            }
-            res[1] = targetParams;
+        for (let i = 0, len = callParams.length; i < len; i++) {
+            targetParams[i] = parse_param_placeholder(returnParam, settings);
         }
+        res[1] = targetParams;
     }
     else {
-        res[1] = [];
+        throw new Error('parse_placeholder() param ps[1] invalid');
     }
 
     return res;
