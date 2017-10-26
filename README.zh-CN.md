@@ -5,8 +5,7 @@ Windows win32 api 接口定义
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 ![Available platform](https://img.shields.io/badge/platform-win32-blue.svg)
 [![Build status](https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/master?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/master)
-[![Coverage Status](https://coveralls.io/repos/github/waitingsong/node-win32-api/badge.svg?branch=istanbul)](https://coveralls.io/github/waitingsong/node-win32-api?branch=istanbul)
-
+[![Coverage Status](https://coveralls.io/repos/github/waitingsong/node-win32-api/badge.svg)](https://coveralls.io/github/waitingsong/node-win32-api)
 
 
 ## 用途
