@@ -95,19 +95,17 @@ describe(filename + ' :parse_param_placeholder() ', () => {
 
     delete st._WIN64;
     test_settings(fn, st);
-});
 
-describe(filename + ' :parse_param_placeholder() ', () => {
-    const fn = 'parse_param_placeholder(param, settings)';
-    const st = <GT.LoadSettings> {};
-
-    test_settings(fn, st);
-
-    delete st._UNICODE;
-    test_settings(fn, st);
-
-    delete st._WIN64;
-    test_settings(fn, st);
+    it(`Should ${fn} handle value of settings correctly)`, function() {
+        try {
+            let p: any;
+            H.parse_param_placeholder(p, st);
+            assert(false, 'should throw Error by invalid param, but not');
+        }
+        catch (ex) {
+            assert(true);
+        }
+    });
 });
 
 function test_settings(fn: string, st: GT.LoadSettings): void {
@@ -120,3 +118,19 @@ function test_settings(fn: string, st: GT.LoadSettings): void {
         assert(st._WIN64 === (process.arch === 'x64' ? true : false), 'st._WIN64 not match process.arch');
     });
 }
+
+describe(filename + ' :parse_placeholder() ', () => {
+    const fn = 'parse_placeholder(ps, settings)';
+
+    it(`Should ${fn} handle value of ps correctly)`, function() {
+        let ps: any;
+        try {
+            H.parse_placeholder(ps);
+            assert(false, 'function should throw error with invalid value of ps, but not');
+        }
+        catch (ex) {
+            assert(true);
+        }
+    });
+
+});
