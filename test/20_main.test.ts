@@ -51,14 +51,25 @@ describe(filename, () => {
             it(`Should ${apiName}: FnRetType of definition exists in conf.windefSet`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     const p = apiDef[x][0];
+                    const st = {
+                        _UNICODE: true,
+                        _WIN64: false,
+                    };
                     let _WIN64 = true;
                     let param: GT.FnRetType;
 
-                    param = H.parse_placeholder_arch(<GT.FnRetTypeMacro> p, _WIN64);
-                    _WIN64 = false;
-                    assert(windefSet.has(param), `${x}() value: "${param}" ${_WIN64 ? 'x64' : 'ia32'}`);
-                    param = H.parse_placeholder_arch(<GT.FnRetTypeMacro> p, !_WIN64);
-                    assert(windefSet.has(param), `${x}() value: "${param} ${_WIN64 ? 'x64' : 'ia32'}"`);
+                    for (let k of Object.keys(st)) {
+                        if (st[k]) {
+                            param = H.parse_param_placeholder(<GT.FFIParamMacro> p, {...st, [k]: ! st[k]});
+                            assert(windefSet.has(param), `${x}() value: "${param}" ${st._WIN64 ? 'x64' : 'ia32'}, ${st._UNICODE ? 'UNICODE' : 'ANSI'}`);
+                        }
+                    }
+                    for (let k of Object.keys(st)) {
+                        if (!st[k]) {
+                            param = H.parse_param_placeholder(<GT.FFIParamMacro> p, {...st, [k]: ! st[k]});
+                            assert(windefSet.has(param), `${x}() value: "${param}" ${st._WIN64 ? 'x64' : 'ia32'}, ${st._UNICODE ? 'UNICODE' : 'ANSI'}`);
+                        }
+                    }
                 }
             });
 
