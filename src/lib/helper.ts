@@ -128,7 +128,6 @@ export function parse_placeholder_unicode(param: GT.FFIParamMacro, _UNICODE: boo
         return param;
     }
     else if ( ! param || param.length !== 3) {
-        console.error(param);
         throw new Error('_UNICODE macro should be Array and has 3 items');
     }
     return _UNICODE ? param[1] : param[2];
