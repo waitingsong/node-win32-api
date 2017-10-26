@@ -122,6 +122,17 @@ describe(filename + ' :parse_param_placeholder() ', () => {
             assert(true);
         }
     });
+
+    it(`Should ${fn} handle value of param correctly)`, function() {
+        try {
+            const p: GT.FFIParamMacro = ['invalid_placeholder', 'int64', 'int32'];
+            H.parse_param_placeholder(p, st);
+            assert(false, 'should throw Error by invalid param, but not');
+        }
+        catch (ex) {
+            assert(true);
+        }
+    });
 });
 
 function test_settings(fn: string, st: GT.LoadSettings): void {
