@@ -6,8 +6,10 @@ import * as ffi from 'ffi';
 import {basename, normalize} from 'path';
 import * as assert from 'power-assert';
 import * as Win from '../src/index';
+import * as Conf from '../src/lib/conf';
 import * as GT from '../src/lib/types';
 import * as H from '../src/lib/helper';
+import * as W from '../src/lib/windef';
 import {windefSet} from '../src/lib/conf';
 
 const filename = basename(__filename);
@@ -133,6 +135,35 @@ describe(filename + ' :parse_param_placeholder() ', () => {
             assert(true);
         }
     });
+
+    it(`Should ${fn} handle value of settings for arch of nodejs correctly)`, function() {
+        const p1 = 'debug_int64';
+        const p2 = 'debug_int32';
+        const p: GT.FFIParamMacro = [Conf._WIN64_HOLDER, p1, p2];
+        const st = {
+            _UNICODE: true,
+            _WIN64: true,
+        };
+        const str1 = H.parse_param_placeholder(p, {...st});
+        assert(str1 === p1, `result should be "${p1}", got ${str1}`);
+
+        const str2 = H.parse_param_placeholder(p, {...st, _WIN64: false});
+        assert(str2 === p2, `result should be "${p2}", got ${str2}`);
+    });
+
+    it(`Should ${fn} handle value of settings for ANSI/UNICODE correctly)`, function() {
+        const LPTSTR: GT.FFIParamMacro = [Conf._UNICODE_HOLDER, W.LPWSTR, 'uint8*'];
+        const st = {
+            _UNICODE: true,
+            _WIN64: true,
+        };
+        const str1 = H.parse_param_placeholder(LPTSTR, {...st});
+        assert(str1 === LPTSTR[1], `result should be "${LPTSTR[1]}", got ${str1}`);
+
+        const str2 = H.parse_param_placeholder(LPTSTR, {...st, _UNICODE: false});
+        assert(str2 === LPTSTR[2], `result should be "${LPTSTR[2]}", got ${str2}`);
+    });
+
 });
 
 function test_settings(fn: string, st: GT.LoadSettings): void {
