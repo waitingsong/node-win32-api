@@ -41,6 +41,9 @@ export function gen_api_opts(fnDef: GT.Win32FnDefMacro, fns?: GT.FnName[], setti
 }
 
 export function parse_placeholder(ps: GT.FnParamsMacro, settings?: GT.LoadSettings): GT.FnParams {
+    if ( ! ps || ! Array.isArray(ps) || ps.length !== 2) {
+        throw new Error('parse_placeholder(ps) value of ps invalid');
+    }
     const returnParam: GT.FnRetTypeMacro = ps[0];
     const callParams: GT.FnCallParamsMacro = ps[1];
     let res = <GT.FnParams> new Array(2);
@@ -49,17 +52,13 @@ export function parse_placeholder(ps: GT.FnParamsMacro, settings?: GT.LoadSettin
     res[0] = parse_param_placeholder(returnParam, settings);
 
     // callling params
-    if (callParams && Array.isArray(callParams)) {  // [ [placeholder, string, string],  [placeholder, string, string], string]
-        let targetParams = <GT.FnCallParams> new Array();
+    // [ [placeholder, string, string],  [placeholder, string, string], string]
+    let targetParams = <GT.FnCallParams> new Array();
 
-        for (let i = 0, len = callParams.length; i < len; i++) {
-            targetParams[i] = parse_param_placeholder(returnParam, settings);
-        }
-        res[1] = targetParams;
+    for (let i = 0, len = callParams.length; i < len; i++) {
+        targetParams[i] = parse_param_placeholder(returnParam, settings);
     }
-    else {
-        throw new Error('parse_placeholder() param ps[1] invalid');
-    }
+    res[1] = targetParams;
 
     return res;
 }
@@ -90,7 +89,6 @@ export function parse_param_placeholder(param: GT.FFIParamMacro, settings?: GT.L
     if (typeof param === 'string') {
         return param;
     }
-
 
     let p: GT.FFIParam = '';
 
