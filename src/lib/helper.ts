@@ -3,26 +3,6 @@ import * as GT from './types';
 
 
 export function gen_api_opts(fnDef: GT.Win32FnDefMacro, fns?: GT.FnName[], settings?: GT.LoadSettings): GT.Win32FnDef {
-    if (typeof settings === 'undefined' || ! settings) {
-        settings = {
-            _UNICODE: true,
-            _WIN64: process.arch === 'x64' ? true : false,
-        };
-    }
-    else {
-        if (typeof settings._WIN64 === 'undefined') {
-            settings._WIN64 = process.arch === 'x64' ? true : false;
-        }
-        else {
-            settings._WIN64 = !!settings._WIN64;
-        }
-        if (typeof settings._UNICODE === 'undefined') {
-            settings._UNICODE = true;
-        }
-        else {
-            settings._UNICODE = !! settings._UNICODE;
-        }
-    }
     let opts = <GT.Win32FnDef> {};
 
     if (fns && Array.isArray(fns) && fns.length) {
@@ -60,7 +40,7 @@ export function gen_api_opts(fnDef: GT.Win32FnDefMacro, fns?: GT.FnName[], setti
     return opts;
 }
 
-export function parse_placeholder(ps: GT.FnParamsMacro, settings: GT.LoadSettings): GT.FnParams {
+export function parse_placeholder(ps: GT.FnParamsMacro, settings?: GT.LoadSettings): GT.FnParams {
     const returnParam: GT.FnRetTypeMacro = ps[0];
     const callParams: GT.FnCallParamsMacro = ps[1];
     let res = <GT.FnParams> new Array(2);
@@ -88,10 +68,32 @@ export function parse_placeholder(ps: GT.FnParamsMacro, settings: GT.LoadSetting
 
 
 // convert typeof array of param to string such like ['_WIN64_HOLDER_', 'int64', 'int32'], no changed returning when string
-export function parse_param_placeholder(param: GT.FFIParamMacro, settings: GT.LoadSettings): GT.FFIParam {
+export function parse_param_placeholder(param: GT.FFIParamMacro, settings?: GT.LoadSettings): GT.FFIParam {
     if (typeof param === 'string') {
         return param;
     }
+
+    if (typeof settings === 'undefined' || ! settings) {
+        settings = {
+            _UNICODE: true,
+            _WIN64: process.arch === 'x64' ? true : false,
+        };
+    }
+    else {
+        if (typeof settings._WIN64 === 'undefined') {
+            settings._WIN64 = process.arch === 'x64' ? true : false;
+        }
+        else {
+            settings._WIN64 = !!settings._WIN64;
+        }
+        if (typeof settings._UNICODE === 'undefined') {
+            settings._UNICODE = true;
+        }
+        else {
+            settings._UNICODE = !! settings._UNICODE;
+        }
+    }
+
     let p: GT.FFIParam = '';
 
     if (param && Array.isArray(param)) {
