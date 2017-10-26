@@ -83,3 +83,40 @@ describe(filename + ' :gen_api_opts() specify', () => {
         assert(true);
     }
 });
+
+describe(filename + ' :parse_param_placeholder() ', () => {
+    const fn = 'parse_param_placeholder(param, settings)';
+    const st = <GT.LoadSettings> {};
+
+    test_settings(fn, st);
+
+    delete st._UNICODE;
+    test_settings(fn, st);
+
+    delete st._WIN64;
+    test_settings(fn, st);
+});
+
+describe(filename + ' :parse_param_placeholder() ', () => {
+    const fn = 'parse_param_placeholder(param, settings)';
+    const st = <GT.LoadSettings> {};
+
+    test_settings(fn, st);
+
+    delete st._UNICODE;
+    test_settings(fn, st);
+
+    delete st._WIN64;
+    test_settings(fn, st);
+});
+
+function test_settings(fn: string, st: GT.LoadSettings): void {
+    const str: GT.FFIParam = H.parse_param_placeholder('int32', st);
+
+    it(`Should ${fn} handle value of settings correctly)`, function() {
+        assert(typeof st._UNICODE !== 'undefined', 'st._UNICODE undefined');
+        assert(typeof st._WIN64 !== 'undefined', 'st._WIN64 undefined');
+        assert(st._UNICODE === true, 'st._UNICODE is false');
+        assert(st._WIN64 === (process.arch === 'x64' ? true : false), 'st._WIN64 not match process.arch');
+    });
+}
