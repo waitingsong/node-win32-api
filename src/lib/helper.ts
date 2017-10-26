@@ -26,7 +26,9 @@ export function gen_api_opts(fnDef: GT.Win32FnDefMacro, fns?: GT.FnName[], setti
         }
     }
     else {
-        for (let [fn, ps] of Object.entries(fnDef)) {
+        for (let fn of Object.keys(fnDef)) {
+            const ps = <any> fnDef[fn];
+
             if (ps) {
                 Object.defineProperty(opts, <string> fn, {
                     value: <GT.FnParams> parse_placeholder(ps, settings),
@@ -140,8 +142,11 @@ export function parse_placeholder_unicode(param: GT.FFIParamMacro, _UNICODE: boo
 // convert macro variable of windef
 export function parse_windef(): GT.Windef {
     const windef = <GT.Windef> {};
+    const ww = <any> W;
 
-    for (let [x, v] of Object.entries(W)) {
+    for (let x of Object.keys(ww)) {
+        const v = <any> ww[x];
+
         if (typeof x === 'string') {
             if (typeof v === 'string') {
                 windef[x] = <GT.FFIParam> v;
