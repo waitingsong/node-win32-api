@@ -11,6 +11,6 @@ export {fnDef as api};
 
 export const dllName = basename(__dirname);
 
-export function load(fns?: GT.Win32FnName[], settings?: GT.LoadSettings): Win32Fn {
+export function load(fns?: GT.FnName[], settings?: GT.LoadSettings): Win32Fn {
     return ffi.Library(dllName, H.gen_api_opts(fnDef, fns, settings));
 }

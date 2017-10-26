@@ -29,47 +29,47 @@ describe(filename, () => {
         if (module && module.api) {
             const apiDef = <GT.Win32FnDef> module.api;
 
-            it(`Should ${apiName}: Win32FnName of definition be string`, function() {
+            it(`Should ${apiName}: FnName of definition be string`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     assert(typeof x === 'string');
                 }
             });
 
-            it(`Should ${apiName}: Win32FnParams of definition be array`, function() {
+            it(`Should ${apiName}: FnParams of definition be array`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     const p = apiDef[x];
                     assert(typeof p === 'object' && Array.isArray(p), `${x}()`);
                 }
             });
 
-            it(`Should ${apiName}: Win32FnRetType of definition be string and not epmty or array`, function() {
+            it(`Should ${apiName}: FnRetType of definition be string and not epmty or array`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     test_param_return_type(apiDef[x][0], x);
                 }
             });
 
-            it(`Should ${apiName}: Win32FnRetType of definition exists in conf.windefSet`, function() {
+            it(`Should ${apiName}: FnRetType of definition exists in conf.windefSet`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     const p = apiDef[x][0];
                     let _WIN64 = true;
-                    let param: GT.Win32FnRetType;
+                    let param: GT.FnRetType;
 
-                    param = H.parse_placeholder_arch(<GT.Win32FnRetTypeMacro> p, _WIN64);
+                    param = H.parse_placeholder_arch(<GT.FnRetTypeMacro> p, _WIN64);
                     _WIN64 = false;
                     assert(windefSet.has(param), `${x}() value: "${param}" ${_WIN64 ? 'x64' : 'ia32'}`);
-                    param = H.parse_placeholder_arch(<GT.Win32FnRetTypeMacro> p, !_WIN64);
+                    param = H.parse_placeholder_arch(<GT.FnRetTypeMacro> p, !_WIN64);
                     assert(windefSet.has(param), `${x}() value: "${param} ${_WIN64 ? 'x64' : 'ia32'}"`);
                 }
             });
 
-            it(`Should ${apiName}: Win32FnCallParams of definition be array`, function() {
+            it(`Should ${apiName}: FnCallParams of definition be array`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
                     const p = apiDef[x];
                     assert(typeof p[1] === 'object' && Array.isArray(p[1]), `${x}()`);
                 }
             });
 
-            it(`Should ${apiName}: item of Win32FnCallParams of definition exists in conf.windefSet and valid`, function() {
+            it(`Should ${apiName}: item of FnCallParams of definition exists in conf.windefSet and valid`, function() {
                 if (windefSet && windefSet.size) {
                     for (let x in apiDef) {    // tslint:disable-line
                         const arr = apiDef[x][1];
@@ -82,10 +82,10 @@ describe(filename, () => {
                                 // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
                                 if (param && Array.isArray(param)) {
                                     let _WIN64 = true;
-                                    param = H.parse_placeholder_arch(<GT.Win32FnRetTypeMacro> param, _WIN64);
+                                    param = H.parse_placeholder_arch(<GT.FnRetTypeMacro> param, _WIN64);
                                     test_call_param(param, x, i);
                                     _WIN64 = false;
-                                    param = H.parse_placeholder_arch(<GT.Win32FnRetTypeMacro> param, _WIN64);
+                                    param = H.parse_placeholder_arch(<GT.FnRetTypeMacro> param, _WIN64);
                                     test_call_param(param, x, i);
                                 }
                                 else {
