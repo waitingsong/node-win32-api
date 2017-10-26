@@ -153,6 +153,9 @@ export function parse_windef(): GT.Windef {
                 throw new Error('parse_windef() value invalid');
             }
         }
+        else {
+            throw new Error('key of windef not typeof string');
+        }
 
     }
 

@@ -247,7 +247,59 @@ describe(filename + ' :parse_placeholder_unicode(param, _WIN64)', () => {
 
 describe(filename + ' :parse_windef()', () => {
     const fn = 'parse_windef';
+    const fake = 'fake';
 
+    it(`Should ${fn} process windef with fake windef correctly)`, function() {
+        Object.defineProperty(W, fake, {
+            configurable: true,
+            writable: true,
+            enumerable: true,
+            value: 777, // should string or string[]
+        });
+        try {
+            H.parse_windef();
+            assert(false, 'should throw Error, but none');
+        }
+        catch (ex) {
+            assert(true);
+        }
+
+        Object.getOwnPropertyNames(W).forEach((val, idx) => {
+            if (val === fake) {
+                W[val] = 'int';
+            }
+        });
+        Object.defineProperty(W, 777, { // should string
+            configurable: true,
+            writable: true,
+            enumerable: true,
+            value: 'int',
+        });
+        try {
+            H.parse_windef();
+            assert(false, 'should throw Error, but none');
+        }
+        catch (ex) {
+            Object.defineProperty(W, 777, { // should string
+                enumerable: false,
+            });
+            assert(true);
+        }
+    });
+
+    it(`Should ${fn} process windef correctly)`, function() {
+        try {
+            const windef: GT.Windef = H.parse_windef();
+            const lenRes = Object.keys(windef).length;
+            const lenW = Object.keys(W).length;
+            assert(lenRes === lenW, `lenRes:${lenRes}, lenW:${lenW} `);
+        }
+        catch (ex) {
+            assert(true);
+        }
+    });
+
+    // at lastest
     it(`Should ${fn} process windef correctly)`, function() {
         const windef: GT.Windef = H.parse_windef();
         const lenRes = Object.keys(windef).length;
