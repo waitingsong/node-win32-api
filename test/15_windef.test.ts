@@ -29,20 +29,37 @@ describe(filename, () => {
         'HALF_PTR', 'UHALF_PTR',
     ]);
 
-    test_arch(true, types64_32);
-    test_arch(false, types64_32);
+    test_arch(types64_32);
 
     test_arch_half(true, typesHalf);
     test_arch_half(false, typesHalf);
 });
 
-function test_arch(_WIN64: boolean, types64_32: Set<string>) {
+function test_arch(types64_32: Set<string>) {
+    const st = {
+        _UNICODE: true,
+        _WIN64: false,
+    };
+
+    for (let k of Object.keys(st)) {
+        if (st[k]) {
+            _test_arch(types64_32, {...st, [k]: false});
+        }
+    }
+    for (let k of Object.keys(st)) {
+        if ( ! st[k]) {
+            _test_arch(types64_32, {...st, [k]: true});
+        }
+    }
+}
+
+function _test_arch(types64_32: Set<string>, settings: GT.LoadSettings) {
     for (let vv of types64_32) {
         // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
-        const param = H.parse_placeholder_arch(<GT.FFIParamMacro> W[vv], <boolean> _WIN64);
+        const param = H.parse_param_placeholder(<GT.FFIParamMacro> W[vv], settings);
 
-        it(`Should ${vv}: value converted correctly under nodejs ${ _WIN64 ? 'x64' : 'ia32' }`, function() {
-            if (_WIN64) {
+        it(`Should ${vv}: value converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, function() {
+            if (settings._WIN64) {
                 assert(param.indexOf('64') > 2 && param.indexOf('32') === -1, `${vv}: ${param} during x64`);   // must use param not W[vv]
             }
             else {
