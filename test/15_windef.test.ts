@@ -30,9 +30,7 @@ describe(filename, () => {
     ]);
 
     test_arch(types64_32);
-
-    test_arch_half(true, typesHalf);
-    test_arch_half(false, typesHalf);
+    test_arch_half(typesHalf);
 });
 
 function test_arch(types64_32: Set<string>) {
@@ -69,23 +67,37 @@ function _test_arch(types64_32: Set<string>, settings: GT.LoadSettings) {
     }
 }
 
-function test_arch_half(_WIN64: boolean, typesHalf: Set<string>) {
-    for (let vv of typesHalf) {
-        let param = W[vv];
+function test_arch_half(values: Set<string>) {
+    const st = {
+        _UNICODE: true,
+        _WIN64: false,
+    };
 
-        // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
-        if (param && Array.isArray(param)) {
-            param = H.parse_placeholder_arch(<GT.FnRetTypeMacro> param, <boolean> _WIN64);
+    for (let k of Object.keys(st)) {
+        if (st[k]) {
+            _test_arch_half(values, {...st, [k]: false});
         }
+    }
+    for (let k of Object.keys(st)) {
+        if ( ! st[k]) {
+            _test_arch_half(values, {...st, [k]: true});
+        }
+    }
+}
 
-        it(`Should ${vv}: value mathes nodejs ${ _WIN64 ? 'x64' : 'ia32' }`, function() {
-            if (_WIN64) {
+function _test_arch_half(typesHalf: Set<string>, settings: GT.LoadSettings) {
+    for (let vv of typesHalf) {
+        // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
+        const param = H.parse_param_placeholder(<GT.FFIParamMacro> W[vv], settings);
+
+        it(`Should ${vv}: value converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, function() {
+            if (settings._WIN64) {
                 const cond: boolean = param.indexOf('32') > 2 && param.indexOf('16') === -1 && param.indexOf('64') === -1;
-                assert(cond, `${vv}: ${param} at arch x64`);   // must use param not W[vv]
+                assert(cond, `${vv}: ${param} under x64`);   // must use param not W[vv]
             }
             else {
                 const cond: boolean = param.indexOf('16') > 2 && param.indexOf('32') === -1 && param.indexOf('64') === -1;
-                assert(cond, `${vv}: ${param} at arch ia32`);
+                assert(cond, `${vv}: ${param} under ia32`);
             }
         });
     }
