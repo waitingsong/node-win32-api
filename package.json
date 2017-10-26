@@ -16,7 +16,7 @@
     "cov": "nyc mocha",
     "cov:coveralls": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
     "rm:lock": "rm -rf package-lock.json",
-    "build": "npm run test && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint && npm run rm:lock"
+    "build": "npm run test && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint"
   },
   "nyc": {
     "exclude": [
