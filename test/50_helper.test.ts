@@ -86,8 +86,8 @@ describe(filename + ' :gen_api_opts() specify', () => {
     }
 });
 
-describe(filename + ' :parse_placeholder() ', () => {
-    const fn = 'parse_placeholder(ps, settings)';
+describe(filename + ' :parse_placeholder(ps, settings) ', () => {
+    const fn = 'parse_placeholder()';
 
     it(`Should ${fn} handle value of ps correctly)`, function() {
         let ps: any;
@@ -102,8 +102,8 @@ describe(filename + ' :parse_placeholder() ', () => {
 
 });
 
-describe(filename + ' :parse_param_placeholder() ', () => {
-    const fn = 'parse_param_placeholder(param, settings)';
+describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
+    const fn = 'parse_param_placeholder';
     const st = <GT.LoadSettings> {};
 
     test_settings(fn, st);
