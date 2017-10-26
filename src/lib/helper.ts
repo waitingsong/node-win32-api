@@ -69,10 +69,6 @@ export function parse_placeholder(ps: GT.FnParamsMacro, settings?: GT.LoadSettin
 
 // convert typeof array of param to string such like ['_WIN64_HOLDER_', 'int64', 'int32'], no changed returning when string
 export function parse_param_placeholder(param: GT.FFIParamMacro, settings?: GT.LoadSettings): GT.FFIParam {
-    if (typeof param === 'string') {
-        return param;
-    }
-
     if (typeof settings === 'undefined' || ! settings) {
         settings = {
             _UNICODE: true,
@@ -93,6 +89,10 @@ export function parse_param_placeholder(param: GT.FFIParamMacro, settings?: GT.L
             settings._UNICODE = !! settings._UNICODE;
         }
     }
+    if (typeof param === 'string') {
+        return param;
+    }
+
 
     let p: GT.FFIParam = '';
 
