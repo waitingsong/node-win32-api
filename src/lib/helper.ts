@@ -1,6 +1,7 @@
 import * as ffi from 'ffi';
 import * as Conf from './conf';
 import * as GT from './types';
+import * as W from './windef';
 
 
 export function load<T>(dllName: string, fnDef: GT.Win32FnDefMacro, fns?: GT.FnName[], settings?: GT.LoadSettings): T {
@@ -139,4 +140,26 @@ export function parse_placeholder_unicode(param: GT.FFIParamMacro, _UNICODE: boo
         throw new Error('_UNICODE macro should be Array and has 3 items');
     }
     return _UNICODE ? param[1] : param[2];
+}
+
+// convert macro variable of windef
+export function parse_windef(): GT.Windef {
+    const windef = <GT.Windef> {};
+
+    for (let [x, v] of Object.entries(W)) {
+        if (typeof x === 'string' && typeof v === 'object' && Array.isArray(v)) {
+            if (typeof v === 'string') {
+                windef[x] = <GT.FFIParam> v;
+            }
+            else if (v.length === 3) {
+                windef[x] = <GT.FFIParam> parse_param_placeholder(<GT.FFIParamMacro> v);
+            }
+            else {
+                throw new Error('parse_windef() value invalid');
+            }
+        }
+
+    }
+
+    return windef;
 }

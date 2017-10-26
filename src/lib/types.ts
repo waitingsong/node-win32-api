@@ -39,6 +39,13 @@ export interface FFIBuffer extends Buffer {
 export type PID = number;
 export type PPID = number;
 
+export interface Windef {
+    [prop: string]: string;
+}
+export interface WindefMacro {
+    [prop: string]: string | MacroParam<string>;
+}
+
 export type FnName = string;
 export type FFIParam = string;  // param type for definition of FFI
 export type FnRetType = FFIParam;
