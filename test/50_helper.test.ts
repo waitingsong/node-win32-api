@@ -30,7 +30,7 @@ describe(filename + ' :gen_api_opts() all', () => {
         const module: any = Win[apiName];
 
         if (module && module.api) {
-            const api = module.api;
+            const api: GT.Win32FnDef = module.api;
             let n = 0;
 
             for (let fn in api) {
@@ -47,10 +47,12 @@ describe(filename + ' :gen_api_opts() all', () => {
                 assert(typeof fns === 'object' && fns, `fns return by gen_api_opts() not object`);
                 assert(keysize === n, `the items of fns ${keysize} not equal to the ${n} numbers of item of the Win.${apiName}`);
             });
+
         }
         else {
             assert(true);
         }
+
     }
 });
 
@@ -62,7 +64,7 @@ describe(filename + ' :gen_api_opts() specify', () => {
     const fakeFn = fn + Math.random();
 
     if (module && module.api) {
-        const api = module.api;
+        const api: GT.Win32FnDef = module.api;
 
         it(`Should ${apiName} gen_api_opts(["${fn}"]) correctly)`, function() {
             const fns: GT.Win32FnDef = H.gen_api_opts(api, [fn]);
