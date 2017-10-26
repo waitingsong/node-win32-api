@@ -1,6 +1,11 @@
+import * as ffi from 'ffi';
 import * as Conf from './conf';
 import * as GT from './types';
 
+
+export function load<T>(dllName: string, fnDef: GT.Win32FnDefMacro, fns?: GT.FnName[], settings?: GT.LoadSettings): T {
+    return ffi.Library(dllName, gen_api_opts(fnDef, fns, settings));
+}
 
 export function gen_api_opts(fnDef: GT.Win32FnDefMacro, fns?: GT.FnName[], settings?: GT.LoadSettings): GT.Win32FnDef {
     let opts = <GT.Win32FnDef> {};
