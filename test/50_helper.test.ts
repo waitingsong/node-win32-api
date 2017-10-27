@@ -136,7 +136,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
        const p2 = 'debug_int32';
        const p: GT.MacroDef = [Conf._WIN64_HOLDER, p1, p2];
        const st = {...Conf.settingsDefault};
-       const str1 = H.parse_param_placeholder(p, {...st});
+       const str1 = H.parse_param_placeholder(p, {...st, _WIN64: true});
        assert(str1 === p1, `result should be "${p1}", got ${str1}`);
 
        const str2 = H.parse_param_placeholder(p, {...st, _WIN64: false});
@@ -146,7 +146,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
    it(`Should ${fn} handle value of settings for ANSI/UNICODE correctly)`, function() {
        const LPTSTR: GT.MacroDef = [Conf._UNICODE_HOLDER, WD.LPWSTR, 'uint8*'];
        const st = {...Conf.settingsDefault};
-       const str1 = H.parse_param_placeholder(LPTSTR, {...st});
+       const str1 = H.parse_param_placeholder(LPTSTR, {...st, _UNICODE: true});
        assert(str1 === LPTSTR[1], `result should be "${LPTSTR[1]}", got ${str1}`);
 
        const str2 = H.parse_param_placeholder(LPTSTR, {...st, _UNICODE: false});
