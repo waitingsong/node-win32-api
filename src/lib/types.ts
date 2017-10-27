@@ -59,8 +59,6 @@ export type MacroParam<T> = T | [T, T, T];  // [s,s,s] for conversion of macro w
 export type MacroDef = [string, string, string];
 export type FFIParamMacro = MacroParam<FFIParam>;
 export type FnRetTypeMacro = MacroParam<FnRetType>;
-export type FnCallParamMacro = MacroParam<FnCallParam>;
-export type FnCallParamsMacro = FnCallParamMacro[] | never[];
 
 export type _WIN64 = boolean;
 export type _UNICODE = boolean;

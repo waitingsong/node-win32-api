@@ -51,7 +51,7 @@ export function parse_placeholder(ps: GT.FnParams, settings?: GT.LoadSettings): 
         throw new Error('parse_placeholder(ps) value of ps invalid');
     }
     const returnParam: GT.FnRetTypeMacro = ps[0];
-    const callParams: GT.FnCallParamsMacro = ps[1];
+    const callParams: GT.FnCallParams = ps[1];
     let res = <GT.FnParams> new Array(2);
 
     // return param
