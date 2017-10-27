@@ -125,12 +125,12 @@ export function parse_placeholder_unicode(param: GT.FFIParam | GT.MacroDef, _UNI
 }
 
 // convert macro variable of windef
-export function parse_windef(W: any, settings?: GT.LoadSettings): GT.Windef {
-    const ww = <any> (settings && settings._windefClone ? Object.assign({...W}) : W);
-    // const ww = <any> W;
-    const windef = <GT.Windef> {};
+export function parse_windef(W: GT.Windef | any, settings?: GT.LoadSettings): GT.WinData {
+    const ww = (settings && settings._windefClone ? clone_filter_windef(W) : W);
+    const macroMap = <GT.MacroMap> W.macroMap;
+    const windef = <GT.WinData> {};
     const skipKeys = Conf.windefSkipKeys;
-    const macroSrc = prepare_macro(ww.macroMap, settings);
+    const macroSrc = prepare_macro(macroMap, settings);
 
     for (let [k, v] of macroSrc.entries()) {
         if (typeof ww[k] !== 'undefined' && v) {
@@ -185,7 +185,7 @@ export function parse_marco(key: string, macroSrc: Map<string, GT.FFIParam>): GT
 }
 
 // parse const HANDLE = 'PVOID' to the realy FFIParam
-function prepare_windef_ref(ww: GT.Windef): void {
+function prepare_windef_ref(ww: GT.WinData | GT.Windef): void {
     for (let x of Object.keys(ww)) {
         if (Conf.windefSkipKeys.has(x)) {   // macroMap
             continue;
@@ -204,4 +204,24 @@ function prepare_windef_ref(ww: GT.Windef): void {
             throw new Error('key of windef not typeof string');
         }
     }
+}
+
+// filter windef by Conf.windefSkipKeys, output only need key/value
+export function clone_filter_windef(windef: GT.Windef): GT.WinData {
+    const res = <GT.WinData> {};
+    const skip = Conf.windefSkipKeys;
+
+    for (let x of Object.keys(windef)) {
+        if (Conf.windefSkipKeys.has(x)) {   // macroMap
+            continue;
+        }
+        Object.defineProperty(res, <string> x, {
+            value: <GT.FFIParam> windef[x],
+            writable: true,
+            enumerable: true,
+            configurable: true,
+        });
+    }
+
+    return res;
 }

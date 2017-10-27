@@ -49,13 +49,17 @@ export interface Win32FnDef {
     [fn: string]: FnParams;
 }
 export type MacroParam<T> = T | [T, T, T];  // [s,s,s] for conversion of macro windows data like LPCTSTR
-export type MacroDef = [string, string, string];
+export type MacroDef = [string, string, string];    // ['_WIN64_HOLDER', 'int64*', 'int32*']
+export type MacroMap = Map<string, MacroDef>;  // ['PVOID', ['_WIN64_HOLDER', 'int64*', 'int32*']]
 
 export type _WIN64 = boolean;
 export type _UNICODE = boolean;
 
-export interface Windef {
+export interface WinData {
     [prop: string]: FFIParam;
+}
+export interface Windef {
+    [prop: string]: FFIParam | MacroMap;
 }
 
 export interface LoadSettings {

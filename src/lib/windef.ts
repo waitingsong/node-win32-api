@@ -214,7 +214,7 @@ export const RECT = 'pointer';  // _RECT
 
 /* ------------------ for macro conversion ---------------------- */
 
-export const macroMap = <Map<string, GT.MacroDef>> new Map([
+export const macroMap: GT.MacroMap = <GT.MacroMap> new Map([
     ['PVOID', [Conf._WIN64_HOLDER, 'uint64*', 'uint32*']],
     ['LONG_PTR', [Conf._WIN64_HOLDER, 'int64', 'int32']],
     ['ULONG_PTR', [Conf._WIN64_HOLDER, 'uint64', 'uint32']],
