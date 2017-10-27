@@ -139,7 +139,8 @@ export function parse_placeholder_unicode(param: GT.FFIParam | GT.MacroDef, _UNI
 }
 
 // convert macro variable of windef
-export function parse_windef(ww: any, settings?: GT.LoadSettings): GT.Windef {
+export function parse_windef(W: any, settings?: GT.LoadSettings): GT.Windef {
+    const ww = <any> (settings && settings._windefClone ? Object.assign({...W}) : W);
     // const ww = <any> W;
     const windef = <GT.Windef> {};
     const skipKeys = Conf.windefSkipKeys;

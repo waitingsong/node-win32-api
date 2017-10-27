@@ -6,7 +6,7 @@ import * as assert from 'power-assert';
 import * as Conf from '../src/lib/conf';
 import * as GT from '../src/lib/types';
 import * as H from '../src/lib/helper';
-import * as W from '../src/lib/windef';
+import * as WD from '../src/lib/windef';
 
 const filename = basename(__filename);
 
@@ -36,27 +36,34 @@ describe(filename, () => {
 function test_arch(types64_32: Set<string>) {
     const st = {
         _UNICODE: true,
-        _WIN64: false,
+        _WIN64: true,
     };
 
     for (let k of Object.keys(st)) {
+        const opts = {...st};
+
         if (st[k]) {
-            _test_arch(types64_32, {...st, [k]: ! st[k]});
+            opts[k] = ! st[k];
         }
+        _test_arch(types64_32, opts);
     }
     for (let k of Object.keys(st)) {
+        const opts = {...st};
         if ( ! st[k]) {
-            _test_arch(types64_32, {...st, [k]: ! st[k]});
+            opts[k] = ! st[k];
         }
+        _test_arch(types64_32, opts);
     }
 }
 
 function _test_arch(types64_32: Set<string>, settings: GT.LoadSettings) {
-    for (let vv of types64_32) {
-        // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
-        const param = H.parse_param_placeholder(<GT.MacroDef> W[vv], settings);
+    const W = H.parse_windef(WD, {...settings, _windefClone: true});
 
-        it(`Should ${vv}: value converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, function() {
+    for (let vv of types64_32) {
+        // convert param like '_WIN64_HOLDER_' to 'int64' or 'int32'
+        const param = W[vv];
+
+        it(`Should ${vv}: xxvalue converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, function() {
             if (settings._WIN64) {
                 assert(param.indexOf('64') > 2 && param.indexOf('32') === -1, `${vv}: ${param} during x64`);   // must use param not W[vv]
             }
@@ -86,9 +93,11 @@ function test_arch_half(values: Set<string>) {
 }
 
 function _test_arch_half(typesHalf: Set<string>, settings: GT.LoadSettings) {
+    const W = H.parse_windef(WD, {...settings, _windefClone: true});
+
     for (let vv of typesHalf) {
         // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
-        const param = H.parse_param_placeholder(<GT.MacroDef> W[vv], settings);
+        const param = H.parse_param_placeholder(W[vv], settings);
 
         it(`Should ${vv}: value converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, function() {
             if (settings._WIN64) {
@@ -114,13 +123,10 @@ describe(filename, () => {
 });
 
 function unicode(_UNICODE: boolean, typesUnicode: Set<string>) {
+    const W = H.parse_windef(WD, {_UNICODE, _windefClone: true});
+
     for (let vv of typesUnicode) {
         let param = W[vv];
-
-        // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
-        if (param && Array.isArray(param)) {
-            param = H.parse_placeholder_unicode(<GT.FnRetType> param, <boolean> _UNICODE);
-        }
 
         it(`Should macro ${vv}: value mathes setting of ANSI/UNICODE`, function() {
             if (_UNICODE) {

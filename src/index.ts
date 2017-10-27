@@ -29,6 +29,7 @@ export {types};
 
 import * as windef from './lib/windef';
 parse_windef(windef);
+const foo = windef.HWND;
 export {windef};
 
 import * as Conf from './lib/conf';
