@@ -129,7 +129,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
 
     it(`Should ${fn} handle value of param correctly)`, function() {
         try {
-            const p: GT.FFIParamMacro = ['invalid_placeholder', 'int64', 'int32'];
+            const p: GT.MacroDef = ['invalid_placeholder', 'int64', 'int32'];
             H.parse_param_placeholder(p, st);
             assert(false, 'should throw Error by invalid param, but not');
         }
@@ -141,7 +141,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
     it(`Should ${fn} handle value of settings for arch of nodejs correctly)`, function() {
         const p1 = 'debug_int64';
         const p2 = 'debug_int32';
-        const p: GT.FFIParamMacro = [Conf._WIN64_HOLDER, p1, p2];
+        const p: GT.MacroDef = [Conf._WIN64_HOLDER, p1, p2];
         const st = {
             _UNICODE: true,
             _WIN64: true,
@@ -154,7 +154,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
     });
 
     it(`Should ${fn} handle value of settings for ANSI/UNICODE correctly)`, function() {
-        const LPTSTR: GT.FFIParamMacro = [Conf._UNICODE_HOLDER, W.LPWSTR, 'uint8*'];
+        const LPTSTR: GT.MacroDef = [Conf._UNICODE_HOLDER, W.LPWSTR, 'uint8*'];
         const st = {
             _UNICODE: true,
             _WIN64: true,

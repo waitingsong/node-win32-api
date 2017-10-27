@@ -60,13 +60,13 @@ describe(filename, () => {
 
                     for (let k of Object.keys(st)) {
                         if (st[k]) {
-                            param = H.parse_param_placeholder(<GT.FFIParamMacro> p, {...st, [k]: ! st[k]});
+                            param = H.parse_param_placeholder(<GT.MacroDef> p, {...st, [k]: ! st[k]});
                             assert(windefSet.has(param), `${x}() value: "${param}" ${st._WIN64 ? 'x64' : 'ia32'}, ${st._UNICODE ? 'UNICODE' : 'ANSI'}`);
                         }
                     }
                     for (let k of Object.keys(st)) {
                         if (!st[k]) {
-                            param = H.parse_param_placeholder(<GT.FFIParamMacro> p, {...st, [k]: ! st[k]});
+                            param = H.parse_param_placeholder(<GT.MacroDef> p, {...st, [k]: ! st[k]});
                             assert(windefSet.has(param), `${x}() value: "${param}" ${st._WIN64 ? 'x64' : 'ia32'}, ${st._UNICODE ? 'UNICODE' : 'ANSI'}`);
                         }
                     }

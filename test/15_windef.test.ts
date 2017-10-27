@@ -54,7 +54,7 @@ function test_arch(types64_32: Set<string>) {
 function _test_arch(types64_32: Set<string>, settings: GT.LoadSettings) {
     for (let vv of types64_32) {
         // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
-        const param = H.parse_param_placeholder(<GT.FFIParamMacro> W[vv], settings);
+        const param = H.parse_param_placeholder(<GT.MacroDef> W[vv], settings);
 
         it(`Should ${vv}: value converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, function() {
             if (settings._WIN64) {
@@ -88,7 +88,7 @@ function test_arch_half(values: Set<string>) {
 function _test_arch_half(typesHalf: Set<string>, settings: GT.LoadSettings) {
     for (let vv of typesHalf) {
         // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
-        const param = H.parse_param_placeholder(<GT.FFIParamMacro> W[vv], settings);
+        const param = H.parse_param_placeholder(<GT.MacroDef> W[vv], settings);
 
         it(`Should ${vv}: value converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, function() {
             if (settings._WIN64) {
