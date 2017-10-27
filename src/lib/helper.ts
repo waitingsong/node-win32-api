@@ -141,28 +141,81 @@ export function parse_placeholder_unicode(param: GT.FFIParamMacro, _UNICODE: boo
 
 // convert macro variable of windef
 export function parse_windef(): GT.Windef {
-    const windef = <GT.Windef> {};
     const ww = <any> W;
+    const windef = <GT.Windef> {};
+    const skipKeys = Conf.windefSkipKeys;
+    const macroSrc = prepare_macro(ww.macroMap);
+
+    for (let [k, v] of macroSrc.entries()) {
+        if (typeof ww[k] !== 'undefined' && v) {
+            ww[k] = v;
+        }
+    }
+
+    prepare_windef_ref(ww);
 
     for (let x of Object.keys(ww)) {
+        if (Conf.windefSkipKeys.has(x)) {   // macroMap
+            continue;
+        }
+        const v = <any> ww[x];
+
+        switch (v) {
+            case Conf._UNICODE_HOLDER:
+                windef[x] = parse_marco(x, macroSrc);
+                break;
+            case Conf._WIN64_HOLDER:
+                windef[x] = parse_marco(x, macroSrc);
+                break;
+            default:
+                windef[x] = <GT.FFIParam> v;
+                break;
+        }
+    }
+
+    return windef;
+}
+
+function prepare_macro(macroMap: Map<string, GT.MacroDef>): Map<string, GT.FFIParam> {
+    const res = new Map();
+
+    for (let [k, v] of macroMap.entries()) {
+        res.set(k, parse_param_placeholder(v));
+    }
+
+    return res;
+}
+
+export function parse_marco(key: string, macroSrc: Map<string, GT.FFIParam>): GT.FFIParam {
+    if (typeof key !== 'string') {
+        throw new Error('key must typeof string');
+    }
+    const str = macroSrc.get(key);
+
+    if ( ! str) {
+        throw new Error('value invalid');
+    }
+    return str;
+}
+
+// parse const HANDLE = 'PVOID' to the realy FFIParam
+function prepare_windef_ref(ww: GT.WindefMacro): void {
+    for (let x of Object.keys(ww)) {
+        if (Conf.windefSkipKeys.has(x)) {   // macroMap
+            continue;
+        }
         const v = <any> ww[x];
 
         if (typeof x === 'string') {
-            if (typeof v === 'string') {
-                windef[x] = <GT.FFIParam> v;
-            }
-            else if (typeof v === 'object' && Array.isArray(v) && v.length === 3) {
-                windef[x] = <GT.FFIParam> parse_param_placeholder(<GT.FFIParamMacro> v);
-            }
-            else {
-                throw new Error('parse_windef() value invalid');
+            if (typeof v === 'string' && ! Conf.windefSet.has(v)) {  // not valid FFIParam like 'int'
+                if (typeof ww[v] === 'string') {
+                    // HANDLE == 'PVOID' && PVOID parsed by parse_marco()
+                    ww[x] = ww[v];
+                }
             }
         }
         else {
             throw new Error('key of windef not typeof string');
         }
-
     }
-
-    return windef;
 }

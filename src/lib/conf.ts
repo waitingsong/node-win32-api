@@ -2,6 +2,7 @@
 
 export const _WIN64_HOLDER = '_WIN64_HOLDER_';
 export const _UNICODE_HOLDER = '_UNICODE_HOLDER_';
+export const windefSkipKeys: Set<string> = new Set(['macroMap']);
 
 export const _WIN64 = process.arch === 'x64' ? true : false;
 export const _UNICODE = true;

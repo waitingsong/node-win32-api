@@ -56,6 +56,7 @@ export interface Win32FnDef {
     [fn: string]: FnParams;
 }
 export type MacroParam<T> = T | [T, T, T];  // [s,s,s] for conversion of macro windows data like LPCTSTR
+export type MacroDef = [string, string, string];
 export type FFIParamMacro = MacroParam<FFIParam>;
 export type FnRetTypeMacro = MacroParam<FnRetType>;
 export type FnCallParamMacro = MacroParam<FnCallParam>;
