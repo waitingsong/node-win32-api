@@ -9,9 +9,13 @@
 
 import * as ffi from 'ffi';
 import * as ref from 'ref';
-// import {K, U, C, DS, types as GT, windef as W} from 'win32-api';
-import {K, U, C, DS, types as GT, windef as W} from '../src/index';
 import * as Struct from 'ref-struct';
+
+
+// import {K, U, C, DS, types as GT, windef as W} from 'win32-api'; // as module 
+import {K, U, C, DS, types as GT, windef as W} from '../src/index'; // as local
+
+
 
 const kernel32 = K.load();
 const user32 = U.load();  // load all apis defined in lib/{dll}/api from user32.dll
