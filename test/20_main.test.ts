@@ -60,14 +60,12 @@ describe(filename, () => {
 
                     for (let k of Object.keys(st)) {
                         if (st[k]) {
-                            param = H.parse_param_placeholder(<GT.MacroDef> p, {...st, [k]: ! st[k]});
-                            assert(windefSet.has(param), `${x}() value: "${param}" ${st._WIN64 ? 'x64' : 'ia32'}, ${st._UNICODE ? 'UNICODE' : 'ANSI'}`);
+                            assert(windefSet.has(p), `${x}() value: "${p}" ${st._WIN64 ? 'x64' : 'ia32'}, ${st._UNICODE ? 'UNICODE' : 'ANSI'}`);
                         }
                     }
                     for (let k of Object.keys(st)) {
                         if (!st[k]) {
-                            param = H.parse_param_placeholder(<GT.MacroDef> p, {...st, [k]: ! st[k]});
-                            assert(windefSet.has(param), `${x}() value: "${param}" ${st._WIN64 ? 'x64' : 'ia32'}, ${st._UNICODE ? 'UNICODE' : 'ANSI'}`);
+                            assert(windefSet.has(p), `${x}() value: "${p}" ${st._WIN64 ? 'x64' : 'ia32'}, ${st._UNICODE ? 'UNICODE' : 'ANSI'}`);
                         }
                     }
                 }
@@ -145,29 +143,19 @@ describe(filename, () => {
 });
 
 
-function test_param_return_type(param: GT.MacroDef, x: string): void {
+function test_param_return_type(param: GT.FFIParam, x: string): void {
     if (typeof param === 'string') {
         assert(param, `${x}() string value of returnType (p[0]) is empty string`);
-    }
-    else if (typeof param === 'object' && Array.isArray(param) && param.length) {
-        for (let p of param) {
-            test_param_return_type(p, x);
-        }
     }
     else {
         assert(false, `${x}() string value of returnType (p[0]) is NEITHER string NOR array`);
     }
 }
 
-function test_call_param(param: GT.MacroDef, x: string, i: number): void {
+function test_call_param(param: GT.FFIParam, x: string, i: number): void {
     if (typeof param === 'string') {
         assert(windefSet.has(param), `${x}() value: "${param} index: ${i}" is string but not exists in windefSet`);
     }
-    // else if (typeof param === 'object' && Array.isArray(param) && param.length) {
-    //     for (let p of param) {
-    //         test_call_param(p, x, i);
-    //     }
-    // }
     else {
         assert(false, `${x}() string value of param (index: ${i}) is NEIGHER string NOR array`);
     }
