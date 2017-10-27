@@ -139,11 +139,11 @@ export function parse_placeholder_unicode(param: GT.FFIParam | GT.MacroDef, _UNI
 }
 
 // convert macro variable of windef
-export function parse_windef(ww: any): GT.Windef {
+export function parse_windef(ww: any, settings?: GT.LoadSettings): GT.Windef {
     // const ww = <any> W;
     const windef = <GT.Windef> {};
     const skipKeys = Conf.windefSkipKeys;
-    const macroSrc = prepare_macro(ww.macroMap);
+    const macroSrc = prepare_macro(ww.macroMap, settings);
 
     for (let [k, v] of macroSrc.entries()) {
         if (typeof ww[k] !== 'undefined' && v) {
@@ -175,11 +175,11 @@ export function parse_windef(ww: any): GT.Windef {
     return windef;
 }
 
-function prepare_macro(macroMap: Map<string, GT.MacroDef>): Map<string, GT.FFIParam> {
+function prepare_macro(macroMap: Map<string, GT.MacroDef>, settings?: GT.LoadSettings): Map<string, GT.FFIParam> {
     const res = new Map();
 
     for (let [k, v] of macroMap.entries()) {
-        res.set(k, parse_param_placeholder(v));
+        res.set(k, parse_param_placeholder(v, settings));
     }
 
     return res;
