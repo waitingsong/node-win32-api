@@ -145,7 +145,7 @@ describe(filename, () => {
 });
 
 
-function test_param_return_type(param: GT.MacroParam<string>, x: string): void {
+function test_param_return_type(param: GT.MacroDef, x: string): void {
     if (typeof param === 'string') {
         assert(param, `${x}() string value of returnType (p[0]) is empty string`);
     }
@@ -159,7 +159,7 @@ function test_param_return_type(param: GT.MacroParam<string>, x: string): void {
     }
 }
 
-function test_call_param(param: GT.MacroParam<string>, x: string, i: number): void {
+function test_call_param(param: GT.MacroDef, x: string, i: number): void {
     if (typeof param === 'string') {
         assert(windefSet.has(param), `${x}() value: "${param} index: ${i}" is string but not exists in windefSet`);
     }
