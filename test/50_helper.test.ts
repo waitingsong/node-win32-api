@@ -9,7 +9,7 @@ import * as Win from '../src/index';
 import * as Conf from '../src/lib/conf';
 import * as GT from '../src/lib/types';
 import * as H from '../src/lib/helper';
-import * as W from '../src/lib/windef';
+import * as WD from '../src/lib/windef';
 import {windefSet} from '../src/lib/conf';
 
 const filename = basename(__filename);
@@ -106,17 +106,9 @@ describe(filename + ' :parse_placeholder(ps, settings) ', () => {
 
 describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
     const fn = 'parse_param_placeholder';
-    const st = <GT.LoadSettings> {};
-
-    test_settings(fn, st);
-
-    delete st._UNICODE;
-    test_settings(fn, st);
-
-    delete st._WIN64;
-    test_settings(fn, st);
 
     it(`Should ${fn} handle value of settings correctly)`, function() {
+        const st = <GT.LoadSettings> {...Conf.settingsDefault};
         try {
             let p: any;
             H.parse_param_placeholder(p, st);
@@ -127,55 +119,54 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
         }
     });
 
-    it(`Should ${fn} handle value of param correctly)`, function() {
-        try {
-            const p: GT.MacroDef = ['invalid_placeholder', 'int64', 'int32'];
-            H.parse_param_placeholder(p, st);
-            assert(false, 'should throw Error by invalid param, but not');
-        }
-        catch (ex) {
-            assert(true);
-        }
-    });
+   it(`Should ${fn} handle value of param correctly)`, function() {
+       const st = <GT.LoadSettings> {...Conf.settingsDefault};
+       try {
+           const p: GT.MacroDef = ['invalid_placeholder', 'int64', 'int32'];
+           H.parse_param_placeholder(p, st);
+           assert(false, 'should throw Error by invalid param, but not');
+       }
+       catch (ex) {
+           assert(true);
+       }
+   });
 
-    it(`Should ${fn} handle value of settings for arch of nodejs correctly)`, function() {
-        const p1 = 'debug_int64';
-        const p2 = 'debug_int32';
-        const p: GT.MacroDef = [Conf._WIN64_HOLDER, p1, p2];
-        const st = {
-            _UNICODE: true,
-            _WIN64: true,
-        };
-        const str1 = H.parse_param_placeholder(p, {...st});
-        assert(str1 === p1, `result should be "${p1}", got ${str1}`);
+   it(`Should ${fn} handle value of settings for arch of nodejs correctly)`, function() {
+       const p1 = 'debug_int64';
+       const p2 = 'debug_int32';
+       const p: GT.MacroDef = [Conf._WIN64_HOLDER, p1, p2];
+       const st = {...Conf.settingsDefault};
+       const str1 = H.parse_param_placeholder(p, {...st});
+       assert(str1 === p1, `result should be "${p1}", got ${str1}`);
 
-        const str2 = H.parse_param_placeholder(p, {...st, _WIN64: false});
-        assert(str2 === p2, `result should be "${p2}", got ${str2}`);
-    });
+       const str2 = H.parse_param_placeholder(p, {...st, _WIN64: false});
+       assert(str2 === p2, `result should be "${p2}", got ${str2}`);
+   });
 
-    it(`Should ${fn} handle value of settings for ANSI/UNICODE correctly)`, function() {
-        const LPTSTR: GT.MacroDef = [Conf._UNICODE_HOLDER, W.LPWSTR, 'uint8*'];
-        const st = {
-            _UNICODE: true,
-            _WIN64: true,
-        };
-        const str1 = H.parse_param_placeholder(LPTSTR, {...st});
-        assert(str1 === LPTSTR[1], `result should be "${LPTSTR[1]}", got ${str1}`);
+   it(`Should ${fn} handle value of settings for ANSI/UNICODE correctly)`, function() {
+       const LPTSTR: GT.MacroDef = [Conf._UNICODE_HOLDER, WD.LPWSTR, 'uint8*'];
+       const st = {...Conf.settingsDefault};
+       const str1 = H.parse_param_placeholder(LPTSTR, {...st});
+       assert(str1 === LPTSTR[1], `result should be "${LPTSTR[1]}", got ${str1}`);
 
-        const str2 = H.parse_param_placeholder(LPTSTR, {...st, _UNICODE: false});
-        assert(str2 === LPTSTR[2], `result should be "${LPTSTR[2]}", got ${str2}`);
-    });
+       const str2 = H.parse_param_placeholder(LPTSTR, {...st, _UNICODE: false});
+       assert(str2 === LPTSTR[2], `result should be "${LPTSTR[2]}", got ${str2}`);
+   });
 
 });
 
-function test_settings(fn: string, st: GT.LoadSettings): void {
+// not used
+function test_settings(fn: string, settings: GT.LoadSettings): void {
+    const st = {...settings};
     const str: GT.FFIParam = H.parse_param_placeholder('int32', st);
+    console.log('ssss', st);
+    process.exit();
 
     it(`Should ${fn} handle value of settings correctly)`, function() {
-        assert(typeof st._UNICODE !== 'undefined', 'st._UNICODE undefined');
-        assert(typeof st._WIN64 !== 'undefined', 'st._WIN64 undefined');
-        assert(st._UNICODE === true, 'st._UNICODE is false');
-        assert(st._WIN64 === (process.arch === 'x64' ? true : false), 'st._WIN64 not match process.arch');
+        assert(st && typeof st._UNICODE !== 'undefined', 'st._UNICODE should not be undefined');
+        assert(st && typeof st._WIN64 !== 'undefined', 'st._WIN64  should not be undefined');
+        assert(st && st._UNICODE === true, 'st._UNICODE is false');
+        assert(st && st._WIN64 === (process.arch === 'x64' ? true : false), 'st._WIN64 not match process.arch');
     });
 }
 
@@ -250,14 +241,16 @@ describe(filename + ' :parse_windef()', () => {
     const fake = 'fake';
 
     it(`Should ${fn} process windef with fake windef correctly)`, function() {
-        Object.defineProperty(W, fake, {
+        const W = {...WD};
+
+        Object.defineProperty(WD, fake, {
             configurable: true,
             writable: true,
             enumerable: true,
             value: 777, // should string or string[]
         });
         try {
-            H.parse_windef();
+            H.parse_windef(W);
             assert(false, 'should throw Error, but none');
         }
         catch (ex) {
@@ -276,7 +269,7 @@ describe(filename + ' :parse_windef()', () => {
             value: 'int',
         });
         try {
-            H.parse_windef();
+            H.parse_windef(W);
             assert(false, 'should throw Error, but none');
         }
         catch (ex) {
@@ -287,12 +280,13 @@ describe(filename + ' :parse_windef()', () => {
         }
     });
 
-    it(`Should ${fn} process windef correctly)`, function() {
+    it(`Should ${fn} process windef members correctly)`, function() {
         try {
-            const windef: GT.Windef = H.parse_windef();
-            const lenRes = Object.keys(windef).length;
-            const lenW = Object.keys(W).length;
-            assert(lenRes === lenW, `lenRes:${lenRes}, lenW:${lenW} `);
+            const W = {...WD};
+            const windata = H.parse_windef(W, {_windefClone: true});
+            const lenData = Object.keys(windata).length + Conf.windefSkipKeys.size;
+            const lenDef = Object.keys(W).length;
+            assert(lenData === lenDef, `lenRes:${lenData}, lenW:${lenDef} not equal, skiped number ${Conf.windefSkipKeys.size}`);
         }
         catch (ex) {
             assert(true);
@@ -301,10 +295,11 @@ describe(filename + ' :parse_windef()', () => {
 
     // at lastest
     it(`Should ${fn} process windef correctly)`, function() {
-        const windef: GT.Windef = H.parse_windef();
-        const lenRes = Object.keys(windef).length;
-        const lenW = Object.keys(W).length;
-        assert(lenRes === lenW, `lenRes:${lenRes}, lenW:${lenW} `);
+        const W = {...WD};
+        const windata = H.parse_windef(W, {_windefClone: true});
+        const lenData = Object.keys(windata).length + Conf.windefSkipKeys.size;
+        const lenDef = Object.keys(W).length;
+        assert(lenData === lenDef, `lenData:${lenData}, lenDef:${lenDef} not equal `);
     });
 
 });
