@@ -8,6 +8,13 @@
 
 import {parse_windef} from './lib/helper';
 
+import * as windef from './lib/windef';
+parse_windef(windef);   // must at top
+export {windef};
+
+import * as Conf from './lib/conf';
+export {Conf as conf};
+
 import * as User32 from './lib/user32/index';
 export {User32 as U};
 export {User32};
@@ -26,11 +33,3 @@ export {DStruct};
 
 import * as types from './lib/types';
 export {types};
-
-import * as windef from './lib/windef';
-parse_windef(windef);
-const foo = windef.HWND;
-export {windef};
-
-import * as Conf from './lib/conf';
-export {Conf as conf};
