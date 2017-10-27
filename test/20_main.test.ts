@@ -88,14 +88,8 @@ describe(filename, () => {
                             for (let i = 0; i < len; i++) {
                                 let param = arr[i];
 
-                                // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
-                                if (param && Array.isArray(param)) {
-                                    let _WIN64 = true;
-                                    param = H.parse_placeholder_arch(<GT.FnRetType> param, _WIN64);
-                                    test_call_param(param, x, i);
-                                    _WIN64 = false;
-                                    param = H.parse_placeholder_arch(<GT.FnRetType> param, _WIN64);
-                                    test_call_param(param, x, i);
+                                if (Array.isArray(param)) {
+                                    assert(false, 'param should be string, but array');
                                 }
                                 else {
                                     test_call_param(param, x, i);
