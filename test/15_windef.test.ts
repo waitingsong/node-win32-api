@@ -119,7 +119,7 @@ function unicode(_UNICODE: boolean, typesUnicode: Set<string>) {
 
         // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
         if (param && Array.isArray(param)) {
-            param = H.parse_placeholder_unicode(<GT.FnRetTypeMacro> param, <boolean> _UNICODE);
+            param = H.parse_placeholder_unicode(<GT.FnRetType> param, <boolean> _UNICODE);
         }
 
         it(`Should macro ${vv}: value mathes setting of ANSI/UNICODE`, function() {
