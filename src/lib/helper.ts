@@ -1,7 +1,6 @@
 import * as ffi from 'ffi';
 import * as Conf from './conf';
 import * as GT from './types';
-import * as W from './windef';
 
 
 export function load<T>(dllName: string, fnDef: GT.Win32FnDef, fns?: GT.FnName[], settings?: GT.LoadSettings): T {
@@ -71,7 +70,7 @@ export function parse_placeholder(ps: GT.FnParams, settings?: GT.LoadSettings): 
 
 
 // convert typeof array of param to string such like ['_WIN64_HOLDER_', 'int64', 'int32'], no changed returning when string
-export function parse_param_placeholder(param: GT.FFIParam, settings?: GT.LoadSettings): GT.FFIParam {
+export function parse_param_placeholder(param: GT.FFIParam | GT.MacroDef, settings?: GT.LoadSettings): GT.FFIParam {
     if (typeof settings === 'undefined' || ! settings) {
         settings = {
             _UNICODE: true,
@@ -117,7 +116,7 @@ export function parse_param_placeholder(param: GT.FFIParam, settings?: GT.LoadSe
 
 
 // convert param like ['_WIN64_HOLDER_', 'int64', 'int32] to 'int64' or 'int32'
-export function parse_placeholder_arch(param: GT.FFIParam, _WIN64: boolean): GT.FFIParam {
+export function parse_placeholder_arch(param: GT.FFIParam | GT.MacroDef, _WIN64: boolean): GT.FFIParam {
     if (typeof param === 'string') {
         return param;
     }
@@ -129,7 +128,7 @@ export function parse_placeholder_arch(param: GT.FFIParam, _WIN64: boolean): GT.
 }
 
 // convert param like ['_UNICODE_HOLDER_', 'uint16*', 'uint8*'] to 'uint16*' or 'uint8*'
-export function parse_placeholder_unicode(param: GT.FFIParam, _UNICODE: boolean): GT.FFIParam {
+export function parse_placeholder_unicode(param: GT.FFIParam | GT.MacroDef, _UNICODE: boolean): GT.FFIParam {
     if (typeof param === 'string') {
         return param;
     }
@@ -140,7 +139,7 @@ export function parse_placeholder_unicode(param: GT.FFIParam, _UNICODE: boolean)
 }
 
 // convert macro variable of windef
-export function parse_windef(): GT.Windef {
+export function parse_windef(W: any): GT.Windef {
     const ww = <any> W;
     const windef = <GT.Windef> {};
     const skipKeys = Conf.windefSkipKeys;
