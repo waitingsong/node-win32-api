@@ -62,9 +62,6 @@ export type FnRetTypeMacro = MacroParam<FnRetType>;
 export type FnCallParamMacro = MacroParam<FnCallParam>;
 export type FnCallParamsMacro = FnCallParamMacro[] | never[];
 export type FnParamsMacro = [FnRetType | FnRetTypeMacro, FnCallParams | FnCallParamsMacro];
-export interface Win32FnDefMacro {
-    [fn: string]: FnParamsMacro;  // [s,s,s] for conversion of macro windows data like LPCTSTR
-}
 
 export type _WIN64 = boolean;
 export type _UNICODE = boolean;
