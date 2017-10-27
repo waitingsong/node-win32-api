@@ -6,6 +6,8 @@
  * @link https://github.com/waitingsong/node-win32-api
  */
 
+import {parse_windef} from './lib/helper';
+
 import * as User32 from './lib/user32/index';
 export {User32 as U};
 export {User32};
@@ -26,6 +28,7 @@ import * as types from './lib/types';
 export {types};
 
 import * as windef from './lib/windef';
+parse_windef(windef);
 export {windef};
 
 import * as Conf from './lib/conf';
