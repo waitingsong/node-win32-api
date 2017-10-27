@@ -199,7 +199,7 @@ export function parse_marco(key: string, macroSrc: Map<string, GT.FFIParam>): GT
 }
 
 // parse const HANDLE = 'PVOID' to the realy FFIParam
-function prepare_windef_ref(ww: GT.WindefMacro): void {
+function prepare_windef_ref(ww: GT.Windef): void {
     for (let x of Object.keys(ww)) {
         if (Conf.windefSkipKeys.has(x)) {   // macroMap
             continue;

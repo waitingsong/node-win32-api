@@ -39,13 +39,6 @@ export interface FFIBuffer extends Buffer {
 export type PID = number;
 export type PPID = number;
 
-export interface Windef {
-    [prop: string]: string;
-}
-export interface WindefMacro {
-    [prop: string]: string | MacroParam<string>;
-}
-
 export type FnName = string;
 export type FFIParam = string;  // param type for definition of FFI
 export type FnRetType = FFIParam;
@@ -60,6 +53,10 @@ export type MacroDef = [string, string, string];
 
 export type _WIN64 = boolean;
 export type _UNICODE = boolean;
+
+export interface Windef {
+    [prop: string]: FFIParam;
+}
 
 export interface LoadSettings {
     _UNICODE?: boolean; // default true
