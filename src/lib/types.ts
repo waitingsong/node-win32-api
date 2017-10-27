@@ -61,7 +61,6 @@ export type FFIParamMacro = MacroParam<FFIParam>;
 export type FnRetTypeMacro = MacroParam<FnRetType>;
 export type FnCallParamMacro = MacroParam<FnCallParam>;
 export type FnCallParamsMacro = FnCallParamMacro[] | never[];
-export type FnParamsMacro = [FnRetType | FnRetTypeMacro, FnCallParams | FnCallParamsMacro];
 
 export type _WIN64 = boolean;
 export type _UNICODE = boolean;

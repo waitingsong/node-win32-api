@@ -13,7 +13,7 @@ export function gen_api_opts(fnDef: GT.Win32FnDef, fns?: GT.FnName[], settings?:
 
     if (fns && Array.isArray(fns) && fns.length) {
         for (let fn of fns) {
-            const ps: GT.FnParamsMacro = fnDef[fn];
+            const ps: GT.FnParams = fnDef[fn];
 
             if (ps) {
                 Object.defineProperty(opts, <string> fn, {
@@ -46,7 +46,7 @@ export function gen_api_opts(fnDef: GT.Win32FnDef, fns?: GT.FnName[], settings?:
     return opts;
 }
 
-export function parse_placeholder(ps: GT.FnParamsMacro, settings?: GT.LoadSettings): GT.FnParams {
+export function parse_placeholder(ps: GT.FnParams, settings?: GT.LoadSettings): GT.FnParams {
     if ( ! ps || ! Array.isArray(ps) || ps.length !== 2) {
         throw new Error('parse_placeholder(ps) value of ps invalid');
     }
