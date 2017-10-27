@@ -71,26 +71,12 @@ export function parse_placeholder(ps: GT.FnParams, settings?: GT.LoadSettings): 
 
 // convert typeof array of param to string such like ['_WIN64_HOLDER_', 'int64', 'int32'], no changed returning when string
 export function parse_param_placeholder(param: GT.FFIParam | GT.MacroDef, settings?: GT.LoadSettings): GT.FFIParam {
-    if (typeof settings === 'undefined' || ! settings) {
-        settings = {
-            _UNICODE: true,
-            _WIN64: process.arch === 'x64' ? true : false,
-        };
+    const st = {...Conf.settingsDefault};
+
+    if (typeof settings !== 'undefined' && settings && Object.keys(settings).length) {
+        Object.assign(st, settings);
     }
-    else {
-        if (typeof settings._WIN64 === 'undefined') {
-            settings._WIN64 = process.arch === 'x64' ? true : false;
-        }
-        else {
-            settings._WIN64 = !!settings._WIN64;
-        }
-        if (typeof settings._UNICODE === 'undefined') {
-            settings._UNICODE = true;
-        }
-        else {
-            settings._UNICODE = !! settings._UNICODE;
-        }
-    }
+
     if (typeof param === 'string') {
         return param;
     }
@@ -102,10 +88,10 @@ export function parse_param_placeholder(param: GT.FFIParam | GT.MacroDef, settin
 
     switch (param[0]) {
         case Conf._WIN64_HOLDER:
-            p = parse_placeholder_arch(param, <boolean> settings._WIN64);
+            p = parse_placeholder_arch(param, <boolean> st._WIN64);
             break;
         case Conf._UNICODE_HOLDER:
-            p = parse_placeholder_unicode(param, <boolean> settings._UNICODE);
+            p = parse_placeholder_unicode(param, <boolean> st._UNICODE);
             break;
         default:
             throw new Error('the value of param placeholder invlaid:' + param[0]);
