@@ -9,7 +9,7 @@
 import {parse_windef} from './lib/helper';
 
 import * as windef from './lib/windef';
-parse_windef(windef);   // must at top
+parse_windef(windef);   // must at top convert types Windef to WinData
 export {windef};
 
 import * as Conf from './lib/conf';
