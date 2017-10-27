@@ -26,4 +26,7 @@ import * as types from './lib/types';
 export {types};
 
 import * as windef from './lib/windef';
-export { windef };
+export {windef};
+
+import * as Conf from './lib/conf';
+export {Conf as conf};

@@ -13,7 +13,7 @@ import * as Struct from 'ref-struct';
 
 
 // import {K, U, C, DS, types as GT, windef as W} from 'win32-api'; // as module 
-import {K, U, C, DS, types as GT, windef as W} from '../src/index'; // as local
+import {K, U, C, DS, conf, types as GT, windef as W} from '../src/index'; // as local
 
 
 
@@ -57,7 +57,7 @@ comctl32.InitCommonControlsEx(icc.ref());
 // Window Class
 const wClass = new Struct(DS.WNDCLASSEX)();
 
-wClass.cbSize =  W._WIN64 ? 80 : 48; // x86 = 48, x64=80
+wClass.cbSize =  conf._WIN64 ? 80 : 48; // x86 = 48, x64=80
 wClass.style = 0;
 wClass.lpfnWndProc = WndProc;
 wClass.cbClsExtra = 0;
