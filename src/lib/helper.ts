@@ -3,17 +3,17 @@ import * as Conf from './conf';
 import * as GT from './types';
 
 
-export function load<T>(dllName: string, fnDef: GT.ApiDef, fns?: GT.FnName[], settings?: GT.LoadSettings): T {
-    return ffi.Library(dllName, gen_api_opts(fnDef, fns, settings));
+export function load<T>(dllName: string, apiDef: GT.ApiDef, fns?: GT.FnName[], settings?: GT.LoadSettings): T {
+    return ffi.Library(dllName, gen_api_opts(apiDef, fns, settings));
 }
 
 // generate function definitions via converting macro windows data type (like PVOID) to the expected value
-export function gen_api_opts(fnDef: GT.ApiDef, fns?: GT.FnName[], settings?: GT.LoadSettings): GT.ApiDef {
+export function gen_api_opts(apiDef: GT.ApiDef, fns?: GT.FnName[], settings?: GT.LoadSettings): GT.ApiDef {
     let opts = <GT.ApiDef> {};
 
     if (fns && Array.isArray(fns) && fns.length) {
         for (let fn of fns) {
-            const ps: GT.FnParams = fnDef[fn];
+            const ps: GT.FnParams = apiDef[fn];
 
             if (ps) {
                 Object.defineProperty(opts, <string> fn, {
@@ -26,8 +26,8 @@ export function gen_api_opts(fnDef: GT.ApiDef, fns?: GT.FnName[], settings?: GT.
         }
     }
     else {
-        for (let fn of Object.keys(fnDef)) {
-            const ps = <any> fnDef[fn];
+        for (let fn of Object.keys(apiDef)) {
+            const ps = <any> apiDef[fn];
 
             if (ps) {
                 Object.defineProperty(opts, <string> fn, {
@@ -38,7 +38,7 @@ export function gen_api_opts(fnDef: GT.ApiDef, fns?: GT.FnName[], settings?: GT.
                 });
             }
             else {
-                throw new Error(`the value of fnDef[${fn}] empty`);
+                throw new Error(`the value of apiDef[${fn}] empty`);
             }
         }
     }

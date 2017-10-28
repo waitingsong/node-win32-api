@@ -69,7 +69,7 @@ export interface Win32Fn {
 }
 
 
-export const fnDef: GT.ApiDef = {
+export const apiDef: GT.ApiDef = {
     CreateWindowExW: [W.HWND, [
         W.DWORD, W.LPCTSTR, W.LPCTSTR, W.DWORD,
         W.INT, W.INT, W.INT, W.INT,
