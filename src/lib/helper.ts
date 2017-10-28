@@ -142,7 +142,7 @@ export function parse_windef(W: GT.Windef | any, settings?: GT.LoadSettings): GT
     prepare_windef_ref(ww);
 
     for (let x of Object.keys(ww)) {
-        if (Conf.windefSkipKeys.has(x)) {   // macroMap
+        if (Conf.windefSkipKeys.has(x)) {   // skip windef.macroMap
             continue;
         }
         const v = <any> ww[x];
