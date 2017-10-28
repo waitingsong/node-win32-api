@@ -7,6 +7,7 @@ export function load<T>(dllName: string, fnDef: GT.Win32FnDef, fns?: GT.FnName[]
     return ffi.Library(dllName, gen_api_opts(fnDef, fns, settings));
 }
 
+// generate function definitions via converting macro windows data type (like PVOID) to the expected value
 export function gen_api_opts(fnDef: GT.Win32FnDef, fns?: GT.FnName[], settings?: GT.LoadSettings): GT.Win32FnDef {
     let opts = <GT.Win32FnDef> {};
 
@@ -179,7 +180,7 @@ export function parse_marco(key: string, macroSrc: Map<string, GT.FFIParam>): GT
     const str = macroSrc.get(key);
 
     if ( ! str) {
-        throw new Error('value invalid');
+        throw new Error('parse_macro value invalid');
     }
     return str;
 }
