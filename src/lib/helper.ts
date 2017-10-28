@@ -145,19 +145,7 @@ export function parse_windef(W: GT.Windef | any, settings?: GT.LoadSettings): GT
         if (Conf.windefSkipKeys.has(x)) {   // skip windef.macroMap
             continue;
         }
-        const v = <any> ww[x];
-
-        switch (v) {
-            case Conf._UNICODE_HOLDER:
-                windef[x] = parse_marco(x, macroSrc);
-                break;
-            case Conf._WIN64_HOLDER:
-                windef[x] = parse_marco(x, macroSrc);
-                break;
-            default:
-                windef[x] = <GT.FFIParam> v;
-                break;
-        }
+        windef[x] = <GT.FFIParam> ww[x];    // value processed by prepare_windef_ref() above
     }
 
     return windef;
@@ -188,7 +176,7 @@ export function parse_marco(key: string, macroSrc: Map<string, GT.FFIParam>): GT
 // parse const HANDLE = 'PVOID' to the realy FFIParam
 function prepare_windef_ref(ww: GT.WinData | GT.Windef): void {
     for (let x of Object.keys(ww)) {
-        if (Conf.windefSkipKeys.has(x)) {   // macroMap
+        if (Conf.windefSkipKeys.has(x)) {   // skip ww.macroMap
             continue;
         }
         const v = <any> ww[x];
