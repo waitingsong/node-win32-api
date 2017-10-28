@@ -29,8 +29,8 @@ describe(filename + ' :gen_api_opts() all', () => {
         const apiName: string = dll.slice(0, 1).toUpperCase() + dll.slice(1).toLowerCase(); // User32, Kernel32, ...
         const module: any = Win[apiName];
 
-        if (module && module.api) {
-            const api: GT.ApiDef = module.api;
+        if (module && module.apiDef) {
+            const api: GT.ApiDef = module.apiDef;
             let n = 0;
 
             for (let fn in api) {
@@ -50,7 +50,7 @@ describe(filename + ' :gen_api_opts() all', () => {
 
         }
         else {
-            assert(true);
+            assert(false, 'module or module.apiDef invalie');
         }
 
     }
@@ -63,8 +63,8 @@ describe(filename + ' :gen_api_opts() specify', () => {
     const fn = 'GetLastError';
     const fakeFn = fn + Math.random();
 
-    if (module && module.api) {
-        const api: GT.ApiDef = module.api;
+    if (module && module.apiDef) {
+        const api: GT.ApiDef = module.apiDef;
 
         it(`Should ${apiName} gen_api_opts(["${fn}"]) correctly)`, function() {
             const fns: GT.ApiDef = H.gen_api_opts(api, [fn]);
@@ -84,7 +84,7 @@ describe(filename + ' :gen_api_opts() specify', () => {
         });
     }
     else {
-        assert(true);
+        assert(false, 'module or module.apiDef invalie');
     }
 });
 
