@@ -15,12 +15,9 @@ import * as Struct from 'ref-struct';
 // import {K, U, C, DS, conf, types as GT, windef as W} from 'win32-api'; // as module
 import {K, U, C, DS, conf, types as GT, windef as W} from '../src/index'; // as local
 
-
-
 const kernel32 = K.load();
 const user32 = U.load();  // load all apis defined in lib/{dll}/api from user32.dll
 const comctl32 = C.load();  // load all apis defined in lib/{dll}/api from user32.dll
-
 
 // WndProc
 const WndProc = ffi.Callback('uint32',
@@ -40,9 +37,9 @@ const WndProc = ffi.Callback('uint32',
 const className = Buffer.from('NodeClass\0', 'ucs-2');
 const windowName = Buffer.from('Node.js WinForms App\0', 'ucs-2');
 
-//const hmodule = kernel32.GetModuleHandleW(null);
-// hInstance
-//let hInstance = Buffer.alloc(8);
+// const hmodule = kernel32.GetModuleHandleW(null);
+
+// const hInstance = Buffer.alloc(8);
 const hInstance = ref.alloc(W.HINSTANCE);
 kernel32.GetModuleHandleExW(0, null, hInstance);
 
@@ -62,6 +59,7 @@ wClass.style = 0;
 wClass.lpfnWndProc = WndProc;
 wClass.cbClsExtra = 0;
 wClass.cbWndExtra = 0;
+// wClass.hInstance = hmodule.ref();
 wClass.hInstance = hInstance;
 wClass.hIcon = null;
 wClass.hCursor = null;
