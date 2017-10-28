@@ -62,7 +62,7 @@ export function parse_placeholder(ps: GT.FnParams, settings?: GT.LoadSettings): 
     let targetParams = <GT.FnCallParams> new Array();
 
     for (let i = 0, len = callParams.length; i < len; i++) {
-        targetParams[i] = parse_param_placeholder(returnParam, settings);
+        targetParams[i] = parse_param_placeholder(callParams[i], settings);
     }
     res[1] = targetParams;
 
