@@ -25,7 +25,7 @@ export interface Win32Fn {
     HeapFree(hHeap: GT.HANDLE, dwFlags: GT.DWORD, lpMem: GT.LPVOID | null): GT.BOOL;
 }
 
-export const fnDef: GT.Win32FnDef = {
+export const fnDef: GT.ApiDef = {
     FormatMessageW: [W.DWORD, [W.DWORD, W.LPCVOID, W.DWORD, W.DWORD, W.LPTSTR, W.DWORD, W.va_list]],
 
     GetLastError: [W.DWORD, []], // err code: https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms681381(v=vs.85).aspx

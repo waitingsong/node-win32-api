@@ -30,7 +30,7 @@ describe(filename + ' :gen_api_opts() all', () => {
         const module: any = Win[apiName];
 
         if (module && module.api) {
-            const api: GT.Win32FnDef = module.api;
+            const api: GT.ApiDef = module.api;
             let n = 0;
 
             for (let fn in api) {
@@ -41,7 +41,7 @@ describe(filename + ' :gen_api_opts() all', () => {
             }
 
             it(`Should ${apiName} number of fns equal to the number of fns return by gen_api_opts`, function() {
-                const fns: GT.Win32FnDef = H.gen_api_opts(api);
+                const fns: GT.ApiDef = H.gen_api_opts(api);
                 const keysize = Object.keys(fns).length;
 
                 assert(typeof fns === 'object' && fns, `fns return by gen_api_opts() not object`);
@@ -64,10 +64,10 @@ describe(filename + ' :gen_api_opts() specify', () => {
     const fakeFn = fn + Math.random();
 
     if (module && module.api) {
-        const api: GT.Win32FnDef = module.api;
+        const api: GT.ApiDef = module.api;
 
         it(`Should ${apiName} gen_api_opts(["${fn}"]) correctly)`, function() {
-            const fns: GT.Win32FnDef = H.gen_api_opts(api, [fn]);
+            const fns: GT.ApiDef = H.gen_api_opts(api, [fn]);
 
             const keysize = Object.keys(fns).length;
 
@@ -76,7 +76,7 @@ describe(filename + ' :gen_api_opts() specify', () => {
         });
 
         it(`Should ${apiName} gen_api_opts(["${fakeFn}"]) return none)`, function() {
-            const fns: GT.Win32FnDef = H.gen_api_opts(api, [fakeFn]);
+            const fns: GT.ApiDef = H.gen_api_opts(api, [fakeFn]);
             const keysize = Object.keys(fns).length;
 
             assert(keysize === 0);

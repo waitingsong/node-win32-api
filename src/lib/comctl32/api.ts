@@ -6,6 +6,6 @@ export interface Win32Fn {
     InitCommonControlsEx(lpInitCtrls: GT.INITCOMMONCONTROLSEX): GT.BOOL;
 }
 
-export const fnDef: GT.Win32FnDef = {
+export const fnDef: GT.ApiDef = {
     InitCommonControlsEx: [W.BOOL, [W.LPINITCOMMONCONTROLSEX]],
 };

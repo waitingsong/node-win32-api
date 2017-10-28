@@ -27,7 +27,7 @@ describe(filename, () => {
         const module: any = Win[apiName];
 
         if (module && module.api) {
-            const apiDef = <GT.Win32FnDef> module.api;
+            const apiDef = <GT.ApiDef> module.api;
 
             it(`Should ${apiName}: FnName of definition be string`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
@@ -116,7 +116,7 @@ describe(filename, () => {
 
         if (module && module.api) {
             try {
-                const api: GT.Win32FnDef = module.load();
+                const api: GT.ApiDef = module.load();
 
                 for (let fn in api) {
                     if (!{}.hasOwnProperty.call(api, fn)) {

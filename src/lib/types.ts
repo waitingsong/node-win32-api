@@ -45,7 +45,7 @@ export type FnRetType = FFIParam;
 export type FnCallParam = FFIParam;   // each param of calling function
 export type FnCallParams = FnCallParam[] | never[]; // calling params
 export type FnParams = [FnRetType, FnCallParams]; // def for ffi [returnType, [calling param, ...]]
-export interface Win32FnDef {
+export interface ApiDef {
     [fn: string]: FnParams;
 }
 export type MacroParam<T> = T | [T, T, T];  // [s,s,s] for conversion of macro windows data like LPCTSTR

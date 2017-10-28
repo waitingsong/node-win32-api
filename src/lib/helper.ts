@@ -3,13 +3,13 @@ import * as Conf from './conf';
 import * as GT from './types';
 
 
-export function load<T>(dllName: string, fnDef: GT.Win32FnDef, fns?: GT.FnName[], settings?: GT.LoadSettings): T {
+export function load<T>(dllName: string, fnDef: GT.ApiDef, fns?: GT.FnName[], settings?: GT.LoadSettings): T {
     return ffi.Library(dllName, gen_api_opts(fnDef, fns, settings));
 }
 
 // generate function definitions via converting macro windows data type (like PVOID) to the expected value
-export function gen_api_opts(fnDef: GT.Win32FnDef, fns?: GT.FnName[], settings?: GT.LoadSettings): GT.Win32FnDef {
-    let opts = <GT.Win32FnDef> {};
+export function gen_api_opts(fnDef: GT.ApiDef, fns?: GT.FnName[], settings?: GT.LoadSettings): GT.ApiDef {
+    let opts = <GT.ApiDef> {};
 
     if (fns && Array.isArray(fns) && fns.length) {
         for (let fn of fns) {
