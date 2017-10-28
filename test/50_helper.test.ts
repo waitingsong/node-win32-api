@@ -57,37 +57,6 @@ describe(filename + ' :gen_api_opts() all', () => {
 });
 
 
-describe(filename + ' :gen_api_opts() specify', () => {
-    const apiName = 'Kernel32';
-    const module: any = Win[apiName];
-    const fn = 'GetLastError';
-    const fakeFn = fn + Math.random();
-
-    if (module && module.apiDef) {
-        const api: GT.ApiDef = module.apiDef;
-
-        it(`Should ${apiName} gen_api_opts(["${fn}"]) correctly)`, function() {
-            const fns: GT.ApiDef = H.gen_api_opts(api, [fn]);
-
-            const keysize = Object.keys(fns).length;
-
-            assert(keysize === 1);
-            assert(typeof fns[fn] === 'object' && fns[fn]);
-        });
-
-        it(`Should ${apiName} gen_api_opts(["${fakeFn}"]) return none)`, function() {
-            const fns: GT.ApiDef = H.gen_api_opts(api, [fakeFn]);
-            const keysize = Object.keys(fns).length;
-
-            assert(keysize === 0);
-            assert(typeof fns[fakeFn] === 'undefined');
-        });
-    }
-    else {
-        assert(false, 'module or module.apiDef invalie');
-    }
-});
-
 describe(filename + ' :parse_placeholder(ps, settings) ', () => {
     const fn = 'parse_placeholder()';
 
