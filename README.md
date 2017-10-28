@@ -69,15 +69,15 @@ if (hWnd && ! hWnd.isNull()) {
 
 ```js
 // use the types exposed by the module for TypeScript dev
-import {U} from 'win32-api';
+import {U, types as GT} from 'win32-api';
 import * as ref from 'ref';
 
 // so we can all agree that a buffer with the int value written
 // to it could be represented as an "int *"
-const buf  = <U.types.FFIBuffer> Buffer.alloc(4);   // ← here the types
+const buf  = <GT.FFIBuffer> Buffer.alloc(4);   // ← here the types
 buf.writeInt32LE(12345, 0);
 
-const hex = buf.hexAddress();   // no error tips cause of typeof U.types.FFIBuffer
+const hex = buf.hexAddress();   // no error tips cause of typeof GT.FFIBuffer
 console.log(typeof hex);
 console.log(buf.hexAddress());  // ← '7FA89D006FD8'
 
