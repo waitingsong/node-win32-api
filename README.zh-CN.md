@@ -40,18 +40,16 @@ const lpszWindow = Buffer.from(title, 'ucs2');
 const hWnd = user32.FindWindowExW(null, null, null, lpszWindow);
 
 if (hWnd && ! hWnd.isNull()) {
-    // 注意：输出hWnd buffer值将会导致后续代码异常，甚至重新运行脚本时也会如此。可能是底层(ffi)在释放资源上的锁定导致的
-    // 所以不要在生产环境中打印输出!
-    console.log('buf: ', hWnd); // be careful this cmd will cause
+    // Caution: output hWnd will cuase exception in the following process, even next script!
+    // So do NOT do this in the production code!
+    // console.log('buf: ', hWnd); // avoid this
 
-    // 通常我们不需要了解句柄值，只需要使用即可。如果有需要，可通过以下代码获取hWnd缓冲区的句柄值
-    const hWndDec = process.arch === 'x64' ? hWnd.ref().readUInt64LE() : hWnd.ref().readUInt32LE(0);    // readUInt32LE() 是原生方法，需要offse参数
-    console.log(hWndDec);
+    console.log('buf: ', ref.address(hWnd)); // this is ok
 
-    // 更改计算器窗口标题
-    const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-计算器\0', 'ucs2'));
+    // Change title of the Calculator
+    const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'));
+
     if ( ! res) {
-        // 如果执行异常，获取错误代码并通过 FormatMessageW() 函数获取对应的错误信息
         // See: [System Error Codes] below
         const errcode = knl32.GetLastError();
         const len = 255;
@@ -62,6 +60,9 @@ if (hWnd && ! hWnd.isNull()) {
         if (msglen) {
             console.log(ref.reinterpretUntilZeros(buf, 2).toString('ucs2'));
         }
+    }
+    else {
+        console.log('计算器程序窗口标题修改成功');
     }
 }
 

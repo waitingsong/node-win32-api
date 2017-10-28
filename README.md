@@ -43,14 +43,13 @@ const hWnd = user32.FindWindowExW(null, null, null, lpszWindow);
 if (hWnd && ! hWnd.isNull()) {
     // Caution: output hWnd will cuase exception in the following process, even next script!
     // So do NOT do this in the production code!
-    console.log('buf: ', hWnd); // be careful this cmd will cause
+    // console.log('buf: ', hWnd); // avoid this
 
-    // It's unnecessary to retrive the value of hWnd from the buffer usually, but can be this if needed:
-    const hWndDec = process.arch === 'x64' ? hWnd.ref().readUInt64LE() : hWnd.ref().readUInt32LE(0);    // readUInt32LE() need offset param cause of native buffer
-    console.log(hWndDec);
+    console.log('buf: ', ref.address(hWnd)); // this is ok
 
     // Change title of the Calculator
     const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'));
+
     if ( ! res) {
         // See: [System Error Codes] below
         const errcode = knl32.GetLastError();
@@ -62,6 +61,9 @@ if (hWnd && ! hWnd.isNull()) {
         if (msglen) {
             console.log(ref.reinterpretUntilZeros(buf, 2).toString('ucs2'));
         }
+    }
+    else {
+        console.log('window title changed');
     }
 }
 
