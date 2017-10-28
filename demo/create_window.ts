@@ -12,7 +12,7 @@ import * as ref from 'ref';
 import * as Struct from 'ref-struct';
 
 
-// import {K, U, C, DS, conf, types as GT, windef as W} from 'win32-api'; // as module 
+// import {K, U, C, DS, conf, types as GT, windef as W} from 'win32-api'; // as module
 import {K, U, C, DS, conf, types as GT, windef as W} from '../src/index'; // as local
 
 
