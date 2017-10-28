@@ -1,7 +1,7 @@
 import * as GT from '../types';
 import * as W from '../windef';
 
-export interface Win32Fn {
+export interface Win32Fns {
     // https://msdn.microsoft.com/en-us/library/windows/desktop/ms679351(v=vs.85).aspx
     // dwLanguageId: https://msdn.microsoft.com/en-us/library/windows/desktop/dd318693(v=vs.85).aspx
     FormatMessageW(
