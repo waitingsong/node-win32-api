@@ -26,8 +26,8 @@ describe(filename, () => {
         const apiName: string = dll.slice(0, 1).toUpperCase() + dll.slice(1).toLowerCase(); // User32, Kernel32, ...
         const module: any = Win[apiName];
 
-        if (module && module.api) {
-            const apiDef = <GT.ApiDef> module.api;
+        if (module && module.apiDef) {
+            const apiDef = <GT.ApiDef> module.apiDef;
 
             it(`Should ${apiName}: FnName of definition be string`, function() {
                 for (let x in apiDef) {    // tslint:disable-line
@@ -102,7 +102,7 @@ describe(filename, () => {
 
         }
         else {
-            assert(true);
+            assert(false, 'module or module.apiDef invalie');
         }
 
     }   // loop END
@@ -114,7 +114,7 @@ describe(filename, () => {
         const apiName: string = dll.slice(0, 1).toUpperCase() + dll.slice(1).toLowerCase(); // User32, Kernel32, ...
         const module: any = Win[apiName];
 
-        if (module && module.api) {
+        if (module && module.apiDef) {
             try {
                 const api: GT.ApiDef = module.load();
 
@@ -132,6 +132,9 @@ describe(filename, () => {
                     throw ex;
                 }, /dll init failed/);
             }
+        }
+        else {
+            assert(false, 'module or module.apiDef invalie');
         }
     }
 });
