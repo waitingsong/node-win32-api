@@ -249,17 +249,43 @@ describe(filename + ' :parse_windef()', () => {
         }
     });
 
-    it(`Should ${fn} process windef members correctly)`, function() {
-        try {
-            const W = {...WD};
-            const windata = H.parse_windef(W, {_windefClone: true});
-            const lenData = Object.keys(windata).length + Conf.windefSkipKeys.size;
-            const lenDef = Object.keys(W).length;
-            assert(lenData === lenDef, `lenRes:${lenData}, lenW:${lenDef} not equal, skiped number ${Conf.windefSkipKeys.size}`);
-        }
-        catch (ex) {
-            assert(true);
-        }
+    it(`Should ${fn} process windef macro members correctly)`, function() {
+        const W = <GT.Windef> {};
+        const keyArch = '__testKeyArch';
+        const v64 = '_v64';
+        const v32 = '_v32';
+
+        W[keyArch] = Conf._WIN64_HOLDER;
+        W.macroMap = <GT.MacroMap> new Map([
+            [keyArch, [Conf._WIN64_HOLDER, v64, v32]],
+        ]);
+
+        let _WIN64 = true;
+        let windata = H.parse_windef(W, {_windefClone: true, _WIN64});
+        assert(windata[keyArch] === v64, `should "${v64}", got "${v32}" under ${_WIN64 ? 'x64' : 'ia32'}`);
+
+        _WIN64 = false;
+        windata = H.parse_windef(W, {_windefClone: true, _WIN64});
+        assert(windata[keyArch] === v32, `should "${v32}", got "${v64}" under ${_WIN64 ? 'x64' : 'ia32'}`);
+
+        const keyUni = '__testKeyUNI'
+        const uni = '_valueUNICODE';
+        const ansi = '_valueANSI';
+
+        delete W[keyArch];
+        W[keyUni] = Conf._UNICODE_HOLDER;
+        W.macroMap = <GT.MacroMap> new Map([
+            [keyUni, [Conf._UNICODE_HOLDER, uni, ansi]],
+        ]);
+
+        let _UNICODE = true;
+        let windata2 = H.parse_windef(W, {_windefClone: true, _UNICODE});
+        assert(windata2[keyUni] === uni, `should "${uni}", got "${ansi}" under ${_UNICODE ? 'UNICODE' : 'ANSI'}`);
+
+        _UNICODE = false;
+        windata2 = H.parse_windef(W, {_windefClone: true, _UNICODE});
+        assert(windata2[keyUni] === ansi, `should "${ansi}", got "${uni}" under ${_UNICODE ? 'UNICODE' : 'ANSI'}`);
+
     });
 
     // at lastest
