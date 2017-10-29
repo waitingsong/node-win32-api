@@ -66,6 +66,7 @@ export interface LoadSettings {
     _UNICODE?: boolean; // default true
     _WIN64?: boolean;   // default from process.arch
     _windefClone?: boolean; // for helper.parse_windef()
+    singleton: boolean;    // for DLL.load()
 }
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751

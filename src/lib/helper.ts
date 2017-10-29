@@ -2,9 +2,40 @@ import * as ffi from 'ffi';
 import * as Conf from './conf';
 import * as GT from './types';
 
+const dllInst: Map<string, any> = new Map();    // for DLL.load() with settings.singleton === true
+
+function get_inst_by_name<T>(dllName: string): T | void {
+    return dllInst.get(dllName);
+}
+
+function set_inst_by_name<T>(dllName: string, inst: T): void {
+    dllInst.set(dllName, inst);
+}
+
+function parse_settings(settings?: GT.LoadSettings): GT.LoadSettings {
+    const st: GT.LoadSettings = {...Conf.settingsDefault};
+
+    if (typeof settings !== 'undefined' && settings && Object.keys(settings).length) {
+        Object.assign(st, settings);
+    }
+    return st;
+}
 
 export function load<T>(dllName: string, apiDef: GT.ApiDef, fns?: GT.FnName[], settings?: GT.LoadSettings): T {
-    return ffi.Library(dllName, gen_api_opts(apiDef, fns, settings));
+    const st = parse_settings(settings);
+
+    if (st && st.singleton) {
+        let inst = get_inst_by_name<T>(dllName);
+
+        if (!inst) {
+            inst = <T> ffi.Library(dllName, gen_api_opts(apiDef, fns, st));
+            set_inst_by_name(dllName, inst);
+        }
+        return inst;
+    }
+    else {
+        return ffi.Library(dllName, gen_api_opts(apiDef, fns, st));
+    }
 }
 
 // generate function definitions via converting macro windows data type (like PVOID) to the expected value

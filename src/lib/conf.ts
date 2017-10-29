@@ -11,6 +11,7 @@ export const settingsDefault: GT.LoadSettings = {
     _UNICODE: _UNICODE,
     _WIN64: _WIN64,
     _windefClone: false,
+    singleton: true,    // for DLL.load()
 };
 
 
