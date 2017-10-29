@@ -29,17 +29,12 @@ export function gen_api_opts(apiDef: GT.ApiDef, fns?: GT.FnName[], settings?: GT
         for (let fn of Object.keys(apiDef)) {
             const ps = <any> apiDef[fn];
 
-            if (ps) {
-                Object.defineProperty(opts, <string> fn, {
-                    value: <GT.FnParams> parse_placeholder(ps, settings),
-                    writable: false,
-                    enumerable: true,
-                    configurable: false,
-                });
-            }
-            else {
-                throw new Error(`the value of apiDef[${fn}] empty`);
-            }
+            Object.defineProperty(opts, <string> fn, {
+                value: <GT.FnParams> parse_placeholder(ps, settings),
+                writable: false,
+                enumerable: true,
+                configurable: false,
+            });
         }
     }
 
