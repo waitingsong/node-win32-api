@@ -170,16 +170,11 @@ function prepare_windef_ref(ww: GT.WinData | GT.Windef): void {
         }
         const v = <any> ww[x];
 
-        if (typeof x === 'string') {
-            if (typeof v === 'string' && ! Conf.windefSet.has(v)) {  // not valid FFIParam like 'int'
-                if (typeof ww[v] === 'string') {
-                    // HANDLE == 'PVOID' , PVOID already parsed
-                    ww[x] = ww[v];
-                }
+        if (typeof v === 'string' && ! Conf.windefSet.has(v)) {  // not valid FFIParam like 'int'
+            if (typeof ww[v] === 'string') {
+                // HANDLE == 'PVOID' , PVOID already parsed
+                ww[x] = ww[v];
             }
-        }
-        else {
-            throw new Error('key of windef not typeof string');
         }
     }
 }
