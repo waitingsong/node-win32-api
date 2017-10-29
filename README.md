@@ -76,17 +76,17 @@ import * as ref from 'ref';
 
 // so we can all agree that a buffer with the int value written
 // to it could be represented as an "int *"
-const buf  = <GT.FFIBuffer> Buffer.alloc(4);   // ← here the types
+const buf  = Buffer.alloc(4);
 buf.writeInt32LE(12345, 0);
 
-const hex = buf.hexAddress();   // no error tips cause of typeof GT.FFIBuffer
+const hex = ref.hexAddress(buf);
 console.log(typeof hex);
-console.log(buf.hexAddress());  // ← '7FA89D006FD8'
+console.log(hex);  // ← '7FA89D006FD8'
 
 buf.type = ref.types.int;  // @ts-ignore
 
 // now we can dereference to get the "meaningful" value
-console.log(buf.deref());  // ← 12345
+console.log(ref.deref(buf));  // ← 12345
 ```
 
 ```js

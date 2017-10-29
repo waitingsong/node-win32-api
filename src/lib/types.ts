@@ -70,7 +70,7 @@ export interface LoadSettings {
 }
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751
-export type HWND = FFIBuffer;   // for use of hWnd.ref(), deref() etc
+export type HWND = Buffer;   // for use of hWnd.ref(), deref() etc
 
 export type ATOM = number;  // uint16
 export type DWORD = number;
