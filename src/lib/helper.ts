@@ -98,11 +98,7 @@ export function parse_placeholder(ps: GT.FnParams, settings?: GT.LoadSettings): 
 
 // convert typeof array of param to string such like ['_WIN64_HOLDER_', 'int64', 'int32'], no changed returning when string
 export function parse_param_placeholder(param: GT.FFIParam | GT.MacroDef, settings?: GT.LoadSettings): GT.FFIParam {
-    const st = {...Conf.settingsDefault};
-
-    if (typeof settings !== 'undefined' && settings && Object.keys(settings).length) {
-        Object.assign(st, settings);
-    }
+    const st = parse_settings(settings);
 
     if (typeof param === 'string') {
         return param;
