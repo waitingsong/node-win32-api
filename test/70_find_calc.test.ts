@@ -32,7 +32,8 @@ describe(filename, () => {
 
             child.kill();
             done();
-        }, 1000);
+        }, 300);
 
     });
+
 });
