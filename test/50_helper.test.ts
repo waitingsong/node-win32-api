@@ -261,14 +261,14 @@ describe(filename + ' :parse_windef()', () => {
         ]);
 
         let _WIN64 = true;
-        let windata = H.parse_windef(W, {_windefClone: true, _WIN64});
+        let windata = H.parse_windef(W, {...Conf.settingsDefault, _windefClone: true, _WIN64});
         assert(windata[keyArch] === v64, `should "${v64}", got "${v32}" under ${_WIN64 ? 'x64' : 'ia32'}`);
 
         _WIN64 = false;
-        windata = H.parse_windef(W, {_windefClone: true, _WIN64});
+        windata = H.parse_windef(W, {...Conf.settingsDefault, _windefClone: true, _WIN64});
         assert(windata[keyArch] === v32, `should "${v32}", got "${v64}" under ${_WIN64 ? 'x64' : 'ia32'}`);
 
-        const keyUni = '__testKeyUNI'
+        const keyUni = '__testKeyUNI';
         const uni = '_valueUNICODE';
         const ansi = '_valueANSI';
 
@@ -279,11 +279,11 @@ describe(filename + ' :parse_windef()', () => {
         ]);
 
         let _UNICODE = true;
-        let windata2 = H.parse_windef(W, {_windefClone: true, _UNICODE});
+        let windata2 = H.parse_windef(W, {...Conf.settingsDefault, _windefClone: true, _UNICODE});
         assert(windata2[keyUni] === uni, `should "${uni}", got "${ansi}" under ${_UNICODE ? 'UNICODE' : 'ANSI'}`);
 
         _UNICODE = false;
-        windata2 = H.parse_windef(W, {_windefClone: true, _UNICODE});
+        windata2 = H.parse_windef(W, {...Conf.settingsDefault, _windefClone: true, _UNICODE});
         assert(windata2[keyUni] === ansi, `should "${ansi}", got "${uni}" under ${_UNICODE ? 'UNICODE' : 'ANSI'}`);
 
     });
@@ -291,7 +291,7 @@ describe(filename + ' :parse_windef()', () => {
     // at lastest
     it(`Should ${fn} process windef correctly)`, function() {
         const W = {...WD};
-        const windata = H.parse_windef(W, {_windefClone: true});
+        const windata = H.parse_windef(W, {...Conf.settingsDefault, _windefClone: true});
         const lenData = Object.keys(windata).length + Conf.windefSkipKeys.size;
         const lenDef = Object.keys(W).length;
         assert(lenData === lenDef, `lenData:${lenData}, lenDef:${lenDef} not equal `);
