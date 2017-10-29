@@ -23,7 +23,7 @@ describe(filename, () => {
             const lpszClass = Buffer.from('CalcFrame\0', 'ucs2');
             const hWnd = user32.FindWindowExW(null, null, lpszClass, null);
 
-            if (hWnd && !hWnd.isNull() && ref.address(hWnd)) {
+            if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
                 assert(true);
             }
             else {
@@ -42,7 +42,7 @@ describe(filename, () => {
             const lpszClass = Buffer.from('CalcFrame\0', 'ucs2');
             const hWnd = user32.FindWindowExW(null, null, lpszClass, null);
 
-            if (hWnd && !hWnd.isNull() && ref.address(hWnd)) {
+            if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
                 const title = 'Node-Calculator\0';
                 // Change title of the Calculator
                 const res = user32.SetWindowTextW(hWnd, Buffer.from(title, 'ucs2'));
