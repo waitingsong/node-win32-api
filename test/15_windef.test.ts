@@ -34,10 +34,7 @@ describe(filename, () => {
 });
 
 function test_arch(types64_32: Set<string>) {
-    const st = {
-        _UNICODE: true,
-        _WIN64: true,
-    };
+    const st = {...Conf.settingsDefault, _UNICODE: true, _WIN64: true };
 
     for (let k of Object.keys(st)) {
         const opts = {...st};
@@ -75,10 +72,7 @@ function _test_arch(types64_32: Set<string>, settings: GT.LoadSettings) {
 }
 
 function test_arch_half(values: Set<string>) {
-    const st = {
-        _UNICODE: true,
-        _WIN64: false,
-    };
+    const st = {...Conf.settingsDefault, _UNICODE: true, _WIN64: true };
 
     for (let k of Object.keys(st)) {
         if (st[k]) {
@@ -123,7 +117,7 @@ describe(filename, () => {
 });
 
 function unicode(_UNICODE: boolean, typesUnicode: Set<string>) {
-    const W = H.parse_windef(WD, {_UNICODE, _windefClone: true});
+    const W = H.parse_windef(WD, {...Conf.settingsDefault, _UNICODE, _windefClone: true});
 
     for (let vv of typesUnicode) {
         let param = W[vv];
