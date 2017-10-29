@@ -63,7 +63,7 @@ function _test_arch(types64_32: Set<string>, settings: GT.LoadSettings) {
         // convert param like '_WIN64_HOLDER_' to 'int64' or 'int32'
         const param = W[vv];
 
-        it(`Should ${vv}: xxvalue converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, function() {
+        it(`Should ${vv}: value converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, function() {
             if (settings._WIN64) {
                 assert(param.indexOf('64') > 2 && param.indexOf('32') === -1, `${vv}: ${param} during x64`);   // must use param not W[vv]
             }
