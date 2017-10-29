@@ -24,7 +24,7 @@ describe(filename, () => {
     });
 
     it('Should value of settingsDefault correctly', function() {
-        const st = {...Conf.settingsDefault};
+        const st = Conf.settingsDefault;
 
         assert(st._UNICODE === Conf._UNICODE);
         assert(st._WIN64 === Conf._WIN64);
