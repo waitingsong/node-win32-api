@@ -1,6 +1,6 @@
 {
   "name": "win32-api",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "FFI definitions of windows win32 api for node-ffi",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
