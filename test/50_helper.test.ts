@@ -299,30 +299,3 @@ describe(filename + ' :parse_windef()', () => {
 
 });
 
-
-describe(filename + ' :function parse_marco(key, macroSrc) ', () => {
-    const fn = 'parse_marco';
-
-    it(`Should ${fn} handle invalid key value)`, function() {
-        try {
-            H.parse_marco('', new Map());
-            H.parse_marco('PVOID', new Map());
-            assert(false, 'function should throw error with invalid value of ps, but not');
-        }
-        catch (ex) {
-            assert(true);
-        }
-    });
-
-    it(`Should ${fn} return value correctly)`, function() {
-        const key = 'testKey';
-        const value = 'testVal';
-        const map = new Map([
-            [key, value],
-        ]);
-        const res = H.parse_marco(key, map);
-        assert(res === value, 'should ${value}, got ${res}');
-    });
-
-});
-

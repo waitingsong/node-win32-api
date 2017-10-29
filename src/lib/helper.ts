@@ -161,17 +161,6 @@ function prepare_macro(macroMap: Map<string, GT.MacroDef>, settings?: GT.LoadSet
     return res;
 }
 
-export function parse_marco(key: string, macroSrc: Map<string, GT.FFIParam>): GT.FFIParam {
-    if (typeof key !== 'string') {
-        throw new Error('key must typeof string');
-    }
-    const str = macroSrc.get(key);
-
-    if ( ! str) {
-        throw new Error('parse_macro value invalid');
-    }
-    return str;
-}
 
 // parse const HANDLE = 'PVOID' to the realy FFIParam
 function prepare_windef_ref(ww: GT.WinData | GT.Windef): void {
@@ -184,7 +173,7 @@ function prepare_windef_ref(ww: GT.WinData | GT.Windef): void {
         if (typeof x === 'string') {
             if (typeof v === 'string' && ! Conf.windefSet.has(v)) {  // not valid FFIParam like 'int'
                 if (typeof ww[v] === 'string') {
-                    // HANDLE == 'PVOID' && PVOID parsed by parse_marco()
+                    // HANDLE == 'PVOID' , PVOID already parsed
                     ww[x] = ww[v];
                 }
             }
