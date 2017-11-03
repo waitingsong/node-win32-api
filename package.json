@@ -6,18 +6,18 @@
   "types": "./dist/index.d.ts",
   "bin": {},
   "scripts": {
+    "build": "npm run test && npm run clean && npm run build:ts && npm run jslint",
     "build:ts": "tsc -p ./ --outDir dist/",
     "clean": "rm -rf dist/*",
-    "lint": "tslint -p tslint.json -e **/*.d.ts -t stylish src/**/*.ts test/**/*.ts",
-    "jslint": "eslint --fix dist/**/*.js",
-    "test": "npm run test-local",
-    "test-local": "mocha --config test/mocha.appveyor.opts",
-    "prepublishOnly": "npm run build",
-    "test-travis": "mocha --config test/mocha.travis.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
-    "test-appveyor": "mocha --config test/mocha.appveyor.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
     "cov": "nyc mocha",
     "cov:coveralls": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
-    "build": "npm run test && npm run clean && npm run build:ts && npm run jslint"
+    "jslint": "eslint --fix dist/**/*.js",
+    "lint": "tslint -p tslint.json -e **/*.d.ts -t stylish src/**/*.ts test/**/*.ts",
+    "prepublishOnly": "npm run build",
+    "test": "npm run test-local",
+    "test-local": "mocha --config test/mocha.appveyor.opts",
+    "test-appveyor": "mocha --config test/mocha.appveyor.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
+    "test-travis": "mocha --config test/mocha.travis.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint"
   },
   "nyc": {
     "exclude": [
