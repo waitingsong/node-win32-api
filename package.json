@@ -6,7 +6,9 @@
   "types": "./dist/index.d.ts",
   "bin": {},
   "scripts": {
-    "lint": "tslint -e **/*.d.ts -t stylish src/**/*.ts test/**/*.ts",
+    "build:ts": "tsc -p ./ --outDir dist/",
+    "clean": "rm -rf dist/*",
+    "lint": "tslint -p tslint.json -e **/*.d.ts -t stylish src/**/*.ts test/**/*.ts",
     "jslint": "eslint --fix dist/**/*.js",
     "test": "npm run test-local",
     "test-local": "mocha --config test/mocha.appveyor.opts",
@@ -15,8 +17,7 @@
     "test-appveyor": "mocha --config test/mocha.appveyor.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
     "cov": "nyc mocha",
     "cov:coveralls": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
-    "rm:lock": "rm -rf package-lock.json",
-    "build": "npm run test && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint"
+    "build": "npm run test && npm run clean && npm run build:ts && npm run jslint"
   },
   "nyc": {
     "exclude": [
