@@ -3,6 +3,7 @@ shallow_clone: true
 
 image:
   - Visual Studio 2015
+  - Visual Studio 2017
 
 init:
   - git config --global core.autocrlf input
