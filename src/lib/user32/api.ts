@@ -23,6 +23,8 @@ export interface Win32Fns {
 
     DispatchMessageW(lpMsg: GT.LPMSG): GT.LRESULT;
 
+    EnumThreadWindows(dwThreadId: GT.DWORD, lpfn: GT.WNDENUMPROC, lParam: GT.LPARAM): GT.BOOL;
+
     EnumWindows: EnumWindows;
 
     FindWindowExW(hwndParent: GT.HWND | null, hwndChildAfter: GT.HWND | null, lpszClass: GT.LPCTSTR | null, lpszWindow: GT.LPCTSTR | null): GT.HWND;
@@ -79,6 +81,8 @@ export const apiDef: GT.ApiDef = {
     DefWindowProcW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM]],
 
     DispatchMessageW: [W.LRESULT, [W.LPMSG]],
+
+    EnumThreadWindows: [W.BOOL, [W.DWORD, W.WNDENUMPROC, W.LPARAM]],
 
     EnumWindows: [W.BOOL, [W.WNDENUMPROC, W.LPARAM]],
 
