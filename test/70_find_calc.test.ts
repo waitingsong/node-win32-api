@@ -32,7 +32,7 @@ describe(filename, () => {
 
             child.kill();
             done();
-        }, 300);
+        }, 600);
     });
 
     it('Open a calc.exe and change it\'s window title', function(done) {
@@ -77,7 +77,7 @@ describe(filename, () => {
 
             child.kill();
             done();
-        }, 300);
+        }, 600);
     });
 
 });
