@@ -90,11 +90,11 @@ console.log(ref.deref(buf));  // ← 12345
 
 ```js
 // 通过 ref-struct 模块生成 struct 接口数据
-import Struct from 'ref-struct';
+import * as Struct from 'ref-struct';
 import {DS} from 'win32-api';
 
 // https://msdn.microsoft.com/zh-cn/library/windows/desktop/dd162805(v=vs.85).aspx
-const point = (new Struct(DS.POINT))();
+const point = new Struct(DS.POINT)();
 point.x = 100;
 point.y = 200;
 console.log(point);

@@ -91,7 +91,7 @@ console.log(ref.deref(buf));  // ← 12345
 
 ```js
 // struct usage by ref-struct
-import Struct from 'ref-struct';
+import * as Struct from 'ref-struct';
 import {DS} from 'win32-api';
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx
