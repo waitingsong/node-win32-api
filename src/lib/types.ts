@@ -164,6 +164,7 @@ export type LPWSTR = Buffer;
 export type LPTSTR = Buffer;
 export type LPWORD = Buffer;
 export type LRESULT = number;
+export type NTSTATUS = number;
 export type PBOOL = Buffer;
 export type PBOOLEAN = Buffer;
 export type PBYTE = Buffer;

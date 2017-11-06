@@ -104,6 +104,7 @@ export const LPWSTR = 'uint16*';
 export const LPTSTR = Conf._UNICODE_HOLDER;
 export const LPWORD = 'uint16*';
 export const LRESULT = 'LONG_PTR';
+export const NTSTATUS = 'uint32';
 export const PBOOL = 'int*';    // ? 'bool*'
 export const PBOOLEAN = 'bool*';
 export const PBYTE = 'byte*';
