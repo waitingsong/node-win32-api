@@ -33,3 +33,7 @@ export {Kernel32};
 import * as Comctl32 from './lib/comctl32/index';
 export {Comctl32 as C};
 export {Comctl32};
+
+import * as Ntdll from './lib/ntdll/index';
+export {Ntdll};
+
