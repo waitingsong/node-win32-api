@@ -23,6 +23,8 @@ export interface Win32Fns {
     GetProcessHeaps(NumberOfHeaps: GT.DWORD, ProcessHeaps: GT.PHANDLE): GT.DWORD;
 
     HeapFree(hHeap: GT.HANDLE, dwFlags: GT.DWORD, lpMem: GT.LPVOID | null): GT.BOOL;
+
+    OpenProcess(dwDesiredAccess: GT.DWORD, bInheritHandle: GT.BOOL, dwProcessId: GT.DWORD): GT.HANDLE;
 }
 
 export const apiDef: GT.ApiDef = {
@@ -37,4 +39,6 @@ export const apiDef: GT.ApiDef = {
     GetProcessHeaps: [W.DWORD, [W.DWORD, W.PHANDLE]],
 
     HeapFree: [W.BOOL, [W.HANDLE, W.DWORD, W.LPVOID]],
+
+    OpenProcess: [W.HANDLE, [W.DWORD, W.BOOL, W.DWORD]],
 };
