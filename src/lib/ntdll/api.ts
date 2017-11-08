@@ -8,7 +8,7 @@ export interface Win32Fns {
         ProcessInformationClass: number,
         ProcessInformation: GT.PVOID,       // _Out_
         ProcessInformationLength: GT.ULONG,
-        ReturnLength: GT.PULONG    // _Out_opt_ ppid
+        ReturnLength: GT.PULONG | null    // _Out_opt_ ppid
     ): GT.NTSTATUS;
 
 }
