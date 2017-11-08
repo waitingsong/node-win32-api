@@ -34,6 +34,15 @@ export const POINT = {
     y: W.LONG,
 };
 
+export const PROCESS_BASIC_INFORMATION = {
+    Reserved1: W.PVOID,
+    PebBaseAddress: W.PVOID,  // PPEB
+    Reserved2: W.PVOID,
+    UniqueProcessId: W.ULONG_PTR,
+    InheritedFromUniqueProcessId: W.PVOID,
+};
+
+
 export const UNICODE_STRING = {
     Length: W.USHORT,
     MaximumLength: W.USHORT,
