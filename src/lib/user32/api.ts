@@ -37,6 +37,8 @@ export interface Win32Fns {
 
     GetParent(hWnd: GT.HWND): GT.HWND;
 
+    GetWindow(hWnd: GT.HWND, uCmd: GT.UINT): GT.HWND;
+
     GetWindowInfo(hwnd: GT.HWND, pwi: GT.PWINDOWINFO): GT.BOOL;   // Note that you must set the pwi.cbSize!
 
     GetWindowTextW(hWnd: GT.HWND, lpString: GT.LPCTSTR, nMaxCount: GT.INT): GT.INT;
@@ -95,6 +97,8 @@ export const apiDef: GT.ApiDef = {
     GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT]],
 
     GetParent: [W.HWND, [W.HWND]],
+
+    GetWindow: [W.HWND, [W.HWND, W.UINT]],
 
     GetWindowInfo: [W.BOOL, [W.HWND, W.PWINDOWINFO]],
 
