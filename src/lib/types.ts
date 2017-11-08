@@ -259,9 +259,61 @@ export type va_list = Buffer;
 
 /* ------------------ struct ---------------------- */
 export type INITCOMMONCONTROLSEX = Buffer;
+export interface InitCommonControlsEXStruct {
+    dwSize: DWORD;
+    dwICC: DWORD;
+}
+
 export type MSG = Buffer;
+export interface MsgStruct {
+    hwnd: HWND;
+    message: UINT;
+    wParam: WPARAM;
+    lParam: LPARAM;
+    time: DWORD;
+    pt: POINT;
+}
+
 export type POINT = Buffer;
+export interface PointStruct {
+    x: LONG;
+    y: LONG;
+}
+
 export type WNDCLASSEX = Buffer;
+export interface WndClassEXStruct {
+    cbSize: UINT;
+    style: UINT;
+    lpfnWndProc: WNDPROC;
+    cbClsExtra: INT;
+    cbWndExtra: INT;
+    hInstance: HINSTANCE; // can be 0?
+    hIcon: HICON;
+    hCursor: HCURSOR;
+    hbrBackground: HBRUSH;
+    lpszMenuName: LPCTSTR;
+    lpszClassName: LPCTSTR;
+    hIconSm: HICON;
+}
 
 export type WINDOWINFO = Buffer;
+export interface WindowInfoStruct {
+    cbSize: DWORD;
+    rcWindow: VOID;
+    rcClient: VOID;
+    dwStyle: DWORD;
+    dwExStyle: DWORD;
+    dwWindowStatus: DWORD;
+    cxWindowBorders: UINT;
+    cyWindowBorders: UINT;
+    atomWindowType: ATOM;
+    wCreatorVersion: WORD;
+}
+
 export type RECT = Buffer;
+export interface RectStruct {
+    left: LONG;
+    top: LONG;
+    right: LONG;
+    bottom: LONG;
+}
