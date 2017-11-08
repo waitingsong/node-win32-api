@@ -79,9 +79,10 @@ export const WNDCLASSEX = {
     hIconSm: W.HICON,
 };
 
-export const _RECT = {
+export const RECT = {
     left: W.LONG,
     top: W.LONG,
     right: W.LONG,
     bottom: W.LONG,
 };
+export {RECT as _RECT};
