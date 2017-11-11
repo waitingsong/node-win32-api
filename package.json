@@ -15,9 +15,7 @@
     "lint": "tslint -p tslint.json -e **/*.d.ts -t stylish src/**/*.ts test/**/*.ts",
     "prepublishOnly": "npm run build",
     "test": "npm run test-local",
-    "test-local": "mocha --config test/mocha.appveyor.opts",
-    "test-appveyor": "mocha --config test/mocha.appveyor.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint",
-    "test-travis": "mocha --config test/mocha.travis.opts && rm -rf dist/* && tsc -p ./ --outDir dist/ && npm run jslint"
+    "test-local": "mocha --config test/mocha.appveyor.opts"
   },
   "nyc": {
     "exclude": [
