@@ -41,6 +41,10 @@ export interface Win32Fns {
 
     GetWindowInfo(hwnd: GT.HWND, pwi: GT.PWINDOWINFO): GT.BOOL;   // Note that you must set the pwi.cbSize!
 
+    GetWindowLongW(hWnd: GT.HWND, nIndex: GT.INT): GT.LONG;
+
+    GetWindowLongPtrW(hWnd: GT.HWND, nIndex: GT.INT): GT.LONG;
+
     GetWindowTextW(hWnd: GT.HWND, lpString: GT.LPCTSTR, nMaxCount: GT.INT): GT.INT;
 
     GetWindowThreadProcessId(hWnd: GT.HWND, lpdwProcessId: GT.LPDWORD | null): GT.DWORD;
@@ -101,6 +105,10 @@ export const apiDef: GT.ApiDef = {
     GetWindow: [W.HWND, [W.HWND, W.UINT]],
 
     GetWindowInfo: [W.BOOL, [W.HWND, W.PWINDOWINFO]],
+
+    GetWindowLongW: [W.LONG, [W.HWND, W.INT]],
+
+    GetWindowLongPtrW: [W.LONG, [W.HWND, W.INT]],
 
     GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT]],
 
