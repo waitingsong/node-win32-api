@@ -43,7 +43,7 @@ export interface Win32Fns {
 
     GetWindowLongW(hWnd: GT.HWND, nIndex: GT.INT): GT.LONG;
 
-    GetWindowLongPtrW(hWnd: GT.HWND, nIndex: GT.INT): GT.LONG;
+    GetWindowLongPtrW(hWnd: GT.HWND, nIndex: GT.INT): GT.LONG_PTR;
 
     GetWindowTextW(hWnd: GT.HWND, lpString: GT.LPCTSTR, nMaxCount: GT.INT): GT.INT;
 
@@ -108,7 +108,7 @@ export const apiDef: GT.ApiDef = {
 
     GetWindowLongW: [W.LONG, [W.HWND, W.INT]],
 
-    GetWindowLongPtrW: [W.LONG, [W.HWND, W.INT]],
+    GetWindowLongPtrW: [W.LONG_PTR, [W.HWND, W.INT]],
 
     GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT]],
 
