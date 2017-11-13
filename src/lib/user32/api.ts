@@ -108,7 +108,6 @@ export const apiDef: GT.ApiDef = {
 
     GetWindowLongW: [W.LONG, [W.HWND, W.INT]],
 
-    GetWindowLongPtrW: [W.LONG_PTR, [W.HWND, W.INT]],
 
     GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT]],
 
@@ -132,6 +131,9 @@ export const apiDef: GT.ApiDef = {
 
     UpdateWindow: [W.BOOL, [W.HWND]],
 };
+if (process.arch === 'x64') {
+    apiDef.GetWindowLongPtrW = [W.LONG_PTR, [W.HWND, W.INT]];
+}
 
 export interface EnumWindows {
     (lpEnumFunc: GT.WNDENUMPROC, lParam: GT.LPARAM): GT.BOOL;
