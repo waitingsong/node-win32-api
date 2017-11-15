@@ -25,6 +25,8 @@ export interface Win32Fns {
     HeapFree(hHeap: GT.HANDLE, dwFlags: GT.DWORD, lpMem: GT.LPVOID | null): GT.BOOL;
 
     OpenProcess(dwDesiredAccess: GT.DWORD, bInheritHandle: GT.BOOL, dwProcessId: GT.DWORD): GT.HANDLE;
+
+    SetLastError(dwErrCode: GT.DWORD): GT.VOID;
 }
 
 export const apiDef: GT.ApiDef = {
@@ -41,4 +43,6 @@ export const apiDef: GT.ApiDef = {
     HeapFree: [W.BOOL, [W.HANDLE, W.DWORD, W.LPVOID]],
 
     OpenProcess: [W.HANDLE, [W.DWORD, W.BOOL, W.DWORD]],
+
+    SetLastError: [W.VOID, [W.DWORD]],
 };
