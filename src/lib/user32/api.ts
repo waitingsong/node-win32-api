@@ -108,7 +108,6 @@ export const apiDef: GT.ApiDef = {
 
     GetWindowLongW: [W.LONG, [W.HWND, W.INT]],
 
-
     GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT]],
 
     GetWindowThreadProcessId: [W.DWORD, [W.HWND, W.LPDWORD]],
@@ -131,6 +130,7 @@ export const apiDef: GT.ApiDef = {
 
     UpdateWindow: [W.BOOL, [W.HWND]],
 };
+/* istanbul ignore next */
 if (process.arch === 'x64') {
     apiDef.GetWindowLongPtrW = [W.LONG_PTR, [W.HWND, W.INT]];
 }
