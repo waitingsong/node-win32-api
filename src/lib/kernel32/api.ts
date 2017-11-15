@@ -26,6 +26,7 @@ export interface Win32Fns {
 
     OpenProcess(dwDesiredAccess: GT.DWORD, bInheritHandle: GT.BOOL, dwProcessId: GT.DWORD): GT.HANDLE;
 
+    // https://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx
     SetLastError(dwErrCode: GT.DWORD): GT.VOID;
 }
 
