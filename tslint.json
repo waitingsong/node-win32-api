@@ -8,7 +8,6 @@
     "arrow-parens": false,
     "ban-types": [true, ["Object", "Use {} instead."]],
     "comment-format": false,
-    "eofline": false,
     "indent": [true, "spaces", 2],
     "interface-name": false,
     "interface-over-type-literal": false,
@@ -38,7 +37,7 @@
     "prefer-const": false,
     "prefer-for-of": false,
     "quotemark": [true, "single", "jsx-double", "avoid-escape"],
-    "semicolon": [true, "always", "ignore-interfaces"],
+    "semicolon": [true, "always"],
     "space-before-function-paren": [true, {"named": "never"}],
     "trailing-comma": [
       true,
@@ -56,6 +55,14 @@
     "variable-name": [
       true,
       "ban-keywords"
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-type"
     ]
   },
   "rulesDirectory": []
