@@ -1,0 +1,6 @@
+--require test/tshook.js 
+--require source-map-support/register
+--full-trace
+--timeout 20000 
+--bail
+-r intelli-espower-loader

@@ -1,0 +1,36 @@
+clone_folder: c:\projects\myproject
+shallow_clone: true
+
+init:
+  - git config --global core.autocrlf input
+
+cache:
+  - node_modules                        # local npm modules
+  - '%APPDATA%\npm-cache'               # npm cache
+
+
+environment:
+  matrix:
+    - nodejs_version: "8"
+    - nodejs_version: "9"
+
+platform:
+  - x64
+
+install:
+  - ps: Install-Product node $env:nodejs_version $env:platform
+  - npm install
+
+test_script:
+  - node --version
+  - npm --version
+  - npm run build
+  - npm run test:appveyor
+
+on_success:
+  - npm run cov:coveralls
+
+build: off
+deploy: off
+skip_tags: true
+

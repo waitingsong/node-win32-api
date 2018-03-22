@@ -1,0 +1,51 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jquery": true,
+    "worker": true,
+    "node": true,
+    "amd": true,
+    "commonjs": true,
+    "mocha": true,
+    "serviceworker": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
+  "extends": "eslint:recommended",
+  "globals": {
+  },
+  "rules": {
+    "linebreak-style": [ 2, "unix" ],
+    "semi": [ 2, "always" ],
+    "quotes": [ 2, "single" ],
+    "no-unused-vars": 0,
+    "no-mixed-spaces-and-tabs": [2],
+    "no-use-before-define": [2,  {"functions": false, "classes": true }],  // 禁止在变量定义之前使用它们
+    "curly": 2,	// 要求遵循大括号约定 
+    "eol-last": [1, "always"],
+    "unicode-bom": [2, "never"],    // 禁止使用 Unicode 字节顺序标记 (BOM)
+    "no-new-wrappers": 2,	// 禁止对 String，Number 和 Boolean 使用 new 操作符
+    "no-useless-escape": 2,	// 禁用不必要的转义字符
+    "no-new-object": 2,	// 禁止使用 Object 构造函数 new Object, 使用{}替代
+    "no-delete-var": 2,	// 禁止删除变量
+    "no-label-var": 2,	// 禁用与变量同名的标签
+    "use-isnan": 2, // 要求使用 isNaN() 检查 NaN
+    "no-caller": 2,
+    "no-octal-escape": 2,
+    "no-return-assign": 2,
+    "no-return-await": 2,
+    "no-self-compare": 2,
+    "no-sequences": 2,
+    "no-throw-literal": 2,
+    "no-unmodified-loop-condition": 2,
+    "no-array-constructor": 1,  // for let foo = <T> new Array()
+    "no-confusing-arrow": ["error", {"allowParens": true}],
+    "no-duplicate-imports": 2,
+    "no-useless-computed-key": 0, // 0 for destructuring assignment
+    "no-useless-constructor": 2,
+    "no-useless-rename": 2,
+    "no-console": 0
+  }
+}

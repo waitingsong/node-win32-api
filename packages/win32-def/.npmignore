@@ -1,0 +1,10 @@
+src/
+node_modules/
+node_modules*/
+npm-shrinkwrap.json
+tsconfig.json
+tslint.json
+.eslintignore
+.eslintrc.json
+*.swp
+*.bak
