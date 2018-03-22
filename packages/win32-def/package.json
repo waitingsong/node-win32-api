@@ -73,9 +73,7 @@
     "jslint": "eslint --fix dist/**/*.js",
     "lint": "tslint --fix -p tsconfig.json -e **/*.d.ts -t stylish src/**/*.ts test/**/*.ts",
     "prepublishOnly": "npm run build",
-    "test": "npm run test:travis",
-    "test:appveyor": "mocha --config test/mocha.appveyor.opts",
-    "test:travis": "mocha --config test/mocha.travis.opts",
+    "test": "mocha --opts test/mocha.opts",
     "tsc": "tsc -p tsconfig.json",
     "tsc:w": "tsc -p tsconfig.json -w"
   }
