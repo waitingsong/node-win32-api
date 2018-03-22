@@ -17,7 +17,7 @@ install: true
 
 script:
   - npm run build
-  - npm run test:travis
+  - npm run test
 
 after_success:
     #  - npm run cov:coveralls
