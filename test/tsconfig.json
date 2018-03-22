@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "declaration": false,
+    "module": "commonjs",
+    "newLine": "lf",
+    "pretty": true,
+    "strict": true,                 /* Enable all strict type-checking options. */
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "target": "ES2017"
+  },
+  "include": [
+  ],
+  "exclude": [
+    "asset/",
+    "dist/",
+    "test/",
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
