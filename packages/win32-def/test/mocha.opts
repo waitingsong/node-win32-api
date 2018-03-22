@@ -3,4 +3,4 @@
 --full-trace
 --timeout 20000 
 --bail
--r intelli-espower-loader
+-r intelli-espower-loader test/**/*.test.ts
