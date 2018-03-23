@@ -31,6 +31,7 @@ export {
   pathResolve,
   promisify,
 }
+export { tmpdir } from 'os'
 
 
 export function isDirExists(path: string): Promise<boolean> {
