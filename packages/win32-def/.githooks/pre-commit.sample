@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# commit前eslint校验提交文件中js文件
+# 若校验有error则阻止commit
+# 命令行执行设置 git config --global core.hooksPath ./.githooks
+#
+# Author: waiting
+# Date: 2017.02.09
+#
+
+
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+	against=HEAD
+else
+	# Initial commit: diff against an empty tree object
+	against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+fi
+
+# ------------- parse ts
+files=$(git diff --cached --name-only --diff-filter=ACMR $against|grep '\.ts$')
+if [[ $files != "" ]] ; then
+  #echo $files | xargs tslint -p tsconfig.json -e **/*.d.ts ./.githooks/* -t stylish 
+  npm run lint
+  rc=$?
+  if [[ $rc != 0 ]] ; then
+    echo -e "拒绝: TSLint 语法校验失败!"
+    echo -e "ESLint错误代码信息参考 https://palantir.github.io/tslint/rules/ "
+    echo -e ""
+    exit $rc
+  fi
+  git add $files
+fi
+
+
+# -------------- parse js
+files=$(git diff --cached --name-only --diff-filter=ACMR $against|grep '\.js$')
+
+# Prevent ESLint help message if no files matched
+if [[ $files != "" ]] ; then
+  echo $files | xargs eslint --fix -c .eslintrc.json
+  rc=$?
+  if [[ $rc != 0 ]] ; then
+    echo -e "拒绝: ESLint 语法校验失败!"
+    echo -e "ESLint错误代码信息参考 http://eslint.cn/docs/rules/ 或者 http://eslint.org/docs/rules/"
+    echo -e ""
+    exit $rc
+  fi
+  git add $files
+fi
+
+exit 0
