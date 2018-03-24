@@ -117,9 +117,9 @@ export async function createFile(file: string, data: any, options?: WriteFileOpt
   }
 }
 
-export function logger(data: any) {
+export function logger() {
   // tslint:disable-next-line
-  console.log(data)
+  console.log(arguments)
 }
 
 export interface ExecFileOptions {
