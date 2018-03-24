@@ -70,10 +70,11 @@
     "cov": "nyc mocha",
     "cov:coveralls": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
     "jslint": "eslint --fix dist/**/*.js",
-    "lint": "tslint --fix -p tsconfig.json -e **/*.d.ts -t stylish src/**/*.ts test/**/*.ts",
+    "lint": "tslint --fix -p tsconfig.json -t stylish",
+    "lint:test": "tslint --fix -p test/tsconfig.json -t stylish",
     "prepublishOnly": "npm run build",
     "repo:init": "git config --global core.hooksPath ./.githooks && echo It may going for long time. Plese wait... && npm i && ts-node .githooks/init.ts",
-    "test": "mocha --opts test/mocha.opts",
+    "test": "npm run lint:test && mocha --opts test/mocha.opts",
     "tsc": "tsc -p tsconfig.json",
     "tsc:w": "tsc -p tsconfig.json -w"
   }
