@@ -1,0 +1,62 @@
+#!/bin/sh
+#
+# push前校验变更js/ts文件
+# 若校验有error则阻止push
+#
+# Author: waiting
+# Date: 2017.02.03
+#
+
+remote="$1"
+url="$2"
+
+z40=0000000000000000000000000000000000000000
+
+while read local_ref local_sha remote_ref remote_sha
+do
+    if [ "$local_sha" = $z40 ]
+    then
+        # Handle delete
+        :
+    else
+        if [ "$remote_sha" = $z40 ]
+        then
+            # New branch, examine all commits
+            :
+        else
+            # ------------- parse ts
+            files=$(git diff --name-only --diff-filter=ACMR $remote_sha $local_sha| grep '\.ts$')
+
+            if [[ $files != "" ]] ; then
+                # echo $files | xargs tslint -p tsconfig.json -e **/*.d.ts ./.githooks/* -t stylish 
+                npm run lint
+                rc=$?
+                if [[ $rc != 0 ]] ; then
+                    echo -e "拒绝: TSLint 语法校验失败!"
+                    echo -e "ESLint错误代码信息参考 https://palantir.github.io/tslint/rules/ "
+                    echo -e ""
+                    exit $rc
+                fi
+                git add $files
+            fi
+
+
+            # -------------- parse js
+            # files=$(git diff --name-only --diff-filter=ACMR $remote_sha $local_sha| grep '\.js$')
+            # # Prevent ESLint help message if no files matched
+            # if [[ $files != "" ]] ; then
+            #     echo $files | xargs eslint
+            #     rc=$?
+            #     if [[ $rc != 0 ]] ; then
+            #         echo -e "拒绝: ESLint 语法校验失败!"
+            #         echo -e "ESLint错误代码信息参考 http://eslint.cn/docs/rules/ 或者 http://eslint.org/docs/rules/"
+            #         echo -e ""
+            #         exit $rc
+            #     fi
+            #     ##git add $files
+            # fi
+        fi
+    fi
+done
+
+exit 0

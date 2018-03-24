@@ -1,14 +1,15 @@
+if: tag IS blank
+
 language: node_js
 node_js:
-- '6.5'
 - '8'
+- '9'
 
 cache:
   directories:
     - node_modules
 
 before_install:
-  - npm install ffi rimraf ts-node typescript intelli-espower-loader tslint eslint power-assert mocha
   - npm install
 
 
@@ -16,8 +17,8 @@ install: true
 
 script:
   - npm run build
-  - npm run test-travis
+  - npm run test
 
 after_success:
-  - npm run cov:coveralls
+    #  - npm run cov:coveralls
 

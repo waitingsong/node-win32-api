@@ -1,0 +1,54 @@
+{
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "files.eol": "\n",
+  "files.exclude": {
+    "USE_GITIGNORE": true,
+    "**/*.js": {
+      "when": "$(basename).ts"
+    },
+    "**/*.map": true,
+    "**/*.swp": true,
+    "**/.git": true,
+    "**/.DS_Store": true,
+    ".vscode": true,
+    ".git": true,
+    ".build": true,
+    ".githooks": true,
+    ".sourcemaps": true,
+    "run": true,
+    "logs": true,
+    "out": true,
+    "node_modules*": true,
+    "coverage": true,
+    "dist": true,
+    "platforms": true
+  },
+  "files.watcherExclude": {
+      "**/.git/objects/**": true,
+      "**/node_modules/**": true,
+      "coverage/**": true,
+      "dist/**": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    ".vscode/**": true,
+    ".build/**": true,
+    "out/**": true,
+    "i18n/**": true
+  },
+  "telemetry.enableTelemetry": false,
+  "telemetry.enableCrashReporter": false,
+  "tslint.autoFixOnSave": true,
+  "tslint.enable": true,
+  "typescript.autoImportSuggestions.enabled": true,
+  "typescript.format.enable": true,
+  "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+  "typescript.format.insertSpaceAfterTypeAssertion": true,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+  "typescript.format.insertSpaceBeforeAndAfterBinaryOperators": true,
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false
+  }
+}

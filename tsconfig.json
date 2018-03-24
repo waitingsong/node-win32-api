@@ -1,25 +1,30 @@
 {
   "compilerOptions": {
-    "target": "ES2017",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'. */
-    "module": "commonjs",                     /* Specify module code generation: 'commonjs', 'amd', 'system', 'umd' or 'es2015'. */
-    // "lib": [],                             /* Specify library files to be included in the compilation:  */
-    "declaration": true,                   /* Generates corresponding '.d.ts' file. */
-    // "sourceMap": true,                     /* Generates corresponding '.map' file. */
-    "outDir": "./dist",                        /* Redirect output structure to the directory. */
-    // "noImplicitAny": false,                 /* Raise error on expressions and declarations with an implied 'any' type. */
-    // "noImplicitThis": false,
-    "alwaysStrict": true,                  /* Parse in strict mode and emit "use strict" for each source file. */
-    // "inlineSourceMap": true,               /* Emit a single file with source maps instead of having a separate file. */
-    // "inlineSources": true,                 /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
+    "alwaysStrict": true,           /* Parse in strict mode and emit "use strict" for each source file. */
+    "charset": "utf8",
+    "declaration": true,            /* Generates corresponding '.d.ts' file. */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "importHelpers": true,
+    "inlineSourceMap": false,
+    "module": "commonjs",           /* 'commonjs', 'amd', 'system', 'umd' or 'es2015'. */
     "newLine": "lf",
-    "maxNodeModuleJsDepth": 1,
-    "strict": true,                            /* Enable all strict type-checking options. */
-    "pretty": true
+    "noFallthroughCasesInSwitch": true,
+    "outDir": "./dist", 
+    "pretty": true,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "strict": true,                 /* Enable all strict type-checking options. */
+    // "noImplicitAny": false,
+    // "noImplicitThis": false,
+    "target": "ES2017",              /* 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'. */
+    "types" : ["node"]
   },
   "include": [
     "src/**/*"
   ],
   "exclude": [
+    "asset/",
     "dist/",
     "test/",
     "node_modules",
