@@ -11,7 +11,14 @@ import {
   write,
   writeFile,
 } from 'fs'
-import { dirname, join, normalize, resolve as pathResolve, sep } from 'path'
+import {
+  basename,
+  dirname,
+  join,
+  normalize,
+  resolve as pathResolve,
+  sep,
+} from 'path'
 import { promisify } from 'util'
 
 
@@ -26,6 +33,7 @@ export const unlinkAsync = promisify(unlink)
 export const writeAsync = promisify(write)
 export const writeFileAsync = promisify(writeFile)
 export {
+  basename,
   join,
   normalize,
   pathResolve,
