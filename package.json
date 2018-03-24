@@ -69,7 +69,7 @@
     "clean": "rm -rf dist/*",
     "cov": "nyc mocha",
     "cov:coveralls": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
-    "git:init": "git config --global core.hooksPath ./.githooks && ts-node .githooks/init.ts",
+    "repo:init": "git config --global core.hooksPath ./.githooks && echo It may going for long time. Plese wait... && npm i && ts-node .githooks/init.ts",
     "jslint": "eslint --fix dist/**/*.js",
     "lint": "tslint --fix -p tsconfig.json -e **/*.d.ts -t stylish src/**/*.ts test/**/*.ts",
     "prepublishOnly": "npm run build",
