@@ -1,4 +1,5 @@
 import {
+  access,
   chmod,
   close,
   copyFile,
@@ -41,6 +42,12 @@ export {
 }
 export { tmpdir } from 'os'
 
+// support relative file ('./foo')
+export function isPathAcessible(path: string): Promise<boolean> {
+  return path
+    ? new Promise(resolve => access(path, err => resolve(err ? false : true)))
+    : Promise.resolve(false)
+}
 
 export function isDirExists(path: string): Promise<boolean> {
   return path ? isDirFileExists(path, 'DIR') : Promise.resolve(false)
