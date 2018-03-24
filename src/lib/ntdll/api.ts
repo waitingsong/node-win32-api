@@ -1,5 +1,5 @@
-import * as GT from '../types';
-import * as W from '../windef';
+import * as GT from '../types'
+import * as W from '../windef'
 
 export interface Win32Fns {
     //  may be altered or unavailable in future versions of Windows
@@ -9,10 +9,10 @@ export interface Win32Fns {
         ProcessInformation: GT.PVOID,       // _Out_
         ProcessInformationLength: GT.ULONG,
         ReturnLength: GT.PULONG | null    // _Out_opt_ ppid
-    ): GT.NTSTATUS;
+    ): GT.NTSTATUS
 
 }
 
 export const apiDef: GT.ApiDef = {
     NtQueryInformationProcess: [W.NTSTATUS, [W.HANDLE, W.DWORD32, W.PVOID, W.ULONG, W.PULONG]],
-};
+}
