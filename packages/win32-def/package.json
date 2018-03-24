@@ -1,9 +1,14 @@
 {
-  "name": "npm-base",
+  "name": "win32-def",
   "author": "waiting",
   "version": "0.0.1",
-  "description": "npm boilerplate",
-  "keywords": [],
+  "description": "win32 definitions for node-ffi",
+  "keywords": [
+    "api",
+    "ffi",
+    "win32",
+    "windows"
+  ],
   "engines": {
     "node": ">=8.9.0"
   },
@@ -11,12 +16,12 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bugs": {
-    "url": "https://github.com/waitingsong/npm-base/issues"
+    "url": "https://github.com/waitingsong/node-win32-def/issues"
   },
-  "homepage": "https://github.com/waitingsong/npm-base#readme",
+  "homepage": "https://github.com/waitingsong/node-win32-def#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/waitingsong/npm-base.git"
+    "url": "git+https://github.com/waitingsong/node-win32-def.git"
   },
   "license": "MIT",
   "nyc": {
