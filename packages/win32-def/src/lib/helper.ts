@@ -1,3 +1,5 @@
+import { logger } from '../shared/index'
+
 import {
   settingsDefault,
   windefSet,
@@ -11,16 +13,9 @@ import * as WM from './model'
 // convert macro variable of windef
 export function parse_windef(windefObj: WM.Windef, settings?: WM.LoadSettings): WM.WinData {
   const ww = clone_filter_windef(windefObj) // output without macroMap
-  const macroMap = <WM.MacroMap> windefObj.macroMap
-  const macroSrc = prepare_macro(macroMap, settings)
+  const macroSrc = prepare_macro(windefObj.macroMap, settings)
 
-  // append parsed marco to result
-  for (const [k, v] of macroSrc.entries()) {
-    if (typeof ww[k] !== 'undefined' && v) {
-      ww[k] = v
-    }
-  }
-  return prepare_windef_ref(ww)
+  return prepare_windef_ref(ww, macroSrc)
 }
 
 
@@ -97,8 +92,8 @@ function prepare_macro(macroMap: WM.MacroMap, settings?: WM.LoadSettings): Map<s
 
 
 // parse const HANDLE = 'PVOID' to the realy FFIParam (like 'uint32*')
-function prepare_windef_ref(ww: WM.WinData): WM.WinData {
-  const ret = <WM.WinData> {}
+function prepare_windef_ref(ww: WM.WinData, macroSrc: Map<string, string>): WM.WinData {
+  const map = <Map<string, string>> new Map()
 
   for (const x of Object.keys(ww)) {
     // if (windefSkipKeys.has(x)) {   // skip ww.macroMap
@@ -106,15 +101,39 @@ function prepare_windef_ref(ww: WM.WinData): WM.WinData {
     // }
     const v = ww[x]
 
-    if (windefSet.has(v)) {
-      ret[x] = v
+    if (map.has(x)) {
+      continue
+    }
+    else if (windefSet.has(v)) {
+      map.set(x, v)
     }
     else if (typeof ww[v] === 'string') {
-      // not valid FFIParam like 'int'
-      // HANDLE == 'PVOID' , PVOID already parsed
-      ret[x] = ww[v]
+      // HANDLE == 'PVOID' , PVOID should be parsed later
+      map.set(x, ww[v])
+    }
+    else {
+      map.set(x, ww[v])
     }
   }
+  const ret = <WM.WinData> {}
+
+  // upate parsed marco to result
+  for (const [k, v] of macroSrc.entries()) {
+    if (v && map.has(k)) {
+      map.set(k, v)
+    }
+  }
+
+  map.forEach((v, k) => {
+    if (macroSrc.has(v)) {  // HACCEL:PVOID -> HACCEL: uint32*
+      const vv = macroSrc.get(v)
+
+      vv && (ret[k] = vv)
+    }
+    else {
+      ret[k] = v
+    }
+  })
 
   return ret
 }
