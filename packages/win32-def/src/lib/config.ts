@@ -7,6 +7,7 @@ export const _UNICODE_HOLDER = '_UNICODE_HOLDER_'
 export const windefSkipKeys: Set<string> = new Set(['macroMap'])
 /* istanbul ignore next */
 export const _WIN64 = process.arch === 'x64' ? true : false
+/* istanbul ignore next */
 export const _UNICODE = true
 export const settingsDefault: LoadSettings = {
     _UNICODE,
