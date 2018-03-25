@@ -181,6 +181,6 @@ export function validDataDef(str: string, srcSet: Set<string>): void {
     throw new Error(`value of param invalid: ${str}`)
   }
   if (! srcSet.has(str)) {
-    throw new Error(`srcSet not contains element of ${str}`)
+    throw new Error(`conifig.windefSet not contains element of ${str}`)
   }
 }
