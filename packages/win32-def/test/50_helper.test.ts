@@ -199,7 +199,7 @@ describe(filename + ' :parse_windef()', () => {
   })
 
   it(`Should ${fnName} process windef macro members correctly)`, () => {
-    const W = <WM.WTypes> {}
+    const W = <WM.DataTypes> {}
     const keyArch = '__testKeyArch'
     const v64 = '_v64'
     const v32 = '_v32'

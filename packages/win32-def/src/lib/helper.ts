@@ -9,7 +9,7 @@ import * as WM from './model'
 
 
 // convert macro variable of windef
-export function parse_windef(windefObj: WM.WTypes, macroMap: WM.MacroMap, settings?: WM.LoadSettings): WM.WTypes {
+export function parse_windef(windefObj: WM.DataTypes, macroMap: WM.MacroMap, settings?: WM.LoadSettings): WM.DataTypes {
   const ww = clone_filter_windef(windefObj) // output without macroMap
   const macroSrc = macroMap && typeof macroMap === 'object'
     ? prepare_macro(macroMap, settings)
@@ -91,7 +91,7 @@ function prepare_macro(macroMap: WM.MacroMap, settings?: WM.LoadSettings): Map<s
 }
 
 // parse const HANDLE = 'PVOID' to the realy FFIParam (like 'uint32*')
-function prepare_windef_ref(ww: WM.WTypes, macroSrc: Map<string, string>): WM.WTypes {
+function prepare_windef_ref(ww: WM.DataTypes, macroSrc: Map<string, string>): WM.DataTypes {
   const map = <Map<string, string>> new Map()
 
   // first loop paser keys which exists in macroSrc
@@ -123,7 +123,7 @@ function prepare_windef_ref(ww: WM.WTypes, macroSrc: Map<string, string>): WM.WT
     value && windefSet.has(value) && map.set(x, value)
   }
 
-  const ret = <WM.WTypes> {}
+  const ret = <WM.DataTypes> {}
 
   map.forEach((v, k) => {
     ret[k] = v
@@ -131,8 +131,8 @@ function prepare_windef_ref(ww: WM.WTypes, macroSrc: Map<string, string>): WM.WT
   return ret
 }
 
-function clone_filter_windef(windef: WM.WTypes): WM.WTypes {
-  const ret = <WM.WTypes> {}
+function clone_filter_windef(windef: WM.DataTypes): WM.DataTypes {
+  const ret = <WM.DataTypes> {}
 
   for (const x of Object.keys(windef)) {
     if (typeof windef[x] === 'string') {
@@ -160,7 +160,7 @@ function parse_settings(settings?: WM.LoadSettings): WM.LoadSettings {
   return st
 }
 
-function retrieve_ref_value(ww: WM.WTypes, key: string, srcMap: Map<string, string>): string {
+function retrieve_ref_value(ww: WM.DataTypes, key: string, srcMap: Map<string, string>): string {
   const mapValue = srcMap.get(key)
 
   if (mapValue) {
