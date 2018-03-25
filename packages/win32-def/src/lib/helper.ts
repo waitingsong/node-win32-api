@@ -101,9 +101,7 @@ function prepare_windef_ref(ww: WM.WinData, macroSrc: Map<string, string>): WM.W
     }
     if (macroSrc.has(x)) {  // PVOID:_WIN64_HOLDER -> PVOID:'uint64*'
       const vv = macroSrc.get(x)
-      if (x === 'PTBYTE') {
-        logger('log::', x, ww[x], vv)
-      }
+
       if (vv) {
         validDataDef(vv, windefSet)
         map.set(x, vv)
