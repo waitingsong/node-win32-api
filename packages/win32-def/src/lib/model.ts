@@ -65,7 +65,6 @@ export interface Windef {
 export interface LoadSettings {
   _UNICODE?: boolean // default true
   _WIN64?: boolean   // default from process.arch
-  singleton: boolean    // for DLL.load()
 }
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751
