@@ -117,6 +117,7 @@ export async function createFile(file: string, data: any, options?: WriteFileOpt
   }
 }
 
+/* istanbul ignore next */
 export function logger(...args: any[]) {
   // tslint:disable-next-line
   console.log(args)
