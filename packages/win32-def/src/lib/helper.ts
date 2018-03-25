@@ -108,6 +108,9 @@ function prepare_windef_ref(ww: WM.DataTypes, macroSrc: Map<string, string>): WM
         validDataDef(vv, windefSet)
         map.set(x, vv)
       }
+      else {
+        throw new Error(`value of "${vv}" blank`)
+      }
     }
   }
   // 2nd loop paser key , maybe value ref other key
