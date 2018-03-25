@@ -65,7 +65,7 @@ function parse_placeholder_arch(param: WM.FFIParam | WM.MacroDef, _WIN64: boolea
 }
 
 // convert param like ['_UNICODE_HOLDER_', 'uint16*', 'uint8*'] to 'uint16*' or 'uint8*'
-export function parse_placeholder_unicode(param: WM.FFIParam | WM.MacroDef, _UNICODE: boolean): WM.FFIParam {
+function parse_placeholder_unicode(param: WM.FFIParam | WM.MacroDef, _UNICODE: boolean): WM.FFIParam {
   if (typeof param === 'string') {
     return param
   }
