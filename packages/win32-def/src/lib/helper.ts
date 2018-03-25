@@ -90,51 +90,41 @@ function prepare_macro(macroMap: WM.MacroMap, settings?: WM.LoadSettings): Map<s
   return ret
 }
 
-
 // parse const HANDLE = 'PVOID' to the realy FFIParam (like 'uint32*')
 function prepare_windef_ref(ww: WM.WinData, macroSrc: Map<string, string>): WM.WinData {
   const map = <Map<string, string>> new Map()
 
+  // first loop paser keys which exists in macroSrc
   for (const x of Object.keys(ww)) {
-    // if (windefSkipKeys.has(x)) {   // skip ww.macroMap
-    //   continue
-    // }
-    const v = ww[x]
-
     if (map.has(x)) {
       continue
     }
-    else if (windefSet.has(v)) {
-      map.set(x, v)
-    }
-    else if (typeof ww[v] === 'string') {
-      // HANDLE == 'PVOID' , PVOID should be parsed later
-      map.set(x, ww[v])
-    }
-    else {
-      map.set(x, ww[v])
+    if (macroSrc.has(x)) {  // PVOID:_WIN64_HOLDER -> PVOID:'uint64*'
+      const vv = macroSrc.get(x)
+      if (x === 'PTBYTE') {
+        logger('log::', x, ww[x], vv)
+      }
+      if (vv) {
+        validDataDef(vv, windefSet)
+        map.set(x, vv)
+      }
     }
   }
+  // 2nd loop paser key , maybe value ref other key
+  for (const x of Object.keys(ww)) {
+    if (map.has(x)) {
+      continue
+    }
+    const value = retrieve_ref_value(ww, x, map)
+
+    value && windefSet.has(value) && map.set(x, value)
+  }
+
   const ret = <WM.WinData> {}
 
-  // upate parsed marco to result
-  for (const [k, v] of macroSrc.entries()) {
-    if (v && map.has(k)) {
-      map.set(k, v)
-    }
-  }
-
   map.forEach((v, k) => {
-    if (macroSrc.has(v)) {  // HACCEL:PVOID -> HACCEL: uint32*
-      const vv = macroSrc.get(v)
-
-      vv && (ret[k] = vv)
-    }
-    else {
-      ret[k] = v
-    }
+    ret[k] = v
   })
-
   return ret
 }
 
@@ -164,4 +154,35 @@ function parse_settings(settings?: WM.LoadSettings): WM.LoadSettings {
     Object.assign(st, settings)
   }
   return st
+}
+
+function retrieve_ref_value(ww: WM.WinData, key: string, srcMap: Map<string, string>): string {
+  const mapValue = srcMap.get(key)
+
+  if (mapValue) {
+    return mapValue
+  }
+
+  if (typeof ww[key] === 'undefined') {
+    return ''
+  }
+  const value = ww[key]
+
+  if (! value) {
+    return ''
+  }
+  // check whether ww has element value as key
+  const refValue = retrieve_ref_value(ww, value, srcMap)
+
+  return refValue ? refValue : value
+}
+
+// valid parsed value exists in windefSet
+export function validDataDef(str: string, srcSet: Set<string>): void {
+  if (! str || typeof str !== 'string') {
+    throw new Error(`value of param invalid: ${str}`)
+  }
+  if (! srcSet.has(str)) {
+    throw new Error(`srcSet not contains element of ${str}`)
+  }
 }
