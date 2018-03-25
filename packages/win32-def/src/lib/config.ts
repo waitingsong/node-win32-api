@@ -16,6 +16,7 @@ export const settingsDefault: LoadSettings = {
 }
 
 
+// for validation
 export const windefSet = new Set([
     'bool',
     'bool*',
@@ -35,6 +36,8 @@ export const windefSet = new Set([
     'int64' ,
 
     'int*',
+    'int8*',
+    'int16*',
     'int32*',
     'int64*',
 
