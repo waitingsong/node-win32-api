@@ -2,10 +2,9 @@
 
 import * as assert from 'power-assert'
 
-import { dataTypes } from '../src/index'
+import { DTypes } from '../src/index'
 import {
   settingsDefault,
-  windefSkipKeys,
   _UNICODE_HOLDER,
   _WIN64_HOLDER,
 } from '../src/lib/config'
@@ -28,19 +27,19 @@ describe(filename + ' :parse_windef()', () => {
   it(`Should ${fnName} process windef correctly)`, () => {
     const windata = H.parse_windef(WD, macroMap, {...settingsDefault})
     const lenData = Object.keys(windata).length
-    const lenRet = Object.keys(dataTypes).length
+    const lenRet = Object.keys(DTypes).length
 
     if (lenData !== lenRet) {
       const onlyInData = <Set<string>> new Set()
       const onlyInIndex = <Set<string>> new Set()
 
       for (const key of Object.keys(windata)) {
-        if (typeof dataTypes[key] === 'undefined') {
+        if (typeof DTypes[key] === 'undefined') {
           onlyInData.add(key)
         }
       }
-      for (const key of Object.keys(dataTypes)) {
-        if (typeof windata[key] === 'undefined' && ! windefSkipKeys.has(key)) {
+      for (const key of Object.keys(DTypes)) {
+        if (typeof windata[key] === 'undefined') {
           onlyInIndex.add(key)
         }
       }
