@@ -12,7 +12,9 @@ import * as WM from './model'
 // convert macro variable of windef
 export function parse_windef(windefObj: WM.Windef, settings?: WM.LoadSettings): WM.WinData {
   const ww = clone_filter_windef(windefObj) // output without macroMap
-  const macroSrc = prepare_macro(windefObj.macroMap, settings)
+  const macroSrc = typeof windefObj.macroMap === 'object'
+    ? prepare_macro(windefObj.macroMap, settings)
+    : new Map()
 
   return prepare_windef_ref(ww, macroSrc)
 }
