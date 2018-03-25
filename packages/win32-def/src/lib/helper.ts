@@ -1,4 +1,3 @@
-import { logger } from '../shared/index'
 
 import {
   settingsDefault,
