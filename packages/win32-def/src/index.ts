@@ -9,8 +9,8 @@
 import { parse_windef } from './lib/helper'
 
 import * as windef from './lib/windef'
-const ww = parse_windef(windef)   // must at top convert types Windef to WinData
-export {ww}
+const dataTypes = parse_windef(windef)   // must at top convert types Windef to WinData
+export {dataTypes}
 
 import * as Config from './lib/config'
 export {Config as config}
