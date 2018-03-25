@@ -5,6 +5,7 @@ import rewire = require('rewire')
 
 import { settingsDefault } from '../src/lib/config'
 import * as H from '../src/lib/helper'
+import { macroMap } from '../src/lib/marcomap'
 import * as WM from '../src/lib/model'
 import * as WD from '../src/lib/windef'
 import {
@@ -60,7 +61,7 @@ function test_arch(types64_32: Set<string>) {
 }
 
 function _test_arch(types64_32: Set<string>, settings: WM.LoadSettings) {
-  const W = H.parse_windef(WD, {...settings})
+  const W = H.parse_windef(WD, macroMap, {...settings})
 
   for (const vv of types64_32) {
     // convert param like '_WIN64_HOLDER_' to 'int64' or 'int32'
@@ -97,7 +98,7 @@ function test_arch_half(values: Set<string>) {
 }
 
 function _test_arch_half(typesHalf: Set<string>, settings: WM.LoadSettings) {
-  const W = H.parse_windef(WD, {...settings})
+  const W = H.parse_windef(WD, macroMap, {...settings})
   const fnName = 'parse_param_placeholder'
   const fn = <(
     param: WM.FFIParam | WM.MacroDef,
@@ -141,7 +142,7 @@ describe(filename, () => {
 })
 
 function unicode(_UNICODE: boolean, typesUnicode: Set<string>) {
-  const W = H.parse_windef(WD, {...settingsDefault, _UNICODE})
+  const W = H.parse_windef(WD, macroMap, {...settingsDefault, _UNICODE})
 
   for (const vv of typesUnicode) {
     const param = W[vv]

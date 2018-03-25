@@ -2,7 +2,6 @@
 import {
   settingsDefault,
   windefSet,
-  windefSkipKeys,
   _UNICODE_HOLDER,
   _WIN64_HOLDER,
 } from './config'
@@ -10,10 +9,10 @@ import * as WM from './model'
 
 
 // convert macro variable of windef
-export function parse_windef(windefObj: WM.Windef, settings?: WM.LoadSettings): WM.DataTypes {
+export function parse_windef(windefObj: WM.WTypes, macroMap: WM.MacroMap, settings?: WM.LoadSettings): WM.WTypes {
   const ww = clone_filter_windef(windefObj) // output without macroMap
-  const macroSrc = typeof windefObj.macroMap === 'object'
-    ? prepare_macro(windefObj.macroMap, settings)
+  const macroSrc = macroMap && typeof macroMap === 'object'
+    ? prepare_macro(macroMap, settings)
     : new Map()
 
   return prepare_windef_ref(ww, macroSrc)
@@ -92,7 +91,7 @@ function prepare_macro(macroMap: WM.MacroMap, settings?: WM.LoadSettings): Map<s
 }
 
 // parse const HANDLE = 'PVOID' to the realy FFIParam (like 'uint32*')
-function prepare_windef_ref(ww: WM.DataTypes, macroSrc: Map<string, string>): WM.DataTypes {
+function prepare_windef_ref(ww: WM.WTypes, macroSrc: Map<string, string>): WM.WTypes {
   const map = <Map<string, string>> new Map()
 
   // first loop paser keys which exists in macroSrc
@@ -124,7 +123,7 @@ function prepare_windef_ref(ww: WM.DataTypes, macroSrc: Map<string, string>): WM
     value && windefSet.has(value) && map.set(x, value)
   }
 
-  const ret = <WM.DataTypes> {}
+  const ret = <WM.WTypes> {}
 
   map.forEach((v, k) => {
     ret[k] = v
@@ -132,20 +131,21 @@ function prepare_windef_ref(ww: WM.DataTypes, macroSrc: Map<string, string>): WM
   return ret
 }
 
-// filter windef by Conf.windefSkipKeys, output only need key/value
-function clone_filter_windef(windef: WM.Windef): WM.DataTypes {
-  const ret = <WM.DataTypes> {}
+function clone_filter_windef(windef: WM.WTypes): WM.WTypes {
+  const ret = <WM.WTypes> {}
 
   for (const x of Object.keys(windef)) {
-    if (windefSkipKeys.has(x)) {   // macroMap
-      continue
+    if (typeof windef[x] === 'string') {
+      Object.defineProperty(ret, <string> x, {
+        value: <WM.FFIParam> windef[x],
+        writable: true,
+        enumerable: true,
+        configurable: true,
+      })
     }
-    Object.defineProperty(ret, <string> x, {
-      value: <WM.FFIParam> windef[x],
-      writable: true,
-      enumerable: true,
-      configurable: true,
-    })
+    else {
+      throw new Error(`typeof value of ${x} NOT string`)
+    }
   }
 
   return ret
@@ -160,7 +160,7 @@ function parse_settings(settings?: WM.LoadSettings): WM.LoadSettings {
   return st
 }
 
-function retrieve_ref_value(ww: WM.DataTypes, key: string, srcMap: Map<string, string>): string {
+function retrieve_ref_value(ww: WM.WTypes, key: string, srcMap: Map<string, string>): string {
   const mapValue = srcMap.get(key)
 
   if (mapValue) {

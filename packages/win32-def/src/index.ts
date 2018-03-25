@@ -6,18 +6,16 @@
  * @link https://github.com/waitingsong/node-win32-api
  */
 
-import { parse_windef } from './lib/helper'
-
-import * as windef from './lib/windef'
-const dataTypes = parse_windef(windef)   // must at top convert types Windef to WinData
-export {dataTypes}
-
 import * as Config from './lib/config'
-export {Config as config}
+import { parse_windef } from './lib/helper'
+import { macroMap } from './lib/marcomap'
+import * as DModel from './lib/model'
+import * as DStruct from './lib/struct'
+import * as windef from './lib/windef'
 
-import * as WStruct from './lib/struct'
-export {WStruct}
+const DTypes = <typeof windef> parse_windef(windef, macroMap)
 
-import * as WModel from './lib/model'
-export {WModel}
-
+export {DModel}
+export {Config}
+export {DStruct}
+export {DTypes}

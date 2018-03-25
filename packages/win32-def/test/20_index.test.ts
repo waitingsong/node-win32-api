@@ -10,6 +10,7 @@ import {
   _WIN64_HOLDER,
 } from '../src/lib/config'
 import * as H from '../src/lib/helper'
+import { macroMap } from '../src/lib/marcomap'
 import * as WD from '../src/lib/windef'
 import {
   basename,
@@ -25,7 +26,7 @@ describe(filename + ' :parse_windef()', () => {
 
   // at lastest
   it(`Should ${fnName} process windef correctly)`, () => {
-    const windata = H.parse_windef(WD, {...settingsDefault})
+    const windata = H.parse_windef(WD, macroMap, {...settingsDefault})
     const lenData = Object.keys(windata).length
     const lenRet = Object.keys(dataTypes).length
 

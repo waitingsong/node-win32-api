@@ -5,11 +5,11 @@ import rewire = require('rewire')
 
 import {
   settingsDefault,
-  windefSkipKeys,
   _UNICODE_HOLDER,
   _WIN64_HOLDER,
 } from '../src/lib/config'
 import * as H from '../src/lib/helper'
+import { macroMap } from '../src/lib/marcomap'
 import * as WM from '../src/lib/model'
 import * as WD from '../src/lib/windef'
 import {
@@ -168,7 +168,7 @@ describe(filename + ' :parse_windef()', () => {
       value: 777, // should string or string[]
     })
     try {
-      H.parse_windef(W)
+      H.parse_windef(W, macroMap)
       assert(false, 'should throw Error, but none')
     }
     catch (ex) {
@@ -187,7 +187,7 @@ describe(filename + ' :parse_windef()', () => {
       value: 'int',
     })
     try {
-      H.parse_windef(W)
+      H.parse_windef(W, macroMap)
       assert(false, 'should throw Error, but none')
     }
     catch (ex) {
@@ -199,7 +199,7 @@ describe(filename + ' :parse_windef()', () => {
   })
 
   it(`Should ${fnName} process windef macro members correctly)`, () => {
-    const W = <WM.Windef> {}
+    const W = <WM.WTypes> {}
     const keyArch = '__testKeyArch'
     const v64 = '_v64'
     const v32 = '_v32'
@@ -211,7 +211,7 @@ describe(filename + ' :parse_windef()', () => {
 
     let _WIN64 = true
     try {
-      H.parse_windef(W, {...settingsDefault, _WIN64})
+      H.parse_windef(W, macroMap, {...settingsDefault, _WIN64})
       assert(false, 'should throw error by validDataDef() BUT not')
     }
     catch (ex) {
@@ -220,7 +220,7 @@ describe(filename + ' :parse_windef()', () => {
 
     _WIN64 = false
     try {
-      H.parse_windef(W, {...settingsDefault, _WIN64})
+      H.parse_windef(W, macroMap, {...settingsDefault, _WIN64})
       assert(false, 'should throw error by validDataDef() BUT not')
     }
     catch (ex) {
@@ -239,7 +239,7 @@ describe(filename + ' :parse_windef()', () => {
 
     let _UNICODE = true
     try {
-      H.parse_windef(W, {...settingsDefault, _UNICODE})
+      H.parse_windef(W, macroMap, {...settingsDefault, _UNICODE})
       assert(false, 'should throw error by validDataDef() BUT not')
     }
     catch (ex) {
@@ -248,7 +248,7 @@ describe(filename + ' :parse_windef()', () => {
 
     _UNICODE = false
     try {
-      H.parse_windef(W, {...settingsDefault, _UNICODE})
+      H.parse_windef(W, macroMap, {...settingsDefault, _UNICODE})
       assert(false, 'should throw error by validDataDef() BUT not')
     }
     catch (ex) {
@@ -260,8 +260,8 @@ describe(filename + ' :parse_windef()', () => {
   // at lastest
   it(`Should ${fnName} process windef correctly)`, () => {
     const W = {...WD}
-    const windata = H.parse_windef(W, {...settingsDefault})
-    const lenData = Object.keys(windata).length + windefSkipKeys.size
+    const windata = H.parse_windef(W, macroMap, {...settingsDefault})
+    const lenData = Object.keys(windata).length
     const lenDef = Object.keys(W).length
 
     if (lenData !== lenDef) {
@@ -274,7 +274,7 @@ describe(filename + ' :parse_windef()', () => {
         }
       }
       for (const key of Object.keys(W)) {
-        if (typeof windata[key] === 'undefined' && ! windefSkipKeys.has(key)) {
+        if (typeof windata[key] === 'undefined') {
           onlyInW.add(key)
         }
       }

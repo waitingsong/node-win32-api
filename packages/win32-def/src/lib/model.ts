@@ -56,11 +56,8 @@ export type _WIN64 = boolean
 export type _UNICODE = boolean
 
 // windows data types
-export interface DataTypes {
+export interface WTypes {
   [prop: string]: FFIParam
-}
-export interface Windef {
-  [prop: string]: FFIParam | MacroMap
 }
 
 export interface LoadSettings {
