@@ -20,5 +20,5 @@ script:
   - npm run test
 
 after_success:
-    #  - npm run cov:coveralls
+  - npm run cov:coveralls
 
