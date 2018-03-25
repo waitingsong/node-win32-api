@@ -11,7 +11,6 @@ export const _UNICODE = true
 export const settingsDefault: LoadSettings = {
     _UNICODE,
     _WIN64,
-    _windefClone: false,
     singleton: true,    // for DLL.load()
 }
 

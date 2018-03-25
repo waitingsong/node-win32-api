@@ -211,7 +211,7 @@ describe(filename + ' :parse_windef()', () => {
 
     let _WIN64 = true
     try {
-      H.parse_windef(W, {...settingsDefault, _windefClone: true, _WIN64})
+      H.parse_windef(W, {...settingsDefault, _WIN64})
       assert(false, 'should throw error by validDataDef() BUT not')
     }
     catch (ex) {
@@ -220,7 +220,7 @@ describe(filename + ' :parse_windef()', () => {
 
     _WIN64 = false
     try {
-      H.parse_windef(W, {...settingsDefault, _windefClone: true, _WIN64})
+      H.parse_windef(W, {...settingsDefault, _WIN64})
       assert(false, 'should throw error by validDataDef() BUT not')
     }
     catch (ex) {
@@ -239,7 +239,7 @@ describe(filename + ' :parse_windef()', () => {
 
     let _UNICODE = true
     try {
-      H.parse_windef(W, {...settingsDefault, _windefClone: true, _UNICODE})
+      H.parse_windef(W, {...settingsDefault, _UNICODE})
       assert(false, 'should throw error by validDataDef() BUT not')
     }
     catch (ex) {
@@ -248,7 +248,7 @@ describe(filename + ' :parse_windef()', () => {
 
     _UNICODE = false
     try {
-      H.parse_windef(W, {...settingsDefault, _windefClone: true, _UNICODE})
+      H.parse_windef(W, {...settingsDefault, _UNICODE})
       assert(false, 'should throw error by validDataDef() BUT not')
     }
     catch (ex) {
@@ -260,7 +260,7 @@ describe(filename + ' :parse_windef()', () => {
   // at lastest
   it(`Should ${fnName} process windef correctly)`, () => {
     const W = {...WD}
-    const windata = H.parse_windef(W, {...settingsDefault, _windefClone: true})
+    const windata = H.parse_windef(W, {...settingsDefault})
     const lenData = Object.keys(windata).length + windefSkipKeys.size
     const lenDef = Object.keys(W).length
 
