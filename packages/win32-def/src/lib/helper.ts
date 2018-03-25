@@ -97,6 +97,7 @@ function prepare_windef_ref(ww: WM.DataTypes, macroSrc: Map<string, string>): WM
 
   // first loop paser keys which exists in macroSrc
   for (const x of Object.keys(ww)) {
+    /* istanbul ignore next */
     if (map.has(x)) {
       continue
     }
