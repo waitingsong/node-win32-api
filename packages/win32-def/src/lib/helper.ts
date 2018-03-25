@@ -115,6 +115,7 @@ function prepare_windef_ref(ww: WM.DataTypes, macroSrc: Map<string, string>): WM
   }
   // 2nd loop paser key , maybe value ref other key
   for (const x of Object.keys(ww)) {
+    /* istanbul ignore next */
     if (map.has(x)) {
       continue
     }
@@ -171,6 +172,7 @@ function retrieve_ref_value(ww: WM.DataTypes, key: string, srcMap: Map<string, s
   }
   const value = ww[key]
 
+  /* istanbul ignore next */
   if (! value) {
     return ''
   }
@@ -182,6 +184,7 @@ function retrieve_ref_value(ww: WM.DataTypes, key: string, srcMap: Map<string, s
 
 // valid parsed value exists in windefSet
 export function validDataDef(str: string, srcSet: Set<string>): void {
+  /* istanbul ignore next */
   if (! str || typeof str !== 'string') {
     throw new Error(`value of param invalid: ${str}`)
   }
