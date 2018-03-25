@@ -10,7 +10,7 @@ import * as WM from './model'
 
 
 // convert macro variable of windef
-export function parse_windef(windefObj: WM.Windef, settings?: WM.LoadSettings): WM.WinData {
+export function parse_windef(windefObj: WM.Windef, settings?: WM.LoadSettings): WM.DataTypes {
   const ww = clone_filter_windef(windefObj) // output without macroMap
   const macroSrc = typeof windefObj.macroMap === 'object'
     ? prepare_macro(windefObj.macroMap, settings)
@@ -92,7 +92,7 @@ function prepare_macro(macroMap: WM.MacroMap, settings?: WM.LoadSettings): Map<s
 }
 
 // parse const HANDLE = 'PVOID' to the realy FFIParam (like 'uint32*')
-function prepare_windef_ref(ww: WM.WinData, macroSrc: Map<string, string>): WM.WinData {
+function prepare_windef_ref(ww: WM.DataTypes, macroSrc: Map<string, string>): WM.DataTypes {
   const map = <Map<string, string>> new Map()
 
   // first loop paser keys which exists in macroSrc
@@ -119,7 +119,7 @@ function prepare_windef_ref(ww: WM.WinData, macroSrc: Map<string, string>): WM.W
     value && windefSet.has(value) && map.set(x, value)
   }
 
-  const ret = <WM.WinData> {}
+  const ret = <WM.DataTypes> {}
 
   map.forEach((v, k) => {
     ret[k] = v
@@ -128,8 +128,8 @@ function prepare_windef_ref(ww: WM.WinData, macroSrc: Map<string, string>): WM.W
 }
 
 // filter windef by Conf.windefSkipKeys, output only need key/value
-function clone_filter_windef(windef: WM.Windef): WM.WinData {
-  const ret = <WM.WinData> {}
+function clone_filter_windef(windef: WM.Windef): WM.DataTypes {
+  const ret = <WM.DataTypes> {}
 
   for (const x of Object.keys(windef)) {
     if (windefSkipKeys.has(x)) {   // macroMap
@@ -155,7 +155,7 @@ function parse_settings(settings?: WM.LoadSettings): WM.LoadSettings {
   return st
 }
 
-function retrieve_ref_value(ww: WM.WinData, key: string, srcMap: Map<string, string>): string {
+function retrieve_ref_value(ww: WM.DataTypes, key: string, srcMap: Map<string, string>): string {
   const mapValue = srcMap.get(key)
 
   if (mapValue) {

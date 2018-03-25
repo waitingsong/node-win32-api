@@ -55,7 +55,8 @@ export type MacroMap = Map<string, MacroDef>  // <'PVOID', ['_WIN64_HOLDER', 'in
 export type _WIN64 = boolean
 export type _UNICODE = boolean
 
-export interface WinData {
+// windows data types
+export interface DataTypes {
   [prop: string]: FFIParam
 }
 export interface Windef {
