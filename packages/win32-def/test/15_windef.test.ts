@@ -5,7 +5,6 @@ import rewire = require('rewire')
 
 import { settingsDefault } from '../src/lib/config'
 import {
-  DataTypes,
   FFIParam,
   LoadSettings,
   MacroDef,
