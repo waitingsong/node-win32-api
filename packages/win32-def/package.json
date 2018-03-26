@@ -43,9 +43,7 @@
     ],
     "all": true
   },
-  "dependencies": {
-    "typescript": "^2.7.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/mocha": "^5.0.0",
     "@types/node": "^9.4.7",
@@ -66,12 +64,13 @@
     "source-map-support": "^0.5.4",
     "ts-node": "^5.0.1",
     "tslint": "^5.9.1",
-    "tslint-eslint-rules": "^5.1.0"
+    "tslint-eslint-rules": "^5.1.0",
+    "typescript": "^2.7.2"
   },
   "scripts": {
     "bp:add": "git remote add bp https://github.com/waitingsong/npm-base",
-    "bp:sync": "git fetch bp && git pull --no-edit bp master && git push",
-    "build": "npm run clean && npm run lint && npm run tsc && npm run jslint",
+    "bp:sync": "git fetch bp && git pull --no-edit bp master",
+    "build": "npm run clean && npm run lint && npm run lint:t && npm run tsc && npm run jslint",
     "clean": "rm -rf dist/*",
     "cov": "nyc mocha",
     "cov:coveralls": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
@@ -80,7 +79,7 @@
     "lint:t": "tslint --fix -p test/tsconfig.json -t stylish",
     "prepublishOnly": "npm run build",
     "repo:init": "git config --global core.hooksPath ./.githooks && echo It may going for long time. Plese wait... && npm i && ts-node .githooks/init.ts",
-    "test": "npm run lint:t && mocha --opts test/mocha.opts",
+    "test": "mocha --opts test/mocha.opts",
     "tsc": "tsc -p tsconfig.json",
     "tsc:w": "tsc -p tsconfig.json -w"
   }

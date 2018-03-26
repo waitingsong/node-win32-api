@@ -125,7 +125,7 @@ describe(filename, () => {
     const file = `${randomPath}/test`
     const json = { key: random }
     const str = JSON.stringify(json)
-    const opts =  { mode: 0o640 }
+    const opts = { mode: 0o640 }
 
     try {
       await createFile(file, json, opts)
