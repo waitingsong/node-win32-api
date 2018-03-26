@@ -76,7 +76,7 @@ export async function createDir(path: string): Promise<void> {
     throw new Error('value of path param invalid')
   }
   else {
-    path = normalize(path)
+    /* istanbul ignore else */
     if (!await isDirExists(path)) {
       await path.split(sep).reduce(
         async (parentDir, childDir) => {
@@ -88,7 +88,6 @@ export async function createDir(path: string): Promise<void> {
         Promise.resolve(sep)
       )
     }
-
   }
 }
 
@@ -106,12 +105,12 @@ export async function createFile(file: string, data: any, options?: WriteFileOpt
 
   /* istanbul ignore else */
   if (!await isFileExists(file)) {
+    const opts: WriteFileOptions = options ? options : {mode: 0o640}
+
     if (typeof data === 'object') {
       await writeFileAsync(file, JSON.stringify(data))
     }
     else {
-      const opts: WriteFileOptions = options ? options : { mode: 0o640 }
-
       await writeFileAsync(file, data, opts)
     }
   }

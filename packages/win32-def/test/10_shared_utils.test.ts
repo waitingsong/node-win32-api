@@ -1,17 +1,20 @@
 /// <reference types="mocha" />
 
-import { tmpdir } from 'os'
-import { basename, join } from 'path'
 import * as assert from 'power-assert'
 import rewire = require('rewire')
 import * as rmdir from 'rimraf'
 
 import {
+  basename,
   createDir,
   createFile,
   isDirExists,
   isFileExists,
+  isPathAcessible,
+  join,
   readFileAsync,
+  tmpdir,
+  unlinkAsync,
 } from '../src/shared/index'
 
 const filename = basename(__filename)
@@ -90,7 +93,6 @@ describe(filename, () => {
     }
   })
 
-
   it('Should createFile() works', async () => {
     const random = Math.random()
     const randomPath = `${tmpDir}/${pathPrefix}-${random}`
@@ -110,6 +112,37 @@ describe(filename, () => {
     try {
       const ret = (await readFileAsync(file)).toString('utf8')
       assert(ret === String(random), `content not equal. write:"${random}", read: "${ret}"`)
+    }
+    catch (ex) {
+      assert(false, ex)
+    }
+
+    rmdir(randomPath, err => err && console.error(err))
+  })
+
+  it('Should createFile() works with options', async () => {
+    const random = Math.random()
+    const randomPath = `${tmpDir}/${pathPrefix}-${random}`
+    const file = `${randomPath}/test`
+    const json = { key: random }
+    const str = JSON.stringify(json)
+    const opts =  { mode: 0o640 }
+
+    try {
+      await createFile(file, json, opts)
+    }
+    catch (ex) {
+      return assert(false, ex)
+    }
+
+    if (! await isFileExists(file)) {
+      return assert(false, `file not exists, path: "${file}"`)
+    }
+
+    try {
+      const ret = (await readFileAsync(file)).toString('utf8')
+
+      assert(ret === str, `content not equal. write:"${str}", read: "${ret}"`)
     }
     catch (ex) {
       assert(false, ex)
@@ -189,5 +222,40 @@ describe(filename, () => {
     }
   })
 
+})
 
+
+describe(filename + ' :isPathAcessible()', () => {
+  after(done => {
+    rmdir(tmpDir, err => err && console.error(err) || done())
+  })
+
+  const fnName = 'isPathAcessible'
+
+  it(`Should ${fnName}() works`, async () => {
+    const dir = tmpdir()
+
+    assert(isPathAcessible(dir), `sytem temp path should accessible: "${dir}"`)
+  })
+
+  it(`Should ${fnName}() works with invalid value`, async () => {
+    const dir = join(tmpDir, Math.random().toString())
+
+    if (await isPathAcessible('')) {
+      return assert(false, 'should return false with blank path')
+    }
+
+    if (await isPathAcessible(dir)) {
+      return assert(false, `path should not accessible: "${dir}"`)
+    }
+
+    if (await isPathAcessible(dir)) {
+      return assert(false, `path should not accessible: "${dir}"`)
+    }
+
+    await createDir(dir)
+    if (! await isPathAcessible(dir)) {
+      return assert(false, `path should accessible: "${dir}"`)
+    }
+  })
 })
