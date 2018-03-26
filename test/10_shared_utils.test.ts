@@ -1,17 +1,20 @@
 /// <reference types="mocha" />
 
-import { tmpdir } from 'os'
-import { basename, join } from 'path'
 import * as assert from 'power-assert'
 import rewire = require('rewire')
 import * as rmdir from 'rimraf'
 
 import {
+  basename,
   createDir,
   createFile,
   isDirExists,
   isFileExists,
+  isPathAcessible,
+  join,
   readFileAsync,
+  tmpdir,
+  unlinkAsync,
 } from '../src/shared/index'
 
 const filename = basename(__filename)
@@ -189,5 +192,40 @@ describe(filename, () => {
     }
   })
 
+})
 
+
+describe(filename + ' :isPathAcessible()', () => {
+  after(done => {
+    rmdir(tmpDir, err => err && console.error(err) || done())
+  })
+
+  const fnName = 'isPathAcessible'
+
+  it(`Should ${fnName}() works`, async () => {
+    const dir = tmpdir()
+
+    assert(isPathAcessible(dir), `sytem temp path should accessible: "${dir}"`)
+  })
+
+  it(`Should ${fnName}() works with invalid value`, async () => {
+    const dir = join(tmpDir, Math.random().toString())
+
+    if (await isPathAcessible('')) {
+      return assert(false, 'should return false with blank path')
+    }
+
+    if (await isPathAcessible(dir)) {
+      return assert(false, `path should not accessible: "${dir}"`)
+    }
+
+    if (await isPathAcessible(dir)) {
+      return assert(false, `path should not accessible: "${dir}"`)
+    }
+
+    await createDir(dir)
+    if (! await isPathAcessible(dir)) {
+      return assert(false, `path should accessible: "${dir}"`)
+    }
+  })
 })
