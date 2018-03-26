@@ -105,12 +105,12 @@ export async function createFile(file: string, data: any, options?: WriteFileOpt
 
   /* istanbul ignore else */
   if (!await isFileExists(file)) {
+    const opts: WriteFileOptions = options ? options : {mode: 0o640}
+
     if (typeof data === 'object') {
       await writeFileAsync(file, JSON.stringify(data))
     }
     else {
-      const opts: WriteFileOptions = options ? options : { mode: 0o640 }
-
       await writeFileAsync(file, data, opts)
     }
   }

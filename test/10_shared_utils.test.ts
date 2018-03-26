@@ -93,7 +93,6 @@ describe(filename, () => {
     }
   })
 
-
   it('Should createFile() works', async () => {
     const random = Math.random()
     const randomPath = `${tmpDir}/${pathPrefix}-${random}`
@@ -113,6 +112,37 @@ describe(filename, () => {
     try {
       const ret = (await readFileAsync(file)).toString('utf8')
       assert(ret === String(random), `content not equal. write:"${random}", read: "${ret}"`)
+    }
+    catch (ex) {
+      assert(false, ex)
+    }
+
+    rmdir(randomPath, err => err && console.error(err))
+  })
+
+  it('Should createFile() works with options', async () => {
+    const random = Math.random()
+    const randomPath = `${tmpDir}/${pathPrefix}-${random}`
+    const file = `${randomPath}/test`
+    const json = { key: random }
+    const str = JSON.stringify(json)
+    const opts =  { mode: 0o640 }
+
+    try {
+      await createFile(file, json, opts)
+    }
+    catch (ex) {
+      return assert(false, ex)
+    }
+
+    if (! await isFileExists(file)) {
+      return assert(false, `file not exists, path: "${file}"`)
+    }
+
+    try {
+      const ret = (await readFileAsync(file)).toString('utf8')
+
+      assert(ret === str, `content not equal. write:"${str}", read: "${ret}"`)
     }
     catch (ex) {
       assert(false, ex)
