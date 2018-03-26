@@ -76,7 +76,7 @@ export async function createDir(path: string): Promise<void> {
     throw new Error('value of path param invalid')
   }
   else {
-    path = normalize(path)
+    /* istanbul ignore else */
     if (!await isDirExists(path)) {
       await path.split(sep).reduce(
         async (parentDir, childDir) => {
@@ -88,7 +88,6 @@ export async function createDir(path: string): Promise<void> {
         Promise.resolve(sep)
       )
     }
-
   }
 }
 
