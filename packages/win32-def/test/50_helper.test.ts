@@ -311,6 +311,46 @@ describe(filename + ' :parse_windef()', () => {
     }
 
   })
-
 })
 
+// validDataDef(str: string, srcSet: Set<string>): void {
+describe(filename + ' :validDataDef()', () => {
+  const fnName = 'validDataDef()'
+
+  it(`Should ${fnName} works)`, () => {
+    const srcMap = new Set(['int'])
+
+    try {
+      H.validDataDef('int', srcMap)
+      assert(true)
+    }
+    catch (ex) {
+      return assert(false, 'should passed, but throw error')
+    }
+
+    try {
+      H.validDataDef('float', srcMap)
+      return assert(false, 'should throw error with invalid value, but NOT')
+    }
+    catch (ex) {
+      assert(true)
+    }
+
+    try {
+      H.validDataDef('', srcMap)
+      return assert(false, 'should throw error with blank string, but NOT')
+    }
+    catch (ex) {
+      assert(true)
+    }
+
+    try {
+      H.validDataDef('int', new Set())
+      return assert(false, 'should throw error with blank Set, but NOT')
+    }
+    catch (ex) {
+      assert(true)
+    }
+
+  })
+})

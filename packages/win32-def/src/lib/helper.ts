@@ -190,7 +190,6 @@ function retrieve_ref_value(ww: DataTypes, key: string, srcMap: Map<string, stri
 
 // valid parsed value exists in windefSet
 export function validDataDef(str: string, srcSet: Set<string>): void {
-  /* istanbul ignore next */
   if (! str || typeof str !== 'string') {
     throw new Error(`value of param invalid: ${str}`)
   }
