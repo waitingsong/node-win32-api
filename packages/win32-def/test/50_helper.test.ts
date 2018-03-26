@@ -13,6 +13,7 @@ import {
   FFIParam,
   LoadSettings,
   MacroDef,
+  MacroMap,
 } from '../src/lib/ffi.model'
 import * as H from '../src/lib/helper'
 import { macroMap } from '../src/lib/marcomap'
@@ -81,11 +82,11 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
   })
 
   it(`Should ${fnName} handle invalid length of param correctly)`, () => {
-    const LPTSTR: MacroDef = [_UNICODE_HOLDER, WD.LPWSTR]
+    const LPTSTR = [_UNICODE_HOLDER, WD.LPWSTR]
     const st = { ...settingsDefault }
 
     try {
-      fn(LPTSTR, { ...st, _UNICODE: true })
+      fn(<[string, string, string]> LPTSTR, { ...st, _UNICODE: true })
       assert(false, 'shout throw error but NOT')
     }
     catch (ex) {
@@ -237,13 +238,13 @@ describe(filename + ' :parse_windef()', () => {
     const v32 = '_v32'
 
     W[keyArch] = _WIN64_HOLDER
-    W.macroMap = <MacroMap> new Map([
+    let map = <MacroMap> new Map([
       [keyArch, [_WIN64_HOLDER, v64, v32] ],
     ])
 
     let _WIN64 = true
     try {
-      H.parse_windef(W, macroMap, { ...settingsDefault, _WIN64 })
+      H.parse_windef(W, map, { ...settingsDefault, _WIN64 })
       assert(false, 'should throw error by validDataDef() BUT not')
     }
     catch (ex) {
@@ -252,7 +253,7 @@ describe(filename + ' :parse_windef()', () => {
 
     _WIN64 = false
     try {
-      H.parse_windef(W, macroMap, { ...settingsDefault, _WIN64 })
+      H.parse_windef(W, map, { ...settingsDefault, _WIN64 })
       assert(false, 'should throw error by validDataDef() BUT not')
     }
     catch (ex) {
@@ -265,13 +266,13 @@ describe(filename + ' :parse_windef()', () => {
 
     delete W[keyArch]
     W[keyUni] = _UNICODE_HOLDER
-    W.macroMap = <MacroMap> new Map([
+    map = <MacroMap> new Map([
       [keyUni, [_UNICODE_HOLDER, uni, ansi] ],
     ])
 
     let _UNICODE = true
     try {
-      H.parse_windef(W, macroMap, { ...settingsDefault, _UNICODE })
+      H.parse_windef(W, map, { ...settingsDefault, _UNICODE })
       assert(false, 'should throw error by validDataDef() BUT not')
     }
     catch (ex) {
@@ -280,7 +281,7 @@ describe(filename + ' :parse_windef()', () => {
 
     _UNICODE = false
     try {
-      H.parse_windef(W, macroMap, { ...settingsDefault, _UNICODE })
+      H.parse_windef(W, map, { ...settingsDefault, _UNICODE })
       assert(false, 'should throw error by validDataDef() BUT not')
     }
     catch (ex) {
