@@ -313,7 +313,6 @@ describe(filename + ' :parse_windef()', () => {
   })
 })
 
-// validDataDef(str: string, srcSet: Set<string>): void {
 describe(filename + ' :validDataDef()', () => {
   const fnName = 'validDataDef()'
 
@@ -347,6 +346,31 @@ describe(filename + ' :validDataDef()', () => {
     try {
       H.validDataDef('int', new Set())
       return assert(false, 'should throw error with blank Set, but NOT')
+    }
+    catch (ex) {
+      assert(true)
+    }
+
+  })
+})
+
+
+describe(filename + ' :prepare_windef_ref()', () => {
+  const fnName = 'prepare_windef_ref'
+  const fn = <(
+    ww: WM.DataTypes,
+    macroSrc: Map<string, string>
+  ) => WM.DataTypes> mods.__get__(fnName)
+
+  it(`Should ${fnName}() works)`, () => {
+    const ww = {FAKE: 'fake'}
+    const macroSrc = <Map<string, string>> new Map()
+
+    macroSrc.set('FAKE', '')
+
+    try {
+      fn(ww, macroSrc)
+      return assert(false, 'should throw error, but NOT')
     }
     catch (ex) {
       assert(true)

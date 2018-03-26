@@ -117,6 +117,9 @@ function prepare_windef_ref(ww: DataTypes, macroSrc: Map<string, string>): DataT
         throw new Error(`value of "${vv}" blank`)
       }
     }
+    else {
+      continue  // not throw error
+    }
   }
   // 2nd loop paser key , maybe value ref other key
   for (const x of Object.keys(ww)) {
