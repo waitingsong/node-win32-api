@@ -15,7 +15,7 @@ import * as windef from './lib/windef'
 
 const DTypes = <typeof windef> parse_windef(windef, macroMap)
 
-export {DModel}
-export {Config}
-export {DStruct}
-export {DTypes}
+export { DModel }
+export { Config }
+export { DStruct }
+export { DTypes }

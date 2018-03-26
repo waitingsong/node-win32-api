@@ -39,7 +39,7 @@ describe(filename, () => {
 })
 
 function test_arch(types64_32: Set<string>) {
-  const st = {...settingsDefault, _UNICODE: true, _WIN64: true}
+  const st = { ...settingsDefault, _UNICODE: true, _WIN64: true }
 
   st._WIN64 = false
   _test_arch(types64_32, st)
@@ -61,7 +61,7 @@ function test_arch(types64_32: Set<string>) {
 }
 
 function _test_arch(types64_32: Set<string>, settings: WM.LoadSettings) {
-  const W = H.parse_windef(WD, macroMap, {...settings})
+  const W = H.parse_windef(WD, macroMap, { ...settings })
 
   for (const vv of types64_32) {
     // convert param like '_WIN64_HOLDER_' to 'int64' or 'int32'
@@ -83,22 +83,22 @@ function _test_arch(types64_32: Set<string>, settings: WM.LoadSettings) {
 }
 
 function test_arch_half(values: Set<string>) {
-  const st = {...settingsDefault, _UNICODE: true, _WIN64: true}
+  const st = { ...settingsDefault, _UNICODE: true, _WIN64: true }
 
   for (const k of Object.keys(st)) {
     if (st[k]) {
-      _test_arch_half(values, {...st, [k]: !st[k]})
+      _test_arch_half(values, { ...st, [k]: !st[k] })
     }
   }
   for (const k of Object.keys(st)) {
     if (!st[k]) {
-      _test_arch_half(values, {...st, [k]: !st[k]})
+      _test_arch_half(values, { ...st, [k]: !st[k] })
     }
   }
 }
 
 function _test_arch_half(typesHalf: Set<string>, settings: WM.LoadSettings) {
-  const W = H.parse_windef(WD, macroMap, {...settings})
+  const W = H.parse_windef(WD, macroMap, { ...settings })
   const fnName = 'parse_param_placeholder'
   const fn = <(
     param: WM.FFIParam | WM.MacroDef,
@@ -142,7 +142,7 @@ describe(filename, () => {
 })
 
 function unicode(_UNICODE: boolean, typesUnicode: Set<string>) {
-  const W = H.parse_windef(WD, macroMap, {...settingsDefault, _UNICODE})
+  const W = H.parse_windef(WD, macroMap, { ...settingsDefault, _UNICODE })
 
   for (const vv of typesUnicode) {
     const param = W[vv]

@@ -25,7 +25,7 @@ describe(filename + ' :parse_windef()', () => {
 
   // at lastest
   it(`Should ${fnName} process windef correctly)`, () => {
-    const windata = H.parse_windef(WD, macroMap, {...settingsDefault})
+    const windata = H.parse_windef(WD, macroMap, { ...settingsDefault })
     const lenData = Object.keys(windata).length
     const lenRet = Object.keys(DTypes).length
 

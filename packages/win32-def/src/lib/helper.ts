@@ -159,7 +159,7 @@ function clone_filter_windef(windef: DataTypes): DataTypes {
 }
 
 function parse_settings(settings?: LoadSettings): LoadSettings {
-  const st: LoadSettings = {...settingsDefault}
+  const st: LoadSettings = { ...settingsDefault }
 
   if (typeof settings !== 'undefined' && settings && Object.keys(settings).length) {
     Object.assign(st, settings)

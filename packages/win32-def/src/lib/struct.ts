@@ -85,4 +85,4 @@ export const RECT = {
   right: W.LONG,
   bottom: W.LONG,
 }
-export {RECT as _RECT}
+export { RECT as _RECT }

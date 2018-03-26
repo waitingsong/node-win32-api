@@ -14,7 +14,6 @@ import {
   join,
   readFileAsync,
   tmpdir,
-  unlinkAsync,
 } from '../src/shared/index'
 
 const filename = basename(__filename)
