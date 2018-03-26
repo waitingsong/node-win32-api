@@ -17,9 +17,7 @@ import {
 // convert macro variable of windef
 export function parse_windef(windefObj: DataTypes, macroMap: MacroMap, settings?: LoadSettings): DataTypes {
   const ww = clone_filter_windef(windefObj) // output without macroMap
-  const macroSrc = macroMap && typeof macroMap === 'object'
-    ? prepare_macro(macroMap, settings)
-    : new Map()
+  const macroSrc = prepare_macro(macroMap, settings)
 
   return prepare_windef_ref(ww, macroSrc)
 }
