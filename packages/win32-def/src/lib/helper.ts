@@ -5,11 +5,17 @@ import {
   _UNICODE_HOLDER,
   _WIN64_HOLDER,
 } from './config'
-import * as WM from './model'
+import {
+  DataTypes,
+  FFIParam,
+  LoadSettings,
+  MacroDef,
+  MacroMap,
+} from './model'
 
 
 // convert macro variable of windef
-export function parse_windef(windefObj: WM.DataTypes, macroMap: WM.MacroMap, settings?: WM.LoadSettings): WM.DataTypes {
+export function parse_windef(windefObj: DataTypes, macroMap: MacroMap, settings?: LoadSettings): DataTypes {
   const ww = clone_filter_windef(windefObj) // output without macroMap
   const macroSrc = macroMap && typeof macroMap === 'object'
     ? prepare_macro(macroMap, settings)
@@ -23,7 +29,7 @@ export function parse_windef(windefObj: WM.DataTypes, macroMap: WM.MacroMap, set
  * convert typeof array of param to string
  * such like ['_WIN64_HOLDER_', 'int64', 'int32'], no changed returning when string
  */
-function parse_param_placeholder(param: WM.FFIParam | WM.MacroDef, settings?: WM.LoadSettings): WM.FFIParam {
+function parse_param_placeholder(param: FFIParam | MacroDef, settings?: LoadSettings): FFIParam {
   if (typeof param === 'string') {
     return param
   }
@@ -35,7 +41,7 @@ function parse_param_placeholder(param: WM.FFIParam | WM.MacroDef, settings?: WM
   }
 
   const st = parse_settings(settings)
-  let p: WM.FFIParam = ''
+  let p: FFIParam = ''
 
   switch (param[0]) {
     case _WIN64_HOLDER:
@@ -53,7 +59,7 @@ function parse_param_placeholder(param: WM.FFIParam | WM.MacroDef, settings?: WM
 
 
 // convert param like ['_WIN64_HOLDER_', 'int64', 'int32] to 'int64' or 'int32'
-function parse_placeholder_arch(param: WM.FFIParam | WM.MacroDef, _WIN64: boolean): WM.FFIParam {
+function parse_placeholder_arch(param: FFIParam | MacroDef, _WIN64: boolean): FFIParam {
   if (typeof param === 'string') {
     return param
   }
@@ -65,7 +71,7 @@ function parse_placeholder_arch(param: WM.FFIParam | WM.MacroDef, _WIN64: boolea
 }
 
 // convert param like ['_UNICODE_HOLDER_', 'uint16*', 'uint8*'] to 'uint16*' or 'uint8*'
-function parse_placeholder_unicode(param: WM.FFIParam | WM.MacroDef, _UNICODE: boolean): WM.FFIParam {
+function parse_placeholder_unicode(param: FFIParam | MacroDef, _UNICODE: boolean): FFIParam {
   if (typeof param === 'string') {
     return param
   }
@@ -80,8 +86,8 @@ function parse_placeholder_unicode(param: WM.FFIParam | WM.MacroDef, _UNICODE: b
  * parse ['_WIN64_HOLDER', 'int64*', 'int32*'] to 'int64*' or 'int32'
  * or ['_UNICODE_HOLDER_', 'uint16*', 'uint8*'] to 'uint16*' or 'uint8*'
  */
-function prepare_macro(macroMap: WM.MacroMap, settings?: WM.LoadSettings): Map<string, WM.FFIParam> {
-  const ret = <Map<string, WM.FFIParam>> new Map()
+function prepare_macro(macroMap: MacroMap, settings?: LoadSettings): Map<string, FFIParam> {
+  const ret = <Map<string, FFIParam>> new Map()
 
   // v string|array
   for (const [k, v] of macroMap.entries()) {
@@ -91,7 +97,7 @@ function prepare_macro(macroMap: WM.MacroMap, settings?: WM.LoadSettings): Map<s
 }
 
 // parse const HANDLE = 'PVOID' to the realy FFIParam (like 'uint32*')
-function prepare_windef_ref(ww: WM.DataTypes, macroSrc: Map<string, string>): WM.DataTypes {
+function prepare_windef_ref(ww: DataTypes, macroSrc: Map<string, string>): DataTypes {
   const map = <Map<string, string>> new Map()
 
   // first loop paser keys which exists in macroSrc
@@ -123,7 +129,7 @@ function prepare_windef_ref(ww: WM.DataTypes, macroSrc: Map<string, string>): WM
     value && windefSet.has(value) && map.set(x, value)
   }
 
-  const ret = <WM.DataTypes> {}
+  const ret = <DataTypes> {}
 
   map.forEach((v, k) => {
     ret[k] = v
@@ -131,13 +137,13 @@ function prepare_windef_ref(ww: WM.DataTypes, macroSrc: Map<string, string>): WM
   return ret
 }
 
-function clone_filter_windef(windef: WM.DataTypes): WM.DataTypes {
-  const ret = <WM.DataTypes> {}
+function clone_filter_windef(windef: DataTypes): DataTypes {
+  const ret = <DataTypes> {}
 
   for (const x of Object.keys(windef)) {
     if (typeof windef[x] === 'string') {
       Object.defineProperty(ret, <string> x, {
-        value: <WM.FFIParam> windef[x],
+        value: <FFIParam> windef[x],
         writable: true,
         enumerable: true,
         configurable: true,
@@ -151,8 +157,8 @@ function clone_filter_windef(windef: WM.DataTypes): WM.DataTypes {
   return ret
 }
 
-function parse_settings(settings?: WM.LoadSettings): WM.LoadSettings {
-  const st: WM.LoadSettings = {...settingsDefault}
+function parse_settings(settings?: LoadSettings): LoadSettings {
+  const st: LoadSettings = {...settingsDefault}
 
   if (typeof settings !== 'undefined' && settings && Object.keys(settings).length) {
     Object.assign(st, settings)
@@ -160,7 +166,7 @@ function parse_settings(settings?: WM.LoadSettings): WM.LoadSettings {
   return st
 }
 
-function retrieve_ref_value(ww: WM.DataTypes, key: string, srcMap: Map<string, string>): string {
+function retrieve_ref_value(ww: DataTypes, key: string, srcMap: Map<string, string>): string {
   const mapValue = srcMap.get(key)
 
   if (mapValue) {
