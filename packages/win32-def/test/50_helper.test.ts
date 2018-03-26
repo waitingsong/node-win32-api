@@ -75,6 +75,33 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
     assert(str2 === LPTSTR[2], `result should be "${LPTSTR[2]}", got ${str2}`)
   })
 
+  it(`Should ${fnName} handle invalid length of param correctly)`, () => {
+    const LPTSTR: WM.MacroDef = [_UNICODE_HOLDER, WD.LPWSTR]
+    const st = {...settingsDefault}
+
+    try {
+      fn(LPTSTR, {...st, _UNICODE: true})
+      assert(false, 'shout throw error but NOT')
+    }
+    catch (ex) {
+      assert(true)
+    }
+  })
+
+  it(`Should ${fnName} handle blank of param correctly)`, () => {
+    const LPTSTR = ''
+    const st = {...settingsDefault}
+
+    try {
+      fn(LPTSTR, {...st, _UNICODE: true})
+      assert(false, 'shout throw error but NOT')
+    }
+    catch (ex) {
+      assert(true)
+    }
+  })
+
+
 })
 
 
