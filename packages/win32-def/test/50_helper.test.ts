@@ -10,7 +10,7 @@ import {
 } from '../src/lib/config'
 import {
   DataTypes,
-  FFIParam,
+  FnParam,
   LoadSettings,
   MacroDef,
   MacroMap,
@@ -31,9 +31,9 @@ const mods = rewire('../src/lib/helper')
 describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
   const fnName = 'parse_param_placeholder'
   const fn = <(
-    param: FFIParam | MacroDef,
+    param: FnParam | MacroDef,
     settings?: LoadSettings
-  ) => FFIParam> mods.__get__(fnName)
+  ) => FnParam> mods.__get__(fnName)
 
   it(`Should ${fnName} handle value of settings correctly)`, () => {
     const st = <LoadSettings> { ...settingsDefault }
@@ -114,9 +114,9 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
 describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
   const fnName = 'parse_placeholder_arch'
   const fn = <(
-    param: FFIParam | MacroDef,
+    param: FnParam | MacroDef,
     _WIN64: boolean
-  ) => FFIParam> mods.__get__(fnName)
+  ) => FnParam> mods.__get__(fnName)
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
     const p: any = 'test'
@@ -152,9 +152,9 @@ describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
 describe(filename + ' :parse_placeholder_unicode(param, _WIN64)', () => {
   const fnName = 'parse_placeholder_unicode'
   const fn = <(
-    param: FFIParam | MacroDef,
+    param: FnParam | MacroDef,
     _UNICODE: boolean
-  ) => FFIParam> mods.__get__(fnName)
+  ) => FnParam> mods.__get__(fnName)
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
     const p: any = 'test'

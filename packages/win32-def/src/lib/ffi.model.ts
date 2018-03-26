@@ -8,7 +8,7 @@ export type _UNICODE = boolean
 
 // windows data types
 export interface DataTypes {
-  [prop: string]: FFIParam
+  [prop: string]: FnParam
 }
 
 export interface LoadSettings {
@@ -56,9 +56,9 @@ export type PID = number
 export type PPID = number
 
 export type FnName = string
-export type FFIParam = string  // param type for definition of FFI
-export type FnRetType = FFIParam
-export type FnCallParam = FFIParam   // each param of calling function
+export type FnParam = string  // param type for definition of FFI
+export type FnRetType = FnParam
+export type FnCallParam = FnParam   // each param of calling function
 export type FnCallParams = FnCallParam[] | never[] // calling params
 export type FnParams = [FnRetType, FnCallParams] // def for ffi [returnType, [calling param, ...]]
 export interface DllFuncs {

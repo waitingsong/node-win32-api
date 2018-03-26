@@ -5,7 +5,7 @@ import rewire = require('rewire')
 
 import { settingsDefault } from '../src/lib/config'
 import {
-  FFIParam,
+  FnParam,
   LoadSettings,
   MacroDef,
 } from '../src/lib/ffi.model'
@@ -105,9 +105,9 @@ function _test_arch_half(typesHalf: Set<string>, settings: LoadSettings) {
   const W = H.parse_windef(WD, macroMap, { ...settings })
   const fnName = 'parse_param_placeholder'
   const fn = <(
-    param: FFIParam | MacroDef,
+    param: FnParam | MacroDef,
     settings?: LoadSettings
-  ) => FFIParam> mods.__get__(fnName)
+  ) => FnParam> mods.__get__(fnName)
 
 
   for (const vv of typesHalf) {

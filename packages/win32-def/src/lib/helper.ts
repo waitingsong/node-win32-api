@@ -7,7 +7,7 @@ import {
 } from './config'
 import {
   DataTypes,
-  FFIParam,
+  FnParam,
   LoadSettings,
   MacroDef,
   MacroMap,
@@ -27,7 +27,7 @@ export function parse_windef(windefObj: DataTypes, macroMap: MacroMap, settings?
  * convert typeof array of param to string
  * such like ['_WIN64_HOLDER_', 'int64', 'int32'], no changed returning when string
  */
-function parse_param_placeholder(param: FFIParam | MacroDef, settings?: LoadSettings): FFIParam {
+function parse_param_placeholder(param: FnParam | MacroDef, settings?: LoadSettings): FnParam {
   if (typeof param === 'string') {
     return param
   }
@@ -39,7 +39,7 @@ function parse_param_placeholder(param: FFIParam | MacroDef, settings?: LoadSett
   }
 
   const st = parse_settings(settings)
-  let p: FFIParam = ''
+  let p: FnParam = ''
 
   switch (param[0]) {
     case _WIN64_HOLDER:
@@ -57,7 +57,7 @@ function parse_param_placeholder(param: FFIParam | MacroDef, settings?: LoadSett
 
 
 // convert param like ['_WIN64_HOLDER_', 'int64', 'int32] to 'int64' or 'int32'
-function parse_placeholder_arch(param: FFIParam | MacroDef, _WIN64: boolean): FFIParam {
+function parse_placeholder_arch(param: FnParam | MacroDef, _WIN64: boolean): FnParam {
   if (typeof param === 'string') {
     return param
   }
@@ -69,7 +69,7 @@ function parse_placeholder_arch(param: FFIParam | MacroDef, _WIN64: boolean): FF
 }
 
 // convert param like ['_UNICODE_HOLDER_', 'uint16*', 'uint8*'] to 'uint16*' or 'uint8*'
-function parse_placeholder_unicode(param: FFIParam | MacroDef, _UNICODE: boolean): FFIParam {
+function parse_placeholder_unicode(param: FnParam | MacroDef, _UNICODE: boolean): FnParam {
   if (typeof param === 'string') {
     return param
   }
@@ -84,8 +84,8 @@ function parse_placeholder_unicode(param: FFIParam | MacroDef, _UNICODE: boolean
  * parse ['_WIN64_HOLDER', 'int64*', 'int32*'] to 'int64*' or 'int32'
  * or ['_UNICODE_HOLDER_', 'uint16*', 'uint8*'] to 'uint16*' or 'uint8*'
  */
-function prepare_macro(macroMap: MacroMap, settings?: LoadSettings): Map<string, FFIParam> {
-  const ret = <Map<string, FFIParam>> new Map()
+function prepare_macro(macroMap: MacroMap, settings?: LoadSettings): Map<string, FnParam> {
+  const ret = <Map<string, FnParam>> new Map()
 
   // v string|array
   for (const [k, v] of macroMap.entries()) {
@@ -144,7 +144,7 @@ function clone_filter_windef(windef: DataTypes): DataTypes {
   for (const x of Object.keys(windef)) {
     if (typeof windef[x] === 'string') {
       Object.defineProperty(ret, <string> x, {
-        value: <FFIParam> windef[x],
+        value: <FnParam> windef[x],
         writable: true,
         enumerable: true,
         configurable: true,
