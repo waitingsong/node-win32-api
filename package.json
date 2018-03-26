@@ -60,7 +60,8 @@
     "rimraf": "^2.6.2",
     "source-map-support": "^0.5.4",
     "ts-node": "^5.0.1",
-    "tslint": "^5.9.1"
+    "tslint": "^5.9.1",
+    "tslint-eslint-rules": "^5.1.0"
   },
   "scripts": {
     "bp:add": "git remote add bp https://github.com/waitingsong/npm-base",
