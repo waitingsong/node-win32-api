@@ -2,7 +2,7 @@ import {
   _UNICODE_HOLDER,
   _WIN64_HOLDER,
 } from './config'
-import { MacroMap } from './model'
+import { MacroMap } from './ffi.model'
 import {
   LPCSTR,
   LPCWSTR,

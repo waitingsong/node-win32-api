@@ -1,6 +1,6 @@
 // dict of windef value
 
-import { LoadSettings } from './model'
+import { LoadSettings } from './ffi.model'
 
 export const _WIN64_HOLDER = '_WIN64_HOLDER_'
 export const _UNICODE_HOLDER = '_UNICODE_HOLDER_'

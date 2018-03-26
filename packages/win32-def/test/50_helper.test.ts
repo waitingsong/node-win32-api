@@ -8,9 +8,14 @@ import {
   _UNICODE_HOLDER,
   _WIN64_HOLDER,
 } from '../src/lib/config'
+import {
+  DataTypes,
+  FFIParam,
+  LoadSettings,
+  MacroDef,
+} from '../src/lib/ffi.model'
 import * as H from '../src/lib/helper'
 import { macroMap } from '../src/lib/marcomap'
-import * as WM from '../src/lib/model'
 import * as WD from '../src/lib/windef'
 import {
   basename,
@@ -25,12 +30,12 @@ const mods = rewire('../src/lib/helper')
 describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
   const fnName = 'parse_param_placeholder'
   const fn = <(
-    param: WM.FFIParam | WM.MacroDef,
-    settings?: WM.LoadSettings
-  ) => WM.FFIParam> mods.__get__(fnName)
+    param: FFIParam | MacroDef,
+    settings?: LoadSettings
+  ) => FFIParam> mods.__get__(fnName)
 
   it(`Should ${fnName} handle value of settings correctly)`, () => {
-    const st = <WM.LoadSettings> { ...settingsDefault }
+    const st = <LoadSettings> { ...settingsDefault }
     try {
       const p: any = null
       fn(p, st)
@@ -42,9 +47,9 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
   })
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
-    const st = <WM.LoadSettings> { ...settingsDefault }
+    const st = <LoadSettings> { ...settingsDefault }
     try {
-      const p: WM.MacroDef = ['invalid_placeholder', 'int64', 'int32']
+      const p: MacroDef = ['invalid_placeholder', 'int64', 'int32']
       fn(p, st)
       assert(false, 'should throw Error by invalid param, but not')
     }
@@ -56,7 +61,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
   it(`Should ${fnName} handle value of settings for arch of nodejs correctly)`, () => {
     const p1 = 'debug_int64'
     const p2 = 'debug_int32'
-    const p: WM.MacroDef = [_WIN64_HOLDER, p1, p2]
+    const p: MacroDef = [_WIN64_HOLDER, p1, p2]
     const st = { ...settingsDefault }
     const str1 = fn(p, { ...st, _WIN64: true })
     assert(str1 === p1, `result should be "${p1}", got ${str1}`)
@@ -66,7 +71,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
   })
 
   it(`Should ${fnName} handle value of settings for ANSI/UNICODE correctly)`, () => {
-    const LPTSTR: WM.MacroDef = [_UNICODE_HOLDER, WD.LPWSTR, 'uint8*']
+    const LPTSTR: MacroDef = [_UNICODE_HOLDER, WD.LPWSTR, 'uint8*']
     const st = { ...settingsDefault }
     const str1 = fn(LPTSTR, { ...st, _UNICODE: true })
     assert(str1 === LPTSTR[1], `result should be "${LPTSTR[1]}", got ${str1}`)
@@ -76,7 +81,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
   })
 
   it(`Should ${fnName} handle invalid length of param correctly)`, () => {
-    const LPTSTR: WM.MacroDef = [_UNICODE_HOLDER, WD.LPWSTR]
+    const LPTSTR: MacroDef = [_UNICODE_HOLDER, WD.LPWSTR]
     const st = { ...settingsDefault }
 
     try {
@@ -108,9 +113,9 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
 describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
   const fnName = 'parse_placeholder_arch'
   const fn = <(
-    param: WM.FFIParam | WM.MacroDef,
+    param: FFIParam | MacroDef,
     _WIN64: boolean
-  ) => WM.FFIParam> mods.__get__(fnName)
+  ) => FFIParam> mods.__get__(fnName)
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
     const p: any = 'test'
@@ -146,9 +151,9 @@ describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
 describe(filename + ' :parse_placeholder_unicode(param, _WIN64)', () => {
   const fnName = 'parse_placeholder_unicode'
   const fn = <(
-    param: WM.FFIParam | WM.MacroDef,
+    param: FFIParam | MacroDef,
     _UNICODE: boolean
-  ) => WM.FFIParam> mods.__get__(fnName)
+  ) => FFIParam> mods.__get__(fnName)
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
     const p: any = 'test'
@@ -226,13 +231,13 @@ describe(filename + ' :parse_windef()', () => {
   })
 
   it(`Should ${fnName} process windef macro members correctly)`, () => {
-    const W = <WM.DataTypes> {}
+    const W = <DataTypes> {}
     const keyArch = '__testKeyArch'
     const v64 = '_v64'
     const v32 = '_v32'
 
     W[keyArch] = _WIN64_HOLDER
-    W.macroMap = <WM.MacroMap> new Map([
+    W.macroMap = <MacroMap> new Map([
       [keyArch, [_WIN64_HOLDER, v64, v32] ],
     ])
 
@@ -260,7 +265,7 @@ describe(filename + ' :parse_windef()', () => {
 
     delete W[keyArch]
     W[keyUni] = _UNICODE_HOLDER
-    W.macroMap = <WM.MacroMap> new Map([
+    W.macroMap = <MacroMap> new Map([
       [keyUni, [_UNICODE_HOLDER, uni, ansi] ],
     ])
 
@@ -358,9 +363,9 @@ describe(filename + ' :validDataDef()', () => {
 describe(filename + ' :prepare_windef_ref()', () => {
   const fnName = 'prepare_windef_ref'
   const fn = <(
-    ww: WM.DataTypes,
+    ww: DataTypes,
     macroSrc: Map<string, string>
-  ) => WM.DataTypes> mods.__get__(fnName)
+  ) => DataTypes> mods.__get__(fnName)
 
   it(`Should ${fnName}() works)`, () => {
     const ww = { FAKE: 'fake' }

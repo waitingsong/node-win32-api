@@ -4,9 +4,14 @@ import * as assert from 'power-assert'
 import rewire = require('rewire')
 
 import { settingsDefault } from '../src/lib/config'
+import {
+  DataTypes,
+  FFIParam,
+  LoadSettings,
+  MacroDef,
+} from '../src/lib/ffi.model'
 import * as H from '../src/lib/helper'
 import { macroMap } from '../src/lib/marcomap'
-import * as WM from '../src/lib/model'
 import * as WD from '../src/lib/windef'
 import {
   basename, logger,
@@ -60,7 +65,7 @@ function test_arch(types64_32: Set<string>) {
   // }
 }
 
-function _test_arch(types64_32: Set<string>, settings: WM.LoadSettings) {
+function _test_arch(types64_32: Set<string>, settings: LoadSettings) {
   const W = H.parse_windef(WD, macroMap, { ...settings })
 
   for (const vv of types64_32) {
@@ -97,13 +102,13 @@ function test_arch_half(values: Set<string>) {
   }
 }
 
-function _test_arch_half(typesHalf: Set<string>, settings: WM.LoadSettings) {
+function _test_arch_half(typesHalf: Set<string>, settings: LoadSettings) {
   const W = H.parse_windef(WD, macroMap, { ...settings })
   const fnName = 'parse_param_placeholder'
   const fn = <(
-    param: WM.FFIParam | WM.MacroDef,
-    settings?: WM.LoadSettings
-  ) => WM.FFIParam> mods.__get__(fnName)
+    param: FFIParam | MacroDef,
+    settings?: LoadSettings
+  ) => FFIParam> mods.__get__(fnName)
 
 
   for (const vv of typesHalf) {

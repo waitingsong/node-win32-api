@@ -7,10 +7,11 @@
  */
 
 import * as Config from './lib/config'
+import * as FModel from './lib/ffi.model'
 import { parse_windef } from './lib/helper'
 import { macroMap } from './lib/marcomap'
-import * as DModel from './lib/model'
 import * as DStruct from './lib/struct'
+import * as DModel from './lib/win.model'
 import * as windef from './lib/windef'
 
 const DTypes = <typeof windef> parse_windef(windef, macroMap)
@@ -19,3 +20,4 @@ export { DModel }
 export { Config }
 export { DStruct }
 export { DTypes }
+export { FModel }

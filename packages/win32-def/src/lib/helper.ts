@@ -11,7 +11,7 @@ import {
   LoadSettings,
   MacroDef,
   MacroMap,
-} from './model'
+} from './ffi.model'
 
 
 // convert macro variable of windef
