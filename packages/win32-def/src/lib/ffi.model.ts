@@ -1,4 +1,20 @@
-/*  ---------- data types for TypeScript ----------- */
+// for translation of windef
+export type MacroParam<T> = T | [T, T, T]  // [s,s,s] for conversion of macro windows data like LPCTSTR
+export type MacroDef = [string, string, string]    // ['_WIN64_HOLDER', 'int64*', 'int32*']
+export type MacroMap = Map<string, MacroDef>  // <'PVOID', ['_WIN64_HOLDER', 'int64*', 'int32*']>
+
+export type _WIN64 = boolean
+export type _UNICODE = boolean
+
+// windows data types
+export interface DataTypes {
+  [prop: string]: FFIParam
+}
+
+export interface LoadSettings {
+  _UNICODE?: boolean // default true
+  _WIN64?: boolean   // default from process.arch
+}
 
 
 /**
@@ -47,20 +63,4 @@ export type FnCallParams = FnCallParam[] | never[] // calling params
 export type FnParams = [FnRetType, FnCallParams] // def for ffi [returnType, [calling param, ...]]
 export interface DllFuncs {
   [fn: string]: FnParams
-}
-export type MacroParam<T> = T | [T, T, T]  // [s,s,s] for conversion of macro windows data like LPCTSTR
-export type MacroDef = [string, string, string]    // ['_WIN64_HOLDER', 'int64*', 'int32*']
-export type MacroMap = Map<string, MacroDef>  // <'PVOID', ['_WIN64_HOLDER', 'int64*', 'int32*']>
-
-export type _WIN64 = boolean
-export type _UNICODE = boolean
-
-// windows data types
-export interface DataTypes {
-  [prop: string]: FFIParam
-}
-
-export interface LoadSettings {
-  _UNICODE?: boolean // default true
-  _WIN64?: boolean   // default from process.arch
 }
