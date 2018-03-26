@@ -17,7 +17,7 @@ import * as windef from './lib/windef'
 const DTypes = <typeof windef> parse_windef(windef, macroMap)
 
 export { Config }
-export { FModel }
-export { DModel }
-export { DStruct }
-export { DTypes }
+export { FModel } // ffi model
+export { DModel } // model of window data types
+export { DStruct }  // window data types of structure
+export { DTypes } // window data types
