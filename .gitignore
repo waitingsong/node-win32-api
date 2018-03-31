@@ -1,6 +1,7 @@
 app/**/*.js
 test/**/*.js
 config/**/*.js
+/*.js
 *.map
 *.swp
 *.bak
