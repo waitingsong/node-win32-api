@@ -77,6 +77,7 @@
       "@angular/platform-browser",
       "source-map-support/register"
     ],
+    "no-this-assignment": [true, {"allowed-names": ["^self$"], "allow-destructuring": true}],
     "no-trailing-whitespace": [true, "ignore-comments"],	// 禁用行尾空白 
     "no-unnecessary-initializer": true, // 禁止变量赋值为 undefined 
     "no-unused-expression": [true, "allow-fast-null-checks"],
