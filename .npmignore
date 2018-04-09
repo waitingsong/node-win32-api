@@ -14,3 +14,5 @@ demo/
 test/
 coverage/
 .nyc_output/
+.githooks
+.vscode
