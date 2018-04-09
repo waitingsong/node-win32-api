@@ -5,7 +5,7 @@
     "declaration": true,            /* Generates corresponding '.d.ts' file. */
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "inlineSourceMap": false,
     "module": "commonjs",           /* 'commonjs', 'amd', 'system', 'umd' or 'es2015'. */
     "newLine": "lf",
