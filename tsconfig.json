@@ -27,7 +27,7 @@
     "asset/",
     "dist/",
     "test/",
-    "node_modules",
+    "node_modules*",
     "**/*.d.ts",
     "**/*.spec.ts"
   ]
