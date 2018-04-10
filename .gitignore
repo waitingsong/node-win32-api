@@ -1,7 +1,6 @@
 app/**/*.js
 test/**/*.js
 config/**/*.js
-/*.js
 *.map
 *.swp
 *.bak
@@ -15,6 +14,7 @@ install/
 target/
 build/
 run/
+diff-dump/
 
 dbconfig.json
 
@@ -28,10 +28,15 @@ gen/
 .springBeans/
 workspaces/
 WebRoot/WEB-INF/classes/
-/resource/database.properties
-/resource/webserviceConfig.xml
-/src/config.properties
+resource/database.properties
+resource/webserviceConfig.xml
+src/config.properties
 .buildpath
+.tern-project
+
+
+# for oracle
+*.~pck
 
 
 
