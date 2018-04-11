@@ -103,6 +103,7 @@ export async function createFile(file: string, data: any, options?: WriteFileOpt
   if (! await isDirExists(path)) {
     await createDir(path)
   }
+  file = normalize(path)
 
   /* istanbul ignore else */
   if (!await isFileExists(file)) {
