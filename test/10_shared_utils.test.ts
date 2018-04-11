@@ -82,7 +82,7 @@ describe(filename, () => {
     rmdir(randomPath, err => err && console.error(err))
   })
 
-  it.only('Should createDir() works with odd path', async () => {
+  it('Should createDir() works with odd path', async () => {
     const random = Math.random()
     const randomPath = `${tmpDir}/${pathPrefix}-${random}/.test/0ab`
 
