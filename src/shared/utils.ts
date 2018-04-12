@@ -80,7 +80,7 @@ export async function createDir(path: string): Promise<void> {
     /* istanbul ignore else */
     if (!await isDirExists(path)) {
       await path.split(sep).reduce(
-        async (parentDir, childDir) => {
+        async (parentDir: Promise<string>, childDir: string) => {
           const curDir = pathResolve(await parentDir, childDir)
 
           await isPathAcessible(curDir) || await mkdirAsync(curDir, 0o755)
