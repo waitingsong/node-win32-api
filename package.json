@@ -73,7 +73,7 @@
     "lint": "tslint --fix -p tsconfig.json -t stylish",
     "lint:t": "tslint --fix -p test/tsconfig.json -t stylish",
     "prepublishOnly": "npm run build",
-    "repo:init": "git config --local core.hooksPath ./.githooks && echo It may going for long time. Plese wait... && npm i && ts-node .githooks/init.ts",
+    "repo:init": "git config --local core.hooksPath ./.githooks && git config --local remote.origin.prune true && git config --local remote.origin.tagopt \"--tags\" && git config --local remote.pushdefault origin && echo It may going for a long time. Plese wait... && npm i && ts-node .githooks/init.ts",
     "test": "mocha --opts test/mocha.opts",
     "tsc": "tsc -p tsconfig.json",
     "tsc:w": "tsc -p tsconfig.json -w"
