@@ -142,3 +142,7 @@ export interface WriteFileOptions {
   mode?: number
   flag?: string
 }
+
+export function assertNever(x: never): never {
+  throw new Error('Assert Never Unexpected object: ' + x)
+}
