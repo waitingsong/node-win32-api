@@ -35,6 +35,7 @@ export const writeAsync = promisify(write)
 export const writeFileAsync = promisify(writeFile)
 export {
   basename,
+  dirname,
   join,
   normalize,
   pathResolve,
