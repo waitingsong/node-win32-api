@@ -8,6 +8,7 @@
     "importHelpers": false,
     "inlineSourceMap": false,
     "module": "amd",
+    "moduleResolution": "node",
     "newLine": "lf",
     "noFallthroughCasesInSwitch": true,
     "outDir": "./dist", 
