@@ -66,7 +66,7 @@
   "scripts": {
     "bp:add": "git remote add bp https://github.com/waitingsong/npm-base",
     "bp:sync": "git fetch bp && git pull --no-edit bp master",
-    "build": "npm run clean && npm run lint && npm run lint:t && npm run tsc && npm run jslint && npm run rp",
+    "build": "npm run clean && npm run lint && npm run lint:t && npm run tsc && npm run rp",
     "clean": "rm -rf dist/*",
     "cov": "nyc mocha",
     "cov:coveralls": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
