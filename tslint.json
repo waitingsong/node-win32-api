@@ -20,9 +20,7 @@
     "eofline": true,
     "forin": false,
     "import-blacklist": [
-      true,
-      "rxjs",
-      "rxjs/Rx"
+      true
     ],
     "indent": [true, "spaces", 2],
     "interface-name": [ true, "never-prefix" ],
