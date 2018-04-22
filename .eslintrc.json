@@ -1,17 +1,19 @@
 {
   "env": {
-    "es6": true,
-    "browser": true,
-    "jquery": true,
-    "worker": true,
-    "node": true,
     "amd": true,
+    "browser": true,
     "commonjs": true,
+    "es6": true,
+    "jquery": true,
+    "jest": true,
     "mocha": true,
-    "serviceworker": true
+    "node": true,
+    "serviceworker": true,
+    "worker": true
   },
   "parserOptions": {
-    "ecmaVersion": 8
+    "ecmaVersion": 2018,
+    "sourceType": "module"
   },
   "extends": "eslint:recommended",
   "globals": {

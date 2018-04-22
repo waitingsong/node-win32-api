@@ -7,7 +7,8 @@
   "engines": {
     "node": ">=8.10.0"
   },
-  "main": "./dist/index.js",
+  "browser": "",
+  "main": "./dist/index.cjs.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bugs": {
@@ -56,6 +57,9 @@
     "power-assert": "^1.5.0",
     "rewire": "^4.0.0",
     "rimraf": "^2.6.2",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-uglify": "^3.0.0",
     "source-map-support": "^0.5.4",
     "ts-node": "^6.0.0",
     "tslint": "^5.9.1",
@@ -65,7 +69,7 @@
   "scripts": {
     "bp:add": "git remote add bp https://github.com/waitingsong/npm-base",
     "bp:sync": "git fetch bp && git pull --no-edit bp master",
-    "build": "npm run clean && npm run lint && npm run lint:t && npm run tsc && npm run jslint",
+    "build": "npm run clean && npm run lint && npm run lint:t && npm run tsc && npm run jslint && npm run rp",
     "clean": "rm -rf dist/*",
     "cov": "nyc mocha",
     "cov:coveralls": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
@@ -74,6 +78,7 @@
     "lint:t": "tslint --fix -p test/tsconfig.json -t stylish",
     "prepublishOnly": "npm run build",
     "repo:init": "git config --local push.followTags true && git config --local core.hooksPath ./.githooks && git config --local remote.origin.prune true && git config --local remote.origin.tagopt \"--tags\" && git config --local remote.pushdefault origin && echo It may going for a long time. Plese wait... && npm i && ts-node -P .githooks/tsconfig.json .githooks/init.ts",
+    "rp": "rollup -c rollup.config.js",
     "test": "mocha --opts test/mocha.opts",
     "tsc": "tsc -p tsconfig.json",
     "tsc:w": "tsc -p tsconfig.json -w"
