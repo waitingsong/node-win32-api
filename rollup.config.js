@@ -13,7 +13,7 @@ const banner = `
  *
  * @version ${pkg.version}
  * @author ${pkg.author}
- * @license MIT
+ * @license ${pkg.license}
  * @link ${pkg.homepage}
  */
 `.trim()
