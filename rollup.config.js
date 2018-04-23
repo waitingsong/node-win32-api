@@ -11,33 +11,33 @@ const config = [
   // CommonJS (for Node) and ES module (for bundlers) build.
   {
     external: ['rxjs', 'rxjs/operators', 'fs', 'path', 'util', 'os'],
-      input: pkg.module,
-      output: [
-        { file: pkg.main, format: 'cjs' },
-      ],
+    input: pkg.module,
+    output: [
+      { file: pkg.main, format: 'cjs' },
+    ],
   },
 ]
 
 // browser-friendly UMD build
 if (pkg.browser ) {
   config.push({
-      input: pkg.module,
-      plugins: [
-        resolve({
-          browser: true,
-          jsnext: true,
-          main: true,
-        }),
-        commonjs(),
-        production && uglify(),
-      ],
-      output: {
-        amd: { id: pkg.name },
-        file: pkg.browser,
-        format: 'umd',
-        name: pkg.name,
-        sourcemap: true,
-      },
+    input: pkg.module,
+    plugins: [
+      resolve({
+        browser: true,
+        jsnext: true,
+        main: true,
+      }),
+      commonjs(),
+      production && uglify(),
+    ],
+    output: {
+      amd: { id: pkg.name },
+      file: pkg.browser,
+      format: 'umd',
+      name: pkg.name,
+      sourcemap: true,
+    },
   })
 }
 
