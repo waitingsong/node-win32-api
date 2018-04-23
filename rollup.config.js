@@ -20,6 +20,8 @@ const banner = `
 const globals = {
   'rxjs/operators': 'rxjs.operators',
 }
+const name = parseUMDName(pkg.name)
+
 
 const config = [
   // CommonJS (for Node) and ES module (for bundlers) build.
@@ -33,11 +35,11 @@ const config = [
         file: pkg.es2015, 
       },
       { file: pkg.main, 
-        amd: { id: pkg.name },
+        amd: { id: name },
         banner,
         format: 'umd',
         globals,
-        name: pkg.name,
+        name,
       },
     ],
   },
@@ -58,15 +60,23 @@ if (pkg.browser ) {
       production && uglify(),
     ],
     output: {
-      amd: { id: pkg.name },
+      amd: { id: name },
       banner,
       file: pkg.browser,
       format: 'umd',
       globals,
-      name: pkg.name,
+      name,
       sourcemap: true,
     },
   })
+}
+
+// remove pkg.name extension if exists
+function parseUMDName(name) {
+  if (name && name.slice(-3).toLowerCase() === '.js') {
+    return name.slice(0, -3)
+  }
+  return name
 }
 
 export default config
