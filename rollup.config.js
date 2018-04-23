@@ -6,6 +6,20 @@ import pkg from './package.json';
 // `npm run build` -> `production` is true
 // `npm run dev` -> `production` is false
 const production = !process.env.ROLLUP_WATCH;
+const banner = `
+/**
+ * ${pkg.name}
+ * ${pkg.description}
+ *
+ * @version ${pkg.version}
+ * @author ${pkg.author}
+ * @license MIT
+ * @link ${pkg.homepage}
+ */
+`.trim()
+const globals = {
+  'rxjs/operators': 'rxjs.operators',
+}
 
 const config = [
   // CommonJS (for Node) and ES module (for bundlers) build.
@@ -13,7 +27,18 @@ const config = [
     external: ['rxjs', 'rxjs/operators', 'fs', 'path', 'util', 'os'],
     input: pkg.module,
     output: [
-      { file: pkg.main, format: 'cjs' },
+      { 
+        banner,
+        format: 'es',
+        file: pkg.es2015, 
+      },
+      { file: pkg.main, 
+        amd: { id: pkg.name },
+        banner,
+        format: 'umd',
+        globals,
+        name: pkg.name,
+      },
     ],
   },
 ]
@@ -21,6 +46,7 @@ const config = [
 // browser-friendly UMD build
 if (pkg.browser ) {
   config.push({
+    external: [],
     input: pkg.module,
     plugins: [
       resolve({
@@ -33,8 +59,10 @@ if (pkg.browser ) {
     ],
     output: {
       amd: { id: pkg.name },
+      banner,
       file: pkg.browser,
       format: 'umd',
+      globals,
       name: pkg.name,
       sourcemap: true,
     },
