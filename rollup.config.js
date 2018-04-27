@@ -16,12 +16,12 @@ const banner = `
  * @license ${pkg.license}
  * @link ${pkg.homepage}
  */
-`.trim()
+`.trimLeft()
 const globals = {
   'rxjs/operators': 'rxjs.operators',
   'rxjs/websocket': 'rxjs.websocket',
 }
-const name = parseUMDName(pkg.name)
+const name = parseName(pkg.name)
 const external = [
   'rxjs', 'rxjs/operators', 'rxjs/websocket', 
   'fs', 'path', 'util', 'os',
@@ -48,6 +48,22 @@ const config = [
       },
     ],
   },
+
+  // esm minify
+  {
+    external,
+    input: pkg.module,
+    plugins: [
+      production && uglify(),
+    ],
+    output: {
+      banner,
+      file: parseName(pkg.es2015) + '.min.js',
+      format: 'es',
+      sourcemap: true,
+    },
+  },
+
 ]
 
 // browser-friendly UMD build
@@ -90,7 +106,7 @@ if (pkg.browser ) {
     output: {
       amd: { id: name },
       banner,
-      file: pkg.browser.slice(0, -3) + '.min.js',
+      file: parseName(pkg.browser) + '.min.js',
       format: 'umd',
       globals,
       name,
@@ -100,7 +116,7 @@ if (pkg.browser ) {
 }
 
 // remove pkg.name extension if exists
-function parseUMDName(name) {
+function parseName(name) {
   if (name && name.slice(-3).toLowerCase() === '.js') {
     return name.slice(0, -3)
   }
