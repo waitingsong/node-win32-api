@@ -66,55 +66,6 @@ const config = [
 
 ]
 
-// browser-friendly UMD build
-if (pkg.browser ) {
-  // bundle
-  config.push({
-    external: [],
-    input: pkg.module,
-    plugins: [
-      resolve({
-        browser: true,
-        jsnext: true,
-        main: true,
-      }),
-      commonjs(),
-    ],
-    output: {
-      amd: { id: name },
-      banner,
-      file: pkg.browser,
-      format: 'umd',
-      globals,
-      name,
-    },
-  })
-
-  // bundle min
-  config.push({
-    external: [],
-    input: pkg.module,
-    plugins: [
-      resolve({
-        browser: true,
-        jsnext: true,
-        main: true,
-      }),
-      commonjs(),
-      production && uglify(),
-    ],
-    output: {
-      amd: { id: name },
-      banner,
-      file: parseName(pkg.browser) + '.min.js',
-      format: 'umd',
-      globals,
-      name,
-      sourcemap: true,
-    },
-  })
-}
-
 // remove pkg.name extension if exists
 function parseName(name) {
   if (name && name.slice(-3).toLowerCase() === '.js') {
