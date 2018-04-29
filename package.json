@@ -7,7 +7,7 @@
   "engines": {
     "node": ">=8.10.0"
   },
-  "browser": "./dist/index.esm.js",
+  "browser": "",
   "es2015": "./dist/index.esm.js",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.js",
