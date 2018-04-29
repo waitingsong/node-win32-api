@@ -15,6 +15,8 @@ target/
 build/
 run/
 diff-dump/
+.mvn
+.factorypath
 nbproject/
 
 dbconfig.json
@@ -39,6 +41,12 @@ src/config.properties
 # for oracle
 *.~pck
 
+
+# NetBeans
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
 
 
 # Specifies intentionally untracked files to ignore when using Git
