@@ -42,7 +42,7 @@ const config = [
       { file: pkg.main, 
         amd: { id: name },
         banner,
-        format: 'umd',
+        format: 'cjs',
         globals,
         name,
       },

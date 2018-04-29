@@ -9,7 +9,7 @@
   },
   "browser": "",
   "es2015": "./dist/index.esm.js",
-  "main": "./dist/index.umd.js",
+  "main": "./dist/index.cjs.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bugs": {
