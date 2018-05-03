@@ -121,7 +121,7 @@
           "arrays": "always",
           "exports": "always",
           "imports": "always",
-          "functions": "never",
+          "functions": "always",
           "objects": "always",
           "typeLiterals": "always"
         },
