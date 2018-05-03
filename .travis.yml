@@ -10,6 +10,7 @@ cache:
     - node_modules
 
 before_install:
+  - npm i -g rollup
   - npm install
 
 
