@@ -1,11 +1,11 @@
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
 import uglify from 'rollup-plugin-uglify'
-import pkg from './package.json';
+import pkg from './package.json'
 
 // `npm run build` -> `production` is true
 // `npm run dev` -> `production` is false
-const production = !process.env.ROLLUP_WATCH;
+const production = ! process.env.ROLLUP_WATCH
 const banner = `
 /**
  * ${pkg.name}
@@ -23,7 +23,7 @@ const globals = {
 }
 const name = parseName(pkg.name)
 const external = [
-  'rxjs', 'rxjs/operators', 'rxjs/websocket', 
+  'rxjs', 'rxjs/operators', 'rxjs/websocket',
   'fs', 'path', 'util', 'os',
 ]
 
@@ -34,12 +34,12 @@ const config = [
     external,
     input: pkg.module,
     output: [
-      { 
+      {
         banner,
         format: 'es',
-        file: pkg.es2015, 
+        file: pkg.es2015,
       },
-      { file: pkg.main, 
+      { file: pkg.main,
         amd: { id: name },
         banner,
         format: 'cjs',
@@ -51,16 +51,23 @@ const config = [
 
   // esm minify
   {
-    external,
+    external: production ? external : [],
     input: pkg.module,
-    plugins: [
-      production && uglify(),
-    ],
+    plugins: production
+      ? [ uglify() ]
+      : [
+        resolve({
+          browser: true,
+          jsnext: true,
+          main: true,
+        }),
+        commonjs(),
+      ],
     output: {
       banner,
       file: parseName(pkg.es2015) + '.min.js',
       format: 'es',
-      sourcemap: true,
+      sourcemap: production ? true : false,
     },
   },
 
