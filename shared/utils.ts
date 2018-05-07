@@ -87,7 +87,7 @@ export async function createDir(path: string): Promise<void> {
           await isPathAcessible(curDir) || await mkdirAsync(curDir, 0o755)
           return curDir
         },
-        Promise.resolve(sep)
+        Promise.resolve(sep),
       )
     }
   }
