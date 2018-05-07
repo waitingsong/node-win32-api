@@ -1,3 +1,4 @@
+import { dirname } from 'path'
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
 import uglify from 'rollup-plugin-uglify'
@@ -6,6 +7,10 @@ import pkg from './package.json'
 // `npm run build` -> `production` is true
 // `npm run dev` -> `production` is false
 const production = ! process.env.ROLLUP_WATCH
+
+const name = parseName(pkg.name)
+const targetDir = dirname(pkg.main)
+
 const banner = `
 /**
  * ${pkg.name}
@@ -27,7 +32,6 @@ const globals = {
   'rxjs/operators': 'rxjs.operators',
   'rxjs/websocket': 'rxjs.websocket',
 }
-const name = parseName(pkg.name)
 const external = [
   'rxjs', 'rxjs/operators', 'rxjs/websocket',
   'fs', 'path', 'util', 'os',
@@ -97,7 +101,7 @@ if (pkg.browser) {
       output: {
         amd: { id: name },
         banner,
-        file: parseName(pkg.module) + '.umd.min.js',
+        file: `${targetDir}/${name}.umd.min.js`,
         format: 'umd',
         globals,
         name,
