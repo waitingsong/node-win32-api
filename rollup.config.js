@@ -17,6 +17,12 @@ const banner = `
  * @link ${pkg.homepage}
  */
 `.trimLeft()
+const uglifyOpts = {
+  output: {
+    preamble: banner,
+  },
+}
+
 const globals = {
   'rxjs/operators': 'rxjs.operators',
   'rxjs/websocket': 'rxjs.websocket',
@@ -54,7 +60,7 @@ const config = [
     external: production ? external : [],
     input: pkg.module,
     plugins: production
-      ? [ uglify() ]
+      ? [ uglify(uglifyOpts) ]
       : [
         resolve({
           browser: true,
@@ -72,6 +78,34 @@ const config = [
   },
 
 ]
+
+if (pkg.browser) {
+  config.push(
+    // umd bundle min
+    {
+      external: [],
+      input: pkg.module,
+      plugins: [
+        resolve({
+          browser: true,
+          jsnext: true,
+          main: true,
+        }),
+        commonjs(),
+        production && uglify(uglifyOpts),
+      ],
+      output: {
+        amd: { id: name },
+        banner,
+        file: parseName(pkg.module) + '.umd.min.js',
+        format: 'umd',
+        globals,
+        name,
+        sourcemap: production ? true : false,
+      },
+    },
+  )
+}
 
 // remove pkg.name extension if exists
 function parseName(name) {
