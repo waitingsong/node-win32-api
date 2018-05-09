@@ -23,6 +23,19 @@ const banner = `
  */
 `.trimLeft()
 const uglifyOpts = {
+  mangle:   true,
+  compress: {
+    unused:        false,
+    sequences:     true,
+    dead_code:     true,
+    conditionals:  true,
+    booleans:      true,
+    if_return:     true,
+    join_vars:     true,
+    drop_console:  false,
+    drop_debugger: false,
+    typeofs:       false,
+  },
   output: {
     preamble: banner,
   },
