@@ -30,11 +30,12 @@
     "member-access": [ false ],
     "member-ordering": [true, {"order": [
       "public-static-field",
-      "public-instance-field",
-      "public-constructor",
+      "protected-static-field",
       "private-static-field",
+      "public-instance-field",
+      "protected-instance-field",
       "private-instance-field",
-      "private-constructor",
+      "public-constructor",
       "public-instance-method",
       "protected-instance-method",
       "private-instance-method"
