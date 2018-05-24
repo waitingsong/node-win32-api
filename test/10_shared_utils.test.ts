@@ -14,12 +14,12 @@ import {
   join,
   readFileAsync,
   tmpdir,
-} from '../shared/index'
+} from '../src/shared/index'
 
 const filename = basename(__filename)
 const tmpDir = join(tmpdir(), 'test-tmp')
 const pathPrefix = 'mytest'
-const mods = rewire('../shared/utils')
+const mods = rewire('../src/shared/utils')
 
 
 describe(filename, () => {
