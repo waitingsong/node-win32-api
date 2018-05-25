@@ -47,7 +47,6 @@ const globals = {
 }
 const external = [
   'rxjs', 'rxjs/operators', 'rxjs/websocket',
-  'fs', 'path', 'util', 'os',
 ]
 const nodeModule = [
   'fs', 'path', 'util', 'os',
@@ -131,8 +130,16 @@ if (pkg.browser) {
 
 // remove pkg.name extension if exists
 function parseName(name) {
-  if (name && name.slice(-3).toLowerCase() === '.js') {
-    return name.slice(0, -3)
+  if (name) {
+    const arr = name.split('.')
+    const len = arr.length
+
+    if (len > 2) {
+      return arr.slice(0, -1).join('.')
+    }
+    else if (len === 2 || len === 1) {
+      return arr[0]
+    }
   }
   return name
 }
