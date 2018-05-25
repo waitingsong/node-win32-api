@@ -49,12 +49,15 @@ const external = [
   'rxjs', 'rxjs/operators', 'rxjs/websocket',
   'fs', 'path', 'util', 'os',
 ]
+const nodeModule = [
+  'fs', 'path', 'util', 'os',
+]
 
 
 const config = [
   // CommonJS (for Node) and ES module (for bundlers) build.
   {
-    external,
+    external: external.concat(nodeModule),
     input: pkg.module,
     output: [
       {
@@ -74,7 +77,9 @@ const config = [
 
   // esm minify
   {
-    external: production ? external : [],
+    external: production 
+      ? external.concat(nodeModule)
+      : nodeModule,
     input: pkg.module,
     plugins: production
       ? [ uglify(uglifyOpts) ]
@@ -100,7 +105,7 @@ if (pkg.browser) {
   config.push(
     // umd bundle min
     {
-      external: [],
+      external: nodeModule,
       input: pkg.module,
       plugins: [
         resolve({
