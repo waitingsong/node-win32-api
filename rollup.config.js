@@ -74,31 +74,24 @@ const config = [
     ],
   },
 
-  // esm minify
-  {
-    external: production 
-      ? external.concat(nodeModule)
-      : nodeModule,
-    input: pkg.module,
-    plugins: production
-      ? [ uglify(uglifyOpts) ]
-      : [
-        resolve({
-          browser: true,
-          jsnext: true,
-          main: true,
-        }),
-        commonjs(),
-      ],
-    output: {
-      banner,
-      file: parseName(pkg.es2015) + '.min.js',
-      format: 'es',
-      sourcemap: production ? true : false,
-    },
-  },
-
 ]
+
+if (production) {
+  config.push(
+    // esm minify
+    {
+      external: external.concat(nodeModule),
+      input: pkg.module,
+      plugins: [ uglify(uglifyOpts) ],
+      output: {
+        banner,
+        file: parseName(pkg.es2015) + '.min.js',
+        format: 'es',
+        sourcemap: true,
+      },
+    },
+  )
+}
 
 if (pkg.browser) {
   config.push(
