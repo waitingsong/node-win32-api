@@ -61,6 +61,7 @@
     "rollup-plugin-commonjs": "^9.1.0",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-uglify": "^3.0.0",
+    "rxjs": "^6.2.0",
     "source-map-support": "^0.5.4",
     "ts-node": "^6.0.5",
     "tslint": "^5.10.0",
