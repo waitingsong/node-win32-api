@@ -47,6 +47,7 @@
     "@types/power-assert": "^1.5.0",
     "@types/rewire": "^2.5.28",
     "@types/rimraf": "^2.0.2",
+    "@types/yargs": "^11.0.0",
     "coveralls": "^3.0.0",
     "eslint": "^4.19.1",
     "intelli-espower-loader": "^1.0.1",
