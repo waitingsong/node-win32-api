@@ -103,7 +103,7 @@
     "semicolon": [true, "never"],
     "space-before-function-paren": [
       true, 
-      {"anonymous": "always", "named": "never"}
+      {"anonymous": "never", "named": "never"}
     ],
     "ter-arrow-spacing": [true, { "before": true, "after": true }],	// 要求箭头函数的箭头之前或之后有空格
     "ter-func-call-spacing": [true, "never"],	// disallow spacing between function identifiers and their invocations
