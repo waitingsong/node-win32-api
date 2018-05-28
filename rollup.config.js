@@ -10,6 +10,7 @@ const production = ! process.env.ROLLUP_WATCH
 
 const name = parseName(pkg.name)
 const targetDir = dirname(pkg.main)
+const deps = pkg.dependencies
 
 const banner = `
 /**
@@ -46,11 +47,15 @@ const globals = {
   'rxjs/websocket': 'rxjs.websocket',
 }
 const external = [
-  'rxjs', 'rxjs/operators', 'rxjs/websocket',
+  'rxjs', 'rxjs/operators', 'rxjs/websocket', 'rxjs/ajax',
 ]
 const nodeModule = [
   'fs', 'path', 'util', 'os',
 ]
+
+for (const depName of Object.keys(deps)) {
+  external.push(depName)
+}
 
 
 const config = [
