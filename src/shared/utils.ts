@@ -65,9 +65,9 @@ export function isFileExists(path: string): Promise<boolean> {
 function isDirFileExists(path: string, type: 'DIR' | 'FILE'): Promise<boolean> {
   return path
     ? new Promise(resolve => {
-      stat(path, (err, stats) => (
-        err ? resolve(false) : resolve(type === 'DIR' ? stats.isDirectory() : stats.isFile())
-      ))
+      stat(path, (err, stats) => {
+        err || ! stats ? resolve(false) : resolve(type === 'DIR' ? stats.isDirectory() : stats.isFile())
+      })
     })
     : Promise.resolve(false)
 }
@@ -167,6 +167,7 @@ async function _rimraf(path: string): Promise<void> {
   if (! path) {
     return
   }
+
   if (await isPathAcessible(path)) {
     if (await isFileExists(path)) {
       await unlinkAsync(path)
@@ -174,9 +175,13 @@ async function _rimraf(path: string): Promise<void> {
     }
     const entries = await readDirAsync(path)
 
-    for (const entry of entries) {
-      await _rimraf(join(path, entry))
+    if (entries.length) {
+      for (const entry of entries) {
+        await _rimraf(join(path, entry))
+      }
+    }
+    else {
+      await rmdirAsync(path)
     }
   }
 }
-
