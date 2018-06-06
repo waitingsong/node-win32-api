@@ -159,7 +159,9 @@ export async function rimraf(path: string): Promise<void> {
     return
   }
   await _rimraf(path)
-  await rmdirAsync(path)
+  if (await isDirExists(path)) {
+    await rmdirAsync(path)
+  }
 }
 async function _rimraf(path: string): Promise<void> {
   if (! path) {
