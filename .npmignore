@@ -1,6 +1,6 @@
 src/
 node_modules/
-node_modules*/
+node_modules*
 npm-shrinkwrap.json
 tsconfig.json
 tslint.json
@@ -8,9 +8,12 @@ tslint.json
 .eslintrc.json
 .travis.yml
 appveyor.yml
+.coveralls.yml
 *.swp
 *.bak
 demo/
 test/
 coverage/
 .nyc_output/
+.githooks
+.vscode

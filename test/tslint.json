@@ -43,7 +43,7 @@
     "no-arg": true,
     "no-angle-bracket-type-assertion": false,
     "no-consecutive-blank-lines": [true, 4],	// 多个空行控制
-    "no-console": [ true, "dir", "log", "warn" ],
+    "no-console": [ false, "dir", "log", "warn" ],
     "no-construct": true,	// 禁止对 String，Number 和 Boolean 使用 new 操作符
     "no-control-regex": true,
     "no-duplicate-variable": true,

@@ -14,6 +14,10 @@ install/
 target/
 build/
 run/
+diff-dump/
+.mvn
+.factorypath
+nbproject/
 
 dbconfig.json
 
@@ -27,11 +31,22 @@ gen/
 .springBeans/
 workspaces/
 WebRoot/WEB-INF/classes/
-/resource/database.properties
-/resource/webserviceConfig.xml
-/src/config.properties
+resource/database.properties
+resource/webserviceConfig.xml
+src/config.properties
 .buildpath
+.tern-project
 
+
+# for oracle
+*.~pck
+
+
+# NetBeans
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
 
 
 # Specifies intentionally untracked files to ignore when using Git
