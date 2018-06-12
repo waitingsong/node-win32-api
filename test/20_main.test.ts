@@ -54,7 +54,7 @@ describe(filename, () => {
             _UNICODE: true,
             _WIN64: false,
           }
-          const _WIN64 = true
+          // const _WIN64 = true
           // let param: GT.FnRetType
 
           for (const k of Object.keys(st)) {

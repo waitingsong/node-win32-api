@@ -123,20 +123,6 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
 
 })
 
-// not used
-function test_settings(fn: string, settings: GT.LoadSettings): void {
-  const st = { ...settings }
-  const str: GT.FFIParam = H.parse_param_placeholder('int32', st)
-  console.log('ssss', st)
-  process.exit()
-
-  it(`Should ${fn} handle value of settings correctly)`, () => {
-    assert(st && typeof st._UNICODE !== 'undefined', 'st._UNICODE should not be undefined')
-    assert(st && typeof st._WIN64 !== 'undefined', 'st._WIN64  should not be undefined')
-    assert(st && st._UNICODE === true, 'st._UNICODE is false')
-    assert(st && st._WIN64 === (process.arch === 'x64' ? true : false), 'st._WIN64 not match process.arch')
-  })
-}
 
 describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
   const fn = 'parse_placeholder_arch'
