@@ -5,8 +5,6 @@ import * as assert from 'power-assert'
 import { DTypes } from '../src/index'
 import {
   settingsDefault,
-  _UNICODE_HOLDER,
-  _WIN64_HOLDER,
 } from '../src/lib/config'
 import * as H from '../src/lib/helper'
 import { macroMap } from '../src/lib/marcomap'

@@ -3,7 +3,6 @@
 
 import {
   _UNICODE_HOLDER,
-  _WIN64,
   _WIN64_HOLDER,
 } from './config'
 /**
