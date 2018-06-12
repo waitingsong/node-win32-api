@@ -154,7 +154,7 @@ export function parse_windef(W: GT.Windef | any, settings?: GT.LoadSettings): GT
     const ww = (settings && settings._windefClone ? clone_filter_windef(W) : W)
     const macroMap = <GT.MacroMap> W.macroMap
     const windef = <GT.WinData> {}
-    const skipKeys = Conf.windefSkipKeys
+    // const skipKeys = Conf.windefSkipKeys
     const macroSrc = prepare_macro(macroMap, settings)
 
     for (const [k, v] of macroSrc.entries()) {
@@ -206,7 +206,7 @@ function prepare_windef_ref(ww: GT.WinData | GT.Windef): void {
 // filter windef by Conf.windefSkipKeys, output only need key/value
 export function clone_filter_windef(windef: GT.Windef): GT.WinData {
     const res = <GT.WinData> {}
-    const skip = Conf.windefSkipKeys
+    // const skip = Conf.windefSkipKeys
 
     for (const x of Object.keys(windef)) {
         if (Conf.windefSkipKeys.has(x)) {   // macroMap
