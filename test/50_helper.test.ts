@@ -39,7 +39,7 @@ describe(filename + ' :gen_api_opts() all', () => {
         n += 1
       }
 
-      it(`Should ${apiName} number of fns equal to the number of fns return by gen_api_opts`, function() {
+      it(`Should ${apiName} number of fns equal to the number of fns return by gen_api_opts`, () => {
         const fns: GT.ApiDef = H.gen_api_opts(api)
         const keysize = Object.keys(fns).length
 
@@ -59,8 +59,8 @@ describe(filename + ' :gen_api_opts() all', () => {
 describe(filename + ' :parse_placeholder(ps, settings) ', () => {
   const fn = 'parse_placeholder()'
 
-  it(`Should ${fn} handle value of ps correctly)`, function() {
-    let ps: any
+  it(`Should ${fn} handle value of ps correctly)`, () => {
+    const ps: any = void 0
     try {
       H.parse_placeholder(ps)
       assert(false, 'function should throw error with invalid value of ps, but not')
@@ -75,10 +75,10 @@ describe(filename + ' :parse_placeholder(ps, settings) ', () => {
 describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
   const fn = 'parse_param_placeholder'
 
-  it(`Should ${fn} handle value of settings correctly)`, function() {
+  it(`Should ${fn} handle value of settings correctly)`, () => {
     const st = <GT.LoadSettings> { ...Conf.settingsDefault }
     try {
-      let p: any
+      const p: any = void 0
       H.parse_param_placeholder(p, st)
       assert(false, 'should throw Error by invalid param, but not')
     }
@@ -87,7 +87,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
     }
   })
 
-  it(`Should ${fn} handle value of param correctly)`, function() {
+  it(`Should ${fn} handle value of param correctly)`, () => {
     const st = <GT.LoadSettings> { ...Conf.settingsDefault }
     try {
       const p: GT.MacroDef = ['invalid_placeholder', 'int64', 'int32']
@@ -99,7 +99,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
     }
   })
 
-  it(`Should ${fn} handle value of settings for arch of nodejs correctly)`, function() {
+  it(`Should ${fn} handle value of settings for arch of nodejs correctly)`, () => {
     const p1 = 'debug_int64'
     const p2 = 'debug_int32'
     const p: GT.MacroDef = [Conf._WIN64_HOLDER, p1, p2]
@@ -111,7 +111,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
     assert(str2 === p2, `result should be "${p2}", got ${str2}`)
   })
 
-  it(`Should ${fn} handle value of settings for ANSI/UNICODE correctly)`, function() {
+  it(`Should ${fn} handle value of settings for ANSI/UNICODE correctly)`, () => {
     const LPTSTR: GT.MacroDef = [Conf._UNICODE_HOLDER, WD.LPWSTR, 'uint8*']
     const st = { ...Conf.settingsDefault }
     const str1 = H.parse_param_placeholder(LPTSTR, { ...st, _UNICODE: true })
@@ -130,7 +130,7 @@ function test_settings(fn: string, settings: GT.LoadSettings): void {
   console.log('ssss', st)
   process.exit()
 
-  it(`Should ${fn} handle value of settings correctly)`, function() {
+  it(`Should ${fn} handle value of settings correctly)`, () => {
     assert(st && typeof st._UNICODE !== 'undefined', 'st._UNICODE should not be undefined')
     assert(st && typeof st._WIN64 !== 'undefined', 'st._WIN64  should not be undefined')
     assert(st && st._UNICODE === true, 'st._UNICODE is false')
@@ -141,15 +141,15 @@ function test_settings(fn: string, settings: GT.LoadSettings): void {
 describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
   const fn = 'parse_placeholder_arch'
 
-  it(`Should ${fn} handle value of param correctly)`, function() {
+  it(`Should ${fn} handle value of param correctly)`, () => {
     const p: any = 'test'
     const res = H[fn](p, true)
-    assert(res === p, 'should ${p} got ${res}')
+    assert(res === p, `should ${p} got ${res}`)
   })
 
-  it(`Should ${fn} handle value of param correctly)`, function() {
+  it(`Should ${fn} handle value of param correctly)`, () => {
     try {
-      let p: any
+      const p: any = void 0
       H[fn](p, true)
       assert(false, 'should throw Error by invalid param, but not')
     }
@@ -158,7 +158,7 @@ describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
     }
   })
 
-  it(`Should ${fn} handle value of param correctly)`, function() {
+  it(`Should ${fn} handle value of param correctly)`, () => {
     try {
       const p: any = [1, 2]    // should 3 items
       H[fn](p, true)
@@ -174,15 +174,15 @@ describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
 describe(filename + ' :parse_placeholder_unicode(param, _WIN64)', () => {
   const fn = 'parse_placeholder_unicode'
 
-  it(`Should ${fn} handle value of param correctly)`, function() {
+  it(`Should ${fn} handle value of param correctly)`, () => {
     const p: any = 'test'
     const res = H[fn](p, true)
-    assert(res === p, 'should ${p} got ${res}')
+    assert(res === p, `should ${p} got ${res}`)
   })
 
-  it(`Should ${fn} handle value of param correctly)`, function() {
+  it(`Should ${fn} handle value of param correctly)`, () => {
     try {
-      let p: any
+      const p: any = void 0
       H[fn](p, true)
       assert(false, 'should throw Error by invalid param, but not')
     }
@@ -191,7 +191,7 @@ describe(filename + ' :parse_placeholder_unicode(param, _WIN64)', () => {
     }
   })
 
-  it(`Should ${fn} handle value of param correctly)`, function() {
+  it(`Should ${fn} handle value of param correctly)`, () => {
     try {
       const p: any = [1, 2]    // should 3 items
       H[fn](p, true)
@@ -208,7 +208,7 @@ describe(filename + ' :parse_windef()', () => {
   const fn = 'parse_windef'
   const fake = 'fake'
 
-  it(`Should ${fn} process windef with fake windef correctly)`, function() {
+  it(`Should ${fn} process windef with fake windef correctly)`, () => {
     const W = { ...WD }
 
     Object.defineProperty(WD, fake, {
@@ -248,7 +248,7 @@ describe(filename + ' :parse_windef()', () => {
     }
   })
 
-  it(`Should ${fn} process windef macro members correctly)`, function() {
+  it(`Should ${fn} process windef macro members correctly)`, () => {
     const W = <GT.Windef> {}
     const keyArch = '__testKeyArch'
     const v64 = '_v64'
@@ -288,7 +288,7 @@ describe(filename + ' :parse_windef()', () => {
   })
 
     // at lastest
-  it(`Should ${fn} process windef correctly)`, function() {
+  it(`Should ${fn} process windef correctly)`, () => {
     const W = { ...WD }
     const windata = H.parse_windef(W, { ...Conf.settingsDefault, _windefClone: true })
     const lenData = Object.keys(windata).length + Conf.windefSkipKeys.size

@@ -28,56 +28,64 @@ describe(filename, () => {
     if (module && module.apiDef) {
       const apiDef = <GT.ApiDef> module.apiDef
 
-      it(`Should ${apiName}: FnName of definition be string`, function() {
+      it(`Should ${apiName}: FnName of definition be string`, () => {
                 for (let x in apiDef) {    // tslint:disable-line
                   assert(typeof x === 'string')
                 }
       })
 
-      it(`Should ${apiName}: FnParams of definition be array`, function() {
+      it(`Should ${apiName}: FnParams of definition be array`, () => {
                 for (let x in apiDef) {    // tslint:disable-line
                   const p = apiDef[x]
                   assert(typeof p === 'object' && Array.isArray(p), `${x}()`)
                 }
       })
 
-      it(`Should ${apiName}: FnRetType of definition be string and not epmty or array`, function() {
+      it(`Should ${apiName}: FnRetType of definition be string and not epmty or array`, () => {
                 for (let x in apiDef) {    // tslint:disable-line
                   test_param_return_type(apiDef[x][0], x)
                 }
       })
 
-      it(`Should ${apiName}: FnRetType of definition exists in conf.windefSet`, function() {
-                for (let x in apiDef) {    // tslint:disable-line
-                  const p = apiDef[x][0]
-                  const st = {
-                    _UNICODE: true,
-                    _WIN64: false,
-                  }
-                  const _WIN64 = true
-                  let param: GT.FnRetType
+      it(`Should ${apiName}: FnRetType of definition exists in conf.windefSet`, () => {
+        for (let x in apiDef) {    // tslint:disable-line
+          const p = apiDef[x][0]
+          const st = {
+            _UNICODE: true,
+            _WIN64: false,
+          }
+          const _WIN64 = true
+          // let param: GT.FnRetType
 
-                  for (const k of Object.keys(st)) {
-                    if (st[k]) {
-                      assert(windefSet.has(p), `${x}() value: "${p}" ${st._WIN64 ? 'x64' : 'ia32'}, ${st._UNICODE ? 'UNICODE' : 'ANSI'}`)
-                    }
-                  }
-                  for (const k of Object.keys(st)) {
-                    if (!st[k]) {
-                      assert(windefSet.has(p), `${x}() value: "${p}" ${st._WIN64 ? 'x64' : 'ia32'}, ${st._UNICODE ? 'UNICODE' : 'ANSI'}`)
-                    }
-                  }
-                }
+          for (const k of Object.keys(st)) {
+            if (st[k]) {
+              assert(
+                windefSet.has(p),
+                `${x}() value: "${p}" ${st._WIN64 ? 'x64' : 'ia32'},
+                ${st._UNICODE ? 'UNICODE' : 'ANSI'}`,
+              )
+            }
+          }
+          for (const k of Object.keys(st)) {
+            if (!st[k]) {
+              assert(
+                windefSet.has(p),
+                `${x}() value: "${p}" ${st._WIN64 ? 'x64' : 'ia32'},
+                ${st._UNICODE ? 'UNICODE' : 'ANSI'}`,
+              )
+            }
+          }
+        }
       })
 
-      it(`Should ${apiName}: FnCallParams of definition be array`, function() {
+      it(`Should ${apiName}: FnCallParams of definition be array`, () => {
                 for (let x in apiDef) {    // tslint:disable-line
                   const p = apiDef[x]
                   assert(typeof p[1] === 'object' && Array.isArray(p[1]), `${x}()`)
                 }
       })
 
-      it(`Should ${apiName}: item of FnCallParams of definition exists in conf.windefSet and valid`, function() {
+      it(`Should ${apiName}: item of FnCallParams of definition exists in conf.windefSet and valid`, () => {
         if (windefSet && windefSet.size) {
                     for (let x in apiDef) {    // tslint:disable-line
                       const arr = apiDef[x][1]
@@ -121,7 +129,7 @@ describe(filename, () => {
           if (!{}.hasOwnProperty.call(api, fn)) {
             continue
           }
-          it(`Should ${apiName}.${fn}() be typeof "function"`, function() {
+          it(`Should ${apiName}.${fn}() be typeof "function"`, () => {
             assert(typeof api[fn] === 'function', `${fn}`)
           })
         }

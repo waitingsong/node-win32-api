@@ -61,9 +61,11 @@ function _test_arch(types64_32: Set<string>, settings: GT.LoadSettings) {
         // convert param like '_WIN64_HOLDER_' to 'int64' or 'int32'
     const param = W[vv]
 
-    it(`Should ${vv}: value converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, function() {
+    it(`Should ${vv}: value converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, () => {
       if (settings._WIN64) {
-        assert(param.indexOf('64') > 2 && param.indexOf('32') === -1, `${vv}: ${param} during x64`)   // must use param not W[vv]
+        assert(
+          param.indexOf('64') > 2 && param.indexOf('32') === -1,
+          `${vv}: ${param} during x64`)   // must use param not W[vv]
       }
       else {
         assert(param.indexOf('32') > 2 && param.indexOf('64') === -1, `${vv}: ${param} during ia32`)
@@ -94,7 +96,7 @@ function _test_arch_half(typesHalf: Set<string>, settings: GT.LoadSettings) {
         // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
     const param = H.parse_param_placeholder(W[vv], settings)
 
-    it(`Should ${vv}: value converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, function() {
+    it(`Should ${vv}: value converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, () => {
       if (settings._WIN64) {
         const cond: boolean = param.indexOf('32') > 2 && param.indexOf('16') === -1 && param.indexOf('64') === -1
         assert(cond, `${vv}: ${param} under x64`)   // must use param not W[vv]
@@ -123,7 +125,7 @@ function unicode(_UNICODE: boolean, typesUnicode: Set<string>) {
   for (const vv of typesUnicode) {
     const param = W[vv]
 
-    it(`Should macro ${vv}: value mathes setting of ANSI/UNICODE`, function() {
+    it(`Should macro ${vv}: value mathes setting of ANSI/UNICODE`, () => {
       if (_UNICODE) {
         const cond: boolean = param.indexOf('16') > 2 && param.indexOf('8') === -1
         assert(cond, `${vv}: ${param} at UNICODE`)
