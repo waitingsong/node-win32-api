@@ -9,29 +9,29 @@
  * with it hWnd.ref() wihout error TS2339: Property 'ref' does not exist on type 'Buffer'.
  */
 export interface FFIBuffer extends Buffer {
-    address(): number
-    deref(): any
-    isNull(): boolean
-    readCString(offset?: number): string
-    readInt64BE(offset?: number): string
-    readInt64LE(offset?: number): string
-    readObject(offset?: number): string
-    readPointer(offset?: number): string
-    readUInt64BE(offset?: number): string
-    readUInt64LE(offset?: number): string
-    ref(): FFIBuffer
-    reinterpret(size: number, offset?: number): FFIBuffer
-    reinterpretUntilZeros(size: number, offset?: number): FFIBuffer
-    writeCString(offset: number, input: string, encoding?: string): void
-    writeInt64BE(offset: number, input: number | string): any
-    writeInt64LE(offset: number, input: number | string): any
+  address(): number
+  deref(): any
+  isNull(): boolean
+  readCString(offset?: number): string
+  readInt64BE(offset?: number): string
+  readInt64LE(offset?: number): string
+  readObject(offset?: number): string
+  readPointer(offset?: number): string
+  readUInt64BE(offset?: number): string
+  readUInt64LE(offset?: number): string
+  ref(): FFIBuffer
+  reinterpret(size: number, offset?: number): FFIBuffer
+  reinterpretUntilZeros(size: number, offset?: number): FFIBuffer
+  writeCString(offset: number, input: string, encoding?: string): void
+  writeInt64BE(offset: number, input: number | string): any
+  writeInt64LE(offset: number, input: number | string): any
     writeObject(offset: number, object: Object): void;  // tslint:disable-line
-    writePointer(offset: number, pointer: FFIBuffer): void
-    writeUInt64BE(offset: number, input: number | string): any
-    writeUInt64LE(offset: number, input: number | string): any
-    inspect(): string
+  writePointer(offset: number, pointer: FFIBuffer): void
+  writeUInt64BE(offset: number, input: number | string): any
+  writeUInt64LE(offset: number, input: number | string): any
+  inspect(): string
     // add by waiting. below extened via Buffer.prototype by ref.js
-    hexAddress(): string
+  hexAddress(): string
 }
 
 
@@ -46,7 +46,7 @@ export type FnCallParam = FFIParam   // each param of calling function
 export type FnCallParams = FnCallParam[] | never[] // calling params
 export type FnParams = [FnRetType, FnCallParams] // def for ffi [returnType, [calling param, ...]]
 export interface ApiDef {
-    [fn: string]: FnParams
+  [fn: string]: FnParams
 }
 export type MacroParam<T> = T | [T, T, T]  // [s,s,s] for conversion of macro windows data like LPCTSTR
 export type MacroDef = [string, string, string]    // ['_WIN64_HOLDER', 'int64*', 'int32*']
@@ -56,17 +56,17 @@ export type _WIN64 = boolean
 export type _UNICODE = boolean
 
 export interface WinData {
-    [prop: string]: FFIParam
+  [prop: string]: FFIParam
 }
 export interface Windef {
-    [prop: string]: FFIParam | MacroMap
+  [prop: string]: FFIParam | MacroMap
 }
 
 export interface LoadSettings {
-    _UNICODE?: boolean // default true
-    _WIN64?: boolean   // default from process.arch
-    _windefClone?: boolean // for helper.parse_windef()
-    singleton: boolean    // for DLL.load()
+  _UNICODE?: boolean // default true
+  _WIN64?: boolean   // default from process.arch
+  _windefClone?: boolean // for helper.parse_windef()
+  singleton: boolean    // for DLL.load()
 }
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751
@@ -260,60 +260,60 @@ export type va_list = Buffer
 /* ------------------ struct ---------------------- */
 export type INITCOMMONCONTROLSEX = Buffer
 export interface InitCommonControlsEXStruct {
-    dwSize: DWORD
-    dwICC: DWORD
+  dwSize: DWORD
+  dwICC: DWORD
 }
 
 export type MSG = Buffer
 export interface MsgStruct {
-    hwnd: HWND
-    message: UINT
-    wParam: WPARAM
-    lParam: LPARAM
-    time: DWORD
-    pt: POINT
+  hwnd: HWND
+  message: UINT
+  wParam: WPARAM
+  lParam: LPARAM
+  time: DWORD
+  pt: POINT
 }
 
 export type POINT = Buffer
 export interface PointStruct {
-    x: LONG
-    y: LONG
+  x: LONG
+  y: LONG
 }
 
 export type WNDCLASSEX = Buffer
 export interface WndClassEXStruct {
-    cbSize: UINT
-    style: UINT
-    lpfnWndProc: WNDPROC
-    cbClsExtra: INT
-    cbWndExtra: INT
-    hInstance: HINSTANCE // can be 0?
-    hIcon: HICON
-    hCursor: HCURSOR
-    hbrBackground: HBRUSH
-    lpszMenuName: LPCTSTR
-    lpszClassName: LPCTSTR
-    hIconSm: HICON
+  cbSize: UINT
+  style: UINT
+  lpfnWndProc: WNDPROC
+  cbClsExtra: INT
+  cbWndExtra: INT
+  hInstance: HINSTANCE // can be 0?
+  hIcon: HICON
+  hCursor: HCURSOR
+  hbrBackground: HBRUSH
+  lpszMenuName: LPCTSTR
+  lpszClassName: LPCTSTR
+  hIconSm: HICON
 }
 
 export type WINDOWINFO = Buffer
 export interface WindowInfoStruct {
-    cbSize: DWORD
-    rcWindow: VOID
-    rcClient: VOID
-    dwStyle: DWORD
-    dwExStyle: DWORD
-    dwWindowStatus: DWORD
-    cxWindowBorders: UINT
-    cyWindowBorders: UINT
-    atomWindowType: ATOM
-    wCreatorVersion: WORD
+  cbSize: DWORD
+  rcWindow: VOID
+  rcClient: VOID
+  dwStyle: DWORD
+  dwExStyle: DWORD
+  dwWindowStatus: DWORD
+  cxWindowBorders: UINT
+  cyWindowBorders: UINT
+  atomWindowType: ATOM
+  wCreatorVersion: WORD
 }
 
 export type RECT = Buffer
 export interface RectStruct {
-    left: LONG
-    top: LONG
-    right: LONG
-    bottom: LONG
+  left: LONG
+  top: LONG
+  right: LONG
+  bottom: LONG
 }

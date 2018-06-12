@@ -10,30 +10,30 @@ import { parse_windef } from './lib/helper'
 
 import * as windef from './lib/windef'
 parse_windef(windef)   // must at top convert types Windef to WinData
-export {windef}
+export { windef }
 
 import * as Conf from './lib/conf'
-export {Conf as conf}
+export { Conf as conf }
 
 import * as DStruct from './lib/struct'
-export {DStruct as DS} // Dict of Struct
-export {DStruct}
+export { DStruct as DS } // Dict of Struct
+export { DStruct }
 
 import * as types from './lib/types'
-export {types}
+export { types }
 
 import * as User32 from './lib/user32/index'
-export {User32 as U}
-export {User32}
+export { User32 as U }
+export { User32 }
 
 import * as Kernel32 from './lib/kernel32/index'
-export {Kernel32 as K}
-export {Kernel32}
+export { Kernel32 as K }
+export { Kernel32 }
 
 import * as Comctl32 from './lib/comctl32/index'
-export {Comctl32 as C}
-export {Comctl32}
+export { Comctl32 as C }
+export { Comctl32 }
 
 import * as Ntdll from './lib/ntdll/index'
-export {Ntdll}
+export { Ntdll }
 

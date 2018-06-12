@@ -3,7 +3,7 @@ import * as W from '../windef'
 
 
 export interface Win32Fns {
-    CreateWindowExW(
+  CreateWindowExW(
         dwExStyle: GT.DWORD,
         lpClassName: GT.LPCTSTR | null,
         lpWindowName: GT.LPCTSTR | null,
@@ -15,132 +15,132 @@ export interface Win32Fns {
         hWndParent: GT.HWND | null,
         HMENU: GT.HMENU | null,
         HINSTANCE: GT.HINSTANCE | null,
-        LPVOID: GT.LPVOID | null
+        LPVOID: GT.LPVOID | null,
     ): GT.HWND
 
-    DefWindowProcW(hWnd: GT.HWND, Msg: GT.UINT, wParam: GT.WPARAM, lParam: GT.LPARAM): GT.LRESULT
+  DefWindowProcW(hWnd: GT.HWND, Msg: GT.UINT, wParam: GT.WPARAM, lParam: GT.LPARAM): GT.LRESULT
 
-    DispatchMessageW(lpMsg: GT.LPMSG): GT.LRESULT
+  DispatchMessageW(lpMsg: GT.LPMSG): GT.LRESULT
 
-    EnumThreadWindows(dwThreadId: GT.DWORD, lpfn: GT.WNDENUMPROC, lParam: GT.LPARAM): GT.BOOL
+  EnumThreadWindows(dwThreadId: GT.DWORD, lpfn: GT.WNDENUMPROC, lParam: GT.LPARAM): GT.BOOL
 
     // tslint:disable-next-line
     EnumWindows: EnumWindows
 
-    FindWindowExW(
+  FindWindowExW(
         hwndParent: GT.HWND | null,
         hwndChildAfter: GT.HWND | null,
         lpszClass: GT.LPCTSTR | null,
-        lpszWindow: GT.LPCTSTR | null
+        lpszWindow: GT.LPCTSTR | null,
     ): GT.HWND
 
-    GetAncestor(hwnd: GT.HWND, gaFlags: GT.UINT): GT.HWND
+  GetAncestor(hwnd: GT.HWND, gaFlags: GT.UINT): GT.HWND
 
-    GetClassInfoExW(hinst: GT.HINSTANCE | null, lpszClass: GT.LPCTSTR, LPWNDCLASSEX: GT.LPWNDCLASSEX): GT.BOOL
+  GetClassInfoExW(hinst: GT.HINSTANCE | null, lpszClass: GT.LPCTSTR, LPWNDCLASSEX: GT.LPWNDCLASSEX): GT.BOOL
 
-    GetMessageW(lpMsg: GT.LPMSG, HWND: GT.HWND | null, wMsgFilterMin: GT.UINT, wMsgFilterMax: GT.UINT): GT.BOOL
+  GetMessageW(lpMsg: GT.LPMSG, HWND: GT.HWND | null, wMsgFilterMin: GT.UINT, wMsgFilterMax: GT.UINT): GT.BOOL
 
-    GetParent(hWnd: GT.HWND): GT.HWND
+  GetParent(hWnd: GT.HWND): GT.HWND
 
-    GetWindow(hWnd: GT.HWND, uCmd: GT.UINT): GT.HWND
+  GetWindow(hWnd: GT.HWND, uCmd: GT.UINT): GT.HWND
 
-    GetWindowInfo(hwnd: GT.HWND, pwi: GT.PWINDOWINFO): GT.BOOL   // Note that you must set the pwi.cbSize!
+  GetWindowInfo(hwnd: GT.HWND, pwi: GT.PWINDOWINFO): GT.BOOL   // Note that you must set the pwi.cbSize!
 
-    GetWindowLongW(hWnd: GT.HWND, nIndex: GT.INT): GT.LONG
+  GetWindowLongW(hWnd: GT.HWND, nIndex: GT.INT): GT.LONG
 
-    GetWindowLongPtrW(hWnd: GT.HWND, nIndex: GT.INT): GT.LONG_PTR
+  GetWindowLongPtrW(hWnd: GT.HWND, nIndex: GT.INT): GT.LONG_PTR
 
-    GetWindowTextW(hWnd: GT.HWND, lpString: GT.LPCTSTR, nMaxCount: GT.INT): GT.INT
+  GetWindowTextW(hWnd: GT.HWND, lpString: GT.LPCTSTR, nMaxCount: GT.INT): GT.INT
 
-    GetWindowThreadProcessId(hWnd: GT.HWND, lpdwProcessId: GT.LPDWORD | null): GT.DWORD
+  GetWindowThreadProcessId(hWnd: GT.HWND, lpdwProcessId: GT.LPDWORD | null): GT.DWORD
 
-    IsWindowVisible(hWnd: GT.HWND): GT.BOOL
+  IsWindowVisible(hWnd: GT.HWND): GT.BOOL
 
-    RegisterClassExW(lpwcx: GT.WNDCLASSEX): GT.ATOM
+  RegisterClassExW(lpwcx: GT.WNDCLASSEX): GT.ATOM
 
-    SetWindowTextW(hWnd: GT.HWND, lpString: GT.LPCTSTR | null): GT.BOOL
+  SetWindowTextW(hWnd: GT.HWND, lpString: GT.LPCTSTR | null): GT.BOOL
 
-    SetWinEventHook(
+  SetWinEventHook(
         eventMin: GT.UINT,
         eventMax: GT.UINT,
         hmodWinEventProc: GT.HMODULE,
         lpfnWinEventProc: GT.WINEVENTPROC,
         idProcess: GT.DWORD,
         idThread: GT.DWORD,
-        dwflags: GT.UINT
+        dwflags: GT.UINT,
     ): GT.HWINEVENTHOOK
 
-    ShowWindow(hWnd: GT.HWND, nCmdShow: GT.INT): GT.BOOL
+  ShowWindow(hWnd: GT.HWND, nCmdShow: GT.INT): GT.BOOL
 
-    TranslateMessage(lpMsg: GT.LPMSG): GT.BOOL
+  TranslateMessage(lpMsg: GT.LPMSG): GT.BOOL
 
-    TranslateMessageEx(lpMsg: GT.LPMSG): GT.BOOL
+  TranslateMessageEx(lpMsg: GT.LPMSG): GT.BOOL
 
-    UnhookWinEvent(hWinEventHook: GT.HWINEVENTHOOK): GT.BOOL
+  UnhookWinEvent(hWinEventHook: GT.HWINEVENTHOOK): GT.BOOL
 
-    UpdateWindow(hWnd: GT.HWND): GT.BOOL
+  UpdateWindow(hWnd: GT.HWND): GT.BOOL
 }
 
 
 export const apiDef: GT.ApiDef = {
-    CreateWindowExW: [W.HWND, [
-        W.DWORD, W.LPCTSTR, W.LPCTSTR, W.DWORD,
-        W.INT, W.INT, W.INT, W.INT,
-        W.HWND, W.HMENU, W.HINSTANCE, W.LPVOID,
-    ]],
+  CreateWindowExW: [W.HWND, [
+    W.DWORD, W.LPCTSTR, W.LPCTSTR, W.DWORD,
+    W.INT, W.INT, W.INT, W.INT,
+    W.HWND, W.HMENU, W.HINSTANCE, W.LPVOID,
+  ] ],
 
-    DefWindowProcW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM]],
+  DefWindowProcW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
 
-    DispatchMessageW: [W.LRESULT, [W.LPMSG]],
+  DispatchMessageW: [W.LRESULT, [W.LPMSG] ],
 
-    EnumThreadWindows: [W.BOOL, [W.DWORD, W.WNDENUMPROC, W.LPARAM]],
+  EnumThreadWindows: [W.BOOL, [W.DWORD, W.WNDENUMPROC, W.LPARAM] ],
 
-    EnumWindows: [W.BOOL, [W.WNDENUMPROC, W.LPARAM]],
+  EnumWindows: [W.BOOL, [W.WNDENUMPROC, W.LPARAM] ],
 
-    FindWindowExW: [W.HWND, [W.HWND, W.HWND, W.LPCTSTR, W.LPCTSTR]],
+  FindWindowExW: [W.HWND, [W.HWND, W.HWND, W.LPCTSTR, W.LPCTSTR] ],
 
-    GetAncestor: [W.HWND, [W.HWND, W.UINT]],
+  GetAncestor: [W.HWND, [W.HWND, W.UINT] ],
 
-    GetClassInfoExW: [W.BOOL, [W.HINSTANCE, W.LPCTSTR, W.LPWNDCLASSEX]],
+  GetClassInfoExW: [W.BOOL, [W.HINSTANCE, W.LPCTSTR, W.LPWNDCLASSEX] ],
 
-    GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT]],
+  GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT] ],
 
-    GetParent: [W.HWND, [W.HWND]],
+  GetParent: [W.HWND, [W.HWND] ],
 
-    GetWindow: [W.HWND, [W.HWND, W.UINT]],
+  GetWindow: [W.HWND, [W.HWND, W.UINT] ],
 
-    GetWindowInfo: [W.BOOL, [W.HWND, W.PWINDOWINFO]],
+  GetWindowInfo: [W.BOOL, [W.HWND, W.PWINDOWINFO] ],
 
-    GetWindowLongW: [W.LONG, [W.HWND, W.INT]],
+  GetWindowLongW: [W.LONG, [W.HWND, W.INT] ],
 
-    GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT]],
+  GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT] ],
 
-    GetWindowThreadProcessId: [W.DWORD, [W.HWND, W.LPDWORD]],
+  GetWindowThreadProcessId: [W.DWORD, [W.HWND, W.LPDWORD] ],
 
-    IsWindowVisible: [W.BOOL, [W.HWND]],
+  IsWindowVisible: [W.BOOL, [W.HWND] ],
 
-    RegisterClassExW: [W.ATOM, [W.WNDCLASSEX]],
+  RegisterClassExW: [W.ATOM, [W.WNDCLASSEX] ],
 
-    SetWindowTextW: [W.BOOL, [W.HWND, W.LPCTSTR]],
+  SetWindowTextW: [W.BOOL, [W.HWND, W.LPCTSTR] ],
 
-    SetWinEventHook: [W.HWINEVENTHOOK, [W.UINT, W.UINT, W.HMODULE, W.WINEVENTPROC, W.DWORD, W.DWORD, W.UINT]],
+  SetWinEventHook: [W.HWINEVENTHOOK, [W.UINT, W.UINT, W.HMODULE, W.WINEVENTPROC, W.DWORD, W.DWORD, W.UINT] ],
 
-    ShowWindow: [W.BOOL, [W.HWND, W.INT]],
+  ShowWindow: [W.BOOL, [W.HWND, W.INT] ],
 
-    TranslateMessage: [W.BOOL, [W.LPMSG]],
+  TranslateMessage: [W.BOOL, [W.LPMSG] ],
 
-    TranslateMessageEx: [W.BOOL, [W.LPMSG]],
+  TranslateMessageEx: [W.BOOL, [W.LPMSG] ],
 
-    UnhookWinEvent: [W.BOOL, [W.HWINEVENTHOOK]],
+  UnhookWinEvent: [W.BOOL, [W.HWINEVENTHOOK] ],
 
-    UpdateWindow: [W.BOOL, [W.HWND]],
+  UpdateWindow: [W.BOOL, [W.HWND] ],
 }
 /* istanbul ignore next */
 if (process.arch === 'x64') {
-    apiDef.GetWindowLongPtrW = [W.LONG_PTR, [W.HWND, W.INT]]
+  apiDef.GetWindowLongPtrW = [W.LONG_PTR, [W.HWND, W.INT] ]
 }
 
 export interface EnumWindows {
-    (lpEnumFunc: GT.WNDENUMPROC, lParam: GT.LPARAM): GT.BOOL
-    async(lpEnumFunc: GT.WNDENUMPROC, lParam: GT.LPARAM, cb: (err: Error) => void): GT.BOOL
+  (lpEnumFunc: GT.WNDENUMPROC, lParam: GT.LPARAM): GT.BOOL
+  async(lpEnumFunc: GT.WNDENUMPROC, lParam: GT.LPARAM, cb: (err: Error) => void): GT.BOOL
 }
