@@ -80,6 +80,9 @@
     "typescript": "^2.9.1",
     "yargs": "^11.1.0"
   },
+  "peerDependencies": {
+    "ffi": "^2.2.0"
+  },
   "scripts": {
     "bp:add": "git remote add bp https://github.com/waitingsong/npm-base",
     "bp:sync": "git fetch bp && git pull --no-edit bp master",
