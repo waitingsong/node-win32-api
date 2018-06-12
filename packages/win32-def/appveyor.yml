@@ -12,7 +12,7 @@ cache:
 environment:
   matrix:
     - nodejs_version: "8"
-    - nodejs_version: "9"
+    - nodejs_version: "10"
 
 platform:
   - x64
@@ -20,6 +20,7 @@ platform:
 
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform
+  - npm i -g rollup
   - npm install
 
 test_script:

@@ -1,29 +1,36 @@
 {
   "env": {
-    "es6": true,
-    "browser": true,
-    "jquery": true,
-    "worker": true,
-    "node": true,
     "amd": true,
+    "browser": true,
     "commonjs": true,
+    "es6": true,
+    "jquery": true,
+    "jest": true,
     "mocha": true,
-    "serviceworker": true
+    "node": true,
+    "serviceworker": true,
+    "worker": true
   },
   "parserOptions": {
-    "ecmaVersion": 8
+    "ecmaVersion": 2018,
+    "sourceType": "module"
   },
   "extends": "eslint:recommended",
   "globals": {
   },
   "rules": {
     "linebreak-style": [ 2, "unix" ],
-    "semi": [ 2, "always" ],
+    "semi": [ 1, "never", {"beforeStatementContinuationChars": "always"} ],
     "quotes": [ 2, "single" ],
     "no-unused-vars": 0,
     "no-mixed-spaces-and-tabs": [2],
     "no-use-before-define": [2,  {"functions": false, "classes": true }],  // 禁止在变量定义之前使用它们
     "curly": 2,	// 要求遵循大括号约定 
+    "padding-line-between-statements": [  // 变量声明后空格
+      "warn", 
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"]}
+    ],
     "eol-last": [1, "always"],
     "unicode-bom": [2, "never"],    // 禁止使用 Unicode 字节顺序标记 (BOM)
     "no-new-wrappers": 2,	// 禁止对 String，Number 和 Boolean 使用 new 操作符

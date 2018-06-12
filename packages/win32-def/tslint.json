@@ -20,9 +20,7 @@
     "eofline": true,
     "forin": false,
     "import-blacklist": [
-      true,
-      "rxjs",
-      "rxjs/Rx"
+      true
     ],
     "indent": [true, "spaces", 2],
     "interface-name": [ true, "never-prefix" ],
@@ -32,11 +30,12 @@
     "member-access": [ false ],
     "member-ordering": [true, {"order": [
       "public-static-field",
-      "public-instance-field",
-      "public-constructor",
+      "protected-static-field",
       "private-static-field",
+      "public-instance-field",
+      "protected-instance-field",
       "private-instance-field",
-      "private-constructor",
+      "public-constructor",
       "public-instance-method",
       "protected-instance-method",
       "private-instance-method"
@@ -77,13 +76,11 @@
       "@angular/platform-browser",
       "source-map-support/register"
     ],
+    "no-this-assignment": [true, {"allowed-names": ["^self$"], "allow-destructuring": true}],
     "no-trailing-whitespace": [true, "ignore-comments"],	// 禁用行尾空白 
     "no-unnecessary-initializer": true, // 禁止变量赋值为 undefined 
     "no-unused-expression": [true, "allow-fast-null-checks"],
-    "no-unused-variable": {
-      "severity": "warning",
-      "options": [true, { "ignore-pattern": "^_" }]
-    },
+    "no-unused-variable": [true],
     "no-unnecessary-type-assertion": false,
     "no-use-before-declare": true,  // 禁止在变量定义之前使用它们
     "no-var-keyword": true,  // 要求使用 let 或 const 而不是 var
@@ -106,7 +103,7 @@
     "semicolon": [true, "never"],
     "space-before-function-paren": [
       true, 
-      {"anonymous": "always", "named": "never"}
+      {"anonymous": "never", "named": "never"}
     ],
     "ter-arrow-spacing": [true, { "before": true, "after": true }],	// 要求箭头函数的箭头之前或之后有空格
     "ter-func-call-spacing": [true, "never"],	// disallow spacing between function identifiers and their invocations
@@ -122,7 +119,7 @@
           "arrays": "always",
           "exports": "always",
           "imports": "always",
-          "functions": "never",
+          "functions": "always",
           "objects": "always",
           "typeLiterals": "always"
         },
