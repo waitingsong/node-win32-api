@@ -106,7 +106,7 @@ function _test_arch_half(typesHalf: Set<string>, settings: LoadSettings) {
   const fnName = 'parse_param_placeholder'
   const fn = <(
     param: FnParam | MacroDef,
-    settings?: LoadSettings
+    settings?: LoadSettings,
   ) => FnParam> mods.__get__(fnName)
 
 

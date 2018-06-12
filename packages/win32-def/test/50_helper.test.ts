@@ -32,7 +32,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
   const fnName = 'parse_param_placeholder'
   const fn = <(
     param: FnParam | MacroDef,
-    settings?: LoadSettings
+    settings?: LoadSettings,
   ) => FnParam> mods.__get__(fnName)
 
   it(`Should ${fnName} handle value of settings correctly)`, () => {
@@ -115,7 +115,7 @@ describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
   const fnName = 'parse_placeholder_arch'
   const fn = <(
     param: FnParam | MacroDef,
-    _WIN64: boolean
+    _WIN64: boolean,
   ) => FnParam> mods.__get__(fnName)
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
@@ -153,7 +153,7 @@ describe(filename + ' :parse_placeholder_unicode(param, _WIN64)', () => {
   const fnName = 'parse_placeholder_unicode'
   const fn = <(
     param: FnParam | MacroDef,
-    _UNICODE: boolean
+    _UNICODE: boolean,
   ) => FnParam> mods.__get__(fnName)
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
@@ -365,7 +365,7 @@ describe(filename + ' :prepare_windef_ref()', () => {
   const fnName = 'prepare_windef_ref'
   const fn = <(
     ww: DataTypes,
-    macroSrc: Map<string, string>
+    macroSrc: Map<string, string>,
   ) => DataTypes> mods.__get__(fnName)
 
   it(`Should ${fnName}() works)`, () => {
