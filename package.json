@@ -44,15 +44,15 @@
     "all": true
   },
   "dependencies": {
-    "typescript": "^2.7.2"
+    "typescript": "^2.9.1"
   },
   "devDependencies": {
-    "@types/ffi": "^0.0.19",
-    "@types/mocha": "^2.2.48",
-    "@types/node": "^9.4.7",
-    "@types/power-assert": "^1.4.29",
+    "@types/ffi": "^0.1.0",
+    "@types/mocha": "^5.2.2",
+    "@types/node": "^10.3.2",
+    "@types/power-assert": "^1.5.0",
     "@types/ref": "^0.0.28",
-    "@types/ref-struct": "^0.0.28",
+    "@types/ref-struct": "^0.0.29",
     "@types/rewire": "^2.5.28",
     "@types/rimraf": "^2.0.2",
     "coveralls": "^3.0.0",
@@ -60,15 +60,15 @@
     "ffi": "^2.2.0",
     "intelli-espower-loader": "^1.0.1",
     "istanbul": "^0.4.5",
-    "mocha": "^5.0.3",
+    "mocha": "^5.2.0",
     "mocha-lcov-reporter": "^1.3.0",
-    "nyc": "^11.5.0",
-    "power-assert": "^1.4.4",
-    "rewire": "^3.0.2",
+    "nyc": "^12.0.2",
+    "power-assert": "^1.5.0",
+    "rewire": "^4.0.1",
     "rimraf": "^2.6.2",
     "source-map-support": "^0.5.4",
-    "ts-node": "^5.0.1",
-    "tslint": "^5.9.1"
+    "ts-node": "^6.1.1",
+    "tslint": "^5.10.0"
   },
   "scripts": {
     "bp:add": "git remote add bp https://github.com/waitingsong/npm-base",
