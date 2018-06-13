@@ -12,6 +12,7 @@ export interface DataTypes {
 }
 
 export interface LoadSettings {
+  singleton: boolean  // for DLL.load()
   _UNICODE?: boolean // default true
   _WIN64?: boolean   // default from process.arch
 }

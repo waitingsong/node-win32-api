@@ -10,6 +10,7 @@ export const _WIN64 = process.arch === 'x64' ? true : false
 /* istanbul ignore next */
 export const _UNICODE = true
 export const settingsDefault: LoadSettings = {
+  singleton: true,
   _UNICODE,
   _WIN64,
 }
