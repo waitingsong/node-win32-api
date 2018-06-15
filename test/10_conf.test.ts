@@ -29,7 +29,6 @@ describe(filename, () => {
 
     assert(st._UNICODE === Conf._UNICODE)
     assert(st._WIN64 === Conf._WIN64)
-    assert(typeof st._windefClone === 'boolean' && st._windefClone === false)
     assert(typeof st.singleton === 'boolean')
   })
 })

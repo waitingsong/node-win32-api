@@ -29,22 +29,22 @@ describe(filename, () => {
       const apiDef = <GT.ApiDef> module.apiDef
 
       it(`Should ${apiName}: FnName of definition be string`, () => {
-                for (let x in apiDef) {    // tslint:disable-line
-                  assert(typeof x === 'string')
-                }
+        for (let x in apiDef) {    // tslint:disable-line
+          assert(typeof x === 'string')
+        }
       })
 
       it(`Should ${apiName}: FnParams of definition be array`, () => {
-                for (let x in apiDef) {    // tslint:disable-line
-                  const p = apiDef[x]
-                  assert(typeof p === 'object' && Array.isArray(p), `${x}()`)
-                }
+        for (let x in apiDef) {    // tslint:disable-line
+          const p = apiDef[x]
+          assert(typeof p === 'object' && Array.isArray(p), `${x}()`)
+        }
       })
 
       it(`Should ${apiName}: FnRetType of definition be string and not epmty or array`, () => {
-                for (let x in apiDef) {    // tslint:disable-line
-                  test_param_return_type(apiDef[x][0], x)
-                }
+        for (let x in apiDef) {    // tslint:disable-line
+          test_param_return_type(apiDef[x][0], x)
+        }
       })
 
       it(`Should ${apiName}: FnRetType of definition exists in conf.windefSet`, () => {
@@ -79,31 +79,31 @@ describe(filename, () => {
       })
 
       it(`Should ${apiName}: FnCallParams of definition be array`, () => {
-                for (let x in apiDef) {    // tslint:disable-line
-                  const p = apiDef[x]
-                  assert(typeof p[1] === 'object' && Array.isArray(p[1]), `${x}()`)
-                }
+        for (let x in apiDef) {    // tslint:disable-line
+          const p = apiDef[x]
+          assert(typeof p[1] === 'object' && Array.isArray(p[1]), `${x}()`)
+        }
       })
 
       it(`Should ${apiName}: item of FnCallParams of definition exists in conf.windefSet and valid`, () => {
         if (windefSet && windefSet.size) {
-                    for (let x in apiDef) {    // tslint:disable-line
-                      const arr = apiDef[x][1]
-                      const len = arr.length
+          for (let x in apiDef) {    // tslint:disable-line
+            const arr = apiDef[x][1]
+            const len = arr.length
 
-                      if (len) {
-                        for (let i = 0; i < len; i++) {
-                          const param = arr[i]
+            if (len) {
+              for (let i = 0; i < len; i++) {
+                const param = arr[i]
 
-                          if (Array.isArray(param)) {
-                            assert(false, 'param should be string, but array')
-                          }
-                          else {
-                            test_call_param(param, x, i)
-                          }
-                        }
-                      }
-                    }
+                if (Array.isArray(param)) {
+                  assert(false, 'param should be string, but array')
+                }
+                else {
+                  test_call_param(param, x, i)
+                }
+              }
+            }
+          }
         }
       })
 

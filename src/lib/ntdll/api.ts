@@ -1,5 +1,6 @@
 import * as GT from '../types'
-import * as W from '../windef'
+import W from '../windef-parsed'
+
 
 export interface Win32Fns {
     //  may be altered or unavailable in future versions of Windows

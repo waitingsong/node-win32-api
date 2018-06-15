@@ -10,8 +10,14 @@ export const _UNICODE = true
 export const settingsDefault: GT.LoadSettings = {
   _UNICODE,
   _WIN64,
-  _windefClone: false,
   singleton: true,    // for DLL.load()
+}
+
+export const enum DllNames {
+  comctl32 = 'comctl32',
+  kernel32 = 'kernel32',
+  ntdll = 'ntdll',
+  user32 = 'user32',
 }
 
 
@@ -20,8 +26,10 @@ export const windefSet = new Set([
   'bool*',
 
   'byte',
+  'byte*',
 
   'char',
+  'uchar',
   'char*',
 
   'float',
@@ -34,6 +42,8 @@ export const windefSet = new Set([
   'int64' ,
 
   'int*',
+  'int8*',
+  'int16*',
   'int32*',
   'int64*',
 
@@ -50,6 +60,7 @@ export const windefSet = new Set([
   'uint64*',
 
   'int**',
+  'uint**',
   'uint32**',
   'uint64**',
 

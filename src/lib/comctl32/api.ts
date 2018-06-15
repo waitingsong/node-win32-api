@@ -1,6 +1,6 @@
 import * as GT from '../types'
-import * as W from '../windef'
-// import * as LT from './types';
+import W from '../windef-parsed'
+
 
 export interface Win32Fns {
   InitCommonControlsEx(lpInitCtrls: GT.INITCOMMONCONTROLSEX): GT.BOOL

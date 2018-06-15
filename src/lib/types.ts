@@ -1,5 +1,5 @@
 /*  ---------- data types for TypeScript ----------- */
-
+import * as W from './windef'
 
 /**
  * node-ffi-buffer extends from Buffer
@@ -55,8 +55,8 @@ export type MacroMap = Map<string, MacroDef>  // ['PVOID', ['_WIN64_HOLDER', 'in
 export type _WIN64 = boolean
 export type _UNICODE = boolean
 
-export interface WinData {
-  [prop: string]: FFIParam
+export type WinData = {
+  [prop in keyof typeof W]: FFIParam
 }
 export interface Windef {
   [prop: string]: FFIParam | MacroMap
@@ -65,7 +65,6 @@ export interface Windef {
 export interface LoadSettings {
   _UNICODE?: boolean // default true
   _WIN64?: boolean   // default from process.arch
-  _windefClone?: boolean // for helper.parse_windef()
   singleton: boolean    // for DLL.load()
 }
 

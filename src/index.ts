@@ -6,10 +6,7 @@
  * @link https://github.com/waitingsong/node-win32-api
  */
 
-import { parse_windef } from './lib/helper'
-
-import * as windef from './lib/windef'
-parse_windef(windef)   // must at top convert types Windef to WinData
+import windef from './lib/windef-parsed'
 export { windef }
 
 import * as Conf from './lib/conf'

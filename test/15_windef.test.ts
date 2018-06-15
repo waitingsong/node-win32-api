@@ -55,10 +55,10 @@ function test_arch(types64_32: Set<string>) {
 }
 
 function _test_arch(types64_32: Set<string>, settings: GT.LoadSettings) {
-  const W = H.parse_windef(WD, { ...settings, _windefClone: true })
+  const W = H.parse_windef(WD, { ...settings })
 
   for (const vv of types64_32) {
-        // convert param like '_WIN64_HOLDER_' to 'int64' or 'int32'
+    // convert param like '_WIN64_HOLDER_' to 'int64' or 'int32'
     const param = W[vv]
 
     it(`Should ${vv}: value converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, () => {
@@ -90,10 +90,10 @@ function test_arch_half(values: Set<string>) {
 }
 
 function _test_arch_half(typesHalf: Set<string>, settings: GT.LoadSettings) {
-  const W = H.parse_windef(WD, { ...settings, _windefClone: true })
+  const W = H.parse_windef(WD, { ...settings })
 
   for (const vv of typesHalf) {
-        // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
+    // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
     const param = H.parse_param_placeholder(W[vv], settings)
 
     it(`Should ${vv}: value converted correctly under nodejs ${ settings._WIN64 ? 'x64' : 'ia32' }`, () => {
@@ -120,7 +120,7 @@ describe(filename, () => {
 })
 
 function unicode(_UNICODE: boolean, typesUnicode: Set<string>) {
-  const W = H.parse_windef(WD, { ...Conf.settingsDefault, _UNICODE, _windefClone: true })
+  const W = H.parse_windef(WD, { ...Conf.settingsDefault, _UNICODE })
 
   for (const vv of typesUnicode) {
     const param = W[vv]

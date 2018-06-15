@@ -75,17 +75,18 @@ export function gen_api_opts(apiDef: GT.ApiDef, fns?: GT.FnName[], settings?: GT
 
 export function parse_placeholder(ps: GT.FnParams, settings?: GT.LoadSettings): GT.FnParams {
   if (! ps || ! Array.isArray(ps) || ps.length !== 2) {
-    throw new Error('parse_placeholder(ps) value of ps invalid')
+    throw new Error('parse_placeholder(ps, settings?) value of ps invalid!!')
   }
   const returnParam: GT.FnRetType = ps[0]
   const callParams: GT.FnCallParams = ps[1]
   const res = <GT.FnParams> new Array(2)
 
-    // return param
+
+  // return param
   res[0] = parse_param_placeholder(returnParam, settings)
 
-    // callling params
-    // [ [placeholder, string, string],  [placeholder, string, string], string]
+  // callling params
+  // [ [placeholder, string, string],  [placeholder, string, string], string]
   const targetParams = <GT.FnCallParams> new Array()
 
   for (let i = 0, len = callParams.length; i < len; i++) {
@@ -150,30 +151,25 @@ export function parse_placeholder_unicode(param: GT.FFIParam | GT.MacroDef, _UNI
 }
 
 // convert macro variable of windef
-export function parse_windef(W: GT.Windef | any, settings?: GT.LoadSettings): GT.WinData {
-  const ww = (settings && settings._windefClone ? clone_filter_windef(W) : W)
+export function parse_windef(W: GT.Windef, settings?: GT.LoadSettings): GT.WinData {
+  const ww = clone_filter_windef(W)
   const macroMap = <GT.MacroMap> W.macroMap
-  const windef = <GT.WinData> {}
-    // const skipKeys = Conf.windefSkipKeys
+  const windef = <{[prop: string]: string}> {}
   const macroSrc = prepare_macro(macroMap, settings)
+  const ww2 = prepare_windef_ref(ww, macroSrc)
 
-  for (const [k, v] of macroSrc.entries()) {
-    if (typeof ww[k] !== 'undefined' && v) {
-      ww[k] = v
-    }
-  }
-
-  prepare_windef_ref(ww)
-
-  for (const x of Object.keys(ww)) {
-    if (Conf.windefSkipKeys.has(x)) {   // skip windef.macroMap
+  for (const x of Object.keys(ww2)) {
+    if (Conf.windefSkipKeys.has(x)) {   // skip windef.macroMap again
       continue
     }
-    windef[x] = <GT.FFIParam> ww[x]    // value processed by prepare_windef_ref() above
+    // @ts-ignore
+    windef[x] = <GT.FFIParam> ww2[x]    // value processed by prepare_windef_ref() above
   }
+  validateWinData(<GT.WinData> windef, Conf.windefSet)
 
-  return windef
+  return <GT.WinData> windef
 }
+
 
 function prepare_macro(macroMap: Map<string, GT.MacroDef>, settings?: GT.LoadSettings): Map<string, GT.FFIParam> {
   const res = new Map()
@@ -187,32 +183,96 @@ function prepare_macro(macroMap: Map<string, GT.MacroDef>, settings?: GT.LoadSet
 
 
 // parse const HANDLE = 'PVOID' to the realy FFIParam
-function prepare_windef_ref(ww: GT.WinData | GT.Windef): void {
-  for (const x of Object.keys(ww)) {
-    if (Conf.windefSkipKeys.has(x)) {   // skip ww.macroMap
-      continue
-    }
-    const v = <any> ww[x]
+// macroMap <['PVOID', 'uint32*'], ...>
+function prepare_windef_ref(ww: GT.Windef, macroSrc: Map<string, string>): GT.WinData {
+  const ret = <{[prop: string]: string}> {}
 
-    if (typeof v === 'string' && ! Conf.windefSet.has(v)) {  // not valid FFIParam like 'int'
-      if (typeof ww[v] === 'string') {
-                // HANDLE == 'PVOID' , PVOID already parsed
-        ww[x] = ww[v]
-      }
+  for (const [k, v] of macroSrc.entries()) {
+    if (typeof ww[<keyof GT.WinData> k] !== 'undefined' && v) {
+      ww[k] = v // PVOID -> uint64*
     }
   }
+
+  for (const [k, v] of Object.entries(ww)) {
+    if (Conf.windefSkipKeys.has(k)) {   // skip ww.macroMap
+      continue
+    }
+
+    if (typeof v === 'string') {
+      if (Conf.windefSet.has(v)) {
+        ret[k] = v
+      }
+      else {
+        const value = lookupRef(v, ww, macroSrc)
+
+        // tslint:disable-next-line
+        if (typeof value === 'string' && value) {
+          ret[k] = value
+        }
+        else {
+          ret[k] = v  // maybe invalid for windefSet, will validateWinData() later
+        }
+      }
+    }
+    else {
+      throw new Error(`prepare_windef_ref() missing entry for k/v: ${k}/${v}`)
+    }
+  }
+
+  return <GT.WinData> ret
+}
+
+function lookupRef(key: string, ww: GT.Windef, macroSrc: Map<string, string>): string {
+  let ret = _lookupRef(key, ww, macroSrc)
+
+  if (! ret) {
+    return ''
+  }
+
+  for (let i = 0, len = 3; i < len; i++) {
+    const tmp = _lookupRef(ret, ww, macroSrc)
+
+    if (tmp) {
+      ret = tmp
+    }
+    else {
+      break
+    }
+  }
+
+  return ret
+}
+function _lookupRef(key: string, ww: GT.Windef, macroSrc: Map<string, string>): string {
+  if (macroSrc.has(key)) {
+    return <string> macroSrc.get(key)
+  }
+  let ret = ''
+
+  // not valid FFIParam such 'int/uint...', like HMODULE: 'HANDLE'
+  if (typeof ww[key] === 'string') {
+    // parse HANDLE: 'PVOID' , PVOID already parsed
+    ret = <string> ww[key]
+
+    if (ret) {
+      if (macroSrc.has(ret)) {  //  HANDLE:PVOID, macroSrc has PVOID
+        return <string> macroSrc.get(ret)
+      }
+    }
+    return ret
+  }
+
+  return ret
 }
 
 // filter windef by Conf.windefSkipKeys, output only need key/value
-export function clone_filter_windef(windef: GT.Windef): GT.WinData {
-  const res = <GT.WinData> {}
-    // const skip = Conf.windefSkipKeys
+export function clone_filter_windef(windef: GT.Windef): GT.Windef {
+  const ret = <GT.Windef> {}
 
   for (const x of Object.keys(windef)) {
     if (Conf.windefSkipKeys.has(x)) {   // macroMap
       continue
     }
-    Object.defineProperty(res, <string> x, {
+    Object.defineProperty(ret, <string> x, {
       value: <GT.FFIParam> windef[x],
       writable: true,
       enumerable: true,
@@ -220,5 +280,20 @@ export function clone_filter_windef(windef: GT.Windef): GT.WinData {
     })
   }
 
-  return res
+  return ret
+}
+
+export function validateWinData(windef: GT.WinData, windefSet: Set<string>): void {
+  for (const [k, v] of Object.entries(windef)) {
+    if (! k || ! v) {
+      throw new Error(`validateWinData() k or v empty: "${k}"/"${v}"`)
+    }
+    if (typeof v !== 'string') {
+      throw new Error(`validateWinData() v not typeof string: "${k}"/"${v}"`)
+    }
+
+    if (! windefSet.has(v)) {
+      throw new Error(`validateWinData() value is invalid ffi param value: "${k}"/"${v}"`)
+    }
+  }
 }

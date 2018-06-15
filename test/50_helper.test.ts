@@ -232,6 +232,8 @@ describe(filename + ' :parse_windef()', () => {
       })
       assert(true)
     }
+
+    delete WD[fake]
   })
 
   it(`Should ${fn} process windef macro members correctly)`, () => {
@@ -242,41 +244,53 @@ describe(filename + ' :parse_windef()', () => {
 
     W[keyArch] = Conf._WIN64_HOLDER
     W.macroMap = <GT.MacroMap> new Map([
-            [keyArch, [Conf._WIN64_HOLDER, v64, v32] ],
+      [keyArch, [Conf._WIN64_HOLDER, v64, v32] ],
     ])
 
+    Conf.windefSet.add(v64)
+    Conf.windefSet.add(v32)
+
     let _WIN64 = true
-    let windata = H.parse_windef(W, { ...Conf.settingsDefault, _windefClone: true, _WIN64 })
-    assert(windata[keyArch] === v64, `should "${v64}", got "${v32}" under ${_WIN64 ? 'x64' : 'ia32'}`)
+    let windata = H.parse_windef(W, { ...Conf.settingsDefault, _WIN64 })
+    let ret = windata[keyArch]
+    assert(ret === v64, `should "${v64}", got "${ret}" under ${_WIN64 ? 'x64' : 'ia32'}`)
 
     _WIN64 = false
-    windata = H.parse_windef(W, { ...Conf.settingsDefault, _windefClone: true, _WIN64 })
-    assert(windata[keyArch] === v32, `should "${v32}", got "${v64}" under ${_WIN64 ? 'x64' : 'ia32'}`)
+    windata = H.parse_windef(W, { ...Conf.settingsDefault, _WIN64 })
+    ret = windata[keyArch]
+    assert(ret === v32, `should "${v32}", got "${ret}" under ${_WIN64 ? 'x64' : 'ia32'}`)
+    Conf.windefSet.delete(v64)
+    Conf.windefSet.delete(v32)
 
     const keyUni = '__testKeyUNI'
     const uni = '_valueUNICODE'
     const ansi = '_valueANSI'
 
+    Conf.windefSet.add(uni)
+    Conf.windefSet.add(ansi)
+
     delete W[keyArch]
     W[keyUni] = Conf._UNICODE_HOLDER
     W.macroMap = <GT.MacroMap> new Map([
-            [keyUni, [Conf._UNICODE_HOLDER, uni, ansi] ],
+      [keyUni, [Conf._UNICODE_HOLDER, uni, ansi] ],
     ])
 
     let _UNICODE = true
-    let windata2 = H.parse_windef(W, { ...Conf.settingsDefault, _windefClone: true, _UNICODE })
+    let windata2 = H.parse_windef(W, { ...Conf.settingsDefault, _UNICODE })
     assert(windata2[keyUni] === uni, `should "${uni}", got "${ansi}" under ${_UNICODE ? 'UNICODE' : 'ANSI'}`)
 
     _UNICODE = false
-    windata2 = H.parse_windef(W, { ...Conf.settingsDefault, _windefClone: true, _UNICODE })
+    windata2 = H.parse_windef(W, { ...Conf.settingsDefault, _UNICODE })
     assert(windata2[keyUni] === ansi, `should "${ansi}", got "${uni}" under ${_UNICODE ? 'UNICODE' : 'ANSI'}`)
+    Conf.windefSet.delete(uni)
+    Conf.windefSet.delete(ansi)
 
   })
 
-    // at lastest
+  // at lastest
   it(`Should ${fn} process windef correctly)`, () => {
     const W = { ...WD }
-    const windata = H.parse_windef(W, { ...Conf.settingsDefault, _windefClone: true })
+    const windata = H.parse_windef(W, { ...Conf.settingsDefault })
     const lenData = Object.keys(windata).length + Conf.windefSkipKeys.size
     const lenDef = Object.keys(W).length
     assert(lenData === lenDef, `lenData:${lenData}, lenDef:${lenDef} not equal `)
