@@ -189,7 +189,7 @@ export const ULONG32 = 'uint32'
 export const ULONG64 = 'uint64'
 export const USHORT = 'ushort'
 export const UNICODE_STRING = 'pointer'
-export const USN = 'LONGLONG'
+export const USN = LONGLONG
 // export const WINAPI;
 export const WINEVENTPROC = 'pointer'
 export const WNDENUMPROC = 'pointer'
