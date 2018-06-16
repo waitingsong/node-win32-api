@@ -20,6 +20,7 @@ export const windefSet = new Set([
     'bool*',
 
     'byte',
+    'byte*',
 
     'char',
     'char*',
@@ -34,6 +35,8 @@ export const windefSet = new Set([
     'int64' ,
 
     'int*',
+    'int8*',
+    'int16*',
     'int32*',
     'int64*',
 
@@ -50,6 +53,7 @@ export const windefSet = new Set([
     'uint64*',
 
     'int**',
+    'uint**',
     'uint32**',
     'uint64**',
 
