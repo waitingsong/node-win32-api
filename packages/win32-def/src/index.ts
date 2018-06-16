@@ -1,9 +1,9 @@
 /**
- * node-win32-api
+ * node-win32-def
  *
  * @author waiting
  * @license MIT
- * @link https://github.com/waitingsong/node-win32-api
+ * @link https://github.com/waitingsong/node-win32-def
  */
 
 import * as Config from './lib/config'

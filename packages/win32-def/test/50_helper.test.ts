@@ -245,7 +245,7 @@ describe(filename + ' :parse_windef()', () => {
     let _WIN64 = true
     try {
       H.parse_windef(W, map, { ...settingsDefault, _WIN64 })
-      assert(false, 'should throw error by validDataDef() BUT not')
+      assert(false, 'should throw error by validateWinData() BUT not')
     }
     catch (ex) {
       assert(true)
@@ -254,7 +254,7 @@ describe(filename + ' :parse_windef()', () => {
     _WIN64 = false
     try {
       H.parse_windef(W, map, { ...settingsDefault, _WIN64 })
-      assert(false, 'should throw error by validDataDef() BUT not')
+      assert(false, 'should throw error by validateWinData() BUT not')
     }
     catch (ex) {
       assert(true)
@@ -273,7 +273,7 @@ describe(filename + ' :parse_windef()', () => {
     let _UNICODE = true
     try {
       H.parse_windef(W, map, { ...settingsDefault, _UNICODE })
-      assert(false, 'should throw error by validDataDef() BUT not')
+      assert(false, 'should throw error by validateWinData() BUT not')
     }
     catch (ex) {
       assert(true)
@@ -282,7 +282,7 @@ describe(filename + ' :parse_windef()', () => {
     _UNICODE = false
     try {
       H.parse_windef(W, map, { ...settingsDefault, _UNICODE })
-      assert(false, 'should throw error by validDataDef() BUT not')
+      assert(false, 'should throw error by validateWinData() BUT not')
     }
     catch (ex) {
       assert(true)
@@ -319,14 +319,14 @@ describe(filename + ' :parse_windef()', () => {
   })
 })
 
-describe(filename + ' :validDataDef()', () => {
-  const fnName = 'validDataDef()'
+describe(filename + ' :isValidDataDef()', () => {
+  const fnName = 'isValidDataDef()'
 
   it(`Should ${fnName} works)`, () => {
     const srcMap = new Set(['int'])
 
     try {
-      H.validDataDef('int', srcMap)
+      H.isValidDataDef('int', srcMap)
       assert(true)
     }
     catch (ex) {
@@ -334,7 +334,7 @@ describe(filename + ' :validDataDef()', () => {
     }
 
     try {
-      H.validDataDef('float', srcMap)
+      H.isValidDataDef('float', srcMap)
       return assert(false, 'should throw error with invalid value, but NOT')
     }
     catch (ex) {
@@ -342,7 +342,7 @@ describe(filename + ' :validDataDef()', () => {
     }
 
     try {
-      H.validDataDef('', srcMap)
+      H.isValidDataDef('', srcMap)
       return assert(false, 'should throw error with blank string, but NOT')
     }
     catch (ex) {
@@ -350,8 +350,66 @@ describe(filename + ' :validDataDef()', () => {
     }
 
     try {
-      H.validDataDef('int', new Set())
+      H.isValidDataDef('int', new Set())
       return assert(false, 'should throw error with blank Set, but NOT')
+    }
+    catch (ex) {
+      assert(true)
+    }
+
+  })
+})
+
+
+describe(filename + ' :validateWinData()', () => {
+  const fnName = 'validateWinData()'
+
+  it(`Should ${fnName} works)`, () => {
+    const srcMap = new Set(['int'])
+
+    try {
+      H.validateWinData({ BOOL: 'int' }, srcMap)
+      assert(true)
+    }
+    catch (ex) {
+      return assert(false, 'should passed, but throw error')
+    }
+
+    try {
+      H.validateWinData({ BOOL: 'float' }, srcMap)
+      return assert(false, 'should throw error with invalid value, but NOT')
+    }
+    catch (ex) {
+      assert(true)
+    }
+
+    try {
+      H.validateWinData({ [Symbol.for('test')] : 'int' }, srcMap)
+      return assert(false, 'should throw error with invalid value, but NOT')
+    }
+    catch (ex) {
+      assert(true)
+    }
+
+    try {
+      H.validateWinData({ 7 : 'int' }, srcMap)
+      return assert(false, 'should throw error with invalid value, but NOT')
+    }
+    catch (ex) {
+      assert(true)
+    }
+
+    try {
+      H.validateWinData({ '': 'int' }, srcMap)
+      return assert(false, 'should throw error with invalid value, but NOT')
+    }
+    catch (ex) {
+      assert(true)
+    }
+
+    try {
+      H.validateWinData({ '': 'float' }, srcMap)
+      return assert(false, 'should throw error with invalid value, but NOT')
     }
     catch (ex) {
       assert(true)
@@ -381,6 +439,31 @@ describe(filename + ' :prepare_windef_ref()', () => {
     catch (ex) {
       assert(true)
     }
+
+  })
+})
+
+
+describe(filename + ' :_lookupRef()', () => {
+  const fnName = '_lookupRef'
+  const fn = <(
+    key: string,
+    ww: DataTypes,
+    macroSrc: Map<string, string>,
+  ) => string> mods.__get__(fnName)
+
+  it(`Should ${fnName}() works)`, () => {
+    const ww = { Fake: 'PVOID' }
+    const fakeValue = 'vooid'
+    const macroSrc = <Map<string, string>> new Map()
+
+    macroSrc.set('PVOID', fakeValue)
+
+    let ret = fn('PVOID', ww, macroSrc)
+    assert(ret === fakeValue, `should got result "${fakeValue}, but got "${ret}" `)
+
+    ret = fn('fakekey', ww, macroSrc)
+    assert(ret === '', `should got blank result , but got "${ret}" `)
 
   })
 })

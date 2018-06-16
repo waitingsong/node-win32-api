@@ -1,4 +1,3 @@
-
 import {
   settingsDefault,
   windefSet,
@@ -18,8 +17,10 @@ import {
 export function parse_windef(windefObj: DataTypes, macroMap: MacroMap, settings?: LoadSettings): DataTypes {
   const ww = clone_filter_windef(windefObj) // output without macroMap
   const macroSrc = prepare_macro(macroMap, settings)
+  const ret = prepare_windef_ref(ww, macroSrc)
 
-  return prepare_windef_ref(ww, macroSrc)
+  validateWinData(ret, windefSet)
+  return ret
 }
 
 
@@ -94,8 +95,13 @@ function prepare_macro(macroMap: MacroMap, settings?: LoadSettings): Map<string,
   return ret
 }
 
-// parse const HANDLE = 'PVOID' to the realy FFIParam (like 'uint32*')
+
+/**
+ * parse const HANDLE = 'PVOID' to the realy FFIParam (like 'uint32*')
+ * macroMap <['PVOID', 'uint32*'], ...>
+ */
 function prepare_windef_ref(ww: DataTypes, macroSrc: Map<string, string>): DataTypes {
+  const ret = <DataTypes> {}
   const map = <Map<string, string>> new Map()
 
   // first loop paser keys which exists in macroSrc
@@ -108,35 +114,51 @@ function prepare_windef_ref(ww: DataTypes, macroSrc: Map<string, string>): DataT
       const vv = macroSrc.get(x)
 
       if (vv) {
-        validDataDef(vv, windefSet)
         map.set(x, vv)
       }
       else {
-        throw new Error(`value of "${vv}" blank`)
+        throw new Error(`Value of macroSrc item "${x}" blank`)
       }
     }
     else {
       continue  // not throw error
     }
   }
-  // 2nd loop paser key , maybe value ref other key
-  for (const x of Object.keys(ww)) {
+  // 2nd loop paser key , maybe value refer other key
+  for (const [k, v] of Object.entries(ww)) {
     /* istanbul ignore next */
-    if (map.has(x)) {
+    if (map.has(k)) {
       continue
     }
-    const value = retrieve_ref_value(ww, x, map)
 
-    value && windefSet.has(value) && map.set(x, value)
+    if (typeof v === 'string') {
+      if (windefSet.has(v)) {
+        map.set(k, v)
+      }
+      else {
+        const value = lookupRef(v, ww, macroSrc)
+
+        // tslint:disable-next-line
+        if (typeof value === 'string' && value) {
+          map.set(k, value)
+        }
+        else {
+          map.set(k, v) // maybe invalid for windefSet, will validateWinData() later
+        }
+      }
+    }
+    else {
+      throw new Error(`prepare_windef_ref() missing entry for k/v: ${k}/${v}`)
+    }
   }
-
-  const ret = <DataTypes> {}
 
   map.forEach((v, k) => {
     ret[k] = v
   })
+
   return ret
 }
+
 
 function clone_filter_windef(windef: DataTypes): DataTypes {
   const ret = <DataTypes> {}
@@ -167,34 +189,63 @@ function parse_settings(settings?: LoadSettings): LoadSettings {
   return st
 }
 
-function retrieve_ref_value(ww: DataTypes, key: string, srcMap: Map<string, string>): string {
-  const mapValue = srcMap.get(key)
 
-  if (mapValue) {
-    return mapValue
-  }
+export function lookupRef(key: string, ww: DataTypes, macroSrc: Map<string, string>): string {
+  let ret = _lookupRef(key, ww, macroSrc)
 
-  if (typeof ww[key] === 'undefined') {
+  if (! ret) {
     return ''
   }
-  const value = ww[key]
 
-  /* istanbul ignore next */
-  if (! value) {
-    return ''
+  for (let i = 0, len = 3; i < len; i++) {
+    const tmp = _lookupRef(ret, ww, macroSrc)
+
+    if (tmp) {
+      ret = tmp
+    }
+    else {
+      break
+    }
   }
-  // check whether ww has element value as key
-  const refValue = retrieve_ref_value(ww, value, srcMap)
 
-  return refValue ? refValue : value
+  return ret
+}
+function _lookupRef(key: string, ww: DataTypes, macroSrc: Map<string, string>): string {
+  if (macroSrc.has(key)) {
+    return <string> macroSrc.get(key)
+  }
+
+  // key is not valid FFIParam such 'int/uint...', like HMODULE: 'HANDLE'
+  if (typeof ww[key] === 'string') {
+    // parse HANDLE: 'PVOID' , PVOID already parsed
+    const ret = <string> ww[key]
+
+    if (ret && macroSrc.has(ret)) { //  HANDLE:PVOID, macroSrc has PVOID
+      return <string> macroSrc.get(ret)
+    }
+    return ret
+  }
+
+  return ''
 }
 
+
 // valid parsed value exists in windefSet
-export function validDataDef(str: string, srcSet: Set<string>): void {
-  if (! str || typeof str !== 'string') {
-    throw new Error(`value of param invalid: ${str}`)
-  }
-  if (! srcSet.has(str)) {
-    throw new Error(`conifig.windefSet not contains element of ${str}`)
+export function isValidDataDef(key: string, srcSet: Set<string>): boolean {
+  return srcSet.has(key) ? true : false
+}
+
+export function validateWinData(windef: DataTypes, srcSet: Set<string>): void {
+  for (const [k, v] of Object.entries(windef)) {
+    if (! k || ! v) {
+      throw new Error(`validateWinData() k or v empty: "${k}"/"${v}"`)
+    }
+    if (typeof v !== 'string') {
+      throw new Error(`validateWinData() v not typeof string: "${k}"/"${v}"`)
+    }
+
+    if (! isValidDataDef(v, srcSet)) {
+      throw new Error(`validateWinData() value is invalid ffi param value: "${k}"/"${v}"`)
+    }
   }
 }
