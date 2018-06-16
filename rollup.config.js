@@ -54,11 +54,15 @@ const nodeModule = [
   'fs', 'path', 'util', 'os',
 ]
 
-for (const depName of Object.keys(deps)) {
-  external.push(depName)
+if (deps && Object.keys(deps).length) {
+  for (const depName of Object.keys(deps)) {
+    external.push(depName)
+  }
 }
-for (const depName of Object.keys(peerDeps)) {
-  external.push(depName)
+if (peerDeps && Object.keys(peerDeps).length) {
+  for (const depName of Object.keys(peerDeps)) {
+    external.push(depName)
+  }
 }
 
 
