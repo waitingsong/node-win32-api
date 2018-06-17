@@ -22,10 +22,9 @@ npm install --save win32-api
 // find calc's hWnd, need run a calculator program manually at first
 /**
  * expose module:
- * U, User32 for user32 from lib/user32/api
- * K, Kernel32 for kernel32 from lib/kernel32/api
  * C, Comctl32 for Comctl32 from lib/comctl32/api
- * DS, DStruct for dict of defined struct from lib/struct
+ * K, Kernel32 for kernel32 from lib/kernel32/api
+ * U, User32 for user32 from lib/user32/api
  */
 const {K, U} = require('win32-api');   // or {Kernel32, User32}
 const ref = require('ref');
@@ -69,9 +68,9 @@ if (hWnd && ! hWnd.isNull()) {
 
 ```
 
-```js
+```ts
 // use the types exposed by the module for TypeScript dev
-import {U, types as GT} from 'win32-api';
+import { U } from 'win32-api';
 import * as ref from 'ref';
 
 // so we can all agree that a buffer with the int value written
@@ -89,10 +88,10 @@ buf.type = ref.types.int;  // @ts-ignore
 console.log(ref.deref(buf));  // ← 12345
 ```
 
-```js
+```ts
 // struct usage by ref-struct
 import * as Struct from 'ref-struct';
-import {DS} from 'win32-api';
+import { DStruct as DS } from 'win32-api';
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx
 const point = new Struct(DS.POINT)();
@@ -101,18 +100,18 @@ point.y = 200;
 console.log(point);
 ```
 
-```js
+```ts
 // usage of types and windef:
-import {K, types as GT, windef as W} from 'win32-api';
+import { K, FModel as FM, DTypes as W } from 'win32-api';
 import * as ref from 'ref';
 
 const knl32 = K.load();
 
-const buf  = <GT.FFIBuffer> Buffer.alloc(4);   // ← here the types
+const buf  = <FM.FFIBuffer> Buffer.alloc(4);   // ← here the types
 buf.writeInt32LE(12345, 0);
 
-// const hInstance =<GT.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4);
-const hInstance = <GT.FFIBuffer> ref.alloc(W.HINSTANCE);    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
+// const hInstance =<FM.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4);
+const hInstance = <FM.FFIBuffer> ref.alloc(W.HINSTANCE);    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
 knl32.GetModuleHandleExW(0, null, hInstance);
 ```
 
