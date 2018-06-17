@@ -14,7 +14,11 @@
         "src/index.ts"
       ],
       "cwd": "${workspaceRoot}",
-      "protocol": "inspector"
+      "protocol": "inspector",
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "stopOnEntry": false
     },
     {
       "name": "Current TS File",
@@ -26,7 +30,11 @@
         "${relativeFile}"
       ],
       "cwd": "${workspaceRoot}",
-      "protocol": "inspector"
+      "protocol": "inspector",
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "stopOnEntry": false
     },
     {
       "name": "Mocha Tests",
