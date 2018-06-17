@@ -134,6 +134,33 @@ if (pkg.browser) {
   )
 }
 
+if (pkg.bin) {
+  const binBanner = `#!/usr/bin/env node\n\n${banner}`
+
+  for (const binPath of Object.values(pkg.bin)) {
+    if (! binPath) {
+      continue
+    }
+    const binSrcPath = binPath.includes('dist/') ? binPath : `./dist/${binPath}`
+
+    config.push({
+      external: external.concat(nodeModule),
+      input: binSrcPath,
+      output: [
+        {
+          file: binPath,
+          banner: binBanner,
+          format: 'cjs',
+          globals,
+        },
+      ],
+    })
+  }
+
+}
+
+
+
 // remove pkg.name extension if exists
 function parseName(name) {
   if (name) {
