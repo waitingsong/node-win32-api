@@ -1,18 +1,18 @@
-import { DModel as DM, DTypes as DT, FModel } from 'win32-def'
+import { DModel as M, DTypes as W, FModel } from 'win32-def'
 
 
 export interface Win32Fns {
-    //  may be altered or unavailable in future versions of Windows
+  //  may be altered or unavailable in future versions of Windows
   NtQueryInformationProcess(
-        ProcessHandle: DM.HANDLE,
-        ProcessInformationClass: number,
-        ProcessInformation: DM.PVOID,       // _Out_
-        ProcessInformationLength: DM.ULONG,
-        ReturnLength: DM.PULONG | null,    // _Out_opt_ ppid
-    ): DM.NTSTATUS
+    ProcessHandle: M.HANDLE,
+    ProcessInformationClass: number,
+    ProcessInformation: M.PVOID,       // _Out_
+    ProcessInformationLength: M.ULONG,
+    ReturnLength: M.PULONG | null,    // _Out_opt_ ppid
+  ): M.NTSTATUS
 
 }
 
 export const apiDef: FModel.DllFuncs = {
-  NtQueryInformationProcess: [DT.NTSTATUS, [DT.HANDLE, DT.DWORD32, DT.PVOID, DT.ULONG, DT.PULONG] ],
+  NtQueryInformationProcess: [W.NTSTATUS, [W.HANDLE, W.DWORD32, W.PVOID, W.ULONG, W.PULONG] ],
 }

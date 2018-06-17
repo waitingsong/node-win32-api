@@ -1,145 +1,145 @@
-import { DModel as DM, DTypes as DT, FModel } from 'win32-def'
+import { DModel as M, DTypes as W, FModel } from 'win32-def'
 
 
 export interface Win32Fns {
   CreateWindowExW(
-        dwExStyle: DM.DWORD,
-        lpClassName: DM.LPCTSTR | null,
-        lpWindowName: DM.LPCTSTR | null,
-        dwStyle: DM.DWORD,
-        x: DM.INT,
-        y: DM.INT,
-        nWidth: DM.INT,
-        nHeight: DM.INT,
-        hWndParent: DM.HWND | null,
-        HMENU: DM.HMENU | null,
-        HINSTANCE: DM.HINSTANCE | null,
-        LPVOID: DM.LPVOID | null,
-    ): DM.HWND
+    dwExStyle: M.DWORD,
+    lpClassName: M.LPCTSTR | null,
+    lpWindowName: M.LPCTSTR | null,
+    dwStyle: M.DWORD,
+    x: M.INT,
+    y: M.INT,
+    nWidth: M.INT,
+    nHeight: M.INT,
+    hWndParent: M.HWND | null,
+    HMENU: M.HMENU | null,
+    HINSTANCE: M.HINSTANCE | null,
+    LPVOID: M.LPVOID | null,
+  ): M.HWND
 
-  DefWindowProcW(hWnd: DM.HWND, Msg: DM.UINT, wParam: DM.WPARAM, lParam: DM.LPARAM): DM.LRESULT
+  DefWindowProcW(hWnd: M.HWND, Msg: M.UINT, wParam: M.WPARAM, lParam: M.LPARAM): M.LRESULT
 
-  DispatchMessageW(lpMsg: DM.LPMSG): DM.LRESULT
+  DispatchMessageW(lpMsg: M.LPMSG): M.LRESULT
 
-  EnumThreadWindows(dwThreadId: DM.DWORD, lpfn: DM.WNDENUMPROC, lParam: DM.LPARAM): DM.BOOL
+  EnumThreadWindows(dwThreadId: M.DWORD, lpfn: M.WNDENUMPROC, lParam: M.LPARAM): M.BOOL
 
   // tslint:disable-next-line
   EnumWindows: EnumWindows
 
   FindWindowExW(
-        hwndParent: DM.HWND | null,
-        hwndChildAfter: DM.HWND | null,
-        lpszClass: DM.LPCTSTR | null,
-        lpszWindow: DM.LPCTSTR | null,
-    ): DM.HWND
+    hwndParent: M.HWND | null,
+    hwndChildAfter: M.HWND | null,
+    lpszClass: M.LPCTSTR | null,
+    lpszWindow: M.LPCTSTR | null,
+  ): M.HWND
 
-  GetAncestor(hwnd: DM.HWND, gaFlags: DM.UINT): DM.HWND
+  GetAncestor(hwnd: M.HWND, gaFlags: M.UINT): M.HWND
 
-  GetClassInfoExW(hinst: DM.HINSTANCE | null, lpszClass: DM.LPCTSTR, LPWNDCLASSEX: DM.LPWNDCLASSEX): DM.BOOL
+  GetClassInfoExW(hinst: M.HINSTANCE | null, lpszClass: M.LPCTSTR, LPWNDCLASSEX: M.LPWNDCLASSEX): M.BOOL
 
-  GetMessageW(lpMsg: DM.LPMSG, HWND: DM.HWND | null, wMsgFilterMin: DM.UINT, wMsgFilterMax: DM.UINT): DM.BOOL
+  GetMessageW(lpMsg: M.LPMSG, HWND: M.HWND | null, wMsgFilterMin: M.UINT, wMsgFilterMax: M.UINT): M.BOOL
 
-  GetParent(hWnd: DM.HWND): DM.HWND
+  GetParent(hWnd: M.HWND): M.HWND
 
-  GetWindow(hWnd: DM.HWND, uCmd: DM.UINT): DM.HWND
+  GetWindow(hWnd: M.HWND, uCmd: M.UINT): M.HWND
 
-  GetWindowInfo(hwnd: DM.HWND, pwi: DM.PWINDOWINFO): DM.BOOL   // Note that you must set the pwi.cbSize!
+  GetWindowInfo(hwnd: M.HWND, pwi: M.PWINDOWINFO): M.BOOL   // Note that you must set the pwi.cbSize!
 
-  GetWindowLongW(hWnd: DM.HWND, nIndex: DM.INT): DM.LONG
+  GetWindowLongW(hWnd: M.HWND, nIndex: M.INT): M.LONG
 
-  GetWindowLongPtrW(hWnd: DM.HWND, nIndex: DM.INT): DM.LONG_PTR
+  GetWindowLongPtrW(hWnd: M.HWND, nIndex: M.INT): M.LONG_PTR
 
-  GetWindowTextW(hWnd: DM.HWND, lpString: DM.LPCTSTR, nMaxCount: DM.INT): DM.INT
+  GetWindowTextW(hWnd: M.HWND, lpString: M.LPCTSTR, nMaxCount: M.INT): M.INT
 
-  GetWindowThreadProcessId(hWnd: DM.HWND, lpdwProcessId: DM.LPDWORD | null): DM.DWORD
+  GetWindowThreadProcessId(hWnd: M.HWND, lpdwProcessId: M.LPDWORD | null): M.DWORD
 
-  IsWindowVisible(hWnd: DM.HWND): DM.BOOL
+  IsWindowVisible(hWnd: M.HWND): M.BOOL
 
-  RegisterClassExW(lpwcx: DM.WNDCLASSEX): DM.ATOM
+  RegisterClassExW(lpwcx: M.WNDCLASSEX): M.ATOM
 
-  SetWindowTextW(hWnd: DM.HWND, lpString: DM.LPCTSTR | null): DM.BOOL
+  SetWindowTextW(hWnd: M.HWND, lpString: M.LPCTSTR | null): M.BOOL
 
   SetWinEventHook(
-        eventMin: DM.UINT,
-        eventMax: DM.UINT,
-        hmodWinEventProc: DM.HMODULE,
-        lpfnWinEventProc: DM.WINEVENTPROC,
-        idProcess: DM.DWORD,
-        idThread: DM.DWORD,
-        dwflags: DM.UINT,
-    ): DM.HWINEVENTHOOK
+    eventMin: M.UINT,
+    eventMax: M.UINT,
+    hmodWinEventProc: M.HMODULE,
+    lpfnWinEventProc: M.WINEVENTPROC,
+    idProcess: M.DWORD,
+    idThread: M.DWORD,
+    dwflags: M.UINT,
+  ): M.HWINEVENTHOOK
 
-  ShowWindow(hWnd: DM.HWND, nCmdShow: DM.INT): DM.BOOL
+  ShowWindow(hWnd: M.HWND, nCmdShow: M.INT): M.BOOL
 
-  TranslateMessage(lpMsg: DM.LPMSG): DM.BOOL
+  TranslateMessage(lpMsg: M.LPMSG): M.BOOL
 
-  TranslateMessageEx(lpMsg: DM.LPMSG): DM.BOOL
+  TranslateMessageEx(lpMsg: M.LPMSG): M.BOOL
 
-  UnhookWinEvent(hWinEventHook: DM.HWINEVENTHOOK): DM.BOOL
+  UnhookWinEvent(hWinEventHook: M.HWINEVENTHOOK): M.BOOL
 
-  UpdateWindow(hWnd: DM.HWND): DM.BOOL
+  UpdateWindow(hWnd: M.HWND): M.BOOL
 }
 
 
 export const apiDef: FModel.DllFuncs = {
-  CreateWindowExW: [DT.HWND, [
-    DT.DWORD, DT.LPCTSTR, DT.LPCTSTR, DT.DWORD,
-    DT.INT, DT.INT, DT.INT, DT.INT,
-    DT.HWND, DT.HMENU, DT.HINSTANCE, DT.LPVOID,
+  CreateWindowExW: [W.HWND, [
+    W.DWORD, W.LPCTSTR, W.LPCTSTR, W.DWORD,
+    W.INT, W.INT, W.INT, W.INT,
+    W.HWND, W.HMENU, W.HINSTANCE, W.LPVOID,
   ] ],
 
-  DefWindowProcW: [DT.LRESULT, [DT.HWND, DT.UINT, DT.WPARAM, DT.LPARAM] ],
+  DefWindowProcW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
 
-  DispatchMessageW: [DT.LRESULT, [DT.LPMSG] ],
+  DispatchMessageW: [W.LRESULT, [W.LPMSG] ],
 
-  EnumThreadWindows: [DT.BOOL, [DT.DWORD, DT.WNDENUMPROC, DT.LPARAM] ],
+  EnumThreadWindows: [W.BOOL, [W.DWORD, W.WNDENUMPROC, W.LPARAM] ],
 
-  EnumWindows: [DT.BOOL, [DT.WNDENUMPROC, DT.LPARAM] ],
+  EnumWindows: [W.BOOL, [W.WNDENUMPROC, W.LPARAM] ],
 
-  FindWindowExW: [DT.HWND, [DT.HWND, DT.HWND, DT.LPCTSTR, DT.LPCTSTR] ],
+  FindWindowExW: [W.HWND, [W.HWND, W.HWND, W.LPCTSTR, W.LPCTSTR] ],
 
-  GetAncestor: [DT.HWND, [DT.HWND, DT.UINT] ],
+  GetAncestor: [W.HWND, [W.HWND, W.UINT] ],
 
-  GetClassInfoExW: [DT.BOOL, [DT.HINSTANCE, DT.LPCTSTR, DT.LPWNDCLASSEX] ],
+  GetClassInfoExW: [W.BOOL, [W.HINSTANCE, W.LPCTSTR, W.LPWNDCLASSEX] ],
 
-  GetMessageW: [DT.BOOL, [DT.LPMSG, DT.HWND, DT.UINT, DT.UINT] ],
+  GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT] ],
 
-  GetParent: [DT.HWND, [DT.HWND] ],
+  GetParent: [W.HWND, [W.HWND] ],
 
-  GetWindow: [DT.HWND, [DT.HWND, DT.UINT] ],
+  GetWindow: [W.HWND, [W.HWND, W.UINT] ],
 
-  GetWindowInfo: [DT.BOOL, [DT.HWND, DT.PWINDOWINFO] ],
+  GetWindowInfo: [W.BOOL, [W.HWND, W.PWINDOWINFO] ],
 
-  GetWindowLongW: [DT.LONG, [DT.HWND, DT.INT] ],
+  GetWindowLongW: [W.LONG, [W.HWND, W.INT] ],
 
-  GetWindowTextW: [DT.INT, [DT.HWND, DT.LPTSTR, DT.INT] ],
+  GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT] ],
 
-  GetWindowThreadProcessId: [DT.DWORD, [DT.HWND, DT.LPDWORD] ],
+  GetWindowThreadProcessId: [W.DWORD, [W.HWND, W.LPDWORD] ],
 
-  IsWindowVisible: [DT.BOOL, [DT.HWND] ],
+  IsWindowVisible: [W.BOOL, [W.HWND] ],
 
-  RegisterClassExW: [DT.ATOM, [DT.WNDCLASSEX] ],
+  RegisterClassExW: [W.ATOM, [W.WNDCLASSEX] ],
 
-  SetWindowTextW: [DT.BOOL, [DT.HWND, DT.LPCTSTR] ],
+  SetWindowTextW: [W.BOOL, [W.HWND, W.LPCTSTR] ],
 
-  SetWinEventHook: [DT.HWINEVENTHOOK, [DT.UINT, DT.UINT, DT.HMODULE, DT.WINEVENTPROC, DT.DWORD, DT.DWORD, DT.UINT] ],
+  SetWinEventHook: [W.HWINEVENTHOOK, [W.UINT, W.UINT, W.HMODULE, W.WINEVENTPROC, W.DWORD, W.DWORD, W.UINT] ],
 
-  ShowWindow: [DT.BOOL, [DT.HWND, DT.INT] ],
+  ShowWindow: [W.BOOL, [W.HWND, W.INT] ],
 
-  TranslateMessage: [DT.BOOL, [DT.LPMSG] ],
+  TranslateMessage: [W.BOOL, [W.LPMSG] ],
 
-  TranslateMessageEx: [DT.BOOL, [DT.LPMSG] ],
+  TranslateMessageEx: [W.BOOL, [W.LPMSG] ],
 
-  UnhookWinEvent: [DT.BOOL, [DT.HWINEVENTHOOK] ],
+  UnhookWinEvent: [W.BOOL, [W.HWINEVENTHOOK] ],
 
-  UpdateWindow: [DT.BOOL, [DT.HWND] ],
+  UpdateWindow: [W.BOOL, [W.HWND] ],
 }
 /* istanbul ignore next */
 if (process.arch === 'x64') {
-  apiDef.GetWindowLongPtrW = [DT.LONG_PTR, [DT.HWND, DT.INT] ]
+  apiDef.GetWindowLongPtrW = [W.LONG_PTR, [W.HWND, W.INT] ]
 }
 
 export interface EnumWindows {
-  (lpEnumFunc: DM.WNDENUMPROC, lParam: DM.LPARAM): DM.BOOL
-  async(lpEnumFunc: DM.WNDENUMPROC, lParam: DM.LPARAM, cb: (err: Error) => void): DM.BOOL
+  (lpEnumFunc: M.WNDENUMPROC, lParam: M.LPARAM): M.BOOL
+  async(lpEnumFunc: M.WNDENUMPROC, lParam: M.LPARAM, cb: (err: Error) => void): M.BOOL
 }

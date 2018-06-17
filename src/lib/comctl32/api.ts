@@ -1,10 +1,10 @@
-import { DModel as DM, DTypes as DT, FModel } from 'win32-def'
+import { DModel as M, DTypes as W, FModel } from 'win32-def'
 
 
 export interface Win32Fns {
-  InitCommonControlsEx(lpInitCtrls: DM.INITCOMMONCONTROLSEX): DM.BOOL
+  InitCommonControlsEx(lpInitCtrls: M.INITCOMMONCONTROLSEX): M.BOOL
 }
 
 export const apiDef: FModel.DllFuncs = {
-  InitCommonControlsEx: [DT.BOOL, [DT.LPINITCOMMONCONTROLSEX] ],
+  InitCommonControlsEx: [W.BOOL, [W.LPINITCOMMONCONTROLSEX] ],
 }
