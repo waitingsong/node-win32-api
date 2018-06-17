@@ -40,30 +40,30 @@ const lpszWindow = Buffer.from(title, 'ucs2');
 const hWnd = user32.FindWindowExW(null, null, null, lpszWindow);
 
 if (hWnd && ! hWnd.isNull()) {
-    // Caution: output hWnd will cuase exception in the following process, even next script!
-    // So do NOT do this in the production code!
-    // console.log('buf: ', hWnd); // avoid this
+  // Caution: output hWnd will cuase exception in the following process, even next script!
+  // So do NOT do this in the production code!
+  // console.log('buf: ', hWnd); // avoid this
+  console.log('buf: ', ref.address(hWnd)); // this is ok
 
-    console.log('buf: ', ref.address(hWnd)); // this is ok
+  // Change title of the Calculator
+  const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'));
 
-    // Change title of the Calculator
-    const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'));
+  if ( ! res) {
+    // See: [System Error Codes] below
+    const errcode = knl32.GetLastError();
+    const len = 255;
+    const buf = Buffer.alloc(len);
+    const p = 0x00001000 | 0x00000200;  // FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
+    const langid = 0x0409;              // 0x0409: US, 0x0000: Neutral locale language
+    const msglen = knl32.FormatMessageW(p, null, errcode, langid, buf, len, null);
 
-    if ( ! res) {
-        // See: [System Error Codes] below
-        const errcode = knl32.GetLastError();
-        const len = 255;
-        const buf = Buffer.alloc(len);
-        const p = 0x00001000 | 0x00000200;  // FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
-        const langid = 0x0409;              // 0x0409: US, 0x0000: Neutral locale language
-        const msglen = knl32.FormatMessageW(p, null, errcode, langid, buf, len, null);
-        if (msglen) {
-            console.log(ref.reinterpretUntilZeros(buf, 2).toString('ucs2'));
-        }
+    if (msglen) {
+      console.log(ref.reinterpretUntilZeros(buf, 2).toString('ucs2'));
     }
-    else {
-        console.log('window title changed');
-    }
+  }
+  else {
+    console.log('window title changed');
+  }
 }
 
 ```

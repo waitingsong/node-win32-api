@@ -39,37 +39,37 @@ const lpszWindow = Buffer.from(title, 'ucs2');
 const hWnd = user32.FindWindowExW(null, null, null, lpszWindow);
 
 if (hWnd && ! hWnd.isNull()) {
-    // Caution: output hWnd will cuase exception in the following process, even next script!
-    // So do NOT do this in the production code!
-    // console.log('buf: ', hWnd); // avoid this
+  // Caution: output hWnd will cuase exception in the following process, even next script!
+  // So do NOT do this in the production code!
+  // console.log('buf: ', hWnd); // avoid this
+  console.log('buf: ', ref.address(hWnd)); // this is ok
 
-    console.log('buf: ', ref.address(hWnd)); // this is ok
+  // Change title of the Calculator
+  const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'));
 
-    // Change title of the Calculator
-    const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'));
+  if ( ! res) {
+    // See: [System Error Codes] below
+    const errcode = knl32.GetLastError();
+    const len = 255;
+    const buf = Buffer.alloc(len);
+    const p = 0x00001000 | 0x00000200;  // FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
+    const langid = 0x0409;              // 0x0409: US, 0x0000: Neutral locale language
+    const msglen = knl32.FormatMessageW(p, null, errcode, langid, buf, len, null);
 
-    if ( ! res) {
-        // See: [System Error Codes] below
-        const errcode = knl32.GetLastError();
-        const len = 255;
-        const buf = Buffer.alloc(len);
-        const p = 0x00001000 | 0x00000200;  // FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
-        const langid = 0x0409;              // 0x0409: US, 0x0000: Neutral locale language
-        const msglen = knl32.FormatMessageW(p, null, errcode, langid, buf, len, null);
-        if (msglen) {
-            console.log(ref.reinterpretUntilZeros(buf, 2).toString('ucs2'));
-        }
+    if (msglen) {
+      console.log(ref.reinterpretUntilZeros(buf, 2).toString('ucs2'));
     }
-    else {
-        console.log('计算器程序窗口标题修改成功');
-    }
+  }
+  else {
+    console.log('计算器程序窗口标题修改成功');
+  }
 }
 
 ```
 
-```ts
+```js
 // use the types exposed by the module for TypeScript dev
-import { U } from 'win32-api';
+import {U, types as GT} from 'win32-api';
 import * as ref from 'ref';
 
 // so we can all agree that a buffer with the int value written
@@ -87,10 +87,10 @@ buf.type = ref.types.int;  // @ts-ignore
 console.log(ref.deref(buf));  // ← 12345
 ```
 
-```ts
+```js
 // 通过 ref-struct 模块生成 struct 接口数据
 import * as Struct from 'ref-struct';
-import { DStruct as DS } from 'win32-api';
+import {DS} from 'win32-api';
 
 // https://msdn.microsoft.com/zh-cn/library/windows/desktop/dd162805(v=vs.85).aspx
 const point = new Struct(DS.POINT)();
@@ -99,18 +99,18 @@ point.y = 200;
 console.log(point);
 ```
 
-```ts
+```js
 // usage of types and windef:
-import { K, FModel as FM, DTypes as W } from 'win32-api';
+import {K, types as GT, windef as W} from 'win32-api';
 import * as ref from 'ref';
 
 const knl32 = K.load();
 
-const buf  = <FM.FFIBuffer> Buffer.alloc(4);   // ← here the types
+const buf  = <GT.FFIBuffer> Buffer.alloc(4);   // ← here the types
 buf.writeInt32LE(12345, 0);
 
-// const hInstance =<FM.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4);
-const hInstance = <FM.FFIBuffer> ref.alloc(W.HINSTANCE);    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
+// const hInstance =<GT.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4);
+const hInstance = <GT.FFIBuffer> ref.alloc(W.HINSTANCE);    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
 knl32.GetModuleHandleExW(0, null, hInstance);
 ```
 
