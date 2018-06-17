@@ -6,6 +6,7 @@
  * @link https://github.com/waitingsong/node-win32-api
  */
 export {
+  Config,
   DModel, // model of window data types
   DStruct, // window data types of structure
   DTypes, // window data types
