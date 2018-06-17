@@ -1,11 +1,10 @@
-import * as GT from '../types'
-import W from '../windef-parsed'
+import { DModel as DM, DTypes as DT, FModel } from 'win32-def'
 
 
 export interface Win32Fns {
-  InitCommonControlsEx(lpInitCtrls: GT.INITCOMMONCONTROLSEX): GT.BOOL
+  InitCommonControlsEx(lpInitCtrls: DM.INITCOMMONCONTROLSEX): DM.BOOL
 }
 
-export const apiDef: GT.ApiDef = {
-  InitCommonControlsEx: [W.BOOL, [W.LPINITCOMMONCONTROLSEX] ],
+export const apiDef: FModel.DllFuncs = {
+  InitCommonControlsEx: [DT.BOOL, [DT.LPINITCOMMONCONTROLSEX] ],
 }

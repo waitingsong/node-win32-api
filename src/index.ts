@@ -5,19 +5,12 @@
  * @license MIT
  * @link https://github.com/waitingsong/node-win32-api
  */
-
-import windef from './lib/windef-parsed'
-export { windef }
-
-import * as Conf from './lib/conf'
-export { Conf as conf }
-
-import * as DStruct from './lib/struct'
-export { DStruct as DS } // Dict of Struct
-export { DStruct }
-
-import * as types from './lib/types'
-export { types }
+export {
+  DModel, // model of window data types
+  DStruct, // window data types of structure
+  DTypes, // window data types
+  FModel, // ffi model
+} from 'win32-def'
 
 import * as User32 from './lib/user32/index'
 export { User32 as U }
@@ -34,3 +27,4 @@ export { Comctl32 }
 import * as Ntdll from './lib/ntdll/index'
 export { Ntdll }
 
+export * from './lib/model'

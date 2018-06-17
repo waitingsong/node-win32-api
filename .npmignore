@@ -3,7 +3,9 @@ node_modules/
 node_modules*
 npm-shrinkwrap.json
 tsconfig.json
+tsconfig.cjs.json
 tslint.json
+rollup.config.js
 .eslintignore
 .eslintrc.json
 .travis.yml

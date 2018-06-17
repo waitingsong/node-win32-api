@@ -45,7 +45,9 @@
     ],
     "all": true
   },
-  "dependencies": {},
+  "dependencies": {
+    "win32-def": "^2.1.1"
+  },
   "devDependencies": {
     "@types/ffi": "^0.1.0",
     "@types/mocha": "^5.2.2",

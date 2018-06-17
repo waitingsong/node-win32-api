@@ -4,10 +4,9 @@
 import * as fs from 'fs'
 import { basename, normalize } from 'path'
 import * as assert from 'power-assert'
+import { Config, FModel } from 'win32-def'
 
 import * as Win from '../src/index'
-import { windefSet } from '../src/lib/conf'
-import * as GT from '../src/lib/types'
 
 const filename = basename(__filename)
 const dllDir = normalize(__dirname + '/../src/lib/')
@@ -26,7 +25,7 @@ describe(filename, () => {
     const module: any = Win[apiName]
 
     if (module && module.apiDef) {
-      const apiDef = <GT.ApiDef> module.apiDef
+      const apiDef = <FModel.DllFuncs> module.apiDef
 
       it(`Should ${apiName}: FnName of definition be string`, () => {
         for (let x in apiDef) {    // tslint:disable-line
@@ -60,7 +59,7 @@ describe(filename, () => {
           for (const k of Object.keys(st)) {
             if (st[k]) {
               assert(
-                windefSet.has(p),
+                Config.windefSet.has(p),
                 `${x}() value: "${p}" ${st._WIN64 ? 'x64' : 'ia32'},
                 ${st._UNICODE ? 'UNICODE' : 'ANSI'}`,
               )
@@ -69,7 +68,7 @@ describe(filename, () => {
           for (const k of Object.keys(st)) {
             if (!st[k]) {
               assert(
-                windefSet.has(p),
+                Config.windefSet.has(p),
                 `${x}() value: "${p}" ${st._WIN64 ? 'x64' : 'ia32'},
                 ${st._UNICODE ? 'UNICODE' : 'ANSI'}`,
               )
@@ -86,7 +85,7 @@ describe(filename, () => {
       })
 
       it(`Should ${apiName}: item of FnCallParams of definition exists in conf.windefSet and valid`, () => {
-        if (windefSet && windefSet.size) {
+        if (Config.windefSet && Config.windefSet.size) {
           for (let x in apiDef) {    // tslint:disable-line
             const arr = apiDef[x][1]
             const len = arr.length
@@ -123,7 +122,7 @@ describe(filename, () => {
 
     if (module && module.apiDef) {
       try {
-        const api: GT.ApiDef = module.load()
+        const api: FModel.DllFuncs = module.load()
 
         for (const fn in api) {
           if (!{}.hasOwnProperty.call(api, fn)) {
@@ -147,7 +146,7 @@ describe(filename, () => {
 })
 
 
-function test_param_return_type(param: GT.FFIParam, x: string): void {
+function test_param_return_type(param: FModel.FnParam, x: string): void {
   if (typeof param === 'string') {
     assert(param, `${x}() string value of returnType (p[0]) is empty string`)
   }
@@ -156,9 +155,9 @@ function test_param_return_type(param: GT.FFIParam, x: string): void {
   }
 }
 
-function test_call_param(param: GT.FFIParam, x: string, i: number): void {
+function test_call_param(param: FModel.FnParam, x: string, i: number): void {
   if (typeof param === 'string') {
-    assert(windefSet.has(param), `${x}() value: "${param} index: ${i}" is string but not exists in windefSet`)
+    assert(Config.windefSet.has(param), `${x}() value: "${param} index: ${i}" is string but not exists in windefSet`)
   }
   else {
     assert(false, `${x}() string value of param (index: ${i}) is NEIGHER string NOR array`)

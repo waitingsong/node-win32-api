@@ -1,0 +1,55 @@
+{
+  // 使用 IntelliSense 了解相关属性。
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "index.ts",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
+      "args": [
+        "-P", "./tsconfig.cjs.json",
+        "src/index.ts"
+      ],
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector",
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "stopOnEntry": false
+    },
+    {
+      "name": "Current TS File",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
+      "args": [
+        "-P", "./tsconfig.cjs.json",
+        "${relativeFile}"
+      ],
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector",
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "stopOnEntry": false
+    },
+    {
+      "name": "Mocha Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "-u",
+        "tdd",
+        "--timeout",
+        "999999",
+        "--colors",
+        "${workspaceFolder}/test"
+      ],
+      "internalConsoleOptions": "openOnSessionStart"
+    }
+  ]
+}

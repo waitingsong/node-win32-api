@@ -3,13 +3,14 @@
 
 import { basename } from 'path'
 import * as assert from 'power-assert'
+import { FModel } from 'win32-def'
 
 import * as Win from '../../src/index'
 import * as H from '../../src/lib/helper'
-import * as GT from '../../src/lib/types'
 
 const filename = basename(__filename)
 // const dllDir = normalize(__dirname + '/../../src/lib/')
+
 
 describe(filename + ' :gen_api_opts() specify', () => {
   const apiName = 'User32'
@@ -18,10 +19,10 @@ describe(filename + ' :gen_api_opts() specify', () => {
   const fakeFn = fn + Math.random()
 
   if (module && module.apiDef) {
-    const api: GT.ApiDef = module.apiDef
+    const api: FModel.DllFuncs = module.apiDef
 
     it(`Should ${apiName} gen_api_opts(["${fn}"]) correctly)`, () => {
-      const fns: GT.ApiDef = H.gen_api_opts(api, [fn])
+      const fns: FModel.DllFuncs = H.gen_api_opts(api, [fn])
 
       const keysize = Object.keys(fns).length
 
@@ -30,7 +31,7 @@ describe(filename + ' :gen_api_opts() specify', () => {
     })
 
     it(`Should ${apiName} gen_api_opts(["${fakeFn}"]) return none)`, () => {
-      const fns: GT.ApiDef = H.gen_api_opts(api, [fakeFn])
+      const fns: FModel.DllFuncs = H.gen_api_opts(api, [fakeFn])
       const keysize = Object.keys(fns).length
 
       assert(keysize === 0)
@@ -50,10 +51,10 @@ if (process.arch === 'x64') {
     const fakeFn = fn + Math.random()
 
     if (module && module.apiDef) {
-      const api: GT.ApiDef = module.apiDef
+      const api: FModel.DllFuncs = module.apiDef
 
       it(`Should ${apiName} gen_api_opts(["${fn}"]) correctly)`, () => {
-        const fns: GT.ApiDef = H.gen_api_opts(api, [fn])
+        const fns: FModel.DllFuncs = H.gen_api_opts(api, [fn])
 
         const keysize = Object.keys(fns).length
 
@@ -62,7 +63,7 @@ if (process.arch === 'x64') {
       })
 
       it(`Should ${apiName} gen_api_opts(["${fakeFn}"]) return none)`, () => {
-        const fns: GT.ApiDef = H.gen_api_opts(api, [fakeFn])
+        const fns: FModel.DllFuncs = H.gen_api_opts(api, [fakeFn])
         const keysize = Object.keys(fns).length
 
         assert(keysize === 0)
