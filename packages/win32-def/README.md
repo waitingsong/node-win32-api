@@ -34,16 +34,16 @@ console.log(point);
 ```ts
 import * as ref from 'ref';
 import {K} from 'win32-api';
-import {DModel as DM, DTypes as DT} from 'win32-def';
+import {FModel as FM, DTypes as W} from 'win32-def';
 
 
 const knl32 = K.load();
-const buf  = <DM.FFIBuffer> Buffer.alloc(4);   // ← here the types
+const buf  = <FM.FFIBuffer> Buffer.alloc(4);   // ← here the types
 
 buf.writeInt32LE(12345, 0);
 
-// const hInstance =<DT.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4);
-const hInstance = <DM.FFIBuffer> ref.alloc(DT.HINSTANCE);    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
+// const hInstance =<W.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4);
+const hInstance = <FM.FFIBuffer> ref.alloc(W.HINSTANCE);    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
 knl32.GetModuleHandleExW(0, null, hInstance);
 ```
 
