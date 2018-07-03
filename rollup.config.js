@@ -135,7 +135,7 @@ if (pkg.browser) {
 }
 
 if (pkg.bin) {
-  const binBanner = `#!/usr/bin/env node\n\n${banner}`
+  const shebang = `#!/usr/bin/env node\n\n${banner}`
 
   for (const binPath of Object.values(pkg.bin)) {
     if (! binPath) {
@@ -149,7 +149,7 @@ if (pkg.bin) {
       output: [
         {
           file: binPath,
-          banner: binBanner,
+          banner: shebang,
           format: 'cjs',
           globals,
         },
