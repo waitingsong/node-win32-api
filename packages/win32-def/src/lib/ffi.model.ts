@@ -10,6 +10,10 @@ export type _UNICODE = boolean
 export interface DataTypes {
   [prop: string]: FnParam
 }
+// struct types
+export interface StructTypes {
+  [prop: string]: FnParam | DataTypes
+}
 
 export interface LoadSettings {
   singleton: boolean  // for DLL.load()
