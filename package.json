@@ -46,7 +46,7 @@
     "all": true
   },
   "dependencies": {
-    "win32-def": "^2.1.1"
+    "win32-def": "^2.2.0"
   },
   "devDependencies": {
     "@types/ffi": "^0.1.0",
