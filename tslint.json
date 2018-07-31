@@ -72,7 +72,7 @@
     ],
     "no-string-throw": true,
     "no-submodule-imports": [true, 
-      "rxjs", 
+      "rxjs",
       "@angular/platform-browser",
       "source-map-support/register"
     ],
