@@ -28,6 +28,7 @@
     "asset/",
     "dist/",
     "test/",
+    "/test_browser*",
     "node_modules*",
     "**/*.d.ts",
     "**/*.spec.ts"
