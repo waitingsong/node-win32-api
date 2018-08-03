@@ -7,13 +7,17 @@ module.exports = {
   ],
 
   files: [
-    './test_browser/**/*.test.ts',
+    'src/**/*.ts',
+    'test_browser/**/*.ts'
   ],
 
-  exclude: [],
+  exclude: [
+    "src/shared/**/*"
+  ],
 
   preprocessors: {
-    '**/*.ts': ['karma-typescript'],
+    'src/**/*.ts': ['karma-typescript'],
+    'test_browser/**/*.ts': ['karma-typescript']
   },
 
   karmaTypescriptConfig: {
@@ -23,17 +27,28 @@ module.exports = {
       instrumentation: true,
     },
     compilerOptions: {
+      allowJs: false,
       declaration: false,
       lib: ['es2017', 'dom'],
-      target: 'es5',
       module: 'commonjs',
       moduleResolution: 'node',
-      allowJs: false,
+      noUnusedLocals: false,
       strict: true,
+      target: 'es5',
     },
     include: [
-      './test_browser/**/*.ts',
+      'src/**/*.ts',
+      'test_browser/**/*.ts',
+    ],
+    "exclude": [
+      "asset/",
+      "dist/",
+      "test/",
+      "node_modules*",
+      "**/*.d.ts",
+      "src/shared/"
     ]
+
   },
 
   reporters: [
