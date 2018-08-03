@@ -8,7 +8,9 @@ module.exports = {
 
   files: [
     'src/**/*.ts',
-    'test_browser/**/*.ts'
+    'test_browser/**/*.ts',
+    '.config/node_modules/es6-shim/es6-shim.min.js',
+    '.config/node_modules/whatwg-fetch/fetch.js',
   ],
 
   exclude: [
@@ -17,7 +19,14 @@ module.exports = {
 
   preprocessors: {
     'src/**/*.ts': ['karma-typescript'],
-    'test_browser/**/*.ts': ['karma-typescript']
+    'test_browser/**/*.ts': ['karma-typescript'],
+  },
+
+
+  client: {
+    mocha: {
+      timeout : 20 * 1000,
+    }
   },
 
   karmaTypescriptConfig: {
@@ -46,7 +55,7 @@ module.exports = {
       "test/",
       "node_modules*",
       "**/*.d.ts",
-      "src/shared/"
+      "src/shared/",
     ]
 
   },
