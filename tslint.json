@@ -26,7 +26,6 @@
     "interface-name": [ true, "never-prefix" ],
     "linebreak-style": [true , "LF" ],
     "max-classes-per-file": [ true, 10 ],
-    "max-line-length": [true, 120],
     "member-access": [ false ],
     "member-ordering": [true, {"order": [
       "public-static-field",
