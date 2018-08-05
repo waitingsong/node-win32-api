@@ -39,9 +39,6 @@ export interface Win32Fns {
 
   GetMessageW(lpMsg: M.LPMSG, HWND: M.HWND | null, wMsgFilterMin: M.UINT, wMsgFilterMax: M.UINT): M.BOOL
 
-  // tslint:disable:max-line-length
-  PeekMessageW(lpMsg: M.LPMSG, HWND: M.HWND | null, wMsgFilterMin: M.UINT, wMsgFilterMax: M.UINT, wRemoveMsg: M.UINT): M.BOOL
-
   GetParent(hWnd: M.HWND): M.HWND
 
   GetWindow(hWnd: M.HWND, uCmd: M.UINT): M.HWND
@@ -57,6 +54,9 @@ export interface Win32Fns {
   GetWindowThreadProcessId(hWnd: M.HWND, lpdwProcessId: M.LPDWORD | null): M.DWORD
 
   IsWindowVisible(hWnd: M.HWND): M.BOOL
+
+  // tslint:disable:max-line-length
+  PeekMessageW(lpMsg: M.LPMSG, HWND: M.HWND | null, wMsgFilterMin: M.UINT, wMsgFilterMax: M.UINT, wRemoveMsg: M.UINT): M.BOOL
 
   RegisterClassExW(lpwcx: M.WNDCLASSEX): M.ATOM
 
@@ -107,8 +107,6 @@ export const apiDef: FModel.DllFuncs = {
 
   GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT] ],
 
-  PeekMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT, W.UINT] ],
-
   GetParent: [W.HWND, [W.HWND] ],
 
   GetWindow: [W.HWND, [W.HWND, W.UINT] ],
@@ -122,6 +120,8 @@ export const apiDef: FModel.DllFuncs = {
   GetWindowThreadProcessId: [W.DWORD, [W.HWND, W.LPDWORD] ],
 
   IsWindowVisible: [W.BOOL, [W.HWND] ],
+
+  PeekMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT, W.UINT] ],
 
   RegisterClassExW: [W.ATOM, [W.WNDCLASSEX] ],
 
