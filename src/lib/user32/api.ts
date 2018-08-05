@@ -39,7 +39,7 @@ export interface Win32Fns {
 
   GetMessageW(lpMsg: M.LPMSG, HWND: M.HWND | null, wMsgFilterMin: M.UINT, wMsgFilterMax: M.UINT): M.BOOL
 
-  // @ts-ignore
+  // tslint:disable:max-line-length
   PeekMessageW(lpMsg: M.LPMSG, HWND: M.HWND | null, wMsgFilterMin: M.UINT, wMsgFilterMax: M.UINT, wRemoveMsg: M.UINT): M.BOOL
 
   GetParent(hWnd: M.HWND): M.HWND
