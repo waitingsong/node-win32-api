@@ -106,6 +106,8 @@ export const apiDef: FModel.DllFuncs = {
 
   GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT] ],
 
+  PeekMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT, W.UINT] ],
+
   GetParent: [W.HWND, [W.HWND] ],
 
   GetWindow: [W.HWND, [W.HWND, W.UINT] ],
