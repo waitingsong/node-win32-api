@@ -39,6 +39,9 @@ export interface Win32Fns {
 
   GetMessageW(lpMsg: M.LPMSG, HWND: M.HWND | null, wMsgFilterMin: M.UINT, wMsgFilterMax: M.UINT): M.BOOL
 
+  // @ts-ignore
+  PeekMessageW(lpMsg: M.LPMSG, HWND: M.HWND | null, wMsgFilterMin: M.UINT, wMsgFilterMax: M.UINT, wRemoveMsg: M.UINT): M.BOOL
+
   GetParent(hWnd: M.HWND): M.HWND
 
   GetWindow(hWnd: M.HWND, uCmd: M.UINT): M.HWND
@@ -103,6 +106,8 @@ export const apiDef: FModel.DllFuncs = {
   GetClassInfoExW: [W.BOOL, [W.HINSTANCE, W.LPCTSTR, W.LPWNDCLASSEX] ],
 
   GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT] ],
+
+  PeekMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT, W.UINT] ],
 
   GetParent: [W.HWND, [W.HWND] ],
 

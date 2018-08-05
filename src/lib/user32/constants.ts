@@ -117,3 +117,8 @@ export const WS_EX_OVERLAPPEDWINDOW = (WS_EX_WINDOWEDGE | WS_EX_CLIENTEDGE)
 // tslint:disable-next-line
 export const WS_EX_PALETTEWINDOW = (WS_EX_WINDOWEDGE | WS_EX_TOOLWINDOW | WS_EX_TOPMOST)
 
+export const PM_NOREMOVE = 0x0000
+export const PM_REMOVE = 0x0001
+export const PM_NOYIELD = 0x0002
+
+
