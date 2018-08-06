@@ -28,6 +28,8 @@ export interface Win32Fns {
 
     // https://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx
   SetLastError(dwErrCode: M.DWORD): M.VOID
+
+  FreeConsole(): M.BOOL
 }
 
 export const apiDef: FModel.DllFuncs = {
@@ -52,4 +54,6 @@ export const apiDef: FModel.DllFuncs = {
   OpenProcess: [W.HANDLE, [W.DWORD, W.BOOL, W.DWORD] ],
 
   SetLastError: [W.VOID, [W.DWORD] ],
+
+  FreeConsole: [W.BOOL, [] ],
 }
