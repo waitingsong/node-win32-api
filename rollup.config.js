@@ -64,9 +64,6 @@ if (peerDeps && Object.keys(peerDeps).length) {
     external.push(depName)
   }
 }
-for (const depName of Object.keys(peerDeps)) {
-  external.push(depName)
-}
 
 
 const config = [
@@ -136,6 +133,33 @@ if (pkg.browser) {
     },
   )
 }
+
+if (pkg.bin) {
+  const shebang = `#!/usr/bin/env node\n\n${banner}`
+
+  for (const binPath of Object.values(pkg.bin)) {
+    if (! binPath) {
+      continue
+    }
+    const binSrcPath = binPath.includes('dist/') ? binPath : `./dist/${binPath}`
+
+    config.push({
+      external: external.concat(nodeModule),
+      input: binSrcPath,
+      output: [
+        {
+          file: binPath,
+          banner: shebang,
+          format: 'cjs',
+          globals,
+        },
+      ],
+    })
+  }
+
+}
+
+
 
 // remove pkg.name extension if exists
 function parseName(name) {

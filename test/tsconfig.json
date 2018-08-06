@@ -17,6 +17,8 @@
     "strict": true, 
     "noImplicitAny": false,
     "noImplicitThis": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "target": "ES2017"
   },
   "include": [
