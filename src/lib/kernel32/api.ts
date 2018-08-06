@@ -2,17 +2,21 @@ import { DModel as M, DTypes as W, FModel } from 'win32-def'
 
 
 export interface Win32Fns {
-    // https://msdn.microsoft.com/en-us/library/windows/desktop/ms679351(v=vs.85).aspx
-    // dwLanguageId: https://msdn.microsoft.com/en-us/library/windows/desktop/dd318693(v=vs.85).aspx
+  /**
+   * https://msdn.microsoft.com/en-us/library/windows/desktop/ms679351(v=vs.85).aspx
+   * dwLanguageId: https://msdn.microsoft.com/en-us/library/windows/desktop/dd318693(v=vs.85).aspx
+   */
   FormatMessageW(
-        dwFlags: M.DWORD,
-        lpSource: M.LPCVOID | null,
-        dwMessageId: M.DWORD,
-        dwLanguageId: M.DWORD,     // 0x0409: US, 0x0000: Neutral locale language
-        lpBuffer: M.LPTSTR,
-        nSize: M.DWORD,
-        Arguments: M.va_list | null,
-    ): M.DWORD
+    dwFlags: M.DWORD,
+    lpSource: M.LPCVOID | null,
+    dwMessageId: M.DWORD,
+    dwLanguageId: M.DWORD,     // 0x0409: US, 0x0000: Neutral locale language
+    lpBuffer: M.LPTSTR,
+    nSize: M.DWORD,
+    Arguments: M.va_list | null,
+  ): M.DWORD
+
+  FreeConsole(): M.BOOL
 
   GetLastError(): M.DWORD
 
@@ -26,10 +30,8 @@ export interface Win32Fns {
 
   OpenProcess(dwDesiredAccess: M.DWORD, bInheritHandle: M.BOOL, dwProcessId: M.DWORD): M.HANDLE
 
-    // https://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx
+  /** https://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx */
   SetLastError(dwErrCode: M.DWORD): M.VOID
-
-  FreeConsole(): M.BOOL
 }
 
 export const apiDef: FModel.DllFuncs = {
@@ -38,13 +40,15 @@ export const apiDef: FModel.DllFuncs = {
     [W.DWORD, W.LPCVOID, W.DWORD, W.DWORD, W.LPTSTR, W.DWORD, W.va_list],
   ],
 
-  // err code: https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms681381(v=vs.85).aspx
+  FreeConsole: [W.BOOL, [] ],
+
+  /** err code: https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms681381(v=vs.85).aspx */
   GetLastError: [W.DWORD, [] ],
 
-  // retrive value from buf by ret.ref().readUInt32()
+  /** retrive value from buf by ret.ref().readUInt32() */
   GetModuleHandleW: [W.HMODULE, [W.LPCTSTR] ],
 
-  // flags, optional LPCTSTR name, ref hModule
+  /** flags, optional LPCTSTR name, ref hModule */
   GetModuleHandleExW: [W.BOOL, [W.DWORD, W.LPCTSTR, W.HMODULE] ],
 
   GetProcessHeaps: [W.DWORD, [W.DWORD, W.PHANDLE] ],
@@ -54,6 +58,4 @@ export const apiDef: FModel.DllFuncs = {
   OpenProcess: [W.HANDLE, [W.DWORD, W.BOOL, W.DWORD] ],
 
   SetLastError: [W.VOID, [W.DWORD] ],
-
-  FreeConsole: [W.BOOL, [] ],
 }
