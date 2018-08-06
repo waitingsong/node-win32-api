@@ -60,7 +60,7 @@
     "@types/yargs": "^11.0.0",
     "coveralls": "^3.0.0",
     "eslint": "^4.19.1",
-    "ffi": "^2.2.0",
+    "ffi": "git+https://github.com/node-ffi/node-ffi.git",
     "intelli-espower-loader": "^1.0.1",
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
