@@ -7,10 +7,11 @@ module.exports = {
   ],
 
   files: [
+    { pattern: '.config/node_modules/es6-shim/es6-shim.min.js', watched: false },
+    { pattern: '.config/node_modules/es7-shim/dist/es7-shim.min.js', watched: false },
+    { pattern: '.config/node_modules/whatwg-fetch/fetch.js', watched: false },
     'src/**/*.ts',
     'test_browser/**/*.ts',
-    '.config/node_modules/es6-shim/es6-shim.min.js',
-    '.config/node_modules/whatwg-fetch/fetch.js',
   ],
 
   exclude: [
