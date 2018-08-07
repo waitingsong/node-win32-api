@@ -19,3 +19,5 @@ coverage/
 .nyc_output/
 .githooks
 .vscode
+.config
+/test_browser*
