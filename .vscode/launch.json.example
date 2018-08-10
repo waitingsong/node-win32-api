@@ -37,6 +37,17 @@
       "stopOnEntry": false
     },
     {
+      "name": "Karma Chrome",
+      "type": "chrome",
+      "request": "attach",
+      "address": "localhost",
+      "port": 9333,
+      "pathMapping": {
+        "/": "${workspaceRoot}/",
+        "/base/": "${workspaceRoot}/"
+      }
+    },
+    {
       "name": "Mocha Tests",
       "type": "node",
       "request": "launch",
