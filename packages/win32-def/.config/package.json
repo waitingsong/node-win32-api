@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "browser": "karma start karma.browser.conf.js",
+    "debug": "karma start karma.browser.conf.js --browsers=ChromeDebugging --single-run=false --mocha-timeout=999998 --custom-debug=1",
     "sauce": "karma start karma.sauce.conf.js"
   },
   "devDependencies": {
