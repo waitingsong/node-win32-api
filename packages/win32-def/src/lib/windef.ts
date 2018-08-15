@@ -100,6 +100,7 @@ export const LPHANDLE = _WIN64_HOLDER   // A pointer to a HANDLE.
 export const LPINT = 'int*'
 export const LPLONG = 'int32*'
 export const LPMSG = 'pointer' // A pointer to a MSG
+export const LPPOINT = 'pointer'
 export const LPSTR = 'char*'
 export const LPWSTR = 'uint16*'
 export const LPTSTR = _UNICODE_HOLDER

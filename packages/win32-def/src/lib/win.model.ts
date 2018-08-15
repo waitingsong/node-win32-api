@@ -91,6 +91,7 @@ export type LPHANDLE = Buffer
 export type LPINT = Buffer
 export type LPLONG = Buffer
 export type LPMSG = Buffer
+export type LPPOINT = Buffer
 export type LPSTR = Buffer
 export type LPWSTR = Buffer
 export type LPTSTR = Buffer
