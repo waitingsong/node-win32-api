@@ -2,6 +2,8 @@ import { DModel as M, DTypes as W, FModel } from 'win32-def'
 
 
 export interface Win32Fns {
+  ClientToScreen(hWnd: M.HWND, lpPoint: M.LPPOINT): M.BOOL
+
   CreateWindowExW(
     dwExStyle: M.DWORD,
     lpClassName: M.LPCTSTR | null,
@@ -85,6 +87,9 @@ export interface Win32Fns {
 
 
 export const apiDef: FModel.DllFuncs = {
+  /** url: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-clienttoscreen */
+  ClientToScreen: [W.BOOL, [W.HWND, W.LPPOINT] ],
+
   CreateWindowExW: [W.HWND, [
     W.DWORD, W.LPCTSTR, W.LPCTSTR, W.DWORD,
     W.INT, W.INT, W.INT, W.INT,
