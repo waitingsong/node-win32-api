@@ -18,6 +18,12 @@ const {
  * https://saucelabs.com/rest/v1/info/platforms/webdriver
  */
 const sl_launchers = {
+  sl_edge_latest_Windows10: createCustomLauncher('MicrosoftEdge', 'latest', 'Windows 10'),
+  sl_edge_16_Windows10: createCustomLauncher('MicrosoftEdge', '16.16299', 'Windows 10'),
+  sl_edge_15_Windows10: createCustomLauncher('MicrosoftEdge', '15.15063', 'Windows 10'),
+  sl_edge_14_Windows10: createCustomLauncher('MicrosoftEdge', '14.14393', 'Windows 10'),
+  sl_edge_13_Windows10: createCustomLauncher('MicrosoftEdge', '13.10586', 'Windows 10'),
+
   sl_chrome_latest_Windows10: createCustomLauncher('chrome', 'latest', 'Windows 10'),
   sl_chrome_32_Windows10: createCustomLauncher('chrome', '32', 'Windows 10'),
 
@@ -39,12 +45,6 @@ const sl_launchers = {
   sl_firefox_30_Windows7: createCustomLauncher('firefox', '30', 'Windows 7'), 
 
   sl_firefox_latest_Mac10_13: createCustomLauncher('firefox', 'latest', 'macOS 10.13'),
-
-  sl_edge_13_Windows10: createCustomLauncher('MicrosoftEdge', '13.10586', 'Windows 10'),
-  sl_edge_14_Windows10: createCustomLauncher('MicrosoftEdge', '14.14393', 'Windows 10'),
-  sl_edge_15_Windows10: createCustomLauncher('MicrosoftEdge', '15.15063', 'Windows 10'),
-  sl_edge_16_Windows10: createCustomLauncher('MicrosoftEdge', '16.16299', 'Windows 10'),
-  sl_edge_17_Windows10: createCustomLauncher('MicrosoftEdge', '17.17134', 'Windows 10'),
 
   sl_ie_11_Windows8_1: createCustomLauncher('internet explorer', '11', 'Windows 8.1'),
   sl_ie_11_Windows7: createCustomLauncher('internet explorer', '11', 'Windows 7'),
@@ -183,9 +183,9 @@ module.exports = function(config) {
 
     hostname: '127.0.0.1',
 
-    captureTimeout: 10 * 60000,
-    browserNoActivityTimeout: 6 * 60000,
-    browserDisconnectTimeout: 30000,
+    captureTimeout: 5 * 60000,
+    browserNoActivityTimeout: 5 * 60000,
+    browserDisconnectTimeout: 15000,
 
     customLaunchers: sl_launchers,
     browsers: Object.keys(sl_launchers),
