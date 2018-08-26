@@ -49,7 +49,7 @@ const sl_launchers = {
   sl_ie_11_Windows8_1: createCustomLauncher('internet explorer', '11', 'Windows 8.1'),
   sl_ie_11_Windows7: createCustomLauncher('internet explorer', '11', 'Windows 7'),
 
-  sl_safari_11_Mac10_13: createCustomLauncher('safari', '11.0', 'macOS 10.13'),
+  sl_safari_11_1_Mac10_13: createCustomLauncher('safari', '11.1', 'macOS 10.13'),
   sl_safari_11_Mac10_12: createCustomLauncher('safari', '11.0', 'macOS 10.12'),
   sl_safari_10_1_Mac10_12: createCustomLauncher('safari', '10.1', 'macOS 10.12'),
   sl_safari_10_Mac10_11: createCustomLauncher('safari', '10.0', 'OS X 10.11'),
