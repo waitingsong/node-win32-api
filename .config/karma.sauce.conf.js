@@ -5,6 +5,12 @@ if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
   process.exit(1);
 }
 
+const {
+	TRAVIS_BRANCH,
+	TRAVIS_BUILD_NUMBER,
+	TRAVIS_JOB_NUMBER,
+} = process.env;
+
 
 /**
  * Available browsers and platforms: 
