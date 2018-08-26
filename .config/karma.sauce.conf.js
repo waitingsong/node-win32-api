@@ -1,15 +1,15 @@
-const base = require('./karma.base.conf.js');
+const base = require('./karma.base.conf.js')
 
 if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
-  console.log('Make sure the SAUCE_USERNAME and SAUCE_ACCESS_KEY environment variables are set.');
-  process.exit(1);
+  console.log('Make sure the SAUCE_USERNAME and SAUCE_ACCESS_KEY environment variables are set.')
+  process.exit(1)
 }
 
 const {
 	TRAVIS_BRANCH,
 	TRAVIS_BUILD_NUMBER,
 	TRAVIS_JOB_NUMBER,
-} = process.env;
+} = process.env
 
 
 /**
@@ -169,7 +169,7 @@ const sl_launchers = {
 module.exports = function(config) {
 
   // turn off coverage for sauce
-  base.karmaTypescriptConfig.coverageOptions.instrumentation = false;
+  base.karmaTypescriptConfig.coverageOptions.instrumentation = false
 
   config.set(Object.assign(base, {
     sauceLabs: {
@@ -181,11 +181,12 @@ module.exports = function(config) {
       testName: 'RxxFetch cross browsers tests',
     },
 
-    hostname: '127.0.0.1',
+    // to solve karma connection failure, but not works on edge>=14
+    // hostname: '127.0.0.1',
 
     captureTimeout: 5 * 60000,
     browserNoActivityTimeout: 5 * 60000,
-    browserDisconnectTimeout: 15000,
+    // browserDisconnectTimeout: 15000,
 
     customLaunchers: sl_launchers,
     browsers: Object.keys(sl_launchers),
@@ -196,14 +197,14 @@ module.exports = function(config) {
     ]),
 
     concurrency: 1,
-  }));
-};
+  }))
+}
 
 function createCustomLauncher(browser, version, platform) {
   return {
     base: 'SauceLabs',
     browserName: browser,
     platform: platform,
-    version: version
-  };
+    version: version,
+  }
 }
