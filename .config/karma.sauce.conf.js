@@ -68,13 +68,6 @@ const sl_launchers = {
     platformVersion: '6.0',
     platformName: 'Android',
   },
-  sl_android_5_1: {
-    base: 'SauceLabs',
-    deviceName: 'Android Emulator',
-    browserName: 'Browser',
-    platformVersion: '5.0',
-    platformName: 'Android',
-  },
   sl_android_5_0: {
     base: 'SauceLabs',
     deviceName: 'Android Emulator',
@@ -148,20 +141,13 @@ const sl_launchers = {
     platformName: 'iOS',
   },
 
-  sl_iphoneX_11_2: {
-    base: 'SauceLabs',
-    browserName: 'Safari',
-    deviceName: 'iPhone X Simulator',
-    platformVersion: '11.2',
-    platformName: 'iOS',
-  },
-  sl_iphoneX_11_1: {
-    base: 'SauceLabs',
-    browserName: 'Safari',
-    deviceName: 'iPhone X Simulator',
-    platformVersion: '11.1',
-    platformName: 'iOS',
-  },
+  // sl_iphoneX_latest: {
+  //   base: 'SauceLabs',
+  //   browserName: 'Safari',
+  //   deviceName: 'iPhone X Simulator',
+  //   platformVersion: 'latest',
+  //   platformName: 'iOS',
+  // },
 
 }
 
