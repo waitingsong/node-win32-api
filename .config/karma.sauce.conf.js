@@ -40,8 +40,11 @@ const sl_launchers = {
 
   sl_firefox_latest_Mac10_13: createCustomLauncher('firefox', 'latest', 'macOS 10.13'),
 
-  sl_edge_latest_Windows10: createCustomLauncher('MicrosoftEdge', 'latest', 'Windows 10'),
-  sl_edge_13_Windows10: createCustomLauncher('MicrosoftEdge', '13', 'Windows 10'),
+  sl_edge_13_Windows10: createCustomLauncher('MicrosoftEdge', '13.10586', 'Windows 10'),
+  sl_edge_14_Windows10: createCustomLauncher('MicrosoftEdge', '14.14393', 'Windows 10'),
+  sl_edge_15_Windows10: createCustomLauncher('MicrosoftEdge', '15.15063', 'Windows 10'),
+  sl_edge_16_Windows10: createCustomLauncher('MicrosoftEdge', '16.16299', 'Windows 10'),
+  sl_edge_17_Windows10: createCustomLauncher('MicrosoftEdge', '17.17134', 'Windows 10'),
 
   sl_ie_11_Windows8_1: createCustomLauncher('internet explorer', '11', 'Windows 8.1'),
   sl_ie_11_Windows7: createCustomLauncher('internet explorer', '11', 'Windows 7'),
