@@ -42,7 +42,7 @@
     "all": true
   },
   "dependencies": {
-    "rxjs": "^6.2.0"
+    "rxjs": ">=6.2.0"
   },
   "devDependencies": {
     "@types/mocha": "*",
