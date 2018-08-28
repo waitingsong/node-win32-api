@@ -30,6 +30,9 @@ export interface Win32Fns {
 
   OpenProcess(dwDesiredAccess: M.DWORD, bInheritHandle: M.BOOL, dwProcessId: M.DWORD): M.HANDLE
 
+  /** https://msdn.microsoft.com/en-us/library/windows/desktop/aa363362(v=vs.85).aspx */
+  OutputDebugStringW(lpOutputString: M.LPCTSTR): M.VOID
+
   /** https://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx */
   SetLastError(dwErrCode: M.DWORD): M.VOID
 }
@@ -56,6 +59,8 @@ export const apiDef: FModel.DllFuncs = {
   HeapFree: [W.BOOL, [W.HANDLE, W.DWORD, W.LPVOID] ],
 
   OpenProcess: [W.HANDLE, [W.DWORD, W.BOOL, W.DWORD] ],
+
+  OutputDebugStringW: [W.VOID, [W.LPCTSTR] ],
 
   SetLastError: [W.VOID, [W.DWORD] ],
 }
