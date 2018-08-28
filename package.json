@@ -50,6 +50,7 @@
     "all": true
   },
   "dependencies": {
+    "rxjs": ">=6.2.0",
     "win32-def": "^2.3.0"
   },
   "devDependencies": {
