@@ -53,9 +53,12 @@
     "win32-def": "^2.3.0"
   },
   "devDependencies": {
+    "@types/ffi": "*",
     "@types/mocha": "*",
     "@types/node": "*",
     "@types/power-assert": "*",
+    "@types/ref": "*",
+    "@types/ref-struct": "*",
     "@types/rewire": "*",
     "@types/rimraf": "*",
     "@types/yargs": "*",
