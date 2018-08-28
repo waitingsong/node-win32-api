@@ -46,6 +46,7 @@ const sl_launchers = {
 
   sl_firefox_latest_Mac10_13: createCustomLauncher('firefox', 'latest', 'macOS 10.13'),
 
+  sl_ie_11_Windows10: createCustomLauncher('internet explorer', '11.103', 'Windows 10'),
   sl_ie_11_Windows8_1: createCustomLauncher('internet explorer', '11', 'Windows 8.1'),
   sl_ie_11_Windows7: createCustomLauncher('internet explorer', '11', 'Windows 7'),
 
