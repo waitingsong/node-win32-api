@@ -6,11 +6,13 @@
   "license": "MIT",
   "scripts": {
     "browser": "karma start karma.browser.conf.js",
+    "debug": "karma start karma.browser.conf.js --browsers=ChromeDebugging --single-run=false --mocha-timeout=999998 --custom-debug=1",
     "sauce": "karma start karma.sauce.conf.js"
   },
   "devDependencies": {
     "es6-shim": "^0.35.3",
-    "karma": "^2.0.2",
+    "es7-shim": "^6.0.0",
+    "karma": "^3.0.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-detect-browsers": "^2.2.5",
     "karma-edge-launcher": "^0.4.1",

@@ -146,10 +146,12 @@ export interface WriteFileOptions {
   flag?: string
 }
 
+/* istanbul ignore next */
 export function assertNever(x: never): never {
   throw new Error('Assert Never Unexpected object: ' + x)
 }
 
+/* istanbul ignore next */
 /**
  * Remove directory recursively
  * @see https://stackoverflow.com/a/42505874/3027390
@@ -163,6 +165,7 @@ export async function rimraf(path: string): Promise<void> {
     await rmdirAsync(path)
   }
 }
+/* istanbul ignore next */
 async function _rimraf(path: string): Promise<void> {
   if (! path) {
     return

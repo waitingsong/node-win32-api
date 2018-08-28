@@ -37,6 +37,34 @@
       "stopOnEntry": false
     },
     {
+      "name": "Egg Debug",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "debug",
+        "--",
+        "--inspect-brk"
+      ],
+      "console": "integratedTerminal",
+      "restart": true,
+      "protocol": "auto",
+      "port": 9229,
+      "autoAttachChildProcesses": true
+    },
+    {
+      "name": "Chrome Debug with Karma",
+      "type": "chrome",
+      "request": "attach",
+      "address": "localhost",
+      "port": 9333,
+      "pathMapping": {
+        "/": "${workspaceRoot}/",
+        "/base/": "${workspaceRoot}/"
+      }
+    },
+    {
       "name": "Mocha Tests",
       "type": "node",
       "request": "launch",
@@ -50,23 +78,6 @@
         "${workspaceFolder}/test"
       ],
       "internalConsoleOptions": "openOnSessionStart"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Egg Debug",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run",
-        "debug",
-        "--",
-        "--inspect-brk"
-      ],
-      "console": "integratedTerminal",
-      "restart": true,
-      "protocol": "auto",
-      "port": 9229,
-      "autoAttachChildProcesses": true
     }
   ]
 }

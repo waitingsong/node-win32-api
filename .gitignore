@@ -1,3 +1,4 @@
+package-lock.json
 app/**/*.js
 test/**/*.js
 config/**/*.js
