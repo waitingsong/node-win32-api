@@ -3,7 +3,9 @@
   "author": "waiting",
   "version": "0.0.1",
   "description": "npm boilerplate",
-  "keywords": [],
+  "keywords": [
+    "typescript"
+  ],
   "engines": {
     "node": ">=8.10.0"
   },
