@@ -1,7 +1,7 @@
 import { dirname } from 'path'
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
-import uglify from 'rollup-plugin-uglify'
+import { terser } from 'rollup-plugin-terser'
 import pkg from './package.json'
 
 // `npm run build` -> `production` is true
@@ -95,7 +95,7 @@ if (production) {
     {
       external: external.concat(nodeModule),
       input: pkg.module,
-      plugins: [ uglify(uglifyOpts) ],
+      plugins: [ terser(uglifyOpts) ],
       output: {
         banner,
         file: parseName(pkg.es2015) + '.min.js',
@@ -119,7 +119,7 @@ if (pkg.browser) {
           main: true,
         }),
         commonjs(),
-        production && uglify(uglifyOpts),
+        production && terser(uglifyOpts),
       ],
       output: {
         amd: { id: name },
