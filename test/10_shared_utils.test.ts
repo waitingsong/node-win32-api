@@ -101,14 +101,13 @@ describe(filename, () => {
   })
 
 
-  it('Should createDir() works with blank param', async () => {
-    try {
-      await createDir('')
-      return assert(false, 'should throw error, but NOT')
-    }
-    catch (ex) {
-      assert(true)
-    }
+  it('Should createDir() works with blank param', resolve => {
+    createDir('')
+      .then(() => {
+        assert(false, 'should throw error, but NOT')
+        resolve()
+      })
+      .catch(() => resolve())
   })
 
   it('Should createFile() works', async () => {
@@ -199,14 +198,13 @@ describe(filename, () => {
     rmdir(randomPath, err => err && console.error(err))
   })
 
-  it('Should createFile() works with blank path', async () => {
-    try {
-      await createFile('', '')
-      return assert(false, 'should throw error, but NOT')
-    }
-    catch (ex) {
-      assert(true)
-    }
+  it('Should createFile() works with blank path', resolve => {
+    createFile('', '')
+      .then(() => {
+        assert(false, 'should throw error, but NOT')
+        resolve()
+      })
+      .catch(() => resolve())
   })
 
 
