@@ -35,6 +35,26 @@ export interface Win32Fns {
 
   /** https://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx */
   SetLastError(dwErrCode: M.DWORD): M.VOID
+
+  /**
+   * Enables an application to inform the system that it is in use,
+   * thereby preventing the system from entering sleep or turning off
+   * the display while the application is running.
+   * 
+   * @example
+   * // Television recording is beginning. Enable away mode and prevent the sleep idle time-out.
+   * SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_AWAYMODE_REQUIRED);
+   * 
+   * // Clear EXECUTION_STATE flags to disable away mode and allow the system to idle to sleep normally.
+   * SetThreadExecutionState(ES_CONTINUOUS);
+   * 
+   * @param esFlags The thread's execution requirements.
+   * This parameter can be one or more of the following values. Join them with single |
+   * @returns If the function succeeds, the return value is the previous thread execution state.
+   * If the function fails, the return value is NULL.
+   * @see[Docs]{@link https://docs.microsoft.com/en-us/windows/desktop/api/winbase/nf-winbase-setthreadexecutionstate}
+   */
+  SetThreadExecutionState(esFlags: M.EXECUTION_STATE): number | null
 }
 
 export const apiDef: FModel.DllFuncs = {
@@ -43,24 +63,24 @@ export const apiDef: FModel.DllFuncs = {
     [W.DWORD, W.LPCVOID, W.DWORD, W.DWORD, W.LPTSTR, W.DWORD, W.va_list],
   ],
 
-  FreeConsole: [W.BOOL, [] ],
+  FreeConsole: [W.BOOL, []],
 
   /** err code: https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms681381(v=vs.85).aspx */
-  GetLastError: [W.DWORD, [] ],
+  GetLastError: [W.DWORD, []],
 
   /** retrive value from buf by ret.ref().readUInt32() */
-  GetModuleHandleW: [W.HMODULE, [W.LPCTSTR] ],
+  GetModuleHandleW: [W.HMODULE, [W.LPCTSTR]],
 
   /** flags, optional LPCTSTR name, ref hModule */
-  GetModuleHandleExW: [W.BOOL, [W.DWORD, W.LPCTSTR, W.HMODULE] ],
+  GetModuleHandleExW: [W.BOOL, [W.DWORD, W.LPCTSTR, W.HMODULE]],
 
-  GetProcessHeaps: [W.DWORD, [W.DWORD, W.PHANDLE] ],
+  GetProcessHeaps: [W.DWORD, [W.DWORD, W.PHANDLE]],
 
-  HeapFree: [W.BOOL, [W.HANDLE, W.DWORD, W.LPVOID] ],
+  HeapFree: [W.BOOL, [W.HANDLE, W.DWORD, W.LPVOID]],
 
-  OpenProcess: [W.HANDLE, [W.DWORD, W.BOOL, W.DWORD] ],
+  OpenProcess: [W.HANDLE, [W.DWORD, W.BOOL, W.DWORD]],
 
-  OutputDebugStringW: [W.VOID, [W.LPCTSTR] ],
+  OutputDebugStringW: [W.VOID, [W.LPCTSTR]],
 
-  SetLastError: [W.VOID, [W.DWORD] ],
+  SetLastError: [W.VOID, [W.DWORD]],
 }
