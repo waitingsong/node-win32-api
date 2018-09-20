@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "rxjs": ">=6.2.0",
-    "win32-def": "^2.4.0"
+    "win32-def": "^2.4.1"
   },
   "devDependencies": {
     "@types/ffi": "*",
