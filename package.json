@@ -87,7 +87,6 @@
     "yargs": "^12.0.1"
   },
   "peerDependencies": {
-    "ffi": "^2.2.0"
   },
   "scripts": {
     "bp:add": "git remote add bp https://github.com/waitingsong/npm-base",
