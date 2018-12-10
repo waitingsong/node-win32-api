@@ -1,5 +1,5 @@
 # win32-api
-FFI Definitions of Windows win32 api for [node-ffi](https://github.com/node-ffi/node-ffi)
+FFI Definitions of Windows win32 api
 
 [![Version](https://img.shields.io/npm/v/win32-api.svg)](https://www.npmjs.com/package/win32-api)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -10,7 +10,7 @@ FFI Definitions of Windows win32 api for [node-ffi](https://github.com/node-ffi/
 
 
 ## What can I do with this?
-Calling win32 native functions come from user32.dll, kernel32.dll, comctl32.dll by Node.js
+Calling win32 native functions come from user32.dll, kernel32.dll, comctl32.dll by Node.js via [node-ffi](https://github.com/node-ffi/node-ffi) or [node-ffi-napi](https://github.com/node-ffi-napi/node-ffi-napi)
 
 ## Installing
 ```powershell
@@ -26,43 +26,43 @@ npm install --save win32-api
  * K, Kernel32 for kernel32 from lib/kernel32/api
  * U, User32 for user32 from lib/user32/api
  */
-const {K, U} = require('win32-api');   // or {Kernel32, User32}
-const ref = require('ref');
+const { K, U } = require('win32-api')   // or {Kernel32, User32}
+const ref = require('ref-napi')
 
-const knl32 = K.load();
-const user32 = U.load();  // load all apis defined in lib/{dll}/api from user32.dll
-// const user32 = U.load(['FindWindowExW']);  // load only one api defined in lib/{dll}/api from user32.dll
+const knl32 = K.load()
+const user32 = U.load()  // load all apis defined in lib/{dll}/api from user32.dll
+// const user32 = U.load(['FindWindowExW'])  // load only one api defined in lib/{dll}/api from user32.dll
 
-const title = 'Calculator\0';    // null-terminated string
-// const title = '计算器\0';    // string in chinese
+const title = 'Calculator\0'    // null-terminated string
+// const title = '计算器\0'    // string in chinese
 
-const lpszWindow = Buffer.from(title, 'ucs2');
-const hWnd = user32.FindWindowExW(null, null, null, lpszWindow);
+const lpszWindow = Buffer.from(title, 'ucs2')
+const hWnd = user32.FindWindowExW(null, null, null, lpszWindow)
 
 if (hWnd && ! hWnd.isNull()) {
   // Caution: output hWnd will cuase exception in the following process, even next script!
   // So do NOT do this in the production code!
   // console.log('buf: ', hWnd); // avoid this
-  console.log('buf: ', ref.address(hWnd)); // this is ok
+  console.log('buf: ', ref.address(hWnd)) // this is ok
 
   // Change title of the Calculator
-  const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'));
+  const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'))
 
   if ( ! res) {
     // See: [System Error Codes] below
-    const errcode = knl32.GetLastError();
-    const len = 255;
-    const buf = Buffer.alloc(len);
-    const p = 0x00001000 | 0x00000200;  // FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
-    const langid = 0x0409;              // 0x0409: US, 0x0000: Neutral locale language
-    const msglen = knl32.FormatMessageW(p, null, errcode, langid, buf, len, null);
+    const errcode = knl32.GetLastError()
+    const len = 255
+    const buf = Buffer.alloc(len)
+    const p = 0x00001000 | 0x00000200  // FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
+    const langid = 0x0409              // 0x0409: US, 0x0000: Neutral locale language
+    const msglen = knl32.FormatMessageW(p, null, errcode, langid, buf, len, null)
 
     if (msglen) {
-      console.log(ref.reinterpretUntilZeros(buf, 2).toString('ucs2'));
+      console.log(ref.reinterpretUntilZeros(buf, 2).toString('ucs2'))
     }
   }
   else {
-    console.log('window title changed');
+    console.log('window title changed')
   }
 }
 
@@ -70,50 +70,62 @@ if (hWnd && ! hWnd.isNull()) {
 
 ```ts
 // use the types exposed by the module for TypeScript dev
-import { U } from 'win32-api';
-import * as ref from 'ref';
+import { U } from 'win32-api'
+import * as ref from 'ref-napi'
 
 // so we can all agree that a buffer with the int value written
 // to it could be represented as an "int *"
-const buf  = Buffer.alloc(4);
-buf.writeInt32LE(12345, 0);
+const buf  = Buffer.alloc(4)
+buf.writeInt32LE(12345, 0)
 
-const hex = ref.hexAddress(buf);
-console.log(typeof hex);
-console.log(hex);  // ← '7FA89D006FD8'
+const hex = ref.hexAddress(buf)
+console.log(typeof hex)
+console.log(hex)  // ← '7FA89D006FD8'
 
-buf.type = ref.types.int;  // @ts-ignore
+buf.type = ref.types.int  // @ts-ignore
 
 // now we can dereference to get the "meaningful" value
-console.log(ref.deref(buf));  // ← 12345
+console.log(ref.deref(buf))  // ← 12345
 ```
 
 ```ts
 // struct usage by ref-struct
-import * as Struct from 'ref-struct';
-import { DStruct as DS } from 'win32-api';
+import * as Struct from 'ref-struct'
+import { DStruct as DS } from 'win32-api'
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx
-const point = new Struct(DS.POINT)();
-point.x = 100;
-point.y = 200;
-console.log(point);
+const point = new Struct(DS.POINT)()
+point.x = 100
+point.y = 200
+console.log(point)
+
+// OR 
+import * as ref from 'ref-napi'
+import * as StructDi from 'ref-struct-di'
+import { DStruct as DS } from 'win32-api'
+
+const Struct = StructDi(ref)
+const point = new Struct(DS.POINT)()
+point.x = 100
+point.y = 200
+console.log(point)
 ```
 
 ```ts
 // usage of types and windef:
-import { K, FModel as FM, DTypes as W } from 'win32-api';
-import * as ref from 'ref';
+import { K, FModel as FM, DTypes as W } from 'win32-api'
+import * as ref from 'ref-napi'
 
-const knl32 = K.load();
+const knl32 = K.load()
 
-const buf  = <FM.FFIBuffer> Buffer.alloc(4);   // ← here the types
-buf.writeInt32LE(12345, 0);
+const buf  = <FM.FFIBuffer> Buffer.alloc(4)   // ← here the types
+buf.writeInt32LE(12345, 0)
 
-// const hInstance =<FM.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4);
-const hInstance = <FM.FFIBuffer> ref.alloc(W.HINSTANCE);    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
-knl32.GetModuleHandleExW(0, null, hInstance);
+// const hInstance =<FM.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4)
+const hInstance = <FM.FFIBuffer> ref.alloc(W.HINSTANCE)    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
+knl32.GetModuleHandleExW(0, null, hInstance)
 ```
+
 
 ## Demo
 - [create_window](https://github.com/waitingsong/node-win32-api/blob/master/demo/create_window.ts)
