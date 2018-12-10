@@ -11,7 +11,6 @@ import { macroMap } from '../src/lib/marcomap'
 import * as WD from '../src/lib/windef'
 import {
   basename,
-  logger,
 } from '../src/shared/index'
 
 
@@ -42,7 +41,7 @@ describe(filename + ' :parse_windef()', () => {
         }
       }
 
-      logger(onlyInData, onlyInIndex)
+      console.info(onlyInData, onlyInIndex)
       assert(false, `lenData:${lenData}, lenDef:${lenRet} not equal `)
     }
 

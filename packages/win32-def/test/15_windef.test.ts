@@ -13,7 +13,7 @@ import * as H from '../src/lib/helper'
 import { macroMap } from '../src/lib/marcomap'
 import * as WD from '../src/lib/windef'
 import {
-  basename, logger,
+  basename,
 } from '../src/shared/index'
 
 const filename = basename(__filename)
@@ -78,7 +78,7 @@ function _test_arch(types64_32: Set<string>, settings: LoadSettings) {
       }
       else {
         if (!(param.indexOf('32') > 2 && param.indexOf('64') === -1)) {
-          logger('er:::', W)
+          console.info('error:::', W)
         }
         assert(param.indexOf('32') > 2 && param.indexOf('64') === -1, `"${vv}: ${param}" invalid during ia32`)
       }
