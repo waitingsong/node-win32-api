@@ -1,11 +1,5 @@
 import { throwError, Observable } from 'rxjs'
 
-/* istanbul ignore next */
-export function log(...args: any[]) {
-  // tslint:disable-next-line
-  console.log(args)
-}
-
 
 /* istanbul ignore next */
 export function assertNever(x: never): never {

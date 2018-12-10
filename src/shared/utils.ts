@@ -1,3 +1,4 @@
+import * as assert_ from 'assert'
 import {
   access,
   chmod,
@@ -24,6 +25,7 @@ import {
 import { promisify } from 'util'
 
 
+export const assert = assert_
 export const closeAsync = promisify(close)
 export const chmodAsync = promisify(chmod)
 export const copyFileAsync = promisify(copyFile)
@@ -96,6 +98,11 @@ export async function createDir(path: string): Promise<void> {
 }
 
 
+/**
+ * Create file
+ * Buffer will be written as binary
+ * Object will be written as JSON string
+ */
 export async function createFile(file: string, data: any, options?: WriteFileOptions): Promise<void> {
   const path = dirname(file)
 
@@ -112,7 +119,10 @@ export async function createFile(file: string, data: any, options?: WriteFileOpt
   if (!await isFileExists(file)) {
     const opts: WriteFileOptions = options ? options : { mode: 0o640 }
 
-    if (typeof data === 'object') {
+    if (Buffer.isBuffer(data)) {
+      await writeFileAsync(file, data, opts)
+    }
+    else if (typeof data === 'object') {
       await writeFileAsync(file, JSON.stringify(data))
     }
     else {
@@ -121,11 +131,6 @@ export async function createFile(file: string, data: any, options?: WriteFileOpt
   }
 }
 
-/* istanbul ignore next */
-export function logger(...args: any[]) {
-  // tslint:disable-next-line
-  console.log(args)
-}
 
 export interface ExecFileOptions {
   cwd?: string
