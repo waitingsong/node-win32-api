@@ -4,7 +4,7 @@
 import { spawn } from 'child_process'
 import { basename } from 'path'
 import * as assert from 'power-assert'
-import * as ref from 'ref'
+import * as ref from 'ref-napi'
 
 import { K, U } from '../src/index'
 
