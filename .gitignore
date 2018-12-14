@@ -39,6 +39,13 @@ src/config.properties
 .tern-project
 
 
+# for gradle
+.gradle
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+
 # for oracle
 *.~pck
 
