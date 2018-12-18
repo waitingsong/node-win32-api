@@ -19,6 +19,7 @@ diff-dump/
 .mvn
 .factorypath
 nbproject/
+/www
 
 dbconfig.json
 
@@ -62,6 +63,7 @@ nbdist/
 
 *~
 *.sw[mnpcod]
+*.log
 *.tmp
 *.tmp.*
 log.txt
