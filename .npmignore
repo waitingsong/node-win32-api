@@ -21,3 +21,5 @@ coverage/
 .vscode
 .config
 /test_browser*
+
+!/asset/.config
