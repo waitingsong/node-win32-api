@@ -12,6 +12,7 @@ import {
   isFileExists,
   isPathAcessible,
   join,
+  normalize,
   readFileAsync,
   tmpdir,
 } from '../src/shared/index'
@@ -119,7 +120,8 @@ describe(filename, () => {
     const file = `${randomPath}/test`
 
     try {
-      await createFile(file, random)
+      const path = await createFile(file, random)
+      assert(path === normalize(file), `Should ${file} but result ${path}`)
     }
     catch (ex) {
       return assert(false, ex)
@@ -149,7 +151,8 @@ describe(filename, () => {
     const opts = { mode: 0o640 }
 
     try {
-      await createFile(file, json, opts)
+      const path = await createFile(file, json, opts)
+      assert(path === normalize(file), `Should ${file} but result ${path}`)
     }
     catch (ex) {
       return assert(false, ex)
@@ -179,7 +182,8 @@ describe(filename, () => {
     const str = JSON.stringify(json)
 
     try {
-      await createFile(file, json)
+      const path = await createFile(file, json)
+      assert(path === normalize(file), `Should ${file} but result ${path}`)
     }
     catch (ex) {
       return assert(false, ex)

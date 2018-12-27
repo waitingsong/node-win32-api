@@ -102,33 +102,37 @@ export async function createDir(path: string): Promise<void> {
  * Create file
  * Buffer will be written as binary
  * Object will be written as JSON string
+ *
+ * @requires string - created file path
  */
-export async function createFile(file: string, data: any, options?: WriteFileOptions): Promise<void> {
-  const path = dirname(file)
+export async function createFile(file: string, data: any, options?: WriteFileOptions): Promise<string> {
+  const dir = dirname(file)
 
   /* istanbul ignore next */
-  if (! path) {
-    throw new Error('path empty')
+  if (! dir) {
+    throw new Error('folder empty')
   }
-  if (! await isDirExists(path)) {
-    await createDir(path)
+  if (! await isDirExists(dir)) {
+    await createDir(dir)
   }
-  file = normalize(file)
+  const path = normalize(file)
 
   /* istanbul ignore else */
-  if (!await isFileExists(file)) {
+  if (!await isFileExists(path)) {
     const opts: WriteFileOptions = options ? options : { mode: 0o640 }
 
     if (Buffer.isBuffer(data)) {
-      await writeFileAsync(file, data, opts)
+      await writeFileAsync(path, data, opts)
     }
     else if (typeof data === 'object') {
-      await writeFileAsync(file, JSON.stringify(data))
+      await writeFileAsync(path, JSON.stringify(data))
     }
     else {
-      await writeFileAsync(file, data, opts)
+      await writeFileAsync(path, data, opts)
     }
   }
+
+  return path
 }
 
 
