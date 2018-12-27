@@ -73,7 +73,8 @@ describe(filename, () => {
     const randomPath = `${tmpDir}/${pathPrefix}-${random}`
 
     try {
-      await createDir(randomPath)
+      const path = await createDir(randomPath)
+      assert(path === normalize(randomPath))
     }
     catch (ex) {
       return assert(false, ex)
@@ -91,7 +92,8 @@ describe(filename, () => {
     const randomPath = `${tmpDir}/${pathPrefix}-${random}/.test/0ab`
 
     try {
-      await createDir(randomPath)
+      const path = await createDir(randomPath)
+      assert(path === normalize(randomPath))
     }
     catch (ex) {
       return assert(false, ex)

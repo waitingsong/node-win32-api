@@ -75,16 +75,16 @@ function isDirFileExists(path: string, type: 'DIR' | 'FILE'): Promise<boolean> {
 }
 
 
-// create directories recursively
-export async function createDir(path: string): Promise<void> {
+/** create directories recursively */
+export async function createDir(path: string): Promise<string> {
   if (! path) {
     throw new Error('value of path param invalid')
   }
   else {
-    path = normalize(path)  // ! required for '.../.myca' under win32
+    const target = normalize(path)  // ! required for '.../.myca' under win32
     /* istanbul ignore else */
-    if (!await isDirExists(path)) {
-      await path.split(sep).reduce(
+    if (!await isDirExists(target)) {
+      await target.split(sep).reduce(
         async (parentDir: Promise<string>, childDir: string) => {
           const curDir = pathResolve(await parentDir, childDir)
 
@@ -94,6 +94,8 @@ export async function createDir(path: string): Promise<void> {
         Promise.resolve(sep),
       )
     }
+
+    return target
   }
 }
 
