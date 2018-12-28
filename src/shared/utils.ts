@@ -22,6 +22,10 @@ import {
   resolve as pathResolve,
   sep,
 } from 'path'
+import { defer, from as ofrom, of, Observable } from 'rxjs'
+import {
+  concatMap, last, map, mapTo, mergeMap, scan,
+} from 'rxjs/operators'
 import { promisify } from 'util'
 
 
@@ -47,6 +51,11 @@ export {
 }
 export { tmpdir } from 'os'
 
+export function pathAcessible(path: string): Observable<string> {
+  return defer(() => isPathAcessible(path)).pipe(
+    map(exists => exists ? normalize(path) : ''),
+  )
+}
 // support relative file ('./foo')
 export function isPathAcessible(path: string): Promise<boolean> {
   return path
@@ -54,11 +63,28 @@ export function isPathAcessible(path: string): Promise<boolean> {
     : Promise.resolve(false)
 }
 
+/** Check folder path exists, return path if exists, blank if not exists */
+export function dirExists(path: string): Observable<string> {
+  if (! path) {
+    return of('')
+  }
+  const dir = normalize(path)
+  return defer(() => isDirExists(dir)).pipe(
+    map(exists => exists ? dir : ''),
+  )
+}
 export function isDirExists(path: string): Promise<boolean> {
   return path ? isDirFileExists(path, 'DIR') : Promise.resolve(false)
 }
 
 
+/** Check file exists, return path if exists, blank if not exists */
+export function fileExists(path: string): Observable<string> {
+  const file = normalize(path)
+  return defer(() => isFileExists(file)).pipe(
+    map(exists => exists ? file : ''),
+  )
+}
 export function isFileExists(path: string): Promise<boolean> {
   return path ? isDirFileExists(path, 'FILE') : Promise.resolve(false)
 }
@@ -74,6 +100,38 @@ function isDirFileExists(path: string, type: 'DIR' | 'FILE'): Promise<boolean> {
     : Promise.resolve(false)
 }
 
+export function createDirObb(path: string): Observable<string> {
+  /* istanbul ignore else */
+  if (! path) {
+    throw new Error('value of path param invalid')
+  }
+
+  const target = normalize(path)  // ! required for '.../.myca' under win32
+  const paths$ = ofrom(target.split(sep)).pipe(
+    scan((acc: string, curr: string) => {
+      return acc ? join(acc, curr) : curr
+    }, ''),
+  )
+  const create$ = paths$.pipe(
+    concatMap(_createDirObb),
+    last(),
+  )
+
+  const ret$ = dirExists(path).pipe(
+    concatMap(p => p ? of(p) : create$),
+  )
+
+  return ret$
+}
+function _createDirObb(path: string, index?: number): Observable<string> {
+  return pathAcessible(path).pipe(
+    mergeMap(str => {
+      return str
+        ? of(str)
+        : defer(() => mkdirAsync(path, 0o755)).pipe(mapTo(path))
+    }),
+  )
+}
 
 /** create directories recursively */
 export async function createDir(path: string): Promise<string> {

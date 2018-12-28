@@ -3,16 +3,21 @@
 import * as assert from 'power-assert'
 import rewire = require('rewire')
 import * as rmdir from 'rimraf'
+import { from as ofrom, of } from 'rxjs'
+import { mergeMap, tap } from 'rxjs/operators'
 
 import {
   basename,
   createDir,
+  createDirObb,
   createFile,
+  dirExists,
   isDirExists,
   isFileExists,
   isPathAcessible,
   join,
   normalize,
+  pathAcessible,
   readFileAsync,
   tmpdir,
 } from '../src/shared/index'
@@ -250,7 +255,58 @@ describe(filename, () => {
 })
 
 
+describe(filename + ' :pathAcessible()', () => {
+  after(done => {
+    rmdir(tmpDir, err => {
+      err && console.error(err)
+      done()
+    })
+  })
+
+  const fnName = 'pathAcessible'
+
+  it(`Should ${fnName}() works`, done => {
+    const dir = tmpdir()
+    return of(dir).pipe(
+      mergeMap(pathAcessible),
+    ).subscribe(
+      (path => {
+        assert(path === dir, `sytem temp path should accessible: "${dir}"`)
+        done()
+      }),
+      (err: Error) => {
+        assert(false, err.message)
+        done()
+      },
+    )
+  })
+
+  it(`Should ${fnName}() works with invalid value`, async () => {
+    const dir = join(tmpDir, Math.random().toString())
+
+    const ret = await pathAcessible('').toPromise()
+    assert(ret === '', 'should return false with blank path:' + ret)
+
+    if (await pathAcessible(dir).toPromise()) {
+      return assert(false, `path should not accessible: "${dir}"`)
+    }
+
+    if (await pathAcessible(dir).toPromise()) {
+      return assert(false, `path should not accessible: "${dir}"`)
+    }
+
+    await createDir(dir)
+    if (! await pathAcessible(dir).toPromise()) {
+      return assert(false, `path should accessible: "${dir}"`)
+    }
+  })
+
+})
+
 describe(filename + ' :isPathAcessible()', () => {
+  before(async () => {
+    await createDir(tmpDir)
+  })
   after(done => {
     rmdir(tmpDir, err => {
       err && console.error(err)
@@ -286,4 +342,130 @@ describe(filename + ' :isPathAcessible()', () => {
       return assert(false, `path should accessible: "${dir}"`)
     }
   })
+
+})
+
+
+describe(filename + ' :dirExists()', () => {
+  before(async () => {
+    await createDir(tmpDir)
+  })
+  after(done => {
+    rmdir(tmpDir, err => {
+      err && console.error(err)
+      done()
+    })
+  })
+
+  const fnName = 'dirExists'
+
+  it(`Should ${fnName}() works`, done => {
+    return of(tmpDir).pipe(
+      mergeMap(dirExists),
+    ).subscribe(
+      (path => {
+        assert(path && path === tmpDir, `path should exists: "${tmpDir}"`)
+        done()
+      }),
+      (err: Error) => {
+        assert(false, err.message)
+        done()
+      },
+    )
+  })
+
+  it(`Should ${fnName}() works with invalid path`, done => {
+    const random = Math.random()
+    const randomPath = `${tmpDir}/${pathPrefix}-${random}`
+
+    return of(randomPath).pipe(
+      mergeMap(dirExists),
+    ).subscribe(
+      (path => {
+        assert(path === '', `path should NOT exists: "${randomPath}"`)
+        done()
+      }),
+      (err: Error) => {
+        assert(false, err.message)
+        done()
+      },
+    )
+  })
+
+  it(`Should ${fnName}() works with blank path`, done => {
+    return of('').pipe(
+      mergeMap(dirExists),
+    ).subscribe(
+      (path => {
+        assert(path === '', 'empty path should NOT exists')
+        done()
+      }),
+      (err: Error) => {
+        assert(false, err.message)
+        done()
+      },
+    )
+  })
+
+})
+
+
+describe(filename + ' :createDirObb()', () => {
+  before(async () => {
+    await createDir(tmpDir)
+  })
+  after(done => {
+    rmdir(tmpDir, err => {
+      err && console.error(err)
+      done()
+    })
+  })
+
+  const fnName = 'createDirObb'
+
+  it(`Should ${fnName}() works`, done => {
+    const paths = [
+      `${tmpDir}/${pathPrefix}-${Math.random()}`,
+      `${tmpDir}/${pathPrefix}-${Math.random()}/.test/0ab`,
+    ]
+
+    return ofrom(paths).pipe(
+      mergeMap(path => {
+        return createDirObb(path).pipe(
+          tap(retPath => {
+            assert(retPath === normalize(path))
+          }),
+        )
+      }),
+      mergeMap(dirExists),
+    ).subscribe(
+      (path => {
+        assert(path.length)
+        rmdir(path, err => err && console.error(err))
+      }),
+      (err: Error) => {
+        assert(false, err.message)
+        done()
+      },
+      done,
+    )
+  })
+
+
+  it(`Should ${fnName}() works with blank param`, done => {
+    return of('').pipe(
+      mergeMap(createDirObb),
+      mergeMap(dirExists),
+    ).subscribe(
+      (path => {
+        assert(false, 'should throw error, but NOT with' + path)
+        done()
+      }),
+      (err: Error) => {
+        assert(true, err.message)
+        done()
+      },
+    )
+  })
+
 })
