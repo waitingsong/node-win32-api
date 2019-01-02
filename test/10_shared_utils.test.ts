@@ -14,10 +14,10 @@ import {
   dirExists,
   isDirExists,
   isFileExists,
-  isPathAcessible,
+  isPathAccessible,
   join,
   normalize,
-  pathAcessible,
+  pathAccessible,
   readFileAsync,
   tmpdir,
 } from '../src/shared/index'
@@ -268,7 +268,7 @@ describe(filename + ' :pathAcessible()', () => {
   it(`Should ${fnName}() works`, done => {
     const dir = tmpdir()
     return of(dir).pipe(
-      mergeMap(pathAcessible),
+      mergeMap(pathAccessible),
     ).subscribe(
       (path => {
         assert(path === dir, `sytem temp path should accessible: "${dir}"`)
@@ -284,19 +284,19 @@ describe(filename + ' :pathAcessible()', () => {
   it(`Should ${fnName}() works with invalid value`, async () => {
     const dir = join(tmpDir, Math.random().toString())
 
-    const ret = await pathAcessible('').toPromise()
+    const ret = await pathAccessible('').toPromise()
     assert(ret === '', 'should return false with blank path:' + ret)
 
-    if (await pathAcessible(dir).toPromise()) {
+    if (await pathAccessible(dir).toPromise()) {
       return assert(false, `path should not accessible: "${dir}"`)
     }
 
-    if (await pathAcessible(dir).toPromise()) {
+    if (await pathAccessible(dir).toPromise()) {
       return assert(false, `path should not accessible: "${dir}"`)
     }
 
     await createDir(dir)
-    if (! await pathAcessible(dir).toPromise()) {
+    if (! await pathAccessible(dir).toPromise()) {
       return assert(false, `path should accessible: "${dir}"`)
     }
   })
@@ -319,26 +319,26 @@ describe(filename + ' :isPathAcessible()', () => {
   it(`Should ${fnName}() works`, async () => {
     const dir = tmpdir()
 
-    assert(isPathAcessible(dir), `sytem temp path should accessible: "${dir}"`)
+    assert(isPathAccessible(dir), `sytem temp path should accessible: "${dir}"`)
   })
 
   it(`Should ${fnName}() works with invalid value`, async () => {
     const dir = join(tmpDir, Math.random().toString())
 
-    if (await isPathAcessible('')) {
+    if (await isPathAccessible('')) {
       return assert(false, 'should return false with blank path')
     }
 
-    if (await isPathAcessible(dir)) {
+    if (await isPathAccessible(dir)) {
       return assert(false, `path should not accessible: "${dir}"`)
     }
 
-    if (await isPathAcessible(dir)) {
+    if (await isPathAccessible(dir)) {
       return assert(false, `path should not accessible: "${dir}"`)
     }
 
     await createDir(dir)
-    if (! await isPathAcessible(dir)) {
+    if (! await isPathAccessible(dir)) {
       return assert(false, `path should accessible: "${dir}"`)
     }
   })

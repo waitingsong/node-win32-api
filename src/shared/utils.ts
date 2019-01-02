@@ -51,13 +51,14 @@ export {
 }
 export { tmpdir } from 'os'
 
-export function pathAcessible(path: string): Observable<string> {
-  return defer(() => isPathAcessible(path)).pipe(
+/** Return path if accessible, blank if not accessible */
+export function pathAccessible(path: string): Observable<string> {
+  return defer(() => isPathAccessible(path)).pipe(
     map(exists => exists ? normalize(path) : ''),
   )
 }
 // support relative file ('./foo')
-export function isPathAcessible(path: string): Promise<boolean> {
+export function isPathAccessible(path: string): Promise<boolean> {
   return path
     ? new Promise(resolve => access(path, err => resolve(err ? false : true)))
     : Promise.resolve(false)
@@ -124,7 +125,7 @@ export function createDirObb(path: string): Observable<string> {
   return ret$
 }
 function _createDirObb(path: string, index?: number): Observable<string> {
-  return pathAcessible(path).pipe(
+  return pathAccessible(path).pipe(
     mergeMap(str => {
       return str
         ? of(str)
@@ -146,7 +147,7 @@ export async function createDir(path: string): Promise<string> {
         async (parentDir: Promise<string>, childDir: string) => {
           const curDir = pathResolve(await parentDir, childDir)
 
-          await isPathAcessible(curDir) || await mkdirAsync(curDir, 0o755)
+          await isPathAccessible(curDir) || await mkdirAsync(curDir, 0o755)
           return curDir
         },
         Promise.resolve(sep),
@@ -240,7 +241,7 @@ async function _rimraf(path: string): Promise<void> {
     return
   }
 
-  if (await isPathAcessible(path)) {
+  if (await isPathAccessible(path)) {
     if (await isFileExists(path)) {
       await unlinkAsync(path)
       return
