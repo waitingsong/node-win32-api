@@ -197,6 +197,9 @@ export async function createFile(file: string, data: any, options?: WriteFileOpt
 }
 
 
+/**
+ * @deprecated in favor of using child_process['ExecOptions']
+ */
 export interface ExecFileOptions {
   cwd?: string
   env?: object
