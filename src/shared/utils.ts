@@ -24,7 +24,7 @@ import {
 } from 'path'
 import { defer, from as ofrom, of, Observable } from 'rxjs'
 import {
-  concatMap, last, map, mapTo, mergeMap, scan, tap,
+  concatMap, last, map, mapTo, mergeMap, scan,
 } from 'rxjs/operators'
 import { promisify } from 'util'
 
