@@ -24,7 +24,7 @@ import {
 } from 'path'
 import { defer, from as ofrom, of, Observable } from 'rxjs'
 import {
-  concatMap, last, map, mapTo, mergeMap, scan,
+  concatMap, last, map, mapTo, mergeMap, scan, tap,
 } from 'rxjs/operators'
 import { promisify } from 'util'
 
@@ -106,9 +106,10 @@ export function createDirObb(path: string): Observable<string> {
   if (! path) {
     throw new Error('value of path param invalid')
   }
-
-  const target = normalize(path)  // ! required for '.../.myca' under win32
-  const paths$ = ofrom(target.split(sep)).pipe(
+  // ! normalize required for '.../.myca' under win32
+  const target$ = of(normalize(path))
+  const paths$ = target$.pipe(
+    mergeMap(target => ofrom(target.split(sep))),
     scan((acc: string, curr: string) => {
       return acc ? join(acc, curr) : curr
     }, ''),
@@ -118,8 +119,9 @@ export function createDirObb(path: string): Observable<string> {
     last(),
   )
 
-  const ret$ = dirExists(path).pipe(
-    concatMap(p => p ? of(p) : create$),
+  const ret$ = target$.pipe(
+    mergeMap(dirExists),
+    mergeMap(p => p ? of(p) : create$),
   )
 
   return ret$
