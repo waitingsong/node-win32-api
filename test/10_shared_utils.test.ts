@@ -9,8 +9,8 @@ import { mergeMap, tap } from 'rxjs/operators'
 import {
   basename,
   createDir,
-  createDirObb,
-  createFile,
+  createDirAsync,
+  createFileAsync,
   dirExists,
   isDirExists,
   isFileExists,
@@ -30,7 +30,7 @@ const mods = rewire('../src/shared/utils')
 
 describe(filename, () => {
   before(async () => {
-    await createDir(tmpDir)
+    await createDirAsync(tmpDir)
   })
   after(done => {
     rmdir(tmpDir, err => {
@@ -73,12 +73,12 @@ describe(filename, () => {
   })
 
 
-  it('Should createDir() works', async () => {
+  it('Should createDirAsync() works', async () => {
     const random = Math.random()
     const randomPath = `${tmpDir}/${pathPrefix}-${random}`
 
     try {
-      const path = await createDir(randomPath)
+      const path = await createDirAsync(randomPath)
       assert(path === normalize(randomPath))
     }
     catch (ex) {
@@ -92,12 +92,12 @@ describe(filename, () => {
     rmdir(randomPath, err => err && console.error(err))
   })
 
-  it('Should createDir() works with odd path', async () => {
+  it('Should createDirAsync() works with odd path', async () => {
     const random = Math.random()
     const randomPath = `${tmpDir}/${pathPrefix}-${random}/.test/0ab`
 
     try {
-      const path = await createDir(randomPath)
+      const path = await createDirAsync(randomPath)
       assert(path === normalize(randomPath))
     }
     catch (ex) {
@@ -112,8 +112,8 @@ describe(filename, () => {
   })
 
 
-  it('Should createDir() works with blank param', resolve => {
-    createDir('')
+  it('Should createDirAsync() works with blank param', resolve => {
+    createDirAsync('')
       .then(() => {
         assert(false, 'should throw error, but NOT')
         resolve()
@@ -121,13 +121,13 @@ describe(filename, () => {
       .catch(() => resolve())
   })
 
-  it('Should createFile() works', async () => {
+  it('Should createFileAsyncAsync() works', async () => {
     const random = Math.random()
     const randomPath = `${tmpDir}/${pathPrefix}-${random}`
     const file = `${randomPath}/test`
 
     try {
-      const path = await createFile(file, random)
+      const path = await createFileAsync(file, random)
       assert(path === normalize(file), `Should ${file} but result ${path}`)
     }
     catch (ex) {
@@ -149,7 +149,7 @@ describe(filename, () => {
     rmdir(randomPath, err => err && console.error(err))
   })
 
-  it('Should createFile() works with options', async () => {
+  it('Should createFileAsync() works with options', async () => {
     const random = Math.random()
     const randomPath = `${tmpDir}/${pathPrefix}-${random}`
     const file = `${randomPath}/test`
@@ -158,7 +158,7 @@ describe(filename, () => {
     const opts = { mode: 0o640 }
 
     try {
-      const path = await createFile(file, json, opts)
+      const path = await createFileAsync(file, json, opts)
       assert(path === normalize(file), `Should ${file} but result ${path}`)
     }
     catch (ex) {
@@ -181,7 +181,7 @@ describe(filename, () => {
     rmdir(randomPath, err => err && console.error(err))
   })
 
-  it('Should createFile() works with object data', async () => {
+  it('Should createFileAsync() works with object data', async () => {
     const random = Math.random()
     const randomPath = `${tmpDir}/${pathPrefix}-${random}`
     const file = `${randomPath}/test`
@@ -189,7 +189,7 @@ describe(filename, () => {
     const str = JSON.stringify(json)
 
     try {
-      const path = await createFile(file, json)
+      const path = await createFileAsync(file, json)
       assert(path === normalize(file), `Should ${file} but result ${path}`)
     }
     catch (ex) {
@@ -212,8 +212,8 @@ describe(filename, () => {
     rmdir(randomPath, err => err && console.error(err))
   })
 
-  it('Should createFile() works with blank path', resolve => {
-    createFile('', '')
+  it('Should createFileAsync() works with blank path', resolve => {
+    createFileAsync('', '')
       .then(() => {
         assert(false, 'should throw error, but NOT')
         resolve()
@@ -295,7 +295,7 @@ describe(filename + ' :pathAcessible()', () => {
       return assert(false, `path should not accessible: "${dir}"`)
     }
 
-    await createDir(dir)
+    await createDirAsync(dir)
     if (! await pathAccessible(dir).toPromise()) {
       return assert(false, `path should accessible: "${dir}"`)
     }
@@ -305,7 +305,7 @@ describe(filename + ' :pathAcessible()', () => {
 
 describe(filename + ' :isPathAcessible()', () => {
   before(async () => {
-    await createDir(tmpDir)
+    await createDirAsync(tmpDir)
   })
   after(done => {
     rmdir(tmpDir, err => {
@@ -337,7 +337,7 @@ describe(filename + ' :isPathAcessible()', () => {
       return assert(false, `path should not accessible: "${dir}"`)
     }
 
-    await createDir(dir)
+    await createDirAsync(dir)
     if (! await isPathAccessible(dir)) {
       return assert(false, `path should accessible: "${dir}"`)
     }
@@ -348,7 +348,7 @@ describe(filename + ' :isPathAcessible()', () => {
 
 describe(filename + ' :dirExists()', () => {
   before(async () => {
-    await createDir(tmpDir)
+    await createDirAsync(tmpDir)
   })
   after(done => {
     rmdir(tmpDir, err => {
@@ -410,9 +410,9 @@ describe(filename + ' :dirExists()', () => {
 })
 
 
-describe(filename + ' :createDirObb()', () => {
+describe(filename + ' :createDir()', () => {
   before(async () => {
-    await createDir(tmpDir)
+    await createDirAsync(tmpDir)
   })
   after(done => {
     rmdir(tmpDir, err => {
@@ -421,7 +421,7 @@ describe(filename + ' :createDirObb()', () => {
     })
   })
 
-  const fnName = 'createDirObb'
+  const fnName = 'createDir'
 
   it(`Should ${fnName}() works`, done => {
     const paths = [
@@ -431,7 +431,7 @@ describe(filename + ' :createDirObb()', () => {
 
     return ofrom(paths).pipe(
       mergeMap(path => {
-        return createDirObb(path).pipe(
+        return createDir(path).pipe(
           tap(retPath => {
             assert(retPath === normalize(path))
           }),
@@ -454,7 +454,7 @@ describe(filename + ' :createDirObb()', () => {
 
   it(`Should ${fnName}() works with blank param`, done => {
     return of('').pipe(
-      mergeMap(createDirObb),
+      mergeMap(createDir),
       mergeMap(dirExists),
     ).subscribe(
       (path => {

@@ -2,7 +2,7 @@
  * 搜索指定目录以 file.example 文件为基础生成不带后缀的文件为不带 .example 后缀的文件
  */
 
-import { copyFileAsync, isPathAcessible, join, readDirAsync } from '../src/shared/index'
+import { copyFileAsync, isPathAccessible, join, readDirAsync } from '../src/shared/index'
 
 import folderArr from './init.config'
 
@@ -13,7 +13,7 @@ async function genExampleFiles(list: string[]) {
   for (const dir of list) {
     const path = join(rootDir, dir.replace(/\.{2,}/, '/'))
 
-    if (! await isPathAcessible(path)) {
+    if (! await isPathAccessible(path)) {
       continue
     }
     const files = await readDirAsync(path)
@@ -26,7 +26,7 @@ async function genExampleFiles(list: string[]) {
       const stripped = stripExampleSuffix(file)
       const target = join(path, stripped)
 
-      if (! await isPathAcessible(target)) {
+      if (! await isPathAccessible(target)) {
         await copyFileAsync(source, target)
         copyed.push(`${dir}/${stripped}`)
       }

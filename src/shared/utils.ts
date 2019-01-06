@@ -102,7 +102,7 @@ function isDirFileExists(path: string, type: 'DIR' | 'FILE'): Promise<boolean> {
     : Promise.resolve(false)
 }
 
-export function createDirObb(path: string): Observable<string> {
+export function createDir(path: string): Observable<string> {
   /* istanbul ignore else */
   if (! path) {
     throw new Error('value of path param invalid')
@@ -138,7 +138,7 @@ function _createDirObb(path: string, index?: number): Observable<string> {
 }
 
 /** create directories recursively */
-export async function createDir(path: string): Promise<string> {
+export async function createDirAsync(path: string): Promise<string> {
   if (! path) {
     throw new Error('value of path param invalid')
   }
@@ -169,7 +169,7 @@ export async function createDir(path: string): Promise<string> {
  *
  * @requires string - created file path
  */
-export async function createFile(file: string, data: any, options?: WriteFileOptions): Promise<string> {
+export async function createFileAsync(file: string, data: any, options?: WriteFileOptions): Promise<string> {
   const dir = dirname(file)
 
   /* istanbul ignore next */
@@ -177,7 +177,7 @@ export async function createFile(file: string, data: any, options?: WriteFileOpt
     throw new Error('folder empty')
   }
   if (! await isDirExists(dir)) {
-    await createDir(dir)
+    await createDirAsync(dir)
   }
   const path = normalize(file)
 
