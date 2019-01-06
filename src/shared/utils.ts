@@ -102,25 +102,23 @@ function isDirFileExists(path: string, type: 'DIR' | 'FILE'): Promise<boolean> {
     : Promise.resolve(false)
 }
 
-export function createDir(path: string): Observable<string> {
+export function createDir(absolutePath: string): Observable<string> {
   /* istanbul ignore else */
-  if (! path) {
+  if (! absolutePath) {
     throw new Error('value of path param invalid')
   }
   // ! normalize required for '.../.myca' under win32
-  const target$ = of(normalize(path))
-  const paths$ = target$.pipe(
+  const path$ = of(normalize(absolutePath))
+  const paths$ = path$.pipe(
     mergeMap(target => ofrom(target.split(sep))),
-    scan((acc: string, curr: string) => {
-      return acc ? join(acc, curr) : curr
-    }, ''),
+    scan((acc: string, curr: string) => pathResolve(acc, curr), sep),
   )
   const create$ = paths$.pipe(
     concatMap(_createDirObb),
     last(),
   )
 
-  const ret$ = target$.pipe(
+  const ret$ = path$.pipe(
     mergeMap(dirExists),
     mergeMap(p => p ? of(p) : create$),
   )
