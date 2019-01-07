@@ -22,9 +22,20 @@ import {
   resolve as pathResolve,
   sep,
 } from 'path'
-import { defer, from as ofrom, of, throwError, Observable } from 'rxjs'
 import {
-  concatMap, last, map, mapTo, mergeMap, scan,
+  defer,
+  from as ofrom,
+  of,
+  throwError,
+  Observable,
+} from 'rxjs'
+import {
+  concatMap,
+  last,
+  map,
+  mapTo,
+  mergeMap,
+  scan,
 } from 'rxjs/operators'
 import { promisify } from 'util'
 
