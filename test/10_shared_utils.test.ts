@@ -3,10 +3,12 @@
 import * as assert from 'power-assert'
 import rewire = require('rewire')
 import * as rmdir from 'rimraf'
-import { from as ofrom, of } from 'rxjs'
-import { mergeMap, tap } from 'rxjs/operators'
+import { from as ofrom, of, EMPTY } from 'rxjs'
+import { catchError, defaultIfEmpty, finalize, mergeMap, tap } from 'rxjs/operators'
 
 import {
+  assertNever,
+  assertNeverObb,
   basename,
   createDir,
   createDirAsync,
@@ -468,4 +470,35 @@ describe(filename + ' :createDir()', () => {
     )
   })
 
+})
+
+describe(filename, () => {
+  const fnName = 'assertNever'
+
+  it(`Should ${fnName}() works`, () => {
+    try {
+      assertNever(<never> 'foo')
+      assert(false, 'Should throw error but not')
+    }
+    catch {
+      assert(true)
+    }
+  })
+})
+
+describe(filename, () => {
+  const fnName = 'assertNeverObb'
+
+  it(`Should ${fnName}() works`, done => {
+    const ret$ = assertNeverObb(<never> 'foo')
+
+    ret$.pipe(
+      defaultIfEmpty(''),
+      tap(() => {
+        assert(false, 'Should not emit value')
+      }),
+      catchError(() => EMPTY),
+      finalize(() => done()),
+    ).subscribe()
+  })
 })
