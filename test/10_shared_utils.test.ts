@@ -14,6 +14,7 @@ import {
   createDirAsync,
   createFileAsync,
   dirExists,
+  fileExists,
   isDirExists,
   isFileExists,
   isPathAccessible,
@@ -221,6 +222,36 @@ describe(filename, () => {
         resolve()
       })
       .catch(() => resolve())
+  })
+
+  it('Should createFileAsync() works with buffer data', async () => {
+    const random = Math.random()
+    const randomPath = `${tmpDir}/${pathPrefix}-${random}`
+    const file = `${randomPath}/test`
+    const buf = Buffer.from(random.toString())
+
+    try {
+      const path = await createFileAsync(file, buf)
+      assert(path === normalize(file), `Should ${file} but result ${path}`)
+    }
+    catch (ex) {
+      return assert(false, ex)
+    }
+
+    if (! await isFileExists(file)) {
+      return assert(false, `file not exists, path: "${file}"`)
+    }
+
+    try {
+      const ret = (await readFileAsync(file)).toString('utf8')
+
+      assert(ret === buf.toString(), `content not equal. write:"${buf.toString()}", read: "${ret}"`)
+    }
+    catch (ex) {
+      assert(false, ex)
+    }
+
+    rmdir(randomPath, err => err && console.error(err))
   })
 
 
@@ -502,3 +533,70 @@ describe(filename, () => {
     ).subscribe()
   })
 })
+
+
+describe(filename, () => {
+  const fnName = 'fileExist'
+
+  it(`Should ${fnName}() works`, async () => {
+    const random = Math.random()
+    const randomPath = `${tmpDir}/${pathPrefix}-${random}`
+    const file = `${randomPath}/test`
+
+    assert(await fileExists(file).toPromise() === '', `file should not exists, path: "${file}"`)
+    try {
+      const path = await createFileAsync(file, random)
+      assert(path === normalize(file), `Should ${file} but result ${path}`)
+      assert(await fileExists(file).toPromise() === normalize(file), `file not exists, path: "${file}"`)
+    }
+    catch (ex) {
+      assert(false, ex.message)
+      rmdir(randomPath, () => {})
+    }
+  })
+})
+
+
+describe(filename, () => {
+  const fnName = 'isFileExists'
+
+  it(`Should ${fnName}() works`, async () => {
+    const random = Math.random()
+    const randomPath = `${tmpDir}/${pathPrefix}-${random}`
+    const file = `${randomPath}/test`
+
+    try {
+      assert(await isFileExists(file) === false, `file should not exists, path: "${file}"`)
+      assert(await isFileExists('') === false, `file should not exists, path: "${file}"`)
+      const path = await createFileAsync(file, random)
+      assert(path === normalize(file), `Should ${file} but result ${path}`)
+    }
+    catch (ex) {
+      assert(false, ex.message)
+      rmdir(randomPath, () => {})
+    }
+  })
+})
+
+
+describe(filename, () => {
+  const fnName = 'createDir'
+
+  it(`Should ${fnName}() works`, async () => {
+    const random = Math.random()
+    const randomPath = `${tmpDir}/${pathPrefix}-${random}`
+    const file = `${randomPath}/test`
+
+    try {
+      const path = await createDir(randomPath).toPromise()
+      assert(path === normalize(randomPath))
+      const path2 = await createDir(randomPath).toPromise()
+      assert(path2 === normalize(randomPath))
+    }
+    catch (ex) {
+      assert(false, ex.message)
+      rmdir(randomPath, () => {})
+    }
+  })
+})
+
