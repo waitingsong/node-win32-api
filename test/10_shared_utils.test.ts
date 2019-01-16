@@ -8,7 +8,7 @@ import { catchError, defaultIfEmpty, finalize, mergeMap, tap } from 'rxjs/operat
 
 import {
   assertNever,
-  assertNeverObb,
+  assertNeverRx,
   basename,
   createDir,
   createDirAsync,
@@ -521,7 +521,7 @@ describe(filename, () => {
   const fnName = 'assertNeverObb'
 
   it(`Should ${fnName}() works`, done => {
-    const ret$ = assertNeverObb(<never> 'foo')
+    const ret$ = assertNeverRx(<never> 'foo')
 
     ret$.pipe(
       defaultIfEmpty(''),
