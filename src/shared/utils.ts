@@ -1,4 +1,3 @@
-import * as assert_ from 'assert'
 import {
   access,
   chmod,
@@ -40,7 +39,6 @@ import {
 import { promisify } from 'util'
 
 
-export const assert = assert_
 export const closeAsync = promisify(close)
 export const chmodAsync = promisify(chmod)
 export const copyFileAsync = promisify(copyFile)
