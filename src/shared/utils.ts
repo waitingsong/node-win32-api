@@ -25,7 +25,6 @@ import {
   defer,
   from as ofrom,
   of,
-  throwError,
   Observable,
 } from 'rxjs'
 import {
