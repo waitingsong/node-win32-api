@@ -87,7 +87,7 @@
     "lint": "tslint --fix -p tsconfig.json -t stylish",
     "lint:t": "tslint --fix -p test/tsconfig.json -t stylish",
     "prepublishOnly": "npm run build",
-    "release":"standard-version -r",
+    "release": "standard-version -r",
     "repo:init": "git config --local push.followTags true && git config --local core.hooksPath ./.githooks && git config --local remote.origin.prune true && git config --local remote.origin.tagopt \"--tags\" && git config --local remote.pushdefault origin && echo It may going for a long time. Plese wait... && npm i && ts-node -P .githooks/tsconfig.json .githooks/init.ts",
     "rp": "rollup -c rollup.config.js",
     "rp:w": "npm run tsc:w | rollup -wc rollup.config.js",
