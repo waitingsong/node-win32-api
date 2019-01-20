@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# 根据 commitmsg 以及 branch name 判断是否需要 commitlint
+#
+# Author: waiting
+# Date: 2019.01.20
+#
+
+
+branch=$( git branch | grep \* | cut -d ' ' -f2 )
+ts-node -P ./.githooks/tsconfig.json ./.githooks/commitlint-skip.ts $1 "$branch"
+
+if [[ $? = 0 ]] ; then
+  commitlint -e
+fi
+
