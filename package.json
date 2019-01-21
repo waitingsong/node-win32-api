@@ -53,7 +53,7 @@
     "@types/rewire": "*",
     "@types/rimraf": "*",
     "@types/yargs": "*",
-    "@waiting/shared-core": "^1.1.0",
+    "@waiting/shared-core": "^1.2.0",
     "coveralls": "^3.0.0",
     "eslint": "^5.11.1",
     "intelli-espower-loader": "^1.0.1",
