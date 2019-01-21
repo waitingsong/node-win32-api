@@ -44,6 +44,7 @@
     "all": true
   },
   "dependencies": {
+    "@waiting/shared-core": "^1.2.0",
     "rxjs": "^6.3.2"
   },
   "devDependencies": {
@@ -53,7 +54,6 @@
     "@types/rewire": "*",
     "@types/rimraf": "*",
     "@types/yargs": "*",
-    "@waiting/shared-core": "^1.2.0",
     "coveralls": "^3.0.0",
     "eslint": "^5.11.1",
     "intelli-espower-loader": "^1.0.1",
