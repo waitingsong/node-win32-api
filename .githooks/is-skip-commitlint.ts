@@ -21,4 +21,4 @@ isSkipCommitlint({
   tap(exitCode => {
     process.exit(exitCode)
   }),
-)
+).subscribe()
