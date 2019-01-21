@@ -6,11 +6,14 @@
 # Date: 2019.01.20
 #
 
-
 branch=$( git branch | grep \* | cut -d ' ' -f2 )
-node ./.githooks/is-skip-commitlint.js $1 "$branch"
+#node ./.githooks/is-skip-commitlint.js $1 "$branch"
+ts-node -P tsconfig.cjs.json ./.githooks/is-skip-commitlint.ts $1 "$branch"
 
-if [[ $? = 0 ]] ; then
+code=$?
+#echo -e 'node exitCode:' $code
+
+if [[ $code = 0 ]] ; then
   commitlint -e
 fi
 
