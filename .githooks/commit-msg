@@ -8,7 +8,7 @@
 
 
 branch=$( git branch | grep \* | cut -d ' ' -f2 )
-ts-node -P ./.githooks/tsconfig.json ./.githooks/commitlint-skip.ts $1 "$branch"
+node ./.githooks/is-skip-commitlint.js $1 "$branch"
 
 if [[ $? = 0 ]] ; then
   commitlint -e
