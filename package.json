@@ -44,7 +44,7 @@
     "all": true
   },
   "dependencies": {
-    "@waiting/shared-core": "^1.2.0",
+    "@waiting/shared-core": "^1.2.1",
     "rxjs": "^6.3.2"
   },
   "devDependencies": {
