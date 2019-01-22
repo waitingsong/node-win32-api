@@ -28,6 +28,7 @@ dbconfig.json
 !settings/*.example
 
 
+
 # for java
 bin/
 gen/
