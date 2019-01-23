@@ -11,7 +11,8 @@ cache:
     - node_modules
 
 before_install:
-  #- npm i -g rollup
+  - npm root -g
+  - npm i rollup typescript eslint nyc
   - npm install
 
 

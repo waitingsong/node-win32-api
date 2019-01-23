@@ -21,7 +21,8 @@ platform:
 
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform
-    #- npm i -g rollup
+  - npm root -g
+  - npm i rollup typescript eslint nyc
   - npm install
 
 test_script:
