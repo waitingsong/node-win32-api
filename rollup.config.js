@@ -55,7 +55,7 @@ const globals = {
   'rxjs/operators': 'rxjs.operators',
   'rxjs/websocket': 'rxjs.websocket',
 }
-const external = [
+let external = [
   'rxjs', 'rxjs/operators', 'rxjs/websocket', 'rxjs/ajax',
 ]
 const nodeModule = [
@@ -72,6 +72,7 @@ if (peerDeps && Object.keys(peerDeps).length) {
     external.push(depName)
   }
 }
+external = [...new Set(external)]
 
 
 const config = [
