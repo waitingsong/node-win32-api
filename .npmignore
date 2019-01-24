@@ -21,5 +21,7 @@ coverage/
 .vscode
 .config
 /test_browser*
+commitlint.config.js
+.editorconfig
 
 !/asset/.config
