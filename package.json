@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "description": "npm boilerplate",
   "keywords": [
+    "种子项目",
     "typescript"
   ],
   "engines": {
