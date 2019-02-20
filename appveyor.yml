@@ -26,6 +26,7 @@ install:
   - npm install
 
 test_script:
+  - openssl version
   - node --version
   - npm --version
   - npm run build

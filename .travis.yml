@@ -10,6 +10,7 @@ cache:
     - node_modules
 
 before_install:
+  - openssl version
   - npm root -g
   - npm i rollup typescript eslint nyc
   - npm install
