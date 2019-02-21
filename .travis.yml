@@ -4,14 +4,15 @@ language: node_js
 node_js:
 - '8'
 - '10'
-- '11'
 
 cache:
   directories:
     - node_modules
 
 before_install:
-  - npm i -g rollup
+  - openssl version
+  - npm root -g
+  - npm i rollup typescript eslint nyc
   - npm install
 
 
