@@ -6,6 +6,7 @@ Definitions of Windows Date Types for [node-ffi](https://github.com/node-ffi/nod
 [![Build Status](https://travis-ci.org/waitingsong/node-win32-def.svg?branch=master)](https://travis-ci.org/waitingsong/node-win32-def)
 [![Build status](https://ci.appveyor.com/api/projects/status/8g4ud87q0mnys6tg/branch/master?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-def/branch/master)
 [![Coverage Status](https://coveralls.io/repos/github/waitingsong/node-win32-def/badge.svg)](https://coveralls.io/github/waitingsong/node-win32-def)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 
 
