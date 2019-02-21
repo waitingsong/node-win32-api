@@ -2,7 +2,9 @@
  * Create a window and receive events
  * window closed after 30sec if event triggered
  *
- * @CLI ts-node ./create_window.ts
+ * Run @CLI and then move mouse in the area of the window
+ *
+ * @CLI `ts-node -P tsconfig.cjs.json demo/create_window.ts`
  * @author waiting
  * @link https://github.com/waitingsong/node-win32-api
  */
@@ -10,7 +12,6 @@
 import * as ffi from 'ffi'
 import * as ref from 'ref'
 import * as Struct from 'ref-struct'
-
 
 // import {
 //   C,
@@ -22,7 +23,6 @@ import * as Struct from 'ref-struct'
 //   K,
 //   U,
 // } from 'win32-api' // as module
-
 import {
   C,
   Config,
@@ -91,14 +91,13 @@ wClass.hIconSm = null
 if (!user32.RegisterClassExW(wClass.ref())) {
   throw new Error('Error registering class')
 }
+// tslint:disable: no-bitwise
 const hWnd = user32.CreateWindowExW(
   0,
   className,
   windowName,
   0xcf0000, // overlapped window
-  // tslint:disable-next-line
   1 << 31, // use default
-  // tslint:disable-next-line
   1 << 31,
   320,
   200,
@@ -118,14 +117,15 @@ const point = new Struct(DS.POINT)()
 msg.pt = point.ref()
 
 let count = 0
-const countLimit = 200
+const countLimit = 500
 const start = new Date().getTime()
 const ttl = 30 // sec
 
 while (count < countLimit && user32.GetMessageW(msg.ref(), null, 0, 0)) {
   count++
+  console.info('---------- count: ' + count + ' ------------')
   if (new Date().getTime() - start > ttl * 1000) {
-    console.info('timeout and exit.')
+    console.info('timeout and exit. count:' + count)
     break
   }
   user32.TranslateMessageEx(msg.ref())
