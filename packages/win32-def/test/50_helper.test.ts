@@ -1,5 +1,8 @@
 /// <reference types="mocha" />
 
+import {
+  basename,
+} from '@waiting/shared-core'
 import * as assert from 'power-assert'
 import rewire = require('rewire')
 
@@ -18,9 +21,6 @@ import {
 import * as H from '../src/lib/helper'
 import { macroMap } from '../src/lib/marcomap'
 import * as WD from '../src/lib/windef'
-import {
-  basename,
-} from '../src/shared/index'
 
 
 const filename = basename(__filename)

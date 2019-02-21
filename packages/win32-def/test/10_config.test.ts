@@ -1,5 +1,6 @@
 /// <reference types="mocha" />
 
+import { basename } from '@waiting/shared-core'
 import * as assert from 'power-assert'
 
 import {
@@ -8,7 +9,6 @@ import {
   _UNICODE,
   _WIN64,
 } from '../src/lib/config'
-import { basename } from '../src/shared/index'
 
 const filename = basename(__filename)
 
