@@ -15,7 +15,7 @@ Definitions of Windows Date Types for [node-ffi](https://github.com/node-ffi/nod
 
 ## 安装
 ```powershell
-npm install --save win32-def
+npm install win32-def
 ```
 
 ## 使用

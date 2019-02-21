@@ -15,7 +15,7 @@ Write [node-ffi](https://github.com/node-ffi/node-ffi) or [node-ffi-napi](https:
 
 ## Installing
 ```powershell
-npm install --save win32-def
+npm install win32-def
 ```
 
 ## Usage
