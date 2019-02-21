@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# 根据 commitmsg 以及 branch name 判断是否需要 commitlint
+#
+# Author: waiting
+# Date: 2019.01.20
+#
+
+js=.githooks/is-skip-commitlint.js
+if [ ! -f $js ]; then
+  tsc -p .githooks/tsconfig.json
+
+  if [ ! -f $js ]; then
+    echo -e "File not found! is-skip-commitlint.js"
+    exit 1
+  fi
+fi
+
+
+branch=$( git branch | grep \* | cut -d ' ' -f2 )
+node "$js" $1 "$branch"
+#ts-node -P tsconfig.cjs.json ./.githooks/is-skip-commitlint.ts $1 "$branch"
+
+code=$?
+#echo -e 'node exitCode:' $code
+
+if [[ $code = 0 ]] ; then
+  commitlint -e
+fi
+
