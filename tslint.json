@@ -23,7 +23,7 @@
       true
     ],
     "indent": [true, "spaces", 2],
-    "interface-name": [ true, "never-prefix" ],
+    "interface-name": [ false, "never-prefix" ],
     "linebreak-style": [true , "LF" ],
     "max-classes-per-file": [ true, 10 ],
     "max-line-length": [true, 120],
