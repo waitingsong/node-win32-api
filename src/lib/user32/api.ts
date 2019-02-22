@@ -65,7 +65,7 @@ export interface Win32Fns {
   /**
    * ref: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-sendmessagew
    */
-  SendMessageW(hWnd: M.HWND, msg: M.UINT, WPARAM: M.WPARAM, LPARAM: M.LPARAM): M.LRESULT
+  SendMessageW(hWnd: M.HWND, Msg: M.UINT, wPARAM: M.WPARAM, lPARAM: M.LPARAM): M.LRESULT
 
   SetWindowTextW(hWnd: M.HWND, lpString: M.LPCTSTR | null): M.BOOL
 
