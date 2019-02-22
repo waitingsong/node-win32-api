@@ -15,7 +15,7 @@ Windows win32 api 接口定义
 
 ## 安装
 ```powershell
-npm install --save win32-api
+npm install win32-api@^3.7.0
 ```
 
 ## 使用
@@ -27,94 +27,95 @@ npm install --save win32-api
  * K, Kernel32 for kernel32 from lib/kernel32/api
  * U, User32 for user32 from lib/user32/api
  */
-const {K, U} = require('win32-api');   // or {Kernel32, User32}
-const ref = require('ref');
+const { K, U } = require('win32-api')   // or { Kernel32, User32 }
+const ref = require('ref')
 
-const knl32 = K.load();
-const user32 = U.load();  // 初始化 lib/{dll}/api 文件中定义的所有函数
+const knl32 = K.load()
+const user32 = U.load()  // 初始化 lib/{dll}/api 文件中定义的所有函数
 // const user32 = U.load(['FindWindowExW']);  // 仅加载 user32.dll 的 FindWindowExW 函数
 
-const title = '计算器\0';    // null-terminated string 字符串必须以\0即null结尾!
-// const title = 'Calculator\0';
+const title = '计算器\0'    // null-terminated string 字符串必须以\0即null结尾!
+// const title = 'Calculator\0'
 
-const lpszWindow = Buffer.from(title, 'ucs2');
-const hWnd = user32.FindWindowExW(null, null, null, lpszWindow);
+const lpszWindow = Buffer.from(title, 'ucs2')
+const hWnd = user32.FindWindowExW(null, null, null, lpszWindow)
 
 if (hWnd && ! hWnd.isNull()) {
   // Caution: output hWnd will cuase exception in the following process, even next script!
   // So do NOT do this in the production code!
   // console.log('buf: ', hWnd); // avoid this
-  console.log('buf: ', ref.address(hWnd)); // this is ok
+  console.log('buf: ', ref.address(hWnd)) // this is ok
 
   // Change title of the Calculator
-  const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'));
+  const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'))
 
   if ( ! res) {
     // See: [System Error Codes] below
-    const errcode = knl32.GetLastError();
-    const len = 255;
-    const buf = Buffer.alloc(len);
-    const p = 0x00001000 | 0x00000200;  // FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
-    const langid = 0x0409;              // 0x0409: US, 0x0000: Neutral locale language
-    const msglen = knl32.FormatMessageW(p, null, errcode, langid, buf, len, null);
+    const errcode = knl32.GetLastError()
+    const len = 255
+    const buf = Buffer.alloc(len)
+    const p = 0x00001000 | 0x00000200  // FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
+    const langid = 0x0409              // 0x0409: US, 0x0000: Neutral locale language
+    const msglen = knl32.FormatMessageW(p, null, errcode, langid, buf, len, null)
 
     if (msglen) {
-      console.log(ref.reinterpretUntilZeros(buf, 2).toString('ucs2'));
+      console.log(ref.reinterpretUntilZeros(buf, 2).toString('ucs2'))
     }
   }
   else {
-    console.log('计算器程序窗口标题修改成功');
+    console.log('计算器程序窗口标题修改成功')
   }
 }
 
 ```
 
-```js
+```ts
 // use the types exposed by the module for TypeScript dev
-import {U, types as GT} from 'win32-api';
-import * as ref from 'ref';
+import { U } from 'win32-api'
+import * as ref from 'ref'
 
 // so we can all agree that a buffer with the int value written
 // to it could be represented as an "int *"
-const buf  = Buffer.alloc(4);
-buf.writeInt32LE(12345, 0);
+const buf  = Buffer.alloc(4)
+buf.writeInt32LE(12345, 0)
 
-const hex = ref.hexAddress(buf);
-console.log(typeof hex);
-console.log(hex);  // ← '7FA89D006FD8'
+const hex = ref.hexAddress(buf)
+console.log(typeof hex)
+console.log(hex)  // ← '7FA89D006FD8'
 
-buf.type = ref.types.int;  // @ts-ignore
+buf.type = ref.types.int  // @ts-ignore
 
 // now we can dereference to get the "meaningful" value
-console.log(ref.deref(buf));  // ← 12345
+console.log(ref.deref(buf))  // ← 12345
 ```
 
-```js
+```ts
 // 通过 ref-struct 模块生成 struct 接口数据
-import * as Struct from 'ref-struct';
-import {DS} from 'win32-api';
+import * as Struct from 'ref-struct'
+import { DStruct as DS } from 'win32-api'
 
 // https://msdn.microsoft.com/zh-cn/library/windows/desktop/dd162805(v=vs.85).aspx
-const point = new Struct(DS.POINT)();
-point.x = 100;
-point.y = 200;
-console.log(point);
+const point = new Struct(DS.POINT)()
+point.x = 100
+point.y = 200
+console.log(point)
 ```
 
-```js
+```ts
 // usage of types and windef:
-import {K, types as GT, windef as W} from 'win32-api';
-import * as ref from 'ref';
+import { K, FModel as FM, DTypes as W } from 'win32-api'
+import * as ref from 'ref'
 
-const knl32 = K.load();
+const knl32 = K.load()
 
-const buf  = <GT.FFIBuffer> Buffer.alloc(4);   // ← here the types
-buf.writeInt32LE(12345, 0);
+const buf  = <FM.FFIBuffer> Buffer.alloc(4)   // ← here the types
+buf.writeInt32LE(12345, 0)
 
-// const hInstance =<GT.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4);
-const hInstance = <GT.FFIBuffer> ref.alloc(W.HINSTANCE);    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
-knl32.GetModuleHandleExW(0, null, hInstance);
+// const hInstance =<FM.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4)
+const hInstance = <FM.FFIBuffer> ref.alloc(W.HINSTANCE)    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
+knl32.GetModuleHandleExW(0, null, hInstance)
 ```
+
 
 ## Demo
 - [create_window](https://github.com/waitingsong/node-win32-api/blob/master/demo/create_window.ts)
