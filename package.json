@@ -53,6 +53,7 @@
     "@types/ffi-napi": "*",
     "@types/ref-napi": "*",
     "@types/ref-struct-di": "*",
+    "@waiting/shared-core": "^1.3.0",
     "ffi-napi": "^2.4.4",
     "ref-napi": "^1.4.0",
     "ref-struct-di": "^1.1.0",
