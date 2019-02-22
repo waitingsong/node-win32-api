@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.9.0"></a>
+# [3.9.0](https://github.com/waitingsong/node-win32-api/compare/v3.8.0...v3.9.0) (2019-02-22)
+
+
+### Features
+
+* add user32.PostMessageW() ([7b02830](https://github.com/waitingsong/node-win32-api/commit/7b02830))
+
+
+
 <a name="3.8.0"></a>
 # [3.8.0](https://github.com/waitingsong/node-win32-api/compare/v3.7.1...v3.8.0) (2019-02-22)
 
