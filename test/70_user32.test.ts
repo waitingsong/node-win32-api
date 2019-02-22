@@ -29,7 +29,7 @@ const title = 'new-calc-' + Math.random() + '\0'
 /**
  * Note: bundle test will failed, but passed separately
  */
-describe.skip(filename, () => {
+describe(filename, () => {
 
   it('find app window by user32.EnumWindows()', done => {
     const child = spawn('calc.exe')
