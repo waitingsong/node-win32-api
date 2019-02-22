@@ -60,6 +60,11 @@ export interface Win32Fns {
   // tslint:disable:max-line-length
   PeekMessageW(lpMsg: M.LPMSG, HWND: M.HWND | null, wMsgFilterMin: M.UINT, wMsgFilterMax: M.UINT, wRemoveMsg: M.UINT): M.BOOL
 
+  /**
+   * ref: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-postmessagew
+   */
+  PostMessageW(hWnd: M.HWND, Msg: M.UINT, wPARAM: M.WPARAM, lPARAM: M.LPARAM): M.BOOL
+
   RegisterClassExW(lpwcx: M.WNDCLASSEX): M.ATOM
 
   /**
@@ -132,6 +137,8 @@ export const apiDef: FModel.DllFuncs = {
   IsWindowVisible: [W.BOOL, [W.HWND] ],
 
   PeekMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT, W.UINT] ],
+
+  PostMessageW: [W.BOOL, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
 
   RegisterClassExW: [W.ATOM, [W.WNDCLASSEX] ],
 
