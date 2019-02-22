@@ -78,6 +78,9 @@ export interface FFIBuffer extends Buffer {
   /** add by waiting. below extened via Buffer.prototype by ref.js */
   hexAddress(): string
 }
+export {
+  FFIBuffer as Buffer,
+}
 
 
 // custome
