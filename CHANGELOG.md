@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.0.2"></a>
+## [4.0.2](https://github.com/waitingsong/node-win32-api/compare/v4.0.1...v4.0.2) (2019-02-22)
+
+
+
 <a name="4.0.1"></a>
 ## [4.0.1](https://github.com/waitingsong/node-win32-api/compare/v4.0.0...v4.0.1) (2019-02-22)
 
