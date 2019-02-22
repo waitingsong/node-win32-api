@@ -6,6 +6,7 @@ Windows win32 api 接口定义
 ![Available platform](https://img.shields.io/badge/platform-win32-blue.svg)
 [![Build status](https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/master?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/master)
 [![Coverage Status](https://coveralls.io/repos/github/waitingsong/node-win32-api/badge.svg)](https://coveralls.io/github/waitingsong/node-win32-api)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 
 ## 用途
@@ -74,7 +75,7 @@ if (hWnd && ! hWnd.isNull()) {
 
 ```ts
 // use the types exposed by the module for TypeScript dev
-import {U, types as GT} from 'win32-api'
+import { U } from 'win32-api'
 import * as ref from 'ref-napi'
 
 // so we can all agree that a buffer with the int value written
@@ -95,7 +96,7 @@ console.log(ref.deref(buf))  // ← 12345
 ```ts
 // 通过 ref-struct 模块生成 struct 接口数据
 import * as Struct from 'ref-struct'
-import { DS } from 'win32-api'
+import { DStruct as DS } from 'win32-api'
 
 // https://msdn.microsoft.com/zh-cn/library/windows/desktop/dd162805(v=vs.85).aspx
 const point = new Struct(DS.POINT)()
@@ -117,16 +118,16 @@ console.log(point)
 
 ```ts
 // usage of types and windef:
-import { K, types as GT, windef as W } from 'win32-api'
+import { K, FModel as FM, DTypes as W } from 'win32-api'
 import * as ref from 'ref-napi'
 
 const knl32 = K.load()
 
-const buf  = <GT.FFIBuffer> Buffer.alloc(4)   // ← here the types
+const buf  = <FM.FFIBuffer> Buffer.alloc(4)   // ← here the types
 buf.writeInt32LE(12345, 0)
 
-// const hInstance =<GT.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4)
-const hInstance = <GT.FFIBuffer> ref.alloc(W.HINSTANCE)    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
+// const hInstance =<FM.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4)
+const hInstance = <FM.FFIBuffer> ref.alloc(W.HINSTANCE)    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
 knl32.GetModuleHandleExW(0, null, hInstance)
 ```
 
