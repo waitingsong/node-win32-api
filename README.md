@@ -14,7 +14,12 @@ Calling win32 native functions come from user32.dll, kernel32.dll, comctl32.dll 
 
 ## Installing
 ```powershell
-npm install --save win32-api
+npm install win32-api
+```
+
+**Note: `ffi-api` not stable yet, prefer using `ffi` instead**
+```powershell
+npm install win32-api@^3.7.0
 ```
 
 ## Usage

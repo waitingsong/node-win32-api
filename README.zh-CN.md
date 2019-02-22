@@ -13,7 +13,12 @@ Windows win32 api 接口定义
 
 ## 安装
 ```powershell
-npm install --save win32-api
+npm install win32-api
+```
+
+**注意: `ffi-api` 尚不稳定, 继续使用 `ffi`**
+```powershell
+npm install win32-api@^3.7.0
 ```
 
 ## 使用
