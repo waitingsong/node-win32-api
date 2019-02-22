@@ -1,11 +1,11 @@
 # win32-api
 FFI Definitions of Windows win32 api for [node-ffi](https://github.com/node-ffi/node-ffi)
 
-[![Version](https://img.shields.io/npm/v/win32-api.svg)](https://www.npmjs.com/package/win32-api)
+[![Version](https://img.shields.io/github/package-json/v/waitingsong/node-win32-api/v3.svg)](https://github.com/waitingsong/node-win32-api/tree/v3)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![Available platform](https://img.shields.io/badge/platform-win32-blue.svg)
-[![Build status](https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/master?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/master)
-[![Coverage Status](https://coveralls.io/repos/github/waitingsong/node-win32-api/badge.svg)](https://coveralls.io/github/waitingsong/node-win32-api)
+[![Build status](https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/v3?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/v3)
+[![Coverage Status](https://coveralls.io/repos/github/waitingsong/node-win32-api/badge.svg?branch=v3)](https://coveralls.io/github/waitingsong/node-win32-api?branch=v3)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 
