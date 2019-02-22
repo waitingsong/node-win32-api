@@ -62,6 +62,11 @@ export interface Win32Fns {
 
   RegisterClassExW(lpwcx: M.WNDCLASSEX): M.ATOM
 
+  /**
+   * ref: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-sendmessagew
+   */
+  SendMessageW(hWnd: M.HWND, msg: M.UINT, WPARAM: M.WPARAM, LPARAM: M.LPARAM): M.LRESULT
+
   SetWindowTextW(hWnd: M.HWND, lpString: M.LPCTSTR | null): M.BOOL
 
   SetWinEventHook(
@@ -129,6 +134,8 @@ export const apiDef: FModel.DllFuncs = {
   PeekMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT, W.UINT] ],
 
   RegisterClassExW: [W.ATOM, [W.WNDCLASSEX] ],
+
+  SendMessageW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
 
   SetWindowTextW: [W.BOOL, [W.HWND, W.LPCTSTR] ],
 
