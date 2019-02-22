@@ -55,12 +55,12 @@ import { FModel as FM, DTypes as W } from 'win32-def'
 
 
 const knl32 = K.load()
-const buf  = <FM.FFIBuffer> Buffer.alloc(4)   // ← here the types
+const buf  = <FM.Buffer> Buffer.alloc(4)   // ← here the types
 
 buf.writeInt32LE(12345, 0)
 
-// const hInstance =<W.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4);
-const hInstance = <FM.FFIBuffer> ref.alloc(W.HINSTANCE)    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
+// const hInstance =<FM.Buffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4);
+const hInstance = <FM.Buffer> ref.alloc(W.HINSTANCE)    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
 knl32.GetModuleHandleExW(0, null, hInstance)
 ```
 
