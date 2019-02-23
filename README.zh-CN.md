@@ -92,10 +92,10 @@ console.log(ref.deref(buf))  // ← 12345
 ```ts
 // 通过 ref-struct 模块生成 struct 接口数据
 import * as Struct from 'ref-struct'
-import { DStruct as DS } from 'win32-api'
+import { DModel as M, DStruct as DS } from 'win32-api'
 
 // https://msdn.microsoft.com/zh-cn/library/windows/desktop/dd162805(v=vs.85).aspx
-const point = new Struct(DS.POINT)()
+const point: M.PointStruct = new Struct(DS.POINT)()
 point.x = 100
 point.y = 200
 console.log(point)
@@ -108,11 +108,11 @@ import * as ref from 'ref'
 
 const knl32 = K.load()
 
-const buf  = <FM.FFIBuffer> Buffer.alloc(4)   // ← here the types
+const buf  = <FM.Buffer> Buffer.alloc(4)   // ← here the types
 buf.writeInt32LE(12345, 0)
 
-// const hInstance =<FM.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4)
-const hInstance = <FM.FFIBuffer> ref.alloc(W.HINSTANCE)    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
+// const hInstance =<FM.Buffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4)
+const hInstance = <FM.Buffer> ref.alloc(W.HINSTANCE)    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
 knl32.GetModuleHandleExW(0, null, hInstance)
 ```
 
@@ -136,6 +136,7 @@ Check out [node-gyp](https://github.com/nodejs/node-gyp) and [windows-build-tool
 
 ## 版权
 [MIT](LICENSE)
+
 
 ### Languages
 - [English](README.md)

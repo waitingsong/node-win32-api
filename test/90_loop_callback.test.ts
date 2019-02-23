@@ -103,8 +103,7 @@ function createWindow(title: string): Buffer {
   knl32.GetModuleHandleExW(0, null, hInstance)
 
   // Common Controls
-  const icc = new Struct(DS.INITCOMMONCONTROLSEX)()
-
+  const icc: M.InitCommonControlsEXStruct = new Struct(DS.INITCOMMONCONTROLSEX)()
   icc.dwSize = 8
   icc.dwICC = 0x40ff
   comctl32.InitCommonControlsEx(icc.ref())
