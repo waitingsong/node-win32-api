@@ -120,12 +120,12 @@ function createWindow(title: string): Buffer {
   wClass.cbWndExtra = 0
   // wClass.hInstance = ref.ref(hmodule);
   wClass.hInstance = hInstance
-  wClass.hIcon = null
-  wClass.hCursor = null
-  wClass.hbrBackground = null
-  wClass.lpszMenuName = null
+  wClass.hIcon = ref.NULL
+  wClass.hCursor = ref.NULL
+  wClass.hbrBackground = ref.NULL
+  wClass.lpszMenuName = ref.NULL
   wClass.lpszClassName = className
-  wClass.hIconSm = null
+  wClass.hIconSm = ref.NULL
 
   if (!user32.RegisterClassExW(wClass.ref())) {
     throw new Error('Error registering class')
