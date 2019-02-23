@@ -192,15 +192,31 @@ export type va_list = Buffer
 
 /* ------------------ struct ---------------------- */
 
+/**
+ * Struct usage:
+ *
+ * import * as Struct from 'ref-struct';
+ * import { DStruct as DS, DModel as M } from 'win32-api';
+ *
+ * const point: M.PointStruct = new Struct(DS.POINT)();
+ * point.x = 100;
+ * point.y = 200;
+ * // const buf = point.ref()
+ *
+ */
+
+export interface StructInstanceBase {
+  ref(): Buffer
+}
 
 export type INITCOMMONCONTROLSEX = Buffer
-export interface InitCommonControlsEXStruct {
+export interface InitCommonControlsEXStruct extends StructInstanceBase {
   dwSize: DWORD
   dwICC: DWORD
 }
 
 export type MSG = Buffer
-export interface MsgStruct {
+export interface MsgStruct extends StructInstanceBase {
   hwnd: HWND
   message: UINT
   wParam: WPARAM
@@ -210,13 +226,13 @@ export interface MsgStruct {
 }
 
 export type POINT = Buffer
-export interface PointStruct {
+export interface PointStruct extends StructInstanceBase {
   x: LONG
   y: LONG
 }
 
 export type WNDCLASSEX = Buffer
-export interface WndClassEXStruct {
+export interface WndClassEXStruct extends StructInstanceBase {
   cbSize: UINT
   style: UINT
   lpfnWndProc: WNDPROC
@@ -232,7 +248,7 @@ export interface WndClassEXStruct {
 }
 
 export type WINDOWINFO = Buffer
-export interface WindowInfoStruct {
+export interface WindowInfoStruct extends StructInstanceBase {
   cbSize: DWORD
   rcWindow: VOID
   rcClient: VOID
@@ -246,7 +262,7 @@ export interface WindowInfoStruct {
 }
 
 export type RECT = Buffer
-export interface RectStruct {
+export interface RectStruct extends StructInstanceBase {
   left: LONG
   top: LONG
   right: LONG
