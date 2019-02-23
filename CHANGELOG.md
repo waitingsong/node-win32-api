@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.10.0](https://github.com/waitingsong/node-win32-api/compare/v3.9.0...v3.10.0) (2019-02-23)
+
+
+### Features
+
+* **deps:** structure instance has ref() member for ref-struct ([9593f95](https://github.com/waitingsong/node-win32-api/commit/9593f95))
+
+
+
 <a name="3.9.0"></a>
 # [3.9.0](https://github.com/waitingsong/node-win32-api/compare/v3.8.0...v3.9.0) (2019-02-22)
 
