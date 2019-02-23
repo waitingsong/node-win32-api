@@ -2,12 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [2.4.4](https://github.com/waitingsong/node-win32-def/compare/v2.4.3...v2.4.4) (2019-02-22)
+# [2.5.0](https://github.com/waitingsong/node-win32-def/compare/v2.4.4...v2.5.0) (2019-02-23)
 
 
 ### Features
 
-* export FModel.Buffer as alias of FModel.FFIBuffer ([0285dcc](https://github.com/waitingsong/node-win32-def/commit/0285dcc))
+* structure instance has ref() member for ref-struct ([4ab0e60](https://github.com/waitingsong/node-win32-def/commit/4ab0e60))
 
 
 
