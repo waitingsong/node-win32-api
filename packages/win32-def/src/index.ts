@@ -19,5 +19,5 @@ const DTypes = <typeof windef> parse_windef(windef, macroMap)
 export { Config }
 export { FModel } // ffi model
 export { DModel } // model of window data types
-export { DStruct }  // window data types of structure
+export { DStruct }  // window constans data types of structure for ref-struct
 export { DTypes } // window data types
