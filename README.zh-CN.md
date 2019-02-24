@@ -1,11 +1,11 @@
 # win32-api
 Windows win32 api 接口定义
 
-[![Version](https://img.shields.io/github/package-json/v/waitingsong/node-win32-api/v3.svg)](https://github.com/waitingsong/node-win32-api/tree/v3)
+[![Version](https://img.shields.io/npm/v/win32-api.svg)](https://www.npmjs.com/package/win32-api)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![Available platform](https://img.shields.io/badge/platform-win32-blue.svg)
-[![Build status](https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/v3?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/v3)
-[![Coverage Status](https://coveralls.io/repos/github/waitingsong/node-win32-api/badge.svg?branch=v3)](https://coveralls.io/github/waitingsong/node-win32-api?branch=v3)
+[![Build status](https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/master?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/master)
+[![Coverage Status](https://coveralls.io/repos/github/waitingsong/node-win32-api/badge.svg)](https://coveralls.io/github/waitingsong/node-win32-api)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 
@@ -15,7 +15,7 @@ Windows win32 api 接口定义
 
 ## 安装
 ```powershell
-npm install win32-api@^3.7.0
+npm install win32-api
 ```
 
 ## 使用
@@ -72,7 +72,7 @@ if (hWnd && ! hWnd.isNull()) {
 ```ts
 // use the types exposed by the module for TypeScript dev
 import { U } from 'win32-api'
-import * as ref from 'ref'
+import * as ref from 'ref-napi'
 
 // so we can all agree that a buffer with the int value written
 // to it could be represented as an "int *"
@@ -99,12 +99,23 @@ const point: M.PointStruct = new Struct(DS.POINT)()
 point.x = 100
 point.y = 200
 console.log(point)
+
+// 通过 ref-struct-di 模块生成 struct 接口数据
+import * as ref from 'ref-napi'
+import * as StructDi from 'ref-struct-di'
+import { DModel as M, DStruct as DS } from 'win32-api'
+
+const Struct = StructDi(ref)
+const point: M.PointStruct = new Struct(DS.POINT)()
+point.x = 100
+point.y = 200
+console.log(point)
 ```
 
 ```ts
 // usage of types and windef:
 import { K, FModel as FM, DTypes as W } from 'win32-api'
-import * as ref from 'ref'
+import * as ref from 'ref-napi'
 
 const knl32 = K.load()
 

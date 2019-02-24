@@ -7,8 +7,8 @@ import {
 } from '@waiting/shared-core'
 import * as ffi from 'ffi'
 import * as assert from 'power-assert'
-import * as ref from 'ref'
-import * as Struct from 'ref-struct'
+import * as ref from 'ref-napi'
+import * as StructDi from 'ref-struct-di'
 import { interval, of, range } from 'rxjs'
 import {
   concatMap,
@@ -29,7 +29,7 @@ import {
   U,
 } from '../src/index'
 
-
+const Struct = StructDi(ref)
 const knl32 = K.load()
 const user32 = U.load()  // load all apis defined in lib/{dll}/api from user32.dll
 const comctl32 = C.load()  // load all apis defined in lib/{dll}/api from user32.dll

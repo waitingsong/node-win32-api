@@ -5,7 +5,7 @@ import { spawn, ChildProcess } from 'child_process'
 import * as ffi from 'ffi'
 import { basename } from 'path'
 import * as assert from 'power-assert'
-import * as ref from 'ref'
+import * as ref from 'ref-napi'
 import { of } from 'rxjs'
 import { delay, tap } from 'rxjs/operators'
 
