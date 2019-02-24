@@ -1,23 +1,19 @@
 # win32-api
 Windows win32 api 接口定义
 
-[![Version](https://img.shields.io/npm/v/win32-api.svg)](https://www.npmjs.com/package/win32-api)
+[![Version](https://img.shields.io/github/package-json/v/waitingsong/node-win32-api/v3.svg)](https://github.com/waitingsong/node-win32-api/tree/v3)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![Available platform](https://img.shields.io/badge/platform-win32-blue.svg)
-[![Build status](https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/master?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/master)
-[![Coverage Status](https://coveralls.io/repos/github/waitingsong/node-win32-api/badge.svg)](https://coveralls.io/github/waitingsong/node-win32-api)
+[![Build status](https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/v3?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/v3)
+[![Coverage Status](https://coveralls.io/repos/github/waitingsong/node-win32-api/badge.svg?branch=v3)](https://coveralls.io/github/waitingsong/node-win32-api?branch=v3)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 
+
 ## 用途
-用于 Node.js 通过 [node-ffi](https://github.com/node-ffi/node-ffi) 或者 [node-ffi-napi](https://github.com/node-ffi-napi/node-ffi-napi) 调用系统user32.dll, kerner32.dll, comctl32.dll 等动态链接库提供的函数
+用于 Node.js 通过 [node-ffi](https://github.com/node-ffi/node-ffi) 调用系统user32.dll, kerner32.dll, comctl32.dll 等动态链接库提供的函数
 
 ## 安装
-```powershell
-npm install win32-api
-```
-
-**注意: `ffi-api` 尚不稳定, 继续使用 `ffi`**
 ```powershell
 npm install win32-api@^3.7.0
 ```
@@ -31,8 +27,8 @@ npm install win32-api@^3.7.0
  * K, Kernel32 for kernel32 from lib/kernel32/api
  * U, User32 for user32 from lib/user32/api
  */
-const { K, U } = require('win32-api')   // or {Kernel32, User32}
-const ref = require('ref-napi')
+const { K, U } = require('win32-api')   // or { Kernel32, User32 }
+const ref = require('ref')
 
 const knl32 = K.load()
 const user32 = U.load()  // 初始化 lib/{dll}/api 文件中定义的所有函数
@@ -76,7 +72,7 @@ if (hWnd && ! hWnd.isNull()) {
 ```ts
 // use the types exposed by the module for TypeScript dev
 import { U } from 'win32-api'
-import * as ref from 'ref-napi'
+import * as ref from 'ref'
 
 // so we can all agree that a buffer with the int value written
 // to it could be represented as an "int *"
@@ -96,21 +92,10 @@ console.log(ref.deref(buf))  // ← 12345
 ```ts
 // 通过 ref-struct 模块生成 struct 接口数据
 import * as Struct from 'ref-struct'
-import { DStruct as DS } from 'win32-api'
+import { DModel as M, DStruct as DS } from 'win32-api'
 
 // https://msdn.microsoft.com/zh-cn/library/windows/desktop/dd162805(v=vs.85).aspx
-const point = new Struct(DS.POINT)()
-point.x = 100
-point.y = 200
-console.log(point)
-
-// OR 
-import * as ref from 'ref-napi'
-import * as StructDi from 'ref-struct-di'
-import { DStruct as DS } from 'win32-api'
-
-const Struct = StructDi(ref)
-const point = new Struct(DS.POINT)()
+const point: M.PointStruct = new Struct(DS.POINT)()
 point.x = 100
 point.y = 200
 console.log(point)
@@ -119,15 +104,15 @@ console.log(point)
 ```ts
 // usage of types and windef:
 import { K, FModel as FM, DTypes as W } from 'win32-api'
-import * as ref from 'ref-napi'
+import * as ref from 'ref'
 
 const knl32 = K.load()
 
-const buf  = <FM.FFIBuffer> Buffer.alloc(4)   // ← here the types
+const buf  = <FM.Buffer> Buffer.alloc(4)   // ← here the types
 buf.writeInt32LE(12345, 0)
 
-// const hInstance =<FM.FFIBuffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4)
-const hInstance = <FM.FFIBuffer> ref.alloc(W.HINSTANCE)    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
+// const hInstance =<FM.Buffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4)
+const hInstance = <FM.Buffer> ref.alloc(W.HINSTANCE)    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
 knl32.GetModuleHandleExW(0, null, hInstance)
 ```
 
@@ -151,6 +136,7 @@ Check out [node-gyp](https://github.com/nodejs/node-gyp) and [windows-build-tool
 
 ## 版权
 [MIT](LICENSE)
+
 
 ### Languages
 - [English](README.md)

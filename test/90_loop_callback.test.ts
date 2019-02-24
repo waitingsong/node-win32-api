@@ -1,13 +1,14 @@
+
 /// <reference types="node" />
 /// <reference types="mocha" />
 
 import {
   basename,
 } from '@waiting/shared-core'
-import * as ffi from 'ffi-napi'
+import * as ffi from 'ffi'
 import * as assert from 'power-assert'
-import * as ref from 'ref-napi'
-import * as StructDi from 'ref-struct-di'
+import * as ref from 'ref'
+import * as Struct from 'ref-struct'
 import { interval, of, range } from 'rxjs'
 import {
   concatMap,
@@ -28,7 +29,7 @@ import {
   U,
 } from '../src/index'
 
-const Struct = StructDi(ref)
+
 const knl32 = K.load()
 const user32 = U.load()  // load all apis defined in lib/{dll}/api from user32.dll
 const comctl32 = C.load()  // load all apis defined in lib/{dll}/api from user32.dll
@@ -102,15 +103,14 @@ function createWindow(title: string): Buffer {
   knl32.GetModuleHandleExW(0, null, hInstance)
 
   // Common Controls
-  const icc = new Struct(DS.INITCOMMONCONTROLSEX)()
-
+  const icc: M.InitCommonControlsEXStruct = new Struct(DS.INITCOMMONCONTROLSEX)()
   icc.dwSize = 8
   icc.dwICC = 0x40ff
   comctl32.InitCommonControlsEx(icc.ref())
 
 
   // Window Class
-  const wClass = new Struct(DS.WNDCLASSEX)()
+  const wClass: M.WndClassEXStruct = new Struct(DS.WNDCLASSEX)()
 
   wClass.cbSize = Config._WIN64 ? 80 : 48 // x86 = 48, x64=80
   wClass.style = 0
@@ -118,12 +118,12 @@ function createWindow(title: string): Buffer {
   wClass.cbClsExtra = 0
   wClass.cbWndExtra = 0
   wClass.hInstance = hInstance
-  wClass.hIcon = null
-  wClass.hCursor = null
-  wClass.hbrBackground = null
-  wClass.lpszMenuName = null
+  wClass.hIcon = ref.NULL
+  wClass.hCursor = ref.NULL
+  wClass.hbrBackground = ref.NULL
+  wClass.lpszMenuName = ref.NULL
   wClass.lpszClassName = className
-  wClass.hIconSm = null
+  wClass.hIconSm = ref.NULL
 
   if (!user32.RegisterClassExW(wClass.ref())) {
     throw new Error('Error registering class')

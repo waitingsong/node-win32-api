@@ -2,10 +2,10 @@
 /// <reference types="mocha" />
 
 import { spawn, ChildProcess } from 'child_process'
-import * as ffi from 'ffi-napi'
+import * as ffi from 'ffi'
 import { basename } from 'path'
 import * as assert from 'power-assert'
-import * as ref from 'ref-napi'
+import * as ref from 'ref'
 import { of } from 'rxjs'
 import { delay, tap } from 'rxjs/operators'
 
@@ -25,10 +25,6 @@ const filename = basename(__filename)
 const tmpMap: Map<number, boolean> = new Map()
 const title = 'new-calc-' + Math.random() + '\0'
 
-
-/**
- * Note: bundle test will failed, but passed separately
- */
 describe(filename, () => {
 
   it('find app window by user32.EnumWindows()', done => {

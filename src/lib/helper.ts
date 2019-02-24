@@ -1,4 +1,4 @@
-import * as ffi from 'ffi-napi'
+import * as ffi from 'ffi'
 import { Config, FModel } from 'win32-def'
 
 
