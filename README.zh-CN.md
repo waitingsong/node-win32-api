@@ -95,7 +95,7 @@ import * as Struct from 'ref-struct'
 import { DModel as M, DStruct as DS } from 'win32-api'
 
 // https://msdn.microsoft.com/zh-cn/library/windows/desktop/dd162805(v=vs.85).aspx
-const point: M.PointStruct = new Struct(DS.POINT)()
+const point: M.POINT_Struct = new Struct(DS.POINT)()
 point.x = 100
 point.y = 200
 console.log(point)
@@ -106,7 +106,7 @@ import * as StructDi from 'ref-struct-di'
 import { DModel as M, DStruct as DS } from 'win32-api'
 
 const Struct = StructDi(ref)
-const point: M.PointStruct = new Struct(DS.POINT)()
+const point: M.POINT_Struct = new Struct(DS.POINT)()
 point.x = 100
 point.y = 200
 console.log(point)

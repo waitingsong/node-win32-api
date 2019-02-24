@@ -60,7 +60,7 @@ createWindow('Node.js new window')
 
 // message loop
 const msg = new Struct(DS.MSG)()
-const point = new Struct(DS.POINT)()
+const point: M.POINT_Struct = new Struct(DS.POINT)()
 
 msg.pt = point.ref()
 
@@ -107,13 +107,14 @@ function createWindow(title: string): Buffer {
   knl32.GetModuleHandleExW(0, null, hInstance)
 
   // Common Controls
-  const icc: M.InitCommonControlsEXStruct = new Struct(DS.INITCOMMONCONTROLSEX)()
+  const icc: M.INITCOMMONCONTROLSEX_Struct = new Struct(DS.INITCOMMONCONTROLSEX)()
   icc.dwSize = 8
   icc.dwICC = 0x40ff
   comctl32.InitCommonControlsEx(icc.ref())
 
   // Window Class
-  const wClass: M.WndClassEXStruct = new Struct(DS.WNDCLASSEX)()
+  const wClass: M.WNDClASSEX_Struct = new Struct(DS.WNDCLASSEX)()
+
   wClass.cbSize = Config._WIN64 ? 80 : 48 // x86 = 48, x64=80
   wClass.style = 0
   wClass.lpfnWndProc = WndProc
