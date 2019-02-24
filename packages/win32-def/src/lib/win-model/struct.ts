@@ -44,6 +44,16 @@ export interface INITCOMMONCONTROLSEX_Struct extends StructInstanceBase {
 }
 export { INITCOMMONCONTROLSEX_Struct as InitCommonControlsEXStruct }
 
+/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagkeybdinput */
+export type KEYBDINPUT = Buffer
+export interface KEYBDINPUT_Struct extends StructInstanceBase {
+  wVk: WORD
+  wScan: WORD
+  dwFlags: DWORD
+  time: DWORD
+  dwExtraInfo: ULONG_PTR
+}
+
 /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagmouseinput */
 export type MOUSEINPUT = Buffer
 export interface MOUSEINPUT_Struct extends StructInstanceBase {

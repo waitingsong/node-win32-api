@@ -24,6 +24,15 @@ export const INITCOMMONCONTROLSEX = {
   dwICC: W.DWORD,
 }
 
+/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagkeybdinput */
+export const KEYBDINPUT = {
+  wVk: W.WORD,
+  wScan: W.WORD,
+  dwFlags: W.DWORD,
+  time: W.DWORD,
+  dwExtraInfo: W.ULONG_PTR,
+}
+
 /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagmouseinput */
 export const MOUSEINPUT = {
   dx: W.LONG,
