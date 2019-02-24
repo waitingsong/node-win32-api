@@ -19,6 +19,14 @@ const W = <typeof windef> parse_windef(windef, macroMap)
  *
  */
 
+
+/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-taghardwareinput */
+export const HARDWAREINPUT = {
+  uMsg: W.DWORD,
+  wParamL: W.WORD,
+  wParamH: W.WORD,
+}
+
 export const INITCOMMONCONTROLSEX = {
   dwSize: W.DWORD,
   dwICC: W.DWORD,

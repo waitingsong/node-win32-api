@@ -37,6 +37,15 @@ export interface StructInstanceBase {
   ref(): Buffer
 }
 
+
+/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-taghardwareinput */
+export type HARDWAREINPUT = Buffer
+export interface HARDWAREINPUT_Struct extends StructInstanceBase {
+  uMsg: DWORD
+  wParamL: WORD
+  wParamH: WORD
+}
+
 export type INITCOMMONCONTROLSEX = Buffer
 export interface INITCOMMONCONTROLSEX_Struct extends StructInstanceBase {
   dwSize: DWORD
