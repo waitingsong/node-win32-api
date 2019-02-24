@@ -1,6 +1,7 @@
 import {
   ATOM,
   DWORD,
+  HANDLE,
   HBRUSH,
   HCURSOR,
   HICON,
@@ -91,6 +92,15 @@ export interface POINT_Struct extends StructInstanceBase {
   y: LONG
 }
 export { POINT_Struct as PointStruct }
+
+/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagrawinputheader */
+export type RAWINPUTHEADER = Buffer
+export interface RAWINPUTHEADER_Struct extends StructInstanceBase {
+  dwType: DWORD
+  dwSize: DWORD
+  hDevice: HANDLE
+  wParam: WPARAM
+}
 
 export type WNDCLASSEX = Buffer
 export interface WNDClASSEX_Struct extends StructInstanceBase {

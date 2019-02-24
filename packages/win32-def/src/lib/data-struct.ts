@@ -81,6 +81,14 @@ export const UNICODE_STRING = {
   Buffer: W.PWSTR,
 }
 
+/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagrawinputheader */
+export const RAWINPUTHEADER = {
+  dwType: W.DWORD,
+  dwSize: W.DWORD,
+  hDevice: W.HANDLE,
+  wParam: W.WPARAM,
+}
+
 export const WINDOWINFO = {
   cbSize: W.DWORD,
   rcWindow: W.RECT,
