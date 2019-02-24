@@ -24,6 +24,16 @@ export const INITCOMMONCONTROLSEX = {
   dwICC: W.DWORD,
 }
 
+/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagmouseinput */
+export const MOUSEINPUT = {
+  dx: W.LONG,
+  dy: W.LONG,
+  mouseData: W.DWORD,
+  dwFlags: W.DWORD,
+  time: W.DWORD,
+  dwExtraInfo: W.ULONG_PTR,
+}
+
 export const MSG = {
   hwnd: W.HWND,
   message: W.UINT,

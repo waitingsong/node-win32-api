@@ -11,6 +11,7 @@ import {
   LPARAM,
   LPCTSTR,
   UINT,
+  ULONG_PTR,
   VOID,
   WNDPROC,
   WORD,
@@ -42,6 +43,17 @@ export interface INITCOMMONCONTROLSEX_Struct extends StructInstanceBase {
   dwICC: DWORD
 }
 export { INITCOMMONCONTROLSEX_Struct as InitCommonControlsEXStruct }
+
+/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagmouseinput */
+export type MOUSEINPUT = Buffer
+export interface MOUSEINPUT_Struct extends StructInstanceBase {
+  dx: LONG
+  dy: LONG
+  mouseData: DWORD
+  dwFlags: DWORD
+  time: DWORD
+  dwExtraInfo: ULONG_PTR
+}
 
 export type MSG = Buffer
 export interface MSG_Struct extends StructInstanceBase {
