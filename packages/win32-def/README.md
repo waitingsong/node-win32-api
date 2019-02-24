@@ -22,21 +22,24 @@ npm install win32-def
 ```ts
 // struct usage by ref-struct
 import * as Struct from 'ref-struct'
-import { DStruct as DS } from 'win32-def'
+import { DModel as M, DStruct as DS } from 'win32-api'
 
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx
 const point = new Struct(DS.POINT)()
+const point: M.POINT_Struct = new Struct(DS.POINT)()
 point.x = 100
 point.y = 200
 console.log(point)
 
-// OR with N-API
+// struct usage by ref-struct-di
 import * as ref from 'ref-napi'
-import * as Struct from 'ref-struct-di'
+import * as StructDi from 'ref-struct-di'
+import { DModel as M, DStruct as DS } from 'win32-api'
 
-const myStruct = Struct(ref)
-const point = new myStruct(DS.POINT)()
+
+const Struct = StructDi(ref)
+const point: M.POINT_Struct = new Struct(DS.POINT)()
 point.x = 100
 point.y = 200
 console.log(point)

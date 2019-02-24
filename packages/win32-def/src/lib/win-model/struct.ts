@@ -17,6 +17,8 @@ import {
   WPARAM,
 } from './common'
 
+// tslint:disable:class-name
+
 /**
  * Struct usage:
  *
@@ -35,13 +37,14 @@ export interface StructInstanceBase {
 }
 
 export type INITCOMMONCONTROLSEX = Buffer
-export interface InitCommonControlsEXStruct extends StructInstanceBase {
+export interface INITCOMMONCONTROLSEX_Struct extends StructInstanceBase {
   dwSize: DWORD
   dwICC: DWORD
 }
+export { INITCOMMONCONTROLSEX_Struct as InitCommonControlsEXStruct }
 
 export type MSG = Buffer
-export interface MsgStruct extends StructInstanceBase {
+export interface MSG_Struct extends StructInstanceBase {
   hwnd: HWND
   message: UINT
   wParam: WPARAM
@@ -49,15 +52,17 @@ export interface MsgStruct extends StructInstanceBase {
   time: DWORD
   pt: POINT
 }
+export { MSG_Struct as MsgStruct }
 
 export type POINT = Buffer
-export interface PointStruct extends StructInstanceBase {
+export interface POINT_Struct extends StructInstanceBase {
   x: LONG
   y: LONG
 }
+export { POINT_Struct as PointStruct }
 
 export type WNDCLASSEX = Buffer
-export interface WndClassEXStruct extends StructInstanceBase {
+export interface WNDClASSEX_Struct extends StructInstanceBase {
   cbSize: UINT
   style: UINT
   lpfnWndProc: WNDPROC
@@ -72,9 +77,10 @@ export interface WndClassEXStruct extends StructInstanceBase {
   lpszClassName: LPCTSTR
   hIconSm: HICON
 }
+export { WNDClASSEX_Struct as WndClassEXStruct }
 
 export type WINDOWINFO = Buffer
-export interface WindowInfoStruct extends StructInstanceBase {
+export interface WINDOWINFO_Struct extends StructInstanceBase {
   cbSize: DWORD
   rcWindow: VOID
   rcClient: VOID
@@ -86,11 +92,13 @@ export interface WindowInfoStruct extends StructInstanceBase {
   atomWindowType: ATOM
   wCreatorVersion: WORD
 }
+export { WINDOWINFO_Struct as WindowInfoStruct }
 
 export type RECT = Buffer
-export interface RectStruct extends StructInstanceBase {
+export interface RECT_Struct extends StructInstanceBase {
   left: LONG
   top: LONG
   right: LONG
   bottom: LONG
 }
+export { RECT_Struct as RectStruct }
