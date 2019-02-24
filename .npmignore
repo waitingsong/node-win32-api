@@ -20,6 +20,7 @@ test
 test_browser*
 tsconfig.json
 tsconfig.cjs.json
+tsconfig.*.json
 tslint.json
 
 !/asset/.config
