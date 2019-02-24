@@ -2,14 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-# [2.6.0](https://github.com/waitingsong/node-win32-def/compare/v2.5.0...v2.6.0) (2019-02-24)
+# [2.7.0](https://github.com/waitingsong/node-win32-def/compare/v2.6.0...v2.7.0) (2019-02-24)
 
 
 ### Features
 
-* add HARDWAREINPUT, HARDWAREINPUT_Struct ([4c91581](https://github.com/waitingsong/node-win32-def/commit/4c91581))
-* add KEYBDINPUT, KEYBDINPUT_Struct ([d9f6196](https://github.com/waitingsong/node-win32-def/commit/d9f6196))
-* add MOUSEINPUT, MOUSEINPUT_Struct ([74e0372](https://github.com/waitingsong/node-win32-def/commit/74e0372))
+* add RAWHID, RAWHID_Struct ([cb6d538](https://github.com/waitingsong/node-win32-def/commit/cb6d538))
+* add RAWINPUTHEADER, RAWINPUTHEADER_Struct ([50eebc0](https://github.com/waitingsong/node-win32-def/commit/50eebc0))
+* add RAWKEYBOARD, RAWKEYBOARD_Struct ([2a67c29](https://github.com/waitingsong/node-win32-def/commit/2a67c29))
 
 
 
