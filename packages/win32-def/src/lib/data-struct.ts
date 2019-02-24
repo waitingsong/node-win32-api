@@ -89,6 +89,16 @@ export const RAWINPUTHEADER = {
   wParam: W.WPARAM,
 }
 
+/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagrawkeyboard */
+export const RAWKEYBOARD = {
+  MakeCode: W.USHORT,
+  Flags: W.USHORT,
+  Reserved: W.USHORT,
+  VKey: W.USHORT,
+  Message: W.UINT,
+  ExtraInformation: W.ULONG,
+}
+
 export const WINDOWINFO = {
   cbSize: W.DWORD,
   rcWindow: W.RECT,

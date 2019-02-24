@@ -12,7 +12,9 @@ import {
   LPARAM,
   LPCTSTR,
   UINT,
+  ULONG,
   ULONG_PTR,
+  USHORT,
   VOID,
   WNDPROC,
   WORD,
@@ -100,6 +102,17 @@ export interface RAWINPUTHEADER_Struct extends StructInstanceBase {
   dwSize: DWORD
   hDevice: HANDLE
   wParam: WPARAM
+}
+
+/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagrawkeyboard */
+export type RAWKEYBOARD = Buffer
+export interface RAWKEYBOARD_Struct extends StructInstanceBase {
+  MakeCode: USHORT
+  Flags: USHORT
+  Reserved: USHORT
+  VKey: USHORT
+  Message: UINT
+  ExtraInformation: ULONG
 }
 
 export type WNDCLASSEX = Buffer
