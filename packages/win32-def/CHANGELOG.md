@@ -2,12 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-# [2.5.0](https://github.com/waitingsong/node-win32-def/compare/v2.4.4...v2.5.0) (2019-02-23)
+# [2.6.0](https://github.com/waitingsong/node-win32-def/compare/v2.5.0...v2.6.0) (2019-02-24)
 
 
 ### Features
 
-* structure instance has ref() member for ref-struct ([4ab0e60](https://github.com/waitingsong/node-win32-def/commit/4ab0e60))
+* add HARDWAREINPUT, HARDWAREINPUT_Struct ([4c91581](https://github.com/waitingsong/node-win32-def/commit/4c91581))
+* add KEYBDINPUT, KEYBDINPUT_Struct ([d9f6196](https://github.com/waitingsong/node-win32-def/commit/d9f6196))
+* add MOUSEINPUT, MOUSEINPUT_Struct ([74e0372](https://github.com/waitingsong/node-win32-def/commit/74e0372))
 
 
 
