@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@types/ffi": "*",
-    "@waiting/shared-core": "^1.3.0",
+    "@waiting/shared-core": "^1.3.3",
     "ffi": "^2.3.0",
     "rxjs": "^6.4.0",
     "win32-def": "^2.5.0"
