@@ -1,5 +1,6 @@
 import {
   ATOM,
+  BYTE,
   DWORD,
   HANDLE,
   HBRUSH,
@@ -94,6 +95,15 @@ export interface POINT_Struct extends StructInstanceBase {
   y: LONG
 }
 export { POINT_Struct as PointStruct }
+
+/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagrawhid */
+export type RAWHID = Buffer
+export interface RAWHID_Struct extends StructInstanceBase {
+  dwSizeHid: DWORD
+  dwCount: DWORD
+  /** bRawData[1] */
+  bRawData: BYTE
+}
 
 /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagrawinputheader */
 export type RAWINPUTHEADER = Buffer

@@ -81,6 +81,14 @@ export const UNICODE_STRING = {
   Buffer: W.PWSTR,
 }
 
+/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagrawhid */
+export const RAWHID = {
+  dwSizeHid: W.DWORD,
+  dwCount: W.DWORD,
+  /** bRawData[1] */
+  bRawData: W.BYTE,
+}
+
 /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagrawinputheader */
 export const RAWINPUTHEADER = {
   dwType: W.DWORD,
