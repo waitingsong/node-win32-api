@@ -96,3 +96,17 @@ export type FnParams = [FnRetType, FnCallParams] // def for ffi [returnType, [ca
 export interface DllFuncs {
   [fn: string]: FnParams
 }
+
+/**
+ * usage:
+ * ```ts
+ * import { DModel as M, FModel as FM } from 'win32-def'
+ * export interface Foo extends FM.DllFuncsModel {
+ *   SDT_OpenPort(port: M.UINT): M.INT
+ *   SDT_ClosePort(): M.INT
+ * }
+ * ```
+ */
+export interface DllFuncsModel {
+  [funcName: string]: (...args: any[]) => boolean | number | Buffer | void
+}
