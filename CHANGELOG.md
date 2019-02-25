@@ -2,7 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [5.0.1](https://github.com/waitingsong/node-win32-api/compare/v5.0.0...v5.0.1) (2019-02-24)
+# [5.1.0](https://github.com/waitingsong/node-win32-api/compare/v5.0.1...v5.1.0) (2019-02-25)
+
+
+### Features
+
+* **types:** all Win32Fns extends FModel.DllFuncsModel ([2e939e2](https://github.com/waitingsong/node-win32-api/commit/2e939e2))
 
 
 
