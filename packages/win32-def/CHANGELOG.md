@@ -2,14 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-# [2.7.0](https://github.com/waitingsong/node-win32-def/compare/v2.6.0...v2.7.0) (2019-02-24)
+# [2.8.0](https://github.com/waitingsong/node-win32-def/compare/v2.7.0...v2.8.0) (2019-02-25)
 
 
 ### Features
 
-* add RAWHID, RAWHID_Struct ([cb6d538](https://github.com/waitingsong/node-win32-def/commit/cb6d538))
-* add RAWINPUTHEADER, RAWINPUTHEADER_Struct ([50eebc0](https://github.com/waitingsong/node-win32-def/commit/50eebc0))
-* add RAWKEYBOARD, RAWKEYBOARD_Struct ([2a67c29](https://github.com/waitingsong/node-win32-def/commit/2a67c29))
+* **types:** add DllFuncsModel ([1d09ea3](https://github.com/waitingsong/node-win32-def/commit/1d09ea3))
 
 
 
