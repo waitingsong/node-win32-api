@@ -1,7 +1,7 @@
-import { DModel as M, DTypes as W, FModel } from 'win32-def'
+import { DModel as M, DTypes as W, FModel as FM } from 'win32-def'
 
 
-export interface Win32Fns {
+export interface Win32Fns extends FM.DllFuncsModel {
   ClientToScreen(hWnd: M.HWND, lpPoint: M.LPPOINT): M.BOOL
 
   CreateWindowExW(
@@ -96,7 +96,7 @@ export interface Win32Fns {
 }
 
 
-export const apiDef: FModel.DllFuncs = {
+export const apiDef: FM.DllFuncs = {
   /** url: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-clienttoscreen */
   ClientToScreen: [W.BOOL, [W.HWND, W.LPPOINT] ],
 

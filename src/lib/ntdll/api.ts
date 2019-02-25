@@ -1,7 +1,7 @@
-import { DModel as M, DTypes as W, FModel } from 'win32-def'
+import { DModel as M, DTypes as W, FModel as FM } from 'win32-def'
 
 
-export interface Win32Fns {
+export interface Win32Fns extends FM.DllFuncsModel {
   //  may be altered or unavailable in future versions of Windows
   NtQueryInformationProcess(
     ProcessHandle: M.HANDLE,
@@ -13,6 +13,6 @@ export interface Win32Fns {
 
 }
 
-export const apiDef: FModel.DllFuncs = {
+export const apiDef: FM.DllFuncs = {
   NtQueryInformationProcess: [W.NTSTATUS, [W.HANDLE, W.DWORD32, W.PVOID, W.ULONG, W.PULONG] ],
 }

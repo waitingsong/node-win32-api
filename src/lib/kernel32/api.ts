@@ -1,7 +1,7 @@
-import { DModel as M, DTypes as W, FModel } from 'win32-def'
+import { DModel as M, DTypes as W, FModel as FM } from 'win32-def'
 
 
-export interface Win32Fns {
+export interface Win32Fns extends FM.DllFuncsModel {
   /**
    * https://msdn.microsoft.com/en-us/library/windows/desktop/ms679351(v=vs.85).aspx
    * dwLanguageId: https://msdn.microsoft.com/en-us/library/windows/desktop/dd318693(v=vs.85).aspx
@@ -59,7 +59,7 @@ export interface Win32Fns {
   SetThreadExecutionState(esFlags: M.UINT): M.UINT
 }
 
-export const apiDef: FModel.DllFuncs = {
+export const apiDef: FM.DllFuncs = {
   FormatMessageW: [
     W.DWORD,
     [W.DWORD, W.LPCVOID, W.DWORD, W.DWORD, W.LPTSTR, W.DWORD, W.va_list],
