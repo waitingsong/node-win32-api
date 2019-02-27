@@ -2,12 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-# [2.8.0](https://github.com/waitingsong/node-win32-def/compare/v2.7.0...v2.8.0) (2019-02-25)
-
-
-### Features
-
-* **types:** add DllFuncsModel ([1d09ea3](https://github.com/waitingsong/node-win32-def/commit/1d09ea3))
+## [2.8.1](https://github.com/waitingsong/node-win32-def/compare/v2.8.0...v2.8.1) (2019-02-27)
 
 
 
