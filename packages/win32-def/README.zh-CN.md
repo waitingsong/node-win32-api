@@ -19,6 +19,22 @@ npm install win32-def
 ```
 
 ## 使用
+
+```ts
+import * as ffi from 'ffi'
+import { DModel as M, DTypes as W, FModel as FM } from 'win32-def'
+
+export interface Win32Fns extends FM.DllFuncsModel {
+  ClientToScreen(hWnd: M.HWND, lpPoint: M.LPPOINT): M.BOOL
+  GetAncestor(hwnd: M.HWND, gaFlags: M.UINT): M.HWND
+}
+
+export const user32: Win32Fns = ffi.Library('user32.dll', {
+  ClientToScreen: [W.BOOL, [W.HWND, W.LPPOINT] ],
+  GetAncestor: [W.HWND, [W.HWND, W.UINT] ],
+})
+```
+
 ```ts
 // struct usage by ref-struct
 import * as Struct from 'ref-struct'
