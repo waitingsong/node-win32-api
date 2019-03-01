@@ -4,7 +4,7 @@
 import * as fs from 'fs'
 import { basename, normalize } from 'path'
 import * as assert from 'power-assert'
-import { Config, FModel } from 'win32-def'
+import { Config, FModel as FM } from 'win32-def'
 
 import * as Win from '../src/index'
 
@@ -25,7 +25,7 @@ describe(filename, () => {
     const module: any = Win[apiName]
 
     if (module && module.apiDef) {
-      const apiDef = <FModel.DllFuncs> module.apiDef
+      const apiDef = <FM.DllFuncs> module.apiDef
 
       it(`Should ${apiName}: FnName of definition be string`, () => {
         for (let x in apiDef) {    // tslint:disable-line
@@ -122,7 +122,7 @@ describe(filename, () => {
 
     if (module && module.apiDef) {
       try {
-        const api: FModel.DllFuncs = module.load()
+        const api: FM.DllFuncs = module.load()
 
         for (const fn in api) {
           if (!{}.hasOwnProperty.call(api, fn)) {
@@ -146,7 +146,7 @@ describe(filename, () => {
 })
 
 
-function test_param_return_type(param: FModel.FnParam, x: string): void {
+function test_param_return_type(param: FM.FnParam, x: string): void {
   if (typeof param === 'string') {
     assert(param, `${x}() string value of returnType (p[0]) is empty string`)
   }
@@ -155,7 +155,7 @@ function test_param_return_type(param: FModel.FnParam, x: string): void {
   }
 }
 
-function test_call_param(param: FModel.FnParam, x: string, i: number): void {
+function test_call_param(param: FM.FnParam, x: string, i: number): void {
   if (typeof param === 'string') {
     assert(Config.windefSet.has(param), `${x}() value: "${param} index: ${i}" is string but not exists in windefSet`)
   }

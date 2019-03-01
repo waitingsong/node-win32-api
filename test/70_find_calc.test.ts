@@ -5,8 +5,12 @@ import { spawn } from 'child_process'
 import { basename } from 'path'
 import * as assert from 'power-assert'
 import * as ref from 'ref-napi'
+import { DModel as M } from 'win32-def'
 
 import { K, U } from '../src/index'
+
+import { destroyWin } from './helper'
+
 
 const filename = basename(__filename)
 
@@ -23,6 +27,7 @@ describe(filename, () => {
 
       if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
         assert(true)
+        destroyWin(hWnd)
       }
       else {
         assert(false, 'found no calc window, GetLastError: ' + knl32.GetLastError())
@@ -30,7 +35,7 @@ describe(filename, () => {
 
       child.kill()
       done()
-    }, 3000)
+    }, 1500)
   })
 
   it('Open a calc.exe and change it\'s window title', done => {
@@ -41,9 +46,9 @@ describe(filename, () => {
       const hWnd = user32.FindWindowExW(null, null, lpszClass, null)
 
       if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
-        const title = 'Node-Calculator\0'
-                // Change title of the Calculator
-        const res = user32.SetWindowTextW(hWnd, Buffer.from(title, 'ucs2'))
+        const title = 'Node-Calculator'
+        // Change title of the Calculator
+        const res = user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
 
         if (!res) {
           // See: [System Error Codes] below
@@ -61,14 +66,15 @@ describe(filename, () => {
           }
         }
         else {
-          const len = title.length
-          const buf = Buffer.alloc(len * 2)
+          const buf = Buffer.alloc(title.length * 2)
           let str: string
 
           user32.GetWindowTextW(hWnd, buf, buf.byteLength)
-          str = buf.toString('ucs2').trim()
-          assert(str === title.trim(), `title should be changed to ${title}, bug got ${str}`)
+          str = buf.toString('ucs2').replace(/\0+$/, '')
+          assert(str === title, `title should be changed to "${title}", bug got "${str}"`)
         }
+
+        destroyWin(hWnd)
       }
       else {
         assert(false, 'found no calc window, GetLastError: ' + knl32.GetLastError())

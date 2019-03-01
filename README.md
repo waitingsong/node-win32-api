@@ -19,16 +19,19 @@ npm install win32-api
 ```
 
 ## Usage
-```js
-// find calc's hWnd, need run a calculator program manually at first
+
+### Find window and set window title
+```ts
+// **Find calc's hWnd, need running a calculator program manually at first**
+
 /**
  * expose module:
  * C, Comctl32 for Comctl32 from lib/comctl32/api
  * K, Kernel32 for kernel32 from lib/kernel32/api
  * U, User32 for user32 from lib/user32/api
  */
-const { K, U } = require('win32-api')   // or {Kernel32, User32}
-const ref = require('ref-napi')
+import { K, U } from 'win32-api'
+import * as ref from 'ref-napi'
 
 const knl32 = K.load()
 const user32 = U.load()  // load all apis defined in lib/{dll}/api from user32.dll
@@ -41,8 +44,8 @@ const lpszWindow = Buffer.from(title, 'ucs2')
 const hWnd = user32.FindWindowExW(null, null, null, lpszWindow)
 
 if (hWnd && ! hWnd.isNull()) {
-  // Caution: output hWnd will cuase exception in the following process, even next script!
-  // So do NOT do this in the production code!
+  // Caution: outputing hWnd will cuase exception in the following process, even next script!
+  // NOT do below in the production code!
   // console.log('buf: ', hWnd); // avoid this
   console.log('buf: ', ref.address(hWnd)) // this is ok
 
@@ -50,27 +53,16 @@ if (hWnd && ! hWnd.isNull()) {
   const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'))
 
   if ( ! res) {
-    // See: [System Error Codes] below
-    const errcode = knl32.GetLastError()
-    const len = 255
-    const buf = Buffer.alloc(len)
-    const p = 0x00001000 | 0x00000200  // FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
-    const langid = 0x0409              // 0x0409: US, 0x0000: Neutral locale language
-    const msglen = knl32.FormatMessageW(p, null, errcode, langid, buf, len, null)
-
-    if (msglen) {
-      console.log(ref.reinterpretUntilZeros(buf, 2).toString('ucs2'))
-    }
+    console.log('SetWindowTextW failed')
   }
   else {
     console.log('window title changed')
   }
 }
-
 ```
 
+### [Ref](https://www.npmjs.com/package/ref-napi)
 ```ts
-// use the types exposed by the module for TypeScript dev
 import { U } from 'win32-api'
 import * as ref from 'ref-napi'
 
@@ -90,7 +82,23 @@ console.log(ref.deref(buf))  // ← 12345
 ```
 
 ```ts
-// struct usage by ref-struct
+// usage of types and windef:
+import { K, FModel as FM, DTypes as W } from 'win32-api'
+import * as ref from 'ref-napi'
+
+const knl32 = K.load()
+
+const buf = <FM.Buffer> Buffer.alloc(4)   // ← here the types
+buf.writeInt32LE(12345, 0)
+
+// const hInstance =<FM.Buffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4)
+const hInstance = <FM.Buffer> ref.alloc(W.HINSTANCE)    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
+knl32.GetModuleHandleExW(0, null, hInstance)
+```
+
+### [Struct](https://www.npmjs.com/package/ref-struct)
+```ts
+// struct usage with ref-struct
 import * as Struct from 'ref-struct'
 import { DModel as M, DStruct as DS } from 'win32-api'
 
@@ -100,7 +108,7 @@ point.x = 100
 point.y = 200
 console.log(point)
 
-// struct usage by ref-struct-di
+// struct usage with ref-struct-di
 import * as ref from 'ref-napi'
 import * as StructDi from 'ref-struct-di'
 import { DModel as M, DStruct as DS } from 'win32-api'
@@ -112,24 +120,53 @@ point.y = 200
 console.log(point)
 ```
 
+### Async Find window and set window title
 ```ts
-// usage of types and windef:
-import { K, FModel as FM, DTypes as W } from 'win32-api'
+// **Find calc's hWnd, need running a calculator program manually at first**
+
+import { U } from 'win32-api'
 import * as ref from 'ref-napi'
 
-const knl32 = K.load()
 
-const buf  = <FM.Buffer> Buffer.alloc(4)   // ← here the types
-buf.writeInt32LE(12345, 0)
+const u32 = U.load(['FindWindowExW', 'SetWindowTextW'])
+const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
 
-// const hInstance =<FM.Buffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4)
-const hInstance = <FM.Buffer> ref.alloc(W.HINSTANCE)    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
-knl32.GetModuleHandleExW(0, null, hInstance)
+u32.FindWindowExW.async(null, null, lpszClass, null, (err, hWnd) => {
+  if (err) {
+    throw err
+  }
+
+  if (hWnd && !ref.isNull(hWnd) && ref.address(hWnd)) {
+    const title = 'Node-Calculator'
+    // Change title of the Calculator
+    u32.SetWindowTextW.async(hWnd, Buffer.from(title + '\0', 'ucs2'), err2 => {
+      if (err2) {
+        throw err2
+      }
+
+      const buf = Buffer.alloc(title.length * 2)
+      u32.GetWindowTextW.async(hWnd, buf, buf.byteLength, err3 => {
+        if (err3) {
+          throw err3
+        }
+
+        const str = buf.toString('ucs2').replace(/\0+$/, '')
+        if (str !== title) {
+          throw new Error(`title should be changed to ${title}, bug got ${str}`)
+        }
+      })
+    })
+  }
+  else {
+    throw new Error('FindWindowExW() failed')
+  }
+})
 ```
 
 
 ## Demo
 - [create_window](https://github.com/waitingsong/node-win32-api/blob/master/demo/create_window.ts)
+- [More](https://github.com/waitingsong/node-win32-api/blob/master/test)
 
 
 ## Dependencies Troubleshooting
