@@ -46,7 +46,7 @@ describe(filename, () => {
         const res = user32.SetWindowTextW(hWnd, Buffer.from(title, 'ucs2'))
 
         if (!res) {
-                    // See: [System Error Codes] below
+          // See: [System Error Codes] below
           const errcode = knl32.GetLastError()
           const len = 255
           const buf = Buffer.alloc(len)
@@ -65,7 +65,7 @@ describe(filename, () => {
           const buf = Buffer.alloc(len * 2)
           let str: string
 
-          user32.GetWindowTextW(hWnd, buf, len)
+          user32.GetWindowTextW(hWnd, buf, buf.byteLength)
           str = buf.toString('ucs2').trim()
           assert(str === title.trim(), `title should be changed to ${title}, bug got ${str}`)
         }

@@ -37,7 +37,7 @@ const comctl32 = C.load()  // load all apis defined in lib/{dll}/api from user32
 const filename = basename(__filename)
 
 // WndProc
-const WndProc = ffi.Callback('uint32',
+const WndProc = ffi.Callback(W.UINT32,
   [W.HWND, W.UINT, W.WPARAM, W.LPARAM],
   (hwnd: M.HWND, uMsg: M.UINT, wParam: M.WPARAM, lParam: M.LPARAM) => {
     // console.info('WndProc callback: ', uMsg, wParam, lParam)
