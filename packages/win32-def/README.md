@@ -20,6 +20,7 @@ npm install win32-def
 
 ## Usage
 
+### FFI
 ```ts
 import * as ffi from 'ffi'
 import { DModel as M, DTypes as W, FModel as FM } from 'win32-def'
@@ -35,6 +36,38 @@ export const user32: Win32Fns = ffi.Library('user32.dll', {
 })
 ```
 
+```ts
+import * as ffi from 'ffi'
+import { DModel as M, DTypes as W, FModel as FM } from 'win32-def'
+
+export interface Win32Fns extends FM.DllFuncsModel {
+  ClientToScreen(hWnd: M.HWND, lpPoint: M.LPPOINT): M.BOOL
+  GetAncestor(hwnd: M.HWND, gaFlags: M.UINT): M.HWND
+}
+
+export const user32: FM.ExpandFnModel<Win32Fns> = ffi.Library('user32.dll', {
+  ClientToScreen: [W.BOOL, [W.HWND, W.LPPOINT] ],
+  GetAncestor: [W.HWND, [W.HWND, W.UINT] ],
+})
+
+// You can calling with BOTH sync and async method
+const hWnd = user32.GetAncestor(hWnd, uint)
+user32.GetAncestor.async(handle, uint, (err, hWnd) => {
+  // typeof hWnd will be the same of ReturnType of sync method
+  if (err) {
+    throw err
+  }
+  if (hWnd && !ref.isNull(hWnd) && ref.address(hWnd)) {
+    // ...
+  }
+  else {
+    throw new Error('hWnd invalid')
+  }
+})
+```
+
+
+### [WIN32-API](https://www.npmjs.com/package/win32-api)
 ```ts
 // struct usage by ref-struct
 import * as Struct from 'ref-struct'

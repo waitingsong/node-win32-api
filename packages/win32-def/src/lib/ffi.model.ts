@@ -1,3 +1,7 @@
+import {
+  Push,
+} from '@waiting/shared-core'
+
 // for translation of windef
 export type MacroParam<T> = T | [T, T, T]  // [s,s,s] for conversion of macro windows data like LPCTSTR
 export type MacroDef = [string, string, string]    // ['_WIN64_HOLDER', 'int64*', 'int32*']
@@ -108,5 +112,61 @@ export interface DllFuncs {
  * ```
  */
 export interface DllFuncsModel {
-  [funcName: string]: (...args: any[]) => boolean | number | Buffer | void
+  [funcName: string]: SyncFnModel
+}
+export type SyncFnModel = (...args: any[]) => boolean | number | Buffer | void
+export interface AsyncSyncFuncModel {
+  async: (...args: any[]) => void
+  [key: string]: SyncFnModel
+}
+
+export interface AppendAsyncToSyncFnModel <T extends DllFuncsModel, K extends keyof T> {
+  async(...args: Push<Parameters<T[K]>, (err: Error, result: ReturnType<T[K]>) => void>): void
+}
+
+/**
+ * Expand FnModel with async()
+ * typeof arguments and typeof argument result of callback(err: Error, result)
+ *  will be retrieved from input method
+ *
+ * deps: typescript >= 3.1
+ * ref:
+ *  - https://github.com/microsoft/typescript/pull/24897
+ *  - https://zhuanlan.zhihu.com/p/38687656
+ *
+ * usage:
+ * ```ts
+ * export interface SDT extends DllFuncsModel {
+ *  foo: {
+ *    (msg: M.POINT): M.VOID,
+ *    async(msg: M.POINT, cb: (err: Error, result: M.VOINT)): void,
+ *  }
+ *  bar: BarFn
+ *  barz(port: M.INT): M.POINT
+ * }
+ * export interface BarFn extends AsyncSyncFuncModel {
+ *  (port: M.INT): M.INT
+ *  async(
+ *    port: M.INT
+ *    cb: (err: Error, code: M.INT) => void,
+ *  ): void
+ * }
+ *
+ * // Will append async() method to barz() with correct parameter's types of the (last) callback parameter of barz()
+ * export type SDTFnModel = ExpandFnModel<SDT>
+ * // So we can calling async method
+ * const api: SDTFnModel = ....
+ * api.barz.async(port, (err, result) => {
+ *   // type of result will get correct typeof Buffer (according to ReresultType of api.barz) automatically
+ * })
+ * ```
+ */
+export type ExpandFnModel<T extends DllFuncsModel> = {
+  [K in keyof T]: 'async' extends keyof T[K]
+    ? T[K]
+    : T[K] extends AsyncSyncFuncModel
+      ? T[K]
+      : T[K] & {
+        async(...args: Push<Parameters<T[K]>, (err: Error, result: ReturnType<T[K]>) => void>): void,
+      }
 }
