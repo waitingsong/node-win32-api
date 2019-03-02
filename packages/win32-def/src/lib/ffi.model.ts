@@ -167,6 +167,6 @@ export type ExpandFnModel<T extends DllFuncsModel> = {
     : T[K] extends AsyncSyncFuncModel
       ? T[K]
       : T[K] & {
-        async(...args: Push<Parameters<T[K]>, (err: Error, result: ReturnType<T[K]>) => void>): void,
+        async(...args: Push<Parameters<T[K]>, (err: Error, result: ReturnType<T[K]>) => any>): void,
       }
 }
