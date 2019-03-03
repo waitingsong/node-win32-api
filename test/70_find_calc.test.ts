@@ -5,17 +5,17 @@ import { spawn } from 'child_process'
 import { basename } from 'path'
 import * as assert from 'power-assert'
 import * as ref from 'ref-napi'
-import { DModel as M } from 'win32-def'
 
 import { K, U } from '../src/index'
 
-import { destroyWin } from './helper'
+import {
+  destroyWin,
+  knl32,
+  user32,
+} from './helper'
 
 
 const filename = basename(__filename)
-
-const knl32 = K.load()
-const user32 = U.load()
 
 describe(filename, () => {
   it('Open a calc.exe and find it\'s window hWnd', done => {

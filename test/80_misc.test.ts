@@ -2,15 +2,17 @@
 
 import { basename } from 'path'
 import * as assert from 'power-assert'
-import * as ref from 'ref-napi'
-import * as StructDi from 'ref-struct-di'
 import {
   DModel as M,
   DStruct as DS,
 } from 'win32-def'
 
+import {
+  Struct,
+} from './helper'
+
+
 const filename = basename(__filename)
-const Struct = StructDi(ref)
 
 describe(filename, () => {
 

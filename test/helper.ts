@@ -18,10 +18,10 @@ import {
   U,
 } from '../src/index'
 
-const Struct = StructDi(ref)
-const knl32 = K.load()
-const user32 = U.load()
-const comctl32 = C.load()
+export const Struct = StructDi(ref)
+export const knl32 = K.load()
+export const user32 = U.load()
+export const comctl32 = C.load()
 
 /** WndProc */
 export function createWndProc(): M.WNDPROC {

@@ -14,13 +14,10 @@ import {
 } from 'win32-def'
 
 import {
-  K,
-  U,
- } from '../src/index'
+  knl32,
+  user32,
+} from './helper'
 
-
-const knl32 = K.load()
-const user32 = U.load()
 
 const filename = basename(__filename)
 const tmpMap: Map<number, boolean> = new Map()

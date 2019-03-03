@@ -6,12 +6,15 @@ import { basename } from 'path'
 import * as assert from 'power-assert'
 import * as ref from 'ref-napi'
 
-import { K, U } from '../src/index'
+import { U } from '../src/index'
+
+import {
+  knl32,
+  user32,
+} from './helper'
+
 
 const filename = basename(__filename)
-
-const knl32 = K.load()
-const user32 = U.load()
 
 describe(filename, () => {
   it('Open a calc.exe and find it\'s window hWnd', done => {
