@@ -2,13 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-# [5.2.0](https://github.com/waitingsong/node-win32-api/compare/v5.1.0...v5.2.0) (2019-03-03)
+# [6.0.0](https://github.com/waitingsong/node-win32-api/compare/v5.2.0...v6.0.0) (2019-03-03)
 
 
 ### Features
 
-* **user32:** add CloseWindow() ([43ef43c](https://github.com/waitingsong/node-win32-api/commit/43ef43c))
-* **user32:** add DestroyWindow() ([6b494c9](https://github.com/waitingsong/node-win32-api/commit/6b494c9))
+* **types:** generate types of async() automatically ([62f9015](https://github.com/waitingsong/node-win32-api/commit/62f9015))
 
 
 
