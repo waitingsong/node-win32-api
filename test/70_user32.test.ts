@@ -18,8 +18,6 @@ import {
   U,
  } from '../src/index'
 
-import { destroyWin } from './helper'
-
 
 const knl32 = K.load()
 const user32 = U.load()
@@ -35,7 +33,7 @@ describe(filename, () => {
     const enumWindowsProc = createEnumWinProc()
 
     of(null).pipe(
-      delay(2000),
+      delay(1000),
       tap(() => {
         const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
         const hWnd = user32.FindWindowExW(null, null, lpszClass, null)
@@ -55,8 +53,6 @@ describe(filename, () => {
           tmpMap.set(id, false)
           enumWindows(enumWindowsProc, id)
           assert(tmpMap.get(id) === true)
-
-          destroyWin(hWnd)
         }
         else {
           assert(false, 'found no calc window, GetLastError: ' + knl32.GetLastError())
@@ -72,10 +68,10 @@ describe(filename, () => {
           done()
         },
         () => {
-          child.kill()
-          done()
           // tslint:disable-next-line:no-unused-expression
           typeof enumWindowsProc // avoid gc
+          child.kill()
+          done()
         },
       )
 
