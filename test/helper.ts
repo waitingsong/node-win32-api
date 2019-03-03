@@ -41,6 +41,11 @@ export function createWndProc(): M.WNDPROC {
     },
   )
 
+  process.on('exit', () => {
+    // tslint:disable-next-line:no-unused-expression
+    WndProc // avoid gc
+  })
+
   return WndProc
 }
 

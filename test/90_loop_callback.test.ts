@@ -67,8 +67,6 @@ describe(filename, () => {
           const end = new Date().getTime()
           const delta = end - start
           console.info(`elp ${delta}ms at ${loops} loops`)
-          // tslint:disable-next-line:no-unused-expression
-          typeof wndProc // avoid gc
         },
       )
 

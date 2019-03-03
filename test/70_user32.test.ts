@@ -65,8 +65,6 @@ describe(filename, () => {
           done()
         },
         () => {
-          // tslint:disable-next-line:no-unused-expression
-          typeof enumWindowsProc // avoid gc
           child.kill()
           done()
         },
@@ -107,10 +105,15 @@ function createEnumWinProc(): M.WNDENUMPROC {
     },
   )
 
+  process.on('exit', () => {
+    // tslint:disable-next-line:no-unused-expression
+    typeof enumWindowsProc // avoid gc
+  })
+
   return enumWindowsProc
 }
 
 
 function enumWindows(proc: M.WNDENUMPROC, id: number): void {
-  user32.EnumWindows(proc , id)
+  user32.EnumWindows(proc, id)
 }
