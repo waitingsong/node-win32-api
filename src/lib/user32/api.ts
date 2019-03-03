@@ -24,6 +24,9 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   DefWindowProcW(hWnd: M.HWND, Msg: M.UINT, wParam: M.WPARAM, lParam: M.LPARAM): M.LRESULT
 
+  /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-destroywindow */
+  DestroyWindow(hWnd: M.HWND): M.BOOL
+
   DispatchMessageW(lpMsg: M.LPMSG): M.LRESULT
 
   EnumThreadWindows(dwThreadId: M.DWORD, lpfn: M.WNDENUMPROC, lParam: M.LPARAM): M.BOOL
@@ -112,6 +115,8 @@ export const apiDef: FM.DllFuncs = {
   ] ],
 
   DefWindowProcW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
+
+  DestroyWindow: [W.BOOL, [W.HWND] ],
 
   DispatchMessageW: [W.LRESULT, [W.LPMSG] ],
 
