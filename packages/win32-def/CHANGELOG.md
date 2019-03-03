@@ -2,12 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-# [3.1.0](https://github.com/waitingsong/node-win32-def/compare/v3.0.0...v3.1.0) (2019-03-02)
+# [3.2.0](https://github.com/waitingsong/node-win32-def/compare/v3.1.0...v3.2.0) (2019-03-03)
 
 
 ### Features
 
-* **types:** change ReturnType of cb of async() from void to any ([7456254](https://github.com/waitingsong/node-win32-def/commit/7456254))
+* **types:** set below [@deprecated](https://github.com/deprecated) ([f950a7e](https://github.com/waitingsong/node-win32-def/commit/f950a7e))
 
 
 
