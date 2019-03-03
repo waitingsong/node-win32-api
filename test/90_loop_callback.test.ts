@@ -27,6 +27,11 @@ describe(filename, () => {
     const loops = 1024
     const titlePrefix = 'win32-api-'
     const wndProc: M.WNDPROC = createWndProc()
+    process.on('exit', () => {
+      // tslint:disable-next-line:no-unused-expression
+      wndProc // avoid gc
+    })
+
     let handle: M.HWND
     const handle$ = createWindow(wndProc).pipe(
       tap(hWnd => {
