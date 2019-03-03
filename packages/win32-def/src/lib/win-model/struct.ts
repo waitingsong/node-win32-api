@@ -55,7 +55,10 @@ export interface INITCOMMONCONTROLSEX_Struct extends StructInstanceBase {
   dwSize: DWORD
   dwICC: DWORD
 }
-export { INITCOMMONCONTROLSEX_Struct as InitCommonControlsEXStruct }
+/**
+ * @deprecated using INITCOMMONCONTROLSEX_Struct
+ */
+export type InitCommonControlsEXStruct = INITCOMMONCONTROLSEX_Struct
 
 /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagkeybdinput */
 export type KEYBDINPUT = Buffer
@@ -87,14 +90,20 @@ export interface MSG_Struct extends StructInstanceBase {
   time: DWORD
   pt: POINT
 }
-export { MSG_Struct as MsgStruct }
+/**
+ * @deprecated using MSG_Struct
+ */
+export type MsgStruct = MSG_Struct
 
 export type POINT = Buffer
 export interface POINT_Struct extends StructInstanceBase {
   x: LONG
   y: LONG
 }
-export { POINT_Struct as PointStruct }
+/**
+ * @deprecated using POINT_Struct
+ */
+export type PointStruct = POINT_Struct
 
 /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagrawhid */
 export type RAWHID = Buffer
@@ -141,7 +150,10 @@ export interface WNDClASSEX_Struct extends StructInstanceBase {
   lpszClassName: LPCTSTR
   hIconSm: HICON
 }
-export { WNDClASSEX_Struct as WndClassEXStruct }
+/**
+ * @deprecated using WNDClASSEX_Struct
+ */
+export type WndClassEXStruct = WNDClASSEX_Struct
 
 export type WINDOWINFO = Buffer
 export interface WINDOWINFO_Struct extends StructInstanceBase {
@@ -156,7 +168,10 @@ export interface WINDOWINFO_Struct extends StructInstanceBase {
   atomWindowType: ATOM
   wCreatorVersion: WORD
 }
-export { WINDOWINFO_Struct as WindowInfoStruct }
+/**
+ * @deprecated using
+ */
+export type WindowInfoStruct = WINDOWINFO_Struct
 
 export type RECT = Buffer
 export interface RECT_Struct extends StructInstanceBase {
@@ -165,4 +180,7 @@ export interface RECT_Struct extends StructInstanceBase {
   right: LONG
   bottom: LONG
 }
-export { RECT_Struct as RectStruct }
+/**
+ * @deprecated using
+ */
+export type RectStruct = RECT_Struct
