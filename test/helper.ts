@@ -45,8 +45,8 @@ export function createWndProc(): M.WNDPROC {
 }
 
 export function createWindow(wndProc: M.WNDPROC): Observable<M.HWND> {
-  const className = Buffer.from('NodeClass\0', 'ucs-2')
-  const windowName = Buffer.from('Node calc\0', 'ucs-2')
+  const className = Buffer.from('NodeClass\0', 'ucs2')
+  const windowName = Buffer.from('Node calc\0', 'ucs2')
 
   const hInstance = ref.alloc(W.HINSTANCE)
   knl32.GetModuleHandleExW(0, ref.NULL, hInstance)
