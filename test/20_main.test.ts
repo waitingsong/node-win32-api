@@ -24,92 +24,95 @@ describe(filename, () => {
     const apiName: string = dll.slice(0, 1).toUpperCase() + dll.slice(1).toLowerCase() // User32, Kernel32, ...
     const module: any = Win[apiName]
 
-    if (module && module.apiDef) {
-      const apiDef = <FM.DllFuncs> module.apiDef
+    describe(apiName, () => {
+      if (module && module.apiDef) {
+        const apiDef = <FM.DllFuncs> module.apiDef
 
-      it(`Should ${apiName}: FnName of definition be string`, () => {
-        for (let x in apiDef) {    // tslint:disable-line
-          assert(typeof x === 'string')
-        }
-      })
-
-      it(`Should ${apiName}: FnParams of definition be array`, () => {
-        for (let x in apiDef) {    // tslint:disable-line
-          const p = apiDef[x]
-          assert(typeof p === 'object' && Array.isArray(p), `${x}()`)
-        }
-      })
-
-      it(`Should ${apiName}: FnRetType of definition be string and not epmty or array`, () => {
-        for (let x in apiDef) {    // tslint:disable-line
-          test_param_return_type(apiDef[x][0], x)
-        }
-      })
-
-      it(`Should ${apiName}: FnRetType of definition exists in conf.windefSet`, () => {
-        for (let x in apiDef) {    // tslint:disable-line
-          const p = apiDef[x][0]
-          const st = {
-            _UNICODE: true,
-            _WIN64: false,
-          }
-          // const _WIN64 = true
-          // let param: GT.FnRetType
-
-          for (const k of Object.keys(st)) {
-            if (st[k]) {
-              assert(
-                Config.windefSet.has(p),
-                `${x}() value: "${p}" ${st._WIN64 ? 'x64' : 'ia32'},
-                ${st._UNICODE ? 'UNICODE' : 'ANSI'}`,
-              )
-            }
-          }
-          for (const k of Object.keys(st)) {
-            if (!st[k]) {
-              assert(
-                Config.windefSet.has(p),
-                `${x}() value: "${p}" ${st._WIN64 ? 'x64' : 'ia32'},
-                ${st._UNICODE ? 'UNICODE' : 'ANSI'}`,
-              )
-            }
-          }
-        }
-      })
-
-      it(`Should ${apiName}: FnCallParams of definition be array`, () => {
-        for (let x in apiDef) {    // tslint:disable-line
-          const p = apiDef[x]
-          assert(typeof p[1] === 'object' && Array.isArray(p[1]), `${x}()`)
-        }
-      })
-
-      it(`Should ${apiName}: item of FnCallParams of definition exists in conf.windefSet and valid`, () => {
-        if (Config.windefSet && Config.windefSet.size) {
+        it('Should FnName of definition be string', () => {
           for (let x in apiDef) {    // tslint:disable-line
-            const arr = apiDef[x][1]
-            const len = arr.length
+            assert(typeof x === 'string')
+          }
+        })
 
-            if (len) {
-              for (let i = 0; i < len; i++) {
-                const param = arr[i]
+        it('Should FnParams of definition be array', () => {
+          for (let x in apiDef) {    // tslint:disable-line
+            const p = apiDef[x]
+            assert(typeof p === 'object' && Array.isArray(p), `${x}()`)
+          }
+        })
 
-                if (Array.isArray(param)) {
-                  assert(false, 'param should be string, but array')
-                }
-                else {
-                  test_call_param(param, x, i)
+        it('Should FnRetType of definition be string and not epmty or array', () => {
+          for (let x in apiDef) {    // tslint:disable-line
+            test_param_return_type(apiDef[x][0], x)
+          }
+        })
+
+        it('Should FnRetType of definition exists in conf.windefSet', () => {
+          for (let x in apiDef) {    // tslint:disable-line
+            const p = apiDef[x][0]
+            const st = {
+              _UNICODE: true,
+              _WIN64: false,
+            }
+            // const _WIN64 = true
+            // let param: GT.FnRetType
+
+            for (const k of Object.keys(st)) {
+              if (st[k]) {
+                assert(
+                  Config.windefSet.has(p),
+                  `${x}() value: "${p}" ${st._WIN64 ? 'x64' : 'ia32'},
+                ${st._UNICODE ? 'UNICODE' : 'ANSI'}`,
+                )
+              }
+            }
+            for (const k of Object.keys(st)) {
+              if (!st[k]) {
+                assert(
+                  Config.windefSet.has(p),
+                  `${x}() value: "${p}" ${st._WIN64 ? 'x64' : 'ia32'},
+                ${st._UNICODE ? 'UNICODE' : 'ANSI'}`,
+                )
+              }
+            }
+          }
+        })
+
+        it('Should FnCallParams of definition be array', () => {
+          for (let x in apiDef) {    // tslint:disable-line
+            const p = apiDef[x]
+            assert(typeof p[1] === 'object' && Array.isArray(p[1]), `${x}()`)
+          }
+        })
+
+        it('Should item of FnCallParams of definition exists in conf.windefSet and valid', () => {
+          if (Config.windefSet && Config.windefSet.size) {
+            for (let x in apiDef) {    // tslint:disable-line
+              const arr = apiDef[x][1]
+              const len = arr.length
+
+              if (len) {
+                for (let i = 0; i < len; i++) {
+                  const param = arr[i]
+
+                  if (Array.isArray(param)) {
+                    assert(false, 'param should be string, but array')
+                  }
+                  else {
+                    test_call_param(param, x, i)
+                  }
                 }
               }
             }
           }
-        }
-      })
+        })
 
-    }
-    else {
-      assert(false, 'module or module.apiDef invalie')
-    }
+      }
+      else {
+        assert(false, 'module or module.apiDef invalie')
+      }
+
+    })
 
   }   // loop END
 })
@@ -120,28 +123,30 @@ describe(filename, () => {
     const apiName: string = dll.slice(0, 1).toUpperCase() + dll.slice(1).toLowerCase() // User32, Kernel32, ...
     const module: any = Win[apiName]
 
-    if (module && module.apiDef) {
-      try {
-        const api: FM.DllFuncs = module.load()
+    describe(apiName, () => {
+      if (module && module.apiDef) {
+        try {
+          const api: FM.DllFuncs = module.load()
 
-        for (const fn in api) {
-          if (!{}.hasOwnProperty.call(api, fn)) {
-            continue
+          for (const fn in api) {
+            if (!{}.hasOwnProperty.call(api, fn)) {
+              continue
+            }
+            it(`Should ${fn}() be typeof "function"`, () => {
+              assert(typeof api[fn] === 'function', `${fn}`)
+            })
           }
-          it(`Should ${apiName}.${fn}() be typeof "function"`, () => {
-            assert(typeof api[fn] === 'function', `${fn}`)
-          })
+        }
+        catch (ex) {
+          assert.throws(() => {
+            throw ex
+          }, /dll init failed/)
         }
       }
-      catch (ex) {
-        assert.throws(() => {
-          throw ex
-        }, /dll init failed/)
+      else {
+        assert(false, 'module or module.apiDef invalie')
       }
-    }
-    else {
-      assert(false, 'module or module.apiDef invalie')
-    }
+    })
   }
 })
 
