@@ -29,7 +29,7 @@ test_script:
   - node --version
   - npm --version
   - npm run build
-  - npm run test
+  #- npm run test
 
 on_success:
   - npm run cov:coveralls
