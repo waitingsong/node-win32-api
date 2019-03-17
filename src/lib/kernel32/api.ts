@@ -26,6 +26,9 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   GetProcessHeaps(NumberOfHeaps: M.DWORD, ProcessHeaps: M.PHANDLE): M.DWORD
 
+  /** https://docs.microsoft.com/en-us/windows/desktop/api/processthreadsapi/nf-processthreadsapi-getsystemtimes */
+  GetSystemTimes(lpIdleTime: M.PFILETIME, lpKernelTime: M.PFILETIME, lpUserTime: M.PFILETIME): M.BOOL
+
   HeapFree(hHeap: M.HANDLE, dwFlags: M.DWORD, lpMem: M.LPVOID | null): M.BOOL
 
   OpenProcess(dwDesiredAccess: M.DWORD, bInheritHandle: M.BOOL, dwProcessId: M.DWORD): M.HANDLE
@@ -57,8 +60,6 @@ export interface Win32Fns extends FM.DllFuncsModel {
    * Note: The return value NULL would be converted to zero by node-ffi
    */
   SetThreadExecutionState(esFlags: M.UINT): M.UINT
-
-  GetSystemTimes(lpIdleTime: M.PFILETIME, lpKernelTime: M.PFILETIME, lpUserTime: M.PFILETIME): M.BOOL
 }
 
 export const apiDef: FM.DllFuncs = {
@@ -80,6 +81,8 @@ export const apiDef: FM.DllFuncs = {
 
   GetProcessHeaps: [W.DWORD, [W.DWORD, W.PHANDLE] ],
 
+  GetSystemTimes: [W.BOOL, [W.PFILETIME, W.PFILETIME, W.PFILETIME] ],
+
   HeapFree: [W.BOOL, [W.HANDLE, W.DWORD, W.LPVOID] ],
 
   OpenProcess: [W.HANDLE, [W.DWORD, W.BOOL, W.DWORD] ],
@@ -89,6 +92,4 @@ export const apiDef: FM.DllFuncs = {
   SetLastError: [W.VOID, [W.DWORD] ],
 
   SetThreadExecutionState: [W.INT, [W.INT] ],
-
-  GetSystemTimes: [W.BOOL, [W.PFILETIME, W.PFILETIME, W.PFILETIME] ],
 }
