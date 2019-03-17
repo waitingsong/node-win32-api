@@ -4,14 +4,14 @@
 import { basename } from 'path'
 import * as assert from 'power-assert'
 import {
-    DModel as M,
-    DStruct as DS,
+  DModel as M,
+  DStruct as DS,
 } from 'win32-def'
 
 import {
-    knl32,
-    Struct,
-} from './helper'
+  knl32,
+  Struct,
+} from '../helper'
 
 const filename = basename(__filename)
 
