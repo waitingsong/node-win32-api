@@ -1,7 +1,7 @@
 /// <reference types="node" />
 /// <reference types="mocha" />
 
-import { basename } from 'path'
+import { basename } from '@waiting/shared-core'
 import * as assert from 'power-assert'
 import {
   DModel as M,
@@ -13,13 +13,15 @@ import {
   Struct,
 } from '../helper'
 
-const filename = basename(__filename)
 
-describe(filename, () => {
+const dll = basename(__dirname)
+const method = basename(__filename, '.test.ts')
+
+describe(`${dll}.${method}()`, () => {
 
   const fileTimeClass = Struct(DS.FILETIME)
 
-  it('invoke GetSystemTime', () => {
+  it('sync works', () => {
     const idleTime: M.FILETIME_Struct = new fileTimeClass()
     const kernelTime: M.FILETIME_Struct = new fileTimeClass()
     const userTime: M.FILETIME_Struct = new fileTimeClass()
@@ -30,7 +32,7 @@ describe(filename, () => {
     assert(fileTimeToNumber(userTime) > 0)
   })
 
-  it('invoke GetSystemTime async', () => {
+  it('async works', () => {
     const idleTime: M.FILETIME_Struct = new fileTimeClass()
     const kernelTime: M.FILETIME_Struct = new fileTimeClass()
     const userTime: M.FILETIME_Struct = new fileTimeClass()
@@ -45,6 +47,7 @@ describe(filename, () => {
     })
   })
 })
+
 
 function fileTimeToNumber(fileTime: M.FILETIME_Struct): number {
   return fileTime.dwLowDateTime + fileTime.dwHighDateTime * Math.pow(2, 32)
