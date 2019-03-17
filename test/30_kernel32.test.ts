@@ -16,14 +16,33 @@ import {
 const filename = basename(__filename)
 
 describe(filename, () => {
+
+  const fileTimeClass = Struct(DS.FILETIME)
+
   it('invoke GetSystemTime', () => {
-    const idleTime: M.FILETIME_Struct = new Struct(DS.FILETIME)()
-    const kernelTime: M.FILETIME_Struct = new Struct(DS.FILETIME)()
-    const userTime: M.FILETIME_Struct = new Struct(DS.FILETIME)()
+    const idleTime: M.FILETIME_Struct = new fileTimeClass()
+    const kernelTime: M.FILETIME_Struct = new fileTimeClass()
+    const userTime: M.FILETIME_Struct = new fileTimeClass()
+
     knl32.GetSystemTimes(idleTime.ref(), kernelTime.ref(), userTime.ref())
     assert(fileTimeToNumber(idleTime) > 0)
     assert(fileTimeToNumber(kernelTime) > 0)
     assert(fileTimeToNumber(userTime) > 0)
+  })
+
+  it('invoke GetSystemTime async', () => {
+    const idleTime: M.FILETIME_Struct = new fileTimeClass()
+    const kernelTime: M.FILETIME_Struct = new fileTimeClass()
+    const userTime: M.FILETIME_Struct = new fileTimeClass()
+
+    knl32.GetSystemTimes.async(idleTime.ref(), kernelTime.ref(), userTime.ref(), err => {
+      if (err) {
+        return assert(false, err.message ? err.message : 'unknown error')
+      }
+      assert(fileTimeToNumber(idleTime) > 0)
+      assert(fileTimeToNumber(kernelTime) > 0)
+      assert(fileTimeToNumber(userTime) > 0)
+    })
   })
 })
 
