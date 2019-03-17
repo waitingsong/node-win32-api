@@ -145,6 +145,7 @@ export const RECT = {
 }
 export { RECT as _RECT }
 
+/** https://docs.microsoft.com/en-us/windows/desktop/api/minwinbase/ns-minwinbase-filetime */
 export const FILETIME = {
   dwLowDateTime : W.DWORD,
   dwHighDateTime : W.DWORD,
