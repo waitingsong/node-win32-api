@@ -208,6 +208,9 @@ export const LPINITCOMMONCONTROLSEX = 'pointer'  // A pointer to an INITCOMMONCO
 export const LPWNDCLASSEX = 'pointer'  // A pointer to a WNDCLASSEX
 export const PWINDOWINFO = 'pointer'    // A pointer to a WINDOWINFO structure
 
+export const PFILETIME = 'pointer' // A pointer to a FILETIME
+export const LPFILETIME = 'pointer' // A pointer to a FILETIME
+
 export const va_list = 'char*'
 
 /* ------------------ struct ---------------------- */

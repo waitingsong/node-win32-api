@@ -188,4 +188,7 @@ export type LPINITCOMMONCONTROLSEX = Buffer  // A pointer to an INITCOMMONCONTRO
 export type LPWNDCLASSEX = Buffer  // A pointer to a WNDCLASSEX
 export type PWINDOWINFO = Buffer    // A pointer to a WINDOWINFO structure
 
+export type PFILETIME = Buffer // A pointer to a FILETIME
+export type LPFILETIME = Buffer // A pointer to a FILETIME
+
 export type va_list = Buffer

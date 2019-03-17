@@ -144,3 +144,8 @@ export const RECT = {
   bottom: W.LONG,
 }
 export { RECT as _RECT }
+
+export const FILETIME = {
+  dwLowDateTime : W.DWORD,
+  dwHighDateTime : W.DWORD,
+}

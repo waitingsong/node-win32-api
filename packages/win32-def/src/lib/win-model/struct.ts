@@ -184,3 +184,13 @@ export interface RECT_Struct extends StructInstanceBase {
  * @deprecated using
  */
 export type RectStruct = RECT_Struct
+
+export type FILETIME = Buffer
+export interface FILETIME_Struct extends StructInstanceBase {
+  dwLowDateTime: DWORD,
+  dwHighDateTime: DWORD,
+}
+/**
+ * @deprecated using POINT_Struct
+ */
+export type FileTimeStruct = FILETIME_Struct
