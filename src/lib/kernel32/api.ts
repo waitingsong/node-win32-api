@@ -57,6 +57,8 @@ export interface Win32Fns extends FM.DllFuncsModel {
    * Note: The return value NULL would be converted to zero by node-ffi
    */
   SetThreadExecutionState(esFlags: M.UINT): M.UINT
+
+  GetSystemTimes(lpIdleTime: M.PFILETIME, lpKernelTime: M.PFILETIME, lpUserTime: M.PFILETIME): M.BOOL
 }
 
 export const apiDef: FM.DllFuncs = {
@@ -87,4 +89,6 @@ export const apiDef: FM.DllFuncs = {
   SetLastError: [W.VOID, [W.DWORD] ],
 
   SetThreadExecutionState: [W.INT, [W.INT] ],
+
+  GetSystemTimes: [W.BOOL, [W.PFILETIME, W.PFILETIME, W.PFILETIME] ],
 }
