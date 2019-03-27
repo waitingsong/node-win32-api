@@ -1,6 +1,10 @@
 {
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  },
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
+  "files.insertFinalNewline": true,
   "files.eol": "\n",
   "files.exclude": {
     "USE_GITIGNORE": true,
@@ -19,6 +23,7 @@
     "run": true,
     "logs": true,
     "out": true,
+    "node_modules": true,
     "node_modules*": true,
     "coverage": true,
     "dist": true,
@@ -27,6 +32,7 @@
   "files.watcherExclude": {
       "**/.git/objects/**": true,
       "**/node_modules/**": true,
+      "**/node_modules*/**": true,
       "coverage/**": true,
       "dist/**": true
   },
@@ -38,17 +44,17 @@
     "out/**": true,
     "i18n/**": true
   },
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false
+  },
   "telemetry.enableTelemetry": false,
   "telemetry.enableCrashReporter": false,
-  "tslint.autoFixOnSave": true,
-  "tslint.enable": true,
+  "tslint.configFile": "./tslint.json",
   "typescript.autoImportSuggestions.enabled": true,
   "typescript.format.enable": true,
   "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
   "typescript.format.insertSpaceAfterTypeAssertion": true,
-  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
   "typescript.format.insertSpaceBeforeAndAfterBinaryOperators": true,
-  "[markdown]": {
-    "files.trimTrailingWhitespace": false
-  }
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "git.ignoreLimitWarning": true
 }
