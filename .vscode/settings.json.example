@@ -50,7 +50,6 @@
   "telemetry.enableTelemetry": false,
   "telemetry.enableCrashReporter": false,
   "tslint.configFile": "./tslint.json",
-  "typescript.autoImportSuggestions.enabled": true,
   "typescript.format.enable": true,
   "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
   "typescript.format.insertSpaceAfterTypeAssertion": true,
