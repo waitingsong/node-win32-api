@@ -1,4 +1,5 @@
 package-lock.json
+yarn.lock
 app/**/*.js
 test/**/*.js
 config/**/*.js
@@ -150,6 +151,7 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.un~
 
 # Runtime data
 pids
