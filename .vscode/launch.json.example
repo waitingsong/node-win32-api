@@ -18,6 +18,10 @@
       "runtimeArgs": [
         "--nolazy"
       ],
+      "skipFiles": [
+        "${workspaceFolder}/node_modules/rxjs/**/*.js",
+        "<node_internals>/**/*.js"
+      ],
       "stopOnEntry": false
     },
     {
@@ -33,6 +37,10 @@
       "request": "launch",
       "runtimeArgs": [
         "--nolazy"
+      ],
+      "skipFiles": [
+        "${workspaceFolder}/node_modules/rxjs/**/*.js",
+        "<node_internals>/**/*.js"
       ],
       "stopOnEntry": false
     },
@@ -51,7 +59,12 @@
         "--",
         "--inspect-brk"
       ],
-      "runtimeExecutable": "npm"
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        // "${workspaceFolder}/node_modules/**/*.js",
+        "${workspaceFolder}/node_modules/rxjs/**/*.js",
+        "<node_internals>/**/*.js"
+      ]
     },
     {
       "name": "Chrome Debug with Karma",
