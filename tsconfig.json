@@ -5,7 +5,6 @@
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "importHelpers": false,
     "inlineSourceMap": false,
     "module": "ES6",
     "moduleResolution": "node",
