@@ -1,3 +1,6 @@
+*.swp
+*.bak
+
 .config
 .coveralls.yml
 .editorconfig
@@ -12,6 +15,7 @@ appveyor.yml
 commitlint.config.js
 coverage
 demo
+node_modules
 node_modules*
 npm-shrinkwrap.json
 rollup.config.js
