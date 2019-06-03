@@ -4,4 +4,6 @@
 .git/*
 bin/*
 doc/*
+docs/*
 src/*
+app/public/*
