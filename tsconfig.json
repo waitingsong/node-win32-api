@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    "alwaysStrict": true,
-    "charset": "utf8",
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -16,7 +14,6 @@
     "outDir": "./dist",
     "pretty": true,
     "skipLibCheck": true,
-    "sourceMap": false,
     "strict": true,
     "target": "ES2017"
   },
