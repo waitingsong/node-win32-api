@@ -15,19 +15,29 @@
     "**/*.swp": true,
     "**/.git": true,
     "**/.DS_Store": true,
-    ".vscode": true,
-    ".git": true,
     ".build": true,
+    ".eslint*": true,
+    ".editorconfig": true,
+    ".git": true,
+    ".gitignore": true,
     ".githooks": true,
+    ".npmignore": true,
+    ".nyc_output": true,
     ".sourcemaps": true,
-    "run": true,
-    "logs": true,
-    "out": true,
-    "node_modules": true,
-    "node_modules*": true,
+    ".travis.yml": true,
+    ".vscode": true,
+    "appveyor.yml": true,
+    "commitlint.config.js": true,
     "coverage": true,
     "dist": true,
-    "platforms": true
+    "logs": true,
+    "node_modules*": true,
+    "out": true,
+    "package-lock.json": true,
+    "platforms": true,
+    "rollup.config.js": true,
+    "run": true,
+    "tslint.json": true
   },
   "files.watcherExclude": {
       "**/.git/objects/**": true,
@@ -39,10 +49,9 @@
   "files.trimTrailingWhitespace": true,
   "search.exclude": {
     "**/node_modules": true,
-    ".vscode/**": true,
     ".build/**": true,
-    "out/**": true,
-    "i18n/**": true
+    "i18n/**": true,
+    "out/**": true
   },
   "[markdown]": {
     "files.trimTrailingWhitespace": false
