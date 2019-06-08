@@ -16,6 +16,7 @@
     "**/.git": true,
     "**/.DS_Store": true,
     ".build": true,
+    ".dockerignore": true,
     ".eslint*": true,
     ".editorconfig": true,
     ".git": true,
