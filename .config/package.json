@@ -23,5 +23,8 @@
     "karma-safari-launcher": "^1.0.0",
     "karma-sauce-launcher": "^2.0.0",
     "karma-typescript": "^4.1.0"
+  },
+  "scripts-info": {
+    "debug": "Open a chrome window, click 'DEBUG' button, then F5 and choose 'karma DEBUG RUNNER' task in vscode"
   }
 }
