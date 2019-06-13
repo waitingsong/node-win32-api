@@ -84,6 +84,7 @@
     "clean": "rm -rf dist/*",
     "cov": "nyc mocha",
     "cov:coveralls": "nyc mocha && nyc report --reporter=text-lcov | coveralls",
+    "doc": "typedoc src/index.ts src/lib/index.ts src/lib/model.ts",
     "jslint": "eslint --fix dist/**/*.js",
     "link_global": "npm link typescript",
     "lint": "tslint --fix -p tsconfig.json -t stylish",

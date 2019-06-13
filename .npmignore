@@ -12,6 +12,7 @@
 appveyor.yml
 coverage
 demo
+docs
 node_modules*
 npm-shrinkwrap.json
 rollup.config.js
@@ -19,6 +20,7 @@ src
 test
 test_browser*
 tsconfig*
+typedoc.json
 
 /*lint*
 /dist*
