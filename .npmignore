@@ -22,7 +22,9 @@ test_browser*
 tsconfig*
 typedoc.json
 
+/*.tgz
 /*lint*
+/docs*
 /dist*
 !/dist
 
