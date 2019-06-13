@@ -4,28 +4,25 @@
 .config
 .coveralls.yml
 .editorconfig
-.eslintignore
-.eslintrc.json
 .githooks
 .nyc_output
 .travis.yml
 .vscode
 
 appveyor.yml
-commitlint.config.js
 coverage
 demo
-node_modules
 node_modules*
 npm-shrinkwrap.json
 rollup.config.js
 src
 test
 test_browser*
-tsconfig.json
-tsconfig.cjs.json
-tsconfig.*.json
-tslint.json
+tsconfig*
+
+/*lint*
+/dist*
+!/dist
 
 !/asset/.config
 
