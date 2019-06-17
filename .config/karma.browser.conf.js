@@ -6,7 +6,7 @@ module.exports = (config) => {
   }
 
   config.set(Object.assign(base, {
-    frameworks: ! config.customDebug
+    frameworks: config.detect
       ?  base.frameworks.concat([
           'detectBrowsers',
         ])
@@ -29,12 +29,12 @@ module.exports = (config) => {
       ChromeDebugging: {
         base: 'Chrome',
         flags: [ '--remote-debugging-port=9333' ]
-      }
+      },
     },
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    // browsers: ['Chrome', 'Firefox', 'IE'],
+    browsers: ['Chrome', 'Firefox'],
     // browsers: ['ChromeDebugging'],
 
   }))

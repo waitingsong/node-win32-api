@@ -7,68 +7,109 @@
     {
       "name": "index.ts",
       "type": "node",
-      "request": "launch",
-      "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
       "args": [
         "-P", "./tsconfig.cjs.json",
         "src/index.ts"
       ],
       "cwd": "${workspaceRoot}",
+      "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
       "protocol": "inspector",
+      "request": "launch",
       "runtimeArgs": [
         "--nolazy"
+      ],
+      "skipFiles": [
+        "${workspaceFolder}/node_modules/rxjs/**/*.js",
+        "<node_internals>/**/*.js"
       ],
       "stopOnEntry": false
     },
     {
       "name": "Current TS File",
       "type": "node",
-      "request": "launch",
-      "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
       "args": [
         "-P", "./tsconfig.cjs.json",
         "${relativeFile}"
       ],
       "cwd": "${workspaceRoot}",
+      "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
       "protocol": "inspector",
+      "request": "launch",
       "runtimeArgs": [
         "--nolazy"
+      ],
+      "skipFiles": [
+        "${workspaceFolder}/node_modules/rxjs/**/*.js",
+        "<node_internals>/**/*.js"
       ],
       "stopOnEntry": false
     },
     {
-      "name": "Egg Debug",
+      "name": "Midway Debug",
       "type": "node",
+      "autoAttachChildProcesses": true,
+      "console": "integratedTerminal",
+      "env": {
+        "NODE_ENV": "local"
+      },
+      "port": 9229,
+      "preLaunchTask": "TypeScript compile",
+      "protocol": "auto",
       "request": "launch",
-      "runtimeExecutable": "npm",
+      "restart": true,
       "runtimeArgs": [
         "run",
         "debug",
         "--",
         "--inspect-brk"
       ],
-      "console": "integratedTerminal",
-      "restart": true,
-      "protocol": "auto",
-      "port": 9229,
-      "autoAttachChildProcesses": true
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        // "${workspaceFolder}/node_modules/**/*.js",
+        "${workspaceFolder}/node_modules/rxjs/**/*.js",
+        "<node_internals>/**/*.js"
+      ]
     },
     {
       "name": "Chrome Debug with Karma",
       "type": "chrome",
-      "request": "attach",
       "address": "localhost",
-      "port": 9333,
       "pathMapping": {
         "/": "${workspaceRoot}/",
         "/base/": "${workspaceRoot}/"
-      }
+      },
+      "port": 9333,
+      "request": "attach"
+    },
+    {
+      "name": "Egg Debug",
+      "type": "node",
+      "autoAttachChildProcesses": true,
+      "console": "integratedTerminal",
+      "env": {
+        "NODE_ENV": "local"
+      },
+      "port": 9229,
+      "preLaunchTask": "watch",
+      "protocol": "auto",
+      "request": "launch",
+      "restart": true,
+      "runtimeArgs": [
+        "run",
+        "debug",
+        "--",
+        "--inspect-brk"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        // "${workspaceFolder}/node_modules/**/*.js",
+        "${workspaceFolder}/node_modules/rxjs/**/*.js",
+        "<node_internals>/**/*.js"
+      ]
     },
     {
       "name": "Mocha Tests",
       "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
       "args": [
         "-u",
         "tdd",
@@ -77,7 +118,9 @@
         "--colors",
         "${workspaceFolder}/test"
       ],
-      "internalConsoleOptions": "openOnSessionStart"
+      "internalConsoleOptions": "openOnSessionStart",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "request": "launch"
     }
   ]
 }

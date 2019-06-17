@@ -2,6 +2,9 @@
 
 **/*.min.js
 .git/*
+app/public/*
 bin/*
 doc/*
+docs/*
 src/*
+test/

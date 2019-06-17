@@ -8,6 +8,8 @@ const folderArr = [
   '.settings',
   'resource',
   'configs',
+  'config', // egg
+  'src/config', // midway
 ]
 
 export default folderArr
