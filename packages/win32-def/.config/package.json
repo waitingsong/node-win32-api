@@ -6,13 +6,13 @@
   "license": "MIT",
   "scripts": {
     "browser": "karma start karma.browser.conf.js",
+    "browser:detect": "karma start karma.browser.conf.js --detect=1",
     "debug": "karma start karma.browser.conf.js --browsers=ChromeDebugging --single-run=false --mocha-timeout=999998 --custom-debug=1",
     "sauce": "karma start karma.sauce.conf.js"
   },
   "devDependencies": {
-    "es6-shim": "^0.35.3",
     "es7-shim": "^6.0.0",
-    "karma": "^3.0.0",
+    "karma": "^4.1.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-detect-browsers": "^2.2.5",
     "karma-edge-launcher": "^0.4.1",
@@ -21,8 +21,10 @@
     "karma-mocha": "^1.3.0",
     "karma-opera-launcher": "^1.0.0",
     "karma-safari-launcher": "^1.0.0",
-    "karma-sauce-launcher": "^1.1.0",
-    "karma-typescript": "^3.0.4",
-    "whatwg-fetch": "^2.0.4"
+    "karma-sauce-launcher": "^2.0.0",
+    "karma-typescript": "^4.1.0"
+  },
+  "scripts-info": {
+    "debug": "Open a chrome window, click 'DEBUG' button, then F5 and choose 'karma DEBUG RUNNER' task in vscode"
   }
 }

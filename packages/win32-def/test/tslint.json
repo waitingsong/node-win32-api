@@ -81,7 +81,6 @@
     "no-unnecessary-initializer": true, // 禁止变量赋值为 undefined 
     "no-unused-expression": [true, "allow-fast-null-checks"],
     "no-unnecessary-type-assertion": false,
-    "no-use-before-declare": true,  // 禁止在变量定义之前使用它们
     "no-var-keyword": true,  // 要求使用 let 或 const 而不是 var
     "no-var-requires": true,  // Disallows the use of require statements except in import statements.
     "object-curly-spacing": [true, "always"],	// 强制在大括号中使用一致的空格

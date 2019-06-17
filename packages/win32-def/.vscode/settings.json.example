@@ -1,6 +1,10 @@
 {
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  },
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
+  "files.insertFinalNewline": true,
   "files.eol": "\n",
   "files.exclude": {
     "USE_GITIGNORE": true,
@@ -11,44 +15,55 @@
     "**/*.swp": true,
     "**/.git": true,
     "**/.DS_Store": true,
-    ".vscode": true,
-    ".git": true,
     ".build": true,
+    ".dockerignore": true,
+    ".eslint*": true,
+    ".editorconfig": true,
+    ".git": true,
+    ".gitignore": true,
     ".githooks": true,
+    ".npmignore": true,
+    ".nyc_output": true,
     ".sourcemaps": true,
-    "run": true,
-    "logs": true,
-    "out": true,
-    "node_modules*": true,
+    ".travis.yml": true,
+    ".vscode": true,
+    "appveyor.yml": true,
+    "commitlint.config.js": true,
     "coverage": true,
     "dist": true,
-    "platforms": true
+    "logs": true,
+    "node_modules*": true,
+    "out": true,
+    "package-lock.json": true,
+    "platforms": true,
+    "rollup.config.js": true,
+    "run": true,
+    "tslint.json": true
   },
   "files.watcherExclude": {
       "**/.git/objects/**": true,
       "**/node_modules/**": true,
+      "**/node_modules*/**": true,
       "coverage/**": true,
       "dist/**": true
   },
   "files.trimTrailingWhitespace": true,
   "search.exclude": {
     "**/node_modules": true,
-    ".vscode/**": true,
     ".build/**": true,
-    "out/**": true,
-    "i18n/**": true
+    "i18n/**": true,
+    "out/**": true
+  },
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false
   },
   "telemetry.enableTelemetry": false,
   "telemetry.enableCrashReporter": false,
-  "tslint.autoFixOnSave": true,
-  "tslint.enable": true,
-  "typescript.autoImportSuggestions.enabled": true,
+  "tslint.configFile": "./tslint.json",
   "typescript.format.enable": true,
   "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
   "typescript.format.insertSpaceAfterTypeAssertion": true,
-  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
   "typescript.format.insertSpaceBeforeAndAfterBinaryOperators": true,
-  "[markdown]": {
-    "files.trimTrailingWhitespace": false
-  }
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "git.ignoreLimitWarning": true
 }

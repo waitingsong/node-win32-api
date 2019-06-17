@@ -19,6 +19,7 @@
   "globals": {
   },
   "rules": {
+    "valid-typeof": [ 1 ],
     "linebreak-style": [ 2, "unix" ],
     "semi": [ 1, "never", {"beforeStatementContinuationChars": "always"} ],
     "quotes": [ 2, "single" ],
