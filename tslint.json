@@ -10,6 +10,7 @@
     "adjacent-overload-signatures": true,
     "align": [true, "members", "parameters", "statements"],
     "array-bracket-spacing": [true, "never", {"singleValue": false, "objectsInArrays": true, "arraysInArrays": true} ],	// 设置在括号内使用空格风格
+    "array-type": [true, "array-simple"],
     "arrow-parens": [true, "ban-single-arg-parens"],
     "await-promise": [true, "Thenable"],  // Warns for an awaited value that is not a Promise.
     "ban-comma-operator": true,
@@ -29,16 +30,11 @@
     "max-line-length": [true, 120],
     "member-access": [ false ],
     "member-ordering": [true, {"order": [
-      "public-static-field",
-      "protected-static-field",
-      "private-static-field",
-      "public-instance-field",
-      "protected-instance-field",
-      "private-instance-field",
+      "static-field",
+      "instance-field",
       "public-constructor",
-      "public-instance-method",
-      "protected-instance-method",
-      "private-instance-method"
+      "static-method",
+      "instance-method"
     ]}],
     "no-arg": true,
     "no-angle-bracket-type-assertion": false,
