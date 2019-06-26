@@ -75,10 +75,12 @@ log.txt
 .vscode/
 
 .idea/
+.ionic/
 .sourcemaps/
 .sass-cache/
 .tmp/
 .versions/
+www/
 dist/
 tmp/
 temp/
