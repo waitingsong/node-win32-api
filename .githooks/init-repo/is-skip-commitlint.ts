@@ -2,10 +2,11 @@
  * 通过设置执行结果 code， 检查是否需要执行 commitlint
  */
 
-import { isSkipCommitlint, join } from '@waiting/shared-core'
 import { tap } from 'rxjs/operators'
 
+import { join } from './init-utils'
 import { protectBranch, skipMsg } from './is-skip-commitlint-rule'
+import { isSkipCommitlint } from './test-skip-commitlint'
 
 
 const args = process.argv

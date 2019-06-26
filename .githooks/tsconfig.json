@@ -3,17 +3,11 @@
   "compilerOptions": {
     "declaration": false,
     "module": "commonjs",
-    "outDir": "./"
+    "outDir": "./",
+    "sourceMap": false,
+    "target": "esnext"
   },
   "include": [
-    "*.ts"
-  ],
-  "exclude": [
-    "asset/",
-    "dist/",
-    "test/",
-    "node_modules*",
-    "**/*.d.ts",
-    "**/*.spec.ts"
+    "**/*.ts"
   ]
 }

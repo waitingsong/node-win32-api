@@ -32,21 +32,4 @@ if [[ $files != "" ]] ; then
   git add $files
 fi
 
-
-# -------------- parse js
-files=$(git diff --cached --name-only --diff-filter=ACMR $against|grep '\.js$')
-
-# Prevent ESLint help message if no files matched
-if [[ $files != "" ]] ; then
-  echo $files | xargs eslint --fix -c .eslintrc.json
-  rc=$?
-  if [[ $rc != 0 ]] ; then
-    echo -e "拒绝: ESLint 语法校验失败!"
-    echo -e "ESLint错误代码信息参考 http://eslint.cn/docs/rules/ 或者 http://eslint.org/docs/rules/"
-    echo -e ""
-    exit $rc
-  fi
-  git add $files
-fi
-
 exit 0
