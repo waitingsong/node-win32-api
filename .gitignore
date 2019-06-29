@@ -1,5 +1,7 @@
 package-lock.json
 yarn.lock
+/agent.js
+/app.js
 app/**/*.js
 test/**/*.js
 config/**/*.js
