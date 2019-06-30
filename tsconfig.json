@@ -20,12 +20,14 @@
     "src/**/*"
   ],
   "exclude": [
-    "asset/",
-    "dist/",
-    "test/",
-    "/test_browser*",
-    "node_modules*",
     "**/*.d.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "asset",
+    "dist",
+    "node_modules*",
+    "src/app/public",
+    "src/app/views",
+    "test",
+    "/test_browser*"
   ]
 }
