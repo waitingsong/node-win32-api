@@ -2,7 +2,7 @@
   "extends": ["tslint:latest", "tslint-eslint-rules"],
   "linterOptions": {
     "exclude": [
-      "node_modules",
+      "node_modules*/**/*",
       "*.d.ts"
     ]
   },
@@ -72,6 +72,7 @@
       "@angular/platform-browser",
       "@angular/platform-browser-dynamic",
       "@ionic-native",
+      "midway-mock",
       "rxjs",
       "source-map-support/register",
       "zone.js"
