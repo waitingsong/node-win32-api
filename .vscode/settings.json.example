@@ -4,6 +4,7 @@
   },
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
+  "eslint.autoFixOnSave": true,
   "files.insertFinalNewline": true,
   "files.eol": "\n",
   "files.exclude": {
@@ -42,7 +43,7 @@
   },
   "files.watcherExclude": {
       "**/.classpath": true,
-      "**/.factorypath": true
+      "**/.factorypath": true,
       "**/.git/objects/**": true,
       "**/.project": true,
       "**/.settings": true,
