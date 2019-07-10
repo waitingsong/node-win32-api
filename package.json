@@ -77,7 +77,7 @@
   },
   "scripts": {
     "bp:add": "git remote add bp https://github.com/waitingsong/npm-base",
-    "bp:sync": "git fetch bp && git pull --no-edit bp master",
+    "bp:sync": "git fetch --all -v && git merge bp/master -m \"Merge remote-tracking branch 'bp/master'\"",
     "build": "npm run clean && npm run lint && npm run lint:t && npm run tsc && npm run jslint && npm run rp",
     "devbuild": "npm run clean && npm run tsc:dev && npm run rp",
     "clean": "rm -rf dist/*",
