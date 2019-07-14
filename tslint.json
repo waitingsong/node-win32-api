@@ -2,7 +2,7 @@
   "extends": ["tslint:latest", "tslint-eslint-rules"],
   "linterOptions": {
     "exclude": [
-      "node_modules",
+      "node_modules*/**/*",
       "*.d.ts"
     ]
   },
@@ -10,6 +10,7 @@
     "adjacent-overload-signatures": true,
     "align": [true, "members", "parameters", "statements"],
     "array-bracket-spacing": [true, "never", {"singleValue": false, "objectsInArrays": true, "arraysInArrays": true} ],	// 设置在括号内使用空格风格
+    "array-type": [true, "array-simple"],
     "arrow-parens": [true, "ban-single-arg-parens"],
     "await-promise": [true, "Thenable"],  // Warns for an awaited value that is not a Promise.
     "ban-comma-operator": true,
@@ -26,19 +27,14 @@
     "interface-name": [ false, "never-prefix" ],
     "linebreak-style": [true , "LF" ],
     "max-classes-per-file": [ true, 10 ],
-    "max-line-length": [true, 120],
+    "max-line-length": [true, 140],
     "member-access": [ false ],
     "member-ordering": [true, {"order": [
-      "public-static-field",
-      "protected-static-field",
-      "private-static-field",
-      "public-instance-field",
-      "protected-instance-field",
-      "private-instance-field",
+      "static-field",
+      "instance-field",
       "public-constructor",
-      "public-instance-method",
-      "protected-instance-method",
-      "private-instance-method"
+      "static-method",
+      "instance-method"
     ]}],
     "no-arg": true,
     "no-angle-bracket-type-assertion": false,
@@ -72,9 +68,14 @@
     ],
     "no-string-throw": true,
     "no-submodule-imports": [true, 
-      "rxjs",
+      "@angular/core/testing",
       "@angular/platform-browser",
-      "source-map-support/register"
+      "@angular/platform-browser-dynamic",
+      "@ionic-native",
+      "midway-mock",
+      "rxjs",
+      "source-map-support/register",
+      "zone.js"
     ],
     "no-this-assignment": [true, {"allowed-names": ["^self$"], "allow-destructuring": true}],
     "no-trailing-whitespace": [true, "ignore-comments"],	// 禁用行尾空白 
@@ -84,6 +85,7 @@
     "no-var-keyword": true,  // 要求使用 let 或 const 而不是 var
     "no-var-requires": true,  // Disallows the use of require statements except in import statements.
     "object-curly-spacing": [true, "always"],	// 强制在大括号中使用一致的空格
+    "object-literal-key-quotes": [true, "as-needed"],
     "object-literal-shorthand": [true],
     "object-literal-sort-keys": false,
     "one-line": [true, "check-open-brace", "check-whitespace"],
@@ -113,14 +115,7 @@
     "ter-no-irregular-whitespace": true, // 禁止不规则的空白
     "trailing-comma": [true, 
       {
-        "multiline": {
-          "arrays": "always",
-          "exports": "always",
-          "imports": "always",
-          "functions": "always",
-          "objects": "always",
-          "typeLiterals": "always"
-        },
+        "multiline": "always",
         "singleline": "never",
         "esSpecCompliant": true
       }

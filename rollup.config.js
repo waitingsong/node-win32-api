@@ -123,9 +123,7 @@ if (pkg.browser) {
       input: pkg.module,
       plugins: [
         resolve({
-          browser: true,
-          jsnext: true,
-          main: true,
+          mainFields: ['browser', 'module', 'main']
         }),
         commonjs(),
         production && terser(uglifyOpts),

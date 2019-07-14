@@ -1,5 +1,7 @@
 package-lock.json
 yarn.lock
+/agent.js
+/app.js
 app/**/*.js
 test/**/*.js
 config/**/*.js
@@ -75,10 +77,12 @@ log.txt
 .vscode/
 
 .idea/
+.ionic/
 .sourcemaps/
 .sass-cache/
 .tmp/
 .versions/
+www/
 dist/
 tmp/
 temp/

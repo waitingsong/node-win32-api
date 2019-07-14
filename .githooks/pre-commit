@@ -17,6 +17,11 @@ else
   against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
 fi
 
+branch=$( git branch | grep \* | cut -d ' ' -f2- )
+if [[ $branch != "master" ]]; then
+  exit 0
+fi
+
 # ------------- parse ts
 files=$(git diff --cached --name-only --diff-filter=ACMR $against|grep '\.ts$')
 if [[ $files != "" ]] ; then
@@ -26,23 +31,6 @@ if [[ $files != "" ]] ; then
   if [[ $rc != 0 ]] ; then
     echo -e "拒绝: TSLint 语法校验失败!"
     echo -e "ESLint错误代码信息参考 https://palantir.github.io/tslint/rules/ "
-    echo -e ""
-    exit $rc
-  fi
-  git add $files
-fi
-
-
-# -------------- parse js
-files=$(git diff --cached --name-only --diff-filter=ACMR $against|grep '\.js$')
-
-# Prevent ESLint help message if no files matched
-if [[ $files != "" ]] ; then
-  echo $files | xargs eslint --fix -c .eslintrc.json
-  rc=$?
-  if [[ $rc != 0 ]] ; then
-    echo -e "拒绝: ESLint 语法校验失败!"
-    echo -e "ESLint错误代码信息参考 http://eslint.cn/docs/rules/ 或者 http://eslint.org/docs/rules/"
     echo -e ""
     exit $rc
   fi

@@ -2,8 +2,8 @@
  * 搜索指定目录以 file.example 文件为基础生成不带后缀的文件为不带 .example 后缀的文件
  */
 
-import { genFileFromExample, join } from '@waiting/shared-core'
-
+import { genFileFromExample } from './init-example-file'
+import { join } from './init-utils'
 import folderArr from './init.config'
 
 
