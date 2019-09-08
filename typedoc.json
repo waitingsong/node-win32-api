@@ -1,0 +1,12 @@
+{
+  "excludeExternals": true,
+  "excludeNotExported": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "gitRevision": "master",
+  "ignoreCompilerErrors": true,
+  "mode": "modules",
+  "module": "commonjs",
+  "out": "docs",
+  "target": "ES6"
+}

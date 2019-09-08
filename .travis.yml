@@ -1,0 +1,36 @@
+if: tag IS blank
+
+git:
+  depth: 10
+
+language: node_js
+node_js:
+  - '10'
+  - '12'
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - openssl version
+  - npm root -g
+  - npm i -g lerna
+  - npm run bootstrap
+
+#services:
+#  - postgresql
+#addons:
+#  postgresql: "9.6"
+#before_script:
+#  - psql -U postgres -c "create database db_ci_test;"
+
+install: true
+
+script:
+  - npm run build
+  - npm run test
+
+after_success:
+  #- npm run cov:coveralls
+

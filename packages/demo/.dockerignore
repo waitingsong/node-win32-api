@@ -1,0 +1,11 @@
+*.swp
+*.md
+!README.md
+.dockerignore
+.git
+.hg
+.svn
+Dockerfile
+node_modules
+npm-debug.log
+
