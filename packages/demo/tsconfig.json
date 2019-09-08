@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "declaration": false,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "incremental": true,
     "inlineSourceMap": true,
-    "module": "commonjs",
+    "module": "ES6",
     "moduleResolution": "node",
     "newLine": "lf",
     "noFallthroughCasesInSwitch": true,
@@ -15,7 +15,6 @@
     "pretty": true,
     "skipLibCheck": true,
     "strict": true,
-    "stripInternal": true,
     "target": "ES2019",
     "tsBuildInfoFile": ".vscode/.tsbuildinfo",
     "types" : ["node", "mocha"]
