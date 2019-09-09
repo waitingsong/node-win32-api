@@ -26,6 +26,13 @@ Thumbs.db
 *.[oa]
 
 
+# for lerna mono repo
+# egg
+/packages/**/*.js
+/packages/**/config/
+/packages/**/lib/
+
+
 # for java
 bin/
 gen/
