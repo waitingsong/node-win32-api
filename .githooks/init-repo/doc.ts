@@ -33,7 +33,7 @@ retrievePkgs()
   })
   .then(async (arg) => {
     if (arg) {
-      const sh = `typedoc --options typedoc.json --name ${projectName} ${arg}`
+      const sh = `typedoc --options typedoc.json --readme README.MD --name ${projectName} ${arg}`
       const ps: RxSpawnOpts = {
         msgPrefixOpts: {
           stderrPrefix: 'stderr:',
