@@ -1,4 +1,5 @@
 {
+  "version": "0.0.0",
   "packages": [
     "packages/*"
   ],
@@ -11,7 +12,9 @@
     "bootstrap": {
       "hoist": true,
       "noCi": true,
-      "nohoist": ["cross-env"],
+      "nohoist": [
+        "cross-env"
+      ],
       "npmClientArgs": [
         "--no-package-lock"
       ]
@@ -21,6 +24,5 @@
       "registry": "https://registry.npmjs.org/"
     }
   },
-  "npmClient": "npm",
-  "version": "0.0.0"
+  "npmClient": "npm"
 }
