@@ -1,15 +1,21 @@
-import { join, statAsync, isPathAccessible } from './init-utils'
-import { run, RxRunFnArgs, RxSpawnOpts, MsgPrefixOpts } from 'rxrunscript'
-
-import { commonList, detailList, skipPkgList } from './doc-list'
 import { readdirSync } from 'fs'
-import { mapTo, tap } from 'rxjs/operators'
+
+import { run, RxSpawnOpts } from 'rxrunscript'
+import { tap, mergeMap, mapTo, defaultIfEmpty } from 'rxjs/operators'
+
+import {
+  commonList,
+  detailList,
+  skipPkgList,
+  fileNameToCopyList,
+} from './doc-list'
+import { join, statAsync, isPathAccessible, copyFileAsync } from './init-utils'
+import { Observable, of } from 'rxjs'
+
 
 const baseDir = join(__dirname, '..')
 const pkgEntryName = 'packages'
 const pkgDir = join(baseDir, pkgEntryName)
-
-const fileSet: Set<string> = new Set()
 
 const rootPkgJson = require(join(baseDir, 'package.json'))
 const projectName = rootPkgJson.name
@@ -19,21 +25,30 @@ if (!projectName) {
   process.exit(1)
 }
 
-retrievePkgs()
+
+copyRootFilesToMainPkg(projectName)
+  .then(async (paths) => {
+    const cpFiles =  await commitFiles(paths).toPromise()
+    if (cpFiles.length) {
+      console.log('Sync Files: ' + cpFiles.join(' '))
+    }
+
+    return retrievePkgs()
+  })
   .then(prefixArr => {
     return genFromCommon(prefixArr, commonList)
   })
   .then(async (data) => {
     const list = await genFromDetail(detailList)
     if (data.length > 0 || list.length > 0) {
-      const arg = `${list.join(' ')} ${data.join(' ')}`
-      return arg
+      const arr = [...list, ...data]
+      return arr
     }
-    return ''
+    return []
   })
-  .then(async (arg) => {
-    if (arg) {
-      const sh = `typedoc --options typedoc.json --readme README.MD --name ${projectName} ${arg}`
+  .then(async (srcArr) => {
+    if (srcArr.length) {
+      const sh = `typedoc --options typedoc.json --name ${projectName} --readme README.md`
       const ps: RxSpawnOpts = {
         msgPrefixOpts: {
           stderrPrefix: 'stderr:',
@@ -43,10 +58,10 @@ retrievePkgs()
         cwd: baseDir,
       }
 
-      await run(sh, [], ps)
+      await run(sh, srcArr, ps)
         .pipe(
-          tap(val => {
-            console.log(val.toString())
+          tap(buf => {
+            console.log(buf.toString())
           }),
         )
         .toPromise()
@@ -55,6 +70,11 @@ retrievePkgs()
       process.exit(0)
     }
   })
+  .catch(err => {
+    console.log(err.message)
+  })
+
+
 
 async function retrievePkgs(): Promise<string[]> {
   const ret: string[] = []
@@ -93,7 +113,6 @@ async function genFromCommon(pkgNameArr: string[], files: string[]): Promise<str
       const path = join(baseDir, relativePath)
 
       if (! await isPathAccessible(path)) {
-        console.log('bcz')
         continue
       }
 
@@ -135,6 +154,72 @@ async function genFromDetail(files: string[]): Promise<string[]> {
   }
 
   return ret
-
 }
 
+
+/**
+ * Copy Readme.md from root to the main package folder,
+ * @returns - files path
+ */
+async function copyRootFilesToMainPkg(dstName: string): Promise<string[]> {
+  const paths: string[] = []
+
+  for (const name of fileNameToCopyList) {
+    const srcPath = join(baseDir, name)
+    const dstPath = join(pkgDir, dstName, name)
+
+    try {
+      await copyFileAsync(srcPath, dstPath)
+      paths.push(dstPath)
+    }
+    catch (ex) {
+      console.log(ex.message)
+    }
+  }
+
+  return paths
+}
+
+function commitFiles(paths: string[]): Observable<string[]> {
+  if (! paths.length) {
+    return of([])
+  }
+
+  const sh = `git diff --name-only`
+  const ps: RxSpawnOpts = {
+    msgPrefixOpts: {
+      stderrPrefix: 'stderr:',
+      errPrefix: 'error:'
+    },
+    stderrMaxBufferSize: 2000,
+    cwd: baseDir,
+  }
+
+  const files$ = run(sh, paths, ps)
+    .pipe(
+      mergeMap(buf => {
+        const str = buf.toString().trim()
+        if (str.length) {
+          const files = str.split(/\n|(\r\n)|\r/).filter(val => val && val.trim().length > 0)
+          // console.log('changed file:', files)
+          const add = 'git add'
+          return run(add, files).pipe(
+            mapTo(files)
+          )
+        }
+        return []
+      }),
+      mergeMap(files => {
+        if (files.length) {
+          const cm = 'git commit -m "docs: sync readme document" -- '
+          return run(cm, files).pipe(
+            mapTo(files)
+          )
+        }
+        return []
+      }),
+      defaultIfEmpty([] as string[])
+    )
+  
+    return files$
+}

@@ -17,3 +17,11 @@ export const detailList = [
 export const skipPkgList = [
   'demo',
 ]
+
+/**
+ * Files name in root dir to be copyed to the main pkg folder
+ */
+export const fileNameToCopyList = [
+  'README.md',
+  'README.zh-CN.md',
+]
