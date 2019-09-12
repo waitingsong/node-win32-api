@@ -43,7 +43,7 @@
     "lint": "lerna run lint",
     "purge": "npm run clean && rm -rf node_modules",
     "publish": "npm run clean && npm run bootstrap && sh .githooks/publish.sh",
-    "repo:init": "sh .githooks/init-repo.sh",
+    "repo:init": "sh .githooks/init-repo.sh && sh .githooks/build.sh",
     "reset": "npm run purge && npm i && npm run ci",
     "test": "lerna run test"
   }
