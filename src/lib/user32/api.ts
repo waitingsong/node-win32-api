@@ -45,6 +45,8 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   GetClassInfoExW(hinst: M.HINSTANCE | null, lpszClass: M.LPCTSTR, LPWNDCLASSEX: M.LPWNDCLASSEX): M.BOOL
 
+  GetForegroundWindow(): M.HWND
+
   GetMessageW(lpMsg: M.LPMSG, HWND: M.HWND | null, wMsgFilterMin: M.UINT, wMsgFilterMax: M.UINT): M.BOOL
 
   GetParent(hWnd: M.HWND): M.HWND
@@ -129,6 +131,8 @@ export const apiDef: FM.DllFuncs = {
   GetAncestor: [W.HWND, [W.HWND, W.UINT] ],
 
   GetClassInfoExW: [W.BOOL, [W.HINSTANCE, W.LPCTSTR, W.LPWNDCLASSEX] ],
+
+  GetForegroundWindow: [W.HWND, [] ],
 
   GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT] ],
 
