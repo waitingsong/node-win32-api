@@ -20,8 +20,10 @@ platform:
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform
   - npm root -g
+  - echo %APPVEYOR_REPO_COMMIT_MESSAGE%
   - npm i -g lerna
   - npm run bootstrap
+  - echo %APPVEYOR_REPO_COMMIT_MESSAGE% | .\\node_modules\\.bin\\commitlint 
 
 #services:
 #  - postgresql101

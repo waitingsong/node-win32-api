@@ -15,8 +15,10 @@ cache:
 before_install:
   - openssl version
   - npm root -g
+  - echo $TRAVIS_COMMIT_MESSAGE
   - npm i -g lerna
   - npm run bootstrap
+  - echo "$TRAVIS_COMMIT_MESSAGE" | node_modules/.bin/commitlint 
 
 #services:
 #  - postgresql
