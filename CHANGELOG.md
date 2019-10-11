@@ -1,6 +1,8 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [6.2.0](https://github.com/waitingsong/node-win32-api/compare/v6.1.0...v6.2.0) (2019-10-11)
 
 # [6.1.0](https://github.com/waitingsong/node-win32-api/compare/v6.0.0...v6.1.0) (2019-03-17)
 
