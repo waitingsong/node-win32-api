@@ -35,6 +35,9 @@
   "engines": {
     "node": ">=10.16.0"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "npm run tsc && npm run rp",
     "devbuild": "npm run tsc && npm run rp",
