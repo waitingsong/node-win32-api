@@ -25,7 +25,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-types": "1",
+    "@waiting/shared-types": "3",
     "rxjs": "^6.5.2"
   },
   "devDependencies": {
