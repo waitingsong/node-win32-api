@@ -39,11 +39,9 @@ npm run bootstrap
 | Package       | Version                | Dependencies                 | DevDependencies                |
 | ------------- | ---------------------- | ---------------------------- | ------------------------------ |
 | [`demo`]      | [![demo-svg]][demo-ch] | [![demo-d-svg]][demo-d-link] | [![demo-dd-svg]][demo-dd-link] |
-| [`demo-docs`] | [![docs-svg]][docs-ch] | [![docs-d-svg]][docs-d-link] | [![docs-dd-svg]][docs-dd-link] |
 
 
 [`demo`]: https://github.com/waitingsong/npm-mono-base/tree/master/packages/demo
-[`demo-docs`]: https://github.com/waitingsong/npm-mono-base/tree/master/packages/demo-docs
 
 [demo-svg]: https://img.shields.io/npm/v/kmore.svg?maxAge=86400
 [demo-ch]: https://github.com/waitingsong/npm-mono-base/tree/master/packages/demo/CHANGELOG.md
@@ -52,9 +50,3 @@ npm run bootstrap
 [demo-dd-svg]: https://david-dm.org/waitingsong/kmore/dev-status.svg?path=packages/kmore
 [demo-dd-link]: https://david-dm.org/waitingsong/kmore?path=packages/kmore#info=devDependencies
 
-[docs-svg]: https://img.shields.io/npm/v/kmore-types.svg?maxAge=86400
-[docs-ch]: https://github.com/waitingsong/npm-mono-base/tree/master/packages/demo-docs/CHANGELOG.md
-[docs-d-svg]: https://david-dm.org/waitingsong/kmore.svg?path=packages/kmore-types
-[docs-d-link]: https://david-dm.org/waitingsong/kmore.svg?path=packages/kmore-types
-[docs-dd-svg]: https://david-dm.org/waitingsong/kmore/dev-status.svg?path=packages/kmore-types
-[docs-dd-link]: https://david-dm.org/waitingsong/kmore?path=packages/kmore-types#info=devDependencies

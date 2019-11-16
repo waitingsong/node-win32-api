@@ -4,7 +4,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "incremental": true,
-    "inlineSourceMap": true,
     "module": "ES6",
     "moduleResolution": "node",
     "newLine": "lf",

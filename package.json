@@ -1,6 +1,6 @@
 {
   "name": "npm-mono-base",
-  "description": "monorepo",
+  "description": "",
   "private": true,
   "devDependencies": {
     "@commitlint/cli": "8",
