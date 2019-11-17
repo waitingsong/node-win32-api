@@ -28,7 +28,7 @@ do
       files=$(git diff --name-only --diff-filter=ACMR $remote_sha $local_sha| grep '\.ts$')
 
       if [[ $files != "" ]] ; then
-        npm run lint
+        npm run lint:nofix
         rc=$?
         if [[ $rc != 0 ]] ; then
           echo -e "拒绝: ESLint 语法校验失败!"
