@@ -30,7 +30,7 @@
     "rxrunscript": "5",
     "ts-node": "8",
     "typescript": "3",
-    "yargs": "14"
+    "yargs": "15"
   },
   "scripts": {
     "bp:add": "git remote add bp https://github.com/waitingsong/npm-mono-base",
