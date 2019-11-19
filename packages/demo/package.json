@@ -36,6 +36,7 @@
     "node": ">=10.16.0"
   },
   "files": [
+    "bin/*.js",
     "dist"
   ],
   "scripts": {
