@@ -36,17 +36,34 @@ npm run bootstrap
 
 ## Packages
 
-| Package       | Version                | Dependencies                 | DevDependencies                |
-| ------------- | ---------------------- | ---------------------------- | ------------------------------ |
-| [`demo`]      | [![demo-svg]][demo-ch] | [![demo-d-svg]][demo-d-link] | [![demo-dd-svg]][demo-dd-link] |
+| Package      | Version                | Dependencies                 | DevDependencies                |
+| ------------ | ---------------------- | ---------------------------- | ------------------------------ |
+| [`demo`]     | [![main-svg]][main-ch] | [![main-d-svg]][main-d-link] | [![main-dd-svg]][main-dd-link] |
+| [`demo-cli`] | [![cli-svg]][cli-ch]   | [![cli-d-svg]][cli-d-link]   | [![cli-dd-svg]][cli-dd-link]   |
+
+
+## License
+[MIT](LICENSE)
+
+
+### Languages
+- [English](README.md)
+- [中文](README.zh-CN.md)
 
 
 [`demo`]: https://github.com/waitingsong/npm-mono-base/tree/master/packages/demo
+[main-svg]: https://img.shields.io/npm/v/kmore.svg?maxAge=86400
+[main-ch]: https://github.com/waitingsong/kmore/tree/master/packages/demo/CHANGELOG.md
+[main-d-svg]: https://david-dm.org/waitingsong/kmore.svg?path=packages/kmore
+[main-d-link]: https://david-dm.org/waitingsong/kmore.svg?path=packages/kmore
+[main-dd-svg]: https://david-dm.org/waitingsong/kmore/dev-status.svg?path=packages/kmore
+[main-dd-link]: https://david-dm.org/waitingsong/kmore?path=packages/kmore#info=devDependencies
 
-[demo-svg]: https://img.shields.io/npm/v/kmore.svg?maxAge=86400
-[demo-ch]: https://github.com/waitingsong/npm-mono-base/tree/master/packages/demo/CHANGELOG.md
-[demo-d-svg]: https://david-dm.org/waitingsong/kmore.svg?path=packages/kmore
-[demo-d-link]: https://david-dm.org/waitingsong/kmore.svg?path=packages/kmore
-[demo-dd-svg]: https://david-dm.org/waitingsong/kmore/dev-status.svg?path=packages/kmore
-[demo-dd-link]: https://david-dm.org/waitingsong/kmore?path=packages/kmore#info=devDependencies
+[`demo-cli`]: https://github.com/waitingsong/kmore/tree/master/packages/kmore-cli
+[cli-svg]: https://img.shields.io/npm/v/kmore-cli.svg?maxAge=86400
+[cli-ch]: https://github.com/waitingsong/kmore/tree/master/packages/kmore-clie/CHANGELOG.md
+[cli-d-svg]: https://david-dm.org/waitingsong/kmore.svg?path=packages/kmore-cli
+[cli-d-link]: https://david-dm.org/waitingsong/kmore.svg?path=packages/kmore-cli
+[cli-dd-svg]: https://david-dm.org/waitingsong/kmore/dev-status.svg?path=packages/kmore-cli
+[cli-dd-link]: https://david-dm.org/waitingsong/kmore?path=packages/kmore-cli#info=devDependencies
 
