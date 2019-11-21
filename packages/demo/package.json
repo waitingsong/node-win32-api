@@ -39,9 +39,9 @@
     "bin/*.js",
     "dist"
   ],
+  "preferGlobal": false,
   "scripts": {
     "build": "npm run tsc && npm run rp",
-    "devbuild": "npm run tsc && npm run rp",
     "clean": "rm -rf dist/* .vscode/.tsbuildinfo .vscode/.tsbuildinfo.* ",
     "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json nyc mocha",
     "lint": "eslint --fix --cache {src,test}/**/*.ts",
