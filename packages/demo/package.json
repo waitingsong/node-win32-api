@@ -39,7 +39,6 @@
     "bin/*.js",
     "dist"
   ],
-  "preferGlobal": false,
   "scripts": {
     "build": "npm run tsc && npm run rp",
     "clean": "rm -rf dist/* .vscode/.tsbuildinfo .vscode/.tsbuildinfo.* ",
