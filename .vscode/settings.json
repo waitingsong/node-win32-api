@@ -3,17 +3,9 @@
   "editor.renderFinalNewline": false,
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
-  "eslint.autoFixOnSave": true,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "html",
-    {
-      "language": "typescript",
-      "autoFix": true
-    },
-    "typescriptreact"
-  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   "files.eol": "\n",
   "files.exclude": {
     "**/*.js": {
@@ -37,6 +29,10 @@
     "logs": true,
     "out": true,
     "package-lock.json": true,
+    "packages/*/.eslint*": true,
+    "packages/*/dist": true,
+    "packages/*/logs": true,
+    "packages/*/run": true,
     "rollup.*": true,
     "run": true,
     "**/*.map": true,
@@ -47,10 +43,12 @@
     "**/node_modules*": true
   },
   "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true,
   "files.watcherExclude": {
     "coverage/**": true,
     "dist/**": true,
+    "packages/*/dist/**": true,
+    "packages/*/logs/**": true,
+    "packages/*/run/**": true,
     "run/**": true,
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
@@ -62,7 +60,7 @@
     "**/temp/**": true,
     "**/tmp/**": true
   },
-  "javascript.format.semicolons": "remove",
+  "files.trimTrailingWhitespace": true,
   "search.exclude": {
     "i18n/**": true,
     "library/": true,
@@ -75,7 +73,6 @@
   "search.useIgnoreFiles": true,
   "telemetry.enableTelemetry": false,
   "typescript.autoClosingTags": false,
-  "typescript.experimental.useSeparateSyntaxServer": true,
   "typescript.format.enable": true,
   "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
