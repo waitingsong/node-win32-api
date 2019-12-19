@@ -1,6 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 source `dirname $0`/build.sh
+set -e
 git add .
-lerna publish $* 
+lerna publish $*
+set +e
 
