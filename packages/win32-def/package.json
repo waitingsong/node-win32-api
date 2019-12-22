@@ -32,7 +32,7 @@
     "cross-env": "6"
   },
   "engines": {
-    "node": ">=8.10.0"
+    "node": ">=10.16.0"
   },
   "files": [
     "bin/*.js",

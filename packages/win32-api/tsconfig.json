@@ -14,7 +14,7 @@
     "pretty": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2017",
+    "target": "ES2019",
     "tsBuildInfoFile": ".vscode/.tsbuildinfo",
     "types" : ["node", "mocha"]
   },
