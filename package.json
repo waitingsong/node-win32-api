@@ -1,6 +1,6 @@
 {
-  "name": "npm-mono-base",
-  "description": "",
+  "name": "win32-api",
+  "description": "FFI definitions of windows win32 api for node-ffi",
   "private": true,
   "devDependencies": {
     "@commitlint/cli": "8",

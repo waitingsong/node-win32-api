@@ -26,10 +26,9 @@
     "url": "git+https://github.com/waitingsong/node-win32-api.git"
   },
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@waiting/shared-core": "^1.9.1",
+    "@waiting/shared-core": "3",
     "cross-env": "6"
   },
   "engines": {
