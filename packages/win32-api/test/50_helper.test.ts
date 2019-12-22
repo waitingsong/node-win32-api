@@ -3,11 +3,13 @@
 
 import * as fs from 'fs'
 import { basename, normalize } from 'path'
+
 import * as assert from 'power-assert'
 import { FModel } from 'win32-def'
 
 import * as Win from '../src/index'
 import * as H from '../src/lib/helper'
+
 
 const filename = basename(__filename)
 const dllDir = normalize(__dirname + '/../src/lib/')
@@ -31,7 +33,7 @@ describe(filename + ' :gen_api_opts() all', () => {
       let n = 0
 
       for (const fn in api) {
-        if (!{}.hasOwnProperty.call(api, fn)) {
+        if (! {}.hasOwnProperty.call(api, fn)) {
           continue
         }
         n += 1

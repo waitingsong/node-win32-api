@@ -2,8 +2,9 @@
 /// <reference types="mocha" />
 
 import { spawn, ChildProcess } from 'child_process'
-import * as ffi from 'ffi'
 import { basename } from 'path'
+
+import * as ffi from 'ffi'
 import * as assert from 'power-assert'
 import * as ref from 'ref-napi'
 import { of } from 'rxjs'
@@ -25,7 +26,7 @@ const title = 'new-calc-' + Math.random()
 
 describe(filename, () => {
 
-  it('find app window by user32.EnumWindows()', done => {
+  it('find app window by user32.EnumWindows()', (done) => {
     const child = spawn('calc.exe')
     const enumWindowsProc = createEnumWinProc()
 
@@ -35,12 +36,12 @@ describe(filename, () => {
         const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
         const hWnd = user32.FindWindowExW(null, null, lpszClass, null)
 
-        if (hWnd && !ref.isNull(hWnd) && ref.address(hWnd)) {
+        if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
           // Change title of the Calculator
           user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
 
           const buf = Buffer.alloc(title.length * 2)
-          let str: string = ''
+          let str = ''
 
           user32.GetWindowTextW(hWnd, buf, buf.byteLength)
           str = buf.toString('ucs2').replace(/\0+$/, '')
@@ -59,7 +60,7 @@ describe(filename, () => {
     )
       .subscribe(
         () => {},
-        err => {
+        (err) => {
           assert(false, err)
           child.kill()
           done()
@@ -85,7 +86,7 @@ function createEnumWinProc(): M.WNDENUMPROC {
     [W.HWND, W.LPARAM],
     (hWnd: M.HWND, lParam: M.INT32): M.BOOLEAN => { // stop loop if return false
       const visible = user32.IsWindowVisible(hWnd)
-      if (!visible) {
+      if (! visible) {
         return true
       }
 

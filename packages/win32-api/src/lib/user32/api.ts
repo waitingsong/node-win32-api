@@ -53,11 +53,11 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   GetParent(hWnd: M.HWND): M.HWND
 
-  GetTopWindow(hWnd: M.HWND): M.HWND;
+  GetTopWindow(hWnd: M.HWND): M.HWND
 
   GetWindow(hWnd: M.HWND, uCmd: M.UINT): M.HWND
 
-  GetWindowInfo(hwnd: M.HWND, pwi: M.PWINDOWINFO): M.BOOL   // Note that you must set the pwi.cbSize!
+  GetWindowInfo(hwnd: M.HWND, pwi: M.PWINDOWINFO): M.BOOL // Note that you must set the pwi.cbSize!
 
   GetWindowLongW(hWnd: M.HWND, nIndex: M.INT): M.LONG
 
@@ -110,17 +110,19 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
 export const apiDef: FM.DllFuncs = {
   BringWindowToTop: [W.BOOL, [W.HWND] ],
-  
+
   /** url: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-clienttoscreen */
   ClientToScreen: [W.BOOL, [W.HWND, W.LPPOINT] ],
 
   CloseWindow: [W.BOOL, [W.HWND] ],
 
-  CreateWindowExW: [W.HWND, [
-    W.DWORD, W.LPCTSTR, W.LPCTSTR, W.DWORD,
-    W.INT, W.INT, W.INT, W.INT,
-    W.HWND, W.HMENU, W.HINSTANCE, W.LPVOID,
-  ] ],
+  CreateWindowExW: [
+    W.HWND, [
+      W.DWORD, W.LPCTSTR, W.LPCTSTR, W.DWORD,
+      W.INT, W.INT, W.INT, W.INT,
+      W.HWND, W.HMENU, W.HINSTANCE, W.LPVOID,
+    ],
+  ],
 
   DefWindowProcW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
 

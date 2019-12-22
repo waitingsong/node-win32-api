@@ -37,7 +37,7 @@ describe(`${dll}.${method}()`, () => {
     const kernelTime: M.FILETIME_Struct = new fileTimeClass()
     const userTime: M.FILETIME_Struct = new fileTimeClass()
 
-    knl32.GetSystemTimes.async(idleTime.ref(), kernelTime.ref(), userTime.ref(), err => {
+    knl32.GetSystemTimes.async(idleTime.ref(), kernelTime.ref(), userTime.ref(), (err) => {
       if (err) {
         return assert(false, err.message ? err.message : 'unknown error')
       }

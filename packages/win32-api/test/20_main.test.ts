@@ -3,10 +3,12 @@
 
 import * as fs from 'fs'
 import { basename, normalize } from 'path'
+
 import * as assert from 'power-assert'
 import { Config, FModel as FM } from 'win32-def'
 
 import * as Win from '../src/index'
+
 
 const filename = basename(__filename)
 const dllDir = normalize(__dirname + '/../src/lib/')
@@ -29,26 +31,26 @@ describe(filename, () => {
         const apiDef = <FM.DllFuncs> module.apiDef
 
         it('Should FnName of definition be string', () => {
-          for (let x in apiDef) {    // tslint:disable-line
+          for (const x in apiDef) { // tslint:disable-line
             assert(typeof x === 'string')
           }
         })
 
         it('Should FnParams of definition be array', () => {
-          for (let x in apiDef) {    // tslint:disable-line
+          for (const x in apiDef) { // tslint:disable-line
             const p = apiDef[x]
             assert(typeof p === 'object' && Array.isArray(p), `${x}()`)
           }
         })
 
         it('Should FnRetType of definition be string and not epmty or array', () => {
-          for (let x in apiDef) {    // tslint:disable-line
+          for (const x in apiDef) { // tslint:disable-line
             test_param_return_type(apiDef[x][0], x)
           }
         })
 
         it('Should FnRetType of definition exists in conf.windefSet', () => {
-          for (let x in apiDef) {    // tslint:disable-line
+          for (const x in apiDef) { // tslint:disable-line
             const p = apiDef[x][0]
             const st = {
               _UNICODE: true,
@@ -67,7 +69,7 @@ describe(filename, () => {
               }
             }
             for (const k of Object.keys(st)) {
-              if (!st[k]) {
+              if (! st[k]) {
                 assert(
                   Config.windefSet.has(p),
                   `${x}() value: "${p}" ${st._WIN64 ? 'x64' : 'ia32'},
@@ -79,7 +81,7 @@ describe(filename, () => {
         })
 
         it('Should FnCallParams of definition be array', () => {
-          for (let x in apiDef) {    // tslint:disable-line
+          for (const x in apiDef) { // tslint:disable-line
             const p = apiDef[x]
             assert(typeof p[1] === 'object' && Array.isArray(p[1]), `${x}()`)
           }
@@ -87,7 +89,7 @@ describe(filename, () => {
 
         it('Should item of FnCallParams of definition exists in conf.windefSet and valid', () => {
           if (Config.windefSet && Config.windefSet.size) {
-            for (let x in apiDef) {    // tslint:disable-line
+            for (const x in apiDef) { // tslint:disable-line
               const arr = apiDef[x][1]
               const len = arr.length
 
@@ -114,7 +116,7 @@ describe(filename, () => {
 
     })
 
-  }   // loop END
+  } // loop END
 })
 
 
@@ -129,7 +131,7 @@ describe(filename, () => {
           const api: FM.DllFuncs = module.load()
 
           for (const fn in api) {
-            if (!{}.hasOwnProperty.call(api, fn)) {
+            if (! {}.hasOwnProperty.call(api, fn)) {
               continue
             }
             it(`Should ${fn}() be typeof "function"`, () => {
@@ -168,5 +170,4 @@ function test_call_param(param: FM.FnParam, x: string, i: number): void {
     assert(false, `${x}() string value of param (index: ${i}) is NEIGHER string NOR array`)
   }
 }
-
 

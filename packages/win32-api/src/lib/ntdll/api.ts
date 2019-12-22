@@ -6,9 +6,9 @@ export interface Win32Fns extends FM.DllFuncsModel {
   NtQueryInformationProcess(
     ProcessHandle: M.HANDLE,
     ProcessInformationClass: number,
-    ProcessInformation: M.PVOID,       // _Out_
+    ProcessInformation: M.PVOID, // _Out_
     ProcessInformationLength: M.ULONG,
-    ReturnLength: M.PULONG | null,    // _Out_opt_ ppid
+    ReturnLength: M.PULONG | null, // _Out_opt_ ppid
   ): M.NTSTATUS
 
 }

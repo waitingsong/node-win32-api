@@ -1,9 +1,7 @@
 /// <reference types="node" />
 /// <reference types="mocha" />
 
-import {
-  basename,
-} from '@waiting/shared-core'
+import { basename } from '@waiting/shared-core'
 import * as assert from 'power-assert'
 import { interval, of } from 'rxjs'
 import {
@@ -23,7 +21,7 @@ import { changeTitle, createWindow, createWndProc, destroyWin } from './helper'
 const filename = basename(__filename)
 
 describe(filename, () => {
-  it('Should WndProc works at more loops', done => {
+  it('Should WndProc works at more loops', (done) => {
     const loops = 1024
     const titlePrefix = 'win32-api-'
     const wndProc: M.WNDPROC = createWndProc()
@@ -34,7 +32,7 @@ describe(filename, () => {
 
     let handle: M.HWND
     const handle$ = createWindow(wndProc).pipe(
-      tap(hWnd => {
+      tap((hWnd) => {
         handle = hWnd
       }),
       delay(1500),
@@ -45,9 +43,9 @@ describe(filename, () => {
     const start = new Date().getTime()
 
     handle$.pipe(
-      switchMap(hWnd => {
+      switchMap((hWnd) => {
         return range$.pipe(
-          concatMap(index => {
+          concatMap((index) => {
             const newTitle = titlePrefix + index
             changeTitle(hWnd, newTitle)
             return of(index)
@@ -64,7 +62,7 @@ describe(filename, () => {
       }),
     )
       .subscribe(
-        index => {
+        (index) => {
           assert(index + 1 <= loops, `index(${index}) exceed loops(${loops})`)
         },
         err => assert(false, err),

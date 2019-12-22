@@ -3,6 +3,7 @@
 
 import { spawn } from 'child_process'
 import { basename } from 'path'
+
 import * as assert from 'power-assert'
 import * as ref from 'ref-napi'
 
@@ -18,7 +19,7 @@ import {
 const filename = basename(__filename)
 
 describe(filename, () => {
-  it('Open a calc.exe and find it\'s window hWnd', done => {
+  it('Open a calc.exe and find it\'s window hWnd', (done) => {
     const child = spawn('calc.exe')
 
     setTimeout(() => {
@@ -38,7 +39,7 @@ describe(filename, () => {
     }, 1500)
   })
 
-  it('Open a calc.exe and change it\'s window title', done => {
+  it('Open a calc.exe and change it\'s window title', (done) => {
     const child = spawn('calc.exe')
 
     setTimeout(() => {
@@ -50,14 +51,14 @@ describe(filename, () => {
         // Change title of the Calculator
         const res = user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
 
-        if (!res) {
+        if (! res) {
           // See: [System Error Codes] below
           const errcode = knl32.GetLastError()
           const len = 255
           const buf = Buffer.alloc(len)
           // tslint:disable-next-line
-          const p = 0x00001000 | 0x00000200  // FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
-          const langid = 0x0409              // 0x0409: US, 0x0000: Neutral locale language
+          const p = 0x00001000 | 0x00000200 // FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
+          const langid = 0x0409 // 0x0409: US, 0x0000: Neutral locale language
           const msglen = knl32.FormatMessageW(p, null, errcode, langid, buf, len, null)
 
           if (msglen) {

@@ -3,6 +3,7 @@
 
 import { spawn } from 'child_process'
 import { basename } from 'path'
+
 import * as assert from 'power-assert'
 import * as ref from 'ref-napi'
 
@@ -17,7 +18,7 @@ import {
 const filename = basename(__filename)
 
 describe(filename, () => {
-  it('Open a calc.exe and find it\'s window hWnd', done => {
+  it('Open a calc.exe and find it\'s window hWnd', (done) => {
     const child = spawn('calc.exe')
 
     setTimeout(() => {
@@ -43,7 +44,7 @@ describe(filename, () => {
     }, 1500)
   })
 
-  it('Open a calc.exe and find it\'s window hWnd', done => {
+  it('Open a calc.exe and find it\'s window hWnd', (done) => {
     const child = spawn('calc.exe')
 
     setTimeout(() => {
@@ -72,7 +73,7 @@ describe(filename, () => {
   })
 
 
-  it('Open a calc.exe and change it\'s window title', done => {
+  it('Open a calc.exe and change it\'s window title', (done) => {
     const child = spawn('calc.exe')
 
     setTimeout(() => {
@@ -81,7 +82,7 @@ describe(filename, () => {
           child.kill()
           done()
         })
-        .catch(err => {
+        .catch((err) => {
           assert(false, err)
           child.kill()
           done()
@@ -90,7 +91,7 @@ describe(filename, () => {
   })
 
 
-  it('Open a calc.exe and change it\'s window title with partial loading', done => {
+  it('Open a calc.exe and change it\'s window title with partial loading', (done) => {
     const child = spawn('calc.exe')
 
     setTimeout(() => {
@@ -99,7 +100,7 @@ describe(filename, () => {
           child.kill()
           done()
         })
-        .catch(err => {
+        .catch((err) => {
           assert(false, err)
           child.kill()
           done()
@@ -120,18 +121,18 @@ function findNSetWinTitleAsync(): Promise<void> {
         return reject(err.message)
       }
 
-      if (hWnd && !ref.isNull(hWnd) && ref.address(hWnd)) {
+      if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
         const title = 'Node-Calculator'
         user32.SetWindowTextW.async(hWnd, Buffer.from(title + '\0', 'ucs2'), (err2, res) => {
           if (err2) {
             return reject(err2.message)
           }
-          else if (!res) {
+          else if (! res) {
             return reject('SetWindowTextW() failed')
           }
 
           const buf = Buffer.alloc(title.length * 2)
-          user32.GetWindowTextW.async(hWnd, buf, buf.byteLength, err3 => {
+          user32.GetWindowTextW.async(hWnd, buf, buf.byteLength, (err3) => {
             if (err3) {
               return reject(err3.message)
             }
@@ -161,16 +162,16 @@ function findNSetWinTitleAsyncPartial(): Promise<void> {
         return reject(err.message)
       }
 
-      if (hWnd && !ref.isNull(hWnd) && ref.address(hWnd)) {
+      if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
         const title = 'Node-Calculator'
         // Change title of the Calculator
-        u32.SetWindowTextW.async(hWnd, Buffer.from(title + '\0', 'ucs2'), err2 => {
+        u32.SetWindowTextW.async(hWnd, Buffer.from(title + '\0', 'ucs2'), (err2) => {
           if (err2) {
             return reject(err2.message)
           }
 
           const buf = Buffer.alloc(title.length * 2)
-          u32.GetWindowTextW.async(hWnd, buf, buf.byteLength, err3 => {
+          u32.GetWindowTextW.async(hWnd, buf, buf.byteLength, (err3) => {
             if (err3) {
               return reject(err3.message)
             }

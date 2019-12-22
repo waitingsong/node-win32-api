@@ -5,9 +5,11 @@ import { DllNames } from '../model'
 
 import { apiDef, Win32Fns } from './api'
 
+
 export { apiDef }
 export { Win32Fns }
 export const dllName = DllNames.comctl32
 export const load = (
   fns?: FModel.FnName[],
-  settings?: FModel.LoadSettings) => hload<FModel.ExpandFnModel<Win32Fns>>(dllName, apiDef, fns, settings)
+  settings?: FModel.LoadSettings,
+) => hload<FModel.ExpandFnModel<Win32Fns>>(dllName, apiDef, fns, settings)

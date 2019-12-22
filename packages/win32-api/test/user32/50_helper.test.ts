@@ -2,11 +2,13 @@
 /// <reference types="mocha" />
 
 import { basename } from 'path'
+
 import * as assert from 'power-assert'
 import { FModel } from 'win32-def'
 
 import * as Win from '../../src/index'
 import * as H from '../../src/lib/helper'
+
 
 const filename = basename(__filename)
 // const dllDir = normalize(__dirname + '/../../src/lib/')

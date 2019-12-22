@@ -2,7 +2,7 @@ import * as ffi from 'ffi'
 import { Config, FModel } from 'win32-def'
 
 
-const dllInst: Map<string, any> = new Map()    // for DLL.load() with settings.singleton === true
+const dllInst: Map<string, any> = new Map() // for DLL.load() with settings.singleton === true
 
 export function load<T>(
   dllName: string,
@@ -16,7 +16,7 @@ export function load<T>(
   if (st && st.singleton) {
     let inst = get_inst_by_name<T>(dllName)
 
-    if (!inst) {
+    if (! inst) {
       inst = <T> ffi.Library(dllName, gen_api_opts(dllFuncs, fns))
       set_inst_by_name(dllName, inst)
     }
@@ -37,7 +37,7 @@ export function gen_api_opts(dllFuncs: FModel.DllFuncs, fns?: FModel.FnName[]): 
       const ps: FModel.FnParams = dllFuncs[fn]
 
       if (ps) {
-        Object.defineProperty(ret, <string> fn, {
+        Object.defineProperty(ret, fn, {
           value: <FModel.FnParams> ps,
           writable: false,
           enumerable: true,
@@ -50,7 +50,7 @@ export function gen_api_opts(dllFuncs: FModel.DllFuncs, fns?: FModel.FnName[]): 
     for (const fn of Object.keys(dllFuncs)) {
       const ps = <any> dllFuncs[fn]
 
-      Object.defineProperty(ret, <string> fn, {
+      Object.defineProperty(ret, fn, {
         value: <FModel.FnParams> ps,
         writable: false,
         enumerable: true,

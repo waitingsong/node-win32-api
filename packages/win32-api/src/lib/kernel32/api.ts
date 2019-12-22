@@ -10,7 +10,7 @@ export interface Win32Fns extends FM.DllFuncsModel {
     dwFlags: M.DWORD,
     lpSource: M.LPCVOID | null,
     dwMessageId: M.DWORD,
-    dwLanguageId: M.DWORD,     // 0x0409: US, 0x0000: Neutral locale language
+    dwLanguageId: M.DWORD, // 0x0409: US, 0x0000: Neutral locale language
     lpBuffer: M.LPTSTR,
     nSize: M.DWORD,
     Arguments: M.va_list | null,

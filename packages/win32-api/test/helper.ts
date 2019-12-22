@@ -18,6 +18,7 @@ import {
   U,
 } from '../src/index'
 
+
 export const Struct = StructDi(ref)
 export const knl32 = K.load()
 export const user32 = U.load()
@@ -78,7 +79,7 @@ export function createWindow(wndProc: M.WNDPROC): Observable<M.HWND> {
   wClass.lpszClassName = className
   wClass.hIconSm = ref.NULL
 
-  if (!user32.RegisterClassExW(wClass.ref())) {
+  if (! user32.RegisterClassExW(wClass.ref())) {
     throw new Error('Error registering class')
   }
   // tslint:disable: no-bitwise
@@ -97,7 +98,7 @@ export function createWindow(wndProc: M.WNDPROC): Observable<M.HWND> {
     ref.NULL,
   )
 
-  if (hWnd && !ref.isNull(hWnd) && ref.address(hWnd)) {
+  if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
     user32.ShowWindow(hWnd, 1)
     user32.UpdateWindow(hWnd)
 
@@ -110,11 +111,11 @@ export function createWindow(wndProc: M.WNDPROC): Observable<M.HWND> {
 }
 
 export function changeTitle(handle: M.HANDLE, title: string): string {
-  if (handle && !ref.isNull(handle) && ref.address(handle)) {
+  if (handle && ! ref.isNull(handle) && ref.address(handle)) {
     // Change title of the Calculator
     const res = user32.SetWindowTextW(handle, Buffer.from(title + '\0', 'ucs2'))
 
-    if (!res) {
+    if (! res) {
       throw new Error('changeTitle failed')
     }
     else {

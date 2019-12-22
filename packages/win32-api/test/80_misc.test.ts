@@ -1,15 +1,14 @@
 /// <reference types="mocha" />
 
 import { basename } from 'path'
+
 import * as assert from 'power-assert'
 import {
   DModel as M,
   DStruct as DS,
 } from 'win32-def'
 
-import {
-  Struct,
-} from './helper'
+import { Struct } from './helper'
 
 
 const filename = basename(__filename)
