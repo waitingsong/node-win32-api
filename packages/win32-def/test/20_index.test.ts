@@ -23,8 +23,8 @@ describe(filename + ' :parse_windef()', () => {
     const lenRet = Object.keys(DTypes).length
 
     if (lenData !== lenRet) {
-      const onlyInData = <Set<string>> new Set()
-      const onlyInIndex = <Set<string>> new Set()
+      const onlyInData: Set<string> = new Set()
+      const onlyInIndex: Set<string> = new Set()
 
       for (const key of Object.keys(windata)) {
         if (typeof DTypes[key] === 'undefined') {

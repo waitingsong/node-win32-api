@@ -15,7 +15,7 @@ import * as DModel from './lib/win.model'
 import * as windef from './lib/windef'
 
 
-const DTypes = <typeof windef> parse_windef(windef, macroMap)
+const DTypes = parse_windef(windef, macroMap) as typeof windef
 
 export { Config }
 export { FModel } // ffi model

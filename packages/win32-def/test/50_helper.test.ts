@@ -29,13 +29,13 @@ const mods = rewire('../src/lib/helper')
 
 describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
   const fnName = 'parse_param_placeholder'
-  const fn = <(
+  const fn = mods.__get__(fnName) as (
     param: FnParam | MacroDef,
     settings?: LoadSettings,
-  ) => FnParam> mods.__get__(fnName)
+  ) => FnParam
 
   it(`Should ${fnName} handle value of settings correctly)`, () => {
-    const st = <LoadSettings> { ...settingsDefault }
+    const st = { ...settingsDefault } as LoadSettings
     try {
       const p: any = null
       fn(p, st)
@@ -47,7 +47,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
   })
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
-    const st = <LoadSettings> { ...settingsDefault }
+    const st = { ...settingsDefault } as LoadSettings
     try {
       const p: MacroDef = ['invalid_placeholder', 'int64', 'int32']
       fn(p, st)
@@ -85,7 +85,7 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
     const st = { ...settingsDefault }
 
     try {
-      fn(<[string, string, string]> LPTSTR, { ...st, _UNICODE: true })
+      fn(LPTSTR as [string, string, string], { ...st, _UNICODE: true })
       assert(false, 'shout throw error but NOT')
     }
     catch (ex) {
@@ -112,10 +112,10 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
 
 describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
   const fnName = 'parse_placeholder_arch'
-  const fn = <(
+  const fn = mods.__get__(fnName) as (
     param: FnParam | MacroDef,
     _WIN64: boolean,
-  ) => FnParam> mods.__get__(fnName)
+  ) => FnParam
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
     const p: any = 'test'
@@ -150,10 +150,10 @@ describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
 
 describe(filename + ' :parse_placeholder_unicode(param, _WIN64)', () => {
   const fnName = 'parse_placeholder_unicode'
-  const fn = <(
+  const fn = mods.__get__(fnName) as (
     param: FnParam | MacroDef,
     _UNICODE: boolean,
-  ) => FnParam> mods.__get__(fnName)
+  ) => FnParam
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
     const p: any = 'test'
@@ -231,13 +231,13 @@ describe(filename + ' :parse_windef()', () => {
   })
 
   it(`Should ${fnName} process windef macro members correctly)`, () => {
-    const W = <DataTypes> {}
+    const W: DataTypes = {}
     const keyArch = '__testKeyArch'
     const v64 = '_v64'
     const v32 = '_v32'
 
     W[keyArch] = _WIN64_HOLDER
-    let map = <MacroMap> new Map([ [keyArch, [_WIN64_HOLDER, v64, v32] ] ])
+    let map: MacroMap = new Map([ [keyArch, [_WIN64_HOLDER, v64, v32] ] ])
 
     let _WIN64 = true
     try {
@@ -263,7 +263,7 @@ describe(filename + ' :parse_windef()', () => {
 
     delete W[keyArch]
     W[keyUni] = _UNICODE_HOLDER
-    map = <MacroMap> new Map([ [keyUni, [_UNICODE_HOLDER, uni, ansi] ] ])
+    map = new Map([ [keyUni, [_UNICODE_HOLDER, uni, ansi] ] ]) as MacroMap
 
     let _UNICODE = true
     try {
@@ -293,8 +293,8 @@ describe(filename + ' :parse_windef()', () => {
     const lenDef = Object.keys(W).length
 
     if (lenData !== lenDef) {
-      const onlyInRet = <Set<string>> new Set()
-      const onlyInW = <Set<string>> new Set()
+      const onlyInRet: Set<string> = new Set()
+      const onlyInW: Set<string> = new Set()
 
       for (const key of Object.keys(windata)) {
         if (typeof W[key] === 'undefined') {
@@ -416,14 +416,14 @@ describe(filename + ' :validateWinData()', () => {
 
 describe(filename + ' :prepare_windef_ref()', () => {
   const fnName = 'prepare_windef_ref'
-  const fn = <(
+  const fn = mods.__get__(fnName) as (
     ww: DataTypes,
     macroSrc: Map<string, string>,
-  ) => DataTypes> mods.__get__(fnName)
+  ) => DataTypes
 
   it(`Should ${fnName}() works)`, () => {
     const ww = { FAKE: 'fake' }
-    const macroSrc = <Map<string, string>> new Map()
+    const macroSrc: Map<string, string> = new Map()
 
     macroSrc.set('FAKE', '')
 
@@ -441,16 +441,16 @@ describe(filename + ' :prepare_windef_ref()', () => {
 
 describe(filename + ' :_lookupRef()', () => {
   const fnName = '_lookupRef'
-  const fn = <(
+  const fn = mods.__get__(fnName) as (
     key: string,
     ww: DataTypes,
     macroSrc: Map<string, string>,
-  ) => string> mods.__get__(fnName)
+  ) => string
 
   it(`Should ${fnName}() works)`, () => {
     const ww = { Fake: 'PVOID' }
     const fakeValue = 'vooid'
-    const macroSrc = <Map<string, string>> new Map()
+    const macroSrc: Map<string, string> = new Map()
 
     macroSrc.set('PVOID', fakeValue)
 

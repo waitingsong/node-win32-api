@@ -1,3 +1,4 @@
+/* eslint-disable id-length */
 // windows data types struct for ref-struct module https://github.com/TooTallNate/ref-struct
 
 import { parse_windef } from './helper'
@@ -5,7 +6,7 @@ import { macroMap } from './marcomap'
 import * as windef from './windef'
 
 
-const W = <typeof windef> parse_windef(windef, macroMap)
+const W = parse_windef(windef, macroMap) as typeof windef
 
 /**
  * Struct usage:

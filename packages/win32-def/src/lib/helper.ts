@@ -40,20 +40,20 @@ function parse_param_placeholder(param: FnParam | MacroDef, settings?: LoadSetti
   }
 
   const st = parse_settings(settings)
-  let p: FnParam = ''
+  let ps: FnParam = ''
 
   switch (param[0]) {
     case _WIN64_HOLDER:
-      p = parse_placeholder_arch(param, <boolean> st._WIN64)
+      ps = parse_placeholder_arch(param, st._WIN64 as boolean)
       break
     case _UNICODE_HOLDER:
-      p = parse_placeholder_unicode(param, <boolean> st._UNICODE)
+      ps = parse_placeholder_unicode(param, st._UNICODE as boolean)
       break
     default:
       throw new Error('the value of param placeholder invlaid:' + param[0])
   }
 
-  return p
+  return ps
 }
 
 
@@ -86,7 +86,7 @@ function parse_placeholder_unicode(param: FnParam | MacroDef, _UNICODE: boolean)
  * or ['_UNICODE_HOLDER_', 'uint16*', 'uint8*'] to 'uint16*' or 'uint8*'
  */
 function prepare_macro(macroMap: MacroMap, settings?: LoadSettings): Map<string, FnParam> {
-  const ret = <Map<string, FnParam>> new Map()
+  const ret: Map<string, FnParam> = new Map()
 
   // v string|array
   for (const [k, v] of macroMap.entries()) {
@@ -101,8 +101,8 @@ function prepare_macro(macroMap: MacroMap, settings?: LoadSettings): Map<string,
  * macroMap <['PVOID', 'uint32*'], ...>
  */
 function prepare_windef_ref(ww: DataTypes, macroSrc: Map<string, string>): DataTypes {
-  const ret = <DataTypes> {}
-  const map = <Map<string, string>> new Map()
+  const ret: DataTypes = {}
+  const map: Map<string, string> = new Map()
 
   // first loop paser keys which exists in macroSrc
   for (const x of Object.keys(ww)) {
@@ -161,7 +161,7 @@ function prepare_windef_ref(ww: DataTypes, macroSrc: Map<string, string>): DataT
 
 
 function clone_filter_windef(windef: DataTypes): DataTypes {
-  const ret = <DataTypes> {}
+  const ret: DataTypes = {}
 
   for (const x of Object.keys(windef)) {
     if (typeof windef[x] === 'string') {
@@ -197,7 +197,7 @@ export function lookupRef(key: string, ww: DataTypes, macroSrc: Map<string, stri
     return ''
   }
 
-  for (let i = 0, len = 3; i < len; i++) {
+  for (let i = 0, len = 3; i < len; i += 1) {
     const tmp = _lookupRef(ret, ww, macroSrc)
 
     if (tmp) {
@@ -212,7 +212,7 @@ export function lookupRef(key: string, ww: DataTypes, macroSrc: Map<string, stri
 }
 function _lookupRef(key: string, ww: DataTypes, macroSrc: Map<string, string>): string {
   if (macroSrc.has(key)) {
-    return <string> macroSrc.get(key)
+    return macroSrc.get(key) as string
   }
 
   // key is not valid FFIParam such 'int/uint...', like HMODULE: 'HANDLE'
@@ -221,7 +221,7 @@ function _lookupRef(key: string, ww: DataTypes, macroSrc: Map<string, string>): 
     const ret = ww[key]
 
     if (ret && macroSrc.has(ret)) { //  HANDLE:PVOID, macroSrc has PVOID
-      return <string> macroSrc.get(ret)
+      return macroSrc.get(ret) as string
     }
     return ret
   }

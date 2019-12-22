@@ -102,10 +102,10 @@ function test_arch_half(values: Set<string>) {
 function _test_arch_half(typesHalf: Set<string>, settings: LoadSettings) {
   const W = H.parse_windef(WD, macroMap, { ...settings })
   const fnName = 'parse_param_placeholder'
-  const fn = <(
+  const fn = mods.__get__(fnName) as (
     param: FnParam | MacroDef,
     settings?: LoadSettings,
-  ) => FnParam> mods.__get__(fnName)
+  ) => FnParam
 
 
   for (const vv of typesHalf) {
