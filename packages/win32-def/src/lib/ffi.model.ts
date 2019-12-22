@@ -1,11 +1,10 @@
-import {
-  Push,
-} from '@waiting/shared-core'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Push } from '@waiting/shared-types'
 
 // for translation of windef
-export type MacroParam<T> = T | [T, T, T]  // [s,s,s] for conversion of macro windows data like LPCTSTR
-export type MacroDef = [string, string, string]    // ['_WIN64_HOLDER', 'int64*', 'int32*']
-export type MacroMap = Map<string, MacroDef>  // <'PVOID', ['_WIN64_HOLDER', 'int64*', 'int32*']>
+export type MacroParam<T> = T | [T, T, T] // [s,s,s] for conversion of macro windows data like LPCTSTR
+export type MacroDef = [string, string, string] // ['_WIN64_HOLDER', 'int64*', 'int32*']
+export type MacroMap = Map<string, MacroDef> // <'PVOID', ['_WIN64_HOLDER', 'int64*', 'int32*']>
 
 export type _WIN64 = boolean
 export type _UNICODE = boolean
@@ -20,9 +19,9 @@ export interface StructTypes {
 }
 
 export interface LoadSettings {
-  singleton: boolean  // for DLL.load()
+  singleton: boolean // for DLL.load()
   _UNICODE?: boolean // default true
-  _WIN64?: boolean   // default from process.arch
+  _WIN64?: boolean // default from process.arch
 }
 
 
@@ -67,7 +66,7 @@ export interface FFIBuffer extends Buffer {
   /** Shorthand for `ref.writeInt64LE`. */
   writeInt64LE(offset: number, input: number | string): any
   /** Shorthand for `ref.writeObject`. */
-  writeObject(offset: number, object: Object): void;  // tslint:disable-line
+  writeObject(offset: number, object: Record<string, any>): void // tslint:disable-line
   /** Shorthand for `ref.writePointer`. */
   writePointer(offset: number, pointer: FFIBuffer): void
   /** Shorthand for `ref.writeUInt64BE`. */
@@ -82,9 +81,7 @@ export interface FFIBuffer extends Buffer {
   /** add by waiting. below extened via Buffer.prototype by ref.js */
   hexAddress(): string
 }
-export {
-  FFIBuffer as Buffer,
-}
+export { FFIBuffer as Buffer }
 
 
 // custome
@@ -92,9 +89,9 @@ export type PID = number
 export type PPID = number
 
 export type FnName = string
-export type FnParam = string  // param type for definition of FFI
+export type FnParam = string // param type for definition of FFI
 export type FnRetType = FnParam
-export type FnCallParam = FnParam   // each param of calling function
+export type FnCallParam = FnParam // each param of calling function
 export type FnCallParams = FnCallParam[] | never[] // calling params
 export type FnParams = [FnRetType, FnCallParams] // def for ffi [returnType, [calling param, ...]]
 export interface DllFuncs {
@@ -120,9 +117,13 @@ export interface AsyncSyncFuncModel {
   [key: string]: SyncFnModel
 }
 
-export interface AppendAsyncToSyncFnModel <T extends DllFuncsModel, K extends keyof T> {
+export interface AppendAsyncToSyncFnModel<T extends DllFuncsModel, K extends keyof T> {
+  // @ts-ignore
   async(...args: Push<Parameters<T[K]>, (err: Error, result: ReturnType<T[K]>) => void>): void
 }
+
+
+/* eslint-disable @typescript-eslint/indent */
 
 /**
  * Expand FnModel with async()
@@ -163,10 +164,11 @@ export interface AppendAsyncToSyncFnModel <T extends DllFuncsModel, K extends ke
  */
 export type ExpandFnModel<T extends DllFuncsModel> = {
   [K in keyof T]: 'async' extends keyof T[K]
-    ? T[K]
-    : T[K] extends AsyncSyncFuncModel
-      ? T[K]
-      : T[K] & {
-        async(...args: Push<Parameters<T[K]>, (err: Error, result: ReturnType<T[K]>) => any>): void,
-      }
+  ? T[K]
+  : T[K] extends AsyncSyncFuncModel
+  ? T[K]
+  : T[K] & {
+    // @ts-ignore
+    async(...args: Push<Parameters<T[K]>, (err: Error, result: ReturnType<T[K]>) => any>): void,
+  }
 }
