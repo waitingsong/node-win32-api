@@ -3,31 +3,32 @@
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "inlineSourceMap": false,
+    "incremental": true,
     "module": "ES6",
     "moduleResolution": "node",
     "newLine": "lf",
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "./dist",
+    "outDir": "dist",
     "pretty": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2017"
+    "target": "ES2017",
+    "tsBuildInfoFile": ".vscode/.tsbuildinfo",
+    "types" : ["node", "mocha"]
   },
   "include": [
-    "src/**/*"
+    "src/**/*.ts"
   ],
   "exclude": [
-    "**/*.d.ts",
-    "**/*.spec.ts",
     "asset",
+    "app/public",
+    "app/views",
     "dist",
     "node_modules*",
-    "src/app/public",
-    "src/app/views",
     "test",
-    "/test_browser*"
+    "**/*.d.ts",
+    "**/*.spec.ts"
   ]
 }
