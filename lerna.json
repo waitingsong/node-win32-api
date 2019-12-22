@@ -1,0 +1,28 @@
+{
+  "version": "0.0.0",
+  "packages": [
+    "packages/*"
+  ],
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md"
+      ]
+    },
+    "bootstrap": {
+      "hoist": true,
+      "noCi": true,
+      "nohoist": [
+        "cross-env"
+      ],
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
+    },
+    "version": {
+      "conventionalCommits": true,
+      "registry": "https://registry.npmjs.org/"
+    }
+  },
+  "npmClient": "npm"
+}
