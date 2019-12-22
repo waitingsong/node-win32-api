@@ -1,10 +1,7 @@
 /// <reference types="mocha" />
 
-import {
-  basename,
-} from '@waiting/shared-core'
+import { basename } from '@waiting/shared-core'
 import * as assert from 'power-assert'
-import rewire = require('rewire')
 
 import { settingsDefault } from '../src/lib/config'
 import {
@@ -15,6 +12,9 @@ import {
 import * as H from '../src/lib/helper'
 import { macroMap } from '../src/lib/marcomap'
 import * as WD from '../src/lib/windef'
+
+
+import rewire = require('rewire')
 
 const filename = basename(__filename)
 const mods = rewire('../src/lib/helper')
@@ -34,9 +34,7 @@ describe(filename, () => {
     'ULONG_PTR', 'DWORD_PTR', 'PDWORD_PTR', 'PSIZE_T', 'SIZE_T',
     'POINTER_32', 'POINTER_64', 'PHKEY',
   ])
-  const typesHalf = new Set([
-    'HALF_PTR', 'UHALF_PTR',
-  ])
+  const typesHalf = new Set(['HALF_PTR', 'UHALF_PTR'])
 
   test_arch(types64_32)
   test_arch_half(typesHalf)
@@ -77,7 +75,7 @@ function _test_arch(types64_32: Set<string>, settings: LoadSettings) {
         assert(param.indexOf('64') > 2 && param.indexOf('32') === -1, `"${vv}: ${param}" invalid during x64`)
       }
       else {
-        if (!(param.indexOf('32') > 2 && param.indexOf('64') === -1)) {
+        if (! (param.indexOf('32') > 2 && param.indexOf('64') === -1)) {
           console.info('error:::', W)
         }
         assert(param.indexOf('32') > 2 && param.indexOf('64') === -1, `"${vv}: ${param}" invalid during ia32`)
@@ -91,12 +89,12 @@ function test_arch_half(values: Set<string>) {
 
   for (const k of Object.keys(st)) {
     if (st[k]) {
-      _test_arch_half(values, { ...st, [k]: !st[k] })
+      _test_arch_half(values, { ...st, [k]: ! st[k] })
     }
   }
   for (const k of Object.keys(st)) {
-    if (!st[k]) {
-      _test_arch_half(values, { ...st, [k]: !st[k] })
+    if (! st[k]) {
+      _test_arch_half(values, { ...st, [k]: ! st[k] })
     }
   }
 }
@@ -116,18 +114,18 @@ function _test_arch_half(typesHalf: Set<string>, settings: LoadSettings) {
 
     it(`Should ${vv}: value converted correctly under nodejs ${settings._WIN64 ? 'x64' : 'ia32'}`, () => {
       if (settings._WIN64) {
-        const cond: boolean = !! param && typeof param === 'string' &&
-          param.indexOf('32') > 2 &&
-          param.indexOf('16') === -1 &&
-          param.indexOf('64') === -1
+        const cond: boolean = !! param && typeof param === 'string'
+          && param.indexOf('32') > 2
+          && param.indexOf('16') === -1
+          && param.indexOf('64') === -1
 
-        assert(cond, `${vv}: ${param} under x64`)   // must use param not W[vv]
+        assert(cond, `${vv}: ${param} under x64`) // must use param not W[vv]
       }
       else {
-        const cond: boolean = !! param && typeof param === 'string' &&
-          param.indexOf('16') > 2 &&
-          param.indexOf('32') === -1 &&
-          param.indexOf('64') === -1
+        const cond: boolean = !! param && typeof param === 'string'
+          && param.indexOf('16') > 2
+          && param.indexOf('32') === -1
+          && param.indexOf('64') === -1
 
         assert(cond, `${vv}: ${param} under ia32`)
       }
@@ -153,17 +151,17 @@ function unicode(_UNICODE: boolean, typesUnicode: Set<string>) {
 
     it(`Should macro ${vv}: value mathes setting of ANSI/UNICODE`, () => {
       if (_UNICODE) {
-        const cond: boolean = !! param && typeof param === 'string' &&
-          param.indexOf('16') > 2 &&
-          param.indexOf('8') === -1
+        const cond: boolean = !! param && typeof param === 'string'
+          && param.indexOf('16') > 2
+          && param.indexOf('8') === -1
 
         assert(cond, `${vv}: ${param} at UNICODE`)
       }
       else {
         // PTSTR == 'char*' under ia32
-        const cond: boolean = !! param && typeof param === 'string' &&
-          (param.indexOf('8') > 2 || param === 'char*') &&
-          param.indexOf('16') === -1
+        const cond: boolean = !! param && typeof param === 'string'
+          && (param.indexOf('8') > 2 || param === 'char*')
+          && param.indexOf('16') === -1
 
         assert(cond, `${vv}: ${param} at ANSI`)
       }

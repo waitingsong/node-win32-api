@@ -14,10 +14,11 @@ import { macroMap } from './lib/marcomap'
 import * as DModel from './lib/win.model'
 import * as windef from './lib/windef'
 
+
 const DTypes = <typeof windef> parse_windef(windef, macroMap)
 
 export { Config }
 export { FModel } // ffi model
 export { DModel } // model of window data types
-export { DStruct }  // window constans data types of structure for ref-struc
+export { DStruct } // window constans data types of structure for ref-struc
 export { DTypes } // window data types

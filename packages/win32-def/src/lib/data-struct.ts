@@ -4,6 +4,7 @@ import { parse_windef } from './helper'
 import { macroMap } from './marcomap'
 import * as windef from './windef'
 
+
 const W = <typeof windef> parse_windef(windef, macroMap)
 
 /**
@@ -68,7 +69,7 @@ export const POINT = {
 
 export const PROCESS_BASIC_INFORMATION = {
   Reserved1: W.PVOID,
-  PebBaseAddress: W.PVOID,  // PPEB
+  PebBaseAddress: W.PVOID, // PPEB
   Reserved2: W.PVOID,
   UniqueProcessId: W.ULONG_PTR,
   InheritedFromUniqueProcessId: W.PVOID,
@@ -147,6 +148,6 @@ export { RECT as _RECT }
 
 /** https://docs.microsoft.com/en-us/windows/desktop/api/minwinbase/ns-minwinbase-filetime */
 export const FILETIME = {
-  dwLowDateTime : W.DWORD,
-  dwHighDateTime : W.DWORD,
+  dwLowDateTime: W.DWORD,
+  dwHighDateTime: W.DWORD,
 }

@@ -11,6 +11,7 @@ import {
   WCHAR,
 } from './windef'
 
+
 export const macroMap: MacroMap = <MacroMap> new Map([
   ['PVOID', [_WIN64_HOLDER, 'uint64*', 'uint32*'] ],
   ['LONG_PTR', [_WIN64_HOLDER, 'int64', 'int32'] ],

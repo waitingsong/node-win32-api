@@ -1,10 +1,7 @@
 /// <reference types="mocha" />
 
-import {
-  basename,
-} from '@waiting/shared-core'
+import { basename } from '@waiting/shared-core'
 import * as assert from 'power-assert'
-import rewire = require('rewire')
 
 import {
   settingsDefault,
@@ -21,6 +18,9 @@ import {
 import * as H from '../src/lib/helper'
 import { macroMap } from '../src/lib/marcomap'
 import * as WD from '../src/lib/windef'
+
+
+import rewire = require('rewire')
 
 
 const filename = basename(__filename)
@@ -137,7 +137,7 @@ describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
     try {
-      const p: any = [1, 2]    // should 3 items
+      const p: any = [1, 2] // should 3 items
       fn(p, true)
       assert(false, 'should throw Error by invalid param, but not')
     }
@@ -175,7 +175,7 @@ describe(filename + ' :parse_placeholder_unicode(param, _WIN64)', () => {
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
     try {
-      const p: any = [1, 2]    // should 3 items
+      const p: any = [1, 2] // should 3 items
       fn(p, true)
       assert(false, 'should throw Error by invalid param, but not')
     }
@@ -237,9 +237,7 @@ describe(filename + ' :parse_windef()', () => {
     const v32 = '_v32'
 
     W[keyArch] = _WIN64_HOLDER
-    let map = <MacroMap> new Map([
-      [keyArch, [_WIN64_HOLDER, v64, v32] ],
-    ])
+    let map = <MacroMap> new Map([ [keyArch, [_WIN64_HOLDER, v64, v32] ] ])
 
     let _WIN64 = true
     try {
@@ -265,9 +263,7 @@ describe(filename + ' :parse_windef()', () => {
 
     delete W[keyArch]
     W[keyUni] = _UNICODE_HOLDER
-    map = <MacroMap> new Map([
-      [keyUni, [_UNICODE_HOLDER, uni, ansi] ],
-    ])
+    map = <MacroMap> new Map([ [keyUni, [_UNICODE_HOLDER, uni, ansi] ] ])
 
     let _UNICODE = true
     try {
@@ -383,7 +379,7 @@ describe(filename + ' :validateWinData()', () => {
     }
 
     try {
-      H.validateWinData({ [Symbol.for('test')] : 'int' }, srcMap)
+      H.validateWinData({ [Symbol.for('test')]: 'int' }, srcMap)
       return assert(false, 'should throw error with invalid value, but NOT')
     }
     catch (ex) {
@@ -391,7 +387,7 @@ describe(filename + ' :validateWinData()', () => {
     }
 
     try {
-      H.validateWinData({ 7 : 'int' }, srcMap)
+      H.validateWinData({ 7: 'int' }, srcMap)
       return assert(false, 'should throw error with invalid value, but NOT')
     }
     catch (ex) {

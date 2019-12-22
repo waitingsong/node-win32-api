@@ -10,6 +10,7 @@ import {
   _WIN64,
 } from '../src/lib/config'
 
+
 const filename = basename(__filename)
 
 describe(filename, () => {

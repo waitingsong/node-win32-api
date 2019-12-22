@@ -1,14 +1,10 @@
 /// <reference types="mocha" />
 
-import {
-  basename,
-} from '@waiting/shared-core'
+import { basename } from '@waiting/shared-core'
 import * as assert from 'power-assert'
 
 import { DTypes } from '../src/index'
-import {
-  settingsDefault,
-} from '../src/lib/config'
+import { settingsDefault } from '../src/lib/config'
 import * as H from '../src/lib/helper'
 import { macroMap } from '../src/lib/marcomap'
 import * as WD from '../src/lib/windef'

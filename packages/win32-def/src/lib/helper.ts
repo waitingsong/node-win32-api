@@ -32,10 +32,10 @@ function parse_param_placeholder(param: FnParam | MacroDef, settings?: LoadSetti
   if (typeof param === 'string') {
     return param
   }
-  else if (!param) {
+  else if (! param) {
     throw new Error('parse_param_placeholder(ps, settings) value of ps invalid')
   }
-  else if (!Array.isArray(param) || param.length !== 3) {
+  else if (! Array.isArray(param) || param.length !== 3) {
     throw new Error('parse_param_placeholder(ps, settings) value of ps must Array and has THREE elements')
   }
 
@@ -62,7 +62,7 @@ function parse_placeholder_arch(param: FnParam | MacroDef, _WIN64: boolean): FnP
   if (typeof param === 'string') {
     return param
   }
-  else if (!param || param.length !== 3) {
+  else if (! param || param.length !== 3) {
     throw new Error('_WIN64 macro should be Array and has 3 items')
   }
 
@@ -74,7 +74,7 @@ function parse_placeholder_unicode(param: FnParam | MacroDef, _UNICODE: boolean)
   if (typeof param === 'string') {
     return param
   }
-  else if (!param || param.length !== 3) {
+  else if (! param || param.length !== 3) {
     throw new Error('_UNICODE macro should be Array and has 3 items')
   }
   return _UNICODE ? param[1] : param[2]
@@ -110,7 +110,7 @@ function prepare_windef_ref(ww: DataTypes, macroSrc: Map<string, string>): DataT
     if (map.has(x)) {
       continue
     }
-    if (macroSrc.has(x)) {  // PVOID:_WIN64_HOLDER -> PVOID:'uint64*'
+    if (macroSrc.has(x)) { // PVOID:_WIN64_HOLDER -> PVOID:'uint64*'
       const vv = macroSrc.get(x)
 
       if (vv) {
@@ -121,7 +121,7 @@ function prepare_windef_ref(ww: DataTypes, macroSrc: Map<string, string>): DataT
       }
     }
     else {
-      continue  // not throw error
+      continue // not throw error
     }
   }
   // 2nd loop paser key , maybe value refer other key
@@ -165,8 +165,8 @@ function clone_filter_windef(windef: DataTypes): DataTypes {
 
   for (const x of Object.keys(windef)) {
     if (typeof windef[x] === 'string') {
-      Object.defineProperty(ret, <string> x, {
-        value: <FnParam> windef[x],
+      Object.defineProperty(ret, x, {
+        value: windef[x],
         writable: true,
         enumerable: true,
         configurable: true,
@@ -218,7 +218,7 @@ function _lookupRef(key: string, ww: DataTypes, macroSrc: Map<string, string>): 
   // key is not valid FFIParam such 'int/uint...', like HMODULE: 'HANDLE'
   if (typeof ww[key] === 'string') {
     // parse HANDLE: 'PVOID' , PVOID already parsed
-    const ret = <string> ww[key]
+    const ret = ww[key]
 
     if (ret && macroSrc.has(ret)) { //  HANDLE:PVOID, macroSrc has PVOID
       return <string> macroSrc.get(ret)
@@ -232,7 +232,7 @@ function _lookupRef(key: string, ww: DataTypes, macroSrc: Map<string, string>): 
 
 // valid parsed value exists in windefSet
 export function isValidDataDef(key: string, srcSet: Set<string>): boolean {
-  return srcSet.has(key) ? true : false
+  return !! srcSet.has(key)
 }
 
 export function validateWinData(windef: DataTypes, srcSet: Set<string>): void {

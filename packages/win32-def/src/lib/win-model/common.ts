@@ -2,9 +2,9 @@
 
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751
-export type HWND = Buffer   // for use of hWnd.ref(), deref() etc
+export type HWND = Buffer // for use of hWnd.ref(), deref() etc
 
-export type ATOM = number  // uint16
+export type ATOM = number // uint16
 export type DWORD = number
 export type PVOID = number
 export type HANDLE = Buffer
@@ -14,10 +14,10 @@ export type VOID = number & Buffer & void
 export type WCHAR = string
 export type WORD = string
 
-export type BOOL = number  // ?
+export type BOOL = number // ?
 export type BOOLEAN = boolean
 export type BYTE = number
-export type CALLBACK = Buffer  // https://msdn.microsoft.com/en-us/library/windows/desktop/ms633573(v=vs.85).aspx
+export type CALLBACK = Buffer // https://msdn.microsoft.com/en-us/library/windows/desktop/ms633573(v=vs.85).aspx
 export type CCHAR = string
 export type CHAR = string
 export type COLORREF = number
@@ -41,7 +41,7 @@ export type HDESK = Buffer
 export type HDROP = Buffer
 export type HDWP = Buffer
 export type HENHMETAFILE = Buffer
-export type HFILE = Buffer    // typedef int HFILE;
+export type HFILE = Buffer // typedef int HFILE;
 export type HFONT = Buffer
 export type HGDIOBJ = Buffer
 export type HGLOBAL = Buffer
@@ -184,9 +184,9 @@ export type WPARAM = number | Buffer
 export type WNDENUMPROC = Buffer
 export type WNDPROC = Buffer
 
-export type LPINITCOMMONCONTROLSEX = Buffer  // A pointer to an INITCOMMONCONTROLSEX
-export type LPWNDCLASSEX = Buffer  // A pointer to a WNDCLASSEX
-export type PWINDOWINFO = Buffer    // A pointer to a WINDOWINFO structure
+export type LPINITCOMMONCONTROLSEX = Buffer // A pointer to an INITCOMMONCONTROLSEX
+export type LPWNDCLASSEX = Buffer // A pointer to a WNDCLASSEX
+export type PWINDOWINFO = Buffer // A pointer to a WINDOWINFO structure
 
 export type PFILETIME = Buffer // A pointer to a FILETIME
 export type LPFILETIME = Buffer // A pointer to a FILETIME

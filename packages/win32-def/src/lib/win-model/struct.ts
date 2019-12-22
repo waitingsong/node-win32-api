@@ -187,6 +187,6 @@ export type RectStruct = RECT_Struct
 
 export type FILETIME = Buffer
 export interface FILETIME_Struct extends StructInstanceBase {
-  dwLowDateTime: DWORD,
-  dwHighDateTime: DWORD,
+  dwLowDateTime: DWORD
+  dwHighDateTime: DWORD
 }
