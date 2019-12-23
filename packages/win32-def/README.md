@@ -1,28 +1,46 @@
-# win32-def
-Definitions of Windows Date Types for [node-ffi](https://github.com/node-ffi/node-ffi), [node-ffi-napi](https://github.com/node-ffi-napi/node-ffi-napi)
+# win32-api
 
-[![Version](https://img.shields.io/npm/v/win32-def.svg)](https://www.npmjs.com/package/win32-def)
+Definitions of Windows Date Types for [node-ffi], [node-ffi-napi]
+
+[![GitHub tag](https://img.shields.io/github/tag/waitingsong/node-win32-api.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.org/waitingsong/node-win32-def.svg?branch=master)](https://travis-ci.org/waitingsong/node-win32-def)
-[![Build status](https://ci.appveyor.com/api/projects/status/8g4ud87q0mnys6tg/branch/master?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-def/branch/master)
-[![Coverage Status](https://coveralls.io/repos/github/waitingsong/node-win32-def/badge.svg)](https://coveralls.io/github/waitingsong/node-win32-def)
+![](https://img.shields.io/badge/lang-TypeScript-blue.svg)
+![Available platform](https://img.shields.io/badge/platform-win32-blue.svg)
+[![Coverage Status](https://coveralls.io/repos/github/waitingsong/node-win32-api/badge.svg)](https://coveralls.io/github/waitingsong/node-win32-api)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
+
+## Initialization
+
+```sh
+npm run repo:init
+```
+
+## Packages
+
+| Package       | Version                | Dependencies                 | DevDependencies                |
+| ------------- | ---------------------- | ---------------------------- | ------------------------------ |
+| [`win32-api`] | [![main-svg]][main-ch] | [![main-d-svg]][main-d-link] | [![main-dd-svg]][main-dd-link] |
+| [`win32-def`] | [![def-svg]][def-ch]   | [![def-d-svg]][def-d-link]   | [![def-dd-svg]][def-dd-link]   |
 
 
 ## What can I do with this?
-Write [node-ffi](https://github.com/node-ffi/node-ffi) or [node-ffi-napi](https://github.com/node-ffi-napi/node-ffi-napi) calling win32 native functions code by Typescript with Types support.
+
+Write [node-ffi] or [node-ffi-napi] calling win32 native functions code by Typescript with Types support.
+
 
 ## Installing
-```powershell
+```sh
 npm install win32-def
 ```
+
 
 ## Usage
 
 ### FFI
 ```ts
-import * as ffi from 'ffi'
+import * as ffi from 'ffi-napi'
 import { DModel as M, DTypes as W, FModel as FM } from 'win32-def'
 
 export interface Win32Fns extends FM.DllFuncsModel {
@@ -37,7 +55,7 @@ export const user32: Win32Fns = ffi.Library('user32.dll', {
 ```
 
 ```ts
-import * as ffi from 'ffi'
+import * as ffi from 'ffi-napi'
 import { DModel as M, DTypes as W, FModel as FM } from 'win32-def'
 
 export interface Win32Fns extends FM.DllFuncsModel {
@@ -67,61 +85,13 @@ user32.GetAncestor.async(handle, uint, (err, hWnd) => {
 ```
 
 
-### [WIN32-API](https://www.npmjs.com/package/win32-api)
-```ts
-// struct usage by ref-struct
-import * as Struct from 'ref-struct'
-import { DModel as M, DStruct as DS } from 'win32-api'
-
-
-// https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx
-const point = new Struct(DS.POINT)()
-const point: M.POINT_Struct = new Struct(DS.POINT)()
-point.x = 100
-point.y = 200
-console.log(point)
-
-// struct usage by ref-struct-di
-import * as ref from 'ref-napi'
-import * as StructDi from 'ref-struct-di'
-import { DModel as M, DStruct as DS } from 'win32-api'
-
-
-const Struct = StructDi(ref)
-const point: M.POINT_Struct = new Struct(DS.POINT)()
-point.x = 100
-point.y = 200
-console.log(point)
-
-// Should output like below:
-// { x: 100,
-//   y: 200,
-//   'ref.buffer': <Buffer@0x048BB9F8 64 00 00 00 c8 00 00 00>
-// }
-```
-
-```ts
-import * as ref from 'ref'
-import { K } from 'win32-api'
-import { FModel as FM, DTypes as W } from 'win32-def'
-
-
-const knl32 = K.load()
-const buf  = <FM.Buffer> Buffer.alloc(4)   // ← here the types
-
-buf.writeInt32LE(12345, 0)
-
-// const hInstance =<FM.Buffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4);
-const hInstance = <FM.Buffer> ref.alloc(W.HINSTANCE)    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
-knl32.GetModuleHandleExW(0, null, hInstance)
-```
-
-
 ## Relevant
 - [Windows Api documentation](https://msdn.microsoft.com/en-us/library/windows/desktop/ff468919%28v=vs.85%29.aspx)
 - [Windows Data Types](https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751#DWORD)
 - [System Error Codes](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681381%28v=vs.85%29.aspx)
 - [FFI doc](https://github.com/node-ffi/node-ffi/wiki/Node-FFI-Tutorial)
+- [ref doc](https://tootallnate.github.io/ref/)
+- [ref-struct](https://github.com/TooTallNate/ref-struct)
 
 
 ## License
@@ -131,3 +101,26 @@ knl32.GetModuleHandleExW(0, null, hInstance)
 ### Languages
 - [English](README.md)
 - [中文](README.zh-CN.md)
+
+
+[node-gyp]: https://github.com/nodejs/node-gyp
+[windows-build-tools]: https://github.com/felixrieseberg/windows-build-tools
+[node-ffi-napi]: https://github.com/node-ffi-napi/node-ffi-napi
+[node-ffi]: https://github.com/node-ffi/node-ffi
+
+[`win32-api`]: https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-api
+[main-svg]: https://img.shields.io/npm/v/win32-api.svg?maxAge=86400
+[main-ch]: https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-api/CHANGELOG.md
+[main-d-svg]: https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-api
+[main-d-link]: https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-api
+[main-dd-svg]: https://david-dm.org/waitingsong/node-win32-api/dev-status.svg?path=packages/win32-api
+[main-dd-link]: https://david-dm.org/waitingsong/node-win32-api?path=packages/win32-api#info=devDependencies
+
+[`win32-def`]: https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-def
+[def-svg]: https://img.shields.io/npm/v/win32-def.svg?maxAge=86400
+[def-ch]: https://github.com/waitingsong/node-win32-def/tree/master/packages/win32-def/CHANGELOG.md
+[def-d-svg]: https://david-dm.org/waitingsong/node-win32-def.svg?path=packages/win32-def
+[def-d-link]: https://david-dm.org/waitingsong/node-win32-def.svg?path=packages/win32-def
+[def-dd-svg]: https://david-dm.org/waitingsong/node-win32-def/dev-status.svg?path=packages/win32-def
+[def-dd-link]: https://david-dm.org/waitingsong/node-win32-def?path=packages/win32-def#info=devDependencies
+
