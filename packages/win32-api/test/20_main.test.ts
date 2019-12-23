@@ -12,7 +12,7 @@ import * as Win from '../src/index'
 
 const filename = basename(__filename)
 const dllDir = normalize(__dirname + '/../src/lib/')
-const dlls = <string[]> []
+const dlls: string[] = []
 
 for (const key of fs.readdirSync(dllDir)) {
   const stat = fs.statSync(normalize(dllDir + key))
@@ -28,7 +28,7 @@ describe(filename, () => {
 
     describe(apiName, () => {
       if (module && module.apiDef) {
-        const apiDef = <FM.DllFuncs> module.apiDef
+        const apiDef = module.apiDef as FM.DllFuncs
 
         it('Should FnName of definition be string', () => {
           for (const x in apiDef) { // tslint:disable-line

@@ -68,10 +68,9 @@ describe(filename, () => {
         }
         else {
           const buf = Buffer.alloc(title.length * 2)
-          let str: string
 
           user32.GetWindowTextW(hWnd, buf, buf.byteLength)
-          str = buf.toString('ucs2').replace(/\0+$/, '')
+          const str = buf.toString('ucs2').replace(/\0+$/, '')
           assert(str === title, `title should be changed to "${title}", bug got "${str}"`)
         }
 

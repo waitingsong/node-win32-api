@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/ms633548(v=vs.85).aspx
 export const enum CmdShow {
@@ -75,12 +76,9 @@ export const WS_THICKFRAME = 0x00040000
 export const WS_TILED = 0x00000000
 export const WS_VISIBLE = 0x10000000
 export const WS_VSCROLL = 0x00200000
-// tslint:disable-next-line
 export const WS_OVERLAPPEDWINDOW = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU
   | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX
-// tslint:disable-next-line
 export const WS_POPUPWINDOW = WS_POPUP | WS_BORDER | WS_SYSMENU
-// tslint:disable-next-line
 export const WS_TILEDWINDOW = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU
   | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX
 

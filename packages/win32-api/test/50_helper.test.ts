@@ -13,7 +13,7 @@ import * as H from '../src/lib/helper'
 
 const filename = basename(__filename)
 const dllDir = normalize(__dirname + '/../src/lib/')
-const dlls = <string[]> []
+const dlls: string[] = []
 
 for (const key of fs.readdirSync(dllDir)) {
   const stat = fs.statSync(normalize(dllDir + key))

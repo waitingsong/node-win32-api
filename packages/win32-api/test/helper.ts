@@ -34,7 +34,7 @@ export function createWndProc(): M.WNDPROC {
       let result = 0
       switch (uMsg) {
         default:
-          result = user32.DefWindowProcW(<FM.FFIBuffer> hwnd, uMsg, wParam, lParam)
+          result = user32.DefWindowProcW(hwnd as FM.FFIBuffer, uMsg, wParam, lParam)
           break
       }
       // console.info('Sending LRESULT: ' + result + '\n')
