@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as ffi from 'ffi'
+import * as ffi from 'ffi-napi'
 import { Config, FModel } from 'win32-def'
 
 

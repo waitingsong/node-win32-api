@@ -4,7 +4,7 @@
 import { spawn, ChildProcess } from 'child_process'
 import { basename } from 'path'
 
-import * as ffi from 'ffi'
+import * as ffi from 'ffi-napi'
 import * as assert from 'power-assert'
 import * as ref from 'ref-napi'
 import { of } from 'rxjs'

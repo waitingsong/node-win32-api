@@ -207,7 +207,7 @@ describe(filename + ' :parse_windef()', () => {
       assert(true)
     }
 
-    Object.getOwnPropertyNames(W).forEach((val, idx) => {
+    Object.getOwnPropertyNames(W).forEach((val) => {
       if (val === fake) {
         W[val] = 'int'
       }
@@ -237,7 +237,7 @@ describe(filename + ' :parse_windef()', () => {
     const v32 = '_v32'
 
     W[keyArch] = _WIN64_HOLDER
-    let map: MacroMap = new Map([ [keyArch, [_WIN64_HOLDER, v64, v32] ] ])
+    let map: MacroMap = new Map([[keyArch, [_WIN64_HOLDER, v64, v32]]])
 
     let _WIN64 = true
     try {
@@ -263,7 +263,7 @@ describe(filename + ' :parse_windef()', () => {
 
     delete W[keyArch]
     W[keyUni] = _UNICODE_HOLDER
-    map = new Map([ [keyUni, [_UNICODE_HOLDER, uni, ansi] ] ]) as MacroMap
+    map = new Map([[keyUni, [_UNICODE_HOLDER, uni, ansi]]]) as MacroMap
 
     let _UNICODE = true
     try {
