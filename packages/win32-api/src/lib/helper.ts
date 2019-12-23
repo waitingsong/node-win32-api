@@ -39,7 +39,7 @@ export function gen_api_opts(dllFuncs: FModel.DllFuncs, fns?: FModel.FnName[]): 
 
       if (ps) {
         Object.defineProperty(ret, fn, {
-          value: ps as FModel.FnParams,
+          value: ps,
           writable: false,
           enumerable: true,
           configurable: false,
