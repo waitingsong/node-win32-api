@@ -225,9 +225,9 @@ Check out [node-gyp] and [windows-build-tools]
 
 [`win32-def`]: https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-def
 [def-svg]: https://img.shields.io/npm/v/win32-def.svg?maxAge=86400
-[def-ch]: https://github.com/waitingsong/node-win32-def/tree/master/packages/win32-def/CHANGELOG.md
-[def-d-svg]: https://david-dm.org/waitingsong/node-win32-def.svg?path=packages/win32-def
-[def-d-link]: https://david-dm.org/waitingsong/node-win32-def.svg?path=packages/win32-def
-[def-dd-svg]: https://david-dm.org/waitingsong/node-win32-def/dev-status.svg?path=packages/win32-def
-[def-dd-link]: https://david-dm.org/waitingsong/node-win32-def?path=packages/win32-def#info=devDependencies
+[def-ch]: https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-def/CHANGELOG.md
+[def-d-svg]: https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-def
+[def-d-link]: https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-def
+[def-dd-svg]: https://david-dm.org/waitingsong/node-win32-api/dev-status.svg?path=packages/win32-def
+[def-dd-link]: https://david-dm.org/waitingsong/node-win32-api?path=packages/win32-def#info=devDependencies
 
