@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/waitingsong/node-win32-api/issues"
   },
-  "homepage": "https://github.com/waitingsong/node-win32-api#readme",
+  "homepage": "https://waitingsong.github.io/node-win32-api",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/waitingsong/node-win32-api.git"

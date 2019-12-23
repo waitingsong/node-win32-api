@@ -1,0 +1,376 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>win32-api</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">win32-api</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> win32-api</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#win32-api" id="win32-api" style="color: inherit; text-decoration: none;">
+					<h1>win32-api</h1>
+				</a>
+				<p>FFI Definitions of Windows win32 api for <a href="https://github.com/node-ffi-napi/node-ffi-napi">node-ffi-napi</a></p>
+				<p><a href=""><img src="https://img.shields.io/github/tag/waitingsong/node-win32-api.svg" alt="GitHub tag"></a>
+					<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+					<img src="https://img.shields.io/badge/lang-TypeScript-blue.svg" alt="">
+					<img src="https://img.shields.io/badge/platform-win32-blue.svg" alt="Available platform">
+					<a href="https://coveralls.io/github/waitingsong/node-win32-api"><img src="https://coveralls.io/repos/github/waitingsong/node-win32-api/badge.svg" alt="Coverage Status"></a>
+					<a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits"></a>
+				<a href="https://lernajs.io/"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" alt="lerna"></a></p>
+				<a href="#initialization" id="initialization" style="color: inherit; text-decoration: none;">
+					<h2>Initialization</h2>
+				</a>
+				<pre><code class="language-sh">npm run repo:init</code></pre>
+				<a href="#packages" id="packages" style="color: inherit; text-decoration: none;">
+					<h2>Packages</h2>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th>Package</th>
+							<th>Version</th>
+							<th>Dependencies</th>
+							<th>DevDependencies</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><a href="https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-api"><code>win32-api</code></a></td>
+							<td><a href="https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-api/CHANGELOG.md"><img src="https://img.shields.io/npm/v/win32-api.svg?maxAge=86400" alt="main-svg"></a></td>
+							<td><a href="https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-api"><img src="https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-api" alt="main-d-svg"></a></td>
+							<td><a href="https://david-dm.org/waitingsong/node-win32-api?path=packages/win32-api#info=devDependencies"><img src="https://david-dm.org/waitingsong/node-win32-api/dev-status.svg?path=packages/win32-api" alt="main-dd-svg"></a></td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-def"><code>win32-def</code></a></td>
+							<td><a href="https://github.com/waitingsong/node-win32-def/tree/master/packages/win32-def/CHANGELOG.md"><img src="https://img.shields.io/npm/v/win32-def.svg?maxAge=86400" alt="def-svg"></a></td>
+							<td><a href="https://david-dm.org/waitingsong/node-win32-def.svg?path=packages/win32-def"><img src="https://david-dm.org/waitingsong/node-win32-def.svg?path=packages/win32-def" alt="def-d-svg"></a></td>
+							<td><a href="https://david-dm.org/waitingsong/node-win32-def?path=packages/win32-def#info=devDependencies"><img src="https://david-dm.org/waitingsong/node-win32-def/dev-status.svg?path=packages/win32-def" alt="def-dd-svg"></a></td>
+						</tr>
+				</tbody></table>
+				<a href="#what-can-i-do-with-this" id="what-can-i-do-with-this" style="color: inherit; text-decoration: none;">
+					<h2>What can I do with this?</h2>
+				</a>
+				<p>Calling win32 native functions come from user32.dll, kernel32.dll, comctl32.dll by Node.js via <a href="https://github.com/node-ffi-napi/node-ffi-napi">node-ffi-napi</a></p>
+				<a href="#installing" id="installing" style="color: inherit; text-decoration: none;">
+					<h2>Installing</h2>
+				</a>
+				<pre><code class="language-sh">npm install win32-api</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<a href="#find-window-and-set-window-title" id="find-window-and-set-window-title" style="color: inherit; text-decoration: none;">
+					<h3>Find window and set window title</h3>
+				</a>
+				<pre><code class="language-ts"><span class="hljs-comment">// **Find calc's hWnd, need running a calculator program manually at first**</span>
+
+<span class="hljs-comment">/**
+ * expose module:
+ * C, Comctl32 for Comctl32 from lib/comctl32/api
+ * K, Kernel32 for kernel32 from lib/kernel32/api
+ * U, User32 for user32 from lib/user32/api
+ */</span>
+<span class="hljs-keyword">import</span> { K, U } <span class="hljs-keyword">from</span> <span class="hljs-string">'win32-api'</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ref <span class="hljs-keyword">from</span> <span class="hljs-string">'ref-napi'</span>
+
+<span class="hljs-keyword">const</span> knl32 = K.load()
+<span class="hljs-keyword">const</span> user32 = U.load()  <span class="hljs-comment">// load all apis defined in lib/{dll}/api from user32.dll</span>
+<span class="hljs-comment">// const user32 = U.load(['FindWindowExW'])  // load only one api defined in lib/{dll}/api from user32.dll</span>
+
+<span class="hljs-keyword">const</span> title = <span class="hljs-string">'Calculator\0'</span>    <span class="hljs-comment">// null-terminated string</span>
+<span class="hljs-comment">// const title = '计算器\0'    // string in chinese</span>
+
+<span class="hljs-keyword">const</span> lpszWindow = Buffer.from(title, <span class="hljs-string">'ucs2'</span>)
+<span class="hljs-keyword">const</span> hWnd = user32.FindWindowExW(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, lpszWindow)
+
+<span class="hljs-keyword">if</span> (hWnd &amp;&amp; ! hWnd.isNull()) {
+  <span class="hljs-comment">// Caution: outputing hWnd will cuase exception in the following process, even next script!</span>
+  <span class="hljs-comment">// NOT do below in the production code!</span>
+  <span class="hljs-comment">// console.log('buf: ', hWnd); // avoid this</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'buf: '</span>, ref.address(hWnd)) <span class="hljs-comment">// this is ok</span>
+
+  <span class="hljs-comment">// Change title of the Calculator</span>
+  <span class="hljs-keyword">const</span> res = user32.SetWindowTextW(hWnd, Buffer.from(<span class="hljs-string">'Node-Calculator\0'</span>, <span class="hljs-string">'ucs2'</span>))
+
+  <span class="hljs-keyword">if</span> ( ! res) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'SetWindowTextW failed'</span>)
+  }
+  <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'window title changed'</span>)
+  }
+}</code></pre>
+				<a href="#a-hrefhttpswwwnpmjscompackageref-napirefa" id="a-hrefhttpswwwnpmjscompackageref-napirefa" style="color: inherit; text-decoration: none;">
+					<h3><a href="https://www.npmjs.com/package/ref-napi">Ref</a></h3>
+				</a>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { U } <span class="hljs-keyword">from</span> <span class="hljs-string">'win32-api'</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ref <span class="hljs-keyword">from</span> <span class="hljs-string">'ref-napi'</span>
+
+<span class="hljs-comment">// so we can all agree that a buffer with the int value written</span>
+<span class="hljs-comment">// to it could be represented as an "int *"</span>
+<span class="hljs-keyword">const</span> buf  = Buffer.alloc(<span class="hljs-number">4</span>)
+buf.writeInt32LE(<span class="hljs-number">12345</span>, <span class="hljs-number">0</span>)
+
+<span class="hljs-keyword">const</span> hex = ref.hexAddress(buf)
+<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> hex)
+<span class="hljs-built_in">console</span>.log(hex)  <span class="hljs-comment">// ← '7FA89D006FD8'</span>
+
+buf.type = ref.types.int  <span class="hljs-comment">// @ts-ignore</span>
+
+<span class="hljs-comment">// now we can dereference to get the "meaningful" value</span>
+<span class="hljs-built_in">console</span>.log(ref.deref(buf))  <span class="hljs-comment">// ← 12345</span></code></pre>
+				<pre><code class="language-ts"><span class="hljs-comment">// usage of types and windef:</span>
+<span class="hljs-keyword">import</span> { K, FModel <span class="hljs-keyword">as</span> FM, DTypes <span class="hljs-keyword">as</span> W } <span class="hljs-keyword">from</span> <span class="hljs-string">'win32-api'</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ref <span class="hljs-keyword">from</span> <span class="hljs-string">'ref-napi'</span>
+
+<span class="hljs-keyword">const</span> knl32 = K.load()
+
+<span class="hljs-keyword">const</span> buf = Buffer.alloc(<span class="hljs-number">4</span>) <span class="hljs-keyword">as</span> FM.Buffer   <span class="hljs-comment">// ← here the types</span>
+buf.writeInt32LE(<span class="hljs-number">12345</span>, <span class="hljs-number">0</span>)
+
+<span class="hljs-comment">// const hInstance =&lt;FM.Buffer&gt; Buffer.alloc(process.arch === 'x64' ? 8 : 4)</span>
+<span class="hljs-keyword">const</span> hInstance = ref.alloc(W.HINSTANCE) <span class="hljs-keyword">as</span> FM.Buffer    <span class="hljs-comment">// W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32</span>
+knl32.GetModuleHandleExW(<span class="hljs-number">0</span>, <span class="hljs-literal">null</span>, hInstance)</code></pre>
+				<a href="#a-hrefhttpswwwnpmjscompackageref-structstructa" id="a-hrefhttpswwwnpmjscompackageref-structstructa" style="color: inherit; text-decoration: none;">
+					<h3><a href="https://www.npmjs.com/package/ref-struct">Struct</a></h3>
+				</a>
+				<pre><code class="language-ts"><span class="hljs-comment">// struct usage with ref-struct</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Struct <span class="hljs-keyword">from</span> <span class="hljs-string">'ref-struct'</span>
+<span class="hljs-keyword">import</span> { DModel <span class="hljs-keyword">as</span> M, DStruct <span class="hljs-keyword">as</span> DS } <span class="hljs-keyword">from</span> <span class="hljs-string">'win32-api'</span>
+
+<span class="hljs-comment">// https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx</span>
+<span class="hljs-keyword">const</span> point: M.POINT_Struct = <span class="hljs-keyword">new</span> Struct(DS.POINT)()
+point.x = <span class="hljs-number">100</span>
+point.y = <span class="hljs-number">200</span>
+<span class="hljs-built_in">console</span>.log(point)
+
+<span class="hljs-comment">// struct usage with ref-struct-di</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ref <span class="hljs-keyword">from</span> <span class="hljs-string">'ref-napi'</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> StructDi <span class="hljs-keyword">from</span> <span class="hljs-string">'ref-struct-di'</span>
+<span class="hljs-keyword">import</span> { DModel <span class="hljs-keyword">as</span> M, DStruct <span class="hljs-keyword">as</span> DS } <span class="hljs-keyword">from</span> <span class="hljs-string">'win32-api'</span>
+
+<span class="hljs-keyword">const</span> Struct = StructDi(ref)
+<span class="hljs-keyword">const</span> point: M.POINT_Struct = <span class="hljs-keyword">new</span> Struct(DS.POINT)()
+point.x = <span class="hljs-number">100</span>
+point.y = <span class="hljs-number">200</span>
+<span class="hljs-built_in">console</span>.log(point)</code></pre>
+				<a href="#async-find-window-and-set-window-title" id="async-find-window-and-set-window-title" style="color: inherit; text-decoration: none;">
+					<h3>Async Find window and set window title</h3>
+				</a>
+				<pre><code class="language-ts"><span class="hljs-comment">// **Find calc's hWnd, need running a calculator program manually at first**</span>
+
+<span class="hljs-keyword">import</span> { U } <span class="hljs-keyword">from</span> <span class="hljs-string">'win32-api'</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ref <span class="hljs-keyword">from</span> <span class="hljs-string">'ref-napi'</span>
+
+
+<span class="hljs-keyword">const</span> u32 = U.load([<span class="hljs-string">'FindWindowExW'</span>, <span class="hljs-string">'SetWindowTextW'</span>])
+<span class="hljs-keyword">const</span> lpszClass = Buffer.from(<span class="hljs-string">'CalcFrame\0'</span>, <span class="hljs-string">'ucs2'</span>)
+
+u32.FindWindowExW.async(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, lpszClass, <span class="hljs-literal">null</span>, <span class="hljs-function">(<span class="hljs-params">err, hWnd</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (err) {
+    <span class="hljs-keyword">throw</span> err
+  }
+
+  <span class="hljs-keyword">if</span> (hWnd &amp;&amp; !ref.isNull(hWnd) &amp;&amp; ref.address(hWnd)) {
+    <span class="hljs-keyword">const</span> title = <span class="hljs-string">'Node-Calculator'</span>
+    <span class="hljs-comment">// Change title of the Calculator</span>
+    u32.SetWindowTextW.async(hWnd, Buffer.from(title + <span class="hljs-string">'\0'</span>, <span class="hljs-string">'ucs2'</span>), <span class="hljs-function"><span class="hljs-params">err2</span> =&gt;</span> {
+      <span class="hljs-keyword">if</span> (err2) {
+        <span class="hljs-keyword">throw</span> err2
+      }
+
+      <span class="hljs-keyword">const</span> buf = Buffer.alloc(title.length * <span class="hljs-number">2</span>)
+      u32.GetWindowTextW.async(hWnd, buf, buf.byteLength, <span class="hljs-function"><span class="hljs-params">err3</span> =&gt;</span> {
+        <span class="hljs-keyword">if</span> (err3) {
+          <span class="hljs-keyword">throw</span> err3
+        }
+
+        <span class="hljs-keyword">const</span> str = buf.toString(<span class="hljs-string">'ucs2'</span>).replace(<span class="hljs-regexp">/\0+$/</span>, <span class="hljs-string">''</span>)
+        <span class="hljs-keyword">if</span> (str !== title) {
+          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`title should be changed to <span class="hljs-subst">${title}</span>, bug got <span class="hljs-subst">${str}</span>`</span>)
+        }
+      })
+    })
+  }
+  <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'FindWindowExW() failed'</span>)
+  }
+})</code></pre>
+				<a href="#demo" id="demo" style="color: inherit; text-decoration: none;">
+					<h2>Demo</h2>
+				</a>
+				<ul>
+					<li><a href="https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/demo/create_window.ts">create_window</a></li>
+					<li><a href="https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/test">More</a></li>
+				</ul>
+				<a href="#dependencies-troubleshooting" id="dependencies-troubleshooting" style="color: inherit; text-decoration: none;">
+					<h2>Dependencies Troubleshooting</h2>
+				</a>
+				<p>Compile successfully with</p>
+				<ul>
+					<li>Node.js v12 and Python v3.7</li>
+					<li>Node.js v10 and Python v2.7</li>
+				</ul>
+				<p>If installation of node-gyp fails:
+				Check out <a href="https://github.com/nodejs/node-gyp">node-gyp</a> and <a href="https://github.com/felixrieseberg/windows-build-tools">windows-build-tools</a></p>
+				<a href="#relevant" id="relevant" style="color: inherit; text-decoration: none;">
+					<h2>Relevant</h2>
+				</a>
+				<ul>
+					<li><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ff468919%28v=vs.85%29.aspx">Windows Api documentation</a></li>
+					<li><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751#DWORD">Windows Data Types</a></li>
+					<li><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms681381%28v=vs.85%29.aspx">System Error Codes</a></li>
+					<li><a href="https://github.com/node-ffi/node-ffi/wiki/Node-FFI-Tutorial">FFI doc</a></li>
+					<li><a href="https://tootallnate.github.io/ref/">ref doc</a></li>
+					<li><a href="https://github.com/TooTallNate/ref-struct">ref-struct</a></li>
+				</ul>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
+				<p><a href="LICENSE">MIT</a></p>
+				<a href="#languages" id="languages" style="color: inherit; text-decoration: none;">
+					<h3>Languages</h3>
+				</a>
+				<ul>
+					<li><a href="README.md">English</a></li>
+					<li><a href="README.zh-CN.md">中文</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_model_.html">&quot;model&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
