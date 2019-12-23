@@ -32,7 +32,6 @@
   "dependencies": {
     "@types/ffi-napi": "*",
     "ffi-napi": "^2.4.5",
-    "rxjs": "^6.5.2",
     "win32-def": "^7.0.0"
   },
   "devDependencies": {
@@ -41,7 +40,8 @@
     "@waiting/shared-core": "3",
     "cross-env": "6",
     "ref-napi": "^1.4.1",
-    "ref-struct-di": "^1.1.0"
+    "ref-struct-di": "^1.1.0",
+    "rxjs": "^6.5.2"
   },
   "engines": {
     "node": ">=10.16.0"
