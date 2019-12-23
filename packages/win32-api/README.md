@@ -189,8 +189,8 @@ u32.FindWindowExW.async(null, null, lpszClass, null, (err, hWnd) => {
 ## Dependencies Troubleshooting
 
 Compile successfully with
-  - Node.js v12 and Python v3.7
-  - Node.js v10 and Python v2.7
+  - Node.js v12, Python v3.7 and VS2017
+  - Node.js v10, Python v2.7 and VS2017
 
 If installation of node-gyp fails:
 Check out [node-gyp] and [windows-build-tools]
