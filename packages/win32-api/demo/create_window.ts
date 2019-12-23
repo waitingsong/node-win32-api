@@ -9,7 +9,7 @@
  * @link https://github.com/waitingsong/node-win32-api
  */
 
-import * as ffi from 'ffi'
+import * as ffi from 'ffi-napi'
 import * as ref from 'ref-napi'
 import * as StructDi from 'ref-struct-di'
 
