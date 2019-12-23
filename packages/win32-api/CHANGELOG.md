@@ -1,3 +1,24 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [7.0.0](https://github.com/waitingsong/node-win32-api/compare/v6.2.0...v7.0.0) (2019-12-23)
+
+
+### chore
+
+* **deps:** use ffi-napi instead of ffi ([bfa006c](https://github.com/waitingsong/node-win32-api/commit/bfa006c468e93813cfedce68eb2e94fd901058cc))
+
+
+### BREAKING CHANGES
+
+* **deps:** remove nodejs v8 support
+
+
+
+
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.

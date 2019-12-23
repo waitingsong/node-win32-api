@@ -1,3 +1,67 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [7.0.0](/compare/v6.2.0...v7.0.0) (2019-12-23)
+
+
+### Bug Fixes
+
+* 'PVOID' not parsed within parse_windef() 3209b6c
+* LPBYTE 70cadc1
+* missing file marcomap.ts 692efbc
+* struct not parsed 0df3999
+* USN a246d16
+* **types:** parse_windef() 03de209
+
+
+### chore
+
+* **deps:** use ffi-napi instead of ffi bfa006c
+
+
+### Features
+
+* add FILETIME structure 2482e79
+* **types:** add DllFuncsModel d4b258b
+* **types:** change ReturnType of cb of async() from void to any 1f69876
+* **types:** expand exported DllFuncsModel with async() method 2cf076a
+* **types:** set below @deprecated d480b4b
+* add HARDWAREINPUT, HARDWAREINPUT_Struct 3ae64f3
+* add isPathAcessible() 01810da
+* add KEYBDINPUT, KEYBDINPUT_Struct 8ca6f3f
+* add LoadSettings['singleton'] 9be9d53
+* add logger() fe705c5
+* add LPPOINT d85e0a7
+* add MOUSEINPUT, MOUSEINPUT_Struct 60fb063
+* add RAWHID, RAWHID_Struct 2e5d09e
+* add RAWINPUTHEADER, RAWINPUTHEADER_Struct ca557fa
+* add RAWKEYBOARD, RAWKEYBOARD_Struct 9a3c56b
+* change types of VOID to number & Buffer & void e129f16
+* copy from node-win32-api and update 5e290b1
+* export basename() from shared a5ffb0b
+* export FModel.Buffer as alias of FModel.FFIBuffer 2a36d0f
+* export os.tmpdir() c98a3ab
+* rename export name of ww to dataTypes baf5a52
+* structure instance has ref() member for ref-struct 2b2b48e
+* use lookupRef() instead of retrieve_ref_value() e1f9497
+* **types:** change FFIParam to FnParam 8176abe
+
+
+### Reverts
+
+* to 84d3d698a5b1 d94d128
+
+
+### BREAKING CHANGES
+
+* **deps:** remove nodejs v8 support
+
+
+
+
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
