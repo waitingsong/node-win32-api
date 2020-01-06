@@ -1,6 +1,7 @@
 import {
   access,
   copyFile,
+  mkdir,
   readdir,
   readFile,
   stat,
@@ -22,6 +23,7 @@ import { promisify } from 'util'
 
 
 export const copyFileAsync = promisify(copyFile)
+export const mkdirAsync = promisify(mkdir)
 export const readFileAsync = promisify(readFile)
 export const readDirAsync = promisify(readdir)
 export const statAsync = promisify(stat)
@@ -69,6 +71,10 @@ export async function cpGlobalConfigsToPkgs(
     for (const path of configPaths) {
       try {
         const dst = `${pkg}/${path}`
+        const dstDir = dirname(join(pkgBase, dst))
+        if ( ! await isPathAccessible(dstDir)) {
+          await mkdirAsync(dstDir)
+        }
         await copyFileAsync(
           join(baseDir, path),
           join(pkgBase, dst),
