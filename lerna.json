@@ -6,7 +6,8 @@
   "command": {
     "publish": {
       "ignoreChanges": [
-        "*.md"
+        "*.md",
+        "package-lock.json"
       ]
     },
     "bootstrap": {
@@ -21,6 +22,7 @@
     },
     "version": {
       "conventionalCommits": true,
+      "allowBranch": "master",
       "registry": "https://registry.npmjs.org/"
     }
   },
