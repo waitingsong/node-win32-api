@@ -85,7 +85,7 @@
     "files.trimTrailingWhitespace": false
   },
   "[typescript]": {
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.formatOnPaste": true
   },
   "git.ignoreLimitWarning": true
