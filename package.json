@@ -44,7 +44,7 @@
     "clean:lock": "rm packages/**/package-lock.json -rf",
     "cov": "lerna run cov --concurrency=1",
     "doc": "node .githooks/doc.js",
-    "manual-publish": "npm run clean && npm run bootstrap && sh .scripts/publish.sh",
+    "manual-publish": "npm run clean && npm run bootstrap && sh .scripts/publish.sh --conventional-commits --create-release github",
     "lint": "lerna run lint --parallel",
     "lint:nofix": "lerna run lint:nofix --parallel",
     "purge": "npm run clean && rm node_modules -rf",
