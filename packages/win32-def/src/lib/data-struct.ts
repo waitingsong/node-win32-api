@@ -132,7 +132,7 @@ export const WNDCLASSEX = {
   lpfnWndProc: W.WNDPROC,
   cbClsExtra: W.INT,
   cbWndExtra: W.INT,
-  hInstance: W.HINSTANCE, // can be 0?
+  hInstance: W.HINSTANCE,
   hIcon: W.HICON,
   hCursor: W.HCURSOR,
   hbrBackground: W.HBRUSH,
