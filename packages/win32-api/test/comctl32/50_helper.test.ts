@@ -1,6 +1,3 @@
-/// <reference types="node" />
-/// <reference types="mocha" />
-
 import { basename } from 'path'
 
 import * as assert from 'power-assert'

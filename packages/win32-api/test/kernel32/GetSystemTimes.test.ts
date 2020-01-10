@@ -1,6 +1,3 @@
-/// <reference types="node" />
-/// <reference types="mocha" />
-
 import { basename } from '@waiting/shared-core'
 import * as assert from 'power-assert'
 import {

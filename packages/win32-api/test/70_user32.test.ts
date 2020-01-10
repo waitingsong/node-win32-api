@@ -1,6 +1,3 @@
-/// <reference types="node" />
-/// <reference types="mocha" />
-
 import { spawn, ChildProcess } from 'child_process'
 import { basename } from 'path'
 
