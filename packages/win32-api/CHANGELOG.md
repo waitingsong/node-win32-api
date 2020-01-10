@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/waitingsong/node-win32-api/compare/v7.0.2...v7.1.0) (2020-01-10)
+
+
+### Features
+
+* **win32-api:** define CW_USEDEFAULT in user32/constants.ts ([697e4df](https://github.com/waitingsong/node-win32-api/commit/697e4dfcef565fa9e3bf662ce888e714ba7eb814))
+
+
+
+
+
 ## [7.0.2](https://github.com/waitingsong/node-win32-api/compare/v7.0.1...v7.0.2) (2019-12-23)
 
 **Note:** Version bump only for package win32-api

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](/compare/v7.0.2...v7.1.0) (2020-01-10)
+
+
+### Bug Fixes
+
+* **win32-def:** struct MSG, MSG_Struct miss field lPrivate 81bea5d
+* **win32-def:** type of char 3e47988
+* **win32-def:** types of the following 9df3f28
+* **win32-def:** value of POINTER_32 is `uint32` under x64 73b43ab
+
+
+### Features
+
+* **win32-api:** define CW_USEDEFAULT in user32/constants.ts 697e4df
+
+
+
+
+
 ## [7.0.2](/compare/v7.0.1...v7.0.2) (2019-12-23)
 
 **Note:** Version bump only for package win32-api

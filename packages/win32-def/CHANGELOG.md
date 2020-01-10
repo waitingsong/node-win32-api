@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/waitingsong/node-win32-api/compare/v7.0.2...v7.1.0) (2020-01-10)
+
+
+### Bug Fixes
+
+* **win32-def:** struct MSG, MSG_Struct miss field lPrivate ([81bea5d](https://github.com/waitingsong/node-win32-api/commit/81bea5d4e22794df0b2f9f58d7612b5df1d9cb2b))
+* **win32-def:** type of char ([3e47988](https://github.com/waitingsong/node-win32-api/commit/3e479883e6f49bcdcb1a41080cbaee53e070e7d4))
+* **win32-def:** types of the following ([9df3f28](https://github.com/waitingsong/node-win32-api/commit/9df3f2816aae1b23427d317ec427e19198592512))
+* **win32-def:** value of POINTER_32 is `uint32` under x64 ([73b43ab](https://github.com/waitingsong/node-win32-api/commit/73b43ab16e05e3ef8a5b6bb9acb97c2bc884cdd6))
+
+
+
+
+
 # [7.0.0](https://github.com/waitingsong/node-win32-api/compare/v6.2.0...v7.0.0) (2019-12-23)
 
 
