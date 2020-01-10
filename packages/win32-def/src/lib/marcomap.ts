@@ -14,10 +14,9 @@ import {
 
 export const macroMap: MacroMap = new Map([
   ['PVOID', [_WIN64_HOLDER, 'uint64*', 'uint32*'] ],
-  ['LONG_PTR', [_WIN64_HOLDER, 'int64', 'int32'] ],
-  ['ULONG_PTR', [_WIN64_HOLDER, 'uint64', 'uint32'] ],
   ['HALF_PTR', [_WIN64_HOLDER, 'int32', 'int16'] ],
   ['INT_PTR', [_WIN64_HOLDER, 'int64', 'int32'] ],
+  ['LONG_PTR', [_WIN64_HOLDER, 'int64', 'int32'] ],
   ['LPCTSTR', [_UNICODE_HOLDER, LPCWSTR, LPCSTR] ],
   ['LPHANDLE', [_WIN64_HOLDER, 'uint64*', 'uint32*'] ],
   ['LPTSTR', [_UNICODE_HOLDER, LPWSTR, 'uint8*'] ],
@@ -32,4 +31,5 @@ export const macroMap: MacroMap = new Map([
   ['TBYTE', [_UNICODE_HOLDER, 'int16', 'int8'] ],
   ['TCHAR', [_UNICODE_HOLDER, WCHAR, 'uint8'] ],
   ['UHALF_PTR', [_WIN64_HOLDER, 'uint32', 'uint16'] ],
+  ['ULONG_PTR', [_WIN64_HOLDER, 'uint64', 'uint32'] ],
 ])
