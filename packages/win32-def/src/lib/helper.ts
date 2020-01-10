@@ -245,7 +245,7 @@ export function validateWinData(windef: DataTypes, srcSet: Set<string>): void {
     }
 
     if (! isValidDataDef(v, srcSet)) {
-      throw new Error(`validateWinData() value is invalid ffi param value: "${k}"/"${v}"`)
+      throw new Error(`validateWinData() value is invalid ffi param value: "${k}"/"${v}", may extra space`)
     }
   }
 }
