@@ -53,6 +53,7 @@ export const MOUSEINPUT = {
   dwExtraInfo: W.ULONG_PTR,
 }
 
+/** https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-msg */
 export const MSG = {
   hwnd: W.HWND,
   message: W.UINT,
@@ -60,6 +61,7 @@ export const MSG = {
   lParam: W.LPARAM,
   time: W.DWORD,
   pt: W.POINT,
+  lPrivate: W.DWORD,
 }
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx

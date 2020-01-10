@@ -83,6 +83,7 @@ export interface MOUSEINPUT_Struct extends StructInstanceBase {
   dwExtraInfo: ULONG_PTR
 }
 
+/** https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-msg */
 export type MSG = Buffer
 export interface MSG_Struct extends StructInstanceBase {
   hwnd: HWND
@@ -91,6 +92,7 @@ export interface MSG_Struct extends StructInstanceBase {
   lParam: LPARAM
   time: DWORD
   pt: POINT
+  lPrivate: DWORD
 }
 /**
  * @deprecated using MSG_Struct
