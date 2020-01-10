@@ -1,16 +1,19 @@
 /*  ---------- data types for TypeScript ----------- */
+// https://docs.microsoft.com/en-us/windows/win32/winprog/windows-data-types
+
+import { BigIntStr } from '@waiting/shared-types'
+
 
 export type _POINTER = Buffer
 
-// https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751
 
 
 export type ATOM = number // uint16
 export type DWORD = number
 export type PVOID = number
 export type HANDLE = Buffer
-export type LONG_PTR = number
-export type ULONG_PTR = number
+export type LONG_PTR = number | BigIntStr
+export type ULONG_PTR = number | BigIntStr
 export type VOID = number & Buffer & void
 export type WCHAR = UINT16
 export type WORD = INT16
@@ -67,19 +70,19 @@ export type HWINSTA = HANDLE
 export type HWND = HANDLE // for use of hWnd.ref(), deref() etc
 /** A 32-bit signed integer */
 export type INT = number
-export type INT_PTR = number
+export type INT_PTR = number | BigIntStr
 export type INT8 = number
 export type INT16 = number
 export type INT32 = number
-export type INT64 = number
+export type INT64 = BigIntStr
 export type LANGID = WORD
 export type LCID = DWORD
 export type LCTYPE = DWORD
 export type LGRPID = DWORD
 export type LONG = number
-export type LONGLONG = number
+export type LONGLONG = BigIntStr
 export type LONG32 = number
-export type LONG64 = number
+export type LONG64 = BigIntStr
 export type LPARAM = LONG_PTR
 export type LPBOOL = _POINTER
 export type LPBYTE = _POINTER
@@ -169,15 +172,15 @@ export type TCHAR = string
 export type UCHAR = string
 export type UHALF_PTR = number
 export type UINT = number
-export type UINT_PTR = number
+export type UINT_PTR = number | BigIntStr
 export type UINT8 = number
 export type UINT16 = number
 export type UINT32 = number
-export type UINT64 = number
+export type UINT64 = BigIntStr
 export type ULONG = number
-export type ULONGLONG = number
+export type ULONGLONG = BigIntStr
 export type ULONG32 = number
-export type ULONG64 = number
+export type ULONG64 = BigIntStr
 export type UNICODE_STRING = _POINTER
 export type USHORT = number
 export type USN = LONGLONG

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Push } from '@waiting/shared-types'
+import { BigIntStr, Push } from '@waiting/shared-types' // def for ffi [returnType, [calling param, ...]]
 
 // for translation of windef
 export type MacroParam<T> = T | [T, T, T] // [s,s,s] for conversion of macro windows data like LPCTSTR
@@ -111,7 +111,7 @@ export interface DllFuncs {
 export interface DllFuncsModel {
   [funcName: string]: SyncFnModel
 }
-export type SyncFnModel = (...args: any[]) => boolean | number | Buffer | void
+export type SyncFnModel = (...args: any[]) => boolean | number | BigIntStr | Buffer | void
 export interface AsyncSyncFuncModel {
   async: (...args: any[]) => void
   [key: string]: SyncFnModel
