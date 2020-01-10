@@ -25,30 +25,30 @@ import * as StructDi from 'ref-struct-di'
 // } from 'win32-api' // as module
 import {
   C,
-  Config,
+  // Config,
   DModel as M,
   DStruct as DS,
   DTypes as W,
-  FModel as FM,
-  K,
+  // K,
   U,
 } from '../src/index' // as local
 
 const Struct = StructDi(ref)
 
-const knl32 = K.load()
+// const knl32 = K.load()
 const user32 = U.load()  // load all apis defined in lib/{dll}/api from user32.dll
 const comctl32 = C.load()  // load all apis defined in lib/{dll}/api from user32.dll
 
 // WndProc
-const WndProc = ffi.Callback('uint32',
+const WndProc = ffi.Callback(
+  W.UINT32,
   [W.HWND, W.UINT, W.WPARAM, W.LPARAM],
   (hwnd: M.HWND, uMsg: M.UINT, wParam: M.WPARAM, lParam: M.LPARAM) => {
     console.info('WndProc callback: ', uMsg, wParam, lParam)
     let result = 0
     switch (uMsg) {
       default:
-        result = user32.DefWindowProcW(<FM.FFIBuffer> hwnd, uMsg, wParam, lParam)
+        result = user32.DefWindowProcW(hwnd, uMsg, wParam, lParam)
         break
     }
     console.info('Sending LRESULT: ' + result + '\n')
@@ -97,14 +97,9 @@ process.on('exit', () => {
 })
 
 
-function createWindow(title: string): Buffer {
-  const className = Buffer.from('NodeClass\0', 'ucs-2')
-  const windowName = Buffer.from('Node.js WinForms App\0', 'ucs-2')
-
-  // const hmodule = kernel32.GetModuleHandleW(null);
-  // const hInstance = Buffer.alloc(8);
-  const hInstance = ref.alloc(W.HINSTANCE)
-  knl32.GetModuleHandleExW(0, null, hInstance)
+function createWindow(title: string): M.HWND {
+  const className = Buffer.from('NodeClass\0', 'ucs2')
+  const windowName = Buffer.from('Node.js WinForms App\0', 'ucs2')
 
   // Common Controls
   const icc: M.INITCOMMONCONTROLSEX_Struct = new Struct(DS.INITCOMMONCONTROLSEX)()
@@ -115,13 +110,12 @@ function createWindow(title: string): Buffer {
   // Window Class
   const wClass: M.WNDClASSEX_Struct = new Struct(DS.WNDCLASSEX)()
 
-  wClass.cbSize = Config._WIN64 ? 80 : 48 // x86 = 48, x64=80
+  wClass.cbSize = wClass.ref().byteLength
   wClass.style = 0
   wClass.lpfnWndProc = WndProc
   wClass.cbClsExtra = 0
   wClass.cbWndExtra = 0
-  // wClass.hInstance = ref.ref(hmodule);
-  wClass.hInstance = hInstance
+  wClass.hInstance = ref.NULL
   wClass.hIcon = ref.NULL
   wClass.hCursor = ref.NULL
   wClass.hbrBackground = ref.NULL
@@ -132,20 +126,21 @@ function createWindow(title: string): Buffer {
   if (!user32.RegisterClassExW(wClass.ref())) {
     throw new Error('Error registering class')
   }
-  // tslint:disable: no-bitwise
+  // const dStyle = U.constants.WS_OVERLAPPEDWINDOW
+  const dStyle = U.constants.WS_CAPTION | U.constants.WS_SYSMENU
   const hWnd = user32.CreateWindowExW(
     0,
     className,
     windowName,
-    0xcf0000, // overlapped window
-    1 << 31, // use default
-    1 << 31,
+    dStyle, // overlapped window
+    U.constants.CW_USEDEFAULT,
+    U.constants.CW_USEDEFAULT,
     600,
     400,
-    null,
-    null,
-    hInstance,
-    null,
+    ref.NULL,
+    ref.NULL,
+    ref.NULL,
+    ref.NULL,
   )
 
   user32.ShowWindow(hWnd, 1)
@@ -162,20 +157,7 @@ function changeTitle(hWnd: Buffer, title: string): string {
     const res = user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
 
     if (!res) {
-      // See: [System Error Codes] below
-      const errcode = knl32.GetLastError()
-      const len = 255
-      const buf = Buffer.alloc(len)
-      // tslint:disable-next-line
-      const p = 0x00001000 | 0x00000200  // FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS
-      const langid = 0x0409              // 0x0409: US, 0x0000: Neutral locale language
-      const msglen = knl32.FormatMessageW(p, null, errcode, langid, buf, len, null)
-
-      if (msglen) {
-        const errmsg = ref.reinterpretUntilZeros(buf, 2).toString('ucs2')
-        throw new Error(errmsg)
-      }
-
+      console.error('failed with', res)
       return ''
     }
     else {

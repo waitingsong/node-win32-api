@@ -1,6 +1,3 @@
-/// <reference types="node" />
-/// <reference types="mocha" />
-
 import { basename } from '@waiting/shared-core'
 import * as assert from 'power-assert'
 import { interval, of } from 'rxjs'
@@ -22,22 +19,18 @@ const filename = basename(__filename)
 
 describe(filename, () => {
   it('Should WndProc works at more loops', (done) => {
-    const loops = 1024
+    const loops = 64
     const titlePrefix = 'win32-api-'
     const wndProc: M.WNDPROC = createWndProc()
-    process.on('exit', () => {
-      // tslint:disable-next-line:no-unused-expression
-      wndProc // avoid gc
-    })
 
     let handle: M.HWND
-    const handle$ = createWindow(wndProc).pipe(
+    const handle$ = of(createWindow(wndProc)).pipe(
       tap((hWnd) => {
         handle = hWnd
       }),
       delay(1500),
     )
-    const range$ = interval(10).pipe(
+    const range$ = interval(50).pipe(
       take(loops),
     )
     const start = new Date().getTime()
@@ -54,6 +47,7 @@ describe(filename, () => {
       }),
       timeout(50_000),
       finalize(() => {
+        typeof wndProc // avoid gc
         handle && destroyWin(handle)
         // for next testing
         setTimeout(() => {

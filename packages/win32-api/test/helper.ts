@@ -42,20 +42,16 @@ export function createWndProc(): M.WNDPROC {
     },
   )
 
-  process.on('exit', () => {
-    // tslint:disable-next-line:no-unused-expression
-    WndProc // avoid gc
-  })
+  // process.on('exit', () => {
+  //   typeof WndProc // avoid gc
+  // })
 
   return WndProc
 }
 
-export function createWindow(wndProc: M.WNDPROC): Observable<M.HWND> {
+export function createWindow(wndProc: M.WNDPROC): M.HWND {
   const className = Buffer.from('NodeClass\0', 'ucs2')
   const windowName = Buffer.from('Node calc\0', 'ucs2')
-
-  const hInstance = ref.alloc(W.HINSTANCE)
-  knl32.GetModuleHandleExW(0, ref.NULL, hInstance)
 
   // Common Controls
   const icc: M.INITCOMMONCONTROLSEX_Struct = new Struct(DS.INITCOMMONCONTROLSEX)()
@@ -63,15 +59,19 @@ export function createWindow(wndProc: M.WNDPROC): Observable<M.HWND> {
   icc.dwICC = 0x40ff
   comctl32.InitCommonControlsEx(icc.ref())
 
+  // @DEBUG
+  const wc = DS.WNDCLASSEX
+  const wparm = W.WPARAM
+  const lparm = W.LPARAM
   // Window Class
   const wClass: M.WNDClASSEX_Struct = new Struct(DS.WNDCLASSEX)()
 
-  wClass.cbSize = Config._WIN64 ? 80 : 48 // x64=80, x86=48
+  wClass.cbSize = wClass.ref().byteLength
   wClass.style = 0
   wClass.lpfnWndProc = wndProc
   wClass.cbClsExtra = 0
   wClass.cbWndExtra = 0
-  wClass.hInstance = hInstance
+  wClass.hInstance = ref.NULL
   wClass.hIcon = ref.NULL
   wClass.hCursor = ref.NULL
   wClass.hbrBackground = ref.NULL
@@ -82,19 +82,20 @@ export function createWindow(wndProc: M.WNDPROC): Observable<M.HWND> {
   if (! user32.RegisterClassExW(wClass.ref())) {
     throw new Error('Error registering class')
   }
-  // tslint:disable: no-bitwise
+  // const dStyle = U.constants.WS_OVERLAPPEDWINDOW
+  const dStyle = U.constants.WS_CAPTION | U.constants.WS_SYSMENU
   const hWnd: M.HWND = user32.CreateWindowExW(
     0,
     className,
     windowName,
-    0xcf0000, // overlapped window
-    1 << 31, // use default
-    1 << 31,
+    dStyle, // overlapped window
+    U.constants.CW_USEDEFAULT,
+    U.constants.CW_USEDEFAULT,
     600,
     400,
     ref.NULL,
     ref.NULL,
-    hInstance,
+    ref.NULL,
     ref.NULL,
   )
 
@@ -102,7 +103,7 @@ export function createWindow(wndProc: M.WNDPROC): Observable<M.HWND> {
     user32.ShowWindow(hWnd, 1)
     user32.UpdateWindow(hWnd)
 
-    return of(hWnd)
+    return hWnd
   }
   else {
     throw new Error('CreateWindowExW() failed')
