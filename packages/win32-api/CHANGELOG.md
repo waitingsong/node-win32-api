@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0](https://github.com/waitingsong/node-win32-api/compare/v7.1.0...v8.0.0) (2020-01-10)
+
+**Note:** Version bump only for package win32-api
+
+
+
+
+
 # [7.1.0](https://github.com/waitingsong/node-win32-api/compare/v7.0.2...v7.1.0) (2020-01-10)
 
 

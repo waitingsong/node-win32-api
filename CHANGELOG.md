@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0](/compare/v7.1.0...v8.0.0) (2020-01-10)
+
+
+* chore(win32-def)!: remove deprecated types 99e1e5e
+
+
+### BREAKING CHANGES
+
+* remove deprecated types
+
+
+
+
+
 # [7.1.0](/compare/v7.0.2...v7.1.0) (2020-01-10)
 
 
