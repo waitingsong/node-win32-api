@@ -31,5 +31,6 @@ export const macroMap: MacroMap = new Map([
   ['TBYTE', [_UNICODE_HOLDER, 'int16', 'int8'] ],
   ['TCHAR', [_UNICODE_HOLDER, WCHAR, 'uint8'] ],
   ['UHALF_PTR', [_WIN64_HOLDER, 'uint32', 'uint16'] ],
+  ['UINT_PTR', [_WIN64_HOLDER, 'uint64', 'uint32'] ],
   ['ULONG_PTR', [_WIN64_HOLDER, 'uint64', 'uint32'] ],
 ])

@@ -63,6 +63,7 @@ export type HRSRC = Buffer
 export type HSZ = Buffer
 export type HWINEVENTHOOK = Buffer
 export type HWINSTA = Buffer
+/** A 32-bit signed integer */
 export type INT = number
 export type INT_PTR = number
 export type INT8 = number
@@ -77,7 +78,7 @@ export type LONG = number
 export type LONGLONG = number
 export type LONG32 = number
 export type LONG64 = number
-export type LPARAM = number | Buffer
+export type LPARAM = LONG_PTR
 export type LPBOOL = Buffer
 export type LPBYTE = Buffer
 export type LPCOLORREF = Buffer
@@ -159,8 +160,8 @@ export type SC_HANDLE = Buffer
 export type SC_LOCK = LPVOID
 export type SERVICE_STATUS_HANDLE = Buffer
 export type SHORT = number
-export type SIZE_T = Buffer
-export type SSIZE_T = Buffer
+export type SIZE_T = number
+export type SSIZE_T = number
 export type TBYTE = number
 export type TCHAR = string
 export type UCHAR = string
@@ -180,9 +181,9 @@ export type USHORT = number
 export type USN = number
 // export type WINAPI;
 export type WINEVENTPROC = Buffer
-export type WPARAM = number | Buffer
 export type WNDENUMPROC = Buffer
 export type WNDPROC = Buffer
+export type WPARAM = UINT_PTR
 
 export type LPINITCOMMONCONTROLSEX = Buffer // A pointer to an INITCOMMONCONTROLSEX
 export type LPWNDCLASSEX = Buffer // A pointer to a WNDCLASSEX
@@ -192,3 +193,6 @@ export type PFILETIME = Buffer // A pointer to a FILETIME
 export type LPFILETIME = Buffer // A pointer to a FILETIME
 
 export type va_list = Buffer
+/* ------------------ struct ---------------------- */
+// see src/lib/win-model/struct.ts
+

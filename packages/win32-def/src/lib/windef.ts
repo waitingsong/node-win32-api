@@ -72,6 +72,7 @@ export const HSZ = 'HANDLE'
 export const HWINEVENTHOOK = 'HANDLE'
 export const HWINSTA = 'HANDLE'
 export const HWND = 'HANDLE'
+/** A 32-bit signed integer */
 export const INT = 'int'
 export const INT_PTR = _WIN64_HOLDER
 export const INT8 = 'int8'
@@ -132,7 +133,7 @@ export const PINT64 = 'int64*'
 export const PLCID = 'uint32*'
 export const PLONG = 'long*'
 export const PLONGLONG = 'int64*'
-export const PLONG_PTR = 'LONG_PTR'
+export const PLONG_PTR = 'pointer'
 export const PLONG32 = 'int32*'
 export const PLONG64 = 'int64*'
 // ? A 32-bit pointer. On a 32-bit system, this is a native pointer.
@@ -172,14 +173,14 @@ export const SC_HANDLE = 'HANDLE'
 export const SC_LOCK = 'LPVOID'
 export const SERVICE_STATUS_HANDLE = 'HANDLE'
 export const SHORT = 'int16'
-export const SIZE_T = 'ULONG_PTR' // ?
-export const SSIZE_T = 'LONG_PTR' // ?
+export const SIZE_T = 'ULONG_PTR'
+export const SSIZE_T = 'LONG_PTR'
 export const TBYTE = _UNICODE_HOLDER
 export const TCHAR = _UNICODE_HOLDER
 export const UCHAR = 'uchar'
 export const UHALF_PTR = _WIN64_HOLDER
 export const UINT = 'uint'
-export const UINT_PTR = 'uint'
+export const UINT_PTR = _WIN64_HOLDER
 export const UINT8 = 'uint8'
 export const UINT16 = 'uint16'
 export const UINT32 = 'uint32'
@@ -188,8 +189,8 @@ export const ULONG = 'uint'
 export const ULONGLONG = 'uint64'
 export const ULONG32 = 'uint32'
 export const ULONG64 = 'uint64'
-export const USHORT = 'ushort'
 export const UNICODE_STRING = 'pointer'
+export const USHORT = 'ushort'
 export const USN = LONGLONG
 // export const WINAPI;
 export const WINEVENTPROC = 'pointer'
@@ -197,14 +198,12 @@ export const WNDENUMPROC = 'pointer'
 export const WNDPROC = 'pointer'
 
 /**
- * Caution: original be  typedef UINT_PTR WPARAM;
- * but the CALLBACK WNDCLASSEX.lpfnWndProc will pass negative number and cause process exit.
- * so change to LONG_PTR
+ * Note: original be typedef UINT_PTR WPARAM;
+ * CALLBACK WNDCLASSEX.lpfnWndProc may pass negative number and cause process exit.
  */
-// export const WPARAM = UINT_PTR;
-export const WPARAM = 'LONG_PTR'
-
-export const LPINITCOMMONCONTROLSEX = 'pointer' // A pointer to an INITCOMMONCONTROLSEX
+export const WPARAM = 'UINT_PTR'
+// A pointer to an INITCOMMONCONTROLSEX
+export const LPINITCOMMONCONTROLSEX = 'pointer'
 export const LPWNDCLASSEX = 'pointer' // A pointer to a WNDCLASSEX
 export const PWINDOWINFO = 'pointer' // A pointer to a WINDOWINFO structure
 
