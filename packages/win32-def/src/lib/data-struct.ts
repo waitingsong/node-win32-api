@@ -85,7 +85,7 @@ export const UNICODE_STRING = {
   Buffer: W.PWSTR,
 }
 
-/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagrawhid */
+/** https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-rawhid */
 export const RAWHID = {
   dwSizeHid: W.DWORD,
   dwCount: W.DWORD,
@@ -93,7 +93,7 @@ export const RAWHID = {
   bRawData: W.BYTE,
 }
 
-/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagrawinputheader */
+/** https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-rawinputheader */
 export const RAWINPUTHEADER = {
   dwType: W.DWORD,
   dwSize: W.DWORD,
@@ -101,7 +101,7 @@ export const RAWINPUTHEADER = {
   wParam: W.WPARAM,
 }
 
-/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagrawkeyboard */
+/** https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-rawkeyboard */
 export const RAWKEYBOARD = {
   MakeCode: W.USHORT,
   Flags: W.USHORT,
@@ -124,7 +124,7 @@ export const WINDOWINFO = {
   wCreatorVersion: W.WORD,
 }
 
-// https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms633577(v=vs.85).aspx
+/** https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms633577(v=vs.85).aspx */
 export const WNDCLASSEX = {
   cbSize: W.UINT,
   style: W.UINT,
@@ -149,8 +149,9 @@ export const RECT = {
 }
 export { RECT as _RECT }
 
-/** https://docs.microsoft.com/en-us/windows/desktop/api/minwinbase/ns-minwinbase-filetime */
+/** https://docs.microsoft.com/en-us/windows/win32/api/minwinbase/ns-minwinbase-filetime */
 export const FILETIME = {
   dwLowDateTime: W.DWORD,
   dwHighDateTime: W.DWORD,
 }
+

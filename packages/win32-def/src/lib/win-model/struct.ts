@@ -24,7 +24,6 @@ import {
   WPARAM,
 } from './common'
 
-// tslint:disable:class-name
 
 /**
  * Struct usage:
