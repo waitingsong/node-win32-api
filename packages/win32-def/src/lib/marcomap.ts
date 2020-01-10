@@ -24,7 +24,7 @@ export const macroMap: MacroMap = new Map([
   ['PCTSTR', [_WIN64_HOLDER, LPCWSTR, LPCSTR] ],
   ['PHANDLE', [_WIN64_HOLDER, 'uint64**', 'uint32**'] ],
   ['PHKEY', [_WIN64_HOLDER, 'uint64*', 'uint32*'] ],
-  ['POINTER_32', [_WIN64_HOLDER, 'uint64*', 'uint32*'] ],
+  ['POINTER_32', [_WIN64_HOLDER, 'uint32*', 'uint32*'] ],
   ['POINTER_64', [_WIN64_HOLDER, 'uint64*', 'uint32*'] ],
   ['PTBYTE', [_UNICODE_HOLDER, 'int16*', 'int8*'] ],
   ['PTCHAR', [_UNICODE_HOLDER, 'uint16*', 'uint8*'] ],
