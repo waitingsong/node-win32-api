@@ -33,7 +33,9 @@ describe(filename, () => {
         const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
         const hWnd = user32.FindWindowExW(null, null, lpszClass, null)
 
-        if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
+        if (typeof hWnd === 'number' && hWnd > 0
+          || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
+        ) {
           // Change title of the Calculator
           user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
 
@@ -112,6 +114,6 @@ function createEnumWinProc(): M.WNDENUMPROC {
 }
 
 
-function enumWindows(proc: M.WNDENUMPROC, id: number): void {
+function enumWindows(proc: M.WNDENUMPROC, id: M.LPARAM): void {
   user32.EnumWindows(proc, id)
 }

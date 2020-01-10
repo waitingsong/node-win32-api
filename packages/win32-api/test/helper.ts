@@ -32,7 +32,7 @@ export function createWndProc(): M.WNDPROC {
       let result = 0
       switch (uMsg) {
         default:
-          result = user32.DefWindowProcW(hwnd as FM.FFIBuffer, uMsg, wParam, lParam)
+          result = user32.DefWindowProcW(hwnd, uMsg, wParam, lParam)
           break
       }
       // console.info('Sending LRESULT: ' + result + '\n')
@@ -97,7 +97,9 @@ export function createWindow(wndProc: M.WNDPROC): M.HWND {
     ref.NULL,
   )
 
-  if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
+  if (typeof hWnd === 'number' && hWnd > 0
+    || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
+  ) {
     user32.ShowWindow(hWnd, 1)
     user32.UpdateWindow(hWnd)
 
@@ -109,10 +111,12 @@ export function createWindow(wndProc: M.WNDPROC): M.HWND {
 
 }
 
-export function changeTitle(handle: M.HANDLE, title: string): string {
-  if (handle && ! ref.isNull(handle) && ref.address(handle)) {
+export function changeTitle(hWnd: M.HANDLE, title: string): string {
+  if (typeof hWnd === 'number' && hWnd > 0
+    || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
+  ) {
     // Change title of the Calculator
-    const res = user32.SetWindowTextW(handle, Buffer.from(title + '\0', 'ucs2'))
+    const res = user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
 
     if (! res) {
       throw new Error('changeTitle failed')

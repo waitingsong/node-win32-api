@@ -28,7 +28,9 @@ describe(filename, () => {
           return
         }
 
-        if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
+        if (typeof hWnd === 'number' && hWnd > 0
+          || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
+        ) {
           assert(true)
         }
         else {
@@ -55,7 +57,9 @@ describe(filename, () => {
           return
         }
 
-        if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
+        if (typeof hWnd === 'number' && hWnd > 0
+          || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
+        ) {
           assert(true)
         }
         else {
@@ -159,7 +163,9 @@ function findNSetWinTitleAsyncPartial(): Promise<void> {
         return reject(err.message)
       }
 
-      if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
+      if (typeof hWnd === 'number' && hWnd > 0
+          || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
+      ) {
         const title = 'Node-Calculator'
         // Change title of the Calculator
         u32.SetWindowTextW.async(hWnd, Buffer.from(title + '\0', 'ucs2'), (err2) => {
