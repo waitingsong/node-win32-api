@@ -10,7 +10,7 @@ export type _POINTER = Buffer
 
 export type ATOM = number // uint16
 export type DWORD = number
-export type PVOID = number
+export type PVOID = Buffer
 export type HANDLE = Buffer
 export type LONG_PTR = number | BigIntStr
 export type ULONG_PTR = number | BigIntStr
