@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { BigIntStr, Push } from '@waiting/shared-types' // def for ffi [returnType, [calling param, ...]]
+import { BigIntStr, Push } from '@waiting/shared-types'
 
 // for translation of windef
 export type MacroParam<T> = T | [T, T, T] // [s,s,s] for conversion of macro windows data like LPCTSTR

@@ -193,3 +193,4 @@ export interface FILETIME_Struct extends StructInstanceBase {
   dwLowDateTime: DWORD
   dwHighDateTime: DWORD
 }
+

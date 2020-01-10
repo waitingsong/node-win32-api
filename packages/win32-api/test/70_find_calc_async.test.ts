@@ -122,7 +122,9 @@ function findNSetWinTitleAsync(): Promise<void> {
         return reject(err.message)
       }
 
-      if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
+      if (typeof hWnd === 'number' && hWnd > 0
+          || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
+      ) {
         const title = 'Node-Calculator'
         user32.SetWindowTextW.async(hWnd, Buffer.from(title + '\0', 'ucs2'), (err2, res) => {
           if (err2) {
