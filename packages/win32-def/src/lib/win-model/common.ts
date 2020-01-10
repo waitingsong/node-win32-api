@@ -12,15 +12,15 @@ export type HANDLE = Buffer
 export type LONG_PTR = number
 export type ULONG_PTR = number
 export type VOID = number & Buffer & void
-export type WCHAR = string
-export type WORD = string
+export type WCHAR = UINT16
+export type WORD = INT16
 
 export type BOOL = number // ?
 export type BOOLEAN = boolean
 export type BYTE = number
 export type CALLBACK = _POINTER // https://msdn.microsoft.com/en-us/library/windows/desktop/ms633573(v=vs.85).aspx
-export type CCHAR = string
-export type CHAR = string
+export type CCHAR = UINT8
+export type CHAR = UINT8
 export type COLORREF = number
 // export type CONST;
 export type DWORDLONG = number

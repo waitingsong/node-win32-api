@@ -26,8 +26,8 @@ export const BOOL = 'int'
 export const BOOLEAN = 'bool'
 export const BYTE = 'byte'
 export const CALLBACK = 'pointer' // https://msdn.microsoft.com/en-us/library/windows/desktop/ms633573(v=vs.85).aspx
-export const CCHAR = 'char'
-export const CHAR = 'char'
+export const CCHAR = 'uint8'
+export const CHAR = 'uint8'
 export const COLORREF = 'DWORD'
 // export const CONST;
 export const DWORDLONG = 'uint64'
