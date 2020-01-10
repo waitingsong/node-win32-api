@@ -83,6 +83,7 @@ export const WS_TILEDWINDOW = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU
   | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX
 
 /* --------- Extended Window Styles ---------------- */
+// https://docs.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles
 // https://msdn.microsoft.com/en-us/library/windows/desktop/ff700543(v=vs.85).aspx
 
 export const WS_EX_ACCEPTFILES = 0x00000010
@@ -110,12 +111,12 @@ export const WS_EX_TOOLWINDOW = 0x00000080
 export const WS_EX_TOPMOST = 0x00000008
 export const WS_EX_TRANSPARENT = 0x00000020
 export const WS_EX_WINDOWEDGE = 0x00000100
-// tslint:disable-next-line
 export const WS_EX_OVERLAPPEDWINDOW = WS_EX_WINDOWEDGE | WS_EX_CLIENTEDGE
-// tslint:disable-next-line
 export const WS_EX_PALETTEWINDOW = WS_EX_WINDOWEDGE | WS_EX_TOOLWINDOW | WS_EX_TOPMOST
 
 export const PM_NOREMOVE = 0x0000
 export const PM_REMOVE = 0x0001
 export const PM_NOYIELD = 0x0002
+
+export const CW_USEDEFAULT = 1 << 31
 
