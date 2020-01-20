@@ -12,7 +12,7 @@ appDir=`pwd`
 scriptDir="$appDir/.scripts"
 
 tagVerCur=$(jq -r '.version' $appDir/lerna.json)
-if [ -z $tagVerCur ]; then
+if [ -z "$tagVerCur" ]; then
   echo -e "Retrieve version of lerna.json failed!"
   exit 1
 fi
@@ -36,7 +36,6 @@ if [[ "$*" =~ "gitlab" ]]; then
   fi
   if [ -z $GL_API_URL ]; then
     export GL_API_URL="$CI_API_V4_URL"
-    echo -e "CI_API_V4_URL: $CI_API_V4_URL"
     echo -e "GL_API_URL: $GL_API_URL"
   fi
   if [ -z $GL_API_URL ]; then
@@ -58,18 +57,18 @@ if [ "$?" -ne 0 ]; then
   echo -e "Release branch \"$branch\" has changed!"
   echo -e "Retry publishing on the latest pipeline"
   echo -e "script: $0 "
-  echo -e "------------------------------------------------------\n"
+  echo -e "------------------------------------------------------"
   exit 1
 fi
 
 set -e
 
-echo -e "\n>>> lerna initializing..."
+echo -e ">>> lerna initializing..."
 #npm run clean 
 npm run bootstrap
 source $scriptDir/build.sh
 
-echo -e "\n>>> lerna publishing..."
+echo -e ">>> lerna publishing..."
 git add --ignore-errors .
 lerna publish $*
 sleep "5s"

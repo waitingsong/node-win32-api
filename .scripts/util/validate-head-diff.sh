@@ -10,7 +10,7 @@ localHead=$(git rev-parse HEAD)
 oriHead=$(git ls-remote origin --tags "$1" | awk '{print $1;}')
 
 if [ "$localHead" != "$oriHead" ]; then
-  echo -e "\n\n--------------------- CAUTION  -----------------------"
+  echo -e " \n\n--------------------- CAUTION  -----------------------"
   echo -e "       >> Local HEAD and origin/$1 differ << "
   echo -e "local SHA:  $localHead"
   echo -e "remote SHA: $oriHead \n"
