@@ -19,7 +19,7 @@ const filename = basename(__filename)
 
 describe(filename, () => {
   it('Should WndProc works at more loops', (done) => {
-    const loops = 64
+    const loops = 16
     const titlePrefix = 'win32-api-'
     const wndProc: M.WNDPROC = createWndProc()
 
@@ -30,7 +30,7 @@ describe(filename, () => {
       }),
       delay(1500),
     )
-    const range$ = interval(50).pipe(
+    const range$ = interval(500).pipe(
       take(loops),
     )
     const start = new Date().getTime()

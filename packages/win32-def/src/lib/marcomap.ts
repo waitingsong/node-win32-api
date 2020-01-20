@@ -13,6 +13,7 @@ import {
 
 
 export const macroMap: MacroMap = new Map([
+  ['HANDLE', [_WIN64_HOLDER, 'uint64', 'uint32'] ],
   ['PVOID', [_WIN64_HOLDER, 'uint64*', 'uint32*'] ],
   ['HALF_PTR', [_WIN64_HOLDER, 'int32', 'int16'] ],
   ['INT_PTR', [_WIN64_HOLDER, 'int64', 'int32'] ],

@@ -15,7 +15,16 @@ import {
 export const ATOM = 'uint16'
 export const DWORD = 'uint32'
 export const PVOID = _WIN64_HOLDER
-export const HANDLE = 'PVOID'
+/**
+ * `uint32` used as value usage (memory address) instead of PVOID (Buffer),
+ * Use `HANDLE` (number) for params defintion of the api,
+ * @see https://stackoverflow.com/questions/18266626/what-is-the-range-of-a-windows-handle-on-a-64-bits-application/29526711#29526711
+ */
+export const HANDLE = _WIN64_HOLDER
+/**
+ * `HANDLE_PVOID` (Buffer) can be used for definition of Struct,
+ */
+export const HANDLE_PVOID = 'PVOID'
 export const LONG_PTR = _WIN64_HOLDER
 export const ULONG_PTR = _WIN64_HOLDER
 export const VOID = 'void'

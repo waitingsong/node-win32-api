@@ -11,10 +11,7 @@ import {
   DTypes as W,
 } from 'win32-def'
 
-import {
-  knl32,
-  user32,
-} from './helper'
+import { user32 } from './helper'
 
 
 const filename = basename(__filename)
@@ -28,13 +25,14 @@ describe(filename, () => {
     const enumWindowsProc = createEnumWinProc()
 
     of(null).pipe(
-      delay(1000),
+      delay(1500),
       tap(() => {
         const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
-        const hWnd = user32.FindWindowExW(null, null, lpszClass, null)
+        const hWnd = user32.FindWindowExW(0, 0, lpszClass, null)
 
         if (typeof hWnd === 'number' && hWnd > 0
-          || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
+          || typeof hWnd === 'bigint' && hWnd > 0
+          || typeof hWnd === 'string' && hWnd.length > 0
         ) {
           // Change title of the Calculator
           user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
@@ -50,9 +48,10 @@ describe(filename, () => {
           tmpMap.set(id, false)
           enumWindows(enumWindowsProc, id)
           assert(tmpMap.get(id) === true)
+          tmpMap.clear()
         }
         else {
-          assert(false, 'found no calc window, GetLastError: ' + knl32.GetLastError())
+          assert(false, 'NOt found calc window')
         }
 
       }),
@@ -83,7 +82,7 @@ function createEnumWinProc(): M.WNDENUMPROC {
   const enumWindowsProc = ffi.Callback(
     W.BOOL,
     [W.HWND, W.LPARAM],
-    (hWnd: M.HWND, lParam: M.INT32): M.BOOLEAN => { // stop loop if return false
+    (hWnd: M.HWND, lParam: M.INT32): M.BOOLEAN => { // lParam use UINT32
       const visible = user32.IsWindowVisible(hWnd)
       if (! visible) {
         return true
@@ -97,7 +96,7 @@ function createEnumWinProc(): M.WNDENUMPROC {
 
         if (name === title) {
           tmpMap.set(lParam, true)
-          return false
+          return false // stop loop if return false
         }
       }
 
@@ -114,6 +113,6 @@ function createEnumWinProc(): M.WNDENUMPROC {
 }
 
 
-function enumWindows(proc: M.WNDENUMPROC, id: M.LPARAM): void {
+function enumWindows(proc: M.WNDENUMPROC, id: M.UINT32): void {
   user32.EnumWindows(proc, id)
 }

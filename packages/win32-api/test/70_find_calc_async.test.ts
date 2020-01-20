@@ -6,10 +6,7 @@ import * as ref from 'ref-napi'
 
 import { U } from '../src/index'
 
-import {
-  knl32,
-  user32,
-} from './helper'
+import { user32 } from './helper'
 
 
 const filename = basename(__filename)
@@ -20,7 +17,7 @@ describe(filename, () => {
 
     setTimeout(() => {
       const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
-      user32.FindWindowExW.async(null, null, lpszClass, null, (err, hWnd) => {
+      user32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
         if (err) {
           assert(false, err.message)
           child.kill()
@@ -29,12 +26,13 @@ describe(filename, () => {
         }
 
         if (typeof hWnd === 'number' && hWnd > 0
-          || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
+          || typeof hWnd === 'bigint' && hWnd > 0
+          || typeof hWnd === 'string' && hWnd.length > 0
         ) {
           assert(true)
         }
         else {
-          assert(false, 'found no calc window, GetLastError: ' + knl32.GetLastError())
+          assert(false, 'found no calc window')
         }
 
         child.kill()
@@ -49,7 +47,7 @@ describe(filename, () => {
     setTimeout(() => {
       const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
 
-      user32.FindWindowExW.async(null, null, lpszClass, null, (err, hWnd) => {
+      user32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
         if (err) {
           assert(false, err.message)
           child.kill()
@@ -58,12 +56,13 @@ describe(filename, () => {
         }
 
         if (typeof hWnd === 'number' && hWnd > 0
-          || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
+          || typeof hWnd === 'bigint' && hWnd > 0
+          || typeof hWnd === 'string' && hWnd.length > 0
         ) {
           assert(true)
         }
         else {
-          assert(false, 'found no calc window, GetLastError: ' + knl32.GetLastError())
+          assert(false, 'found no calc window')
         }
 
         child.kill()
@@ -117,13 +116,14 @@ function findNSetWinTitleAsync(): Promise<void> {
   return new Promise((resolve, reject) => {
     const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
 
-    user32.FindWindowExW.async(null, null, lpszClass, null, (err, hWnd) => {
+    user32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
       if (err) {
         return reject(err.message)
       }
 
       if (typeof hWnd === 'number' && hWnd > 0
-          || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
+        || typeof hWnd === 'bigint' && hWnd > 0
+        || typeof hWnd === 'string' && hWnd.length > 0
       ) {
         const title = 'Node-Calculator'
         user32.SetWindowTextW.async(hWnd, Buffer.from(title + '\0', 'ucs2'), (err2, res) => {
@@ -148,7 +148,7 @@ function findNSetWinTitleAsync(): Promise<void> {
         })
       }
       else {
-        reject('found no calc window, GetLastError: ' + knl32.GetLastError())
+        reject('found no calc window')
       }
     })
   })
@@ -160,13 +160,14 @@ function findNSetWinTitleAsyncPartial(): Promise<void> {
     const u32 = U.load(['FindWindowExW', 'SetWindowTextW'])
     const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
 
-    u32.FindWindowExW.async(null, null, lpszClass, null, (err, hWnd) => {
+    u32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
       if (err) {
         return reject(err.message)
       }
 
       if (typeof hWnd === 'number' && hWnd > 0
-          || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
+        || typeof hWnd === 'bigint' && hWnd > 0
+        || typeof hWnd === 'string' && hWnd.length > 0
       ) {
         const title = 'Node-Calculator'
         // Change title of the Calculator

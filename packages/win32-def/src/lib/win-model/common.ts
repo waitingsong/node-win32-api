@@ -11,7 +11,16 @@ export type _POINTER = Buffer
 export type ATOM = number // uint16
 export type DWORD = number
 export type PVOID = Buffer
-export type HANDLE = Buffer
+/**
+ * `uint32` or `uint64` used as value usage (memory address) instead of PVOID (Buffer),
+ * Use `HANDLE` (number) for params defintion of the api,
+ * @see https://stackoverflow.com/questions/18266626/what-is-the-range-of-a-windows-handle-on-a-64-bits-application/29526711#29526711
+ */
+export type HANDLE = number | BigIntStr
+/**
+ * `HANDLE_PVOID` (Buffer) can be used for definition of Struct,
+ */
+export type HANDLE_PVOID = _POINTER
 export type LONG_PTR = number | BigIntStr
 export type ULONG_PTR = number | BigIntStr
 export type VOID = number & Buffer & void

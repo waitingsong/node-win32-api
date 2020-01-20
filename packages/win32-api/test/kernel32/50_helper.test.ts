@@ -13,7 +13,7 @@ const filename = basename(__filename)
 describe(filename + ' :gen_api_opts() specify', () => {
   const apiName = 'Kernel32'
   const module: any = Win[apiName]
-  const fn = 'GetLastError'
+  const fn = 'GetSystemTimes'
   const fakeFn = fn + Math.random()
 
   if (module && module.apiDef) {

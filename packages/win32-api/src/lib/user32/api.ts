@@ -18,10 +18,10 @@ export interface Win32Fns extends FM.DllFuncsModel {
     y: M.INT,
     nWidth: M.INT,
     nHeight: M.INT,
-    hWndParent: M.HWND | null,
-    HMENU: M.HMENU | null,
-    HINSTANCE: M.HINSTANCE | null,
-    LPVOID: M.LPVOID | null,
+    hWndParent: M.HWND,
+    HMENU: M.HMENU,
+    HINSTANCE: M.HINSTANCE,
+    LPVOID: M.LPVOID,
   ): M.HWND
 
   DefWindowProcW(hWnd: M.HWND, Msg: M.UINT, wParam: M.WPARAM, lParam: M.LPARAM): M.LRESULT
@@ -37,19 +37,19 @@ export interface Win32Fns extends FM.DllFuncsModel {
   EnumWindows: EnumWindows
 
   FindWindowExW(
-    hwndParent: M.HWND | null,
-    hwndChildAfter: M.HWND | null,
+    hwndParent: M.HWND,
+    hwndChildAfter: M.HWND,
     lpszClass: M.LPCTSTR | null,
     lpszWindow: M.LPCTSTR | null,
   ): M.HWND
 
   GetAncestor(hwnd: M.HWND, gaFlags: M.UINT): M.HWND
 
-  GetClassInfoExW(hinst: M.HINSTANCE | null, lpszClass: M.LPCTSTR, LPWNDCLASSEX: M.LPWNDCLASSEX): M.BOOL
+  GetClassInfoExW(hinst: M.HINSTANCE, lpszClass: M.LPCTSTR, LPWNDCLASSEX: M.LPWNDCLASSEX): M.BOOL
 
   GetForegroundWindow(): M.HWND
 
-  GetMessageW(lpMsg: M.LPMSG, HWND: M.HWND | null, wMsgFilterMin: M.UINT, wMsgFilterMax: M.UINT): M.BOOL
+  GetMessageW(lpMsg: M.LPMSG, HWND: M.HWND, wMsgFilterMin: M.UINT, wMsgFilterMax: M.UINT): M.BOOL
 
   GetParent(hWnd: M.HWND): M.HWND
 
@@ -72,7 +72,7 @@ export interface Win32Fns extends FM.DllFuncsModel {
   // tslint:disable:max-line-length
   PeekMessageW(
     lpMsg: M.LPMSG,
-    HWND: M.HWND | null,
+    HWND: M.HWND,
     wMsgFilterMin: M.UINT,
     wMsgFilterMax: M.UINT,
     wRemoveMsg: M.UINT,

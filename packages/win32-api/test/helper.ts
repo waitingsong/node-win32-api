@@ -58,9 +58,9 @@ export function createWindow(wndProc: M.WNDPROC): M.HWND {
   comctl32.InitCommonControlsEx(icc.ref())
 
   // @DEBUG
-  const wc = DS.WNDCLASSEX
-  const wparm = W.WPARAM
-  const lparm = W.LPARAM
+  // const wc = DS.WNDCLASSEX
+  // const wparm = W.WPARAM
+  // const lparm = W.LPARAM
   // Window Class
   const wClass: M.WNDClASSEX_Struct = new Struct(DS.WNDCLASSEX)()
 
@@ -69,13 +69,13 @@ export function createWindow(wndProc: M.WNDPROC): M.HWND {
   wClass.lpfnWndProc = wndProc
   wClass.cbClsExtra = 0
   wClass.cbWndExtra = 0
-  wClass.hInstance = ref.NULL
-  wClass.hIcon = ref.NULL
-  wClass.hCursor = ref.NULL
-  wClass.hbrBackground = ref.NULL
+  wClass.hInstance = 0
+  wClass.hIcon = 0
+  wClass.hCursor = 0
+  wClass.hbrBackground = 0
   wClass.lpszMenuName = ref.NULL
   wClass.lpszClassName = className
-  wClass.hIconSm = ref.NULL
+  wClass.hIconSm = 0
 
   if (! user32.RegisterClassExW(wClass.ref())) {
     throw new Error('Error registering class')
@@ -91,14 +91,15 @@ export function createWindow(wndProc: M.WNDPROC): M.HWND {
     U.constants.CW_USEDEFAULT,
     600,
     400,
-    ref.NULL,
-    ref.NULL,
-    ref.NULL,
+    0,
+    0,
+    0,
     ref.NULL,
   )
 
   if (typeof hWnd === 'number' && hWnd > 0
-    || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
+    || typeof hWnd === 'bigint' && hWnd > 0
+    || typeof hWnd === 'string' && hWnd.length > 0
   ) {
     user32.ShowWindow(hWnd, 1)
     user32.UpdateWindow(hWnd)
@@ -106,6 +107,7 @@ export function createWindow(wndProc: M.WNDPROC): M.HWND {
     return hWnd
   }
   else {
+    console.log('hWnd:', hWnd)
     throw new Error('CreateWindowExW() failed')
   }
 

@@ -18,6 +18,10 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   FreeConsole(): M.BOOL
 
+  /**
+   * Not works correctly
+   * @see https://github.com/node-ffi/node-ffi/issues/261
+   */
   GetLastError(): M.DWORD
 
   GetModuleHandleW(lpModuleName: M.LPCTSTR | null): M.HMODULE
