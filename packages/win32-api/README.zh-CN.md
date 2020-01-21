@@ -53,17 +53,17 @@ const knl32 = K.load()
 const user32 = U.load()  // 初始化 lib/{dll}/api 文件中定义的所有函数
 // const user32 = U.load(['FindWindowExW']);  // 仅加载 user32.dll 的 FindWindowExW 函数
 
-const title = '计算器\0'    // null-terminated string 字符串必须以\0即null结尾!
-// const title = 'Calculator\0'
+// const title = 'Calculator\0'    // null-terminated string
+ const title = '计算器\0'    // null-terminated string 字符串必须以\0即null结尾!
 
 const lpszWindow = Buffer.from(title, 'ucs2')
 const hWnd = user32.FindWindowExW(null, null, null, lpszWindow)
 
-if (hWnd && ! hWnd.isNull()) {
-  // Caution: outputing hWnd will cuase exception in the following process, even next script!
-  // NOT do below in the production code!
-  // console.log('buf: ', hWnd); // avoid this
-  console.log('buf: ', ref.address(hWnd)) // this is ok
+if (typeof hWnd === 'number' && hWnd > 0
+  || typeof hWnd === 'bigint' && hWnd > 0
+  || typeof hWnd === 'string' && hWnd.length > 0
+) {
+  console.log('buf: ', hWnd)
 
   // Change title of the Calculator
   const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'))
@@ -72,7 +72,7 @@ if (hWnd && ! hWnd.isNull()) {
     console.log('SetWindowTextW failed')
   }
   else {
-    console.log('计算器程序窗口标题修改成功')
+    console.log('window title changed')
   }
 }
 ```
@@ -98,18 +98,23 @@ console.log(ref.deref(buf))  // ← 12345
 ```
 
 ```ts
-// usage of types and windef:
-import { K, FModel as FM, DTypes as W } from 'win32-api'
+// use of types and windef:
+
 import * as ref from 'ref-napi'
+import { K, DTypes as W } from 'win32-api'
+
 
 const knl32 = K.load()
 
-const buf = Buffer.alloc(4) as FM.Buffer   // ← here the types
-buf.writeInt32LE(12345, 0)
+const lpszClass = Buffer.from('guard64\0', 'ucs2')
+const hInstanceBuffer = ref.alloc(W.HANDLE_PVOID)
+const hInstanceAddr = ref.address(hInstanceBuffer)
 
-// const hInstance =<FM.Buffer> Buffer.alloc(process.arch === 'x64' ? 8 : 4)
-const hInstance = ref.alloc(W.HINSTANCE) as FM.Buffer    // W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32
-knl32.GetModuleHandleExW(0, null, hInstance)
+knl32.GetModuleHandleExW(0, lpszClass, hInstanceAddr)
+// <Buffer@0x00000094D3968EC0 00 00 a4 60 ff 7f 00 00, type: { indirection: 2, name: 'uint64*' }>
+console.log(hInstanceBuffer)
+console.log(hInstanceBuffer.readInt32LE(0))     // -> 1621360640           (60A40000)
+console.log(hInstanceBuffer.readBigUInt64LE())  // -> 140734814748672n (7FFF60A40000)
 ```
 
 ### [Struct](https://www.npmjs.com/package/ref-struct)
@@ -147,12 +152,15 @@ import * as ref from 'ref-napi'
 const u32 = U.load(['FindWindowExW', 'SetWindowTextW'])
 const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
 
-u32.FindWindowExW.async(null, null, lpszClass, null, (err, hWnd) => {
+u32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
   if (err) {
     throw err
   }
 
-  if (hWnd && !ref.isNull(hWnd) && ref.address(hWnd)) {
+  if (typeof hWnd === 'number' && hWnd > 0
+    || typeof hWnd === 'bigint' && hWnd > 0
+    || typeof hWnd === 'string' && hWnd.length > 0
+  ) {
     const title = 'Node-Calculator'
     // Change title of the Calculator
     u32.SetWindowTextW.async(hWnd, Buffer.from(title + '\0', 'ucs2'), err2 => {
@@ -182,7 +190,8 @@ u32.FindWindowExW.async(null, null, lpszClass, null, (err, hWnd) => {
 
 ## Demo
 - [create_window](https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/demo/create_window.ts)
-- [More](https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/test)
+- [Demos](https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/demo)
+- [Tests](https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/test)
 
 ## 依赖安装问题
 Compile successfully with
