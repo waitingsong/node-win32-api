@@ -68,6 +68,7 @@
 					<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
 					<img src="https://img.shields.io/badge/lang-TypeScript-blue.svg" alt="">
 					<img src="https://img.shields.io/badge/platform-win32-blue.svg" alt="Available platform">
+					<a href="https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/master"><img src="https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/master?svg=true" alt="Build status"></a>
 					<a href="https://coveralls.io/github/waitingsong/node-win32-api"><img src="https://coveralls.io/repos/github/waitingsong/node-win32-api/badge.svg" alt="Coverage Status"></a>
 					<a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits"></a>
 				<a href="https://lernajs.io/"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" alt="lerna"></a></p>
@@ -133,7 +134,7 @@
 <span class="hljs-comment">// const title = '计算器\0'    // null-terminated string 字符串必须以\0即null结尾!</span>
 
 <span class="hljs-keyword">const</span> lpszWindow = Buffer.from(title, <span class="hljs-string">'ucs2'</span>)
-<span class="hljs-keyword">const</span> hWnd = user32.FindWindowExW(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, lpszWindow)
+<span class="hljs-keyword">const</span> hWnd = user32.FindWindowExW(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">null</span>, lpszWindow)
 
 <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> hWnd === <span class="hljs-string">'number'</span> &amp;&amp; hWnd &gt; <span class="hljs-number">0</span>
   || <span class="hljs-keyword">typeof</span> hWnd === <span class="hljs-string">'bigint'</span> &amp;&amp; hWnd &gt; <span class="hljs-number">0</span>
