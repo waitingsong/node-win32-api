@@ -58,7 +58,7 @@ const user32 = U.load()  // 初始化 lib/{dll}/api 文件中定义的所有函�
  const title = '计算器\0'    // null-terminated string 字符串必须以\0即null结尾!
 
 const lpszWindow = Buffer.from(title, 'ucs2')
-const hWnd = user32.FindWindowExW(null, null, null, lpszWindow)
+const hWnd = user32.FindWindowExW(0, 0, null, lpszWindow)
 
 if (typeof hWnd === 'number' && hWnd > 0
   || typeof hWnd === 'bigint' && hWnd > 0
