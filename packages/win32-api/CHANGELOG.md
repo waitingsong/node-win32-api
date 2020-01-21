@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0](https://github.com/waitingsong/node-win32-api/compare/v8.0.0...v9.0.0) (2020-01-21)
+
+
+* refactor!: change type of handle from Buffer to number (uint32/uint64) ([47be79e](https://github.com/waitingsong/node-win32-api/commit/47be79e0875bb8b33575ba4cb815705a4e161d87))
+
+
+### BREAKING CHANGES
+
+* the apis accept only number|bignum|string, no null any more
+
+
+
+
+
 # [8.0.0](https://github.com/waitingsong/node-win32-api/compare/v7.1.0...v8.0.0) (2020-01-10)
 
 **Note:** Version bump only for package win32-api
