@@ -18,13 +18,13 @@ import {
 const user32 = U.load()
 
 const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
-const hWnd = user32.FindWindowExW(null, null, lpszClass, ref.NULL)
+const hWnd = user32.FindWindowExW(0, 0, lpszClass, ref.NULL)
 
-if (typeof hWnd === 'number' && hWnd > 0) {
-  console.info('success, number: ', hWnd)
-}
-else if (Buffer.isBuffer(hWnd) && !ref.isNull(hWnd)) {
-  console.info('success, address: ', ref.address(hWnd))
+if (typeof hWnd === 'number' && hWnd > 0
+  || typeof hWnd === 'bigint' && hWnd > 0
+  || typeof hWnd === 'string' && hWnd.length > 0
+) {
+  console.info('success:', hWnd)
 }
 else {
   console.error('failed')
