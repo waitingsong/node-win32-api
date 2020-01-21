@@ -117,7 +117,7 @@
 				<pre><code class="language-ts"><span class="hljs-comment">// **Find calc's hWnd, need running a calculator program manually at first**</span>
 
 <span class="hljs-comment">/**
- * expose module:
+ * exposed modules:
  * C, Comctl32 for Comctl32 from lib/comctl32/api
  * K, Kernel32 for kernel32 from lib/kernel32/api
  * U, User32 for user32 from lib/user32/api
@@ -130,16 +130,16 @@
 <span class="hljs-comment">// const user32 = U.load(['FindWindowExW'])  // load only one api defined in lib/{dll}/api from user32.dll</span>
 
 <span class="hljs-keyword">const</span> title = <span class="hljs-string">'Calculator\0'</span>    <span class="hljs-comment">// null-terminated string</span>
-<span class="hljs-comment">// const title = '计算器\0'    // string in chinese</span>
+<span class="hljs-comment">// const title = '计算器\0'    // null-terminated string 字符串必须以\0即null结尾!</span>
 
 <span class="hljs-keyword">const</span> lpszWindow = Buffer.from(title, <span class="hljs-string">'ucs2'</span>)
 <span class="hljs-keyword">const</span> hWnd = user32.FindWindowExW(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, lpszWindow)
 
-<span class="hljs-keyword">if</span> (hWnd &amp;&amp; ! hWnd.isNull()) {
-  <span class="hljs-comment">// Caution: outputing hWnd will cuase exception in the following process, even next script!</span>
-  <span class="hljs-comment">// NOT do below in the production code!</span>
-  <span class="hljs-comment">// console.log('buf: ', hWnd); // avoid this</span>
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'buf: '</span>, ref.address(hWnd)) <span class="hljs-comment">// this is ok</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> hWnd === <span class="hljs-string">'number'</span> &amp;&amp; hWnd &gt; <span class="hljs-number">0</span>
+  || <span class="hljs-keyword">typeof</span> hWnd === <span class="hljs-string">'bigint'</span> &amp;&amp; hWnd &gt; <span class="hljs-number">0</span>
+  || <span class="hljs-keyword">typeof</span> hWnd === <span class="hljs-string">'string'</span> &amp;&amp; hWnd.length &gt; <span class="hljs-number">0</span>
+) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'buf: '</span>, hWnd)
 
   <span class="hljs-comment">// Change title of the Calculator</span>
   <span class="hljs-keyword">const</span> res = user32.SetWindowTextW(hWnd, Buffer.from(<span class="hljs-string">'Node-Calculator\0'</span>, <span class="hljs-string">'ucs2'</span>))
@@ -170,18 +170,23 @@ buf.type = ref.types.int  <span class="hljs-comment">// @ts-ignore</span>
 
 <span class="hljs-comment">// now we can dereference to get the "meaningful" value</span>
 <span class="hljs-built_in">console</span>.log(ref.deref(buf))  <span class="hljs-comment">// ← 12345</span></code></pre>
-				<pre><code class="language-ts"><span class="hljs-comment">// usage of types and windef:</span>
-<span class="hljs-keyword">import</span> { K, FModel <span class="hljs-keyword">as</span> FM, DTypes <span class="hljs-keyword">as</span> W } <span class="hljs-keyword">from</span> <span class="hljs-string">'win32-api'</span>
+				<pre><code class="language-ts"><span class="hljs-comment">// use of types and windef:</span>
+
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ref <span class="hljs-keyword">from</span> <span class="hljs-string">'ref-napi'</span>
+<span class="hljs-keyword">import</span> { K, DTypes <span class="hljs-keyword">as</span> W } <span class="hljs-keyword">from</span> <span class="hljs-string">'win32-api'</span>
+
 
 <span class="hljs-keyword">const</span> knl32 = K.load()
 
-<span class="hljs-keyword">const</span> buf = Buffer.alloc(<span class="hljs-number">4</span>) <span class="hljs-keyword">as</span> FM.Buffer   <span class="hljs-comment">// ← here the types</span>
-buf.writeInt32LE(<span class="hljs-number">12345</span>, <span class="hljs-number">0</span>)
+<span class="hljs-keyword">const</span> lpszClass = Buffer.from(<span class="hljs-string">'guard64\0'</span>, <span class="hljs-string">'ucs2'</span>)
+<span class="hljs-keyword">const</span> hInstanceBuffer = ref.alloc(W.HANDLE_PVOID)
+<span class="hljs-keyword">const</span> hInstanceAddr = ref.address(hInstanceBuffer)
 
-<span class="hljs-comment">// const hInstance =&lt;FM.Buffer&gt; Buffer.alloc(process.arch === 'x64' ? 8 : 4)</span>
-<span class="hljs-keyword">const</span> hInstance = ref.alloc(W.HINSTANCE) <span class="hljs-keyword">as</span> FM.Buffer    <span class="hljs-comment">// W.HINSTANCE is 'int64*' under x64, 'int32*' under ia32</span>
-knl32.GetModuleHandleExW(<span class="hljs-number">0</span>, <span class="hljs-literal">null</span>, hInstance)</code></pre>
+knl32.GetModuleHandleExW(<span class="hljs-number">0</span>, lpszClass, hInstanceAddr)
+<span class="hljs-comment">// &lt;Buffer@0x00000094D3968EC0 00 00 a4 60 ff 7f 00 00, type: { indirection: 2, name: 'uint64*' }&gt;</span>
+<span class="hljs-built_in">console</span>.log(hInstanceBuffer)
+<span class="hljs-built_in">console</span>.log(hInstanceBuffer.readInt32LE(<span class="hljs-number">0</span>))     <span class="hljs-comment">// -&gt; 1621360640           (60A40000)</span>
+<span class="hljs-built_in">console</span>.log(hInstanceBuffer.readBigUInt64LE())  <span class="hljs-comment">// -&gt; 140734814748672n (7FFF60A40000)</span></code></pre>
 				<a href="#a-hrefhttpswwwnpmjscompackageref-structstructa" id="a-hrefhttpswwwnpmjscompackageref-structstructa" style="color: inherit; text-decoration: none;">
 					<h3><a href="https://www.npmjs.com/package/ref-struct">Struct</a></h3>
 				</a>
@@ -217,12 +222,15 @@ point.y = <span class="hljs-number">200</span>
 <span class="hljs-keyword">const</span> u32 = U.load([<span class="hljs-string">'FindWindowExW'</span>, <span class="hljs-string">'SetWindowTextW'</span>])
 <span class="hljs-keyword">const</span> lpszClass = Buffer.from(<span class="hljs-string">'CalcFrame\0'</span>, <span class="hljs-string">'ucs2'</span>)
 
-u32.FindWindowExW.async(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, lpszClass, <span class="hljs-literal">null</span>, <span class="hljs-function">(<span class="hljs-params">err, hWnd</span>) =&gt;</span> {
+u32.FindWindowExW.async(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, lpszClass, <span class="hljs-literal">null</span>, <span class="hljs-function">(<span class="hljs-params">err, hWnd</span>) =&gt;</span> {
   <span class="hljs-keyword">if</span> (err) {
     <span class="hljs-keyword">throw</span> err
   }
 
-  <span class="hljs-keyword">if</span> (hWnd &amp;&amp; !ref.isNull(hWnd) &amp;&amp; ref.address(hWnd)) {
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> hWnd === <span class="hljs-string">'number'</span> &amp;&amp; hWnd &gt; <span class="hljs-number">0</span>
+    || <span class="hljs-keyword">typeof</span> hWnd === <span class="hljs-string">'bigint'</span> &amp;&amp; hWnd &gt; <span class="hljs-number">0</span>
+    || <span class="hljs-keyword">typeof</span> hWnd === <span class="hljs-string">'string'</span> &amp;&amp; hWnd.length &gt; <span class="hljs-number">0</span>
+  ) {
     <span class="hljs-keyword">const</span> title = <span class="hljs-string">'Node-Calculator'</span>
     <span class="hljs-comment">// Change title of the Calculator</span>
     u32.SetWindowTextW.async(hWnd, Buffer.from(title + <span class="hljs-string">'\0'</span>, <span class="hljs-string">'ucs2'</span>), <span class="hljs-function"><span class="hljs-params">err2</span> =&gt;</span> {
@@ -252,7 +260,8 @@ u32.FindWindowExW.async(<span class="hljs-literal">null</span>, <span class="hlj
 				</a>
 				<ul>
 					<li><a href="https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/demo/create_window.ts">create_window</a></li>
-					<li><a href="https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/test">More</a></li>
+					<li><a href="https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/demo">Demos</a></li>
+					<li><a href="https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/test">Tests</a></li>
 				</ul>
 				<a href="#dependencies-troubleshooting" id="dependencies-troubleshooting" style="color: inherit; text-decoration: none;">
 					<h2>Dependencies Troubleshooting</h2>
