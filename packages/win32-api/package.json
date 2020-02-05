@@ -31,15 +31,15 @@
   "license": "MIT",
   "dependencies": {
     "@types/ffi-napi": "*",
+    "@types/ref-napi": "^1.4.0",
     "ffi-napi": "^2.4.5",
+    "ref-napi": "^1.4.1",
     "win32-def": "^9.0.0"
   },
   "devDependencies": {
-    "@types/ref-napi": "^1.4.0",
     "@types/ref-struct-di": "^1.1.0",
     "@waiting/shared-core": "3",
     "cross-env": "6",
-    "ref-napi": "^1.4.1",
     "ref-struct-di": "^1.1.0",
     "rxjs": "^6.5.2"
   },

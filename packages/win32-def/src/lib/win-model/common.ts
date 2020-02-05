@@ -25,6 +25,7 @@ export type LONG_PTR = number | BigIntStr
 export type ULONG_PTR = number | BigIntStr
 export type VOID = number & Buffer & void
 export type WCHAR = UINT16
+export type WCHAR_String = string
 export type WORD = INT16
 
 export type BOOL = number // ?

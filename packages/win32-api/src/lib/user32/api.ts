@@ -31,9 +31,16 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   DispatchMessageW(lpMsg: M.LPMSG): M.LRESULT
 
+  /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-enumdisplaydevicesw */
+  EnumDisplayDevicesW(
+    lpDevice: M.LPCWSTR,
+    iDevNum: M.DWORD,
+    lpDisplayDevice: M.PDISPLAY_DEVICEW,
+    dwFlags: M.DWORD,
+  ): M.BOOL
+
   EnumThreadWindows(dwThreadId: M.DWORD, lpfn: M.WNDENUMPROC, lParam: M.LPARAM): M.BOOL
 
-  // tslint:disable-next-line
   EnumWindows: EnumWindows
 
   FindWindowExW(
@@ -135,6 +142,9 @@ export const apiDef: FM.DllFuncs = {
   DestroyWindow: [W.BOOL, [W.HWND] ],
 
   DispatchMessageW: [W.LRESULT, [W.LPMSG] ],
+
+  /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-enumdisplaydevicesw */
+  EnumDisplayDevicesW: [W.BOOL, [W.LPCWSTR, W.DWORD, W.POINT, W.DWORD] ],
 
   EnumThreadWindows: [W.BOOL, [W.DWORD, W.WNDENUMPROC, W.LPARAM] ],
 

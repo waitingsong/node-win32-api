@@ -19,6 +19,7 @@ import {
   ULONG_PTR,
   USHORT,
   VOID,
+  WCHAR_String,
   WNDPROC,
   WORD,
   WPARAM,
@@ -42,6 +43,19 @@ export interface StructInstanceBase {
   ref(): Buffer
 }
 
+
+/** https://docs.microsoft.com/zh-cn/windows/win32/api/wingdi/ns-wingdi-display_devicew */
+export type DISPLAY_DEVICEW = Buffer
+export type PDISPLAY_DEVICEW = DISPLAY_DEVICEW
+export type LPDISPLAY_DEVICEW = DISPLAY_DEVICEW
+export interface DISPLAY_DEVICEW_Struct extends StructInstanceBase {
+  cb: DWORD
+  DeviceName: WCHAR_String
+  DeviceString: WCHAR_String
+  StateFlags: DWORD
+  DeviceID: WCHAR_String
+  DeviceKey: WCHAR_String
+}
 
 /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-taghardwareinput */
 export type HARDWAREINPUT = Buffer
