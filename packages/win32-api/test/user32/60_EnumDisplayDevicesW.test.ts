@@ -25,8 +25,8 @@ describe(filename, () => {
       DeviceName: dd.DeviceName,
       DeviceString: dd.DeviceString,
     })
-    assert(dd.DeviceName.replace(/\0$/g, '').includes('\\\\.\\DISPLAY1'))
-    assert(dd.DeviceString.replace(/\0/g, '').length > 0)
+    assert(dd.DeviceName.replace(/\0$/ug, '').includes('\\\\.\\DISPLAY1'))
+    assert(dd.DeviceString.replace(/\0/ug, '').length > 0)
 
   })
 
