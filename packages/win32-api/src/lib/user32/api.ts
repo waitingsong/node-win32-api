@@ -111,6 +111,9 @@ export interface Win32Fns extends FM.DllFuncsModel {
    */
   SendMessageW(hWnd: M.HWND, Msg: M.UINT, wPARAM: M.WPARAM, lPARAM: M.LPARAM): M.LRESULT
 
+  /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setforegroundwindow */
+  SetForegroundWindow(hWnd: M.HWND): M.BOOL
+
   SetWindowTextW(hWnd: M.HWND, lpString: M.LPCTSTR | null): M.BOOL
 
   SetWinEventHook(
@@ -201,6 +204,8 @@ export const apiDef: FM.DllFuncs = {
   RegisterClassExW: [W.ATOM, [W.WNDCLASSEX] ],
 
   SendMessageW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
+
+  SetForegroundWindow: [W.BOOL, [W.HWND] ],
 
   SetWindowTextW: [W.BOOL, [W.HWND, W.LPCTSTR] ],
 
