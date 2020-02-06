@@ -15,7 +15,7 @@ import { user32 } from './helper'
 
 
 const filename = basename(__filename)
-const tmpMap: Map<number, boolean> = new Map()
+const tmpMap: Map<string, boolean> = new Map()
 const title = 'new-calc-' + Math.random()
 
 describe(filename, () => {
@@ -45,9 +45,10 @@ describe(filename, () => {
           assert(str === title, `title should be changed to ${title}, bug got ${str}`)
 
           const id = Math.round(Math.random() * 1000000)
-          tmpMap.set(id, false)
+          const idStr = id.toString()
+          tmpMap.set(idStr, false)
           enumWindows(enumWindowsProc, id)
-          assert(tmpMap.get(id) === true)
+          assert(tmpMap.get(idStr) === true)
           tmpMap.clear()
         }
         else {
@@ -82,7 +83,7 @@ function createEnumWinProc(): M.WNDENUMPROC {
   const enumWindowsProc = ffi.Callback(
     W.BOOL,
     [W.HWND, W.LPARAM],
-    (hWnd: M.HWND, lParam: M.INT32): M.BOOLEAN => { // lParam use UINT32
+    (hWnd: M.HWND, lParam: M.LPARAM): M.BOOLEAN => {
       const visible = user32.IsWindowVisible(hWnd)
       if (! visible) {
         return true
@@ -95,7 +96,7 @@ function createEnumWinProc(): M.WNDENUMPROC {
         const name = buf.toString('ucs2').replace(/\0+$/, '')
 
         if (name === title) {
-          tmpMap.set(lParam, true)
+          tmpMap.set(lParam.toString(), true)
           return false // stop loop if return false
         }
       }
