@@ -143,6 +143,27 @@ point.y = 200
 console.log(point)
 ```
 
+### [StructExt](https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/src/data-struct-ext/)
+```ts
+// struct usage with ref-struct
+import * as Struct from 'ref-struct-napi'
+import {
+  DModel as M,
+  DStructExt,
+} from 'win32-api'
+
+
+// https://docs.microsoft.com/zh-cn/windows/win32/api/wingdi/ns-wingdi-display_devicew 
+const dd: M.DISPLAY_DEVICEW_Struct = new Struct(DStructExt.DISPLAY_DEVICEW)()
+dd.cb = dd.ref().byteLength
+console.log(dd)
+/**
+Detail in:
+https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/src/data-struct-ext/wingdi.h.ts
+https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/test/user32/60_EnumDisplayDevicesW.test.ts
+*/
+```
+
 ### Async Find window and set window title
 ```ts
 // **Find calc's hWnd, need running a calculator program manually at first**
