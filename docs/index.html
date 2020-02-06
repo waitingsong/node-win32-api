@@ -211,6 +211,26 @@ point.y = <span class="hljs-number">200</span>
 point.x = <span class="hljs-number">100</span>
 point.y = <span class="hljs-number">200</span>
 <span class="hljs-built_in">console</span>.log(point)</code></pre>
+				<a href="#a-hrefhttpsgithubcomwaitingsongnode-win32-apiblobmasterpackageswin32-apisrcdata-struct-extstructexta" id="a-hrefhttpsgithubcomwaitingsongnode-win32-apiblobmasterpackageswin32-apisrcdata-struct-extstructexta" style="color: inherit; text-decoration: none;">
+					<h3><a href="https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/src/data-struct-ext/">StructExt</a></h3>
+				</a>
+				<pre><code class="language-ts"><span class="hljs-comment">// struct usage with ref-struct</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Struct <span class="hljs-keyword">from</span> <span class="hljs-string">'ref-struct-napi'</span>
+<span class="hljs-keyword">import</span> {
+  DModel <span class="hljs-keyword">as</span> M,
+  DStructExt,
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'win32-api'</span>
+
+
+<span class="hljs-comment">// https://docs.microsoft.com/zh-cn/windows/win32/api/wingdi/ns-wingdi-display_devicew </span>
+<span class="hljs-keyword">const</span> dd: M.DISPLAY_DEVICEW_Struct = <span class="hljs-keyword">new</span> Struct(DStructExt.DISPLAY_DEVICEW)()
+dd.cb = dd.ref().byteLength
+<span class="hljs-built_in">console</span>.log(dd)
+<span class="hljs-comment">/**
+Detail in:
+https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/src/data-struct-ext/wingdi.h.ts
+https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/test/user32/60_EnumDisplayDevicesW.test.ts
+*/</span></code></pre>
 				<a href="#async-find-window-and-set-window-title" id="async-find-window-and-set-window-title" style="color: inherit; text-decoration: none;">
 					<h3>Async Find window and set window title</h3>
 				</a>
