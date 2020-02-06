@@ -70,6 +70,11 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   GetWindowLongPtrW(hWnd: M.HWND, nIndex: M.INT): M.LONG_PTR
 
+  /**
+   * @see https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowrect
+   */
+  GetWindowRect(hWnd: M.HWND, LPRECT: M.RECT): M.BOOL
+
   GetWindowTextW(hWnd: M.HWND, lpString: M.LPCTSTR, nMaxCount: M.INT): M.INT
 
   GetWindowThreadProcessId(hWnd: M.HWND, lpdwProcessId: M.LPDWORD | null): M.DWORD
@@ -169,6 +174,8 @@ export const apiDef: FM.DllFuncs = {
   GetWindowInfo: [W.BOOL, [W.HWND, W.PWINDOWINFO] ],
 
   GetWindowLongW: [W.LONG, [W.HWND, W.INT] ],
+
+  GetWindowRect: [W.BOOL, [W.HWND, W.RECT] ],
 
   GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT] ],
 
