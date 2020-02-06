@@ -1,5 +1,9 @@
 /* eslint-disable id-length */
 // windows data types struct for ref-struct module https://github.com/TooTallNate/ref-struct
+/**
+Complex structure see:
+https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/src/data-struct-ext/
+*/
 
 import { parse_windef } from './helper'
 import { macroMap } from './marcomap'
@@ -11,7 +15,7 @@ const W = parse_windef(windef, macroMap) as typeof windef
 /**
  * Struct usage:
  *
- * import * as Struct from 'ref-struct';
+ * import * as Struct from 'ref-struct-napi';
  * import { DStruct as DS, DModel as M } from 'win32-api';
  *
  * const point: M.PointStruct = new Struct(DS.POINT)();
