@@ -26,6 +26,19 @@ const W = parse_windef(windef, macroMap) as typeof windef
  */
 
 
+/** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-alttabinfo */
+export const ALTTABINFO = {
+  cbSize: W.DWORD,
+  cItems: W.INT,
+  cColumns: W.INT,
+  cRows: W.INT,
+  iColFocus: W.INT,
+  iRowFocus: W.INT,
+  cxItem: W.INT,
+  cyItem: W.INT,
+  ptStart: W.POINT,
+}
+
 /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-taghardwareinput */
 export const HARDWAREINPUT = {
   uMsg: W.DWORD,

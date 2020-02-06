@@ -44,6 +44,20 @@ export interface StructInstanceBase {
 }
 
 
+/** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-alttabinfo */
+export type ALTTABINFO = Buffer
+export interface ALTTABINFO_Struct extends StructInstanceBase {
+  cbSize: DWORD
+  cItems: INT
+  cColumns: INT
+  cRows: INT
+  iColFocus: INT
+  iRowFocus: INT
+  cxItem: INT
+  cyItem: INT
+  ptStart: POINT
+}
+
 /** https://docs.microsoft.com/zh-cn/windows/win32/api/wingdi/ns-wingdi-display_devicew */
 export type DISPLAY_DEVICEW = Buffer
 export type PDISPLAY_DEVICEW = DISPLAY_DEVICEW

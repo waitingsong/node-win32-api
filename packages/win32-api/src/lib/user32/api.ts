@@ -52,6 +52,15 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   GetAncestor(hwnd: M.HWND, gaFlags: M.UINT): M.HWND
 
+  /** https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getalttabinfow */
+  GetAltTabInfoW(
+    hWnd: M.HWND,
+    iItem: M.INT,
+    pati: M.ALTTABINFO,
+    pszItemText: M.LPWSTR | null,
+    cchItemText: M.INT,
+  ): M.BOOL
+
   GetClassInfoExW(hinst: M.HINSTANCE, lpszClass: M.LPCTSTR, LPWNDCLASSEX: M.LPWNDCLASSEX): M.BOOL
 
   GetForegroundWindow(): M.HWND
@@ -158,6 +167,8 @@ export const apiDef: FM.DllFuncs = {
   FindWindowExW: [W.HWND, [W.HWND, W.HWND, W.LPCTSTR, W.LPCTSTR] ],
 
   GetAncestor: [W.HWND, [W.HWND, W.UINT] ],
+
+  GetAltTabInfoW: [W.BOOL, [W.HWND, W.INT, W.INT, W.LPWSTR, W.INT] ],
 
   GetClassInfoExW: [W.BOOL, [W.HINSTANCE, W.LPCTSTR, W.LPWNDCLASSEX] ],
 
