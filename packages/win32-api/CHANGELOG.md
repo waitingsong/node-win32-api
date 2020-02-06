@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.1.0](https://github.com/waitingsong/node-win32-api/compare/v9.0.0...v9.1.0) (2020-02-06)
+
+
+### Features
+
+* add user EnumDisplayDevicesW() ([9a9e321](https://github.com/waitingsong/node-win32-api/commit/9a9e3213d5bfa59a8b43f81c53b2aee41cec4568))
+
+
+
+
+
 # [9.0.0](https://github.com/waitingsong/node-win32-api/compare/v8.0.0...v9.0.0) (2020-01-21)
 
 

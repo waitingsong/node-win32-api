@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.1.0](/compare/v9.0.0...v9.1.0) (2020-02-06)
+
+
+### Features
+
+* add user EnumDisplayDevicesW() 9a9e321
+
+
+
+
+
 # [9.0.0](/compare/v8.0.0...v9.0.0) (2020-01-21)
 
 
