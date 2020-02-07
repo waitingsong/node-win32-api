@@ -28,9 +28,9 @@ Thumbs.db
 
 # for lerna mono repo
 # egg
-/packages/**/*.js
-/packages/**/config/
-/packages/**/lib/
+/packages/*/*.js
+/packages/*/config/
+/packages/*/lib/
 
 
 # for java
