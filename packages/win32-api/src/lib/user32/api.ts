@@ -69,6 +69,19 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   GetParent(hWnd: M.HWND): M.HWND
 
+  /** https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getrawinputdevicelist */
+  GetRawInputDeviceList(
+    /** An array of RAWINPUTDEVICELIST */
+    pRawInputDeviceList: M.PRAWINPUTDEVICELIST,
+    /**
+     * If this value is less than the number of devices attached to the system,
+     * the function returns the actual number of devices in this variable
+     * and fails with ERROR_INSUFFICIENT_BUFFER.
+     */
+    puiNumDevices: M.PUINT,
+    cbSize: M.UINT,
+  ): M.INT
+
   GetTopWindow(hWnd: M.HWND): M.HWND
 
   GetWindow(hWnd: M.HWND, uCmd: M.UINT): M.HWND
@@ -180,6 +193,8 @@ export const apiDef: FM.DllFuncs = {
   GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT] ],
 
   GetParent: [W.HWND, [W.HWND] ],
+
+  GetRawInputDeviceList: [W.INT, [W.PRAWINPUTDEVICELIST, W.PUINT, W.UINT] ],
 
   GetTopWindow: [W.HWND, [W.HWND] ],
 
