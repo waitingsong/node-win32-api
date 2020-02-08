@@ -228,4 +228,6 @@ export const POINT = 'pointer'
 export const WNDCLASSEX = 'pointer'
 
 export const WINDOWINFO = 'pointer'
+export const PRAWINPUTDEVICELIST = 'pointer'
 export const RECT = 'pointer' // _RECT
+

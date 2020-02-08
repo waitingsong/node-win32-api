@@ -133,6 +133,14 @@ export interface RAWHID_Struct extends StructInstanceBase {
   bRawData: BYTE
 }
 
+/** https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-rawinputdevicelist */
+export type RAWINPUTDEVICELIST = Buffer
+export type PRAWINPUTDEVICELIST = Buffer
+export interface RAWINPUTDEVICELIST_Struct extends StructInstanceBase {
+  hDevice: HANDLE
+  dwType: DWORD
+}
+
 /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagrawinputheader */
 export type RAWINPUTHEADER = Buffer
 export interface RAWINPUTHEADER_Struct extends StructInstanceBase {

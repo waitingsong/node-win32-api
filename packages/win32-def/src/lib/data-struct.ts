@@ -110,6 +110,12 @@ export const RAWHID = {
   bRawData: W.BYTE,
 }
 
+/** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-rawinputdevicelist */
+export const RAWINPUTDEVICELIST = {
+  hDevice: W.HANDLE,
+  dwType: W.DWORD,
+}
+
 /** https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-rawinputheader */
 export const RAWINPUTHEADER = {
   dwType: W.DWORD,
