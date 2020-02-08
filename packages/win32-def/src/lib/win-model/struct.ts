@@ -29,7 +29,7 @@ import {
 /**
  * Struct usage:
  *
- * import * as Struct from 'ref-struct';
+ * import * as Struct from 'ref-struct-napi';
  * import { DStruct as DS, DModel as M } from 'win32-api';
  *
  * const point: M.PointStruct = new Struct(DS.POINT)();
