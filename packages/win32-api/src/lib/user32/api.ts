@@ -69,6 +69,14 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   GetParent(hWnd: M.HWND): M.HWND
 
+  /** https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getrawinputdeviceinfow */
+  GetRawInputDeviceInfoW(
+    hDevice: M.HANDLE,
+    uiCommand: M.UINT,
+    pData: M.LPVOID,
+    pcbSize: M.PUINT,
+  ): M.UINT
+
   /** https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getrawinputdevicelist */
   GetRawInputDeviceList(
     /** An array of RAWINPUTDEVICELIST */
@@ -193,6 +201,8 @@ export const apiDef: FM.DllFuncs = {
   GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT] ],
 
   GetParent: [W.HWND, [W.HWND] ],
+
+  GetRawInputDeviceInfoW: [W.UINT, [W.HANDLE, W.UINT, W.LPVOID, W.PUINT] ],
 
   GetRawInputDeviceList: [W.INT, [W.PRAWINPUTDEVICELIST, W.PUINT, W.UINT] ],
 

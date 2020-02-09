@@ -1,6 +1,7 @@
 import * as ffi from 'ffi-napi'
 import * as ref from 'ref-napi'
 import * as StructDi from 'ref-struct-di'
+import * as UnionDi from 'ref-union-di'
 import { of, Observable } from 'rxjs'
 import {
   DModel as M,
@@ -18,6 +19,7 @@ import {
 
 
 export const Struct = StructDi(ref)
+export const Union = UnionDi(ref)
 export const knl32 = K.load()
 export const user32 = U.load()
 export const comctl32 = C.load()
