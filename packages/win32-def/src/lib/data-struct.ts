@@ -15,7 +15,7 @@ const W = parse_windef(windef, macroMap) as typeof windef
 /**
  * Struct usage:
  *
- * import * as Struct from 'ref-struct-napi';
+ * import * as Struct from 'ref-struct';
  * import { DStruct as DS, DModel as M } from 'win32-api';
  *
  * const point: M.PointStruct = new Struct(DS.POINT)();
