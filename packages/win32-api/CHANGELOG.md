@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.2.0](https://github.com/waitingsong/node-win32-api/compare/v9.1.0...v9.2.0) (2020-02-09)
+
+
+### Features
+
+* **win32-api:** add struct-ext RID_DEVICE_INFO ([880b10b](https://github.com/waitingsong/node-win32-api/commit/880b10bfff34482f049c6fb7ddc2c4363a889cff))
+* **win32-api:** add user32.GetRawInputDeviceInfoW() ([8f5d45f](https://github.com/waitingsong/node-win32-api/commit/8f5d45f8f2e2a4c2d3fc5e78a516c3eef9e87aad))
+* **win32-api:** add user32.GetRawInputDeviceList() ([dcd6c35](https://github.com/waitingsong/node-win32-api/commit/dcd6c356f449ead006dad67ab52602c6aae329aa))
+* **win32-api:** add user32.SetForegroundWindow() ([2b18384](https://github.com/waitingsong/node-win32-api/commit/2b18384d85a7455abf045e5daf78ada68a7f634a))
+* add user32.GetAltTabInfoW() ([3916c8e](https://github.com/waitingsong/node-win32-api/commit/3916c8ee321eab98ec9aac01bc16c86663ed27f9))
+* **win32-api:** add user32.GetWindowRect() ([b3550bd](https://github.com/waitingsong/node-win32-api/commit/b3550bd67d5f28097cf46fb5f69b9367f371bf24))
+
+
+
+
+
 # [9.1.0](https://github.com/waitingsong/node-win32-api/compare/v9.0.0...v9.1.0) (2020-02-06)
 
 

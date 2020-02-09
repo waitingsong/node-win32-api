@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.2.0](https://github.com/waitingsong/node-win32-api/compare/v9.1.0...v9.2.0) (2020-02-09)
+
+
+### Bug Fixes
+
+* **win32-def:** comments of HANDLE ([fecf53a](https://github.com/waitingsong/node-win32-api/commit/fecf53a6069d86b00f96b4354f5b6bc08c72f94c))
+
+
+### Features
+
+* **win-def:** add union support ([cadb3da](https://github.com/waitingsong/node-win32-api/commit/cadb3da7e5e3fe862283f185d236651fb5cca137))
+* **win32-def:** add RAWINPUTDEVICELIST structure ([14ed2f4](https://github.com/waitingsong/node-win32-api/commit/14ed2f41a44052f2776575ad98d52706797f760a))
+* add user32.GetAltTabInfoW() ([3916c8e](https://github.com/waitingsong/node-win32-api/commit/3916c8ee321eab98ec9aac01bc16c86663ed27f9))
+
+
+
+
+
 # [9.1.0](https://github.com/waitingsong/node-win32-api/compare/v9.0.0...v9.1.0) (2020-02-06)
 
 

@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.2.0](/compare/v9.1.0...v9.2.0) (2020-02-09)
+
+
+### Bug Fixes
+
+* **win32-def:** comments of HANDLE fecf53a
+
+
+### Features
+
+* **win-def:** add union support cadb3da
+* **win32-api:** add struct-ext RID_DEVICE_INFO 880b10b
+* **win32-api:** add user32.GetRawInputDeviceInfoW() 8f5d45f
+* **win32-api:** add user32.GetRawInputDeviceList() dcd6c35
+* **win32-api:** add user32.GetWindowRect() b3550bd
+* **win32-api:** add user32.SetForegroundWindow() 2b18384
+* **win32-def:** add RAWINPUTDEVICELIST structure 14ed2f4
+* add user32.GetAltTabInfoW() 3916c8e
+
+
+
+
+
 # [9.1.0](/compare/v9.0.0...v9.1.0) (2020-02-06)
 
 
