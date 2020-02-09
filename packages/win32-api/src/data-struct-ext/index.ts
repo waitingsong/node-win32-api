@@ -9,4 +9,5 @@ https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-def/src
 */
 
 export * from './wingdi.h'
+export * from './winuser.h'
 
