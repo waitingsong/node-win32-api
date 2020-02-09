@@ -24,6 +24,7 @@ import {
   WORD,
   WPARAM,
 } from './common'
+import { RID_DEVICE_INFO_DUMMYUNIONNAME } from './union'
 
 
 /**
@@ -159,6 +160,13 @@ export interface RAWKEYBOARD_Struct extends StructInstanceBase {
   VKey: USHORT
   Message: UINT
   ExtraInformation: ULONG
+}
+
+export type RID_DEVICE_INFO = Buffer
+export interface RID_DEVICE_INFO_Struct extends StructInstanceBase {
+  cbSize: DWORD
+  dwType: DWORD
+  DUMMYUNIONNAME: RID_DEVICE_INFO_DUMMYUNIONNAME
 }
 
 export type WNDCLASSEX = Buffer
