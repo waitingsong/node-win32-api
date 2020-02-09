@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@waiting/shared-core": "3",
-    "cross-env": "6"
+    "cross-env": "7"
   },
   "engines": {
     "node": ">=10.16.0"
