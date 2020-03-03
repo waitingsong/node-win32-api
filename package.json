@@ -6,6 +6,8 @@
   "devDependencies": {
     "@commitlint/cli": "8",
     "@commitlint/config-conventional": "8",
+    "@rollup/plugin-commonjs": "11",
+    "@rollup/plugin-node-resolve": "7",
     "@types/mocha": "7",
     "@types/node": "12",
     "@types/power-assert": "1",
@@ -26,8 +28,6 @@
     "rewire": "4",
     "rimraf": "3",
     "rollup": "1",
-    "rollup-plugin-commonjs": "10",
-    "rollup-plugin-node-resolve": "5",
     "rollup-plugin-terser": "5",
     "rxrunscript": "5",
     "ts-node": "8",
