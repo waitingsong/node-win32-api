@@ -47,7 +47,7 @@ const uglifyOpts = {
     typeofs:       false,
   },
   output: {
-    preamble: banner,
+    // preamble: banner,
   },
 }
 
