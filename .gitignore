@@ -6,6 +6,7 @@ package.json.lerna_backup
 .coveralls.yml
 .factorypath
 .githooks
+.history
 .mvn
 .tsbuildinfo
 .tsbuildinfo.*
@@ -84,7 +85,9 @@ log.txt
 .tmp/
 .versions/
 www/
+bazel-out/
 dist/
+out-tsc/
 tmp/
 temp/
 hooks/

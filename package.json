@@ -12,7 +12,7 @@
     "@types/node": "13",
     "@types/power-assert": "1",
     "@types/rewire": "2",
-    "@types/rimraf": "2",
+    "@types/rimraf": "3",
     "@types/yargs": "15",
     "@waiting/eslint-config": "3",
     "coveralls": "3",
