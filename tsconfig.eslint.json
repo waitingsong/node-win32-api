@@ -10,7 +10,6 @@
     "app/views",
     "dist",
     "node_modules*",
-    "**/*.d.ts",
-    "**/*.spec.ts"
+    "**/*.d.ts"
   ]
 }
