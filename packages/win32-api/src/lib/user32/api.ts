@@ -111,7 +111,6 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   IsWindowVisible(hWnd: M.HWND): M.BOOL
 
-  // tslint:disable:max-line-length
   PeekMessageW(
     lpMsg: M.LPMSG,
     HWND: M.HWND,
