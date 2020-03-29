@@ -125,6 +125,13 @@ export interface Win32Fns extends FM.DllFuncsModel {
    */
   PostMessageW(hWnd: M.HWND, Msg: M.UINT, wPARAM: M.WPARAM, lPARAM: M.LPARAM): M.BOOL
 
+  /** https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-printwindow */
+  PrintWindow(
+    hwnd: M.HWND,
+    hdcBlt: M.HDC,
+    nFlags: M.UINT,
+  ): M.BOOL
+
   RegisterClassExW(lpwcx: M.WNDCLASSEX): M.ATOM
 
   /**
@@ -225,6 +232,8 @@ export const apiDef: FM.DllFuncs = {
   PeekMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT, W.UINT] ],
 
   PostMessageW: [W.BOOL, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
+
+  PrintWindow: [W.BOOL, [W.HWND, W.HDC, W.UINT] ],
 
   RegisterClassExW: [W.ATOM, [W.WNDCLASSEX] ],
 
