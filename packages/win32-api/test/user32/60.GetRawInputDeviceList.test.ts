@@ -1,7 +1,7 @@
 import { basename } from 'path'
 
-import * as assert from 'power-assert'
 import * as ffi from 'ffi-napi'
+import * as assert from 'power-assert'
 import * as ref from 'ref-napi'
 import {
   DModel as M,

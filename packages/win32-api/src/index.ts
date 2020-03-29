@@ -5,11 +5,11 @@
  * @license MIT
  * @link https://github.com/waitingsong/node-win32-api
  */
+import * as DStructExt from './data-struct-ext/index'
 import * as Comctl32 from './lib/comctl32/index'
 import * as Kernel32 from './lib/kernel32/index'
 import * as Ntdll from './lib/ntdll/index'
 import * as User32 from './lib/user32/index'
-import * as DStructExt from './data-struct-ext/index'
 
 
 export {

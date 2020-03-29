@@ -9,8 +9,8 @@ import {
   FModel as FM,
 } from 'win32-def'
 
-import { user32, Struct, Union } from '../helper'
 import { DStructExt as DSX } from '../../src/index'
+import { user32, Struct, Union } from '../helper'
 
 
 const filename = basename(__filename)
