@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.3.0](/compare/v9.2.0...v9.3.0) (2020-03-29)
+
+
+### Features
+
+* **win32-api:** add user32.PrintWindow() 2ef8b43
+
+
+
+
+
 # [9.2.0](/compare/v9.1.0...v9.2.0) (2020-02-09)
 
 
