@@ -21,6 +21,7 @@ import {
   WNDPROC,
   WORD,
   WPARAM,
+  PVOID,
 } from './common'
 import { RID_DEVICE_INFO_DUMMYUNIONNAME } from './union'
 
@@ -55,6 +56,14 @@ export interface ALTTABINFO_Struct extends StructInstanceBase {
   cxItem: INT
   cyItem: INT
   ptStart: POINT
+}
+
+/** https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-copydatastruct */
+export type COPYDATASTRUCT = Buffer
+export interface COPYDATASTRUCT_Struct extends StructInstanceBase {
+  dwData: ULONG_PTR
+  cbData: DWORD
+  lpData: PVOID
 }
 
 /** https://docs.microsoft.com/zh-cn/windows/win32/api/wingdi/ns-wingdi-display_devicew */

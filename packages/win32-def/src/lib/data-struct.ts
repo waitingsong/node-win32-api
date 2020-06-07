@@ -39,6 +39,13 @@ export const ALTTABINFO = {
   ptStart: W.POINT,
 }
 
+/** https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-copydatastruct */
+export const COPYDATASTRUCT = {
+  dwData: W.ULONG_PTR,
+  cbData: W.DWORD,
+  lpData: W.PVOID,
+}
+
 /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-taghardwareinput */
 export const HARDWAREINPUT = {
   uMsg: W.DWORD,
