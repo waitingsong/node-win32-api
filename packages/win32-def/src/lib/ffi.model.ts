@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import { BigIntStr, Push } from '@waiting/shared-types'
 
 // for translation of windef
@@ -118,7 +119,7 @@ export interface AsyncSyncFuncModel {
 }
 
 export interface AppendAsyncToSyncFnModel<T extends DllFuncsModel, K extends keyof T> {
-  // @ts-expect-error
+  // @ts-ignore
   async: (...args: Push<Parameters<T[K]>, (err: Error, result: ReturnType<T[K]>) => void>) => void
 }
 
@@ -168,7 +169,8 @@ export type ExpandFnModel<T extends DllFuncsModel> = {
   : T[K] extends AsyncSyncFuncModel
   ? T[K]
   : T[K] & {
-    // @ts-expect-error
+    // @ts-ignore
     async: (...args: Push<Parameters<T[K]>, (err: Error, result: ReturnType<T[K]>) => any>) => void,
   }
 }
+
