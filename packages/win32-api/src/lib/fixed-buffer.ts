@@ -17,14 +17,14 @@ export interface BufferType extends ref.Type {
  * @ref https://gist.github.com/TooTallNate/80ac2d94b950216a2705
  */
 export function BufferTypeFactory(length: number, encoding?: BufferEncoding): BufferType {
-  const inst: BufferType = Object.create(ref.types.byte, {
+  const inst = Object.create(ref.types.byte, {
     constructor: {
       configurable: true,
       enumerable: false,
       writable: true,
       value: BufferTypeFactory,
     },
-  })
+  }) as BufferType
 
   Object.defineProperty(inst, 'size', {
     configurable: true,
@@ -66,6 +66,7 @@ function getFn(
 ): Buffer | string {
 
   const buf = buffer.slice(offset, offset + this.size)
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (this.encoding) {
     const str = buf.toString(this.encoding)
     return str

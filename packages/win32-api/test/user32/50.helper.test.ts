@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { basename } from 'path'
 
 import * as assert from 'power-assert'
@@ -15,7 +17,7 @@ describe(filename + ' :gen_api_opts() specify', () => {
   const apiName = 'User32'
   const module: any = Win[apiName]
   const fn = 'CreateWindowExW'
-  const fakeFn = fn + Math.random()
+  const fakeFn = fn + Math.random().toString()
 
   if (module && module.apiDef) {
     const api: FModel.DllFuncs = module.apiDef
@@ -47,7 +49,7 @@ if (process.arch === 'x64') {
     const apiName = 'User32'
     const module: any = Win[apiName]
     const fn = 'GetWindowLongPtrW'
-    const fakeFn = fn + Math.random()
+    const fakeFn = fn + Math.random().toString()
 
     if (module && module.apiDef) {
       const api: FModel.DllFuncs = module.apiDef

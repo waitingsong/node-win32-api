@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/interface-name-prefix */
-/* eslint-disable @typescript-eslint/class-name-casing */
 import {
   ATOM,
   BYTE,
@@ -41,7 +39,7 @@ import { RID_DEVICE_INFO_DUMMYUNIONNAME } from './union'
  */
 
 export interface StructInstanceBase {
-  ref(): Buffer
+  ref: () => Buffer
 }
 
 

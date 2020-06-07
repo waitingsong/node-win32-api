@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import * as ffi from 'ffi-napi'
 import * as ref from 'ref-napi'
 import * as StructDi from 'ref-struct-di'

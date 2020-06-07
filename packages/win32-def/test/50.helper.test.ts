@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { basename } from '@waiting/shared-core'
 import * as assert from 'power-assert'
 
@@ -27,10 +29,7 @@ const mods = rewire('../src/lib/helper')
 
 describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
   const fnName = 'parse_param_placeholder'
-  const fn = mods.__get__(fnName) as (
-    param: FnParam | MacroDef,
-    settings?: LoadSettings,
-  ) => FnParam
+  const fn = mods.__get__(fnName)
 
   it(`Should ${fnName} handle value of settings correctly)`, () => {
     const st = { ...settingsDefault } as LoadSettings
@@ -110,14 +109,12 @@ describe(filename + ' :parse_param_placeholder(param, settings?) ', () => {
 
 describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
   const fnName = 'parse_placeholder_arch'
-  const fn = mods.__get__(fnName) as (
-    param: FnParam | MacroDef,
-    _WIN64: boolean,
-  ) => FnParam
+  const fn = mods.__get__(fnName)
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
     const p: any = 'test'
     const res = fn(p, true)
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     assert(res === p, `should ${p} got ${res}`)
   })
 
@@ -148,14 +145,12 @@ describe(filename + ' :parse_placeholder_arch(param, _WIN64)', () => {
 
 describe(filename + ' :parse_placeholder_unicode(param, _WIN64)', () => {
   const fnName = 'parse_placeholder_unicode'
-  const fn = mods.__get__(fnName) as (
-    param: FnParam | MacroDef,
-    _UNICODE: boolean,
-  ) => FnParam
+  const fn = mods.__get__(fnName)
 
   it(`Should ${fnName} handle value of param correctly)`, () => {
     const p: any = 'test'
     const res = fn(p, true)
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     assert(res === p, `should ${p} got ${res}`)
   })
 
@@ -414,10 +409,7 @@ describe(filename + ' :validateWinData()', () => {
 
 describe(filename + ' :prepare_windef_ref()', () => {
   const fnName = 'prepare_windef_ref'
-  const fn = mods.__get__(fnName) as (
-    ww: DataTypes,
-    macroSrc: Map<string, string>,
-  ) => DataTypes
+  const fn = mods.__get__(fnName)
 
   it(`Should ${fnName}() works)`, () => {
     const ww = { FAKE: 'fake' }
@@ -439,11 +431,7 @@ describe(filename + ' :prepare_windef_ref()', () => {
 
 describe(filename + ' :_lookupRef()', () => {
   const fnName = '_lookupRef'
-  const fn = mods.__get__(fnName) as (
-    key: string,
-    ww: DataTypes,
-    macroSrc: Map<string, string>,
-  ) => string
+  const fn = mods.__get__(fnName)
 
   it(`Should ${fnName}() works)`, () => {
     const ww = { Fake: 'PVOID' }

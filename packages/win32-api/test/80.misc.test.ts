@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { basename } from 'path'
 
 import * as assert from 'power-assert'
@@ -24,3 +25,4 @@ describe(filename, () => {
   })
 
 })
+

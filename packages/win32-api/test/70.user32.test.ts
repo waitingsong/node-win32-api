@@ -15,8 +15,8 @@ import { user32 } from './helper'
 
 
 const filename = basename(__filename)
-const tmpMap: Map<string, boolean> = new Map()
-const title = 'new-calc-' + Math.random()
+const tmpMap = new Map<string, boolean>()
+const title = 'new-calc-' + Math.random().toString()
 
 describe(filename, () => {
 

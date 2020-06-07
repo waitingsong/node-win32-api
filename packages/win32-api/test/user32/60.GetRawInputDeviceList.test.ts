@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { basename } from 'path'
 
 import * as ffi from 'ffi-napi'

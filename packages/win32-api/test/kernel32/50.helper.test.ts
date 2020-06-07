@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { basename } from 'path'
 
 import * as assert from 'power-assert'
@@ -14,7 +16,7 @@ describe(filename + ' :gen_api_opts() specify', () => {
   const apiName = 'Kernel32'
   const module: any = Win[apiName]
   const fn = 'GetSystemTimes'
-  const fakeFn = fn + Math.random()
+  const fakeFn = fn + Math.random().toString()
 
   if (module && module.apiDef) {
     const api: FModel.DllFuncs = module.apiDef

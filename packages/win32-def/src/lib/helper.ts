@@ -32,9 +32,11 @@ function parse_param_placeholder(param: FnParam | MacroDef, settings?: LoadSetti
   if (typeof param === 'string') {
     return param
   }
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   else if (! param) {
     throw new Error('parse_param_placeholder(ps, settings) value of ps invalid')
   }
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   else if (! Array.isArray(param) || param.length !== 3) {
     throw new Error('parse_param_placeholder(ps, settings) value of ps must Array and has THREE elements')
   }
@@ -62,6 +64,7 @@ function parse_placeholder_arch(param: FnParam | MacroDef, _WIN64: boolean): FnP
   if (typeof param === 'string') {
     return param
   }
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   else if (! param || param.length !== 3) {
     throw new Error('_WIN64 macro should be Array and has 3 items')
   }
@@ -74,6 +77,7 @@ function parse_placeholder_unicode(param: FnParam | MacroDef, _UNICODE: boolean)
   if (typeof param === 'string') {
     return param
   }
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   else if (! param || param.length !== 3) {
     throw new Error('_UNICODE macro should be Array and has 3 items')
   }
@@ -86,7 +90,7 @@ function parse_placeholder_unicode(param: FnParam | MacroDef, _UNICODE: boolean)
  * or ['_UNICODE_HOLDER_', 'uint16*', 'uint8*'] to 'uint16*' or 'uint8*'
  */
 function prepare_macro(macroMap: MacroMap, settings?: LoadSettings): Map<string, FnParam> {
-  const ret: Map<string, FnParam> = new Map()
+  const ret = new Map<string, FnParam>()
 
   // v string|array
   for (const [k, v] of macroMap.entries()) {
@@ -102,7 +106,7 @@ function prepare_macro(macroMap: MacroMap, settings?: LoadSettings): Map<string,
  */
 function prepare_windef_ref(ww: DataTypes, macroSrc: Map<string, string>): DataTypes {
   const ret: DataTypes = {}
-  const map: Map<string, string> = new Map()
+  const map = new Map<string, string>()
 
   // first loop paser keys which exists in macroSrc
   for (const x of Object.keys(ww)) {
@@ -148,7 +152,7 @@ function prepare_windef_ref(ww: DataTypes, macroSrc: Map<string, string>): DataT
       }
     }
     else {
-      throw new Error(`prepare_windef_ref() missing entry for k/v: ${k}/${v}`)
+      throw new Error(`prepare_windef_ref() missing entry for k/v: ${k}/"N/A"`)
     }
   }
 
@@ -183,7 +187,7 @@ function clone_filter_windef(windef: DataTypes): DataTypes {
 function parse_settings(settings?: LoadSettings): LoadSettings {
   const st: LoadSettings = { ...settingsDefault }
 
-  if (typeof settings !== 'undefined' && settings && Object.keys(settings).length) {
+  if (typeof settings !== 'undefined' && Object.keys(settings).length) {
     Object.assign(st, settings)
   }
   return st
@@ -241,7 +245,7 @@ export function validateWinData(windef: DataTypes, srcSet: Set<string>): void {
       throw new Error(`validateWinData() k or v empty: "${k}"/"${v}"`)
     }
     if (typeof v !== 'string') {
-      throw new Error(`validateWinData() v not typeof string: "${k}"/"${v}"`)
+      throw new Error(`validateWinData() v not typeof string: "${k}"/"N/A"`)
     }
 
     if (! isValidDataDef(v, srcSet)) {

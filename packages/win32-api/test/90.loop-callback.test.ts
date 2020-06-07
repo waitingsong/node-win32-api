@@ -40,7 +40,7 @@ describe.skip(filename, () => {
       switchMap((hWnd) => {
         return range$.pipe(
           concatMap((index) => {
-            const newTitle = titlePrefix + index
+            const newTitle = titlePrefix + index.toString()
             changeTitle(hWnd, newTitle)
             return of(index)
           }),
@@ -70,3 +70,4 @@ describe.skip(filename, () => {
 
   })
 })
+

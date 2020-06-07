@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /// <reference types="node" />
 /// <reference types="mocha" />
 
 import * as fs from 'fs'
 import { basename, normalize } from 'path'
 
+import { join } from '@waiting/shared-core'
 import * as assert from 'power-assert'
 import { FModel } from 'win32-def'
 
@@ -12,7 +15,7 @@ import * as H from '../src/lib/helper'
 
 
 const filename = basename(__filename)
-const dllDir = normalize(__dirname + '/../src/lib/')
+const dllDir = normalize(join(__dirname, '/../src/lib/'))
 const dlls: string[] = []
 
 for (const key of fs.readdirSync(dllDir)) {

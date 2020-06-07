@@ -3,7 +3,7 @@ import * as ffi from 'ffi-napi'
 import { Config, FModel } from 'win32-def'
 
 
-const dllInst: Map<string, any> = new Map() // for DLL.load() with settings.singleton === true
+const dllInst = new Map<string, any>() // for DLL.load() with settings.singleton === true
 
 export function load<T>(
   dllName: string,
@@ -14,7 +14,7 @@ export function load<T>(
 
   const st = parse_settings(settings)
 
-  if (st && st.singleton) {
+  if (st.singleton) {
     let inst = get_inst_by_name<T>(dllName)
 
     if (! inst) {
@@ -24,6 +24,7 @@ export function load<T>(
     return inst
   }
   else {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return ffi.Library(dllName, gen_api_opts(dllFuncs, fns))
   }
 }
@@ -37,18 +38,17 @@ export function gen_api_opts(dllFuncs: FModel.DllFuncs, fns?: FModel.FnName[]): 
     for (const fn of fns) {
       const ps: FModel.FnParams = dllFuncs[fn]
 
-      if (ps) {
-        Object.defineProperty(ret, fn, {
-          value: ps,
-          writable: false,
-          enumerable: true,
-          configurable: false,
-        })
-      }
+      Object.defineProperty(ret, fn, {
+        value: ps,
+        writable: false,
+        enumerable: true,
+        configurable: false,
+      })
     }
   }
   else {
     for (const fn of Object.keys(dllFuncs)) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const ps = dllFuncs[fn] as any
 
       Object.defineProperty(ret, fn, {
@@ -63,8 +63,8 @@ export function gen_api_opts(dllFuncs: FModel.DllFuncs, fns?: FModel.FnName[]): 
   return ret
 }
 
-function get_inst_by_name<T>(dllName: string): T | void {
-  return dllInst.get(dllName)
+function get_inst_by_name<T>(dllName: string): T | undefined {
+  return dllInst.get(dllName) as T | undefined
 }
 
 function set_inst_by_name<T>(dllName: string, inst: T): void {
@@ -74,8 +74,9 @@ function set_inst_by_name<T>(dllName: string, inst: T): void {
 function parse_settings(settings?: FModel.LoadSettings): FModel.LoadSettings {
   const st: FModel.LoadSettings = { ...Config.settingsDefault }
 
-  if (typeof settings !== 'undefined' && settings && Object.keys(settings).length) {
+  if (typeof settings !== 'undefined' && Object.keys(settings).length) {
     Object.assign(st, settings)
   }
   return st
 }
+

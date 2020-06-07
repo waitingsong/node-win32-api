@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /// <reference types="node" />
 /// <reference types="mocha" />
 
 import * as fs from 'fs'
 import { basename, normalize } from 'path'
 
+import { join } from '@waiting/shared-core'
 import * as assert from 'power-assert'
 import { Config, FModel as FM } from 'win32-def'
 
@@ -11,7 +13,7 @@ import * as Win from '../src/index'
 
 
 const filename = basename(__filename)
-const dllDir = normalize(__dirname + '/../src/lib/')
+const dllDir = normalize(join(__dirname, '/../src/lib/'))
 const dlls: string[] = []
 
 for (const key of fs.readdirSync(dllDir)) {
@@ -27,7 +29,9 @@ describe(filename, () => {
     const module: any = Win[apiName]
 
     describe(apiName, () => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (module && module.apiDef) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         const apiDef = module.apiDef as FM.DllFuncs
 
         it('Should FnName of definition be string', () => {
@@ -126,8 +130,10 @@ describe(filename, () => {
     const module: any = Win[apiName]
 
     describe(apiName, () => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (module && module.apiDef) {
         try {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           const api: FM.DllFuncs = module.load()
 
           for (const fn in api) {

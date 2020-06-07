@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { basename } from '@waiting/shared-core'
 import * as assert from 'power-assert'
 
@@ -100,10 +101,7 @@ function test_arch_half(values: Set<string>) {
 function _test_arch_half(typesHalf: Set<string>, settings: LoadSettings) {
   const W = H.parse_windef(WD, macroMap, { ...settings })
   const fnName = 'parse_param_placeholder'
-  const fn = mods.__get__(fnName) as (
-    param: FnParam | MacroDef,
-    settings?: LoadSettings,
-  ) => FnParam
+  const fn = mods.__get__(fnName)
 
 
   for (const vv of typesHalf) {
@@ -117,6 +115,7 @@ function _test_arch_half(typesHalf: Set<string>, settings: LoadSettings) {
           && param.indexOf('16') === -1
           && param.indexOf('64') === -1
 
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         assert(cond, `${vv}: ${param} under x64`) // must use param not W[vv]
       }
       else {
@@ -125,6 +124,7 @@ function _test_arch_half(typesHalf: Set<string>, settings: LoadSettings) {
           && param.indexOf('32') === -1
           && param.indexOf('64') === -1
 
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         assert(cond, `${vv}: ${param} under ia32`)
       }
     })
@@ -166,3 +166,4 @@ function unicode(_UNICODE: boolean, typesUnicode: Set<string>) {
     })
   }
 }
+

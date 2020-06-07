@@ -9,7 +9,9 @@ import { apiDef, Win32Fns } from './api'
 export { apiDef }
 export { Win32Fns }
 export const dllName = DllNames.ntdll
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const load = (
   fns?: FModel.FnName[],
   settings?: FModel.LoadSettings,
 ) => hload<FModel.ExpandFnModel<Win32Fns>>(dllName, apiDef, fns, settings)
+

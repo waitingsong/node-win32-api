@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable id-length */
 // windows data types struct for ref-struct module https://github.com/TooTallNate/ref-struct
 import {

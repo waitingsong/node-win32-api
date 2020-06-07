@@ -6,7 +6,7 @@ export interface Win32Fns extends FM.DllFuncsModel {
    * https://msdn.microsoft.com/en-us/library/windows/desktop/ms679351(v=vs.85).aspx
    * dwLanguageId: https://msdn.microsoft.com/en-us/library/windows/desktop/dd318693(v=vs.85).aspx
    */
-  FormatMessageW(
+  FormatMessageW: (
     dwFlags: M.DWORD,
     lpSource: M.LPCVOID | null,
     dwMessageId: M.DWORD,
@@ -14,34 +14,34 @@ export interface Win32Fns extends FM.DllFuncsModel {
     lpBuffer: M.LPTSTR,
     nSize: M.DWORD,
     Arguments: M.va_list | null,
-  ): M.DWORD
+  ) => M.DWORD
 
-  FreeConsole(): M.BOOL
+  FreeConsole: () => M.BOOL
 
   /**
    * Not works correctly
    * @see https://github.com/node-ffi/node-ffi/issues/261
    */
-  GetLastError(): M.DWORD
+  GetLastError: () => M.DWORD
 
-  GetModuleHandleW(lpModuleName: M.LPCTSTR | null): M.HMODULE
+  GetModuleHandleW: (lpModuleName: M.LPCTSTR | null) => M.HMODULE
 
-  GetModuleHandleExW(dwFlags: M.DWORD, lpModuleName: M.LPCTSTR | null, phModule: M.HMODULE): M.BOOL
+  GetModuleHandleExW: (dwFlags: M.DWORD, lpModuleName: M.LPCTSTR | null, phModule: M.HMODULE) => M.BOOL
 
-  GetProcessHeaps(NumberOfHeaps: M.DWORD, ProcessHeaps: M.PHANDLE): M.DWORD
+  GetProcessHeaps: (NumberOfHeaps: M.DWORD, ProcessHeaps: M.PHANDLE) => M.DWORD
 
   /** https://docs.microsoft.com/en-us/windows/desktop/api/processthreadsapi/nf-processthreadsapi-getsystemtimes */
-  GetSystemTimes(lpIdleTime: M.PFILETIME, lpKernelTime: M.PFILETIME, lpUserTime: M.PFILETIME): M.BOOL
+  GetSystemTimes: (lpIdleTime: M.PFILETIME, lpKernelTime: M.PFILETIME, lpUserTime: M.PFILETIME) => M.BOOL
 
-  HeapFree(hHeap: M.HANDLE, dwFlags: M.DWORD, lpMem: M.LPVOID | null): M.BOOL
+  HeapFree: (hHeap: M.HANDLE, dwFlags: M.DWORD, lpMem: M.LPVOID | null) => M.BOOL
 
-  OpenProcess(dwDesiredAccess: M.DWORD, bInheritHandle: M.BOOL, dwProcessId: M.DWORD): M.HANDLE
+  OpenProcess: (dwDesiredAccess: M.DWORD, bInheritHandle: M.BOOL, dwProcessId: M.DWORD) => M.HANDLE
 
   /** https://msdn.microsoft.com/en-us/library/windows/desktop/aa363362(v=vs.85).aspx */
-  OutputDebugStringW(lpOutputString: M.LPCTSTR): M.VOID
+  OutputDebugStringW: (lpOutputString: M.LPCTSTR) => M.VOID
 
   /** https://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx */
-  SetLastError(dwErrCode: M.DWORD): M.VOID
+  SetLastError: (dwErrCode: M.DWORD) => M.VOID
 
   /**
    * Enables an application to inform the system that it is in use,
@@ -63,7 +63,7 @@ export interface Win32Fns extends FM.DllFuncsModel {
    *
    * Note: The return value NULL would be converted to zero by node-ffi
    */
-  SetThreadExecutionState(esFlags: M.UINT): M.UINT
+  SetThreadExecutionState: (esFlags: M.UINT) => M.UINT
 }
 
 export const apiDef: FM.DllFuncs = {
