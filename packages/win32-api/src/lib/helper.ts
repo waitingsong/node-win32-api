@@ -30,7 +30,10 @@ export function load<T>(
 }
 
 
-// generate function definitions via converting macro windows data type (like PVOID) to the expected value
+/**
+ * Generate function definitions via converting macro windows data type (like PVOID) to the expected value.
+ * Skip assignment if property undefined
+ */
 export function gen_api_opts(dllFuncs: FModel.DllFuncs, fns?: FModel.FnName[]): FModel.DllFuncs {
   const ret: FModel.DllFuncs = {}
 
@@ -38,12 +41,14 @@ export function gen_api_opts(dllFuncs: FModel.DllFuncs, fns?: FModel.FnName[]): 
     for (const fn of fns) {
       const ps: FModel.FnParams = dllFuncs[fn]
 
-      Object.defineProperty(ret, fn, {
-        value: ps,
-        writable: false,
-        enumerable: true,
-        configurable: false,
-      })
+      if (typeof ps !== 'undefined') {
+        Object.defineProperty(ret, fn, {
+          value: ps,
+          writable: false,
+          enumerable: true,
+          configurable: false,
+        })
+      }
     }
   }
   else {
@@ -51,12 +56,14 @@ export function gen_api_opts(dllFuncs: FModel.DllFuncs, fns?: FModel.FnName[]): 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const ps = dllFuncs[fn] as any
 
-      Object.defineProperty(ret, fn, {
-        value: ps as FModel.FnParams,
-        writable: false,
-        enumerable: true,
-        configurable: false,
-      })
+      if (typeof ps !== 'undefined') {
+        Object.defineProperty(ret, fn, {
+          value: ps as FModel.FnParams,
+          writable: false,
+          enumerable: true,
+          configurable: false,
+        })
+      }
     }
   }
 
