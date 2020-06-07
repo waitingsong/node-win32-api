@@ -50,9 +50,7 @@ describe(filename, () => {
       const hWnd = user32.FindWindowExW(0, 0, lpszClass, null)
       assert(hWnd > 0 || hWnd.toString().length > 0)
 
-
       const copyData = new Struct(DS.COPYDATASTRUCT)() as M.COPYDATASTRUCT_Struct
-
       const msgBuff = Buffer.from('foo\0', 'ucs2')
       const msgBuffAddr = ref.address(msgBuff)
       copyData.dwData = msgBuffAddr
