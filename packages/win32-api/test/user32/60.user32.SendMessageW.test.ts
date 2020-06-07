@@ -43,7 +43,7 @@ describe(filename, () => {
     }, 1500)
   })
 
-  it('Should send WM_COMMAND and WM_QUIT works', (done) => {
+  it('Should send WM_COPYDATA works', (done) => {
     const child = spawn('calc.exe')
     setTimeout(() => {
       const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
