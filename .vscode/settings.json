@@ -90,5 +90,6 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": false
   },
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "typescript.tsdk": "../../node_modules/typescript/lib"
 }
