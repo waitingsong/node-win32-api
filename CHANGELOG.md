@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.4.0](/compare/v9.3.0...v9.4.0) (2020-06-07)
+
+
+### Bug Fixes
+
+* **win32-api:** gen_api_opts() 4615eaf
+
+
+### Features
+
+* **win32-api:** upgrade deps a53ae3e
+* **win32-def:** define structure COPYDATASTRUCT 96055f0
+
+
+
+
+
 # [9.3.0](/compare/v9.2.0...v9.3.0) (2020-03-29)
 
 

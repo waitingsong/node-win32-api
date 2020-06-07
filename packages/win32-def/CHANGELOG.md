@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.4.0](https://github.com/waitingsong/node-win32-api/compare/v9.3.0...v9.4.0) (2020-06-07)
+
+
+### Features
+
+* **win32-def:** define structure COPYDATASTRUCT ([96055f0](https://github.com/waitingsong/node-win32-api/commit/96055f060e3c2973e93d0871485b6d1393e915fc))
+
+
+
+
+
 # [9.3.0](https://github.com/waitingsong/node-win32-api/compare/v9.2.0...v9.3.0) (2020-03-29)
 
 **Note:** Version bump only for package win32-def

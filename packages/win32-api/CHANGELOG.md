@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.4.0](https://github.com/waitingsong/node-win32-api/compare/v9.3.0...v9.4.0) (2020-06-07)
+
+
+### Bug Fixes
+
+* **win32-api:** gen_api_opts() ([4615eaf](https://github.com/waitingsong/node-win32-api/commit/4615eaf3c667e82a774c8fb2c1e04ea00f593e20))
+
+
+### Features
+
+* **win32-api:** upgrade deps ([a53ae3e](https://github.com/waitingsong/node-win32-api/commit/a53ae3e6904a32ecf9e304066ba1426b1f06c451))
+
+
+
+
+
 # [9.3.0](https://github.com/waitingsong/node-win32-api/compare/v9.2.0...v9.3.0) (2020-03-29)
 
 
