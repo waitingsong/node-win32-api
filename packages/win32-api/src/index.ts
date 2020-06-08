@@ -10,6 +10,7 @@ import * as Comctl32 from './lib/comctl32/index'
 import * as Kernel32 from './lib/kernel32/index'
 import * as Ntdll from './lib/ntdll/index'
 import * as User32 from './lib/user32/index'
+import * as Constants from './lib/winmsg'
 
 
 export {
@@ -35,4 +36,6 @@ export { Ntdll }
 
 export * from './lib/model'
 export * from './lib/fixed-buffer'
+
+export { Constants }
 
