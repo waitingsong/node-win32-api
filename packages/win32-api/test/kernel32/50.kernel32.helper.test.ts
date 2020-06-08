@@ -21,7 +21,7 @@ describe(filename + ' :gen_api_opts() specify', () => {
   if (module && module.apiDef) {
     const api: FModel.DllFuncs = module.apiDef
 
-    it(`Should ${apiName} gen_api_opts(["${fn}"]) correctly)`, () => {
+    it(`Should ${apiName} gen_api_opts(["${fn}"]) correctly`, () => {
       const fns: FModel.DllFuncs = H.gen_api_opts(api, [fn])
 
       const keysize = Object.keys(fns).length
@@ -30,7 +30,7 @@ describe(filename + ' :gen_api_opts() specify', () => {
       assert(typeof fns[fn] === 'object' && fns[fn])
     })
 
-    it(`Should ${apiName} gen_api_opts(["${fakeFn}"]) return none)`, () => {
+    it(`Should ${apiName} gen_api_opts(["${fakeFn}"]) return none`, () => {
       const fns: FModel.DllFuncs = H.gen_api_opts(api, [fakeFn])
       const keysize = Object.keys(fns).length
 
