@@ -38,4 +38,5 @@ export * from './lib/model'
 export * from './lib/fixed-buffer'
 
 export { Constants }
+export { Constants as CS }
 

@@ -10,13 +10,14 @@ import {
   FModel as FM,
 } from 'win32-def'
 
+import { CS } from '../../src/index'
 import { user32, Struct, destroyWin } from '../helper'
 
 
 const filename = basename(__filename)
 
 describe(filename, () => {
-  it('Should send WM_COMMAND and WM_QUIT works', (done) => {
+  it('Should send WM_COMMAND and WM_DESTROY works', (done) => {
     const child = spawn('calc.exe')
 
     child.on('exit', (code) => {
@@ -32,12 +33,10 @@ describe(filename, () => {
       const hWnd = user32.FindWindowExW(0, 0, lpszClass, null)
       assert(hWnd > 0 || hWnd.toString().length > 0)
 
-      // Send WM_COMMAND message, success
-      let ret = user32.SendMessageW(hWnd, 273, 1000, 3)
+      let ret = user32.SendMessageW(hWnd, CS.WM_COMMAND, 1000, 3)
       assert(ret === 0)
 
-      // Send WM_QUIT message, success
-      ret = user32.SendMessageW(hWnd, 2, 0, 0)
+      ret = user32.SendMessageW(hWnd, CS.WM_DESTROY, 0, 0)
       assert(ret === 0)
 
     }, 1500)
@@ -61,7 +60,7 @@ describe(filename, () => {
       })
 
       // send WM_COPYDATA (74) message
-      const ret = user32.SendMessageW(hWnd, 74, 0, copyDataAddr)
+      const ret = user32.SendMessageW(hWnd, CS.WM_COPYDATA, 0, copyDataAddr)
       assert(ret === 0)
 
       destroyWin(hWnd)
