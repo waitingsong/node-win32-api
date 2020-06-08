@@ -50,7 +50,7 @@
     "doc": "node .githooks/doc.js",
     "lint": "lerna run lint --parallel",
     "lint:nofix": "lerna run lint:nofix --parallel",
-    "pub": "sh .scripts/publish.sh",
+    "pub": "sh .scripts/publish.sh --create-release github",
     "pub:canary": "sh .scripts/publish.sh --canary",
     "pub:beta": "sh .scripts/publish.sh --dist-tag beta --force-publish=*",
     "pub:next": "sh .scripts/publish.sh --dist-tag next",
