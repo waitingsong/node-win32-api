@@ -50,3 +50,16 @@ export const WM_WINDOWPOSCHANGING = 0x0046
 /** https://docs.microsoft.com/en-us/windows/win32/dataxchg/wm-copydata */
 export const WM_COPYDATA = 0x004A
 
+// https://docs.microsoft.com/en-us/windows/win32/menurc/menu-notifications
+export const WM_COMMAND = 0x0111
+export const WM_CONTEXTMENU = 0x007B
+export const WM_ENTERMENULOOP = 0x0211
+export const WM_EXITMENULOOP = 0x0212
+export const WM_GETTITLEBARINFOEX = 0x033F
+export const WM_MENUCOMMAND = 0x0126
+export const WM_MENUDRAG = 0x0123
+export const WM_MENUGETOBJECT = 0x0124
+export const WM_MENURBUTTONUP = 0x0122
+export const WM_NEXTMENU = 0x0213
+export const WM_UNINITMENUPOPUP = 0x0125
+
