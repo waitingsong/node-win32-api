@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.5.0](/compare/v9.4.0...v9.5.0) (2020-06-08)
+
+
+### Features
+
+* **win32-api:** export Constants 1f6c5eb
+* **win32-api:** export CS as alias of Constants 0e2f8e1
+* **win32-api:** update Constants b6f352f
+
+
+
+
+
 # [9.4.0](/compare/v9.3.0...v9.4.0) (2020-06-07)
 
 

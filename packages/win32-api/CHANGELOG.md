@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.5.0](https://github.com/waitingsong/node-win32-api/compare/v9.4.0...v9.5.0) (2020-06-08)
+
+
+### Features
+
+* **win32-api:** export Constants ([1f6c5eb](https://github.com/waitingsong/node-win32-api/commit/1f6c5eb6198ec28f6335cd95e432d7354117e5f3))
+* **win32-api:** export CS as alias of Constants ([0e2f8e1](https://github.com/waitingsong/node-win32-api/commit/0e2f8e100d1e072990b0dfc75fa3766bf341a4aa))
+* **win32-api:** update Constants ([b6f352f](https://github.com/waitingsong/node-win32-api/commit/b6f352f6f4dbd64ad872d5d06192efe46deafb1c))
+
+
+
+
+
 # [9.4.0](https://github.com/waitingsong/node-win32-api/compare/v9.3.0...v9.4.0) (2020-06-07)
 
 
