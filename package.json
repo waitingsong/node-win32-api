@@ -35,7 +35,7 @@
     "yargs": "15"
   },
   "engines": {
-    "node": ">=10.16.0"
+    "node": ">=12.13.0"
   },
   "scripts": {
     "bp:add": "git remote add bp https://github.com/waitingsong/npm-mono-base",

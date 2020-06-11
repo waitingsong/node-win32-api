@@ -33,7 +33,7 @@
     "cross-env": "7"
   },
   "engines": {
-    "node": ">=10.16.0"
+    "node": ">=12.13.0"
   },
   "files": [
     "bin/*.js",
