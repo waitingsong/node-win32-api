@@ -19,13 +19,13 @@ export const mochaHooks = async () => {
   }
 
   return {
-    beforeAll() {
-      void 0
-    },
+    // beforeAll() {
+    //   void 0
+    // },
 
-    afterAll() {
-      void 0
-    },
+    // afterAll() {
+    //   void 0
+    // },
   }
 
 }
