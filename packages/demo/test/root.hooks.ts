@@ -14,8 +14,8 @@
 export const mochaHooks = async () => {
   // avoid run multi times
   if (! process.env.mochaRootHookFlag) {
-    await Promise.resolve()
     process.env.mochaRootHookFlag = 'true'
+    await Promise.resolve()
   }
 
   return {
