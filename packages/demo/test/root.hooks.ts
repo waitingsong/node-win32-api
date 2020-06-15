@@ -14,16 +14,16 @@
 export const mochaHooks = async () => {
   // avoid run multi times
   if (! process.env.mochaRootHookFlag) {
-    await void 0
+    await Promise.resolve()
     process.env.mochaRootHookFlag = 'true'
   }
 
   return {
-    async beforeAll() {
+    beforeAll() {
       void 0
     },
 
-    async afterAll() {
+    afterAll() {
       void 0
     },
   }
