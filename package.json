@@ -21,7 +21,7 @@
     "espower-typescript": "9",
     "intelli-espower-loader": "1",
     "lerna": "3",
-    "mocha": "7",
+    "mocha": "8",
     "mocha-lcov-reporter": "1",
     "nyc": "15",
     "power-assert": "1",

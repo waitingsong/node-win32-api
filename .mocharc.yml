@@ -4,8 +4,10 @@ full-trace: true
 require:
   - intelli-espower-loader
   - espower-typescript/guess
+  - test/root.hooks.ts
 spec: 
   - test/**/*.test.ts
 timeout: 60000 
 ui: bdd
+parallel: true
 

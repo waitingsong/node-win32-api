@@ -65,6 +65,7 @@
         "--timeout",
         "999999",
         "--colors",
+        "--parallel=false",
         // "${workspaceFolder}/test/**/**.test.ts"
       ],
       "env": {
