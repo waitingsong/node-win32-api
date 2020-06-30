@@ -4,8 +4,8 @@
   "description": "",
   "private": true,
   "devDependencies": {
-    "@commitlint/cli": "8",
-    "@commitlint/config-conventional": "8",
+    "@commitlint/cli": "9",
+    "@commitlint/config-conventional": "9",
     "@rollup/plugin-commonjs": "13",
     "@rollup/plugin-node-resolve": "8",
     "@types/mocha": "7",
