@@ -4,5 +4,6 @@ parserOptions:
 
 rules:
   '@typescript-eslint/no-unused-vars': 0
-  'node/no-extraneous-import': 0
+  node/no-extraneous-import: 0
+  unicorn/filename-case: 0
 
