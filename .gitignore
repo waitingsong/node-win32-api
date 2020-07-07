@@ -20,6 +20,7 @@ target/
 Thumbs.db
 
 *.__built-tables.ts
+*.__built-dict.ts
 *.bak
 *.d.ts
 *.map
