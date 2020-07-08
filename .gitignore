@@ -19,6 +19,7 @@ run/
 target/
 Thumbs.db
 
+.kmore.ts
 *.__built-tables.ts
 *.__built-dict.ts
 *.bak
