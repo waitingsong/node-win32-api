@@ -18,6 +18,8 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   FreeConsole: () => M.BOOL
 
+  GenerateConsoleCtrlEvent: (dwCtrlEvent: M.DWORD, dwProcessGroupId: M.DWORD) => M.BOOL
+
   /**
    * Not works correctly
    * @see https://github.com/node-ffi/node-ffi/issues/261
@@ -73,6 +75,8 @@ export const apiDef: FM.DllFuncs = {
   ],
 
   FreeConsole: [W.BOOL, [] ],
+  
+  GenerateConsoleCtrlEvent: [W.BOOL, [W.DWORD, W.DWORD] ],
 
   /** err code: https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms681381(v=vs.85).aspx */
   GetLastError: [W.DWORD, [] ],
