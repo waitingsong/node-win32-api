@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.6.0](https://github.com/waitingsong/node-win32-api/compare/v9.5.0...v9.6.0) (2020-10-28)
+
+
+### Features
+
+* **win32-api:** add kernel32.GenerateConsoleCtrlEvent() ([ecc6fef](https://github.com/waitingsong/node-win32-api/commit/ecc6fef9b8cc6debf3e996ceaeb17dbee541ddb1))
+
+
+
+
+
 # [9.5.0](https://github.com/waitingsong/node-win32-api/compare/v9.4.0...v9.5.0) (2020-06-08)
 
 
