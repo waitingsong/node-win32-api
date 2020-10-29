@@ -70,7 +70,7 @@ if (typeof hWnd === 'number' && hWnd > 0
   // Change title of the Calculator
   const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'))
 
-  if ( ! res) {
+  if (!res) {
     console.log('SetWindowTextW failed')
   }
   else {
