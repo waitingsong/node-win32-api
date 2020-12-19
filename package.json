@@ -48,8 +48,8 @@
     "clean:lock": "rm packages/*/package-lock.json -f",
     "cov": "lerna run cov --concurrency=1",
     "doc": "node .githooks/doc.js",
-    "lint": "lerna run lint --parallel",
-    "lint:nofix": "lerna run lint:nofix --parallel",
+    "lint": "sh .scripts/lint.sh",
+    "lint:nofix": "sh .scripts/lint-no-fix.sh",
     "pub": "sh .scripts/publish.sh --create-release github",
     "pub:canary": "sh .scripts/publish.sh --canary",
     "pub:beta": "sh .scripts/publish.sh --dist-tag beta --force-publish=*",
@@ -57,7 +57,7 @@
     "purge": "npm run clean && rm node_modules -rf",
     "repo:init": "sh .githooks/init-repo.sh",
     "reset": "npm run purge && npm i && npm run ci",
-    "test": "lerna run test"
+    "test": "sh .scripts/test.sh"
   },
   "nyc": {
     "include": [

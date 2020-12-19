@@ -66,7 +66,9 @@ set -e
 echo -e ">>> lerna initializing..."
 #npm run clean 
 npm run bootstrap
-source $scriptDir/build.sh
+#source $scriptDir/build.sh
+lerna run build
+
 
 echo -e ">>> lerna publishing..."
 git add --ignore-errors ./packages

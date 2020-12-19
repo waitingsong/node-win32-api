@@ -7,7 +7,7 @@ const config = {
     'subject-case': [
       2,
       'never',
-      ['start-case', 'pascal-case'],
+      [],
     ],
     'type-enum': [
       2,
