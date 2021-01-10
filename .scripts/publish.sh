@@ -69,7 +69,6 @@ npm run bootstrap
 #source $scriptDir/build.sh
 lerna run build
 
-
 echo -e ">>> lerna publishing..."
 git add --ignore-errors ./packages
 lerna publish $*

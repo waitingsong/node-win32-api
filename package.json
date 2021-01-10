@@ -6,15 +6,15 @@
   "devDependencies": {
     "@commitlint/cli": "11",
     "@commitlint/config-conventional": "11",
-    "@rollup/plugin-commonjs": "15",
-    "@rollup/plugin-node-resolve": "9",
+    "@rollup/plugin-commonjs": "17",
+    "@rollup/plugin-node-resolve": "11",
     "@types/mocha": "8",
     "@types/node": "14",
     "@types/power-assert": "1",
     "@types/rewire": "2",
     "@types/rimraf": "3",
     "@types/yargs": "15",
-    "@waiting/eslint-config": "5",
+    "@waiting/eslint-config": "6",
     "coveralls": "3",
     "debug": "^4.1.0",
     "eslint": "7",
@@ -35,7 +35,7 @@
     "yargs": "16"
   },
   "engines": {
-    "node": ">=14.14.0"
+    "node": ">=14.15.0"
   },
   "scripts": {
     "bp:add": "git remote add bp https://github.com/waitingsong/npm-mono-base",
@@ -50,14 +50,15 @@
     "doc": "node .githooks/doc.js",
     "lint": "sh .scripts/lint.sh",
     "lint:nofix": "sh .scripts/lint-no-fix.sh",
-    "pub": "sh .scripts/publish.sh --create-release github",
+    "pub": "sh .scripts/publish.sh --conventional-commits --create-release github",
     "pub:canary": "sh .scripts/publish.sh --canary",
     "pub:beta": "sh .scripts/publish.sh --dist-tag beta --force-publish=*",
     "pub:next": "sh .scripts/publish.sh --dist-tag next",
-    "purge": "npm run clean && rm node_modules -rf",
+    "purge": "lerna clean --loglevel error --yes && lerna run purge && rm node_modules -rf",
     "repo:init": "sh .githooks/init-repo.sh",
     "reset": "npm run purge && npm i && npm run ci",
-    "test": "sh .scripts/test.sh"
+    "test": "lerna run test",
+    "ptest": "sh .scripts/test.sh"
   },
   "nyc": {
     "include": [

@@ -34,6 +34,8 @@ Thumbs.db
 /packages/*/*.js
 /packages/*/config/
 /packages/*/lib/
+test/app/**/*.js
+test/fixtures/**/*.js
 
 
 # for java

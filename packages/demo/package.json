@@ -41,10 +41,13 @@
   ],
   "scripts": {
     "build": "npm run tsc && npm run rp",
-    "clean": "rm -rf dist/* .vscode/.tsbuildinfo .vscode/.tsbuildinfo.* ",
+    "clean": "rm -rf dist/* -rf && npm run clean:lock && npm run clean:cache",
+    "clean:cache": "rm -rf .eslintcache .vscode/.tsbuildinfo .vscode/.tsbuildinfo.*",
+    "clean:lock": "rm package-lock.json -f",
     "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json nyc mocha",
     "lint": "eslint --fix --cache {src,test}/**/*.ts",
     "lint:nofix": "eslint --cache {src,test}/**/*.ts",
+    "purge": "npm run clean && rm node_modules -rf",
     "rp": "rollup -c rollup.config.js",
     "rp:w": "npm run tsc:w | rollup -wc rollup.config.js",
     "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha",
@@ -72,9 +75,9 @@
       ".ts"
     ],
     "reporter": [
-      "text-summary",
+      "html",
       "json",
-      "html"
+      "text-summary"
     ],
     "all": true
   }
