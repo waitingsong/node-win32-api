@@ -43,7 +43,7 @@
     "clean": "rm -rf dist/* -rf && npm run clean:lock && npm run clean:cache",
     "clean:cache": "rm -rf .eslintcache .vscode/.tsbuildinfo .vscode/.tsbuildinfo.*",
     "clean:lock": "rm package-lock.json -f",
-    "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json nyc mocha",
+    "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json nyc mocha --parallel=false",
     "lint": "eslint --fix --cache {src,test}/**/*.ts",
     "lint:nofix": "eslint --cache {src,test}/**/*.ts",
     "purge": "npm run clean && rm node_modules -rf",
@@ -76,6 +76,7 @@
     "reporter": [
       "html",
       "json",
+      "text",
       "text-summary"
     ],
     "all": true
