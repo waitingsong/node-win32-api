@@ -43,7 +43,7 @@
     "bp:sync": "git fetch --all -v && git merge bp/master -m \"Merge remote-tracking branch 'bp/master'\"",
     "bootstrap": "lerna bootstrap --loglevel notice",
     "build": "sh .scripts/build.sh",
-    "ci": "npm run build && npm run cov",
+    "ci": "npm run cov",
     "clean": "lerna clean --loglevel error --yes && lerna run clean && npm run clean:lock && npm run clean:cache",
     "clean:cache": "rm packages/*/.eslintcache -f",
     "clean:lock": "rm packages/*/package-lock.json -f",
