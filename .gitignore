@@ -37,6 +37,7 @@ Thumbs.db
 test/app/**/*.js
 test/fixtures/**/*.js
 **/test/fixtures/**/*.js
+.mwcc-cache
 
 
 # for java
