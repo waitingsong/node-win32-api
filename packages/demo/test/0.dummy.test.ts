@@ -2,6 +2,7 @@ import {
   basename,
   join,
 } from '@waiting/shared-core'
+// eslint-disable-next-line import/order
 import assert = require('power-assert')
 
 
