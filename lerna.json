@@ -14,7 +14,8 @@
       "hoist": true,
       "noCi": true,
       "nohoist": [
-        "cross-env"
+        "cross-env",
+        "egg"
       ],
       "npmClientArgs": [
         "--no-package-lock"
