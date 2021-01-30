@@ -23,7 +23,7 @@
     },
     "version": {
       "conventionalCommits": true,
-      "allowBranch": "master",
+      "allowBranch": ["master", "release"],
       "registry": "https://registry.npmjs.org/"
     }
   },
