@@ -1,0 +1,75 @@
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: manual-publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      semver:
+        description: 'Leave empty or input major|minor|patch'
+        required: false
+        default: ''
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: node:14-buster
+
+    strategy:
+      matrix:
+        node: [14]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Verify
+        run: |
+          echo $GITHUB_REF
+          # echo ${{ github.ref }}
+          uname -a
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get -qq -y update > /dev/null
+          apt-get -qq -y install dnsutils jq net-tools > /dev/null
+          netstat -tunpl
+          dig httpbin
+          curl http://httpbin/get
+        env:
+          CI: true
+
+      - name: npm build
+        run: |
+          openssl version
+          node -v
+          npm i -g lerna
+          npm run bootstrap
+          npm run build --if-present
+      - name: npm ci
+        run: |
+          # lint must after build
+          lerna run lint:nofix
+          npm run ci
+        env:
+          CI: true
+
+      - name: npm publish
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          # npm run pub major
+          bash .scripts/publish.sh --conventional-commits --create-release github ${{ github.event.inputs.semver }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+
+    services:
+      httpbin:
+        image: kennethreitz/httpbin
+        ports:
+          - 80:80 # no 443
+

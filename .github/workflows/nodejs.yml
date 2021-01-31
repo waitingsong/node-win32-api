@@ -2,7 +2,15 @@
 
 name: ci
 
-on: [push, pull_request]
+on:
+  push:
+    branches-ignore:
+      - release
+    tags-ignore:
+      - v*
+  pull_request:
+    branches-ignore:
+      - release
 
 jobs:
   build:
