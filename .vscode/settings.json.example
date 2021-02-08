@@ -1,6 +1,5 @@
 {
   "debug.node.autoAttach": "on",
-  "debug.javascript.usePreviewAutoAttach": false,
   "editor.minimap.renderCharacters": false,
   "editor.renderFinalNewline": false,
   "editor.tabSize": 2,
@@ -109,6 +108,7 @@
   "[typescript]": {
     "editor.formatOnPaste": true,
     "editor.formatOnSave": false
-  }
+  },
+  "workbench.editor.wrapTabs": true
 }
 
