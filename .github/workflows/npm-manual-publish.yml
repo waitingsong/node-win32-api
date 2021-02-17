@@ -35,8 +35,11 @@ jobs:
           apt-get -qq -y update > /dev/null
           apt-get -qq -y install dnsutils jq net-tools > /dev/null
           netstat -tunpl
+          # github project/settings/Secrets/New repository secret: NPM_TOKEN
+          npm whoami
         env:
           CI: true
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: npm build
         run: |
