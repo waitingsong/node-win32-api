@@ -6,8 +6,8 @@ on:
   push:
     branches-ignore:
       - release
-    tags-ignore:
-      - v*
+    # tags-ignore:
+    #   - v*
   pull_request:
     branches-ignore:
       - release
