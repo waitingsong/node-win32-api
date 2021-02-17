@@ -35,8 +35,6 @@ jobs:
           apt-get -qq -y update > /dev/null
           apt-get -qq -y install dnsutils jq net-tools > /dev/null
           netstat -tunpl
-          dig httpbin
-          curl http://httpbin/get
         env:
           CI: true
 
@@ -60,7 +58,7 @@ jobs:
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
           # npm run pub major
-          bash .scripts/publish.sh --conventional-commits --create-release github ${{ github.event.inputs.semver }}
+          bash .scripts/publish.sh --yes --conventional-commits --create-release github ${{ github.event.inputs.semver }}
           git push -v origin --follow-tags
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -70,9 +68,4 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
 
-    services:
-      httpbin:
-        image: kennethreitz/httpbin
-        ports:
-          - 80:80 # no 443
 
