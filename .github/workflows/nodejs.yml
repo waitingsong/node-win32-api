@@ -9,8 +9,8 @@ on:
     # tags-ignore:
     #   - v*
   pull_request:
-    branches-ignore:
-      - release
+    # branches-ignore:
+    #   - release
 
 jobs:
   build:
