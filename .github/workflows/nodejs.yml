@@ -2,15 +2,7 @@
 
 name: ci
 
-on:
-  push:
-    # branches-ignore:
-    #   - release
-    # tags-ignore:
-    #   - v*
-  pull_request:
-    # branches-ignore:
-    #   - release
+on: [push, pull_request]
 
 jobs:
   build:
@@ -46,6 +38,8 @@ jobs:
           npm i -g lerna
           npm run bootstrap
           npm run build --if-present
+        env:
+          CI: true
       - name: npm ci
         run: |
           # lint must after build
