@@ -38,7 +38,7 @@
     "node": ">=14.15.0"
   },
   "scripts": {
-    "bp:add": "git remote add bp https://github.com/waitingsong/npm-mono-base",
+    "bp:add": "git remote add bp https://github.com.cnpmjs.org/waitingsong/npm-mono-base",
     "bp:sync": "git fetch --all -v && git merge bp/master -m \"Merge remote-tracking branch 'bp/master'\"",
     "bootstrap": "lerna bootstrap --loglevel notice",
     "build": "sh .scripts/build.sh",
