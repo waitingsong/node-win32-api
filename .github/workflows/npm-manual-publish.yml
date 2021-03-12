@@ -50,7 +50,7 @@ jobs:
       - name: npm ci
         run: |
           # lint must after build
-          lerna run lint:nofix
+          npm run lint:nofix
           npm run ci
         env:
           CI: true
