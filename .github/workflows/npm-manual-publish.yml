@@ -44,7 +44,7 @@ jobs:
         run: |
           openssl version
           node -v
-          npm i -g lerna
+          npm i -g lerna nyc rollup
           npm run bootstrap
           npm run build --if-present
       - name: npm ci
