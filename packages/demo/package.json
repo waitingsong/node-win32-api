@@ -25,10 +25,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-types": "6"
+    "@waiting/shared-types": "7"
   },
   "devDependencies": {
-    "@waiting/shared-core": "6",
+    "@waiting/shared-core": "7",
     "cross-env": "7"
   },
   "engines": {
