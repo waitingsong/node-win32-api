@@ -76,7 +76,7 @@ sed -i "s#$tplName#${pkgFullName}#g" "$pkgJson"
 sed -i "s#\(private.\+\)true#\1false#g" "$pkgJson"
 repo=$(git remote get-url origin)
 if [ -n "$repo" ]; then
-  sed -i "s#\(git+https://\)#${repo}#" "$pkgJson"
+  sed -i "s#\(git+https://.*\)#${repo}\"#" "$pkgJson"
 fi
 
 testDir="$pkgPath/test"
@@ -91,7 +91,7 @@ cp "$tplDir/test/$t3" "$testDir/"
 cp "$tplDir/test/$t4" "$testDir/"
 
 echo -e "Git add files..."
-git add -f -- "$pkgPath" 
+git add -f -- "$pkgPath"
 
 git commit -nm "chore($pkgName): initialize package $pkgFullName"
 echo -e "Git add success\n"
