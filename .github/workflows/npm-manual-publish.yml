@@ -13,13 +13,27 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: node:14-buster
+    container: docker:latest
 
     strategy:
       matrix:
         node: [14]
 
     steps:
+      - name: Prepare
+        run: |
+          echo "@edge https://uk.alpinelinux.org/alpine//alpine/edge/main" >> /etc/apk/repositories
+          apk upgrade --no-cache > /dev/null
+          apk add apache2-utils bash curl git jq nodejs npm openssh openssl postgresql-client tar tzdata zstd > /dev/null
+          sed -i "s#:/bin/ash#:/bin/bash#g" /etc/passwd
+          echo "alias sh='/bin/bash ';" >> /root/.bashrc
+          docker -v 
+          bash --version
+          npm -v && node -v
+          ssh -V 
+          tar --version
+          git --version
+          uname -a
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v2
@@ -29,11 +43,6 @@ jobs:
       - name: Verify
         run: |
           echo $GITHUB_REF
-          # echo ${{ github.ref }}
-          export DEBIAN_FRONTEND=noninteractive
-          apt-get -qq -y update > /dev/null
-          apt-get -qq -y install dnsutils jq net-tools > /dev/null
-          uname -a
           # github project/settings/Secrets/New repository secret: NPM_TOKEN
           npm whoami
         env:

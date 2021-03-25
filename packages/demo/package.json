@@ -39,6 +39,9 @@
     "bin/*.js",
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "npm run tsc && npm run rp",
     "clean": "rm -rf dist/* -rf && npm run clean:lock && npm run clean:cache",
