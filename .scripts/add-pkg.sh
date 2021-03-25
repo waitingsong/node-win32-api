@@ -35,7 +35,7 @@ if [ -z "$pkgName" ]; then
 fi
 
 echo -e "-------------------------------------------"
-echo -e " Initialize package from tpl demo"
+echo -e " Initialize package from tpl $demo"
 echo -e " Name: $pkgFullName "
 echo -e "-------------------------------------------"
 
