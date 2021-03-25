@@ -36,6 +36,7 @@
     "node": ">=14.15.0"
   },
   "scripts": {
+    "add:pkg": "sh .scripts/add-pkg.sh",
     "bp:add": "git remote add bp https://github.com.cnpmjs.org/waitingsong/npm-mono-base",
     "bp:sync": "git fetch --all -v && git merge bp/master -m \"Merge remote-tracking branch 'bp/master'\"",
     "bootstrap": "lerna bootstrap --loglevel notice",
@@ -53,7 +54,7 @@
     "pub:canary": "sh .scripts/publish.sh --canary",
     "pub:beta": "sh .scripts/publish.sh --dist-tag beta --force-publish=*",
     "pub:next": "sh .scripts/publish.sh --dist-tag next",
-    "purge": "lerna clean --loglevel error --yes && lerna run purge && rm node_modules -rf",
+    "purge": "npm run clean && lerna run purge && rm node_modules -rf",
     "repo:init": "sh .githooks/init-repo.sh",
     "reset": "npm run clean && npm run bootstrap && npm run build",
     "test": "lerna run test",
@@ -81,8 +82,9 @@
       ".ts"
     ],
     "reporter": [
+      "html",
       "json",
-      "html"
+      "text-summary"
     ],
     "all": true
   }

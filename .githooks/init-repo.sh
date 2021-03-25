@@ -19,3 +19,5 @@ git init \
   && cd .githooks && tsc \
   && node gen-file-from-example.js
 
+lerna list
+

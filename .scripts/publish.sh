@@ -6,6 +6,8 @@
 # Used CI Variables:
 # - GH_TOKEN (optinal for creating release to github)
 # - GL_TOKEN (optinal for creating release to gitlab)
+# - NPM_REGISTRY for pull
+# - NPM_VERSION_REGISTRY for npm publish, equal to version.registry of lerna.json (if exists)
 # --------------
 
 appDir=`pwd`
@@ -71,7 +73,12 @@ npm run build
 
 echo -e ">>> lerna publishing..."
 git add --ignore-errors ./packages
-lerna publish $*
+echo $*
+if [ -z "$NPM_VERSION_REGISTRY" ]; then
+  lerna publish $*
+else
+  lerna publish --registry "$NPM_VERSION_REGISTRY" $*
+fi
 sleep "5s"
 git push --follow-tags origin
 
