@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Prepare
         run: |
-          echo "@edge https://uk.alpinelinux.org/alpine//alpine/edge/main" >> /etc/apk/repositories
+          echo "@edge https://uk.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
           apk upgrade --no-cache > /dev/null
           apk add apache2-utils bash curl git jq nodejs npm openssh openssl postgresql-client tar tzdata zstd > /dev/null
           sed -i "s#:/bin/ash#:/bin/bash#g" /etc/passwd
