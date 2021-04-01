@@ -10,6 +10,7 @@
 cwd=`pwd`
 PKGS="$cwd/packages"
 tplProjectName="NPM mono repository"
+pkgFile="package.json"
 
 sh "$cwd/.scripts/util/check-env.sh"
 
@@ -56,6 +57,8 @@ git config --local i18n.commitencoding utf-8 \
   && git config --local remote.origin.tagopt --tags \
   && git config --local remote.pushdefault origin
 
+git push origin
+
 sed -i '/^## 创建新项目/,+50 d' README.md
 
 if [ -n "$projectScope" ]; then
@@ -64,10 +67,11 @@ else
   sed -i "s#\(NPM scope: \`\)@scope#\1n/a#" README.md
 fi
 
-currProjectName=$(jq -r '.name' package.json)
+currProjectName=$(jq -r '.name' $pkgFile)
 if [[  "$currProjectName" != "$projectFullName" ]]; then
-  git add package.json
-  git commit -nm "chore: update project name"
+  sed -i "s#\"$currProjectName\"#\"$projectFullName\"#" $pkgFile
+  git add $pkgFile
+  git commit -nm "chore: update $pkgFile project name"
 
   sed -i "s#\(\"name\":\).\+#\1 \"${projectFullName}\",#" README.md
   sed -i "s#$tplProjectName#$projectFullName repository#" README.md
