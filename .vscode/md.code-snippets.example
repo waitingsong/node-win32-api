@@ -6,7 +6,7 @@
       "",
       "```plantuml",
       "@startuml",
-      "title $1",
+      "title _$1",
       "",
       "@enduml",
       "```",
