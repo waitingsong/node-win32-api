@@ -24,13 +24,13 @@ jobs:
         run: |
           echo "@edge https://uk.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
           apk upgrade --no-cache > /dev/null
-          apk add apache2-utils bash curl git jq nodejs npm openssh openssl postgresql-client tar tzdata zstd > /dev/null
+          apk add apache2-utils bash bind-tools curl git jq net-tools nodejs npm openssh openssl postgresql-client tar tzdata zstd > /dev/null
           sed -i "s#:/bin/ash#:/bin/bash#g" /etc/passwd
           echo "alias sh='/bin/bash ';" >> /root/.bashrc
-          docker -v 
+          docker -v
           bash --version
           npm -v && node -v
-          ssh -V 
+          ssh -V
           tar --version
           git --version
           uname -a
@@ -45,9 +45,18 @@ jobs:
           echo $GITHUB_REF
           # github project/settings/Secrets/New repository secret: NPM_TOKEN
           npm whoami
+          #psql -V
+          #dig postgres
+          #echo "\l" | psql -h $PGHOST -p $PGPORT -U$PGUSER -d postgres
+          #psql -h $PGHOST -p $PGPORT -U$PGUSER -d $PGDB -c "\d+"
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          #PGHOST: postgres
+          #PGUSER: postgres
+          #PGPASSWORD: postgres
+          #PGPORT: ${{ job.services.postgres.ports[5432] }}
+          #PGDB: db_ci_test
 
       - name: npm build
         run: |
@@ -63,6 +72,16 @@ jobs:
           npm run ci
         env:
           CI: true
+          # use `localhost` if running the job on the VM
+          # use `postgres` if running the job on a container
+          #PGHOST: postgres
+          #PGUSER: postgres
+          #PGPASSWORD: postgres
+          #PGPORT: ${{ job.services.postgres.ports[5432] }}
+          #PGDB: db_ci_test
+          # redis
+          #REDIS_HOST: redis
+          #REDIS_PORT: 6379
 
       - name: npm publish
         run: |
@@ -79,4 +98,15 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
 
+    #services:
+    #  postgres:
+    #    image: postgres:alpine
+    #    ports:
+    #      - 5432:5432
+    #    env:
+    #      POSTGRES_USER: postgres
+    #      POSTGRES_PASSWORD: postgres
+    #      POSTGRES_DB: db_ci_test
+    #    # needed because the postgres container does not provide a healthcheck
+    #    options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
