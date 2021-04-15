@@ -35,6 +35,8 @@
     "node": ">=14.14.0"
   },
   "files": [
+    "tsconfig.json",
+    "rollup.config.js",
     "src/**/*.ts",
     "bin/*.js",
     "dist"
