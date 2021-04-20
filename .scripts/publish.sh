@@ -63,7 +63,6 @@ if [ "$?" -ne 0 ]; then
   exit 1
 fi
 
-set -e
 
 echo -e ">>> lerna initializing..."
 #npm run clean 
@@ -84,3 +83,4 @@ git push --follow-tags origin
 
 set +e
 
+set -e
