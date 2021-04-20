@@ -1,5 +1,5 @@
 const config = {
-  // extends: ['@commitlint/config-conventional'],
+  extends: ['@commitlint/config-conventional'],
   rules: {
     'body-leading-blank': [2, 'always'],
     'footer-leading-blank': [2, 'always'],
@@ -19,6 +19,7 @@ const config = {
         'docs',
         'feat',
         'fix',
+        'improvement',
         'perf',
         'refactor',
         'revert',
