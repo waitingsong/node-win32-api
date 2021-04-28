@@ -47,16 +47,19 @@ jobs:
           npm whoami
           #psql -V
           #dig postgres
-          #echo "\l" | psql -h $PGHOST -p $PGPORT -U$PGUSER -d postgres
-          #psql -h $PGHOST -p $PGPORT -U$PGUSER -d $PGDB -c "\d+"
+          #echo "\l" | psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d postgres
+          #psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -1 -bq -f ./packages/demo-service/src/database/init.sql
+          #psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "\d+"
+          #psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "SELECT * FROM tb_user"
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          #PGHOST: postgres
-          #PGUSER: postgres
+          #POSTGRES_HOST: postgres
+          #POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          #POSTGRES_DB: db_ci_test
+          #POSTGRES_USER: postgres
+          #POSTGRES_PASSWORD: postgres
           #PGPASSWORD: postgres
-          #PGPORT: ${{ job.services.postgres.ports[5432] }}
-          #PGDB: db_ci_test
 
       - name: npm build
         run: |
@@ -74,11 +77,12 @@ jobs:
           CI: true
           # use `localhost` if running the job on the VM
           # use `postgres` if running the job on a container
-          #PGHOST: postgres
-          #PGUSER: postgres
+          #POSTGRES_HOST: postgres
+          #POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          #POSTGRES_DB: db_ci_test
+          #POSTGRES_USER: postgres
+          #POSTGRES_PASSWORD: postgres
           #PGPASSWORD: postgres
-          #PGPORT: ${{ job.services.postgres.ports[5432] }}
-          #PGDB: db_ci_test
           # redis
           #REDIS_HOST: redis
           #REDIS_PORT: 6379
@@ -104,9 +108,9 @@ jobs:
     #    ports:
     #      - 5432:5432
     #    env:
+    #      POSTGRES_DB: db_ci_test
     #      POSTGRES_USER: postgres
     #      POSTGRES_PASSWORD: postgres
-    #      POSTGRES_DB: db_ci_test
     #    # needed because the postgres container does not provide a healthcheck
     #    options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
