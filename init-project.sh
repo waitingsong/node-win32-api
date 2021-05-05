@@ -86,7 +86,7 @@ git add README.md
 git commit -nm "docs: clean and update README"
 
 sed -i 's#\(lerna run build\)#\1 --ignore demo#g' .scripts/build.sh
-sed -i 's#\(lerna run lint\s\+\)#\1 --ignore demo#g' .scripts/lint.sh
+sed -i 's#\(lerna run lint\s\+\)#\1 --ignore demo #g' .scripts/lint.sh
 sed -i 's#\(lerna run lint:\w\+\)#\1 --ignore demo#g' .scripts/lint-no-fix.sh
 sed -i 's#\(lerna run lint:\w\+\)#\1 --ignore demo#g' .scripts/lint-no-fix-s.sh
 sed -i 's#\(lerna run test\)#\1 --ignore demo#g' .scripts/test.sh
