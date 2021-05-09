@@ -100,7 +100,7 @@ echo -e "Git add success\n"
 cp -a "$tplDir/src" "$pkgPath/"
 echo -e "Copying folder src/ done, You should git add files manually!"
 
-npm run repo:init
+npm run bootstrap
 npm run build "$pkgFullName"
 
 echo -e "\nInitialization success. You should git add files under src/ manually!"
