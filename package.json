@@ -42,7 +42,7 @@
     "bootstrap": "lerna bootstrap --loglevel notice",
     "build": "sh .scripts/build.sh",
     "ci": "npm run cov",
-    "clean": "lerna clean --loglevel error --yes && lerna run clean && npm run clean:lock && npm run clean:cache",
+    "clean": "lerna clean --loglevel error --yes && lerna run clean",
     "cov": "sh .scripts/cov.sh",
     "doc": "node .githooks/doc.js",
     "lint": "sh .scripts/lint.sh",
