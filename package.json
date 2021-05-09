@@ -55,7 +55,7 @@
     "pub:next": "sh .scripts/publish.sh --dist-tag next",
     "purge": "npm run clean && lerna run purge && rm node_modules -rf",
     "repo:init": "sh .githooks/init-repo.sh",
-    "reset": "npm run clean && npm run bootstrap && npm run build",
+    "refresh": "npm run clean && npm run bootstrap && npm run build",
     "test": "lerna run test",
     "ptest": "sh .scripts/test.sh"
   },
