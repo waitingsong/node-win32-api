@@ -71,7 +71,8 @@ npm run bootstrap
 npm run build
 
 echo -e ">>> lerna publishing..."
-git add --ignore-errors ./packages
+sh "$scriptDir/pre-publish-valiate.sh"
+
 echo $*
 if [ -z "$NPM_VERSION_REGISTRY" ]; then
   lerna publish $*
@@ -81,6 +82,6 @@ fi
 sleep "5s"
 git push --follow-tags origin
 
-set +e
 
 set -e
+
