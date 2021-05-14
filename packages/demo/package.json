@@ -25,14 +25,14 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-types": "9"
+    "@waiting/shared-types": "10"
   },
   "devDependencies": {
-    "@waiting/shared-core": "9",
+    "@waiting/shared-core": "10",
     "cross-env": "7"
   },
   "engines": {
-    "node": ">=14.14.0"
+    "node": ">=14.16.0"
   },
   "files": [
     "tsconfig.json",
