@@ -1,5 +1,6 @@
 {
   "debug.node.autoAttach": "on",
+  "editor.detectIndentation": false,
   "editor.minimap.renderCharacters": false,
   "editor.renderFinalNewline": false,
   "editor.tabSize": 2,
