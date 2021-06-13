@@ -12,9 +12,9 @@
   "bin": {},
   "browser": "",
   "es2015": "",
-  "main": "./dist/index.cjs.js",
-  "module": "./dist/index.js",
-  "types": "./src/index.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "src/index.ts",
   "bugs": {
     "url": "https://github.com/waitingsong/npm-mono-base/issues"
   },
@@ -25,10 +25,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-types": "^12.0.0"
+    "@waiting/shared-types": "^13.0.0"
   },
   "devDependencies": {
-    "@waiting/shared-core": "^12.0.0",
+    "@waiting/shared-core": "^13.0.0",
     "cross-env": "7"
   },
   "engines": {
