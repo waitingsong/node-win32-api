@@ -28,7 +28,6 @@ jobs:
         with:
           path: |
             node_modules
-            */*/node_modules
           key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/lockfiles') }}
 
       - name: npm build
