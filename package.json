@@ -49,6 +49,7 @@
     "lint": "sh .scripts/lint.sh",
     "lint:nofix": "sh .scripts/lint-no-fix.sh",
     "lint:s": "sh .scripts/lint-no-fix-s.sh",
+    "postbuild": "rm -rf packages/*/dist/.mwcc-cache",
     "postinstall": "npm run repo:init",
     "pub": "sh .scripts/publish.sh --conventional-commits --create-release github",
     "pub:canary": "sh .scripts/publish.sh --canary",
