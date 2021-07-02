@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # 初始化 git 仓库
 #

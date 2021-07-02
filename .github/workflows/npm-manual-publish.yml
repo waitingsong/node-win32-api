@@ -35,6 +35,12 @@ jobs:
           git --version
           uname -a
       - uses: actions/checkout@v2
+        with:
+          # pulls all commits (needed for lerna / semantic release to correctly version)
+          fetch-depth: "0"
+      - name: Fix for semantic release
+        # pulls all tags (needed for lerna / semantic release to correctly version)
+        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v2
         with:
@@ -68,6 +74,8 @@ jobs:
           npm i -g lerna nyc rollup
           npm run bootstrap
           npm run build --if-present
+        env:
+          CI: true
       - name: npm ci
         run: |
           # lint must after build
