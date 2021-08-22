@@ -12,26 +12,23 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container: docker:latest
+    runs-on: ${{ matrix.os }}
+    container: node:14.17-buster
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
 
     strategy:
       matrix:
         node: [14]
+        os: [ubuntu-latest]
 
     steps:
       - name: Prepare
         run: |
-          echo "@edge https://uk.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
-          apk upgrade --no-cache > /dev/null
-          apk add apache2-utils bash bind-tools curl git jq net-tools nodejs npm openssh openssl postgresql-client tar tzdata zstd > /dev/null
-          sed -i "s#:/bin/ash#:/bin/bash#g" /etc/passwd
-          echo "alias sh='/bin/bash ';" >> /root/.bashrc
-          docker -v
-          bash --version
+          uname -a
+          apt-get update -qq --yes > /dev/null
+          apt-get upgrade -qq --yes > /dev/null
+          apt-get install -qq --yes --no-install-recommends bash git postgresql-client jq
           npm -v && node -v
-          ssh -V
-          tar --version
           git --version
           uname -a
       - uses: actions/checkout@v2
