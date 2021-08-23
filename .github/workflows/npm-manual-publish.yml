@@ -25,9 +25,9 @@ jobs:
       - name: Prepare
         run: |
           uname -a
-          apt-get update -qq --yes > /dev/null
-          apt-get upgrade -qq --yes > /dev/null
-          apt-get install -qq --yes --no-install-recommends bash git postgresql-client jq
+          sudo apt-get update -qq --yes > /dev/null
+          sudo apt-get upgrade -qq --yes > /dev/null
+          sudo apt-get install -qq --yes --no-install-recommends bash git postgresql-client jq
           npm -v && node -v
           git --version
           uname -a
