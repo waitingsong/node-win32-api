@@ -27,7 +27,7 @@ jobs:
           uname -a
           sudo apt-get update -qq --yes > /dev/null
           sudo apt-get upgrade -qq --yes > /dev/null
-          sudo apt-get install -qq --yes --no-install-recommends bash git postgresql-client jq
+          sudo apt-get install -qq --yes --no-install-recommends bash  dnsutils git jq net-tools postgresql-client
           npm -v && node -v
           git --version
           uname -a
