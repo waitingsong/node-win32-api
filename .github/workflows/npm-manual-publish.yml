@@ -13,7 +13,7 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    container: node:14.17-buster
+    container: node:14-bullseye
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
 
     strategy:
@@ -25,9 +25,9 @@ jobs:
       - name: Prepare
         run: |
           uname -a
-          sudo apt-get update -qq --yes > /dev/null
-          sudo apt-get upgrade -qq --yes > /dev/null
-          sudo apt-get install -qq --yes --no-install-recommends bash  dnsutils git jq net-tools postgresql-client
+          apt-get update -qq --yes > /dev/null
+          apt-get upgrade -qq --yes > /dev/null
+          apt-get install -qq --yes --no-install-recommends bash  dnsutils git jq net-tools postgresql-client
           npm -v && node -v
           git --version
           uname -a
