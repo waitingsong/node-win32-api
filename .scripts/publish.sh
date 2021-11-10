@@ -48,7 +48,7 @@ if [[ "$*" =~ "gitlab" ]]; then
 fi
 
 if [ -z $RELEASE_BRANCH ]; then
-  branch=master
+  branch=main
 else
   branch="$RELEASE_BRANCH"
 fi
@@ -65,9 +65,8 @@ fi
 
 
 echo -e ">>> lerna initializing..."
-#npm run clean 
+
 npm run bootstrap
-#source $scriptDir/build.sh
 npm run build
 
 echo -e ">>> lerna publishing..."

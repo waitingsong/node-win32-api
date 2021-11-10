@@ -24,7 +24,7 @@
     },
     "version": {
       "conventionalCommits": true,
-      "allowBranch": ["master", "release"],
+      "allowBranch": ["main", "release"],
       "registry": "https://registry.npmjs.org/"
     }
   },

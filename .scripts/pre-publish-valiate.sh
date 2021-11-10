@@ -7,6 +7,7 @@ set -e
 currDir=`pwd`
 pkgFile="$currDir/package.json"
 
+git restore .scripts
 git add --ignore-errors ./packages
 str=$( git status )
 sub="Changes to be committed"
