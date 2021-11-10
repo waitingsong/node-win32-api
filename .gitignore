@@ -83,6 +83,9 @@ nbdist/
 # http://git-scm.com/docs/gitignore
 
 *~
+*.njsproj
+*.ntvs*
+*.sln
 *.sw[mnpcod]
 *.log
 *.tmp
@@ -303,6 +306,8 @@ key.properties
 *.moved-aside
 *.pbxuser
 *.perspectivev3
+*.xccheckout
+*.xcscmblueprint
 **/*sync/
 .sconsign.dblite
 .tags*
@@ -324,6 +329,20 @@ xcuserdata
 flutter_export_environment.sh
 ServiceDefinitions.json
 */Runner/GeneratedPluginRegistrant.*
+
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+Carthage/Build
+iOSInjectionProject/
 
 # Exceptions to above rules.
 !default.mode1v3

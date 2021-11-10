@@ -16,6 +16,7 @@ git init \
   && git config --local fetch.prune true \
   && git config --local pull.rebase true \
   && git config --local push.followTags true \
+  && git config --local rebase.autoStash true \
   && git config --local remote.origin.prune true \
   && git config --local remote.origin.tagopt --tags \
   && git config --local remote.pushdefault origin \

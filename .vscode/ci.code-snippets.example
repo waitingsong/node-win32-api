@@ -1,38 +1,35 @@
 {
-  "istanbul whole file": {
-    "scope": "javascript,typescript",
-    "prefix": "cov.ignore-whole-file",
-    "body": [
-      "/* istanbul ignore file */",
-    ],
-    "description": "istanbul ignore whole file"
-  },
-
-  "istanbul ignore next": {
+  "c8 ignore next": {
     "scope": "javascript,typescript",
     "prefix": "cov.ignore-next",
     "body": [
-      "/* istanbul ignore next */",
+      "/* c8 ignore next */",
     ],
-    "description": "istanbul ignore next"
+    "description": "c8 ignore next"
   },
 
-  "istanbul ignore if": {
+  "c8 ignore next 3 lines": {
     "scope": "javascript,typescript",
-    "prefix": "cov.ignore-if",
+    "prefix": "cov.ignore-next-3",
     "body": [
-      "/* istanbul ignore if */",
+      "/* c8 ignore next 3 */",
     ],
-    "description": ""
+    "description": "c8 ignore next 3"
   },
 
-  "istanbul ignore else": {
+  "c8 ignore start": {
     "scope": "javascript,typescript",
-    "prefix": "cov.ignore-else",
+    "prefix": "cov.ignore-start",
     "body": [
-      "/* istanbul ignore else */",
-    ],
-    "description": ""
+      "/* c8 ignore start */",
+    ]
+  },
+  "c8 ignore stop": {
+    "scope": "javascript,typescript",
+    "prefix": "cov.ignore-stop",
+    "body": [
+      "/* c8 ignore stop */",
+    ]
   },
 
   "eslint disable next line": {

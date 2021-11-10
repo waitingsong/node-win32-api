@@ -122,6 +122,6 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": false
   },
-  "workbench.editor.wrapTabs": true
+  "workbench.editor.wrapTabs": false
 }
 

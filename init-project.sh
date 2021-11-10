@@ -85,12 +85,14 @@ fi
 git add README.md
 git commit -nm "docs: clean and update README"
 
-sed -i 's#\(lerna run build\)#\1 --ignore demo#g' .scripts/build.sh
-sed -i 's#\(lerna run lint\s\+\)#\1 --ignore demo #g' .scripts/lint.sh
-sed -i 's#\(lerna run lint:\w\+\)#\1 --ignore demo#g' .scripts/lint-no-fix.sh
-sed -i 's#\(lerna run lint:\w\+\)#\1 --ignore demo#g' .scripts/lint-no-fix-s.sh
-sed -i 's#\(lerna run test\)#\1 --ignore demo#g' .scripts/test.sh
-sed -i 's#\(lerna run cov\)#\1 --ignore demo#g' .scripts/cov.sh
+# sed -i 's#\(lerna run build\)#\1 --ignore demo#g' .scripts/build.sh
+# sed -i 's#\(lerna run lint\s\+\)#\1 --ignore demo #g' .scripts/lint.sh
+# sed -i 's#\(lerna run lint:\w\+\)#\1 --ignore demo#g' .scripts/lint-no-fix.sh
+# sed -i 's#\(lerna run lint:\w\+\)#\1 --ignore demo#g' .scripts/lint-no-fix-s.sh
+# sed -i 's#\(lerna run test\)#\1 --ignore demo#g' .scripts/test.sh
+# sed -i 's#\(lerna run cov\)#\1 --ignore demo#g' .scripts/cov.sh
+
+sed -i 's#\("ignore": \)""#\1["demo"]#' lerna.json
 
 git add -- \
   .scripts/build.sh \
@@ -99,6 +101,7 @@ git add -- \
   .scripts/lint-no-fix-s.sh \
   .scripts/test.sh \
   .scripts/cov.sh \
+  lerna.json \
 
 git commit -nm "chore: initialize"
 

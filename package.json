@@ -4,11 +4,11 @@
   "description": "",
   "private": true,
   "devDependencies": {
-    "@commitlint/cli": "12",
-    "@commitlint/config-conventional": "12",
-    "@rollup/plugin-commonjs": "19",
+    "@commitlint/cli": "14",
+    "@commitlint/config-conventional": "14",
+    "@rollup/plugin-commonjs": "21",
     "@rollup/plugin-node-resolve": "13",
-    "@types/mocha": "8",
+    "@types/mocha": "9",
     "@types/node": "16",
     "@types/power-assert": "1",
     "@types/rewire": "2",
@@ -16,8 +16,8 @@
     "@types/yargs": "17",
     "@waiting/eslint-config": "^6.9.0",
     "coveralls": "3",
-    "debug": "^4.1.0",
-    "eslint": "7",
+    "debug": "^4.3.0",
+    "eslint": "8",
     "espower-typescript": "10",
     "intelli-espower-loader": "1",
     "mocha": "9",
@@ -26,7 +26,7 @@
     "rewire": "5",
     "rimraf": "3",
     "rollup-plugin-terser": "7",
-    "rxjs": "^7.3.0",
+    "rxjs": "^7.4.0",
     "rxrunscript": "6",
     "ts-node": "10",
     "tsconfig-paths": "3",
@@ -39,12 +39,14 @@
   "scripts": {
     "add:pkg": "sh .scripts/add-pkg.sh",
     "bp:add": "git remote add bp https://github.com.cnpmjs.org/waitingsong/npm-mono-base",
-    "bp:sync": "git fetch --all -v && git pull origin && git merge bp/master -m \"Merge remote-tracking branch 'bp/master'\"",
-    "bootstrap": "lerna bootstrap --loglevel notice -- --legacy-peer-deps",
+    "bp:sync": "git fetch --all -v && git pull origin && git merge bp/main -m \"Merge remote-tracking branch 'bp/main'\" ",
+    "bp:syncxo": "git fetch --all -v && git pull origin && git merge bp/main -m \"Merge remote-tracking branch 'bp/main'\" -Xours",
+    "bootstrap": "lerna bootstrap --loglevel notice",
     "postbootstrap": "npm run repo:init",
     "build": "sh .scripts/build.sh",
     "ci": "npm run cov",
     "clean": "lerna clean --loglevel error --yes & lerna run clean",
+    "clean:dist": "rm -rf packages/*/dist/ & rm -rf packages/*/.vscode/",
     "cov": "sh .scripts/cov.sh",
     "doc": "node .githooks/doc.js",
     "lint": "sh .scripts/lint.sh",
@@ -62,33 +64,5 @@
     "refresh": "npm run bootstrap && npm run build",
     "test": "lerna run test",
     "ptest": "sh .scripts/test.sh"
-  },
-  "nyc": {
-    "include": [
-      "packages/*/src/*.ts",
-      "packages/*/src/**/*.ts"
-    ],
-    "exclude": [
-      ".githooks",
-      "node_modules*",
-      "**/src/bin",
-      "**/src/domain.ts",
-      "**/src/interface.ts",
-      "**/dist",
-      "**/node_modules*",
-      "**/test",
-      "**/test*",
-      "**/*.d.ts",
-      "**/*.js"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "reporter": [
-      "html",
-      "json",
-      "text-summary"
-    ],
-    "all": true
   }
 }

@@ -3,6 +3,7 @@
   "packages": [
     "packages/*"
   ],
+  "ignore": "",
   "command": {
     "publish": {
       "ignoreChanges": [
@@ -18,7 +19,7 @@
         "egg"
       ],
       "npmClientArgs": [
-        "--no-package-lock"
+        "--legacy-peer-deps"
       ]
     },
     "version": {
