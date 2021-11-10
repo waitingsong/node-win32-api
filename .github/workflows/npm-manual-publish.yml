@@ -25,9 +25,10 @@ jobs:
       - name: Prepare
         run: |
           uname -a
+          export DEBIAN_FRONTEND=noninteractive
           apt-get update -qq --yes > /dev/null
           apt-get upgrade -qq --yes > /dev/null
-          apt-get install -qq --yes --no-install-recommends bash  dnsutils git jq net-tools postgresql-client
+          apt-get install -qq --yes --no-install-recommends bash  dnsutils git jq net-tools postgresql-client wget > /dev/null
           npm -v && node -v
           git --version
           uname -a
@@ -66,9 +67,10 @@ jobs:
 
       - name: npm build
         run: |
+          export cwd=`pwd`
           openssl version
           node -v
-          npm i -g lerna nyc rollup
+          npm i -g c8 lerna rollup
           npm run bootstrap
           npm run build --if-present
         env:

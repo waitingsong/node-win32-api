@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [14, 16]
+        node: [14, 16, 17]
         os: [ubuntu-latest]
 
     steps:
@@ -33,9 +33,10 @@ jobs:
 
       - name: npm build
         run: |
+          export cwd=`pwd`
           openssl version
           node -v
-          npm i -g lerna nyc rollup
+          npm i -g c8 lerna rollup
           npm run bootstrap
           npm run build --if-present
         env:
