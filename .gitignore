@@ -18,6 +18,7 @@ node_modules*
 run/
 target/
 Thumbs.db
+v8cov
 
 *.bak
 *.d.ts
