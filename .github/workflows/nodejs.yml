@@ -7,14 +7,27 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ${{ matrix.os }}
+    container: node:16-bullseye
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
 
     strategy:
       matrix:
-        node: [14, 16, 17]
+        node: [16, 17]
         os: [ubuntu-latest]
 
     steps:
+      - name: Prepare
+        run: |
+          uname -a
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get update -qq --yes > /dev/null
+          apt-get upgrade -qq --yes > /dev/null
+          apt-get install -qq --yes --no-install-recommends bash dnsutils git jq net-tools postgresql-client wget > /dev/null
+          uname -a
+          npm -v && node -v
+          git --version
+          openssl version
+          cat /etc/*release
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v2
@@ -29,25 +42,91 @@ jobs:
           path: |
             node_modules
             package-lock.json
-          key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/lockfiles') }}
+            packages/*/.eslintcache
+            packages/*/.vscode
+            packages/*/dist
+            packages/*/node_modules
+            packages/*/package-lock.json
+          key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-
 
-      - name: npm build
+      - name: Verify
         run: |
+          psql -V
+          dig postgres
+          echo "\l" | psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d postgres
+          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "\d+"
+        env:
+          CI: true
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          POSTGRES_DB: db_ci_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          PGPASSWORD: postgres
+
+      - name: Build
+        run: |
+          whoami
           export cwd=`pwd`
-          openssl version
-          node -v
+          sh .github/workflows/fix.sh
           npm i -g c8 lerna rollup
+          sh .github/workflows/fix.sh
           npm run bootstrap
+          sh .github/workflows/fix.sh
           npm run build --if-present
         env:
           CI: true
-      - name: npm ci
+
+      # - name: Init Database
+      #   run: |
+      #     export cwd=`pwd`
+      #     sh .scripts/ci/ci-init-db.sh
+      #   env:
+      #     CI: true
+      #     POSTGRES_HOST: postgres
+      #     POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+      #     POSTGRES_DB: db_ci_test
+      #     POSTGRES_USER: postgres
+      #     POSTGRES_PASSWORD: postgres
+      #     PGPASSWORD: postgres
+
+      - name: Lint
         run: |
-          # lint must after build
           npm run lint:s
+        env:
+          CI: true
+
+      - name: Testing
+        run: |
           npm run ci
         env:
           CI: true
+          # use `localhost` if running the job on the VM
+          # use `postgres` if running the job on a container
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          POSTGRES_DB: db_ci_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          PGPASSWORD: postgres
+          # redis
+          REDIS_HOST: redis
+          REDIS_PORT: 6379
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
+
+
+    services:
+      postgres:
+        image: postgres:alpine
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: db_ci_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
