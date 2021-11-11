@@ -12,8 +12,3 @@ rules:
   "node/no-unpublished-import": ['error', { "tryExtensions": [".ts"] }]
   '@typescript-eslint/prefer-ts-expect-error': 0
 
-settings:
-  import/ignore:
-    - node_modules  # included by default, but replaced if explicitly configured
-    - "@waiting/shared-types"
-

@@ -8,8 +8,3 @@ rules:
   unicorn/filename-case: 0
   '@typescript-eslint/prefer-ts-expect-error': 0
 
-settings:
-  import/ignore:
-    - node_modules  # included by default, but replaced if explicitly configured
-    - "@waiting/shared-types"
-

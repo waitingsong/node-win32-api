@@ -14,7 +14,7 @@
     "@types/rewire": "2",
     "@types/rimraf": "3",
     "@types/yargs": "17",
-    "@waiting/eslint-config": "^6.12.0",
+    "@waiting/eslint-config": "^7.0.0",
     "coveralls": "3",
     "debug": "^4.3.0",
     "eslint": "8",
