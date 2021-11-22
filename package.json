@@ -30,11 +30,11 @@
     "rxrunscript": "6",
     "ts-node": "^10.4.0",
     "tsconfig-paths": "3",
-    "typescript": "4",
+    "typescript": "^4.5.0",
     "yargs": "17"
   },
   "engines": {
-    "node": ">=14.15.0"
+    "node": ">=16.13.0"
   },
   "scripts": {
     "add:pkg": "sh .scripts/add-pkg.sh",
