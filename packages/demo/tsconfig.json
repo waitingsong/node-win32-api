@@ -19,7 +19,7 @@
     "strict": true,
     "target": "ES2020",
     "tsBuildInfoFile": ".vscode/.tsbuildinfo",
-    "types" : ["node", "mocha"]
+    "types" : ["mocha", "node"]
   },
   "include": [
     "src/**/*.ts"
