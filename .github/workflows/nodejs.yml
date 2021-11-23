@@ -70,12 +70,21 @@ jobs:
         run: |
           whoami
           export cwd=`pwd`
+          sh .scripts/ci/ci-prepare.sh
           sh .github/workflows/fix.sh
           npm i -g c8 lerna rollup
           sh .github/workflows/fix.sh
           npm run bootstrap
           sh .github/workflows/fix.sh
           npm run build --if-present
+        env:
+          CI: true
+
+      - name: Lint
+        run: |
+          export cwd=`pwd`
+          sh .scripts/ci/ci-prepare.sh
+          npm run lint:s
         env:
           CI: true
 
@@ -92,14 +101,10 @@ jobs:
       #     POSTGRES_PASSWORD: postgres
       #     PGPASSWORD: postgres
 
-      - name: Lint
-        run: |
-          npm run lint:s
-        env:
-          CI: true
-
       - name: Testing
         run: |
+          export cwd=`pwd`
+          sh .scripts/ci/ci-prepare.sh
           npm run ci
         env:
           CI: true

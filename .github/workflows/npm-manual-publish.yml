@@ -80,6 +80,14 @@ jobs:
         env:
           CI: true
 
+      - name: Lint
+        run: |
+          export cwd=`pwd`
+          sh .scripts/ci/ci-prepare.sh
+          npm run lint:nofix
+        env:
+          CI: true
+
       # - name: Init Database
       #   run: |
       #     export cwd=`pwd`
@@ -93,14 +101,10 @@ jobs:
       #     POSTGRES_PASSWORD: postgres
       #     PGPASSWORD: postgres
 
-      - name: Lint
-        run: |
-          npm run lint:nofix
-        env:
-          CI: true
-
       - name: Testing
         run: |
+          export cwd=`pwd`
+          sh .scripts/ci/ci-prepare.sh
           npm run ci
         env:
           CI: true
