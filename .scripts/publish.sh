@@ -64,11 +64,11 @@ if [ "$?" -ne 0 ]; then
 fi
 
 
-# echo -e ">>> lerna initializing..."
+# echo ">>> lerna initializing..."
 # npm run bootstrap
 # npm run build
 
-echo -e ">>> lerna publishing..."
+echo ">>> lerna publishing..."
 "$scriptDir/pre-publish-valiate.sh"
 
 echo $*

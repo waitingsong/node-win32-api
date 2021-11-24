@@ -11,4 +11,5 @@ spec:
 timeout: 60000
 ui: bdd
 parallel: true
+exit: true
 
