@@ -149,7 +149,7 @@ jobs:
           REDIS_HOST: redis
           REDIS_PORT: 6379
 
-      - name: npm publish
+      - name: NPM Publish
         run: |
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
