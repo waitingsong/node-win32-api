@@ -95,12 +95,12 @@ jobs:
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
-          sh .scripts/ci/ci-prepare.sh
-          sh .github/workflows/fix.sh
+          .scripts/ci/ci-prepare.sh
+          .github/workflows/fix.sh
           npm i -g c8 lerna rollup
-          sh .github/workflows/fix.sh
+          .github/workflows/fix.sh
           npm run bootstrap
-          sh .github/workflows/fix.sh
+          .github/workflows/fix.sh
           npm run build --if-present
         env:
           CI: true
@@ -109,7 +109,7 @@ jobs:
         run: |
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
-          sh .scripts/ci/ci-prepare.sh
+          .scripts/ci/ci-prepare.sh
           npm run lint:nofix
         env:
           CI: true
@@ -118,7 +118,7 @@ jobs:
       #   run: |
       #     export cwd=`pwd`
       #     . .scripts/ci/ci-env.sh
-      #     sh .scripts/ci/ci-prepare.sh
+      #     .scripts/ci/ci-prepare.sh
       #     .scripts/ci/ci-init-db.sh
       #   env:
       #     CI: true
@@ -133,7 +133,7 @@ jobs:
         run: |
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
-          sh .scripts/ci/ci-prepare.sh
+          .scripts/ci/ci-prepare.sh
           npm run ci
         env:
           CI: true
@@ -157,7 +157,7 @@ jobs:
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
           # npm run pub major
-          bash .scripts/publish.sh --yes --conventional-commits --create-release github ${{ github.event.inputs.semver }}
+          .scripts/publish.sh --yes --conventional-commits --create-release github ${{ github.event.inputs.semver }}
           git push -v origin --follow-tags
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -78,12 +78,12 @@ jobs:
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
-          sh .scripts/ci/ci-prepare.sh
-          sh .github/workflows/fix.sh
+          .scripts/ci/ci-prepare.sh
+          .github/workflows/fix.sh
           npm i -g c8 lerna rollup
-          sh .github/workflows/fix.sh
+          .github/workflows/fix.sh
           npm run bootstrap
-          sh .github/workflows/fix.sh
+          .github/workflows/fix.sh
           npm run build --if-present
         env:
           CI: true
@@ -92,7 +92,7 @@ jobs:
         run: |
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
-          sh .scripts/ci/ci-prepare.sh
+          .scripts/ci/ci-prepare.sh
           npm run lint:s
         env:
           CI: true
@@ -101,7 +101,7 @@ jobs:
       #   run: |
       #     export cwd=`pwd`
       #     . .scripts/ci/ci-env.sh
-      #     sh .scripts/ci/ci-prepare.sh
+      #     .scripts/ci/ci-prepare.sh
       #     .scripts/ci/ci-init-db.sh
       #   env:
       #     CI: true
@@ -116,7 +116,7 @@ jobs:
         run: |
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
-          sh .scripts/ci/ci-prepare.sh
+          .scripts/ci/ci-prepare.sh
           npm run ci
         env:
           CI: true
