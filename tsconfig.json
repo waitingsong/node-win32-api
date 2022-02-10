@@ -5,7 +5,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "incremental": true,
-    "module": "ES6",
+    "module": "ESNext",
     "moduleResolution": "node",
     "newLine": "lf",
     "noFallthroughCasesInSwitch": true,
