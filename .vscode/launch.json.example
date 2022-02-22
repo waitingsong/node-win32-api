@@ -28,7 +28,7 @@
         // "${workspaceFolder}/test/**/**.test.ts"
       ],
       "env": {
-        "NODE_ENV": "local",
+        "NODE_ENV": "unittest",
         "TS_NODE_PROJECT": "test/tsconfig.json",
         "PGHOST": "",
         "PGUSER": "",
