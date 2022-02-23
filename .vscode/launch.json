@@ -13,7 +13,8 @@
         "/base/": "${workspaceRoot}/"
       },
       "port": 9333,
-      "request": "attach"
+      "request": "attach",
+      "runtimeArgs": []
     },
     {
       "name": "Mocha Tests",
@@ -37,6 +38,7 @@
       "internalConsoleOptions": "openOnSessionStart",
       "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
       "request": "launch",
+      "runtimeArgs": ["--preserve-symlinks"],
       "skipFiles": [
         "${workspaceFolder}/../../node_modules/rxjs/**/*.js",
         "${workspaceFolder}/node_modules/rxjs/**/*.js",
