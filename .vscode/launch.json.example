@@ -31,9 +31,11 @@
       "env": {
         "NODE_ENV": "unittest",
         "TS_NODE_PROJECT": "test/tsconfig.json",
-        "PGHOST": "",
-        "PGUSER": "",
-        "PGPASSWORD": "",
+        "POSTGRES_HOST": "",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_DB": "",
+        "POSTGRES_USER": "postgres",
+        "POSTGRES_PASSWORD": "",
       },
       "internalConsoleOptions": "openOnSessionStart",
       "program": "${workspaceFolder}/../../node_modules/mocha/bin/_mocha",
@@ -43,7 +45,8 @@
         "${workspaceFolder}/../../node_modules/rxjs/**/*.js",
         "${workspaceFolder}/node_modules/rxjs/**/*.js",
         "<node_internals>/**/*.js"
-      ]
+      ],
+      "timeout": 30000
     },
   ]
 }
