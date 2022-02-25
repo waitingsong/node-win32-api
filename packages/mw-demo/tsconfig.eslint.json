@@ -6,8 +6,7 @@
   "include": [
     "src/**/*.ts",
     "test/**/*.ts",
-    "packages/*/src/**/*.ts",
-    "packages/*/test/**/*.ts"
+    "test_browser/**/*.ts"
   ],
   "exclude": [
     "asset",
@@ -15,6 +14,7 @@
     "app/views",
     "dist",
     "node_modules*",
+    "test/fixtures",
     "**/*.d.ts"
   ]
 }

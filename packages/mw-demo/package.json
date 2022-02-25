@@ -1,20 +1,17 @@
 {
-  "name": "demo",
+  "name": "@mw-components/demo",
   "author": "waiting",
   "version": "0.0.0",
-  "description": "npm boilerplate",
-  "private": true,
+  "description": "midway component demo",
   "keywords": [
-    "种子项目",
-    "typescript",
+    "midway",
+    "IoC",
+    "plugin",
     "ts"
   ],
   "bin": {},
-  "browser": "",
-  "es2015": "",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
-  "types": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bugs": {
     "url": "https://github.com/waitingsong/npm-mono-base/issues"
   },
@@ -25,19 +22,25 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@waiting/shared-core": "^15.2.0",
     "@waiting/shared-types": "^15.2.0"
   },
   "devDependencies": {
-    "@waiting/shared-core": "^15.2.0",
-    "cross-env": "7"
+    "@midwayjs/core": "^3.0.7",
+    "@midwayjs/decorator": "^3.0.7",
+    "@midwayjs/koa": "^3.0.7",
+    "@midwayjs/mock": "^3.0.7",
+    "@midwayjs/web": "^3.0.7",
+    "cross-env": "7",
+    "tsconfig-paths": "3"
+  },
+  "peerDependencies": {
+    "@midwayjs/core": ">=3"
   },
   "engines": {
     "node": ">=16.13.0"
   },
   "files": [
-    "tsconfig.json",
-    "rollup.config.js",
-    "src/**/*.ts",
     "bin/*.js",
     "dist"
   ],
@@ -45,22 +48,18 @@
     "access": "public"
   },
   "scripts": {
-    "build": "npm run tsc && npm run rp",
-    "clean": "npm run clean:lock & npm run clean:cache & rm -rf dist/* -rf",
+    "build": "npm run tsc",
+    "clean": "npm run clean:cache & rm -rf dist/* -rf",
     "clean:cache": "rm -rf .eslintcache .vscode/.tsbuildinfo .vscode/.tsbuildinfo.*",
     "clean:lock": "rm package-lock.json -f",
     "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json c8 mocha --parallel=false",
+    "dev": "cross-env TS_NODE_TYPE_CHECK=false TS_NODE_TRANSPILE_ONLY=true NODE_ENV=local ../../node_modules/.bin/midway-bin dev --ts --port=7001",
+    "db:gen": "kmore gen --project tsconfig.cjs.json --path ./src",
     "lint": "eslint --fix --cache {src,test}/**/*.ts",
     "lint:nofix": "eslint --cache {src,test}/**/*.ts",
-    "prepublishOnly": "sh ../../.scripts/change-pkg-types-dist.sh",
-    "postpublish": "sh ../../.scripts/change-pkg-types-src.sh",
-    "purge": "npm run clean && rm node_modules -rf",
-    "rp": "rollup -c rollup.config.js",
-    "rp:w": "npm run tsc:w | rollup -wc rollup.config.js",
-    "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha",
-    "test:browser": "cd .config && npm run browser && cd ..",
+    "purge": "npm run clean && rm node_modules -rf && rm package-lock.json -f",
+    "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
     "test:local": "cross-env TS_NODE_PROJECT=test/tsconfig.json ../../node_modules/.bin/mocha --parallel=false",
-    "tsc": "tsc -p tsconfig.json",
-    "tsc:w": "tsc -p tsconfig.json -w"
+    "tsc": "tsc -p tsconfig.json"
   }
 }

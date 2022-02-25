@@ -3,8 +3,9 @@ bail: true
 full-trace: true
 enable-source-maps: true
 require:
-  - intelli-espower-loader
-  - espower-typescript/guess
+  # - intelli-espower-loader
+  - ts-node/register
+  - tsconfig-paths/register
   - test/root.hooks.ts
 spec:
   - test/**/*.test.ts
