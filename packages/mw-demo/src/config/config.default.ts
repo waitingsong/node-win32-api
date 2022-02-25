@@ -1,15 +1,16 @@
-
+import { MiddlewareConfig } from '../interface'
 import {
   initialConfig,
   initialMiddlewareConfig,
 } from '../lib/config'
+import { Config } from '../lib/types'
 
 
-export const demoConfig = {
+export const demoConfig: Config = {
   ...initialConfig,
 }
 
-export const demoMiddlewareConfig = {
+export const demoMiddlewareConfig: MiddlewareConfig = {
   ...initialMiddlewareConfig,
 }
 
