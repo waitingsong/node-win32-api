@@ -30,7 +30,7 @@ jobs:
         # pulls all tags (needed for lerna / semantic release to correctly version)
         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       - name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
           registry-url: 'https://registry.npmjs.org'
