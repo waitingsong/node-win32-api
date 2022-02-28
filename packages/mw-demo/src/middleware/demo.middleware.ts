@@ -1,7 +1,7 @@
 import { Middleware } from '@midwayjs/decorator'
 
+import { ConfigKey, getConfigFromApp } from '~/index'
 import { Context, IMiddleware, NextFunction } from '~/interface'
-import { ConfigKey, getConfigFromApp } from '~/lib/index'
 import { matchFunc } from '~/util/common'
 
 

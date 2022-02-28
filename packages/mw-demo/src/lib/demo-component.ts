@@ -7,8 +7,8 @@ import {
 } from '@midwayjs/decorator'
 
 import { Config } from './types'
-import { getConfigFromApp } from './util'
 
+import { getConfigFromApp } from '~/index'
 import { Application } from '~/interface'
 
 
