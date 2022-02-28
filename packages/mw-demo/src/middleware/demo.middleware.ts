@@ -12,7 +12,7 @@ export class DemoMiddleware implements IMiddleware<Context, NextFunction> {
   }
 
   static getName(): string {
-    const name = ConfigKey.namespace + 'Middleware'
+    const name = ConfigKey.middlewareName
     return name
   }
 

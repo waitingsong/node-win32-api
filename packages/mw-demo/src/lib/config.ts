@@ -7,6 +7,7 @@ export const enum ConfigKey {
   config = 'demoConfig',
   middlewareConfig = 'demoMiddlewareConfig',
   namespace = 'demo',
+  componentName = 'demoComponent',
   middlewareName = 'demoMiddleware'
 }
 
