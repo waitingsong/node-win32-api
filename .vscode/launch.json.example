@@ -38,6 +38,7 @@
         "POSTGRES_PASSWORD": "",
       },
       "internalConsoleOptions": "openOnSessionStart",
+      "outDir": "${workspaceFolder}/dist",
       "program": "${workspaceFolder}/../../node_modules/mocha/bin/_mocha",
       "request": "launch",
       "runtimeArgs": ["--preserve-symlinks"],
