@@ -3,6 +3,6 @@ parserOptions:
   project: 'tsconfig.eslint.json'
 
 rules:
-  '@typescript-eslint/no-unused-vars': 0
-  'import/no-extraneous-dependencies': 0
+  "@typescript-eslint/no-unused-vars": 0
+  "import/no-extraneous-dependencies": 0
 
