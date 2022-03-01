@@ -34,10 +34,11 @@ v8cov
 
 
 # for lerna mono repo
-# egg
+# egg, midway
 /packages/*/*.js
 /packages/*/config/
 /packages/*/lib/
+/packages/*/test/demo/*.js
 test/app/**/*.js
 test/fixtures/**/*.js
 **/test/fixtures/**/*.js
