@@ -153,7 +153,8 @@ jobs:
         run: |
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
-          git restore .
+          # git restore .
+          git reset --hard
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
           # npm run pub major
