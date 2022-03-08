@@ -24,6 +24,7 @@ export class AutoConfiguration {
 
   @Config(ConfigKey.middlewareConfig) protected readonly mwConfig: MiddlewareConfig
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async onReady(_container: IMidwayContainer): Promise<void> {
     if (! this.app) {
       throw new TypeError('this.app invalid')
