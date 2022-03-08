@@ -26,11 +26,11 @@
     "@waiting/shared-types": "^15.2.0"
   },
   "devDependencies": {
-    "@midwayjs/core": "^3.0.10",
+    "@midwayjs/core": "^3.1.0",
     "@midwayjs/decorator": "^3.0.10",
-    "@midwayjs/koa": "^3.0.10",
-    "@midwayjs/mock": "^3.0.10",
-    "@midwayjs/web": "^3.0.10",
+    "@midwayjs/koa": "^3.1.0",
+    "@midwayjs/mock": "^3.1.0",
+    "@midwayjs/web": "^3.1.1",
     "cross-env": "7",
     "tsconfig-paths": "3"
   },
