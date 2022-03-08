@@ -30,7 +30,7 @@
     "@midwayjs/decorator": "^3.0.10",
     "@midwayjs/koa": "^3.1.0",
     "@midwayjs/mock": "^3.1.0",
-    "@midwayjs/web": "^3.1.1",
+    "@midwayjs/web": "^3.1.0",
     "cross-env": "7",
     "tsconfig-paths": "3"
   },
