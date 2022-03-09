@@ -5,18 +5,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Chrome Debug with Karma",
-      "type": "chrome",
-      "address": "localhost",
-      "pathMapping": {
-        "/": "${workspaceRoot}/",
-        "/base/": "${workspaceRoot}/"
-      },
-      "port": 9333,
-      "request": "attach",
-      "runtimeArgs": ["--preserve-symlinks"]
-    },
-    {
       "name": "Mocha Tests",
       "type": "node",
       "args": [
@@ -49,6 +37,87 @@
         "<node_internals>/**/*.js"
       ],
       "timeout": 30000
+    },
+    {
+      "name": "Midway TEST",
+      "type": "node",
+      "autoAttachChildProcesses": true,
+      "console": "integratedTerminal",
+      "env": {
+        "NODE_ENV": "unittest",
+        "POSTGRES_HOST": "",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_DB": "",
+        "POSTGRES_USER": "postgres",
+        "POSTGRES_PASSWORD": "",
+      },
+      "port": 9229,
+      "protocol": "auto",
+      "request": "launch",
+      "restart": true,
+      "runtimeArgs": [
+        "run",
+        "test:local",
+        "--",
+        "--runInBand",
+        "--preserve-symlinks",
+        "--inspect-brk"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "${workspaceFolder}/../../node_modules/rxjs/**/*.js",
+        "${workspaceFolder}/node_modules/rxjs/**/*.js",
+        "<node_internals>/**",
+        "<node_internals>/**/*.js"
+      ],
+      "timeout": 30000
+    },
+    {
+      "name": "Midway Debug",
+      "type": "node",
+      "autoAttachChildProcesses": true,
+      "console": "integratedTerminal",
+      "env": {
+        "NODE_ENV": "local",
+        "TS_NODE_TYPE_CHECK": "false",
+        "TS_NODE_TRANSPILE_ONLY": "true",
+        "POSTGRES_HOST": "",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_DB": "",
+        "POSTGRES_USER": "",
+        "POSTGRES_PASSWORD": "",
+      },
+      "port": 9229,
+      "protocol": "auto",
+      "request": "launch",
+      "restart": true,
+      "runtimeArgs": [
+        "run",
+        "debug",
+        "--",
+        "--preserve-symlinks",
+        "--inspect-brk"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "${workspaceFolder}/../../node_modules/rxjs/**/*.js",
+        "${workspaceFolder}/node_modules/rxjs/**/*.js",
+        "<node_internals>/**",
+        "<node_internals>/**/*.js"
+      ],
+      "timeout": 30000
+    },
+    {
+      "name": "Chrome Debug with Karma",
+      "type": "chrome",
+      "address": "localhost",
+      "pathMapping": {
+        "/": "${workspaceRoot}/",
+        "/base/": "${workspaceRoot}/"
+      },
+      "port": 9333,
+      "request": "attach",
+      "runtimeArgs": ["--preserve-symlinks"]
     },
   ]
 }
