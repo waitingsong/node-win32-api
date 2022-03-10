@@ -23,11 +23,11 @@
   "license": "MIT",
   "dependencies": {
     "@waiting/shared-core": "^16.0.0",
-    "@waiting/shared-types": "^16.0.0"
+    "@waiting/shared-types": "^16.0.0",
+    "tsconfig-paths": "3"
   },
   "devDependencies": {
     "cross-env": "7",
-    "tsconfig-paths": "3"
   },
   "peerDependencies": {
     "@midwayjs/core": ">=3",
