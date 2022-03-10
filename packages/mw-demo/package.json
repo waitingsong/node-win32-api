@@ -30,7 +30,8 @@
     "tsconfig-paths": "3"
   },
   "peerDependencies": {
-    "@midwayjs/core": ">=3"
+    "@midwayjs/core": ">=3",
+    "@midwayjs/decorator": "*"
   },
   "engines": {
     "node": ">=16.13.0"
