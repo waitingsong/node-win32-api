@@ -6,12 +6,9 @@ import * as WEB from '@midwayjs/koa'
 import { createApp, close, createHttpRequest } from '@midwayjs/mock'
 
 import { testConfig } from './root.config'
+import { config, mwConfig } from './test.config'
 
-import {
-  ConfigKey,
-  getConfigFromApp,
-  getMiddlewareConfigFromApp,
-} from '~/index'
+import { ConfigKey } from '~/index'
 import { Application } from '~/interface'
 
 
@@ -33,6 +30,8 @@ export const mochaHooks = async () => {
     beforeAll: async () => {
       const globalConfig = {
         keys: Math.random().toString(),
+        [ConfigKey.config]: config,
+        [ConfigKey.middlewareConfig]: mwConfig,
       }
       const opts = {
         imports: [WEB],
@@ -44,12 +43,9 @@ export const mochaHooks = async () => {
       testConfig.httpRequest = createHttpRequest(app)
       const { url } = testConfig.httpRequest.get('/')
       testConfig.host = url
-      // console.log({ url })
 
-      const config = getConfigFromApp(app)
       testConfig.config = config
 
-      const mwConfig = getMiddlewareConfigFromApp(app)
       const names = app.getMiddleware().getNames()
       assert(names.includes(ConfigKey.middlewareName) === mwConfig.enableMiddleware)
 
@@ -61,7 +57,11 @@ export const mochaHooks = async () => {
     },
 
     afterEach: async () => {
-      return
+      const { app } = testConfig
+      app.addConfigObject({
+        [ConfigKey.config]: config,
+        [ConfigKey.middlewareConfig]: mwConfig,
+      })
     },
 
     afterAll: async () => {

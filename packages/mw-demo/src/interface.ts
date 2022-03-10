@@ -1,8 +1,11 @@
 import { IMidwayApplication, IMidwayContext } from '@midwayjs/core'
 import { Context as KoaContext } from '@midwayjs/koa'
-import { MiddlewareConfig } from '@waiting/shared-types'
 
-import { Config } from './lib/index'
+import {
+  Config,
+  ConfigKey,
+  MiddlewareConfig,
+} from './lib/index'
 
 
 export {
@@ -13,16 +16,20 @@ export {
   NpmPkg,
 } from '@waiting/shared-types'
 
-declare module '@midwayjs/core' {
-  interface Application{
-    demoConfig: Config
-    demoMiddlewareConfig: MiddlewareConfig
+declare module '@midwayjs/core/dist/interface' {
+  // 将配置合并到 MidwayConfig 中
+  interface MidwayConfig {
+    [ConfigKey.config]: Config
+    [ConfigKey.middlewareConfig]: MiddlewareConfig
   }
-
-  // interface Context {
-  //   jwtState: JwtState
-  // }
 }
+
+// declare module '@midwayjs/core' {
+//   interface Context {
+//     jwtState: JwtState
+//   }
+// }
+
 
 export {
   IMidwayApplication,

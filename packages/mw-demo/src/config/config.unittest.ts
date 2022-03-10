@@ -12,10 +12,7 @@ export const demoConfig: Config = {
 
 export const demoMiddlewareConfig: Readonly<Omit<MiddlewareConfig, 'match'>> = {
   ...initialMiddlewareConfig,
-  ignore: [
-    '/',
-    '/ping',
-  ],
+  ignore: ['/'], // !
   options: {
     ...initMiddlewareOptions,
   },

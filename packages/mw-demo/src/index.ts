@@ -1,10 +1,9 @@
 
 export { AutoConfiguration as Configuration } from './configuration'
-export * from './middleware/demo.middleware'
 export * from './lib/index'
 export {
-  getConfigFromApp,
-  getMiddlewareConfigFromApp,
+  getComponentConfig,
+  getMiddlewareConfig,
 } from './util/common'
-
+export * from './middleware/demo.middleware'
 
