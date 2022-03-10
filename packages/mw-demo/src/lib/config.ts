@@ -16,9 +16,9 @@ export const initialMiddlewareConfig: Readonly<Omit<MiddlewareConfig, 'ignore' |
 }
 
 export const enum ConfigKey {
+  namespace = 'demo',
   config = 'demoConfig',
   middlewareConfig = 'demoMiddlewareConfig',
-  namespace = 'demo',
   componentName = 'demoComponent',
   middlewareName = 'demoMiddleware'
 }
