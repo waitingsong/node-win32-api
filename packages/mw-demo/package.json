@@ -27,7 +27,7 @@
     "tsconfig-paths": "3"
   },
   "devDependencies": {
-    "cross-env": "7",
+    "cross-env": "7"
   },
   "peerDependencies": {
     "@midwayjs/core": ">=3",
