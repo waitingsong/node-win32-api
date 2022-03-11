@@ -2,8 +2,8 @@ import { IncomingHttpHeaders } from 'http'
 
 import supertest, { SuperTest } from 'supertest'
 
-import { Application, MiddlewareConfig } from '~/interface'
-import { Config } from '~/lib/types'
+import { Application } from '~/interface'
+import { Config, MiddlewareConfig } from '~/lib/types'
 
 
 export type TestResponse = supertest.Response

@@ -12,7 +12,7 @@ export const demoConfig: Config = {
 
 export const demoMiddlewareConfig: Readonly<Omit<MiddlewareConfig, 'match'>> = {
   ...initialMiddlewareConfig,
-  ignore: ['/'], // !
+  ignore: [], // !
   options: {
     ...initMiddlewareOptions,
   },
