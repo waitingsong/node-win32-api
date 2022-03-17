@@ -4,9 +4,12 @@ import { join } from 'path'
 
 import { App, Config, Configuration } from '@midwayjs/decorator'
 
-import { DemoMiddleware } from './middleware/demo.middleware'
+import {
+  ConfigKey,
+  MiddlewareConfig,
+  DemoMiddleware,
+} from './index'
 
-import { ConfigKey, MiddlewareConfig } from '~/index'
 import { Application, IMidwayContainer } from '~/interface'
 
 
