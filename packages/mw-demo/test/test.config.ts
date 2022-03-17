@@ -7,11 +7,11 @@ import {
 } from '~/index'
 
 
-export { demoMiddlewareConfig as mwConfig } from '~/config/config.unittest'
+export {
+  demoConfig as config,
+  demoMiddlewareConfig as mwConfig,
+} from '~/config/config.unittest'
 
-export const config: Config = {
-  secret: '',
-}
 export const mwOptions: MiddlewareOptions = {
   ...initMiddlewareOptions,
 }
