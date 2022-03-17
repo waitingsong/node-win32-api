@@ -4,7 +4,6 @@ import {
   App,
   Config as _Config,
   Init,
-  Inject,
   Provide,
   Scope,
   ScopeEnum,
