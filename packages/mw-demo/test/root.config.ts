@@ -2,6 +2,8 @@ import { IncomingHttpHeaders } from 'http'
 
 import supertest, { SuperTest } from 'supertest'
 
+import { config } from './test.config'
+
 import { Application } from '~/interface'
 import { Config, MiddlewareConfig } from '~/lib/types'
 
@@ -22,5 +24,7 @@ export interface TestConfig {
   host: string
 }
 export const testConfig = {
+  config,
+  host: '',
 } as TestConfig
 
