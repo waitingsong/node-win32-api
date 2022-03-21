@@ -4,12 +4,13 @@ import {
   ConfigKey,
   DemoComponent,
   Demo2Component,
-} from '~/index'
-import { Context, IMiddleware, NextFunction } from '~/interface'
+} from '../index'
 import {
   getMiddlewareConfig,
   matchFunc,
-} from '~/util/common'
+} from '../util/common'
+
+import type { Context, IMiddleware, NextFunction } from '~/interface'
 
 
 @Middleware()
@@ -47,11 +48,10 @@ async function middleware(
   const mwConfig = getMiddlewareConfig(app)
   void mwConfig
 
-  const demoComponent = await ctx.requestContext.getAsync(DemoComponent)
+  const demoComponent = await app.getApplicationContext().getAsync(DemoComponent) // singleton
   void demoComponent
-  const demo2Component = await ctx.requestContext.getAsync(Demo2Component)
+  const demo2Component = await ctx.requestContext.getAsync(Demo2Component) // request
   void demo2Component
-
 
   return next()
 }
