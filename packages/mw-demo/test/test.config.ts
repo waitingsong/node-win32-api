@@ -1,5 +1,4 @@
 import {
-  Config,
   initialMiddlewareConfig,
   initMiddlewareOptions,
   MiddlewareConfig,
