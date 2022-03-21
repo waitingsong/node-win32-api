@@ -3,6 +3,7 @@
   "author": "waiting",
   "version": "0.0.0",
   "description": "midway component demo",
+  "private": true,
   "keywords": [
     "midway",
     "IoC",
