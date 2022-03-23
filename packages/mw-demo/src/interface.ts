@@ -15,19 +15,20 @@ export {
   NpmPkg,
 } from '@waiting/shared-types'
 
-declare module '@midwayjs/core/dist/interface' {
+declare module '@midwayjs/core' {
   // 将配置合并到 MidwayConfig 中
   interface MidwayConfig {
     [ConfigKey.config]: Config
     [ConfigKey.middlewareConfig]: MiddlewareConfig
   }
+  // interface Context {
+  //   jwtState: JwtState
+  // }
 }
-
-// declare module '@midwayjs/core' {
-//   interface Context {
-//     jwtState: JwtState
-//   }
+// OR
+// declare module '@midwayjs/core/dist/interface' {
 // }
+
 
 
 export {
