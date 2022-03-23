@@ -55,7 +55,7 @@
     "prepublishOnly": "sh ../../.scripts/change-pkg-types-dist.sh",
     "postpublish": "sh ../../.scripts/change-pkg-types-src.sh",
     "purge": "npm run clean && rm node_modules -rf",
-    "rp": "rollup -c rollup.config.js",
+    "rp": "rollup -c rollup.config.js --context this",
     "rp:w": "npm run tsc:w | rollup -wc rollup.config.js",
     "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha",
     "test:browser": "cd .config && npm run browser && cd ..",
