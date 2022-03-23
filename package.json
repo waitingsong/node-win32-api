@@ -36,7 +36,7 @@
     "tsconfig-paths": "3",
     "typescript": "^4.6.0",
     "yargs": "17",
-    "zx": "5"
+    "zx": "6"
   },
   "engines": {
     "node": ">=16.13.0"
