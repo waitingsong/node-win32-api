@@ -9,12 +9,10 @@ import {
   ScopeEnum,
 } from '@midwayjs/decorator'
 
-import {
-  Config,
-  ConfigKey,
-} from './index'
+import { ConfigKey } from './config'
+import { Config } from './types'
 
-import { Application } from '~/interface'
+import type { Application } from '~/interface'
 
 
 @Provide()

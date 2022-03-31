@@ -7,12 +7,10 @@ import {
   Provide,
 } from '@midwayjs/decorator'
 
-import {
-  Config,
-  ConfigKey,
-} from './index'
+import { ConfigKey } from './config'
+import { Config } from './types'
 
-import { Context } from '~/interface'
+import type { Context } from '~/interface'
 
 
 @Provide()

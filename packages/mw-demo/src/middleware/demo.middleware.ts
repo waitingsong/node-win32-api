@@ -4,7 +4,7 @@ import {
   ConfigKey,
   DemoComponent,
   Demo2Component,
-} from '../index'
+} from '../lib/index'
 import {
   getMiddlewareConfig,
   matchFunc,
