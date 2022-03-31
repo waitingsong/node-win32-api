@@ -111,6 +111,7 @@ jobs:
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
           npm run lint:nofix
+          npm run lint:cycle
         env:
           CI: true
 
