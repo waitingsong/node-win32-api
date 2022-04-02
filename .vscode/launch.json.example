@@ -13,8 +13,7 @@
         "--timeout",
         "999999",
         "--colors",
-        "--parallel=false",
-        // "${workspaceFolder}/test/**/**.test.ts"
+        "--parallel=false"
       ],
       "env": {
         "NODE_ENV": "unittest",
@@ -23,7 +22,7 @@
         "POSTGRES_PORT": "5432",
         "POSTGRES_DB": "",
         "POSTGRES_USER": "postgres",
-        "POSTGRES_PASSWORD": "",
+        "POSTGRES_PASSWORD": ""
       },
       "internalConsoleOptions": "openOnSessionStart",
       "outDir": "${workspaceFolder}/dist",
@@ -31,8 +30,8 @@
       "request": "launch",
       "runtimeArgs": ["--preserve-symlinks"],
       "skipFiles": [
-        "${workspaceFolder}/../../node_modules/rxjs/**/*.js",
-        "${workspaceFolder}/node_modules/rxjs/**/*.js",
+        "**/node_modules/rxjs/**",
+        "**/node_modules/mocha/**",
         "<node_internals>/**",
         "<node_internals>/**/*.js"
       ],
@@ -43,18 +42,18 @@
       "type": "node",
       "autoAttachChildProcesses": true,
       "console": "integratedTerminal",
+      "continueOnAttach": true,
       "env": {
         "NODE_ENV": "unittest",
         "POSTGRES_HOST": "",
         "POSTGRES_PORT": "5432",
         "POSTGRES_DB": "",
         "POSTGRES_USER": "postgres",
-        "POSTGRES_PASSWORD": "",
+        "POSTGRES_PASSWORD": ""
       },
-      "port": 9229,
       "protocol": "auto",
       "request": "launch",
-      "restart": true,
+      "restart": false,
       "runtimeArgs": [
         "run",
         "test:local",
@@ -65,8 +64,8 @@
       ],
       "runtimeExecutable": "npm",
       "skipFiles": [
-        "${workspaceFolder}/../../node_modules/rxjs/**/*.js",
-        "${workspaceFolder}/node_modules/rxjs/**/*.js",
+        "**/node_modules/rxjs/**",
+        "**/node_modules/mocha/**",
         "<node_internals>/**",
         "<node_internals>/**/*.js"
       ],
@@ -77,6 +76,7 @@
       "type": "node",
       "autoAttachChildProcesses": true,
       "console": "integratedTerminal",
+      "continueOnAttach": true,
       "env": {
         "NODE_ENV": "local",
         "TS_NODE_TYPE_CHECK": "false",
@@ -85,9 +85,8 @@
         "POSTGRES_PORT": "5432",
         "POSTGRES_DB": "",
         "POSTGRES_USER": "",
-        "POSTGRES_PASSWORD": "",
+        "POSTGRES_PASSWORD": ""
       },
-      "port": 9229,
       "protocol": "auto",
       "request": "launch",
       "restart": true,
@@ -100,8 +99,8 @@
       ],
       "runtimeExecutable": "npm",
       "skipFiles": [
-        "${workspaceFolder}/../../node_modules/rxjs/**/*.js",
-        "${workspaceFolder}/node_modules/rxjs/**/*.js",
+        "**/node_modules/**",
+        "**/node_modules/rxjs/**",
         "<node_internals>/**",
         "<node_internals>/**/*.js"
       ],
