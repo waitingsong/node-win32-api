@@ -5,8 +5,8 @@ import { join } from 'path'
 import * as WEB from '@midwayjs/koa'
 import { createApp, close, createHttpRequest } from '@midwayjs/mock'
 
+import { config, mwConfig } from './config.unittest'
 import { testConfig } from './root.config'
-import { config, mwConfig } from './test.config'
 
 import { ConfigKey } from '~/index'
 import { Application } from '~/interface'

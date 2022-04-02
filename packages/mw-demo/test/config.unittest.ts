@@ -1,15 +1,24 @@
 import {
+  Config,
   initialMiddlewareConfig,
   initMiddlewareOptions,
   MiddlewareConfig,
   MiddlewareOptions,
+  initialConfig,
 } from '~/index'
 
 
-export {
-  demoConfig as config,
-  demoMiddlewareConfig as mwConfig,
-} from '~/config/config.unittest'
+export const config: Config = {
+  ...initialConfig,
+}
+
+export const mwConfig: Readonly<Omit<MiddlewareConfig, 'match'>> = {
+  ...initialMiddlewareConfig,
+  ignore: [], // !
+  options: {
+    ...initMiddlewareOptions,
+  },
+}
 
 export const mwOptions: MiddlewareOptions = {
   ...initMiddlewareOptions,
