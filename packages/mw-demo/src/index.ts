@@ -1,3 +1,6 @@
+// @ts-ignore
+import { PowerPartial } from '@midwayjs/core'
+
 import {
   Config,
   ConfigKey,
@@ -14,16 +17,13 @@ export {
 export * from './middleware/demo.middleware'
 
 
-declare module '@midwayjs/core' {
+declare module '@midwayjs/core/dist/interface' {
   interface MidwayConfig {
-    [ConfigKey.config]: Config
-    [ConfigKey.middlewareConfig]: MiddlewareConfig
+    [ConfigKey.config]: PowerPartial<Config>
+    [ConfigKey.middlewareConfig]: PowerPartial<MiddlewareConfig>
   }
   // interface Context {
   //   jwtState: JwtState
   // }
 }
-// OR
-// declare module '@midwayjs/core/dist/interface' {
-// }
 
