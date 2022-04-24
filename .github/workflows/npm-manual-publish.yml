@@ -26,6 +26,7 @@ jobs:
         with:
           # pulls all commits (needed for lerna / semantic release to correctly version)
           fetch-depth: "0"
+      # Cause: disable fix below at FIRST publish, then enable
       - name: Fix for semantic release
         # pulls all tags (needed for lerna / semantic release to correctly version)
         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
