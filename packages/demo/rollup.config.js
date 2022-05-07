@@ -1,6 +1,6 @@
-import { dirname } from 'path'
-import commonjs from '@rollup/plugin-commonjs'
-import resolve from '@rollup/plugin-node-resolve'
+import { dirname, basename } from 'path'
+// import commonjs from '@rollup/plugin-commonjs'
+// import resolve from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 import pkg from './package.json'
 
@@ -16,6 +16,7 @@ if (name.slice(0, 1) === '@') {
   }
 }
 name = parseName(name)
+console.log({ name })
 
 const targetDir = dirname(pkg.main)
 const deps = pkg.dependencies
@@ -31,7 +32,7 @@ const banner = `
  * @license ${pkg.license}
  * @link ${pkg.homepage}
  */
-`.trimLeft()
+`.trimStart()
 const uglifyOpts = {
   mangle:   true,
   compress: {
@@ -84,12 +85,20 @@ if (pkg.main) {
       input: pkg.module,
       output: [
         {
-          file: pkg.main,
+          // file: pkg.main,
+          file: 'dist/index.cjs',
           amd: { id: name },
           banner,
           format: 'cjs',
           globals,
           name,
+          sourcemap: true,
+          sourcemapExcludeSources: true,
+        },
+        {
+          banner,
+          format: 'es',
+          file: pkg.main,
           sourcemap: true,
           sourcemapExcludeSources: true,
         },
@@ -99,20 +108,7 @@ if (pkg.main) {
 }
 
 
-if (pkg.es2015) {
-  config[0].output.push(
-    {
-      banner,
-      format: 'es',
-      file: pkg.es2015,
-      sourcemap: true,
-      sourcemapExcludeSources: true,
-    },
-
-  )
-}
-
-if (production && pkg.es2015) {
+if (production) {
   config.push(
     // esm minify
     {
@@ -121,36 +117,22 @@ if (production && pkg.es2015) {
       plugins: [ terser(uglifyOpts) ],
       output: {
         banner,
-        file: parseName(pkg.es2015) + '.min.js',
+        file: 'dist/index.min.mjs',
         format: 'es',
         sourcemap: true,
         sourcemapExcludeSources: true,
       },
     },
-  )
-}
-
-if (pkg.browser) {
-  config.push(
-    // umd bundle min
+    // cjs minify
     {
-      external: nodeModule,
+      external: external.concat(nodeModule),
       input: pkg.module,
-      plugins: [
-        resolve({
-          mainFields: ['browser', 'module', 'main']
-        }),
-        commonjs(),
-        production && terser(uglifyOpts),
-      ],
+      plugins: [ terser(uglifyOpts) ],
       output: {
-        amd: { id: name },
         banner,
-        file: `${targetDir}/${name}.umd.min.js`,
-        format: 'umd',
-        globals,
-        name,
-        sourcemap: !! production,
+        file: 'dist/index.min.cjs',
+        format: 'cjs',
+        sourcemap: true,
         sourcemapExcludeSources: true,
       },
     },
@@ -189,15 +171,7 @@ if (pkg.bin) {
 // remove pkg.name extension if exists
 function parseName(name) {
   if (typeof name === 'string' && name) {
-    const arr = name.split('.')
-    const len = arr.length
-
-    if (len > 2) {
-      return arr.slice(0, -1).join('.')
-    }
-    else if (len === 2 || len === 1) {
-      return arr[0]
-    }
+    return basename(name)
   }
   else {
     throw new TypeError('name invalid')

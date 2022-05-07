@@ -10,11 +10,20 @@
     "ts"
   ],
   "bin": {},
-  "browser": "",
-  "es2015": "",
-  "main": "dist/index.cjs.js",
+  "main": "dist/index.mjs",
   "module": "dist/index.js",
   "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./index.min.js": {
+      "import": "./dist/index.min.mjs",
+      "require": "./dist/index.min.cjs"
+    },
+    "./package.json": "./package.json"
+  },
   "bugs": {
     "url": "https://github.com/waitingsong/npm-mono-base/issues"
   },
