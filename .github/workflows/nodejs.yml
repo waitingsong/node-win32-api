@@ -80,7 +80,7 @@ jobs:
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
           .github/workflows/fix.sh
-          npm i -g c8 lerna rollup
+          npm i -g c8 lerna rollup zx
           .github/workflows/fix.sh
           npm run bootstrap
           .github/workflows/fix.sh
