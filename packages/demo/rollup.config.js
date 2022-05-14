@@ -48,7 +48,7 @@ const uglifyOpts = {
     typeofs:       false,
   },
   output: {
-    // preamble: banner,
+    preamble: banner,
   },
 }
 
@@ -76,15 +76,15 @@ if (peerDeps && Object.keys(peerDeps).length) {
 external = [...new Set(external)]
 
 const config = []
+const input = 'dist/index.js'
 
 if (pkg.main) {
   config.push(
     {
       external: external.concat(nodeModule),
-      input: pkg.main,
+      input,
       output: [
         {
-          // file: pkg.main,
           file: 'dist/index.cjs',
           amd: { id: name },
           banner,
@@ -99,13 +99,13 @@ if (pkg.main) {
   )
 }
 
-
+/*
 if (production) {
   config.push(
     // esm minify
     {
       external: external.concat(nodeModule),
-      input: pkg.main,
+      input,
       plugins: [ terser(uglifyOpts) ],
       output: {
         banner,
@@ -118,7 +118,7 @@ if (production) {
     // cjs minify
     {
       external: external.concat(nodeModule),
-      input: pkg.main,
+      input,
       plugins: [ terser(uglifyOpts) ],
       output: {
         banner,
@@ -130,6 +130,7 @@ if (production) {
     },
   )
 }
+*/
 
 if (pkg.bin) {
   const shebang = `#!/usr/bin/env node\n\n${banner}`

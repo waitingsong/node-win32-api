@@ -18,10 +18,6 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./index.min.js": {
-      "import": "./dist/index.min.mjs",
-      "require": "./dist/index.min.cjs"
-    },
     "./package.json": "./package.json"
   },
   "bugs": {
