@@ -79,10 +79,9 @@ const config = []
 
 if (pkg.main) {
   config.push(
-    // CommonJS (for Node) and ES module (for bundlers) build.
     {
       external: external.concat(nodeModule),
-      input: pkg.module,
+      input: pkg.main,
       output: [
         {
           // file: pkg.main,
@@ -92,13 +91,6 @@ if (pkg.main) {
           format: 'cjs',
           globals,
           name,
-          sourcemap: true,
-          sourcemapExcludeSources: true,
-        },
-        {
-          banner,
-          format: 'es',
-          file: pkg.main,
           sourcemap: true,
           sourcemapExcludeSources: true,
         },
@@ -113,7 +105,7 @@ if (production) {
     // esm minify
     {
       external: external.concat(nodeModule),
-      input: pkg.module,
+      input: pkg.main,
       plugins: [ terser(uglifyOpts) ],
       output: {
         banner,
@@ -126,7 +118,7 @@ if (production) {
     // cjs minify
     {
       external: external.concat(nodeModule),
-      input: pkg.module,
+      input: pkg.main,
       plugins: [ terser(uglifyOpts) ],
       output: {
         banner,

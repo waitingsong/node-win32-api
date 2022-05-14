@@ -4,8 +4,10 @@ full-trace: true
 enable-source-maps: true
 require:
   - ts-node/register
-  - tsconfig-paths/register
+  - tsconfig-paths/register.js
   - test/root.hooks.ts
+#loader: 
+#  - ts-node/esm
 spec:
   - test/**/*.test.ts
 timeout: 60000
