@@ -24,17 +24,24 @@
         "POSTGRES_USER": "postgres",
         "POSTGRES_PASSWORD": ""
       },
-      "internalConsoleOptions": "openOnSessionStart",
-      "outDir": "${workspaceFolder}/dist",
-      "program": "${workspaceFolder}/../../node_modules/mocha/bin/_mocha",
       "request": "launch",
-      "runtimeArgs": ["--preserve-symlinks"],
+      "restart": false,
+      "runtimeArgs": [
+        "run",
+        "test:local",
+        "--",
+        "--runInBand",
+        "--preserve-symlinks",
+        "--inspect-brk"
+      ],
+      "runtimeExecutable": "npm",
       "skipFiles": [
         "**/node_modules/rxjs/**",
         "**/node_modules/mocha/**",
         "<node_internals>/**",
         "<node_internals>/**/*.js"
       ],
+      "internalConsoleOptions": "openOnSessionStart",
       "timeout": 30000
     },
     {
@@ -42,7 +49,6 @@
       "type": "node",
       "autoAttachChildProcesses": true,
       "console": "integratedTerminal",
-      "continueOnAttach": true,
       "env": {
         "NODE_ENV": "unittest",
         "POSTGRES_HOST": "",
@@ -51,7 +57,6 @@
         "POSTGRES_USER": "postgres",
         "POSTGRES_PASSWORD": ""
       },
-      "protocol": "auto",
       "request": "launch",
       "restart": false,
       "runtimeArgs": [
@@ -76,7 +81,6 @@
       "type": "node",
       "autoAttachChildProcesses": true,
       "console": "integratedTerminal",
-      "continueOnAttach": true,
       "env": {
         "NODE_ENV": "local",
         "TS_NODE_TYPE_CHECK": "false",
@@ -87,7 +91,6 @@
         "POSTGRES_USER": "",
         "POSTGRES_PASSWORD": ""
       },
-      "protocol": "auto",
       "request": "launch",
       "restart": true,
       "runtimeArgs": [
@@ -115,8 +118,7 @@
         "/base/": "${workspaceRoot}/"
       },
       "port": 9333,
-      "request": "attach",
-      "runtimeArgs": ["--preserve-symlinks"]
+      "request": "attach"
     },
   ]
 }
