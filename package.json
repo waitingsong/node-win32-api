@@ -23,7 +23,7 @@
     "coveralls": "3",
     "debug": "^4.3.0",
     "eslint": "8",
-    "kmore-cli": "^25.1.0",
+    "kmore-cli": "^26.0.0",
     "lerna-relinker": "^1.5.0",
     "madge": "^5.0.1",
     "mocha": "10",
