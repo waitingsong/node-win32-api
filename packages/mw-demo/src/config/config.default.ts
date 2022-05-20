@@ -15,6 +15,8 @@ export const demoMiddlewareConfig: Readonly<Omit<MiddlewareConfig, 'match'>> = {
   ignore: [
     '/',
     '/ping',
+    '/favicon.ico',
+    '/favicon.png',
   ],
   options: {
     ...initMiddlewareOptions,
