@@ -4,7 +4,7 @@ import supertest, { SuperTest } from 'supertest'
 
 import { config } from '@/config.unittest'
 import { Application } from '~/interface'
-import { 
+import {
   Config,
   MiddlewareConfig,
 } from '~/lib/types'
