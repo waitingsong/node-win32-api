@@ -1,6 +1,6 @@
 import 'tsconfig-paths/register'
-
-import { join } from 'path'
+import assert from 'node:assert'
+import { join } from 'node:path'
 
 import { App, Config, Configuration } from '@midwayjs/decorator'
 
@@ -25,9 +25,7 @@ export class AutoConfiguration {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async onReady(_container: IMidwayContainer): Promise<void> {
-    if (! this.app) {
-      throw new TypeError('this.app invalid')
-    }
+    assert(this.app, 'this.app must be set')
 
     const { enableMiddleware } = this.mwConfig
     if (enableMiddleware) {
