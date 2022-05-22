@@ -136,7 +136,8 @@ jobs:
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
-          npm run ci
+          # npm run ci
+          npm run test
         env:
           CI: true
           # use `localhost` if running the job on the VM
