@@ -14,12 +14,12 @@ export const mochaHooks = async () => {
   }
 
   return {
-    beforeAll() {
-      void 0
+    beforeAll: async () => {
+      return
     },
 
-    afterAll() {
-      void 0
+    afterAll: async () => {
+      return
     },
   }
 
