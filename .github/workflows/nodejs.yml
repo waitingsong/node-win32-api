@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [16, 18]
+        node: [16]
         os: [ubuntu-latest]
 
     steps:
