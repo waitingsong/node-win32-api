@@ -33,7 +33,7 @@
     "experimentalResolver": true,
     "experimentalSpecifierResolution": "node",
     "preferTsExts": true,
-    "transpileOnly": true
+    "swc": true
   },
   "include": [
     "src/**/*.ts"
