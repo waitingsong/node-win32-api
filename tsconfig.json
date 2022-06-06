@@ -17,8 +17,8 @@
     "skipLibCheck": true,
     "sourceMap": false,
     "strict": true,
-    "stripInternal": true,
     "strictPropertyInitialization": false,
+    "stripInternal": true,
     "target": "ES2021",
     "tsBuildInfoFile": ".vscode/.tsbuildinfo",
     "types" : ["mocha", "node"]
