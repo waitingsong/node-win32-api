@@ -6,8 +6,8 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "incremental": true,
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "newLine": "lf",
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
@@ -19,6 +19,7 @@
       "@/*": ["./test/*"]
     },
     "pretty": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
@@ -33,7 +34,7 @@
     "experimentalResolver": true,
     "experimentalSpecifierResolution": "node",
     "preferTsExts": true,
-    "swc": true
+    "transpileOnly": false
   },
   "include": [
     "src/**/*.ts"
