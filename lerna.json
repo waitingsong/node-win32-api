@@ -24,7 +24,6 @@
         "egg"
       ],
       "npmClientArgs": [
-        "--legacy-peer-deps"
       ]
     },
     "version": {

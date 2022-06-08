@@ -31,11 +31,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-types": "^18.0.0"
   },
   "devDependencies": {
     "@waiting/shared-core": "^18.0.0",
     "cross-env": "7"
+  },
+  "peerDependencies": {
+    "@waiting/shared-types": "^18.0.0"
   },
   "engines": {
     "node": ">=16.13.0"
