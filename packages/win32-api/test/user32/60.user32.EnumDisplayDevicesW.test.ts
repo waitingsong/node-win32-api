@@ -18,7 +18,7 @@ const filename = basename(__filename)
 
 describe(filename, () => {
   it('EnumDisplayDevicesW()', () => {
-    const dd: M.DISPLAY_DEVICEW_Struct = new Struct(DStructExt.DISPLAY_DEVICEW)()
+    const dd: M.DISPLAY_DEVICEW_Struct = new Struct(DStructExt.DISPLAY_DEVICEW)() as M.DISPLAY_DEVICEW_Struct
     dd.cb = dd.ref().byteLength
 
     const ret = user32.EnumDisplayDevicesW(ref.NULL, 0, dd.ref(), 0)

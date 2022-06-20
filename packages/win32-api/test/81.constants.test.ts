@@ -7,7 +7,7 @@ import { Constants, CS } from '../src/index'
 
 const filename = basename(__filename)
 
-describe.only(filename, () => {
+describe(filename, () => {
   describe('Should Constants exported correctly', () => {
     it('Constants.MN_GETHMENU', () => {
       assert(CS.MN_GETHMENU === 481)

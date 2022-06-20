@@ -15,7 +15,8 @@ const filename = basename(__filename)
 describe(filename, () => {
 
   it('Should ref-struct-di initialized correctly', () => {
-    const point: M.POINT_Struct = new Struct(DS.POINT)()
+    // const point: M.POINT_Struct = new Struct(DS.POINT)()
+    const point = new Struct(DS.POINT)()
     point.x = 100
     point.y = 200
 

@@ -55,7 +55,8 @@ export function createWindow(wndProc: M.WNDPROC): M.HWND {
   const windowName = Buffer.from('Node calc\0', 'ucs2')
 
   // Common Controls
-  const icc: M.INITCOMMONCONTROLSEX_Struct = new Struct(DS.INITCOMMONCONTROLSEX)()
+  // const icc: M.INITCOMMONCONTROLSEX_Struct = new Struct(DS.INITCOMMONCONTROLSEX)()
+  const icc = new Struct(DS.INITCOMMONCONTROLSEX)()
   icc.dwSize = 8
   icc.dwICC = 0x40ff
   comctl32.InitCommonControlsEx(icc.ref())
@@ -65,8 +66,10 @@ export function createWindow(wndProc: M.WNDPROC): M.HWND {
   // const wparm = W.WPARAM
   // const lparm = W.LPARAM
   // Window Class
-  const wClass: M.WNDClASSEX_Struct = new Struct(DS.WNDCLASSEX)()
+  // const wClass: M.WNDClASSEX_Struct = new Struct(DS.WNDCLASSEX)()
+  const wClass = new Struct(DS.WNDCLASSEX)()
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   wClass.cbSize = wClass.ref().byteLength
   wClass.style = 0
   wClass.lpfnWndProc = wndProc

@@ -20,7 +20,7 @@ const filename = basename(__filename)
 describe(filename, () => {
   it('Should GetRawInputDeviceInfoW() calling passed', () => {
     const limit = 255
-    const rawInputDeviceList: M.RAWINPUTDEVICELIST_Struct = new Struct(DS.RAWINPUTDEVICELIST)()
+    const rawInputDeviceList: M.RAWINPUTDEVICELIST_Struct = new Struct(DS.RAWINPUTDEVICELIST)() as M.RAWINPUTDEVICELIST_Struct
     const pRawInputDeviceList = Buffer.alloc(rawInputDeviceList.ref().byteLength * limit)
     const puiNumDevices = Buffer.alloc(4)
     puiNumDevices[0] = limit
@@ -63,7 +63,7 @@ describe(filename, () => {
         buf: buf.toString('ucs2').replace(/\0/ug, ''),
       })
 
-      const pData: M.RID_DEVICE_INFO_Struct = new Struct(DSX.RID_DEVICE_INFO)()
+      const pData: M.RID_DEVICE_INFO_Struct = new Struct(DSX.RID_DEVICE_INFO)() as M.RID_DEVICE_INFO_Struct
       pData.cbSize = pData.ref().byteLength
 
       const infoLen = user32.GetRawInputDeviceInfoW(

@@ -20,9 +20,9 @@ describe(`${dll}.${method}()`, () => {
   const fileTimeClass = Struct(DS.FILETIME)
 
   it('sync works', () => {
-    const idleTime: M.FILETIME_Struct = new fileTimeClass()
-    const kernelTime: M.FILETIME_Struct = new fileTimeClass()
-    const userTime: M.FILETIME_Struct = new fileTimeClass()
+    const idleTime: M.FILETIME_Struct = new fileTimeClass() as M.FILETIME_Struct
+    const kernelTime: M.FILETIME_Struct = new fileTimeClass() as M.FILETIME_Struct
+    const userTime: M.FILETIME_Struct = new fileTimeClass() as M.FILETIME_Struct
 
     knl32.GetSystemTimes(idleTime.ref(), kernelTime.ref(), userTime.ref())
     assert(fileTimeToNumber(idleTime) > 0)
@@ -31,9 +31,9 @@ describe(`${dll}.${method}()`, () => {
   })
 
   it('async works', () => {
-    const idleTime: M.FILETIME_Struct = new fileTimeClass()
-    const kernelTime: M.FILETIME_Struct = new fileTimeClass()
-    const userTime: M.FILETIME_Struct = new fileTimeClass()
+    const idleTime: M.FILETIME_Struct = new fileTimeClass() as M.FILETIME_Struct
+    const kernelTime: M.FILETIME_Struct = new fileTimeClass() as M.FILETIME_Struct
+    const userTime: M.FILETIME_Struct = new fileTimeClass() as M.FILETIME_Struct
 
     knl32.GetSystemTimes.async(idleTime.ref(), kernelTime.ref(), userTime.ref(), (err) => {
       if (err) {

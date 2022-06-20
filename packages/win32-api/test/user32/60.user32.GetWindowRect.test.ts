@@ -20,7 +20,7 @@ describe(filename, () => {
   it('GetWindowRect()', (done) => {
     const child = spawn('calc.exe')
     setTimeout(() => {
-      const rect: M.RECT_Struct = new Struct(DS.RECT)()
+      const rect: M.RECT_Struct = new Struct(DS.RECT)() as M.RECT_Struct
       const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
       const hWnd = user32.FindWindowExW(0, 0, lpszClass, null)
       assert(hWnd > 0 || hWnd.toString().length > 0)
