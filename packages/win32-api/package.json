@@ -1,7 +1,7 @@
 {
   "name": "win32-api",
   "author": "waiting",
-  "version": "9.6.0",
+  "version": "10.0.0",
   "description": "FFI definitions of windows win32 api for node-ffi",
   "keywords": [
     "windows",
@@ -33,7 +33,7 @@
     "ffi-napi": "^4.0.3",
     "ref-napi": "^3.0.3",
     "ref-union-di": "^1.0.1",
-    "win32-def": "^9.4.0"
+    "win32-def": "^10.0.0"
   },
   "devDependencies": {
     "@types/ffi-napi": "*",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.0.0](https://github.com/waitingsong/node-win32-api/compare/v9.6.0...v10.0.0) (2022-06-21)
+
+
+### Features
+
+* **win32-api:** retrieveStructFromPtrAddress() ([8276042](https://github.com/waitingsong/node-win32-api/commit/8276042ac3986e70cd52c5906e02fa6cd210b545))
+
+
+
+
+
 # [9.6.0](https://github.com/waitingsong/node-win32-api/compare/v9.5.0...v9.6.0) (2020-10-28)
 
 
