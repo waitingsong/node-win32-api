@@ -55,7 +55,7 @@ describe(filename, () => {
       const copyDataAddr = ref.address(copyData.ref())
 
       console.info({
-        msgBuff, msgBuffAddr, copyData, copyDataAddr,
+        msgBuff, msgBuffAddr, copyDataAddr,
       })
 
       // send WM_COPYDATA (74) message
