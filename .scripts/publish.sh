@@ -46,7 +46,7 @@ if [[ "$*" =~ "gitlab" ]]; then
 fi
 
 if [ -z $RELEASE_BRANCH ]; then
-  branch=master
+  branch=main
 else
   branch="$RELEASE_BRANCH"
 fi
