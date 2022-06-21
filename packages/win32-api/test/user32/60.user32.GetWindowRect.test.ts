@@ -11,6 +11,7 @@ import {
   FModel as FM,
 } from 'win32-def'
 
+import { calcLpszWindow } from '../config.unittest'
 import { user32, Struct, destroyWin } from '../helper'
 
 
@@ -21,8 +22,7 @@ describe(filename, () => {
     const child = spawn('calc.exe')
     setTimeout(() => {
       const rect: M.RECT_Struct = new Struct(DS.RECT)() as M.RECT_Struct
-      const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
-      const hWnd = user32.FindWindowExW(0, 0, lpszClass, null)
+      const hWnd = user32.FindWindowExW(0, 0, null, calcLpszWindow)
       assert(hWnd > 0 || hWnd.toString().length > 0)
 
       const ret = user32.GetWindowRect(hWnd, rect.ref())

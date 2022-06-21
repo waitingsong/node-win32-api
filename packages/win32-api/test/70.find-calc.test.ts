@@ -2,10 +2,8 @@ import { spawn } from 'child_process'
 import { basename } from 'path'
 
 import * as assert from 'power-assert'
-import * as ref from 'ref-napi'
 
-import { K, U } from '../src/index'
-
+import { calcLpszWindow } from './config.unittest'
 import {
   destroyWin,
   user32,
@@ -19,8 +17,7 @@ describe(filename, () => {
     const child = spawn('calc.exe')
 
     setTimeout(() => {
-      const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
-      const hWnd = user32.FindWindowExW(0, 0, lpszClass, null)
+      const hWnd = user32.FindWindowExW(0, 0, null, calcLpszWindow)
 
       if (typeof hWnd === 'number' && hWnd > 0
         || typeof hWnd === 'bigint' && hWnd > 0
@@ -42,8 +39,7 @@ describe(filename, () => {
     const child = spawn('calc.exe')
 
     setTimeout(() => {
-      const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
-      const hWnd = user32.FindWindowExW(0, 0, lpszClass, null)
+      const hWnd = user32.FindWindowExW(0, 0, null, calcLpszWindow)
 
       if (typeof hWnd === 'number' && hWnd > 0
         || typeof hWnd === 'bigint' && hWnd > 0

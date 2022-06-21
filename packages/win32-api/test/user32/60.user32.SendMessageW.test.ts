@@ -11,6 +11,7 @@ import {
 } from 'win32-def'
 
 import { CS } from '../../src/index'
+import { calcLpszWindow } from '../config.unittest'
 import { user32, Struct, destroyWin } from '../helper'
 
 
@@ -29,8 +30,7 @@ describe(filename, () => {
     })
 
     setTimeout(() => {
-      const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
-      const hWnd = user32.FindWindowExW(0, 0, lpszClass, null)
+      const hWnd = user32.FindWindowExW(0, 0, null, calcLpszWindow)
       assert(hWnd > 0 || hWnd.toString().length > 0)
 
       let ret = user32.SendMessageW(hWnd, CS.WM_COMMAND, 1000, 3)
@@ -45,8 +45,7 @@ describe(filename, () => {
   it('Should send WM_COPYDATA works', (done) => {
     const child = spawn('calc.exe')
     setTimeout(() => {
-      const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
-      const hWnd = user32.FindWindowExW(0, 0, lpszClass, null)
+      const hWnd = user32.FindWindowExW(0, 0, null, calcLpszWindow)
       assert(hWnd > 0 || hWnd.toString().length > 0)
 
       const copyData = new Struct(DS.COPYDATASTRUCT)() as M.COPYDATASTRUCT_Struct
