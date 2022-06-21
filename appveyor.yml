@@ -11,12 +11,13 @@ cache:
 
 environment:
   matrix:
-    - nodejs_version: "12"
     - nodejs_version: "14"
+    - nodejs_version: "16"
+    - nodejs_version: "18"
 
 platform:
   - x64
-  - x86
+  #- x86
 
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform

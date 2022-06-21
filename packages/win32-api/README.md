@@ -20,10 +20,10 @@ npm run repo:init
 
 ## Packages
 
-| Package       | Version                | Dependencies                 | DevDependencies                |
-| ------------- | ---------------------- | ---------------------------- | ------------------------------ |
-| [`win32-api`] | [![main-svg]][main-ch] | [![main-d-svg]][main-d-link] | [![main-dd-svg]][main-dd-link] |
-| [`win32-def`] | [![def-svg]][def-ch]   | [![def-d-svg]][def-d-link]   | [![def-dd-svg]][def-dd-link]   |
+| Package       | Version                |
+| ------------- | ---------------------- |
+| [`win32-api`] | [![main-svg]][main-ch] |
+| [`win32-def`] | [![def-svg]][def-ch]   |
 
 
 ## What can I do with this?

@@ -23,7 +23,7 @@
   "homepage": "https://waitingsong.github.io/node-win32-api",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/waitingsong/node-win32-api.git"
+    "url": "https://github.com/waitingsong/node-win32-api.git"
   },
   "license": "MIT",
   "dependencies": {
@@ -34,7 +34,7 @@
     "cross-env": "7"
   },
   "engines": {
-    "node": ">=10.16.0"
+    "node": ">=14.15.0"
   },
   "files": [
     "bin/*.js",
