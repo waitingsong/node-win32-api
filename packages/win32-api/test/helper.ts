@@ -20,6 +20,7 @@ import {
 
 
 export const Struct = StructDi(ref)
+export type StructDiType = typeof Struct
 export const Union = UnionDi(ref)
 export const knl32 = K.load()
 export const user32 = U.load()

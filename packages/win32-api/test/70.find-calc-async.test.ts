@@ -1,11 +1,10 @@
+import * as assert from 'assert'
 import { spawn } from 'child_process'
 import { basename } from 'path'
 
-import * as assert from 'power-assert'
-import * as ref from 'ref-napi'
-
 import { U } from '../src/index'
 
+import { calcLpszWindow } from './config.unittest'
 import { user32 } from './helper'
 
 
@@ -16,8 +15,7 @@ describe(filename, () => {
     const child = spawn('calc.exe')
 
     setTimeout(() => {
-      const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
-      user32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
+      user32.FindWindowExW.async(0, 0, null, calcLpszWindow, (err, hWnd) => {
         if (err) {
           assert(false, err.message)
           child.kill()
@@ -45,9 +43,7 @@ describe(filename, () => {
     const child = spawn('calc.exe')
 
     setTimeout(() => {
-      const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
-
-      user32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
+      user32.FindWindowExW.async(0, 0, null, calcLpszWindow, (err, hWnd) => {
         if (err) {
           assert(false, err.message)
           child.kill()
@@ -83,8 +79,8 @@ describe(filename, () => {
           done()
         })
         .catch((err) => {
-          assert(false, err)
           child.kill()
+          assert(false, err)
           done()
         })
     }, 1500)
@@ -114,9 +110,8 @@ describe(filename, () => {
 
 function findNSetWinTitleAsync(): Promise<void> {
   return new Promise((resolve, reject) => {
-    const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
 
-    user32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
+    user32.FindWindowExW.async(0, 0, null, calcLpszWindow, (err, hWnd) => {
       if (err) {
         return reject(err.message)
       }
@@ -158,9 +153,9 @@ function findNSetWinTitleAsync(): Promise<void> {
 function findNSetWinTitleAsyncPartial(): Promise<void> {
   return new Promise((resolve, reject) => {
     const u32 = U.load(['FindWindowExW', 'SetWindowTextW'])
-    const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
 
-    u32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
+    // u32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
+    u32.FindWindowExW.async(0, 0, null, calcLpszWindow, (err, hWnd) => {
       if (err) {
         return reject(err.message)
       }

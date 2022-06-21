@@ -1,6 +1,7 @@
 import { spawn, ChildProcess } from 'child_process'
 import { basename } from 'path'
 
+
 import * as ffi from 'ffi-napi'
 import * as assert from 'power-assert'
 import * as ref from 'ref-napi'
@@ -9,13 +10,18 @@ import { delay, tap } from 'rxjs/operators'
 import {
   DModel as M,
   DTypes as W,
+  DStruct as DS,
 } from 'win32-def'
 
-import { user32 } from './helper'
+import { retrieveStructFromPtrAddress } from '../src/lib/helper'
+
+import { calcLpszWindow } from './config.unittest'
+// eslint-disable-next-line import/max-dependencies
+import { user32, Struct } from './helper'
 
 
 const filename = basename(__filename)
-const tmpMap = new Map<string, boolean>()
+const tmpMap = new Map<number | string | bigint, M.POINT_Struct>()
 const title = 'new-calc-' + Math.random().toString()
 
 describe(filename, () => {
@@ -27,13 +33,13 @@ describe(filename, () => {
     of(null).pipe(
       delay(1500),
       tap(() => {
-        const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
-        const hWnd = user32.FindWindowExW(0, 0, lpszClass, null)
+        const hWnd = user32.FindWindowExW(0, 0, null, calcLpszWindow)
 
         if (typeof hWnd === 'number' && hWnd > 0
           || typeof hWnd === 'bigint' && hWnd > 0
           || typeof hWnd === 'string' && hWnd.length > 0
         ) {
+
           // Change title of the Calculator
           user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
 
@@ -44,12 +50,23 @@ describe(filename, () => {
           str = buf.toString('ucs2').replace(/\0+$/, '')
           assert(str === title, `title should be changed to ${title}, bug got ${str}`)
 
-          const id = Math.round(Math.random() * 1000000)
-          const idStr = id.toString()
-          tmpMap.set(idStr, false)
-          enumWindows(enumWindowsProc, id)
-          assert(tmpMap.get(idStr) === true)
-          tmpMap.clear()
+          const point = new Struct(DS.POINT)() as M.POINT_Struct
+          point.x = 101
+          point.y = Math.round(Math.random() * 1000000)
+
+          const adress = point.ref().address()
+          tmpMap.delete(adress)
+
+          enumWindows(enumWindowsProc, adress)
+          console.log({ adress })
+
+          const point2 = tmpMap.get(adress)
+          assert(point2, 'point2 should be got')
+          if (point2) {
+            assert(point.x === point2.x)
+            assert(point.y === point2.y)
+          }
+          tmpMap.delete(adress)
         }
         else {
           assert(false, 'NOt found calc window')
@@ -91,14 +108,18 @@ function createEnumWinProc(): M.WNDENUMPROC {
 
       const buf = Buffer.alloc(254)
       const len = user32.GetWindowTextW(hWnd, buf, buf.byteLength)
+      const name = buf.toString('ucs2').replace(/\0+$/, '')
+      name && console.log(name, len)
 
-      if (len && len === title.length) {
-        const name = buf.toString('ucs2').replace(/\0+$/, '')
-
-        if (name === title) {
-          tmpMap.set(lParam.toString(), true)
-          return false // stop loop if return false
+      if (len && name === title) {
+        if (typeof lParam === 'number') {
+          const point = retrieveStructFromPtrAddress<M.POINT_Struct>(lParam, DS.POINT)
+          if (point) {
+            console.log({ px: point.x, py: point.y })
+            tmpMap.set(lParam, point)
+          }
         }
+        return false // stop loop if return false
       }
 
       return true
@@ -117,3 +138,4 @@ function createEnumWinProc(): M.WNDENUMPROC {
 function enumWindows(proc: M.WNDENUMPROC, id: M.UINT32): void {
   user32.EnumWindows(proc, id)
 }
+
