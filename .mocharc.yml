@@ -6,6 +6,6 @@ require:
   - espower-typescript/guess
 spec: 
   - test/**/*.test.ts
-timeout: 60000 
+timeout: 120000 
 ui: bdd
 
