@@ -109,6 +109,7 @@ jobs:
 
       - name: NPM Publish
         run: |
+          npm whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           # git restore .
@@ -119,12 +120,10 @@ jobs:
           .scripts/publish.sh --yes --conventional-commits --create-release github ${{ github.event.inputs.semver }}
           git push -v origin --follow-tags
         env:
+          CI: true
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
 
 
     services:
