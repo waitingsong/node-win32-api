@@ -1,5 +1,5 @@
 {
-  "version": "10.0.0",
+  "version": "11.0.0",
   "packages": [
     "packages/*"
   ],
@@ -26,12 +26,14 @@
         "cross-env",
         "egg"
       ],
-      "npmClientArgs": [
-      ]
+      "npmClientArgs": []
     },
     "version": {
       "conventionalCommits": true,
-      "allowBranch": ["main", "release"],
+      "allowBranch": [
+        "main",
+        "release"
+      ],
       "registry": "https://registry.npmjs.org/"
     }
   },

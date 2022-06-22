@@ -1,7 +1,7 @@
 {
   "name": "win32-api",
   "author": "waiting",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "description": "FFI definitions of windows win32 api for node-ffi",
   "keywords": [
     "windows",
@@ -36,7 +36,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "win32-def": "^10.0.0"
+    "win32-def": "^11.0.0"
   },
   "devDependencies": {
     "@types/ffi-napi": "*",
@@ -44,11 +44,11 @@
     "@types/ref-struct-di": "^1.1.6",
     "@types/ref-union-di": "^1.0.3",
     "@waiting/shared-core": "^18.0.0",
+    "cross-env": "7",
     "ffi-napi": "^4.0.3",
     "ref-napi": "^3.0.3",
     "ref-struct-di": "^1.1.0",
-    "ref-union-di": "^1.0.1",
-    "cross-env": "7"
+    "ref-union-di": "^1.0.1"
   },
   "peerDependencies": {
     "ffi-napi": "^4.0.3",

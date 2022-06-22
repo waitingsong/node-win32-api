@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0](/compare/v10.0.0...v11.0.0) (2022-06-22)
+
+
+### Bug Fixes
+
+* **boilerplate:** define enum without const 37ffd10
+* **boilerplate:** devDeps version 2e29b42
+
+
+
+
+
 # [10.0.0](https://github.com/waitingsong/node-win32-api/compare/v9.6.0...v10.0.0) (2022-06-21)
 
 
