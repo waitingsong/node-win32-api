@@ -1,15 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import * as assert from 'assert'
-import * as ffi from 'ffi-napi'
+/* eslint-disable import/no-extraneous-dependencies */
+import assert from 'assert'
+
+import ffi from 'ffi-napi'
+import ref from 'ref-napi'
+import StructDi from 'ref-struct-di'
 import {
   Config,
   DModel as M,
   FModel,
 } from 'win32-def'
-import * as ref from 'ref-napi'
-import * as StructDi from 'ref-struct-di'
 
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const dllInst = new Map<string, any>() // for DLL.load() with settings.singleton === true
 
 export function load<T>(
@@ -46,7 +48,7 @@ export function gen_api_opts(dllFuncs: FModel.DllFuncs, fns?: FModel.FnName[]): 
 
   if (fns && Array.isArray(fns) && fns.length) {
     for (const fn of fns) {
-      const ps: FModel.FnParams = dllFuncs[fn]
+      const ps: FModel.FnParams | undefined = dllFuncs[fn]
 
       if (typeof ps !== 'undefined') {
         Object.defineProperty(ret, fn, {
@@ -60,8 +62,7 @@ export function gen_api_opts(dllFuncs: FModel.DllFuncs, fns?: FModel.FnName[]): 
   }
   else {
     for (const fn of Object.keys(dllFuncs)) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const ps = dllFuncs[fn] as any
+      const ps = dllFuncs[fn]
 
       if (typeof ps !== 'undefined') {
         Object.defineProperty(ret, fn, {
@@ -127,7 +128,7 @@ export function retrieveStructFromPtrAddress<R extends M.StructInstanceBase>(
   buf.type = refType
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     const ret = buf.deref().deref() as R
     return ret
   }

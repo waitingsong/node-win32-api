@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { basename } from '@waiting/shared-core'
-import * as assert from 'power-assert'
+import assert from 'node:assert/strict'
+
+import { fileShortPath } from '@waiting/shared-core'
 import {
   DModel as M,
   DStruct as DS,
@@ -9,13 +9,10 @@ import {
 import {
   knl32,
   Struct,
-} from '../helper'
+} from '../helper.js'
 
 
-const dll = basename(__dirname)
-const method = basename(__filename, '.test.ts')
-
-describe(`${dll}.${method}()`, () => {
+describe(fileShortPath(import.meta.url), () => {
 
   const fileTimeClass = Struct(DS.FILETIME)
 

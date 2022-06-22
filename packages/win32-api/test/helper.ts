@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import * as ffi from 'ffi-napi'
-import * as ref from 'ref-napi'
-import * as StructDi from 'ref-struct-di'
-import * as UnionDi from 'ref-union-di'
-import { of, Observable } from 'rxjs'
+import ffi from 'ffi-napi'
+import ref from 'ref-napi'
+import StructDi from 'ref-struct-di'
+import UnionDi from 'ref-union-di'
 import {
   DModel as M,
   DStruct as DS,
@@ -13,10 +12,9 @@ import {
 
 import {
   C,
-  Config,
   K,
   U,
-} from '../src/index'
+} from '../src/index.js'
 
 
 export const Struct = StructDi(ref)

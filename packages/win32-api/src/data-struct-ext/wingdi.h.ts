@@ -2,7 +2,7 @@
 // windows data types struct for ref-struct module https://github.com/TooTallNate/ref-struct
 import { DTypes as W } from 'win32-def'
 
-import { BufferTypeFactory } from '../lib/fixed-buffer'
+import { BufferTypeFactory } from '../lib/fixed-buffer.js'
 
 
 /** https://docs.microsoft.com/zh-cn/windows/win32/api/wingdi/ns-wingdi-display_devicew */

@@ -1,9 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { basename } from 'path'
+import assert from 'node:assert/strict'
 
-import * as ffi from 'ffi-napi'
-import * as assert from 'power-assert'
-import * as ref from 'ref-napi'
+import { fileShortPath } from '@waiting/shared-core'
 import {
   DModel as M,
   DStruct as DS,
@@ -11,12 +8,10 @@ import {
   FModel as FM,
 } from 'win32-def'
 
-import { user32, Struct } from '../helper'
+import { user32, Struct } from '../helper.js'
 
 
-const filename = basename(__filename)
-
-describe(filename, () => {
+describe(fileShortPath(import.meta.url), () => {
   it('GetRawInputDeviceList()', () => {
     const limit = 255
     const rawInputDeviceList: M.RAWINPUTDEVICELIST_Struct = new Struct(DS.RAWINPUTDEVICELIST)() as M.RAWINPUTDEVICELIST_Struct

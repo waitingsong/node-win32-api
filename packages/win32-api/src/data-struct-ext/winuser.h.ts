@@ -6,7 +6,7 @@ import {
   DUnion as DU,
 } from 'win32-def'
 
-import { Union } from '../lib/shared'
+import { Union } from '../lib/shared.js'
 
 
 /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-rid_device_info */

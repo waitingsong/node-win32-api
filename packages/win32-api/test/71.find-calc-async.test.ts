@@ -1,16 +1,16 @@
-import * as assert from 'assert'
 import { spawn } from 'child_process'
-import { basename } from 'path'
+import assert from 'node:assert/strict'
 
-import { U } from '../src/index'
+import { fileShortPath } from '@waiting/shared-core'
 
-import { calcLpszWindow } from './config.unittest'
-import { user32 } from './helper'
+import { U } from '../src/index.js'
+
+import { calcLpszWindow } from './config.unittest.js'
+import { user32 } from './helper.js'
 
 
-const filename = basename(__filename)
+describe(fileShortPath(import.meta.url), () => {
 
-describe(filename, () => {
   it('Open a calc.exe and find it\'s window hWnd', (done) => {
     const child = spawn('calc.exe')
 
@@ -80,8 +80,7 @@ describe(filename, () => {
         })
         .catch((err) => {
           child.kill()
-          assert(false, err)
-          done()
+          throw err
         })
     }, 1500)
   })
@@ -97,9 +96,8 @@ describe(filename, () => {
           done()
         })
         .catch((err) => {
-          assert(false, err)
           child.kill()
-          done()
+          throw err
         })
 
     }, 1000)

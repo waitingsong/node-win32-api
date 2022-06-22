@@ -1,18 +1,15 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { basename } from 'path'
+import assert from 'node:assert/strict'
 
-import * as assert from 'power-assert'
+import { fileShortPath } from '@waiting/shared-core'
 import {
   DModel as M,
   DStruct as DS,
 } from 'win32-def'
 
-import { Struct } from './helper'
+import { Struct } from './helper.js'
 
 
-const filename = basename(__filename)
-
-describe(filename, () => {
+describe(fileShortPath(import.meta.url), () => {
 
   it('Should ref-struct-di initialized correctly', () => {
     // const point: M.POINT_Struct = new Struct(DS.POINT)()

@@ -1,18 +1,16 @@
 import { spawn } from 'child_process'
-import { basename } from 'path'
+import assert from 'node:assert/strict'
 
-import * as assert from 'power-assert'
+import { fileShortPath } from '@waiting/shared-core'
 
-import { calcLpszWindow } from './config.unittest'
+import { calcLpszWindow } from './config.unittest.js'
 import {
   destroyWin,
   user32,
-} from './helper'
+} from './helper.js'
 
 
-const filename = basename(__filename)
-
-describe(filename, () => {
+describe(fileShortPath(import.meta.url), () => {
   it('Open a calc.exe and find it\'s window hWnd', (done) => {
     const child = spawn('calc.exe')
 

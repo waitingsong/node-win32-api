@@ -1,13 +1,11 @@
-import { basename } from 'path'
+import assert from 'node:assert/strict'
 
-import * as assert from 'power-assert'
+import { fileShortPath } from '@waiting/shared-core'
 
-import { Constants, CS } from '../src/index'
+import { Constants, CS } from '../src/index.js'
 
 
-const filename = basename(__filename)
-
-describe(filename, () => {
+describe(fileShortPath(import.meta.url), () => {
   describe('Should Constants exported correctly', () => {
     it('Constants.MN_GETHMENU', () => {
       assert(CS.MN_GETHMENU === 481)

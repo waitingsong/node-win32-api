@@ -1,16 +1,9 @@
-/**
- * node-win32-api
- *
- * @author waiting
- * @license MIT
- * @link https://github.com/waitingsong/node-win32-api
- */
-import * as DStructExt from './data-struct-ext/index'
-import * as Comctl32 from './lib/comctl32/index'
-import * as Kernel32 from './lib/kernel32/index'
-import * as Ntdll from './lib/ntdll/index'
-import * as User32 from './lib/user32/index'
-import * as Constants from './lib/winmsg'
+import * as DStructExt from './data-struct-ext/index.js'
+import * as Comctl32 from './lib/comctl32/index.js'
+import * as Kernel32 from './lib/kernel32/index.js'
+import * as Ntdll from './lib/ntdll/index.js'
+import * as User32 from './lib/user32/index.js'
+import * as Constants from './lib/winmsg.js'
 
 
 export {
@@ -34,8 +27,8 @@ export { Comctl32 }
 
 export { Ntdll }
 
-export * from './lib/model'
-export * from './lib/fixed-buffer'
+export * from './lib/model.js'
+export * from './lib/fixed-buffer.js'
 
 export { Constants }
 export { Constants as CS }

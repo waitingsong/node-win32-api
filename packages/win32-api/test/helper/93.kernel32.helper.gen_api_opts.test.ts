@@ -1,24 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { basename } from 'path'
+import assert from 'node:assert/strict'
 
-import * as assert from 'power-assert'
+import { fileShortPath } from '@waiting/shared-core'
 import { FModel } from 'win32-def'
 
-import * as Win from '../../src/index'
-import * as H from '../../src/lib/helper'
+import * as Win from '../../src/index.js'
+import * as H from '../../src/lib/helper.js'
 
 
-const filename = basename(__filename)
-// const dllDir = normalize(__dirname + '/../../src/lib/')
-
-describe(filename + ' :gen_api_opts() specify', () => {
-  const apiName = 'Ntdll'
+describe(fileShortPath(import.meta.url), () => {
+  const apiName = 'Kernel32'
   const module: any = Win[apiName]
-  const fn = 'NtQueryInformationProcess'
+  const fn = 'GetSystemTimes'
   const fakeFn = fn + Math.random().toString()
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   if (module && module.apiDef) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const api: FModel.DllFuncs = module.apiDef
 
     it(`Should ${apiName} gen_api_opts(["${fn}"]) correctly`, () => {

@@ -1,10 +1,11 @@
 import { FModel } from 'win32-def'
 
-import { load as hload } from '../helper'
-import { DllNames } from '../model'
+import { load as hload } from '../helper.js'
+import { DllNames } from '../model.js'
 
-import { apiDef, Win32Fns } from './api'
-import * as constants from './constants'
+import { apiDef, Win32Fns } from './api.js'
+// for user32.constants
+import * as constants from './constants.js'
 
 
 export { apiDef }

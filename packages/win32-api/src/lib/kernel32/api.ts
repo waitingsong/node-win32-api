@@ -75,7 +75,7 @@ export const apiDef: FM.DllFuncs = {
   ],
 
   FreeConsole: [W.BOOL, [] ],
-  
+
   GenerateConsoleCtrlEvent: [W.BOOL, [W.DWORD, W.DWORD] ],
 
   /** err code: https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms681381(v=vs.85).aspx */

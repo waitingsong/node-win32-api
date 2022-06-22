@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import * as ref from 'ref-napi'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import ref from 'ref-napi'
 
 
 export interface BufferType extends ref.Type {

@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { basename } from 'path'
+import assert from 'node:assert/strict'
 
-import * as assert from 'power-assert'
+import { fileShortPath } from '@waiting/shared-core'
 import {
   Config,
   DModel as M,
@@ -10,14 +9,11 @@ import {
   FModel as FM,
 } from 'win32-def'
 
-import { DStructExt as DSX } from '../../src/index'
-import { user32, Struct, Union } from '../helper'
+import { DStructExt as DSX } from '../../src/index.js'
+import { user32, Struct, Union } from '../helper.js'
 
 
-const filename = basename(__filename)
-
-
-describe(filename, () => {
+describe(fileShortPath(import.meta.url), () => {
   it('Should GetRawInputDeviceInfoW() calling passed', () => {
     const limit = 255
     const rawInputDeviceList: M.RAWINPUTDEVICELIST_Struct = new Struct(DS.RAWINPUTDEVICELIST)() as M.RAWINPUTDEVICELIST_Struct

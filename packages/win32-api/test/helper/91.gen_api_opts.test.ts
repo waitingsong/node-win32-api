@@ -1,21 +1,16 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/// <reference types="node" />
-/// <reference types="mocha" />
+import assert from 'node:assert/strict'
+import fs from 'node:fs'
+import { normalize } from 'node:path'
 
-import * as fs from 'fs'
-import { basename, normalize } from 'path'
-
-import { join } from '@waiting/shared-core'
-import * as assert from 'power-assert'
+import { join, fileShortPath, genCurrentDirname } from '@waiting/shared-core'
 import { FModel } from 'win32-def'
 
-import * as Win from '../src/index'
-import * as H from '../src/lib/helper'
+import * as Win from '../../src/index.js'
+import * as H from '../../src/lib/helper.js'
 
 
-const filename = basename(__filename)
-const dllDir = normalize(join(__dirname, '/../src/lib/'))
+const __dirname = genCurrentDirname(import.meta.url)
+const dllDir = normalize(join(__dirname, '../../src/lib/'))
 const dlls: string[] = []
 
 for (const key of fs.readdirSync(dllDir)) {
@@ -25,14 +20,18 @@ for (const key of fs.readdirSync(dllDir)) {
   }
 }
 
-
-describe(filename + ' :gen_api_opts() all', () => {
+describe(fileShortPath(import.meta.url), () => {
   for (const dll of dlls) {
     const apiName: string = dll.slice(0, 1).toUpperCase() + dll.slice(1).toLowerCase() // User32, Kernel32, ...
-    const module: any = Win[apiName]
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const module = Win[apiName]
+    assert(module)
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     if (module && module.apiDef) {
-      const api: FModel.DllFuncs = module.apiDef
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      const api = module.apiDef as FModel.DllFuncs
+      assert(api)
       let n = 0
 
       for (const fn in api) {

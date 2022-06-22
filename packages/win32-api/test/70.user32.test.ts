@@ -1,10 +1,8 @@
-import { spawn, ChildProcess } from 'child_process'
-import { basename } from 'path'
+import assert from 'node:assert/strict'
+import { spawn } from 'node:child_process'
 
-
-import * as ffi from 'ffi-napi'
-import * as assert from 'power-assert'
-import * as ref from 'ref-napi'
+import { fileShortPath } from '@waiting/shared-core'
+import ffi from 'ffi-napi'
 import { of } from 'rxjs'
 import { delay, tap } from 'rxjs/operators'
 import {
@@ -13,18 +11,16 @@ import {
   DStruct as DS,
 } from 'win32-def'
 
-import { retrieveStructFromPtrAddress } from '../src/lib/helper'
+import { retrieveStructFromPtrAddress } from '../src/lib/helper.js'
 
-import { calcLpszWindow } from './config.unittest'
-// eslint-disable-next-line import/max-dependencies
-import { user32, Struct } from './helper'
+import { calcLpszWindow } from './config.unittest.js'
+import { user32, Struct } from './helper.js'
 
 
-const filename = basename(__filename)
 const tmpMap = new Map<number | string | bigint, M.POINT_Struct>()
 const title = 'new-calc-' + Math.random().toString()
 
-describe(filename, () => {
+describe(fileShortPath(import.meta.url), () => {
 
   it('find app window by user32.EnumWindows()', (done) => {
     const child = spawn('calc.exe')
@@ -77,9 +73,8 @@ describe(filename, () => {
       .subscribe(
         () => { void 0 },
         (err) => {
-          assert(false, err)
           child.kill()
-          done()
+          throw err
         },
         () => {
           child.kill()

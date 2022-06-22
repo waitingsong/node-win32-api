@@ -1,8 +1,8 @@
-import { spawn } from 'child_process'
-import { basename } from 'path'
+import assert from 'node:assert/strict'
+import { spawn } from 'node:child_process'
 
-import * as assert from 'power-assert'
-import * as ref from 'ref-napi'
+import { fileShortPath } from '@waiting/shared-core'
+import ref from 'ref-napi'
 import {
   DModel as M,
   DStruct as DS,
@@ -10,14 +10,12 @@ import {
   FModel as FM,
 } from 'win32-def'
 
-import { CS } from '../../src/index'
-import { calcLpszWindow } from '../config.unittest'
-import { user32, Struct, destroyWin } from '../helper'
+import { CS } from '../../src/index.js'
+import { calcLpszWindow } from '../config.unittest.js'
+import { user32, Struct, destroyWin } from '../helper.js'
 
 
-const filename = basename(__filename)
-
-describe(filename, () => {
+describe(fileShortPath(import.meta.url), () => {
   it('Should send WM_COMMAND and WM_DESTROY works', (done) => {
     const child = spawn('calc.exe')
 

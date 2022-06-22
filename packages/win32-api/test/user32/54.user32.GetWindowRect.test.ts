@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { spawn } from 'child_process'
-import { basename } from 'path'
+import assert from 'node:assert/strict'
+import { spawn } from 'node:child_process'
 
-import * as assert from 'power-assert'
-import * as ref from 'ref-napi'
+import { fileShortPath } from '@waiting/shared-core'
 import {
   DModel as M,
   DStruct as DS,
@@ -11,13 +9,11 @@ import {
   FModel as FM,
 } from 'win32-def'
 
-import { calcLpszWindow } from '../config.unittest'
-import { user32, Struct, destroyWin } from '../helper'
+import { calcLpszWindow } from '../config.unittest.js'
+import { user32, Struct, destroyWin } from '../helper.js'
 
 
-const filename = basename(__filename)
-
-describe(filename, () => {
+describe(fileShortPath(import.meta.url), () => {
   it('GetWindowRect()', (done) => {
     const child = spawn('calc.exe')
     setTimeout(() => {
