@@ -23,7 +23,7 @@
     "@waiting/eslint-config": "^8.1.0",
     "coveralls": "3",
     "debug": "^4.3.0",
-    "eslint": "8",
+    "eslint": "^8.18.0",
     "kmore-cli": "^27.0.0",
     "lerna-relinker": "^1.5.0",
     "madge": "^5.0.1",
