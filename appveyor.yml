@@ -4,9 +4,9 @@ shallow_clone: true
 init:
   - git config --global core.autocrlf input
 
-cache:
-  - node_modules                        # local npm modules
-  - '%APPDATA%\npm-cache'               # npm cache
+# cache:
+#   - node_modules                        # local npm modules
+#   - '%APPDATA%\npm-cache'               # npm cache
 
 
 environment:
@@ -25,7 +25,7 @@ install:
   - echo %APPVEYOR_REPO_COMMIT_MESSAGE%
   - npm i -g lerna
   - npm run bootstrap
-  - echo %APPVEYOR_REPO_COMMIT_MESSAGE% | .\\node_modules\\.bin\\commitlint 
+  - echo %APPVEYOR_REPO_COMMIT_MESSAGE% | .\\node_modules\\.bin\\commitlint
 
 #services:
 #  - postgresql101
