@@ -3,7 +3,10 @@
   "packages": [
     "packages/*"
   ],
-  "ignore": [],
+  "ignore": [
+    "demo",
+    "@mw-components/demo"
+  ],
   "command": {
     "publish": {
       "ignoreChanges": [
