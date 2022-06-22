@@ -23,14 +23,18 @@ describe(fileShortPath(import.meta.url), () => {
 
       const ret = user32.GetWindowRect(hWnd, rect.ref())
       assert(ret !== 0)
-      assert(rect.top > 0 && rect.left > 0 && rect.right > 0 && rect.bottom > 0)
-      destroyWin(hWnd)
+      assert(ret)
       console.log({
         top: rect.top,
         left: rect.left,
         right: rect.right,
         bottom: rect.bottom,
       })
+      assert(rect.top > 0)
+      assert(rect.left > 0)
+      assert(rect.right > 0)
+      assert(rect.bottom > 0)
+      destroyWin(hWnd)
       child.kill()
       done()
     }, 1500)
