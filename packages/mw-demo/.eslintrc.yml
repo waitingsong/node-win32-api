@@ -1,7 +1,0 @@
-extends: '@waiting/eslint-config/recommended'
-parserOptions:
-  project: 'tsconfig.eslint.json'
-
-rules:
-  "import/no-extraneous-dependencies": 0
-
