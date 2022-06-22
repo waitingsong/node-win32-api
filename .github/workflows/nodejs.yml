@@ -88,52 +88,6 @@ jobs:
         env:
           CI: true
 
-      - name: Lint
-        run: |
-          export cwd=`pwd`
-          . .scripts/ci/ci-env.sh
-          .scripts/ci/ci-prepare.sh
-          npm run lint:s
-          npm run lint:cycle
-        env:
-          CI: true
-
-      # - name: Init Database
-      #   run: |
-      #     export cwd=`pwd`
-      #     . .scripts/ci/ci-env.sh
-      #     .scripts/ci/ci-prepare.sh
-      #     .scripts/ci/ci-init-db.sh
-      #   env:
-      #     CI: true
-      #     POSTGRES_HOST: postgres
-      #     POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-      #     POSTGRES_DB: db_ci_test
-      #     POSTGRES_USER: postgres
-      #     POSTGRES_PASSWORD: postgres
-      #     PGPASSWORD: postgres
-
-      - name: Testing
-        run: |
-          export cwd=`pwd`
-          . .scripts/ci/ci-env.sh
-          .scripts/ci/ci-prepare.sh
-          npm run ci
-        env:
-          CI: true
-          # use `localhost` if running the job on the VM
-          # use `postgres` if running the job on a container
-          POSTGRES_HOST: postgres
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-          POSTGRES_DB: db_ci_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          PGPASSWORD: postgres
-          # redis
-          REDIS_HOST: redis
-          REDIS_PORT: 6379
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
 
 
     services:
