@@ -1,5 +1,8 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
   "include": [
     "src/**/*.ts",
     "test/**/*.ts",
@@ -11,6 +14,7 @@
     "app/views",
     "dist",
     "node_modules*",
+    "test/fixtures",
     "**/*.d.ts"
   ]
 }

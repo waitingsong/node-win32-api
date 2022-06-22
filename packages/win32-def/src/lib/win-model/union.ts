@@ -1,4 +1,4 @@
-import { DWORD } from './common'
+import { DWORD } from './common.js'
 
 
 export interface UnionInstanceBase {

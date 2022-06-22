@@ -22,8 +22,8 @@ import {
   WORD,
   WPARAM,
   PVOID,
-} from './common'
-import { RID_DEVICE_INFO_DUMMYUNIONNAME } from './union'
+} from './common.js'
+import { RID_DEVICE_INFO_DUMMYUNIONNAME } from './union.js'
 
 
 /**

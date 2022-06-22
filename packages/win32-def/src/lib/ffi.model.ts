@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
-import { BigIntStr, Push } from '@waiting/shared-types'
+import { BigIntStr, TuplePush as Push } from '@waiting/shared-types'
 
 // for translation of windef
 export type MacroParam<T> = T | [T, T, T] // [s,s,s] for conversion of macro windows data like LPCTSTR
@@ -119,7 +119,6 @@ export interface AsyncSyncFuncModel {
 }
 
 export interface AppendAsyncToSyncFnModel<T extends DllFuncsModel, K extends keyof T> {
-  // @ts-ignore
   async: (...args: Push<Parameters<T[K]>, (err: Error, result: ReturnType<T[K]>) => void>) => void
 }
 
@@ -169,7 +168,6 @@ export type ExpandFnModel<T extends DllFuncsModel> = {
   : T[K] extends AsyncSyncFuncModel
   ? T[K]
   : T[K] & {
-    // @ts-ignore
     async: (...args: Push<Parameters<T[K]>, (err: Error, result: ReturnType<T[K]>) => any>) => void,
   }
 }

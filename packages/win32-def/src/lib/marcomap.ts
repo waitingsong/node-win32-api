@@ -1,15 +1,15 @@
 import {
   _UNICODE_HOLDER,
   _WIN64_HOLDER,
-} from './config'
-import { MacroMap } from './ffi.model'
+} from './config.js'
+import { MacroMap } from './ffi.model.js'
 import {
   LPCSTR,
   LPCWSTR,
   LPSTR,
   LPWSTR,
   WCHAR,
-} from './windef'
+} from './windef.js'
 
 
 export const macroMap: MacroMap = new Map([

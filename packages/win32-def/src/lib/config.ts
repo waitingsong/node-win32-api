@@ -1,6 +1,6 @@
 // dict of windef value
 
-import { LoadSettings } from './ffi.model'
+import { LoadSettings } from './ffi.model.js'
 
 
 export const _WIN64_HOLDER = '_WIN64_HOLDER_'

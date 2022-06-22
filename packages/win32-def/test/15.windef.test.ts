@@ -1,24 +1,19 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { basename } from '@waiting/shared-core'
-import * as assert from 'power-assert'
+import assert from 'node:assert/strict'
 
-import { settingsDefault } from '../src/lib/config'
+import { fileShortPath } from '@waiting/shared-core'
+
+import { settingsDefault } from '../src/lib/config.js'
+import { LoadSettings } from '../src/lib/ffi.model.js'
 import {
-  FnParam,
-  LoadSettings,
-  MacroDef,
-} from '../src/lib/ffi.model'
-import * as H from '../src/lib/helper'
-import { macroMap } from '../src/lib/marcomap'
-import * as WD from '../src/lib/windef'
+  parse_windef,
+  parse_param_placeholder,
+} from '../src/lib/helper.js'
+import { macroMap } from '../src/lib/marcomap.js'
+import * as WD from '../src/lib/windef.js'
 
 
-import rewire = require('rewire')
+describe(fileShortPath(import.meta.url), () => {
 
-const filename = basename(__filename)
-const mods = rewire('../src/lib/helper')
-
-describe(filename, () => {
   const types64_32 = new Set([
     'PVOID', 'HANDLE', 'HACCEL', 'HBITMAP',
     'HBRUSH', 'HCOLORSPACE', 'HCONV', 'HCONVLIST',
@@ -62,11 +57,13 @@ function test_arch(types64_32: Set<string>) {
 }
 
 function _test_arch(types64_32: Set<string>, settings: LoadSettings) {
-  const W = H.parse_windef(WD, macroMap, { ...settings })
+  const W = parse_windef(WD, macroMap, { ...settings })
 
   for (const vv of types64_32) {
     // convert param like '_WIN64_HOLDER_' to 'int64' or 'int32'
     const param = W[vv]
+
+    assert(param)
 
     it(`Should ${vv}: value converted correctly under nodejs ${settings._WIN64 ? 'x64' : 'ia32'}`, () => {
       if (settings._WIN64) {
@@ -99,14 +96,13 @@ function test_arch_half(values: Set<string>) {
 }
 
 function _test_arch_half(typesHalf: Set<string>, settings: LoadSettings) {
-  const W = H.parse_windef(WD, macroMap, { ...settings })
-  const fnName = 'parse_param_placeholder'
-  const fn = mods.__get__(fnName)
-
+  const W = parse_windef(WD, macroMap, { ...settings })
 
   for (const vv of typesHalf) {
+    const value = W[vv]
+    assert(value)
     // convert param like ['_WIN64_HOLDER_', 'int64', 'int32'] to 'int64' or 'int32'
-    const param = fn(W[vv], settings)
+    const param = parse_param_placeholder(value, settings)
 
     it(`Should ${vv}: value converted correctly under nodejs ${settings._WIN64 ? 'x64' : 'ia32'}`, () => {
       if (settings._WIN64) {
@@ -126,42 +122,6 @@ function _test_arch_half(typesHalf: Set<string>, settings: LoadSettings) {
 
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         assert(cond, `${vv}: ${param} under ia32`)
-      }
-    })
-  }
-}
-
-describe(filename, () => {
-  const typesUnicode = new Set([
-    'LPCTSTR', 'LPTSTR', 'PTBYTE', 'PTCHAR',
-    'PTSTR', 'TBYTE', 'TCHAR',
-  ])
-
-  unicode(true, typesUnicode)
-  unicode(false, typesUnicode)
-})
-
-function unicode(_UNICODE: boolean, typesUnicode: Set<string>) {
-  const W = H.parse_windef(WD, macroMap, { ...settingsDefault, _UNICODE })
-
-  for (const vv of typesUnicode) {
-    const param = W[vv]
-
-    it(`Should macro ${vv}: value mathes setting of ANSI/UNICODE`, () => {
-      if (_UNICODE) {
-        const cond: boolean = !! param && typeof param === 'string'
-          && param.indexOf('16') > 2
-          && param.indexOf('8') === -1
-
-        assert(cond, `${vv}: ${param} at UNICODE`)
-      }
-      else {
-        // PTSTR == 'char*' under ia32
-        const cond: boolean = !! param && typeof param === 'string'
-          && (param.indexOf('8') > 2 || param === 'char*')
-          && param.indexOf('16') === -1
-
-        assert(cond, `${vv}: ${param} at ANSI`)
       }
     })
   }

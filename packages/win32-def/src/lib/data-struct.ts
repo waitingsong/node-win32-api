@@ -5,9 +5,9 @@ Complex structure see:
 https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/src/data-struct-ext/
 */
 
-import { parse_windef } from './helper'
-import { macroMap } from './marcomap'
-import * as windef from './windef'
+import { parse_windef } from './helper.js'
+import { macroMap } from './marcomap.js'
+import * as windef from './windef.js'
 
 
 const W = parse_windef(windef, macroMap) as typeof windef

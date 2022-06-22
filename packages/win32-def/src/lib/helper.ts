@@ -3,14 +3,14 @@ import {
   windefSet,
   _UNICODE_HOLDER,
   _WIN64_HOLDER,
-} from './config'
+} from './config.js'
 import {
   DataTypes,
   FnParam,
   LoadSettings,
   MacroDef,
   MacroMap,
-} from './ffi.model'
+} from './ffi.model.js'
 
 
 // convert macro variable of windef
@@ -28,7 +28,7 @@ export function parse_windef(windefObj: DataTypes, macroMap: MacroMap, settings?
  * convert typeof array of param to string
  * such like ['_WIN64_HOLDER_', 'int64', 'int32'], no changed returning when string
  */
-function parse_param_placeholder(param: FnParam | MacroDef, settings?: LoadSettings): FnParam {
+export function parse_param_placeholder(param: FnParam | MacroDef, settings?: LoadSettings): FnParam {
   if (typeof param === 'string') {
     return param
   }
@@ -60,7 +60,7 @@ function parse_param_placeholder(param: FnParam | MacroDef, settings?: LoadSetti
 
 
 // convert param like ['_WIN64_HOLDER_', 'int64', 'int32] to 'int64' or 'int32'
-function parse_placeholder_arch(param: FnParam | MacroDef, _WIN64: boolean): FnParam {
+export function parse_placeholder_arch(param: FnParam | MacroDef, _WIN64: boolean): FnParam {
   if (typeof param === 'string') {
     return param
   }
@@ -73,7 +73,7 @@ function parse_placeholder_arch(param: FnParam | MacroDef, _WIN64: boolean): FnP
 }
 
 // convert param like ['_UNICODE_HOLDER_', 'uint16*', 'uint8*'] to 'uint16*' or 'uint8*'
-function parse_placeholder_unicode(param: FnParam | MacroDef, _UNICODE: boolean): FnParam {
+export function parse_placeholder_unicode(param: FnParam | MacroDef, _UNICODE: boolean): FnParam {
   if (typeof param === 'string') {
     return param
   }
@@ -89,7 +89,7 @@ function parse_placeholder_unicode(param: FnParam | MacroDef, _UNICODE: boolean)
  * parse ['_WIN64_HOLDER', 'int64*', 'int32*'] to 'int64*' or 'int32'
  * or ['_UNICODE_HOLDER_', 'uint16*', 'uint8*'] to 'uint16*' or 'uint8*'
  */
-function prepare_macro(macroMap: MacroMap, settings?: LoadSettings): Map<string, FnParam> {
+export function prepare_macro(macroMap: MacroMap, settings?: LoadSettings): Map<string, FnParam> {
   const ret = new Map<string, FnParam>()
 
   // v string|array
@@ -104,7 +104,7 @@ function prepare_macro(macroMap: MacroMap, settings?: LoadSettings): Map<string,
  * parse const HANDLE = 'PVOID' to the realy FFIParam (like 'uint32*')
  * macroMap <['PVOID', 'uint32*'], ...>
  */
-function prepare_windef_ref(ww: DataTypes, macroSrc: Map<string, string>): DataTypes {
+export function prepare_windef_ref(ww: DataTypes, macroSrc: Map<string, string>): DataTypes {
   const ret: DataTypes = {}
   const map = new Map<string, string>()
 
@@ -164,7 +164,7 @@ function prepare_windef_ref(ww: DataTypes, macroSrc: Map<string, string>): DataT
 }
 
 
-function clone_filter_windef(windef: DataTypes): DataTypes {
+export function clone_filter_windef(windef: DataTypes): DataTypes {
   const ret: DataTypes = {}
 
   for (const x of Object.keys(windef)) {
@@ -184,7 +184,7 @@ function clone_filter_windef(windef: DataTypes): DataTypes {
   return ret
 }
 
-function parse_settings(settings?: LoadSettings): LoadSettings {
+export function parse_settings(settings?: LoadSettings): LoadSettings {
   const st: LoadSettings = { ...settingsDefault }
 
   if (typeof settings !== 'undefined' && Object.keys(settings).length) {
@@ -214,9 +214,9 @@ export function lookupRef(key: string, ww: DataTypes, macroSrc: Map<string, stri
 
   return ret
 }
-function _lookupRef(key: string, ww: DataTypes, macroSrc: Map<string, string>): string {
+export function _lookupRef(key: string, ww: DataTypes, macroSrc: Map<string, string>): string {
   if (macroSrc.has(key)) {
-    return macroSrc.get(key) as string
+    return (macroSrc.get(key) ?? '') as string
   }
 
   // key is not valid FFIParam such 'int/uint...', like HMODULE: 'HANDLE'
@@ -227,7 +227,7 @@ function _lookupRef(key: string, ww: DataTypes, macroSrc: Map<string, string>): 
     if (ret && macroSrc.has(ret)) { //  HANDLE:PVOID, macroSrc has PVOID
       return macroSrc.get(ret) as string
     }
-    return ret
+    return ret ?? ''
   }
 
   return ''

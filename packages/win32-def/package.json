@@ -8,15 +8,21 @@
     "ffi",
     "win32",
     "windows",
+    "ESM",
     "typescript",
     "ts"
   ],
+  "type": "module",
   "bin": {},
-  "browser": "",
-  "es2015": "./dist/index.esm.js",
-  "main": "./dist/index.cjs.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
   "bugs": {
     "url": "https://github.com/waitingsong/node-win32-api/issues"
   },
@@ -27,16 +33,18 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-types": "3"
+    "@waiting/shared-types": "^18.0.0"
   },
   "devDependencies": {
-    "@waiting/shared-core": "3",
+    "@waiting/shared-core": "^18.0.0",
     "cross-env": "7"
   },
   "engines": {
     "node": ">=14.15.0"
   },
   "files": [
+    "tsconfig.json",
+    "src/**/*.ts",
     "bin/*.js",
     "dist"
   ],
@@ -45,41 +53,19 @@
   },
   "scripts": {
     "build": "npm run tsc && npm run rp",
-    "clean": "rm -rf dist/* .vscode/.tsbuildinfo .vscode/.tsbuildinfo.* ",
-    "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json nyc mocha",
+    "clean": "npm run clean:lock & npm run clean:cache & rm -rf dist/* -rf",
+    "clean:cache": "rm -rf .eslintcache .vscode/.tsbuildinfo .vscode/.tsbuildinfo.*",
+    "clean:lock": "rm package-lock.json -f",
+    "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json c8 mocha --loader=ts-node/esm --parallel=false",
     "lint": "eslint --fix --cache {src,test}/**/*.ts",
     "lint:nofix": "eslint --cache {src,test}/**/*.ts",
-    "rp": "rollup -c rollup.config.js",
+    "purge": "npm run clean && rm node_modules -rf",
+    "rp": "rollup -c rollup.config.js --context this",
     "rp:w": "npm run tsc:w | rollup -wc rollup.config.js",
-    "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha",
+    "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --loader=ts-node/esm",
     "test:browser": "cd .config && npm run browser && cd ..",
+    "test:local": "cross-env TS_NODE_PROJECT=test/tsconfig.json ../../node_modules/.bin/mocha --loader=ts-node/esm --parallel=false",
     "tsc": "tsc -p tsconfig.json",
     "tsc:w": "tsc -p tsconfig.json -w"
-  },
-  "nyc": {
-    "include": [
-      "src/**/*.ts"
-    ],
-    "exclude": [
-      ".githooks",
-      "dist",
-      "node_modules*",
-      "src/bin",
-      "src/domain.ts",
-      "src/interface.ts",
-      "test*",
-      "**/node_modules*",
-      "**/*.d.ts",
-      "**/*.js"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "reporter": [
-      "text-summary",
-      "json",
-      "html"
-    ],
-    "all": true
   }
 }

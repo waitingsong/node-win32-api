@@ -4,7 +4,7 @@
 import {
   _UNICODE_HOLDER,
   _WIN64_HOLDER,
-} from './config'
+} from './config.js'
 /**
  * macro convert method
  * _WIN64_HOLDER or _UNICODE_HOLDER

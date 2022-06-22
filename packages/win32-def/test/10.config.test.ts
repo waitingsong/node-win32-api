@@ -1,17 +1,16 @@
-import { basename } from '@waiting/shared-core'
-import * as assert from 'power-assert'
+import assert from 'node:assert/strict'
+
+import { fileShortPath } from '@waiting/shared-core'
 
 import {
   settingsDefault,
   windefSet,
   _UNICODE,
   _WIN64,
-} from '../src/lib/config'
+} from '../src/lib/config.js'
 
 
-const filename = basename(__filename)
-
-describe(filename, () => {
+describe(fileShortPath(import.meta.url), () => {
   it('Should items of windefSet must be typeof string and not empty', () => {
     for (const vv of windefSet) {
       assert(typeof vv === 'string', 'value must be string')

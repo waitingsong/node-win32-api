@@ -1,22 +1,20 @@
-import { basename } from '@waiting/shared-core'
-import * as assert from 'power-assert'
+import assert from 'node:assert/strict'
 
-import { DTypes } from '../src/index'
-import { settingsDefault } from '../src/lib/config'
-import * as H from '../src/lib/helper'
-import { macroMap } from '../src/lib/marcomap'
-import * as WD from '../src/lib/windef'
+import { fileShortPath } from '@waiting/shared-core'
 
-
-const filename = basename(__filename)
+import { DTypes } from '../../src/index.js'
+import { settingsDefault } from '../../src/lib/config.js'
+import { parse_windef } from '../../src/lib/helper.js'
+import { macroMap } from '../../src/lib/marcomap.js'
+import * as WD from '../../src/lib/windef.js'
 
 
-describe(filename + ' :parse_windef()', () => {
+describe(fileShortPath(import.meta.url), () => {
   const fnName = 'parse_windef()'
 
   // at lastest
   it(`Should ${fnName} process windef correctly)`, () => {
-    const windata = H.parse_windef(WD, macroMap, { ...settingsDefault })
+    const windata = parse_windef(WD, macroMap, { ...settingsDefault })
     const lenData = Object.keys(windata).length
     const lenRet = Object.keys(DTypes).length
 
@@ -38,7 +36,6 @@ describe(filename + ' :parse_windef()', () => {
       console.info(onlyInData, onlyInIndex)
       assert(false, `lenData:${lenData}, lenDef:${lenRet} not equal `)
     }
-
   })
 
 })
