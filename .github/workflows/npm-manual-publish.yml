@@ -36,23 +36,23 @@ jobs:
           node-version: ${{ matrix.node }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Cache
-        uses: actions/cache@v2
-        id: cache-lerna
-        env:
-          cache-name: cache-lerna
-        with:
-          path: |
-            node_modules
-            package-lock.json
-            packages/*/.eslintcache
-            packages/*/.vscode
-            packages/*/dist
-            packages/*/node_modules
-            packages/*/package-lock.json
-          key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-
+      # - name: Cache
+      #   uses: actions/cache@v2
+      #   id: cache-lerna
+      #   env:
+      #     cache-name: cache-lerna
+      #   with:
+      #     path: |
+      #       node_modules
+      #       package-lock.json
+      #       packages/*/.eslintcache
+      #       packages/*/.vscode
+      #       packages/*/dist
+      #       packages/*/node_modules
+      #       packages/*/package-lock.json
+      #     key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-
 
       - name: Prepare
         run: |
