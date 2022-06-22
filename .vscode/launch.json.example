@@ -5,6 +5,111 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Mocha Tests",
+      "type": "node",
+      "args": [
+        "-u",
+        "bdd",
+        "--timeout",
+        "999999",
+        "--colors",
+        "--parallel=false"
+      ],
+      "env": {
+        "NODE_ENV": "unittest",
+        "TS_NODE_PROJECT": "test/tsconfig.json",
+        "POSTGRES_HOST": "",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_DB": "",
+        "POSTGRES_USER": "postgres",
+        "POSTGRES_PASSWORD": ""
+      },
+      "request": "launch",
+      "restart": false,
+      "runtimeArgs": [
+        "run",
+        "test:local",
+        "--",
+        "--runInBand",
+        "--preserve-symlinks",
+        "--inspect-brk"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "**/node_modules/rxjs/**",
+        "**/node_modules/mocha/**",
+        "<node_internals>/**",
+        "<node_internals>/**/*.js"
+      ],
+      "internalConsoleOptions": "openOnSessionStart",
+      "timeout": 30000
+    },
+    {
+      "name": "Midway TEST",
+      "type": "node",
+      "autoAttachChildProcesses": true,
+      "console": "integratedTerminal",
+      "env": {
+        "NODE_ENV": "unittest",
+        "POSTGRES_HOST": "",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_DB": "",
+        "POSTGRES_USER": "postgres",
+        "POSTGRES_PASSWORD": ""
+      },
+      "request": "launch",
+      "restart": false,
+      "runtimeArgs": [
+        "run",
+        "test:local",
+        "--",
+        "--runInBand",
+        "--preserve-symlinks",
+        "--inspect-brk"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "**/node_modules/rxjs/**",
+        "**/node_modules/mocha/**",
+        "<node_internals>/**",
+        "<node_internals>/**/*.js"
+      ],
+      "timeout": 30000
+    },
+    {
+      "name": "Midway Debug",
+      "type": "node",
+      "autoAttachChildProcesses": true,
+      "console": "integratedTerminal",
+      "env": {
+        "NODE_ENV": "local",
+        "TS_NODE_TYPE_CHECK": "false",
+        "TS_NODE_TRANSPILE_ONLY": "true",
+        "POSTGRES_HOST": "",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_DB": "",
+        "POSTGRES_USER": "",
+        "POSTGRES_PASSWORD": ""
+      },
+      "request": "launch",
+      "restart": true,
+      "runtimeArgs": [
+        "run",
+        "debug",
+        "--",
+        "--preserve-symlinks",
+        "--inspect-brk"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "**/node_modules/**",
+        "**/node_modules/rxjs/**",
+        "<node_internals>/**",
+        "<node_internals>/**/*.js"
+      ],
+      "timeout": 30000
+    },
+    {
       "name": "Chrome Debug with Karma",
       "type": "chrome",
       "address": "localhost",
@@ -14,34 +119,6 @@
       },
       "port": 9333,
       "request": "attach"
-    },
-    {
-      "name": "Mocha Tests",
-      "type": "node",
-      "args": [
-        "-u",
-        "bdd",
-        "--timeout",
-        "999999",
-        "--colors",
-        "--parallel=false",
-        // "${workspaceFolder}/test/**/**.test.ts"
-      ],
-      "env": {
-        "NODE_ENV": "local",
-        "TS_NODE_PROJECT": "test/tsconfig.json",
-        "PGHOST": "",
-        "PGUSER": "",
-        "PGPASSWORD": "",
-      },
-      "internalConsoleOptions": "openOnSessionStart",
-      "program": "${workspaceFolder}/../../node_modules/mocha/bin/_mocha",
-      "request": "launch",
-      "skipFiles": [
-        "${workspaceFolder}/../../node_modules/rxjs/**/*.js",
-        "${workspaceFolder}/node_modules/rxjs/**/*.js",
-        "<node_internals>/**/*.js"
-      ]
     },
   ]
 }

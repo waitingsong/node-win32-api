@@ -6,37 +6,44 @@
   "private": true,
   "keywords": [
     "种子项目",
+    "ESM",
     "typescript",
     "ts"
   ],
+  "type": "module",
   "bin": {},
-  "browser": "",
-  "es2015": "",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
+  "main": "dist/index.js",
   "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
   "bugs": {
     "url": "https://github.com/waitingsong/npm-mono-base/issues"
   },
   "homepage": "https://github.com/waitingsong/npm-mono-base#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/waitingsong/npm-mono-base.git"
+    "url": "https://github.com/waitingsong/npm-mono-base"
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-types": "^14.4.1"
   },
   "devDependencies": {
-    "@waiting/shared-core": "^14.4.1",
+    "@waiting/shared-core": "^18.0.0",
     "cross-env": "7"
   },
+  "peerDependencies": {
+    "@waiting/shared-types": "^18.0.0"
+  },
   "engines": {
-    "node": ">=14.16.0"
+    "node": ">=16.13.0"
   },
   "files": [
     "tsconfig.json",
-    "rollup.config.js",
     "src/**/*.ts",
     "bin/*.js",
     "dist"
@@ -49,17 +56,17 @@
     "clean": "npm run clean:lock & npm run clean:cache & rm -rf dist/* -rf",
     "clean:cache": "rm -rf .eslintcache .vscode/.tsbuildinfo .vscode/.tsbuildinfo.*",
     "clean:lock": "rm package-lock.json -f",
-    "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json c8 mocha --parallel=false",
+    "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json c8 mocha --loader=ts-node/esm --parallel=false",
     "lint": "eslint --fix --cache {src,test}/**/*.ts",
     "lint:nofix": "eslint --cache {src,test}/**/*.ts",
     "prepublishOnly": "sh ../../.scripts/change-pkg-types-dist.sh",
     "postpublish": "sh ../../.scripts/change-pkg-types-src.sh",
     "purge": "npm run clean && rm node_modules -rf",
-    "rp": "rollup -c rollup.config.js",
+    "rp": "rollup -c rollup.config.js --context this",
     "rp:w": "npm run tsc:w | rollup -wc rollup.config.js",
-    "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha",
+    "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --loader=ts-node/esm",
     "test:browser": "cd .config && npm run browser && cd ..",
-    "test:local": "cross-env TS_NODE_PROJECT=test/tsconfig.json ../../node_modules/.bin/mocha --parallel=false",
+    "test:local": "cross-env TS_NODE_PROJECT=test/tsconfig.json ../../node_modules/.bin/mocha --loader=ts-node/esm --parallel=false",
     "tsc": "tsc -p tsconfig.json",
     "tsc:w": "tsc -p tsconfig.json -w"
   }

@@ -55,10 +55,11 @@
     "**/.vscode": true,
     "**/appveyor.yml": true,
     "**/jest.config.*": true,
-    "**/node_modules*": true,
+    "**/node_modules*": false,
     "**/run": true
   },
   "files.insertFinalNewline": true,
+  "files.refactoring.autoSave": true,
   "files.watcherExclude": {
     "coverage/**": true,
     "dist/**": true,
@@ -81,10 +82,12 @@
   "git.ignoreLimitWarning": true,
   "markdown-pdf.outputDirectory": "d:/",
   "plantuml.render": "PlantUMLServer",
-  "plantuml.server": "",
+  "plantuml.server": "https://www.plantuml.com/plantuml",
   "plantuml.exportFormat": "png",
   "plantuml.urlFormat": "png",
   "search.exclude": {
+    ".gitlab": false,
+    ".scripts": false,
     "i18n": true,
     "library/": true,
     "node_modules": true,
@@ -98,8 +101,23 @@
   },
   "search.useIgnoreFiles": true,
   "telemetry.enableTelemetry": false,
-  "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
-  "terminal.integrated.automationShell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+  "terminal.integrated.autoReplies": {
+    "Terminate batch job (Y/N)?": "Y\r",
+    "终止批处理操作吗(Y/N)?": "Y\r",
+  },
+  "terminal.integrated.profiles.windows": {
+    "git-bash": {
+      "path": "C:\\Program Files\\Git\\bin\\bash.exe"
+    }
+  },
+  "terminal.integrated.profiles.linux": {
+    "bash (login)": {
+      "path": "bash",
+      "args": ["-l"]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "git-bash",
+  "terminal.integrated.defaultProfile.linux": "bash (login)",
   "typescript.autoClosingTags": false,
   "typescript.format.enable": true,
   "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
@@ -107,6 +125,7 @@
   "typescript.format.insertSpaceAfterTypeAssertion": true,
   "typescript.format.insertSpaceBeforeAndAfterBinaryOperators": true,
   "typescript.format.semicolons": "remove",
+  "typescript.locale": "zh-CN",
   "typescript.preferences.quoteStyle": "single",
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.updateImportsOnFileMove.enabled": "always",
@@ -114,7 +133,11 @@
     "editor.defaultFormatter": "yzhang.markdown-all-in-one",
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
-    "editor.quickSuggestions": true,
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    },
     "files.trimTrailingWhitespace": false
   },
   "[typescript]": {

@@ -1,16 +1,11 @@
-import {
-  basename,
-  join,
-} from '@waiting/shared-core'
-// eslint-disable-next-line import/order
-import assert = require('power-assert')
+import assert from 'node:assert/strict'
+
+import { fileShortPath } from '@waiting/shared-core'
 
 
-const filename = basename(__filename)
+describe(fileShortPath(import.meta.url), () => {
 
-describe(filename, () => {
-
-  describe('should works', () => {
+  describe('should work', () => {
     it('always passed', () => {
       assert(true)
     })

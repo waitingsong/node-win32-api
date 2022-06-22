@@ -1,0 +1,52 @@
+{
+  "c8 ignore next": {
+    "scope": "javascript,typescript",
+    "prefix": "cov.ignore-next",
+    "body": [
+      "/* c8 ignore next */",
+    ],
+    "description": "c8 ignore next"
+  },
+
+  "c8 ignore next 3 lines": {
+    "scope": "javascript,typescript",
+    "prefix": "cov.ignore-next-3",
+    "body": [
+      "/* c8 ignore next 3 */",
+    ],
+    "description": "c8 ignore next 3"
+  },
+
+  "c8 ignore start": {
+    "scope": "javascript,typescript",
+    "prefix": "cov.ignore-start",
+    "body": [
+      "/* c8 ignore start */",
+    ]
+  },
+  "c8 ignore stop": {
+    "scope": "javascript,typescript",
+    "prefix": "cov.ignore-stop",
+    "body": [
+      "/* c8 ignore stop */",
+    ]
+  },
+
+  "eslint disable next line": {
+    "scope": "javascript,typescript",
+    "prefix": "eslint.disable-next-line",
+    "body": [
+      "// eslint-disable-next-line",
+    ],
+    "description": ""
+  },
+
+  "eslint disable ": {
+    "scope": "javascript,typescript",
+    "prefix": "eslint.disable-all",
+    "body": [
+      "/* eslint-disable */",
+    ],
+    "description": ""
+  },
+}

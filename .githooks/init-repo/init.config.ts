@@ -17,5 +17,6 @@ export const globalConfigFileArr = [
   '.vscode/launch.json.example',
   '.vscode/settings.json.example',
   '.vscode/ci.code-snippets.example',
+  '.vscode/midway.code-snippets.example',
 ]
 

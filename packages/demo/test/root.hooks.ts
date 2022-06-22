@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-
 
 /**
  * @see https://mochajs.org/#root-hook-plugins
@@ -15,17 +11,16 @@ export const mochaHooks = async () => {
   // avoid run multi times
   if (! process.env.mochaRootHookFlag) {
     process.env.mochaRootHookFlag = 'true'
-    await Promise.resolve()
   }
 
   return {
-    // beforeAll() {
-    //   void 0
-    // },
+    beforeAll: async () => {
+      return
+    },
 
-    // afterAll() {
-    //   void 0
-    // },
+    afterAll: async () => {
+      return
+    },
   }
 
 }
