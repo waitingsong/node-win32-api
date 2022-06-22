@@ -12,9 +12,9 @@
   "bin": {},
   "browser": "",
   "es2015": "",
-  "main": "./dist/index.cjs.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "src/index.ts",
   "bugs": {
     "url": "https://github.com/waitingsong/npm-mono-base/issues"
   },
@@ -25,57 +25,42 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-types": "3",
-    "rxjs": "^6.5.2"
+    "@waiting/shared-types": "^14.4.1"
   },
   "devDependencies": {
-    "@waiting/shared-core": "3",
+    "@waiting/shared-core": "^14.4.1",
     "cross-env": "7"
   },
   "engines": {
-    "node": ">=10.16.0"
+    "node": ">=14.16.0"
   },
   "files": [
+    "tsconfig.json",
+    "rollup.config.js",
+    "src/**/*.ts",
     "bin/*.js",
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "npm run tsc && npm run rp",
-    "clean": "rm -rf dist/* .vscode/.tsbuildinfo .vscode/.tsbuildinfo.* ",
-    "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json nyc mocha",
+    "clean": "npm run clean:lock & npm run clean:cache & rm -rf dist/* -rf",
+    "clean:cache": "rm -rf .eslintcache .vscode/.tsbuildinfo .vscode/.tsbuildinfo.*",
+    "clean:lock": "rm package-lock.json -f",
+    "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json c8 mocha --parallel=false",
     "lint": "eslint --fix --cache {src,test}/**/*.ts",
     "lint:nofix": "eslint --cache {src,test}/**/*.ts",
+    "prepublishOnly": "sh ../../.scripts/change-pkg-types-dist.sh",
+    "postpublish": "sh ../../.scripts/change-pkg-types-src.sh",
+    "purge": "npm run clean && rm node_modules -rf",
     "rp": "rollup -c rollup.config.js",
     "rp:w": "npm run tsc:w | rollup -wc rollup.config.js",
     "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha",
     "test:browser": "cd .config && npm run browser && cd ..",
+    "test:local": "cross-env TS_NODE_PROJECT=test/tsconfig.json ../../node_modules/.bin/mocha --parallel=false",
     "tsc": "tsc -p tsconfig.json",
     "tsc:w": "tsc -p tsconfig.json -w"
-  },
-  "nyc": {
-    "include": [
-      "src/**/*.ts"
-    ],
-    "exclude": [
-      ".githooks",
-      "dist",
-      "node_modules*",
-      "src/bin",
-      "src/domain.ts",
-      "src/interface.ts",
-      "test*",
-      "**/node_modules*",
-      "**/*.d.ts",
-      "**/*.js"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "reporter": [
-      "text-summary",
-      "json",
-      "html"
-    ],
-    "all": true
   }
 }

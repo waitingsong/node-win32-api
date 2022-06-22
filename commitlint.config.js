@@ -1,14 +1,15 @@
 const config = {
-  // extends: ['@commitlint/config-conventional'],
+  extends: ['@commitlint/config-conventional'],
   rules: {
     'body-leading-blank': [2, 'always'],
     'footer-leading-blank': [2, 'always'],
-    'header-max-length': [2, 'always', 100],
+    'header-max-length': [2, 'always', 120],
     'subject-case': [
       2,
       'never',
-      ['start-case', 'pascal-case', 'upper-case'],
+      [],
     ],
+    'body-max-line-length': [2, 'always', 200],
     'type-enum': [
       2,
       'always',

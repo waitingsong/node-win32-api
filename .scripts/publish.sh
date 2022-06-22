@@ -10,8 +10,6 @@
 # - NPM_VERSION_REGISTRY for npm publish, equal to version.registry of lerna.json (if exists)
 # --------------
 
-npm whoami
-
 appDir=`pwd`
 scriptDir="$appDir/.scripts"
 
@@ -66,12 +64,13 @@ if [ "$?" -ne 0 ]; then
 fi
 
 
-# echo ">>> lerna initializing..."
-# npm run bootstrap
-# npm run build
+echo -e ">>> lerna initializing..."
 
-echo ">>> lerna publishing..."
-"$scriptDir/pre-publish-valiate.sh"
+npm run bootstrap
+npm run build
+
+echo -e ">>> lerna publishing..."
+sh "$scriptDir/pre-publish-valiate.sh"
 
 echo $*
 if [ -z "$NPM_VERSION_REGISTRY" ]; then

@@ -18,7 +18,7 @@ else
 fi
 
 branch=$( git branch | grep \* | cut -d ' ' -f2- )
-if [[ $branch != "master" ]]; then
+if [[ $branch != "main" ]]; then
   exit 0
 fi
 

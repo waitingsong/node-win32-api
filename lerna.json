@@ -1,19 +1,14 @@
 {
-  "version": "10.0.0",
+  "version": "0.0.0",
   "packages": [
     "packages/*"
   ],
-  "ignore": [],
+  "ignore": "",
   "command": {
     "publish": {
       "ignoreChanges": [
         "*.md",
-        ".githooks",
-        ".scripts",
-        ".vscode",
-        "package-lock.json",
-        "packages/demo",
-        "packages/mw-demo"
+        "package-lock.json"
       ]
     },
     "bootstrap": {
@@ -23,14 +18,13 @@
         "cross-env",
         "egg"
       ],
-      "npmClientArgs": []
+      "npmClientArgs": [
+        "--legacy-peer-deps"
+      ]
     },
     "version": {
       "conventionalCommits": true,
-      "allowBranch": [
-        "main",
-        "release"
-      ],
+      "allowBranch": ["main", "release"],
       "registry": "https://registry.npmjs.org/"
     }
   },

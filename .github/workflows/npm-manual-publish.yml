@@ -13,128 +13,111 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    container: node:16-bullseye
+    container: node:14-bullseye
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
 
     strategy:
       matrix:
-        node: [18]
+        node: [14]
         os: [ubuntu-latest]
 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          # pulls all commits (needed for lerna / semantic release to correctly version)
-          fetch-depth: "0"
-      # Caution: disable fix below at FIRST publish, then enable
-      - name: Fix for semantic release
-        # pulls all tags (needed for lerna / semantic release to correctly version)
-        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-      - name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Cache
-        uses: actions/cache@v2
-        id: cache-lerna
-        env:
-          cache-name: cache-lerna
-        with:
-          path: |
-            node_modules
-            package-lock.json
-            packages/*/.eslintcache
-            packages/*/.vscode
-            packages/*/dist
-            packages/*/node_modules
-            packages/*/package-lock.json
-          key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-
-
       - name: Prepare
         run: |
           uname -a
           export DEBIAN_FRONTEND=noninteractive
           apt-get update -qq --yes > /dev/null
           apt-get upgrade -qq --yes > /dev/null
-          apt-get install -qq --yes --no-install-recommends bash dnsutils git jq locales net-tools wget > /dev/null
-          apt-get install -qq --yes postgresql-client > /dev/null
-          uname -a
+          apt-get install -qq --yes --no-install-recommends bash  dnsutils git jq net-tools postgresql-client wget > /dev/null
           npm -v && node -v
           git --version
-          openssl version
-          cat /etc/*release
-          sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen
-          locale-gen
-          locale -a
-
+          uname -a
+      - uses: actions/checkout@v2
+        with:
+          # pulls all commits (needed for lerna / semantic release to correctly version)
+          fetch-depth: "0"
+      - name: Fix for semantic release
+        # pulls all tags (needed for lerna / semantic release to correctly version)
+        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+          registry-url: 'https://registry.npmjs.org'
       - name: Verify
         run: |
           echo $GITHUB_REF
           # github project/settings/Secrets/New repository secret: NPM_TOKEN
           npm whoami
-          psql -V
-          dig postgres
-          echo "\l" | psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d postgres
-          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "\d+"
-          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "SHOW TIMEZONE;"
+          #psql -V
+          #dig postgres
+          #echo "\l" | psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d postgres
+          #psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -1 -bq -f ./packages/demo-service/src/database/init.sql
+          #psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "\d+"
+          #psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "SELECT * FROM tb_user"
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          POSTGRES_HOST: postgres
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-          POSTGRES_DB: db_ci_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          PGPASSWORD: postgres
+          #POSTGRES_HOST: postgres
+          #POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          #POSTGRES_DB: db_ci_test
+          #POSTGRES_USER: postgres
+          #POSTGRES_PASSWORD: postgres
+          #PGPASSWORD: postgres
 
-      - name: Build
+      - name: npm build
         run: |
-          whoami
           export cwd=`pwd`
-          . .scripts/ci/ci-env.sh
-          .scripts/ci/ci-prepare.sh
-          .github/workflows/fix.sh
-          npm i -g c8 lerna rollup zx
-          .github/workflows/fix.sh
+          openssl version
+          node -v
+          npm i -g c8 lerna rollup
           npm run bootstrap
-          .github/workflows/fix.sh
           npm run build --if-present
         env:
           CI: true
-
-
-      - name: NPM Publish
+      - name: npm ci
         run: |
-          npm whoami
-          export cwd=`pwd`
-          . .scripts/ci/ci-env.sh
-          # git restore .
-          git reset --hard
+          # lint must after build
+          npm run lint:nofix
+          npm run ci
+        env:
+          CI: true
+          # use `localhost` if running the job on the VM
+          # use `postgres` if running the job on a container
+          #POSTGRES_HOST: postgres
+          #POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          #POSTGRES_DB: db_ci_test
+          #POSTGRES_USER: postgres
+          #POSTGRES_PASSWORD: postgres
+          #PGPASSWORD: postgres
+          # redis
+          #REDIS_HOST: redis
+          #REDIS_PORT: 6379
+
+      - name: npm publish
+        run: |
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
           # npm run pub major
-          .scripts/publish.sh --yes --conventional-commits --create-release github ${{ github.event.inputs.semver }}
+          bash .scripts/publish.sh --yes --conventional-commits --create-release github ${{ github.event.inputs.semver }}
           git push -v origin --follow-tags
         env:
-          CI: true
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
 
-    services:
-      postgres:
-        image: postgres:alpine
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_DB: db_ci_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        # needed because the postgres container does not provide a healthcheck
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    #services:
+    #  postgres:
+    #    image: postgres:alpine
+    #    ports:
+    #      - 5432:5432
+    #    env:
+    #      POSTGRES_DB: db_ci_test
+    #      POSTGRES_USER: postgres
+    #      POSTGRES_PASSWORD: postgres
+    #    # needed because the postgres container does not provide a healthcheck
+    #    options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 

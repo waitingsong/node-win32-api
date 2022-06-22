@@ -1,11 +1,14 @@
 
 bail: true
 full-trace: true
+enable-source-maps: true
 require:
   - intelli-espower-loader
   - espower-typescript/guess
-spec: 
+  - test/root.hooks.ts
+spec:
   - test/**/*.test.ts
-timeout: 120000 
+timeout: 60000
 ui: bdd
+parallel: true
 

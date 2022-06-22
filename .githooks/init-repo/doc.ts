@@ -1,6 +1,7 @@
 import { readdirSync } from 'fs'
 
 import { run, RxSpawnOpts } from 'rxrunscript'
+import { Observable, of, firstValueFrom } from 'rxjs'
 import { tap, mergeMap, mapTo, defaultIfEmpty } from 'rxjs/operators'
 
 import {
@@ -10,7 +11,6 @@ import {
   fileNameToCopyList,
 } from './doc-list'
 import { join, statAsync, isPathAccessible, copyFileAsync } from './init-utils'
-import { Observable, of } from 'rxjs'
 
 
 const baseDir = join(__dirname, '..')
@@ -28,8 +28,8 @@ if (!projectName) {
 
 copyRootFilesToMainPkg(projectName)
   .then(async (paths) => {
-    const cpFiles =  await commitFiles(paths).toPromise()
-    if (cpFiles.length) {
+    const cpFiles = await firstValueFrom(commitFiles(paths))
+    if (cpFiles && cpFiles.length) {
       console.log('Sync Files: ' + cpFiles.join(' '))
     }
 
@@ -58,13 +58,12 @@ copyRootFilesToMainPkg(projectName)
         cwd: baseDir,
       }
 
-      await run(sh, srcArr, ps)
+      await firstValueFrom(run(sh, srcArr, ps)
         .pipe(
           tap(buf => {
             console.log(buf.toString())
           }),
-        )
-        .toPromise()
+        ))
     }
     else {
       process.exit(0)
@@ -122,7 +121,7 @@ async function genFromCommon(pkgNameArr: string[], files: string[]): Promise<str
           ret.push(relativePath)
         }
       }
-      catch (ex) {
+      catch (ex: any) {
         console.log(ex.message)
       }
     }
@@ -148,7 +147,7 @@ async function genFromDetail(files: string[]): Promise<string[]> {
         ret.push(file)
       }
     }
-    catch (ex) {
+    catch (ex: any) {
       console.log(ex.message)
     }
   }
@@ -172,7 +171,7 @@ async function copyRootFilesToMainPkg(dstName: string): Promise<string[]> {
       await copyFileAsync(srcPath, dstPath)
       paths.push(dstPath)
     }
-    catch (ex) {
+    catch (ex: any) {
       console.log(ex.message)
     }
   }
@@ -220,6 +219,6 @@ function commitFiles(paths: string[]): Observable<string[]> {
       }),
       defaultIfEmpty([] as string[])
     )
-  
+
     return files$
 }

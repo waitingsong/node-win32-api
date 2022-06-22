@@ -1,0 +1,88 @@
+{
+  "Insert PlantUML block": {
+    "scope": "markdown",
+    "prefix": "md.insert-uml",
+    "body": [
+      "",
+      "```plantuml",
+      "@startuml",
+      "title _$1",
+      "",
+      "@enduml",
+      "```",
+      "",
+    ],
+    "description": "Markdown 文档插入 PlantUML 区块"
+  },
+
+  "Insert block": {
+    "scope": "markdown",
+    "prefix": "md.insert-block",
+    "body": [
+      "```",
+      "$1",
+      "```",
+    ],
+  },
+
+  "Insert TypeScript block": {
+    "scope": "markdown",
+    "prefix": "md.insert-ts",
+    "body": [
+      "```ts",
+      "$1",
+      "```",
+    ],
+  },
+
+  "Insert Shell block": {
+    "scope": "markdown",
+    "prefix": "md.insert-sh",
+    "body": [
+      "```sh",
+      "$1",
+      "```",
+    ],
+  },
+
+  "Insert Table with 2 Cols block": {
+    "scope": "markdown",
+    "prefix": "md.insert-table2",
+    "body": [
+      "",
+      "| $1 | $2  |",
+      "| --- | --- |",
+      "| $3 | $4 |",
+      "$5",
+      "",
+    ],
+  },
+
+  "Insert Table with 3 Cols block": {
+    "scope": "markdown",
+    "prefix": "md.insert-table3",
+    "body": [
+      "",
+      "| $1 | $2 | $3 |",
+      "| --- | --- | --- |",
+      "| $4 | $5 | $6 |",
+      "$7",
+      "",
+    ],
+  },
+
+  "Insert Table with 4 Cols block": {
+    "scope": "markdown",
+    "prefix": "md.insert-table4",
+    "body": [
+      "",
+      "| $1 | $2 | $3 | $4 |",
+      "| --- | --- | --- | --- |",
+      "| $5 | $6 | $7 | $8 |",
+      "$9",
+      "",
+    ],
+  },
+
+}
+

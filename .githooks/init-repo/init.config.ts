@@ -13,8 +13,9 @@ export const folderArr = [
 ]
 
 export const globalConfigFileArr = [
-  '.vscode/tasks.json',
-  '.vscode/launch.json',
-  '.vscode/settings.json',
+  '.vscode/tasks.json.example',
+  '.vscode/launch.json.example',
+  '.vscode/settings.json.example',
+  '.vscode/ci.code-snippets.example',
 ]
 

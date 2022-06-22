@@ -91,6 +91,7 @@ if (pkg.main) {
           globals,
           name,
           sourcemap: true,
+          sourcemapExcludeSources: true,
         },
       ],
     },
@@ -105,6 +106,7 @@ if (pkg.es2015) {
       format: 'es',
       file: pkg.es2015,
       sourcemap: true,
+      sourcemapExcludeSources: true,
     },
 
   )
@@ -122,6 +124,7 @@ if (production && pkg.es2015) {
         file: parseName(pkg.es2015) + '.min.js',
         format: 'es',
         sourcemap: true,
+        sourcemapExcludeSources: true,
       },
     },
   )
@@ -147,7 +150,8 @@ if (pkg.browser) {
         format: 'umd',
         globals,
         name,
-        sourcemap: production ? true : false,
+        sourcemap: !! production,
+        sourcemapExcludeSources: true,
       },
     },
   )
