@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import ref from 'ref-napi'
 import _UnionDi from 'ref-union-di'
 
