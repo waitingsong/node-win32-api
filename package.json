@@ -16,14 +16,14 @@
     "@rollup/plugin-commonjs": "22",
     "@rollup/plugin-node-resolve": "13",
     "@types/mocha": "9",
-    "@types/node": "17",
+    "@types/node": "18",
     "@types/rewire": "2",
     "@types/rimraf": "3",
     "@types/yargs": "17",
-    "@waiting/eslint-config": "^8.1.0",
+    "@waiting/eslint-config": "^8.2.0",
     "coveralls": "3",
     "debug": "^4.3.0",
-    "eslint": "8",
+    "eslint": "^8.18.0",
     "kmore-cli": "^27.0.0",
     "lerna-relinker": "^1.5.0",
     "madge": "^5.0.1",
@@ -35,10 +35,10 @@
     "rxjs": "^7.5.0",
     "rxrunscript": "11",
     "ts-node": "^10.8.0",
-    "tsconfig-paths": "3",
-    "typescript": "^4.7.2",
+    "tsconfig-paths": "4",
+    "typescript": "^4.7.4",
     "yargs": "17",
-    "zx": "6"
+    "zx": "7"
   },
   "engines": {
     "node": ">=16.13.0"
