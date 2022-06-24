@@ -1,4 +1,5 @@
 #!/bin/bash
+set +e
 
 if [ -n "$TIMEZ" ]; then
   ln -sf /usr/share/zoneinfo/${TIMEZ} /etc/localtime
