@@ -145,8 +145,10 @@ export function changeTitleAsync(handle: M.HANDLE, title: string): Promise<strin
 
 
 export function getTitle(handle: M.HANDLE): string {
-  const buf = Buffer.alloc(256)
-  user32.GetWindowTextW(handle, buf, buf.byteLength)
+
+  const len = 127
+  const buf = Buffer.alloc(len * 2)
+  user32.GetWindowTextW(handle, buf, len)
   const ret = buf.toString('ucs2').replace(/\0+$/, '')
 
   return ret

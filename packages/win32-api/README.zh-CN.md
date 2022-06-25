@@ -183,14 +183,15 @@ u32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
     || typeof hWnd === 'string' && hWnd.length > 0
   ) {
     const title = 'Node-Calculator'
+    const len = title.length + 1
     // Change title of the Calculator
     u32.SetWindowTextW.async(hWnd, Buffer.from(title + '\0', 'ucs2'), err2 => {
       if (err2) {
         throw err2
       }
 
-      const buf = Buffer.alloc(title.length * 2)
-      u32.GetWindowTextW.async(hWnd, buf, buf.byteLength, err3 => {
+      const buf = Buffer.alloc(len * 2)
+      u32.GetWindowTextW.async(hWnd, buf, len, err3 => {
         if (err3) {
           throw err3
         }

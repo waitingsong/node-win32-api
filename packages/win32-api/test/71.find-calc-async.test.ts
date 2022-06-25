@@ -127,8 +127,9 @@ function findNSetWinTitleAsync(): Promise<void> {
             return reject('SetWindowTextW() failed')
           }
 
-          const buf = Buffer.alloc(title.length * 2)
-          user32.GetWindowTextW.async(hWnd, buf, buf.byteLength, (err3) => {
+          const len = title.length
+          const buf = Buffer.alloc(len * 2)
+          user32.GetWindowTextW.async(hWnd, buf, len + 1, (err3) => {
             if (err3) {
               return reject(err3.message)
             }
@@ -169,8 +170,9 @@ function findNSetWinTitleAsyncPartial(): Promise<void> {
             return reject(err2.message)
           }
 
-          const buf = Buffer.alloc(title.length * 2)
-          u32.GetWindowTextW.async(hWnd, buf, buf.byteLength, (err3) => {
+          const len = title.length
+          const buf = Buffer.alloc(len * 2)
+          u32.GetWindowTextW.async(hWnd, buf, len + 1, (err3) => {
             if (err3) {
               return reject(err3.message)
             }

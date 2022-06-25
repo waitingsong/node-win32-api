@@ -39,10 +39,12 @@ describe(fileShortPath(import.meta.url), () => {
           // Change title of the Calculator
           user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
 
-          const buf = Buffer.alloc(title.length * 2)
+          const len = title.length + 1
+          assert(len > 0)
+          const buf = Buffer.alloc(len * 2)
           let str = ''
 
-          user32.GetWindowTextW(hWnd, buf, buf.byteLength)
+          user32.GetWindowTextW(hWnd, buf, len)
           str = buf.toString('ucs2').replace(/\0+$/, '')
           assert(str === title, `title should be changed to ${title}, bug got ${str}`)
 
@@ -101,8 +103,9 @@ function createEnumWinProc(): M.WNDENUMPROC {
         return true
       }
 
-      const buf = Buffer.alloc(254)
-      const len = user32.GetWindowTextW(hWnd, buf, buf.byteLength)
+      const maxLen = 127
+      const buf = Buffer.alloc(maxLen * 2)
+      const len = user32.GetWindowTextW(hWnd, buf, maxLen)
       const name = buf.toString('ucs2').replace(/\0+$/, '')
       name && console.log(name, len)
 

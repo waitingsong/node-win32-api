@@ -44,6 +44,7 @@ describe(fileShortPath(import.meta.url), () => {
         || typeof hWnd === 'string' && hWnd.length > 0
       ) {
         const title = 'Node-Calculator'
+        const len = title.length + 1
         // Change title of the Calculator
         const res = user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
 
@@ -65,9 +66,9 @@ describe(fileShortPath(import.meta.url), () => {
           assert(false, 'user32.SetWindowTextW() failed')
         }
         else {
-          const buf = Buffer.alloc(title.length * 2)
+          const buf = Buffer.alloc(len * 2)
 
-          user32.GetWindowTextW(hWnd, buf, buf.byteLength)
+          user32.GetWindowTextW(hWnd, buf, len)
           const str = buf.toString('ucs2').replace(/\0+$/, '')
           assert(str === title, `title should be changed to "${title}", bug got "${str}"`)
         }

@@ -105,6 +105,9 @@ export interface Win32Fns extends FM.DllFuncsModel {
    */
   GetWindowRect: (hWnd: M.HWND, LPRECT: M.RECT) => M.BOOL
 
+  /**
+   * @docs https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowtextw
+   */
   GetWindowTextW: (hWnd: M.HWND, lpString: M.LPCTSTR, nMaxCount: M.INT) => M.INT
 
   GetWindowThreadProcessId: (hWnd: M.HWND, lpdwProcessId: M.LPDWORD | null) => M.DWORD
