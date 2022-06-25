@@ -30,8 +30,8 @@ describe(fileShortPath(import.meta.url), () => {
         right: rect.right,
         bottom: rect.bottom,
       })
-      assert(rect.top > 0)
-      assert(rect.left > 0)
+      assert(rect.top >= 0)
+      assert(rect.left >= 0)
       assert(rect.right > 0)
       assert(rect.bottom > 0)
       destroyWin(hWnd)
