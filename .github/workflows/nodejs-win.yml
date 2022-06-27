@@ -1,19 +1,18 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: ci
+name: ci-win
 
 on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    container: node:16-bullseye
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
 
     strategy:
       matrix:
-        node: [16]
-        os: [ubuntu-latest]
+        node: [16, 18]
+        os: [windows-2019, windows-latest]
 
     steps:
       - uses: actions/checkout@v3
@@ -24,9 +23,9 @@ jobs:
 
       - name: Cache
         uses: actions/cache@v3
-        id: cache-lerna
+        id: cache-lerna-win
         env:
-          cache-name: cache-lerna
+          cache-name: cache-lerna-win
         with:
           path: |
             node_modules
@@ -34,54 +33,32 @@ jobs:
             packages/*/.eslintcache
             packages/*/.vscode
             packages/*/dist
-            packages/*/node_modules
             packages/*/package-lock.json
           key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-
 
       - name: Prepare
+        shell: bash
         run: |
-          uname -a
-          export DEBIAN_FRONTEND=noninteractive
-          apt-get update -qq --yes > /dev/null
-          apt-get upgrade -qq --yes > /dev/null
-          apt-get install -qq --yes --no-install-recommends bash dnsutils git jq locales net-tools wget > /dev/null
-          apt-get install -qq --yes postgresql-client > /dev/null
           uname -a
           npm -v && node -v
           git --version
           openssl version
-          cat /etc/*release
-          sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen
-          locale-gen
-          locale -a
-
-      - name: Verify
-        run: |
-          psql -V
-          dig postgres
-          echo "\l" | psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d postgres
-          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "\d+"
-          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "SHOW TIMEZONE;"
-        env:
-          CI: true
-          POSTGRES_HOST: postgres
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-          POSTGRES_DB: db_ci_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          PGPASSWORD: postgres
+          ./.githooks/init-repo.sh
+          git config --local core.autocrlf false
+          git config --local core.eol lf
 
       - name: Inatall Dependencies
+        shell: bash
         run: |
-          export cwd=`pwd`
           .github/workflows/fix.sh
-          npm i -g c8 lerna rollup zx
+          npm i -g c8 lerna rollup zx node-gyp
         env:
           CI: true
 
       - name: Build
+        shell: bash
         run: |
           whoami
           export cwd=`pwd`
@@ -95,6 +72,7 @@ jobs:
           CI: true
 
       - name: Lint
+        shell: bash
         run: |
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
@@ -104,22 +82,8 @@ jobs:
         env:
           CI: true
 
-      # - name: Init Database
-      #   run: |
-      #     export cwd=`pwd`
-      #     . .scripts/ci/ci-env.sh
-      #     .scripts/ci/ci-prepare.sh
-      #     .scripts/ci/ci-init-db.sh
-      #   env:
-      #     CI: true
-      #     POSTGRES_HOST: postgres
-      #     POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-      #     POSTGRES_DB: db_ci_test
-      #     POSTGRES_USER: postgres
-      #     POSTGRES_PASSWORD: postgres
-      #     PGPASSWORD: postgres
-
       - name: Testing
+        shell: bash
         run: |
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
@@ -138,19 +102,8 @@ jobs:
           # redis
           REDIS_HOST: redis
           REDIS_PORT: 6379
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
 
-
-    services:
-      postgres:
-        image: postgres:alpine
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_DB: db_ci_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        # needed because the postgres container does not provide a healthcheck
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
