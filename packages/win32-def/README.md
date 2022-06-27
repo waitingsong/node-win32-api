@@ -7,8 +7,8 @@ Definitions of Windows Date Types for [node-ffi], [node-ffi-napi]
 ![](https://img.shields.io/badge/lang-TypeScript-blue.svg)
 ![Available platform](https://img.shields.io/badge/platform-win32-blue.svg)
 [![ci](https://github.com/waitingsong/node-win32-api/workflows/ci-win/badge.svg)](https://github.com/waitingsong/node-win32-api/actions?query=workflow%3A%22ci-win%22)
-[![Build status](https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/master?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/master)
-[![codecov](https://codecov.io/gh/waitingsong/node-win32-api/branch/master/graph/badge.svg?token=WXbZvnAaYO)](https://codecov.io/gh/waitingsong/node-win32-api)
+[![Build status](https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/main?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/main)
+[![codecov](https://codecov.io/gh/waitingsong/node-win32-api/branch/main/graph/badge.svg?token=WXbZvnAaYO)](https://codecov.io/gh/waitingsong/node-win32-api)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
@@ -110,17 +110,17 @@ user32.GetAncestor.async(handle, uint, (err, hWnd) => {
 [node-ffi-napi]: https://github.com/node-ffi-napi/node-ffi-napi
 [node-ffi]: https://github.com/node-ffi/node-ffi
 
-[`win32-api`]: https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-api
+[`win32-api`]: https://github.com/waitingsong/node-win32-api/tree/main/packages/win32-api
 [main-svg]: https://img.shields.io/npm/v/win32-api.svg?maxAge=86400
-[main-ch]: https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-api/CHANGELOG.md
+[main-ch]: https://github.com/waitingsong/node-win32-api/tree/main/packages/win32-api/CHANGELOG.md
 [main-d-svg]: https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-api
 [main-d-link]: https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-api
 [main-dd-svg]: https://david-dm.org/waitingsong/node-win32-api/dev-status.svg?path=packages/win32-api
 [main-dd-link]: https://david-dm.org/waitingsong/node-win32-api?path=packages/win32-api#info=devDependencies
 
-[`win32-def`]: https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-def
+[`win32-def`]: https://github.com/waitingsong/node-win32-api/tree/main/packages/win32-def
 [def-svg]: https://img.shields.io/npm/v/win32-def.svg?maxAge=86400
-[def-ch]: https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-def/CHANGELOG.md
+[def-ch]: https://github.com/waitingsong/node-win32-api/tree/main/packages/win32-def/CHANGELOG.md
 [def-d-svg]: https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-def
 [def-d-link]: https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-def
 [def-dd-svg]: https://david-dm.org/waitingsong/node-win32-api/dev-status.svg?path=packages/win32-def

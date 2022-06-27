@@ -7,8 +7,8 @@ Windows win32 api 接口定义
 ![](https://img.shields.io/badge/lang-TypeScript-blue.svg)
 ![Available platform](https://img.shields.io/badge/platform-win32-blue.svg)
 [![ci](https://github.com/waitingsong/node-win32-api/workflows/ci-win/badge.svg)](https://github.com/waitingsong/node-win32-api/actions?query=workflow%3A%22ci-win%22)
-[![Build status](https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/master?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/master)
-[![codecov](https://codecov.io/gh/waitingsong/node-win32-api/branch/master/graph/badge.svg?token=WXbZvnAaYO)](https://codecov.io/gh/waitingsong/node-win32-api)
+[![Build status](https://ci.appveyor.com/api/projects/status/nrivtykm5uf84fbl/branch/main?svg=true)](https://ci.appveyor.com/project/waitingsong/node-win32-api/branch/main)
+[![codecov](https://codecov.io/gh/waitingsong/node-win32-api/branch/main/graph/badge.svg?token=WXbZvnAaYO)](https://codecov.io/gh/waitingsong/node-win32-api)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
@@ -143,7 +143,7 @@ point.y = 200
 console.log(point)
 ```
 
-### [StructExt](https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/src/data-struct-ext/)
+### [StructExt](https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-api/src/data-struct-ext/)
 ```ts
 // struct usage with ref-struct
 import * as Struct from 'ref-struct-napi'
@@ -158,8 +158,8 @@ const dd: M.DISPLAY_DEVICEW_Struct = new Struct(DStructExt.DISPLAY_DEVICEW)()
 dd.cb = dd.ref().byteLength
 console.log(dd)
 // Detail in:
-// https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/src/data-struct-ext/wingdi.h.ts
-// https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/test/user32/60_EnumDisplayDevicesW.test.ts
+// https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-api/src/data-struct-ext/wingdi.h.ts
+// https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-api/test/user32/60_EnumDisplayDevicesW.test.ts
 ```
 
 ### Async Find window and set window title
@@ -211,9 +211,9 @@ u32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
 
 
 ## Demo
-- [create_window](https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/demo/create_window.ts)
-- [Demos](https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/demo)
-- [Tests](https://github.com/waitingsong/node-win32-api/blob/master/packages/win32-api/test)
+- [create_window](https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-api/demo/create_window.ts)
+- [Demos](https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-api/demo)
+- [Tests](https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-api/test)
 
 ## 依赖安装问题
 Compile successfully with
@@ -248,17 +248,17 @@ Check out [node-gyp] and [node-gyp-on-windows], [windows-build-tools]
 [node-ffi-napi]: https://github.com/node-ffi-napi/node-ffi-napi
 [node-ffi]: https://github.com/node-ffi/node-ffi
 
-[`win32-api`]: https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-api
+[`win32-api`]: https://github.com/waitingsong/node-win32-api/tree/main/packages/win32-api
 [main-svg]: https://img.shields.io/npm/v/win32-api.svg?maxAge=86400
-[main-ch]: https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-api/CHANGELOG.md
+[main-ch]: https://github.com/waitingsong/node-win32-api/tree/main/packages/win32-api/CHANGELOG.md
 [main-d-svg]: https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-api
 [main-d-link]: https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-api
 [main-dd-svg]: https://david-dm.org/waitingsong/node-win32-api/dev-status.svg?path=packages/win32-api
 [main-dd-link]: https://david-dm.org/waitingsong/node-win32-api?path=packages/win32-api#info=devDependencies
 
-[`win32-def`]: https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-def
+[`win32-def`]: https://github.com/waitingsong/node-win32-api/tree/main/packages/win32-def
 [def-svg]: https://img.shields.io/npm/v/win32-def.svg?maxAge=86400
-[def-ch]: https://github.com/waitingsong/node-win32-api/tree/master/packages/win32-def/CHANGELOG.md
+[def-ch]: https://github.com/waitingsong/node-win32-api/tree/main/packages/win32-def/CHANGELOG.md
 [def-d-svg]: https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-def
 [def-d-link]: https://david-dm.org/waitingsong/node-win32-api.svg?path=packages/win32-def
 [def-dd-svg]: https://david-dm.org/waitingsong/node-win32-api/dev-status.svg?path=packages/win32-def
