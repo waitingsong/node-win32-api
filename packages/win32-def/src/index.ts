@@ -3,7 +3,7 @@
  *
  * @author waiting
  * @license MIT
- * @link https://github.com/waitingsong/node-win32-def
+ * @link https://github.com/waitingsong/node-win32-api
  */
 
 import * as Config from './lib/config.js'
