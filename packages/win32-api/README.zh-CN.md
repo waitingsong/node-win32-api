@@ -219,10 +219,10 @@ u32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
 Compile successfully with
   - Node.js v18, Python v3.9 and VS2019, VS2022
   - Node.js v16, Python v3.9 and VS2019, VS2022
-  - Node.js v14, Python v3.9 and VS2019
+  - Node.js v14, Python v3.7 and VS2019
 
 If installation of node-gyp fails:
-Check out [node-gyp] and [windows-build-tools]
+Check out [node-gyp] and [node-gyp-on-windows], [windows-build-tools]
 
 ## 相关文档
 - [Windows Api documentation](https://msdn.microsoft.com/en-us/library/windows/desktop/ff468919%28v=vs.85%29.aspx)
@@ -244,6 +244,7 @@ Check out [node-gyp] and [windows-build-tools]
 
 [node-gyp]: https://github.com/nodejs/node-gyp
 [windows-build-tools]: https://github.com/felixrieseberg/windows-build-tools
+[node-gyp-on-windows]: https://github.com/nodejs/node-gyp#on-windows
 [node-ffi-napi]: https://github.com/node-ffi-napi/node-ffi-napi
 [node-ffi]: https://github.com/node-ffi/node-ffi
 

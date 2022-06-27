@@ -227,7 +227,7 @@ Compile successfully with
   - Node.js v14, Python v3.7 and VS2019
 
 If installation of node-gyp fails:
-Check out [node-gyp] and [windows-build-tools]
+Check out [node-gyp] and [node-gyp-on-windows], [windows-build-tools]
 
 
 ## Relevant
@@ -250,6 +250,7 @@ Check out [node-gyp] and [windows-build-tools]
 
 [node-gyp]: https://github.com/nodejs/node-gyp
 [windows-build-tools]: https://github.com/felixrieseberg/windows-build-tools
+[node-gyp-on-windows]: https://github.com/nodejs/node-gyp#on-windows
 [node-ffi-napi]: https://github.com/node-ffi-napi/node-ffi-napi
 [node-ffi]: https://github.com/node-ffi/node-ffi
 
