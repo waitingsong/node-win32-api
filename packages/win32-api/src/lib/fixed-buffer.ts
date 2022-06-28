@@ -1,3 +1,5 @@
+import assert from 'assert'
+
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Type, types } from 'ref-napi'
 
@@ -83,6 +85,7 @@ function setFn(
   let target: Buffer
 
   if (typeof value === 'string') {
+    assert(this.encoding, 'BufferType.encoding is required when setting a string')
     target = Buffer.from(value, this.encoding)
   }
   else if (Array.isArray(value)) {
