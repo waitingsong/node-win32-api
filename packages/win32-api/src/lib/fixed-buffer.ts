@@ -4,7 +4,7 @@ import assert from 'assert'
 import { Type, types } from 'ref-napi'
 
 
-export interface BufferType extends Type {
+export interface StringBuffer extends Type<string> {
   size: number
   encoding: BufferEncoding | void
 }
@@ -18,7 +18,7 @@ export interface BufferType extends Type {
  * @see https://github.com/TooTallNate/ref-struct/issues/28#issuecomment-265626611
  * @ref https://gist.github.com/TooTallNate/80ac2d94b950216a2705
  */
-export function BufferTypeFactory(length: number, encoding?: BufferEncoding): BufferType {
+export function BufferTypeFactory(length: number, encoding?: BufferEncoding): StringBuffer {
   assert(length >= 0)
 
   const inst = Object.create(types.byte, {
@@ -56,14 +56,14 @@ export function BufferTypeFactory(length: number, encoding?: BufferEncoding): Bu
       writable: true,
       value: setFn,
     },
-  }) as BufferType
+  }) as StringBuffer
 
   return inst
 }
 
 
 function getFn(
-  this: BufferType,
+  this: StringBuffer,
   buffer: Buffer,
   offset: number,
 ): Buffer | string {
@@ -77,7 +77,7 @@ function getFn(
 }
 
 function setFn(
-  this: BufferType,
+  this: StringBuffer,
   buffer: Buffer,
   offset: number,
   value: string | number[] | Buffer,
@@ -98,6 +98,7 @@ function setFn(
   else {
     throw new TypeError('Buffer instance expected')
   }
+
 
   if (buf.length > this.size) {
     throw new Error(
