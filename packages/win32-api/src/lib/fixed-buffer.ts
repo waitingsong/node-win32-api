@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import ref from 'ref-napi'
+import { Type, types } from 'ref-napi'
 
 
-export interface BufferType extends ref.Type {
+export interface BufferType extends Type {
   size: number
   encoding: BufferEncoding
 }
@@ -17,7 +17,7 @@ export interface BufferType extends ref.Type {
  * @ref https://gist.github.com/TooTallNate/80ac2d94b950216a2705
  */
 export function BufferTypeFactory(length: number, encoding?: BufferEncoding): BufferType {
-  const inst = Object.create(ref.types.byte, {
+  const inst = Object.create(types.byte, {
     constructor: {
       configurable: true,
       enumerable: false,
@@ -65,7 +65,8 @@ function getFn(
   offset: number,
 ): Buffer | string {
 
-  const buf = buffer.slice(offset, offset + this.size)
+  // const buf = buffer.slice(offset, offset + this.size)
+  const buf = buffer.subarray(offset, offset + this.size)
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (this.encoding) {
     const str = buf.toString(this.encoding)
