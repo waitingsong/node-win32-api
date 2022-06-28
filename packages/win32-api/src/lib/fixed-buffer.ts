@@ -19,6 +19,8 @@ export interface BufferType extends Type {
  * @ref https://gist.github.com/TooTallNate/80ac2d94b950216a2705
  */
 export function BufferTypeFactory(length: number, encoding?: BufferEncoding): BufferType {
+  assert(length >= 0)
+
   const inst = Object.create(types.byte, {
     constructor: {
       configurable: true,
@@ -26,36 +28,35 @@ export function BufferTypeFactory(length: number, encoding?: BufferEncoding): Bu
       writable: true,
       value: BufferTypeFactory,
     },
+
+    size: {
+      configurable: true,
+      enumerable: true,
+      writable: false,
+      value: length,
+    },
+
+    encoding: {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: encoding,
+    },
+
+    get: {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: getFn,
+    },
+
+    set: {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: setFn,
+    },
   }) as BufferType
-
-  Object.defineProperty(inst, 'size', {
-    configurable: true,
-    enumerable: true,
-    writable: false,
-    value: length,
-  })
-
-  Object.defineProperty(inst, 'encoding', {
-    configurable: true,
-    enumerable: true,
-    writable: true,
-    value: encoding,
-  })
-
-
-  Object.defineProperty(inst, 'get', {
-    configurable: true,
-    enumerable: true,
-    writable: true,
-    value: getFn,
-  })
-
-  Object.defineProperty(inst, 'set', {
-    configurable: true,
-    enumerable: true,
-    writable: true,
-    value: setFn,
-  })
 
   return inst
 }
