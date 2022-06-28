@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](/compare/v11.0.3...v11.1.0) (2022-06-28)
+
+
+### Features
+
+* **win32-api:** validate BufferType.encoding for setter 23540c4
+
+
+
+
+
 ## [11.0.3](/compare/v11.0.2...v11.0.3) (2022-06-28)
 
 **Note:** Version bump only for package win32-api
