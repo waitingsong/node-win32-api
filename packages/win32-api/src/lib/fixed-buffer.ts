@@ -4,6 +4,18 @@ import assert from 'assert'
 import { Type, types } from 'ref-napi'
 
 
+
+/**
+ * Fixed length "Buffer" type, for use in Struct type definitions.
+ * Like `wchar Name[32]` in C,
+ * `getter` and `setter` functions are provided to access the buffer contents.
+ * The starting and tailing terminal-null of returned string via `getter` is removed.
+ */
+export function wcharBuffer(length: number): StringBuffer {
+  assert(length >= 0)
+  return BufferTypeFactory(length * 2, 'ucs2')
+}
+
 export interface StringBuffer extends Type<string> {
   size: number
   encoding: BufferEncoding | void
@@ -71,7 +83,7 @@ function getFn(
   const buf = buffer.subarray(offset, offset + this.size)
   if (this.encoding) {
     const str = buf.toString(this.encoding)
-    return str
+    return str.replace(/^\0+/u, '').replace(/\0+$/u, '')
   }
   return buf
 }
