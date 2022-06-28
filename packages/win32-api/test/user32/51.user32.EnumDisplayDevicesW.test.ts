@@ -13,18 +13,23 @@ import { DStructExt } from '../../src/index.js'
 import { user32, Struct } from '../helper.js'
 
 
+
 describe(fileShortPath(import.meta.url), () => {
   it('EnumDisplayDevicesW()', () => {
     const dd: M.DISPLAY_DEVICEW_Struct = new Struct(DStructExt.DISPLAY_DEVICEW)() as M.DISPLAY_DEVICEW_Struct
     dd.cb = dd.ref().byteLength
 
     const ret = user32.EnumDisplayDevicesW(ref.NULL, 0, dd.ref(), 0)
+    assert(ret)
+    const { DeviceName, DeviceString, DeviceID, DeviceKey } = dd
     console.log({
-      DeviceName: dd.DeviceName,
-      DeviceString: dd.DeviceString,
+      DeviceName,
+      DeviceString,
+      DeviceID,
+      DeviceKey,
     })
-    assert(dd.DeviceName.replace(/\0$/ug, '').includes('\\\\.\\DISPLAY1'))
-    assert(dd.DeviceString.replace(/\0/ug, '').length > 0)
+    assert(DeviceName.replace(/\0+$/u, '').includes('\\\\.\\DISPLAY1'))
+    assert(DeviceString.replace(/\0/ug, '').length > 0)
   })
 
 })
