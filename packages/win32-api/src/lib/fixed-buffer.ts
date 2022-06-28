@@ -82,28 +82,28 @@ function setFn(
   value: string | number[] | Buffer,
 ): void {
 
-  let target: Buffer
+  let buf: Buffer
 
   if (typeof value === 'string') {
     assert(this.encoding, 'BufferType.encoding is required when setting a string')
-    target = Buffer.from(value, this.encoding)
+    buf = Buffer.from(value, this.encoding)
   }
   else if (Array.isArray(value)) {
-    target = Buffer.from(value)
+    buf = Buffer.from(value)
   }
   else if (Buffer.isBuffer(value)) {
-    target = value
+    buf = value
   }
   else {
     throw new TypeError('Buffer instance expected')
   }
 
-  if (target.length > this.size) {
+  if (buf.length > this.size) {
     throw new Error(
-      `Buffer given is ${target.length} bytes, but only ${this.size} bytes available`,
+      `Buffer given is ${buf.length} bytes, but only ${this.size} bytes available`,
     )
   }
 
-  target.copy(buffer, offset)
+  buf.copy(buffer, offset)
 }
 
