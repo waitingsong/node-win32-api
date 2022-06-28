@@ -21,15 +21,25 @@ describe(fileShortPath(import.meta.url), () => {
 
     const ret = user32.EnumDisplayDevicesW(ref.NULL, 0, dd.ref(), 0)
     assert(ret)
-    const { DeviceName, DeviceString, DeviceID, DeviceKey } = dd
-    console.log({
-      DeviceName,
-      DeviceString,
+    const {
       DeviceID,
       DeviceKey,
+      DeviceName,
+      DeviceString,
+    } = dd
+    console.log({
+      DeviceID,
+      DeviceKey,
+      DeviceName,
+      DeviceString,
     })
-    assert(DeviceName.replace(/\0+$/u, '').includes('\\\\.\\DISPLAY1'))
-    assert(DeviceString.replace(/\0/ug, '').length > 0)
+    assert(DeviceID.startsWith('PCI\\VEN_') || DeviceID.includes('VMBUS') || DeviceID === '', DeviceID)
+    assert(typeof DeviceKey === 'string', DeviceKey)
+    assert(DeviceName === '\\\\.\\DISPLAY1', DeviceName)
+    assert(DeviceString.length > 0)
+    const flag = ['Microsoft Hyper-V', 'Intel', 'AMD'].some(val => DeviceString.includes(val))
+    assert(flag === true, DeviceString)
+
   })
 
 })
