@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.0.0](https://github.com/waitingsong/node-win32-api/compare/v11.1.1...v12.0.0) (2022-06-28)
+
+
+### Features
+
+* **win32-api:** add wcharBuffer() ([7a584b1](https://github.com/waitingsong/node-win32-api/commit/7a584b1be4f6eafac953cc9be73712222e641c20))
+* **win32-api:** breaking change type BufferType to StringBuffer ([a79b7c2](https://github.com/waitingsong/node-win32-api/commit/a79b7c2232e6a186d3cf4fb4f5b22bf605925439))
+
+
+
+
+
 ## [11.1.1](https://github.com/waitingsong/node-win32-api/compare/v11.1.0...v11.1.1) (2022-06-28)
 
 **Note:** Version bump only for package win32-api

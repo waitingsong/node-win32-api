@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.0.0](/compare/v11.1.1...v12.0.0) (2022-06-28)
+
+
+### Features
+
+* **win32-api:** add wcharBuffer() 7a584b1
+* **win32-api:** breaking change type BufferType to StringBuffer a79b7c2
+
+
+
+
+
 ## [11.1.1](/compare/v11.1.0...v11.1.1) (2022-06-28)
 
 **Note:** Version bump only for package win32-api
