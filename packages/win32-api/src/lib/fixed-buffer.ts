@@ -4,7 +4,7 @@ import { Type, types } from 'ref-napi'
 
 export interface BufferType extends Type {
   size: number
-  encoding: BufferEncoding
+  encoding: BufferEncoding | void
 }
 
 /**
@@ -65,9 +65,7 @@ function getFn(
   offset: number,
 ): Buffer | string {
 
-  // const buf = buffer.slice(offset, offset + this.size)
   const buf = buffer.subarray(offset, offset + this.size)
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (this.encoding) {
     const str = buf.toString(this.encoding)
     return str
@@ -81,6 +79,7 @@ function setFn(
   offset: number,
   value: string | number[] | Buffer,
 ): void {
+
   let target: Buffer
 
   if (typeof value === 'string') {
