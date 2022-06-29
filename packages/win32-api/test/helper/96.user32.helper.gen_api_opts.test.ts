@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
@@ -20,6 +21,7 @@ describe(fileShortPath(import.meta.url), () => {
   if (module && module.apiDef) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const api: FModel.DllFuncs = module.apiDef
+    assert(api)
 
     it(`Should ${apiName} gen_api_opts(["${fn}"]) correctly`, () => {
       const fns: FModel.DllFuncs = H.gen_api_opts(api, [fn])
