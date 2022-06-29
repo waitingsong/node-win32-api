@@ -56,6 +56,7 @@ jobs:
           sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen
           locale-gen
           locale -a
+          chmod a+w -R .
 
       - name: Verify
         run: |
@@ -75,6 +76,7 @@ jobs:
 
       - name: Inatall Dependencies
         run: |
+          chmod a+w -R .
           # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
           # .github/workflows/fix.sh
@@ -85,6 +87,7 @@ jobs:
 
       - name: Build
         run: |
+          chmod a+w -R .
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
