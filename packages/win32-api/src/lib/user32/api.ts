@@ -259,7 +259,7 @@ export const apiDef: FM.DllFuncs = {
 }
 /* istanbul ignore next */
 if (process.arch === 'x64') {
-  apiDef.GetWindowLongPtrW = [W.LONG_PTR, [W.HWND, W.INT] ]
+  apiDef['GetWindowLongPtrW'] = [W.LONG_PTR, [W.HWND, W.INT] ]
 }
 
 export interface EnumWindows {
