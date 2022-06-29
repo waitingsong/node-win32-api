@@ -7,7 +7,7 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    container: node:16-bullseye
+    container: node:18-bullseye
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
 
     strategy:
@@ -75,9 +75,11 @@ jobs:
 
       - name: Inatall Dependencies
         run: |
+          # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
-          .github/workflows/fix.sh
+          # .github/workflows/fix.sh
           npm i -g c8 lerna rollup zx
+          npm run bootstrap
         env:
           CI: true
 
@@ -87,9 +89,7 @@ jobs:
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
-          .github/workflows/fix.sh
-          npm run bootstrap
-          .github/workflows/fix.sh
+          # .github/workflows/fix.sh
           npm run build --if-present
         env:
           CI: true

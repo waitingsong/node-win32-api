@@ -13,7 +13,7 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    container: node:16-bullseye
+    container: node:18-bullseye
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
 
     strategy:
@@ -75,6 +75,7 @@ jobs:
         run: |
           echo $GITHUB_REF
           # github project/settings/Secrets/New repository secret: NPM_TOKEN
+          npm ping
           npm whoami
           psql -V
           dig postgres
@@ -93,9 +94,12 @@ jobs:
 
       - name: Inatall Dependencies
         run: |
+          # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
           .github/workflows/fix.sh
           npm i -g c8 lerna rollup zx
+          # .github/workflows/fix.sh
+          npm run bootstrap
         env:
           CI: true
 
@@ -105,9 +109,7 @@ jobs:
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
-          .github/workflows/fix.sh
-          npm run bootstrap
-          .github/workflows/fix.sh
+          # .github/workflows/fix.sh
           npm run build --if-present
         env:
           CI: true
@@ -160,6 +162,9 @@ jobs:
 
       - name: NPM Publish
         run: |
+          npm ping
+          npm whoami
+          chmod a+w -R .
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           # git restore .
@@ -170,6 +175,7 @@ jobs:
           .scripts/publish.sh --yes --conventional-commits --create-release github ${{ github.event.inputs.semver }}
           git push -v origin --follow-tags
         env:
+          CI: true
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
