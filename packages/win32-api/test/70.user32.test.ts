@@ -27,7 +27,7 @@ describe(fileShortPath(import.meta.url), () => {
     const enumWindowsProc = createEnumWinProc()
 
     of(null).pipe(
-      delay(1500),
+      delay(3000),
       tap(() => {
         const hWnd = user32.FindWindowExW(0, 0, null, calcLpszWindow)
 
