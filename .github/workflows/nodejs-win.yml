@@ -22,14 +22,18 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: cache-lerna-win
         env:
           cache-name: cache-lerna-win
         with:
           path: |
+            node_modules
             package-lock.json
             packages/*/.eslintcache
+            packages/*/.vscode
+            packages/*/dist
+            packages/*/package-lock.json
           key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-
@@ -42,6 +46,16 @@ jobs:
           git --version
           openssl version
           ./.githooks/init-repo.sh
+          git config --local core.autocrlf false
+          git config --local core.eol lf
+
+      - name: Inatall Dependencies
+        shell: bash
+        run: |
+          .github/workflows/fix.sh
+          npm i -g c8 lerna rollup zx node-gyp
+        env:
+          CI: true
 
       - name: Build
         shell: bash
@@ -51,24 +65,22 @@ jobs:
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
           .github/workflows/fix.sh
-          npm i -g c8 lerna rollup zx node-gyp
-          .github/workflows/fix.sh
           npm run bootstrap
           .github/workflows/fix.sh
           npm run build --if-present
         env:
           CI: true
 
-      # - name: Lint
-      #   shell: bash
-      #   run: |
-      #     export cwd=`pwd`
-      #     . .scripts/ci/ci-env.sh
-      #     .scripts/ci/ci-prepare.sh
-      #     npm run lint:s
-      #     npm run lint:cycle
-      #   env:
-      #     CI: true
+      - name: Lint
+        shell: bash
+        run: |
+          export cwd=`pwd`
+          . .scripts/ci/ci-env.sh
+          .scripts/ci/ci-prepare.sh
+          npm run lint:s
+          npm run lint:cycle
+        env:
+          CI: true
 
       - name: Testing
         shell: bash
@@ -93,4 +105,5 @@ jobs:
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
+
 
