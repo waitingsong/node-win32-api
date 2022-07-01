@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0](/compare/v12.0.0...v13.0.0) (2022-07-01)
+
+
+### Bug Fixes
+
+* **boilerplate:** define enum without const 37ffd10
+* **boilerplate:** devDeps version 2e29b42
+
+
+### Features
+
+* refactor types, defination, add promised API a1f1cc5
+
+
+
+
+
 # [12.0.0](/compare/v11.1.1...v12.0.0) (2022-06-28)
 
 
