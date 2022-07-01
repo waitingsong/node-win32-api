@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.4.0](https://github.com/waitingsong/node-win32-api/compare/v13.3.0...v13.4.0) (2022-07-01)
+
+
+### Features
+
+* **win32-def:** declare StringBuffer.set() ([f96fe00](https://github.com/waitingsong/node-win32-api/commit/f96fe00b7915cce100656fefc537745aebe4cccd))
+
+
+
+
+
 # [13.3.0](https://github.com/waitingsong/node-win32-api/compare/v13.2.1...v13.3.0) (2022-07-01)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.4.0](/compare/v13.3.0...v13.4.0) (2022-07-01)
+
+
+### Features
+
+* **win32-def:** declare StringBuffer.set() f96fe00
+
+
+
+
+
 # [13.3.0](/compare/v13.2.1...v13.3.0) (2022-07-01)
 
 
