@@ -8,7 +8,8 @@ import * as Constants from './lib/winmsg.js'
 export {
   config,
   Config,
-  UnionFactor,
+  UnionFactory,
+  UnionFactory as UnionFactor,
   UnionType,
   StructFactory,
   StructType,
