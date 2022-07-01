@@ -12,7 +12,7 @@ export function UnionType(input: StructDefType) {
   // @ts-expect-error
   return Union(input)
 }
-export function UnionFactor<T>(input: StructDefType): T {
+export function UnionFactory<T>(input: StructDefType): T {
   // @ts-expect-error
   return new Union(input)() as unknown as T
 }
