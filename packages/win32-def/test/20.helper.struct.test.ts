@@ -4,6 +4,7 @@ import { fileShortPath } from '@waiting/shared-core'
 
 import {
   POINT,
+  RID_DEVICE_INFO,
   StructFactory,
   StructType,
 } from '../src/index.js'
@@ -41,6 +42,20 @@ describe(fileShortPath(import.meta.url), () => {
 
       assert(point.x === 101)
       assert(point.y === rnd)
+    })
+
+    it('with union property', () => {
+      const pData = StructFactory<RID_DEVICE_INFO>(DS.RID_DEVICE_INFO)
+      assert(pData)
+      assert(pData.cbSize === 0)
+      pData.cbSize = pData.ref().byteLength
+      assert(pData.cbSize > 0)
+
+      const { DUMMYUNIONNAME } = pData
+      assert(DUMMYUNIONNAME)
+      assert(DUMMYUNIONNAME.hid === 0)
+      assert(DUMMYUNIONNAME.mouse === 0)
+      assert(DUMMYUNIONNAME.hid === 0)
     })
   })
 

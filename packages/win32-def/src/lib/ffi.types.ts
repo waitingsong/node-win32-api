@@ -11,9 +11,9 @@ export type _UNICODE = boolean
 
 /* windows data defination type */
 export interface StructDefType {
-  [prop: string]: Def | StructDefType | StringBuffer | UnionInstanceBase
+  [prop: string]: Def | StructDefType | StringBuffer | UnionInstanceBase | StructTypeConstructor
 }
-export type StructTypeConstructor<T> = new () => Record<keyof T, string | number | BigIntStr | Buffer>
+export type StructTypeConstructor<T = object> = new () => Record<keyof T, string | number | BigIntStr | Buffer>
 
 export interface LoadSettings {
   singleton: boolean // for DLL.load()
