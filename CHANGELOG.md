@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.3.0](/compare/v13.2.1...v13.3.0) (2022-07-01)
+
+
+### Features
+
+* **win32-def:** export wcharBuffer() and BufferTypeFactory() 87a5fab
+
+
+
+
+
 ## [13.2.1](/compare/v13.2.0...v13.2.1) (2022-07-01)
 
 **Note:** Version bump only for package win32-api
