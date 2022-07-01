@@ -1,7 +1,10 @@
-import { DModel as M, DTypes as W, FModel as FM } from 'win32-def'
+/* eslint-disable id-length */
+import * as M from 'win32-def'
+import * as W from 'win32-def/common.def'
 
 
-export interface Win32Fns extends FM.DllFuncsModel {
+// export interface Win32Fns extends M.DllFuncsModel {
+export interface Win32Fns {
   BringWindowToTop: (hWnd: M.HWND) => M.BOOL
 
   ClientToScreen: (hWnd: M.HWND, lpPoint: M.LPPOINT) => M.BOOL
@@ -41,7 +44,8 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   EnumThreadWindows: (dwThreadId: M.DWORD, lpfn: M.WNDENUMPROC, lParam: M.LPARAM) => M.BOOL
 
-  EnumWindows: EnumWindows
+  // EnumWindows: EnumWindows
+  EnumWindows: (lpEnumFunc: M.WNDENUMPROC, lParam: M.LPARAM) => M.BOOL
 
   FindWindowExW: (
     hwndParent: M.HWND,
@@ -56,7 +60,7 @@ export interface Win32Fns extends FM.DllFuncsModel {
   GetAltTabInfoW: (
     hWnd: M.HWND,
     iItem: M.INT,
-    pati: M.ALTTABINFO,
+    pati: M.PALTTABINFO,
     pszItemText: M.LPWSTR | null,
     cchItemText: M.INT,
   ) => M.BOOL
@@ -98,12 +102,13 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   GetWindowLongW: (hWnd: M.HWND, nIndex: M.INT) => M.LONG
 
+  /** only under x64 */
   GetWindowLongPtrW: (hWnd: M.HWND, nIndex: M.INT) => M.LONG_PTR
 
   /**
    * @see https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowrect
    */
-  GetWindowRect: (hWnd: M.HWND, LPRECT: M.RECT) => M.BOOL
+  GetWindowRect: (hWnd: M.HWND, LPRECT: M.LPRECT) => M.BOOL
 
   /**
    * @docs https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowtextw
@@ -134,7 +139,7 @@ export interface Win32Fns extends FM.DllFuncsModel {
     nFlags: M.UINT,
   ) => M.BOOL
 
-  RegisterClassExW: (lpwcx: M.WNDCLASSEX) => M.ATOM
+  RegisterClassExW: (lpwcx: M.LPWNDCLASSEX) => M.ATOM
 
   /**
    * ref: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-sendmessagew
@@ -168,7 +173,7 @@ export interface Win32Fns extends FM.DllFuncsModel {
 }
 
 
-export const apiDef: FM.DllFuncs = {
+export const apiDef: M.DllFuncs<Win32Fns> = {
   BringWindowToTop: [W.BOOL, [W.HWND] ],
 
   /** url: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-clienttoscreen */
@@ -191,7 +196,7 @@ export const apiDef: FM.DllFuncs = {
   DispatchMessageW: [W.LRESULT, [W.LPMSG] ],
 
   /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-enumdisplaydevicesw */
-  EnumDisplayDevicesW: [W.BOOL, [W.LPCWSTR, W.DWORD, W.POINT, W.DWORD] ],
+  EnumDisplayDevicesW: [W.BOOL, [W.LPCWSTR, W.DWORD, W.DISPLAY_DEVICEW, W.DWORD] ],
 
   EnumThreadWindows: [W.BOOL, [W.DWORD, W.WNDENUMPROC, W.LPARAM] ],
 
@@ -222,6 +227,9 @@ export const apiDef: FM.DllFuncs = {
   GetWindowInfo: [W.BOOL, [W.HWND, W.PWINDOWINFO] ],
 
   GetWindowLongW: [W.LONG, [W.HWND, W.INT] ],
+
+  /** only under x64 */
+  GetWindowLongPtrW: [W.LONG_PTR, [W.HWND, W.INT] ],
 
   GetWindowRect: [W.BOOL, [W.HWND, W.RECT] ],
 
@@ -257,12 +265,9 @@ export const apiDef: FM.DllFuncs = {
 
   UpdateWindow: [W.BOOL, [W.HWND] ],
 }
-/* istanbul ignore next */
-if (process.arch === 'x64') {
-  apiDef['GetWindowLongPtrW'] = [W.LONG_PTR, [W.HWND, W.INT] ]
-}
 
-export interface EnumWindows {
-  (lpEnumFunc: M.WNDENUMPROC, lParam: M.LPARAM): M.BOOL
-  async: (lpEnumFunc: M.WNDENUMPROC, lParam: M.LPARAM, cb: (err: Error) => void) => M.BOOL
-}
+
+// export interface EnumWindows {
+//   (lpEnumFunc: M.WNDENUMPROC, lParam: M.LPARAM): M.BOOL
+//   async: (lpEnumFunc: M.WNDENUMPROC, lParam: M.LPARAM, cb: (err: Error) => void) => void
+// }

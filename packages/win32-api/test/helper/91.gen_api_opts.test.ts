@@ -3,9 +3,9 @@ import fs from 'node:fs'
 import { normalize } from 'node:path'
 
 import { join, fileShortPath, genCurrentDirname } from '@waiting/shared-core'
-import { FModel } from 'win32-def'
 
 import * as Win from '../../src/index.js'
+import { DModel as M } from '../../src/index.js'
 import * as H from '../../src/lib/helper.js'
 
 
@@ -30,7 +30,7 @@ describe(fileShortPath(import.meta.url), () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     if (module && module.apiDef) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const api = module.apiDef as FModel.DllFuncs
+      const api = module.apiDef as M.DllFuncs
       assert(api)
       let n = 0
 
@@ -42,7 +42,7 @@ describe(fileShortPath(import.meta.url), () => {
       }
 
       it(`Should ${apiName} number of fns equal to the number of fns return by gen_api_opts`, () => {
-        const fns: FModel.DllFuncs = H.gen_api_opts(api)
+        const fns: M.DllFuncs = H.gen_api_opts(api)
         const keysize = Object.keys(fns).length
 
         assert(typeof fns === 'object' && fns, 'fns return by gen_api_opts() not object')

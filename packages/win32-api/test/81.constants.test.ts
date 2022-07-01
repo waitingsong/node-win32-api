@@ -2,7 +2,9 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { Constants, CS } from '../src/index.js'
+import * as CS from '../src/index.consts.js'
+import { MN_GETHMENU } from '../src/index.consts.js'
+import { Constants } from '../src/index.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
@@ -10,6 +12,7 @@ describe(fileShortPath(import.meta.url), () => {
     it('Constants.MN_GETHMENU', () => {
       assert(CS.MN_GETHMENU === 481)
       assert(Constants.MN_GETHMENU === 481)
+      assert(MN_GETHMENU === 481)
     })
 
     it('Constants.WM_QUIT', () => {

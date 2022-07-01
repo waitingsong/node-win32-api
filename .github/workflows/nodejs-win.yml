@@ -13,6 +13,8 @@ jobs:
       matrix:
         node: [16, 18]
         os: [windows-2019, windows-latest]
+        # node: [18]
+        # os: [windows-latest]
 
     steps:
       - uses: actions/checkout@v3
@@ -43,6 +45,7 @@ jobs:
         run: |
           uname -a
           npm -v && node -v
+          npm -g root
           git --version
           openssl version
           ./.githooks/init-repo.sh

@@ -1,19 +1,19 @@
 import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
+
 import {
   DModel as M,
+  DTypes as W,
   DStruct as DS,
-} from 'win32-def'
-
-import { Struct } from './helper.js'
+  StructFactory,
+} from '../src/index.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
 
   it('Should ref-struct-di initialized correctly', () => {
-    // const point: M.POINT_Struct = new Struct(DS.POINT)()
-    const point = new Struct(DS.POINT)()
+    const point = StructFactory<M.POINT>(DS.POINT)
     point.x = 100
     point.y = 200
 

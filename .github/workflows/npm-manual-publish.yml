@@ -64,6 +64,7 @@ jobs:
           apt-get install -qq --yes postgresql-client > /dev/null
           uname -a
           npm -v && node -v
+          npm -g root
           git --version
           openssl version
           cat /etc/*release
@@ -78,11 +79,6 @@ jobs:
           # github project/settings/Secrets/New repository secret: NPM_TOKEN
           npm ping
           npm whoami
-          psql -V
-          dig postgres
-          echo "\l" | psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d postgres
-          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "\d+"
-          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "SHOW TIMEZONE;"
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -117,6 +113,15 @@ jobs:
         env:
           CI: true
 
+      - name: Lint
+        run: |
+          export cwd=`pwd`
+          . .scripts/ci/ci-env.sh
+          .scripts/ci/ci-prepare.sh
+          npm run lint:s
+          npm run lint:cycle
+        env:
+          CI: true
 
       - name: NPM Publish
         run: |
@@ -139,15 +144,15 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
-    services:
-      postgres:
-        image: postgres:alpine
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_DB: db_ci_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        # needed because the postgres container does not provide a healthcheck
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    # services:
+    #   postgres:
+    #     image: postgres:alpine
+    #     ports:
+    #       - 5432:5432
+    #     env:
+    #       POSTGRES_DB: db_ci_test
+    #       POSTGRES_USER: postgres
+    #       POSTGRES_PASSWORD: postgres
+    #     # needed because the postgres container does not provide a healthcheck
+    #     options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 

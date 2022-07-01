@@ -50,6 +50,7 @@ jobs:
           apt-get install -qq --yes postgresql-client > /dev/null
           uname -a
           npm -v && node -v
+          npm -g root
           git --version
           openssl version
           cat /etc/*release
@@ -57,22 +58,6 @@ jobs:
           locale-gen
           locale -a
           chmod a+w -R .
-
-      - name: Verify
-        run: |
-          psql -V
-          dig postgres
-          echo "\l" | psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d postgres
-          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "\d+"
-          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "SHOW TIMEZONE;"
-        env:
-          CI: true
-          POSTGRES_HOST: postgres
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-          POSTGRES_DB: db_ci_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          PGPASSWORD: postgres
 
       - name: Inatall Dependencies
         run: |
@@ -97,17 +82,26 @@ jobs:
         env:
           CI: true
 
-
-
-    services:
-      postgres:
-        image: postgres:alpine
-        ports:
-          - 5432:5432
+      - name: Lint
+        run: |
+          export cwd=`pwd`
+          . .scripts/ci/ci-env.sh
+          .scripts/ci/ci-prepare.sh
+          npm run lint:s
+          npm run lint:cycle
         env:
-          POSTGRES_DB: db_ci_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        # needed because the postgres container does not provide a healthcheck
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+          CI: true
+
+
+    # services:
+    #   postgres:
+    #     image: postgres:alpine
+    #     ports:
+    #       - 5432:5432
+    #     env:
+    #       POSTGRES_DB: db_ci_test
+    #       POSTGRES_USER: postgres
+    #       POSTGRES_PASSWORD: postgres
+    #     # needed because the postgres container does not provide a healthcheck
+    #     options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 

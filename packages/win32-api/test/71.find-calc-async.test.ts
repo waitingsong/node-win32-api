@@ -2,192 +2,96 @@ import { spawn } from 'child_process'
 import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
+import { sleep } from 'zx'
 
-import { U } from '../src/index.js'
+import * as UP from '../src/index.user32.js'
 
 import { calcLpszWindow } from './config.unittest.js'
-import { user32 } from './helper.js'
+import { user32, user32Sync } from './helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
 
-  it('Open a calc.exe and find it\'s window hWnd', (done) => {
-    const child = spawn('calc.exe')
+  describe('Should FindWindowExW() work', () => {
+    it('find window hWnd via await', async () => {
+      const child = spawn('calc.exe')
 
-    setTimeout(() => {
-      user32.FindWindowExW.async(0, 0, null, calcLpszWindow, (err, hWnd) => {
-        if (err) {
-          assert(false, err.message)
+      console.log(new Date().toLocaleTimeString())
+      await sleep(2000)
+      console.log(new Date().toLocaleTimeString())
+
+      const hWnd = await user32.FindWindowExW(0, 0, null, calcLpszWindow)
+      assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
+      child.kill()
+    })
+
+    it('find window hWnd via callback async', async () => {
+      const child = spawn('calc.exe')
+
+      console.log(new Date().toLocaleTimeString())
+      await sleep(2000)
+      console.log(new Date().toLocaleTimeString())
+
+      await new Promise<void>((done) => {
+        user32Sync.FindWindowExW.async(0, 0, null, calcLpszWindow, (err, hWnd) => {
+          if (err) {
+            assert(false, err.message)
+          }
+
+          assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
           child.kill()
           done()
-          return
-        }
-
-        if (typeof hWnd === 'number' && hWnd > 0
-          || typeof hWnd === 'bigint' && hWnd > 0
-          || typeof hWnd === 'string' && hWnd.length > 0
-        ) {
-          assert(true)
-        }
-        else {
-          assert(false, 'found no calc window')
-        }
-
-        child.kill()
-        done()
+        })
       })
-    }, 1500)
+    })
+
+
+    it('change window title', async () => {
+      const child = spawn('calc.exe')
+      await sleep(2000)
+      await findNSetWinTitleAsync()
+    })
+
+    it('change window title with partial loading', async () => {
+      const child = spawn('calc.exe')
+      await sleep(2000)
+      await findNSetWinTitleAsyncPartial()
+    })
+
   })
-
-  it('Open a calc.exe and find it\'s window hWnd', (done) => {
-    const child = spawn('calc.exe')
-
-    setTimeout(() => {
-      user32.FindWindowExW.async(0, 0, null, calcLpszWindow, (err, hWnd) => {
-        if (err) {
-          assert(false, err.message)
-          child.kill()
-          done()
-          return
-        }
-
-        if (typeof hWnd === 'number' && hWnd > 0
-          || typeof hWnd === 'bigint' && hWnd > 0
-          || typeof hWnd === 'string' && hWnd.length > 0
-        ) {
-          assert(true)
-        }
-        else {
-          assert(false, 'found no calc window')
-        }
-
-        child.kill()
-        done()
-      })
-
-    }, 1500)
-  })
-
-
-  it('Open a calc.exe and change it\'s window title', (done) => {
-    const child = spawn('calc.exe')
-
-    setTimeout(() => {
-      findNSetWinTitleAsync()
-        .then(() => {
-          child.kill()
-          done()
-        })
-        .catch((err) => {
-          child.kill()
-          throw err
-        })
-    }, 1500)
-  })
-
-
-  it('Open a calc.exe and change it\'s window title with partial loading', (done) => {
-    const child = spawn('calc.exe')
-
-    setTimeout(() => {
-      findNSetWinTitleAsyncPartial()
-        .then(() => {
-          child.kill()
-          done()
-        })
-        .catch((err) => {
-          child.kill()
-          throw err
-        })
-
-    }, 1000)
-  })
-
 })
 
 
-function findNSetWinTitleAsync(): Promise<void> {
-  return new Promise((resolve, reject) => {
+async function findNSetWinTitleAsync(): Promise<void> {
+  const title = 'Node-Calculator'
+  const len = title.length
+  const hWnd = await user32.FindWindowExW(0, 0, null, calcLpszWindow)
 
-    user32.FindWindowExW.async(0, 0, null, calcLpszWindow, (err, hWnd) => {
-      if (err) {
-        return reject(err.message)
-      }
+  assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
+  const ret = await user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
+  assert(ret, 'SetWindowTextW() failed')
 
-      if (typeof hWnd === 'number' && hWnd > 0
-        || typeof hWnd === 'bigint' && hWnd > 0
-        || typeof hWnd === 'string' && hWnd.length > 0
-      ) {
-        const title = 'Node-Calculator'
-        user32.SetWindowTextW.async(hWnd, Buffer.from(title + '\0', 'ucs2'), (err2, res) => {
-          if (err2) {
-            return reject(err2.message)
-          }
-          else if (! res) {
-            return reject('SetWindowTextW() failed')
-          }
-
-          const len = title.length
-          const buf = Buffer.alloc(len * 2)
-          user32.GetWindowTextW.async(hWnd, buf, len + 1, (err3) => {
-            if (err3) {
-              return reject(err3.message)
-            }
-            const str = buf.toString('ucs2').replace(/\0+$/, '')
-            if (str !== title.trim()) {
-              return reject(`title should be changed to "${title}", bug got "${str}"`)
-            }
-            resolve()
-          })
-        })
-      }
-      else {
-        reject('found no calc window')
-      }
-    })
-  })
+  const buf = Buffer.alloc(len * 2)
+  await user32.GetWindowTextW(hWnd, buf, len + 1)
+  const str = buf.toString('ucs2').replace(/\0+$/, '')
+  assert(str === title.trim(), `title should be changed to "${title}", bug got "${str}"`)
 }
 
 
-function findNSetWinTitleAsyncPartial(): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const u32 = U.load(['FindWindowExW', 'SetWindowTextW'])
+async function findNSetWinTitleAsyncPartial(): Promise<void> {
+  const u32 = UP.load(['FindWindowExW', 'SetWindowTextW'])
 
-    // u32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
-    u32.FindWindowExW.async(0, 0, null, calcLpszWindow, (err, hWnd) => {
-      if (err) {
-        return reject(err.message)
-      }
+  const title = 'Node-Calculator'
+  const len = title.length
+  const hWnd = await u32.FindWindowExW(0, 0, null, calcLpszWindow)
 
-      if (typeof hWnd === 'number' && hWnd > 0
-        || typeof hWnd === 'bigint' && hWnd > 0
-        || typeof hWnd === 'string' && hWnd.length > 0
-      ) {
-        const title = 'Node-Calculator'
-        // Change title of the Calculator
-        u32.SetWindowTextW.async(hWnd, Buffer.from(title + '\0', 'ucs2'), (err2) => {
-          if (err2) {
-            return reject(err2.message)
-          }
+  assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
+  // Change title of the Calculator
+  await u32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
 
-          const len = title.length
-          const buf = Buffer.alloc(len * 2)
-          u32.GetWindowTextW.async(hWnd, buf, len + 1, (err3) => {
-            if (err3) {
-              return reject(err3.message)
-            }
-
-            const str = buf.toString('ucs2').replace(/\0+$/, '')
-            if (str !== title) {
-              return reject(`title should be changed to ${title}, bug got ${str}`)
-            }
-            resolve()
-          })
-        })
-      }
-      else {
-        return reject('FindWindowExW() failed')
-      }
-    })
-  })
+  const buf = Buffer.alloc(len * 2)
+  await u32.GetWindowTextW(hWnd, buf, len + 1)
+  const str = buf.toString('ucs2').replace(/\0+$/, '')
+  assert(str === title, `title should be changed to ${title}, bug got ${str}`)
 }
+

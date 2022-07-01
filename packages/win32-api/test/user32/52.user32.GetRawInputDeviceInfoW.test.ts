@@ -1,27 +1,28 @@
 import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
-import {
-  Config,
-  DModel as M,
-  DStruct as DS,
-  DTypes as W,
-  FModel as FM,
-} from 'win32-def'
 
-import { DStructExt as DSX } from '../../src/index.js'
-import { user32, Struct, Union } from '../helper.js'
+import {
+  config,
+  DModel as M,
+  DTypes as W,
+  DStruct as DS,
+  StructFactory,
+} from '../../src/index.js'
+import { user32Sync } from '../helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
   it('Should GetRawInputDeviceInfoW() calling passed', () => {
-    const limit = 255
-    const rawInputDeviceList: M.RAWINPUTDEVICELIST_Struct = new Struct(DS.RAWINPUTDEVICELIST)() as M.RAWINPUTDEVICELIST_Struct
-    const pRawInputDeviceList = Buffer.alloc(rawInputDeviceList.ref().byteLength * limit)
+    const limit = 64
+    const rawInputDeviceList = StructFactory<M.RAWINPUTDEVICELIST>(DS.RAWINPUTDEVICELIST)
+    const byteLen = rawInputDeviceList.ref().byteLength
+    console.log({ byteLen })
+    const pRawInputDeviceList = Buffer.alloc(byteLen * limit)
     const puiNumDevices = Buffer.alloc(4)
     puiNumDevices[0] = limit
 
-    const nDevices = user32.GetRawInputDeviceList(
+    const nDevices = user32Sync.GetRawInputDeviceList(
       pRawInputDeviceList,
       puiNumDevices,
       rawInputDeviceList.ref().byteLength,
@@ -31,8 +32,8 @@ describe(fileShortPath(import.meta.url), () => {
     console.log({ nDevices, puiNumDevices })
     assert(nDevices > 0 && nDevices <= limit)
 
-    const delta = Config._WIN64 ? 8 : 4
-    const readFn = Config._WIN64 ? 'readBigUInt64LE' : 'readUInt32LE'
+    const delta = config._WIN64 ? 8 : 4
+    const readFn = config._WIN64 ? 'readBigUInt64LE' : 'readUInt32LE'
 
     let offset = 0
     let count = 0
@@ -47,7 +48,7 @@ describe(fileShortPath(import.meta.url), () => {
       const pcbSize = Buffer.alloc(4)
       const buf = Buffer.alloc(255)
 
-      const nameLen = user32.GetRawInputDeviceInfoW(
+      const nameLen = user32Sync.GetRawInputDeviceInfoW(
         hDevice.toString(),
         0x20000007,
         buf,
@@ -59,18 +60,22 @@ describe(fileShortPath(import.meta.url), () => {
         buf: buf.toString('ucs2').replace(/\0/ug, ''),
       })
 
-      const pData: M.RID_DEVICE_INFO_Struct = new Struct(DSX.RID_DEVICE_INFO)() as M.RID_DEVICE_INFO_Struct
+      const pData = StructFactory<M.RID_DEVICE_INFO>(DS.RID_DEVICE_INFO)
       pData.cbSize = pData.ref().byteLength
 
-      const infoLen = user32.GetRawInputDeviceInfoW(
+      const infoLen = user32Sync.GetRawInputDeviceInfoW(
         hDevice.toString(),
         0x2000000b,
         pData.ref(),
         pcbSize,
       )
+      assert(pData)
       console.log({
         infoLen,
         pcbSize,
+      })
+      assert(pData.DUMMYUNIONNAME)
+      console.log({
         pData_dwType: pData.dwType,
         union_mouse: pData.DUMMYUNIONNAME.mouse,
         union_keyboard: pData.DUMMYUNIONNAME.keyboard,

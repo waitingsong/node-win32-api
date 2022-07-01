@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable import/no-extraneous-dependencies */
 import assert from 'assert'
 
@@ -5,20 +8,28 @@ import ffi from 'ffi-napi'
 import ref from 'ref-napi'
 import StructDi from 'ref-struct-di'
 import {
-  Config,
-  DModel as M,
-  FModel,
+  AsyncSyncFuncModel,
+  DllFuncs,
+  DllFuncsModel,
+  ExpandFnModel,
+  FnName,
+  FnParams,
+  LoadSettings,
+  PromiseFnModel,
+  StructDefType,
+  StructInstanceBase,
+  settingsDefault,
 } from 'win32-def'
 
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const dllInst = new Map<string, any>() // for DLL.load() with settings.singleton === true
+const dllInstMap = new Map<string, unknown>() // for DLL.load() with settings.singleton === true
+// const hasAsyncProxy = '__hasAsyncProxy__'
 
 export function load<T>(
   dllName: string,
-  dllFuncs: FModel.DllFuncs,
-  fns?: FModel.FnName[],
-  settings?: FModel.LoadSettings,
+  dllFuncs: DllFuncs<T>,
+  fns?: FnName[],
+  settings?: LoadSettings,
 ): T {
 
   const st = parse_settings(settings)
@@ -27,15 +38,78 @@ export function load<T>(
     let inst = get_inst_by_name<T>(dllName)
 
     if (! inst) {
-      inst = ffi.Library(dllName, gen_api_opts(dllFuncs, fns)) as unknown as T
+      const ps = gen_api_opts<T>(dllFuncs, fns)
+      inst = ffi.Library(dllName, ps) as unknown as T
       set_inst_by_name(dllName, inst)
     }
     return inst
   }
   else {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return ffi.Library(dllName, gen_api_opts(dllFuncs, fns)) as unknown as T
+    return ffi.Library(dllName, gen_api_opts<T>(dllFuncs, fns)) as unknown as T
   }
+}
+
+
+export function loadAsync<T>(
+  dllName: string,
+  dllFuncs: DllFuncs<T>,
+  fns?: FnName[],
+  settings?: LoadSettings,
+): PromiseFnModel<T> {
+
+  const inst = load<ExpandFnModel<DllFuncsModel>>(dllName, dllFuncs, fns, settings)
+  assert(inst)
+
+  const instAsync = {} as PromiseFnModel<T>
+  Object.entries(inst).forEach(([name, value]) => {
+    if (! Object.hasOwn(inst, name)) { return }
+    if (typeof value !== 'function') {
+      Object.defineProperty(instAsync, name, {
+        enumerable: false,
+        writable: true,
+        configurable: true,
+        value,
+      })
+    }
+    const fnAsync = new Proxy(value, {
+      // @ts-ignore
+      apply(target: AsyncSyncFuncModel, ctx: unknown, args: unknown[]) {
+        // console.info({ target, ctx, args })
+        return callFnAsync(target, args)
+      },
+    })
+    Object.defineProperty(instAsync, name, {
+      enumerable: false,
+      writable: true,
+      configurable: true,
+      value: fnAsync,
+    })
+
+  })
+
+  return instAsync
+}
+
+async function callFnAsync<T extends AsyncSyncFuncModel>(
+  target: T,
+  args: unknown[],
+): Promise<unknown> {
+
+  assert(target)
+  assert(typeof target.async === 'function')
+
+  return new Promise<unknown>((done, reject) => {
+    const cb = (err: Error | void, result: unknown) => {
+      if (err) {
+        reject(err)
+        return
+      }
+      done(result)
+    }
+    // @ts-ignore
+    Reflect.apply(target.async, null, [...args, cb])
+  })
 }
 
 
@@ -43,35 +117,42 @@ export function load<T>(
  * Generate function definitions via converting macro windows data type (like PVOID) to the expected value.
  * Skip assignment if property undefined
  */
-export function gen_api_opts(dllFuncs: FModel.DllFuncs, fns?: FModel.FnName[]): FModel.DllFuncs {
-  const ret: FModel.DllFuncs = {}
+export function gen_api_opts<T = DllFuncsModel>(
+  dllFuncs: DllFuncs<T>,
+  fns?: FnName[],
+): DllFuncs<T> {
+
+  const ret = {} as DllFuncs<T>
 
   if (fns && Array.isArray(fns) && fns.length) {
     for (const fn of fns) {
-      const ps: FModel.FnParams | undefined = dllFuncs[fn]
-
-      if (typeof ps !== 'undefined') {
-        Object.defineProperty(ret, fn, {
-          value: ps,
-          writable: false,
-          enumerable: true,
-          configurable: false,
-        })
+      if (! Object.hasOwn(dllFuncs, fn)) {
+        continue
       }
+      // @ts-ignore
+      const ps = dllFuncs[fn] as FnParams | undefined
+      assert(ps, `dellFuncs has no property mehod name "${fn}"`)
+
+      Object.defineProperty(ret, fn, {
+        value: ps,
+        writable: false,
+        enumerable: true,
+        configurable: false,
+      })
     }
   }
   else {
     for (const fn of Object.keys(dllFuncs)) {
-      const ps = dllFuncs[fn]
+      // @ts-ignore
+      const ps = dllFuncs[fn] as FnParams | undefined
+      assert(ps, `dellFuncs has no property mehod name "${fn}"`)
 
-      if (typeof ps !== 'undefined') {
-        Object.defineProperty(ret, fn, {
-          value: ps as FModel.FnParams,
-          writable: false,
-          enumerable: true,
-          configurable: false,
-        })
-      }
+      Object.defineProperty(ret, fn, {
+        value: ps as FnParams,
+        writable: false,
+        enumerable: true,
+        configurable: false,
+      })
     }
   }
 
@@ -79,15 +160,19 @@ export function gen_api_opts(dllFuncs: FModel.DllFuncs, fns?: FModel.FnName[]): 
 }
 
 function get_inst_by_name<T>(dllName: string): T | undefined {
-  return dllInst.get(dllName) as T | undefined
+  return dllInstMap.get(dllName) as T | undefined
 }
 
 function set_inst_by_name<T>(dllName: string, inst: T): void {
-  dllInst.set(dllName, inst)
+  dllInstMap.set(dllName, inst)
 }
 
-function parse_settings(settings?: FModel.LoadSettings): FModel.LoadSettings {
-  const st: FModel.LoadSettings = { ...Config.settingsDefault }
+function parse_settings(settings?: LoadSettings): LoadSettings {
+  const st: LoadSettings = { ...settingsDefault }
+  // const st: LoadSettings = {
+  //   singleton: true,
+  //   _WIN64: true,
+  // }
 
   if (typeof settings !== 'undefined' && Object.keys(settings).length) {
     Object.assign(st, settings)
@@ -95,10 +180,6 @@ function parse_settings(settings?: FModel.LoadSettings): FModel.LoadSettings {
   return st
 }
 
-
-export interface DataStructConst {
-  [k: string]: string | DataStructConst
-}
 
 /**
  * @example ```ts
@@ -109,9 +190,9 @@ export interface DataStructConst {
  * obj && console.log({ objx: obj.x, objy: obj.y })
  * ```
  */
-export function retrieveStructFromPtrAddress<R extends M.StructInstanceBase>(
+export function retrieveStructFromPtrAddress<R extends StructInstanceBase>(
   address: number,
-  dataStructConst: DataStructConst,
+  dataStructConst: StructDefType,
 ): R | undefined {
 
   assert(dataStructConst, 'dataStructConst is required')
@@ -136,3 +217,5 @@ export function retrieveStructFromPtrAddress<R extends M.StructInstanceBase>(
     console.warn(ex)
   }
 }
+
+

@@ -13,10 +13,14 @@ FFI Definitions of Windows win32 api for [node-ffi-napi]
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
 
+## Migrate to v13
+
+See [migrate13]
+
 ## Initialization
 
 ```sh
-npm run repo:init
+npm run bootstrap
 ```
 
 ## Packages
@@ -44,46 +48,41 @@ npm install win32-api
 // **Find calc's hWnd, need running a calculator program manually at first**
 
 /**
- * exposed modules:
- * C, Comctl32 for Comctl32 from lib/comctl32/api
- * K, Kernel32 for kernel32 from lib/kernel32/api
- * U, User32 for user32 from lib/user32/api
+ * Exposed modules:
+ * Comctl32: Comctl32 from lib/comctl32/api
+ * Kernel32: kernel32 from lib/kernel32/api
+ * User32: user32 from lib/user32/api
  */
-import { K, U } from 'win32-api'
-import * as ref from 'ref-napi'
+import { Kernel32, User32 } from 'win32-api/promise'
+import ref from 'ref-napi'
 
-const knl32 = K.load()
-const user32 = U.load()  // load all apis defined in lib/{dll}/api from user32.dll
-// const user32 = U.load(['FindWindowExW'])  // load only one api defined in lib/{dll}/api from user32.dll
+const knl32 = Kernel32.load()
+const user32 = User32.load()
+
+// const user32 = load(['FindWindowExW'])  // load only one api defined in lib/{dll}/api from user32.dll
 
 const title = 'Calculator\0'    // null-terminated string
 // const title = '计算器\0'    // null-terminated string 字符串必须以\0即null结尾!
 
 const lpszWindow = Buffer.from(title, 'ucs2')
-const hWnd = user32.FindWindowExW(0, 0, null, lpszWindow)
+const hWnd = await user32.FindWindowExW(0, 0, null, lpszWindow)
 
-if (typeof hWnd === 'number' && hWnd > 0
-  || typeof hWnd === 'bigint' && hWnd > 0
-  || typeof hWnd === 'string' && hWnd.length > 0
-) {
-  console.log('buf: ', hWnd)
+assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
+console.log('buf: ', hWnd)
 
-  // Change title of the Calculator
-  const res = user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'))
-
-  if ( ! res) {
-    console.log('SetWindowTextW failed')
-  }
-  else {
-    console.log('window title changed')
-  }
+// Change title of the Calculator
+const res = await user32.SetWindowTextW(hWnd, Buffer.from('Node-Calculator\0', 'ucs2'))
+if ( ! res) {
+  console.log('SetWindowTextW failed')
+}
+else {
+  console.log('window title changed')
 }
 ```
 
 ### [Ref](https://www.npmjs.com/package/ref-napi)
 ```ts
-import { U } from 'win32-api'
-import * as ref from 'ref-napi'
+import ref from 'ref-napi'
 
 // so we can all agree that a buffer with the int value written
 // to it could be represented as an "int *"
@@ -102,18 +101,18 @@ console.log(ref.deref(buf))  // ← 12345
 
 ```ts
 // use of types and windef:
+import ref from 'ref-napi'
+import { DModel as M } from 'win32-api'
+import { Kernel32, User32 } from 'win32-api/promise'
 
-import * as ref from 'ref-napi'
-import { K, DTypes as W } from 'win32-api'
-
-
-const knl32 = K.load()
+const knl32 = Kernel32.load()
+const user32 = User32.load()
 
 const lpszClass = Buffer.from('guard64\0', 'ucs2')
 const hInstanceBuffer = ref.alloc(W.HANDLE_PVOID)
 const hInstanceAddr = ref.address(hInstanceBuffer)
 
-knl32.GetModuleHandleExW(0, lpszClass, hInstanceAddr)
+await knl32.GetModuleHandleExW(0, lpszClass, hInstanceAddr)
 // <Buffer@0x00000094D3968EC0 00 00 a4 60 ff 7f 00 00, type: { indirection: 2, name: 'uint64*' }>
 console.log(hInstanceBuffer)
 console.log(hInstanceBuffer.readInt32LE(0))     // -> 1621360640           (60A40000)
@@ -123,93 +122,76 @@ console.log(hInstanceBuffer.readBigUInt64LE())  // -> 140734814748672n (7FFF60A4
 ### [Struct](https://www.npmjs.com/package/ref-struct)
 ```ts
 // struct usage with ref-struct
-import * as Struct from 'ref-struct'
-import { DModel as M, DStruct as DS } from 'win32-api'
+import { retrieveStructFromPtrAddress, StructFactory } from 'win32-api'
+import {
+  DModel as M,
+  DTypes as W,
+  DStruct as DS,
+} from 'win32-api'
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx
-const point: M.POINT_Struct = new Struct(DS.POINT)()
-point.x = 100
-point.y = 200
-console.log(point)
-
-// struct usage with ref-struct-di
-import * as ref from 'ref-napi'
-import * as StructDi from 'ref-struct-di'
-import { DModel as M, DStruct as DS } from 'win32-api'
-
-const Struct = StructDi(ref)
-const point: M.POINT_Struct = new Struct(DS.POINT)()
+const point = StructFactory<M.POINT>(DS.POINT)
 point.x = 100
 point.y = 200
 console.log(point)
 ```
 
-### [StructExt](https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-api/src/data-struct-ext/)
+### [Struct](https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-def/src/lib/struct/)
 ```ts
-// struct usage with ref-struct
-import * as Struct from 'ref-struct-napi'
+import { StructFactory } from 'win32-api'
 import {
   DModel as M,
-  DStructExt,
+  DTypes as W,
+  DStruct as DS,
 } from 'win32-api'
 
 
 // https://docs.microsoft.com/zh-cn/windows/win32/api/wingdi/ns-wingdi-display_devicew 
-const dd: M.DISPLAY_DEVICEW_Struct = new Struct(DStructExt.DISPLAY_DEVICEW)()
+const dd: M.DISPLAY_DEVICEW = StructFactory(DS.DISPLAY_DEVICEW)
 dd.cb = dd.ref().byteLength
 console.log(dd)
-/**
-Detail in:
-https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-api/src/data-struct-ext/wingdi.h.ts
-https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-api/test/user32/60_EnumDisplayDevicesW.test.ts
-*/
+// https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-api/test/user32/51.user32.EnumDisplayDevicesW.test.ts
 ```
 
 ### Async Find window and set window title
 ```ts
 // **Find calc's hWnd, need running a calculator program manually at first**
-
-import { U } from 'win32-api'
 import * as ref from 'ref-napi'
 
+import {
+  DModel as M,
+  DTypes as W,
+  DStruct as DS,
+} from 'win32-api'
+import { Kernel32, User32 } from 'win32-api/promise'
 
-const u32 = U.load(['FindWindowExW', 'SetWindowTextW'])
+
+const knl32 = Kernel32.load()
+const user32 = User32.load()
+
 const lpszClass = Buffer.from('CalcFrame\0', 'ucs2')
+// win10
+const calcLpszWindow = Buffer.from('Calculator\0', 'ucs2')
+// for win7/8
+const calcLpszClass = Buffer.from('CalcFrame\0', 'ucs2')
 
-u32.FindWindowExW.async(0, 0, lpszClass, null, (err, hWnd) => {
-  if (err) {
-    throw err
-  }
+const child = spawn('calc.exe')
+const hWnd = await user32.FindWindowExW(0, 0, null, calcLpszWindow) // win10
+const hWnd = await user32.FindWindowExW(0, 0, calcLpszClass , null) // win7/8
+assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
 
-  if (typeof hWnd === 'number' && hWnd > 0
-    || typeof hWnd === 'bigint' && hWnd > 0
-    || typeof hWnd === 'string' && hWnd.length > 0
-  ) {
-    const title = 'Node-Calculator'
-    const len = title.length + 1
-    // Change title of the Calculator
-    u32.SetWindowTextW.async(hWnd, Buffer.from(title + '\0', 'ucs2'), err2 => {
-      if (err2) {
-        throw err2
-      }
+const title = 'Node-Calculator'
+const len = title.length
 
-      const buf = Buffer.alloc(len * 2)
-      u32.GetWindowTextW.async(hWnd, buf, len, err3 => {
-        if (err3) {
-          throw err3
-        }
+const ret = await user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
+assert(ret, 'SetWindowTextW() failed')
 
-        const str = buf.toString('ucs2').replace(/\0+$/, '')
-        if (str !== title) {
-          throw new Error(`title should be changed to ${title}, bug got ${str}`)
-        }
-      })
-    })
-  }
-  else {
-    throw new Error('FindWindowExW() failed')
-  }
-})
+const buf = Buffer.alloc(len * 2)
+await user32.GetWindowTextW(hWnd, buf, len + 1)
+const str = buf.toString('ucs2').replace(/\0+$/, '')
+assert(str === title.trim(), `title should be changed to "${title}", bug got "${str}"`)
+
+child.kill() // seems not work under win10
 ```
 
 
@@ -270,3 +252,5 @@ Check out [node-gyp] and [node-gyp-on-windows], [windows-build-tools]
 [def-dd-svg]: https://david-dm.org/waitingsong/node-win32-api/dev-status.svg?path=packages/win32-def
 [def-dd-link]: https://david-dm.org/waitingsong/node-win32-api?path=packages/win32-def#info=devDependencies
 
+
+[migrate13]: ./migrate13.md

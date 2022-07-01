@@ -1,7 +1,8 @@
-import { DModel as M, DTypes as W, FModel as FM } from 'win32-def'
+import * as M from 'win32-def'
+import * as W from 'win32-def/common.def'
 
 
-export interface Win32Fns extends FM.DllFuncsModel {
+export interface Win32Fns {
   /**
    * https://msdn.microsoft.com/en-us/library/windows/desktop/ms679351(v=vs.85).aspx
    * dwLanguageId: https://msdn.microsoft.com/en-us/library/windows/desktop/dd318693(v=vs.85).aspx
@@ -39,7 +40,7 @@ export interface Win32Fns extends FM.DllFuncsModel {
 
   OpenProcess: (dwDesiredAccess: M.DWORD, bInheritHandle: M.BOOL, dwProcessId: M.DWORD) => M.HANDLE
 
-  /** https://msdn.microsoft.com/en-us/library/windows/desktop/aa363362(v=vs.85).aspx */
+  /** https://docs.microsoft.com/en-us/windows/win32/api/debugapi/nf-debugapi-outputdebugstringw */
   OutputDebugStringW: (lpOutputString: M.LPCTSTR) => M.VOID
 
   /** https://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx */
@@ -68,7 +69,8 @@ export interface Win32Fns extends FM.DllFuncsModel {
   SetThreadExecutionState: (esFlags: M.UINT) => M.UINT
 }
 
-export const apiDef: FM.DllFuncs = {
+
+export const apiDef: M.DllFuncs<Win32Fns> = {
   FormatMessageW: [
     W.DWORD,
     [W.DWORD, W.LPCVOID, W.DWORD, W.DWORD, W.LPTSTR, W.DWORD, W.va_list],

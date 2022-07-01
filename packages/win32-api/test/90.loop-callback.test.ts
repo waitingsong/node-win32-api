@@ -1,77 +1,49 @@
 import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
-import { interval, Observable, of } from 'rxjs'
+import { sleep } from 'zx'
+
 import {
-  concatMap,
-  delay,
-  finalize,
-  switchMap,
-  take,
-  tap,
-  timeout,
-} from 'rxjs/operators'
-import { DModel as M } from 'win32-def'
+  DModel as M,
+  DTypes as W,
+  DStruct as DS,
+} from '../src/index.js'
 
-import { changeTitle, createWindow, createWndProc, destroyWin } from './helper.js'
+import {
+  changeTitle,
+  createWindow,
+  createWndProc,
+  destroyWin,
+} from './helper.js'
 
 
+// skip due to timout
 // Note: may crash
 describe.skip(fileShortPath(import.meta.url), () => {
 
-  it('Should WndProc works at more loops', (done) => {
-    const loops = 16
-    const titlePrefix = 'win32-api-'
+  it('Should WndProc works at more loops', async () => {
+    const loops = 8
+    const titlePrefix = `win32-api-${Math.random().toString()}-`
     const wndProc: M.WNDPROC = createWndProc()
 
-    let handle: M.HWND
-    const handle$: Observable<M.HWND> = of(createWindow(wndProc)).pipe(
-      tap((hWnd: M.HWND) => {
-        handle = hWnd
-      }),
-      delay(1500),
-    )
-    const range$: Observable<number> = interval(500).pipe(
-      take(loops),
-    )
+    const hWnd = await createWindow(wndProc)
+    await sleep(3000)
+    assert(hWnd)
     const start = new Date().getTime()
 
-    handle$.pipe(
-      switchMap((hWnd: M.HWND) => {
-        return range$.pipe(
-          concatMap((index: number) => {
-            assert(typeof index === 'number')
-            const newTitle = titlePrefix + index.toString()
-            changeTitle(hWnd, newTitle)
-            return of(index)
-          }),
-        )
-      }),
-      timeout(50_000),
-      finalize(() => {
-        typeof wndProc // avoid gc
-        handle && destroyWin(handle)
-        // for next testing
-        setTimeout(() => {
-          done()
-        }, 1000)
-      }),
-    )
-      .subscribe(
-        (index) => {
-          assert(typeof index === 'number')
-          assert(index + 1 <= loops, `index(${index}) exceed loops(${loops})`)
-        },
-        (err) => {
-          throw err
-        },
-        () => {
-          const end = new Date().getTime()
-          const delta = end - start
-          console.info(`elp ${delta}ms at ${loops} loops`)
-        },
-      )
+    for (let i = 0; i < loops; i += 1) {
+      assert(i + 1 <= loops, `index(${i}) exceed loops(${loops})`)
+      const newTitle = titlePrefix + i.toString()
+      const title2 = await changeTitle(hWnd, newTitle)
+      assert(title2 === newTitle, `title should be changed to "${newTitle}", bug got "${title2}"`)
+      await sleep(300)
+    }
+    const end = new Date().getTime()
+    const delta = end - start
+    console.info(`elp ${delta}ms at ${loops} loops`)
+    typeof wndProc // avoid gc
 
+    await destroyWin(hWnd)
   })
 })
 
