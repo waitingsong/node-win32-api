@@ -24,10 +24,11 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('set()', () => {
-      const buf = Buffer.alloc(8)
-      const deviceName = wcharBuffer(4)
+      const len = 32
+      const buf = Buffer.alloc(len)
+      const deviceName = wcharBuffer(len / 2)
       assert(deviceName)
-      const rnd = Math.random().toString().slice(-2) + '汉'
+      const rnd = Math.random().toString().slice(-2) + '汉𠮷'
       deviceName.set(buf, 0, rnd)
       const str = deviceName.get(buf, 0)
       assert(str === rnd)
@@ -84,7 +85,7 @@ describe(fileShortPath(import.meta.url), () => {
       assert(deviceName)
       deviceName.encoding = 'ucs2'
 
-      const rnd = Math.random().toString().slice(-2) + '汉'
+      const rnd = Math.random().toString().slice(-2) + '汉𠮷'
       deviceName.set(buf, 0, rnd)
       assert(deviceName)
 
@@ -99,7 +100,7 @@ describe(fileShortPath(import.meta.url), () => {
       const deviceName = BufferTypeFactory(len / 2)
       assert(deviceName)
 
-      const rnd = Math.random().toString().slice(-2) + '汉'
+      const rnd = Math.random().toString().slice(-2) + '汉𠮷'
       const buf2 = Buffer.from(rnd, 'ucs2')
       deviceName.set(buf, 0, buf2)
       assert(deviceName)
@@ -119,4 +120,10 @@ function assertString(rnd: string, buf: Buffer): void {
   assert(buf.readUInt16LE(0) === p0)
   assert(buf.readUInt16LE(2) === p1)
   assert(buf.readUInt16LE(4) === p2)
+
+  const p3 = rnd.codePointAt(3)
+  if (p3) {
+    const p3a = buf.toString('ucs2').slice(3).replace(/\0/ug, '')
+    assert(p3a === rnd.slice(3))
+  }
 }
