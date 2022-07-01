@@ -18,9 +18,9 @@ export function UnionFactor<T>(input: StructDefType): T {
 }
 
 const Struct = StructDi(ref)
-export function StructType<T>(input: StructDefType): T {
+export function StructType(input: StructDefType) {
   // @ts-expect-error
-  return Struct(input) as unknown as T
+  return Struct(input)
 }
 export function StructFactory<T>(input: StructDefType): T {
   // @ts-expect-error

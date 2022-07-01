@@ -1,0 +1,50 @@
+import assert from 'node:assert/strict'
+
+import { fileShortPath } from '@waiting/shared-core'
+
+import {
+  POINT,
+  StructFactory,
+  StructType,
+} from '../src/index.js'
+import * as DS from '../src/index.struct.js'
+
+
+describe(fileShortPath(import.meta.url), () => {
+
+  describe('StructType() should work', () => {
+    it('normal', () => {
+      const rnd = Math.round(Math.random() * 1000000)
+
+      const poinitInit = StructType(DS.POINT)
+      assert(poinitInit)
+      // @ts-expect-error
+      assert(typeof poinitInit.x === 'undefined')
+      // @ts-expect-error
+      assert(typeof poinitInit.y === 'undefined')
+
+      const point = new poinitInit()
+      assert(point)
+      point.x = 101
+      point.y = rnd
+
+      assert(point.x === 101)
+      assert(point.y === rnd)
+    })
+  })
+
+  describe('StructFactory() should work', () => {
+    it('normal', () => {
+      const rnd = Math.round(Math.random() * 1000000)
+      const point = StructFactory<POINT>(DS.POINT)
+      assert(point)
+      point.x = 101
+      point.y = rnd
+
+      assert(point.x === 101)
+      assert(point.y === rnd)
+    })
+  })
+
+})
+
