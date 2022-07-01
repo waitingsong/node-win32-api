@@ -225,4 +225,9 @@ export interface UnionInstanceBase {
 export interface StringBuffer extends ref.Type<string> {
   size: number
   encoding: BufferEncoding | void
+  set: (
+    buffer: Buffer,
+    offset: number,
+    value: string | number[] | Buffer,
+  ) => void
 }
