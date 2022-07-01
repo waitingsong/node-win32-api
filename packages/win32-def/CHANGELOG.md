@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](https://github.com/waitingsong/node-win32-api/compare/v13.1.0...v13.2.0) (2022-07-01)
+
+
+### Bug Fixes
+
+* **win32-def:** remove generic type of UnionType ([588e41a](https://github.com/waitingsong/node-win32-api/commit/588e41ac2b8d65f4d5ec95712eeb17a2a1d689e1))
+* **win32-def:** rename UnionFactor() to UnionFactory() ([86aa646](https://github.com/waitingsong/node-win32-api/commit/86aa6465a41da9fb3f83ac2227919c158d1d1c28))
+
+
+### Features
+
+* **win32-def:** change generics type of UnionType() and struct() with StructTypeConstructor<T> ([9f20e64](https://github.com/waitingsong/node-win32-api/commit/9f20e64cd54c73111ee4e8d59ddb300217a3009c))
+
+
+
+
+
 # [13.1.0](https://github.com/waitingsong/node-win32-api/compare/v13.0.0...v13.1.0) (2022-07-01)
 
 **Note:** Version bump only for package win32-def

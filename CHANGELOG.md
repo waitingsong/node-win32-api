@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](/compare/v13.1.0...v13.2.0) (2022-07-01)
+
+
+### Bug Fixes
+
+* **win32-def:** remove generic type of UnionType 588e41a
+* **win32-def:** rename UnionFactor() to UnionFactory() 86aa646
+
+
+### Features
+
+* **win32-api:** export UnionFactory cd5baff
+* **win32-def:** change generics type of UnionType() and struct() with StructTypeConstructor<T> 9f20e64
+
+
+
+
+
 # [13.1.0](/compare/v13.0.0...v13.1.0) (2022-07-01)
 
 **Note:** Version bump only for package win32-api

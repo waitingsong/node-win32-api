@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](https://github.com/waitingsong/node-win32-api/compare/v13.1.0...v13.2.0) (2022-07-01)
+
+
+### Features
+
+* **win32-api:** export UnionFactory ([cd5baff](https://github.com/waitingsong/node-win32-api/commit/cd5baff4c61446ab43f31af6bd272bff44545499))
+
+
+
+
+
 # [13.1.0](https://github.com/waitingsong/node-win32-api/compare/v13.0.0...v13.1.0) (2022-07-01)
 
 **Note:** Version bump only for package win32-api
