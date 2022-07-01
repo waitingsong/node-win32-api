@@ -36,7 +36,6 @@ export { Comctl32 }
 export { Ntdll }
 
 export * from './lib/types.js'
-export * from './lib/fixed-buffer.js'
 
 export { Constants }
 export { Constants as CS }
