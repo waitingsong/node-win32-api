@@ -3,12 +3,12 @@ import ref from 'ref-napi'
 import StructDi from 'ref-struct-di'
 import UnionDi from 'ref-union-di'
 
-import { StructDefType } from './ffi.types.js'
+import { StructDefType, StructTypeConstructor } from './ffi.types.js'
 
 
 // const UnionDi = _UnionDi
 const Union = UnionDi(ref)
-export function UnionType(input: StructDefType) {
+export function UnionType<T extends StructDefType>(input: T): StructTypeConstructor<T> {
   // @ts-expect-error
   return Union(input)
 }
@@ -18,7 +18,7 @@ export function UnionFactory<T>(input: StructDefType): T {
 }
 
 const Struct = StructDi(ref)
-export function StructType(input: StructDefType) {
+export function StructType<T extends StructDefType>(input: T): StructTypeConstructor<T> {
   // @ts-expect-error
   return Struct(input)
 }

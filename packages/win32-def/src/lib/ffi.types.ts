@@ -13,6 +13,7 @@ export type _UNICODE = boolean
 export interface StructDefType {
   [prop: string]: Def | StructDefType | StringBuffer | UnionInstanceBase
 }
+export type StructTypeConstructor<T> = new () => Record<keyof T, string | number | BigIntStr | Buffer>
 
 export interface LoadSettings {
   singleton: boolean // for DLL.load()

@@ -18,10 +18,8 @@ describe(fileShortPath(import.meta.url), () => {
 
       const poinitInit = StructType(DS.POINT)
       assert(poinitInit)
-      // @ts-expect-error
-      assert(typeof poinitInit.x === 'undefined')
-      // @ts-expect-error
-      assert(typeof poinitInit.y === 'undefined')
+      assert(! Object.hasOwn(poinitInit, 'x'))
+      assert(! Object.hasOwn(poinitInit, 'y'))
 
       const point = new poinitInit()
       assert(point)
