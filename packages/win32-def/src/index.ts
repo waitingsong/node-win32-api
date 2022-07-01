@@ -16,4 +16,5 @@ export * from './lib/struct/wingdi.types.js'
 export * from './lib/struct/winuser.types.js'
 export * from './lib/union/union.types.js'
 export * from './lib/ffi.types.js'
+export * from './lib/fixed-buffer.js'
 
