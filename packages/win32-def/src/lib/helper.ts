@@ -8,9 +8,9 @@ import { StructDefType } from './ffi.types.js'
 
 // const UnionDi = _UnionDi
 const Union = UnionDi(ref)
-export function UnionType<T>(input: StructDefType): T {
+export function UnionType(input: StructDefType) {
   // @ts-expect-error
-  return Union(input) as unknown as T
+  return Union(input)
 }
 export function UnionFactor<T>(input: StructDefType): T {
   // @ts-expect-error
