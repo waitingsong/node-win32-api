@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.2.1](/compare/v13.2.0...v13.2.1) (2022-07-01)
+
+**Note:** Version bump only for package win32-api
+
+
+
+
+
 # [13.2.0](/compare/v13.1.0...v13.2.0) (2022-07-01)
 
 

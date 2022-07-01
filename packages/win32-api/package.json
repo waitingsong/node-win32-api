@@ -1,7 +1,7 @@
 {
   "name": "win32-api",
   "author": "waiting",
-  "version": "13.2.0",
+  "version": "13.2.1",
   "description": "FFI definitions of windows win32 api for node-ffi",
   "keywords": [
     "windows",
