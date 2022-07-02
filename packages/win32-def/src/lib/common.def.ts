@@ -205,13 +205,20 @@ export const WNDPROC = Def.ptr
  * CALLBACK WNDCLASSEX.lpfnWndProc may pass negative number and cause process exit.
  */
 export const WPARAM = UINT_PTR
-// A pointer to an INITCOMMONCONTROLSEX
-export const LPINITCOMMONCONTROLSEX = Def.ptr
-export const LPWNDCLASSEX = Def.ptr // A pointer to a WNDCLASSEX
-export const PWINDOWINFO = Def.ptr // A pointer to a WINDOWINFO structure
 
-export const PFILETIME = Def.ptr // A pointer to a FILETIME
-export const LPFILETIME = Def.ptr // A pointer to a FILETIME
+/** A pointer to an INITCOMMONCONTROLSEX */
+export const LPINITCOMMONCONTROLSEX = Def.ptr
+/** A pointer to a WNDCLASSEX */
+export const LPWNDCLASSEX = Def.ptr
+
+/** A pointer to a LUID structure */
+export const PLUID = Def.ptr
+/** A pointer to a WINDOWINFO structure */
+export const PWINDOWINFO = Def.ptr
+/** A pointer to a FILETIME */
+export const PFILETIME = Def.ptr
+/** A pointer to a FILETIME */
+export const LPFILETIME = Def.ptr
 
 export const va_list = Def.charPtr
 
