@@ -21,6 +21,11 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./consts": {
+      "types": "./src/index.consts.ts",
+      "import": "./dist/index.consts.js",
+      "require": "./dist/index.consts.cjs"
+    },
     "./common.def": {
       "types": "./src/index.def.ts",
       "import": "./dist/index.def.js",
