@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.5.0](/compare/v13.4.0...v13.5.0) (2022-07-04)
+
+
+### Features
+
+* **win32-api:** declare wingdi.enum.ts b94a11d
+
+
+
+
+
 # [13.4.0](/compare/v13.3.0...v13.4.0) (2022-07-01)
 
 

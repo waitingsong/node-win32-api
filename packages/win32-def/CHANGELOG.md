@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.5.0](https://github.com/waitingsong/node-win32-api/compare/v13.4.0...v13.5.0) (2022-07-04)
+
+
+### Features
+
+* **win32-api:** declare wingdi.enum.ts ([b94a11d](https://github.com/waitingsong/node-win32-api/commit/b94a11dd0f3ae9247572b170396b087348733c8f))
+
+
+
+
+
 # [13.4.0](https://github.com/waitingsong/node-win32-api/compare/v13.3.0...v13.4.0) (2022-07-01)
 
 
