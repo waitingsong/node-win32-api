@@ -23,15 +23,15 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-core": "^18.0.0"
+    "@waiting/shared-core": "^19.0.0"
   },
   "devDependencies": {
-    "@waiting/shared-types": "^18.0.0",
+    "@waiting/shared-types": "^19.0.0",
     "cross-env": "7"
   },
   "peerDependencies": {
     "@midwayjs/core": ">=3",
-    "@midwayjs/decorator": "*"
+    "@midwayjs/decorator": ">=3"
   },
   "engines": {
     "node": ">=16.13.0"
