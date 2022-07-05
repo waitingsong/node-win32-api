@@ -34,7 +34,6 @@
     "rimraf": "3",
     "rollup-plugin-terser": "7",
     "rxjs": "^7.5.0",
-    "rxrunscript": "11",
     "ts-node": "^10.8.2",
     "tsconfig-paths": "4",
     "typescript": "^4.7.4",
