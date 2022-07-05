@@ -1,5 +1,5 @@
-import assert from 'assert/strict'
-import { relative } from 'path'
+import assert from 'node:assert/strict'
+import { relative } from 'node:path'
 
 
 const filename = relative(process.cwd(), __filename).replace(/\\/ug, '/')
