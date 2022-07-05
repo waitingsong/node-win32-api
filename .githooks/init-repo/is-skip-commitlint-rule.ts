@@ -5,7 +5,7 @@
  */
 
 export const protectBranch = <RegExp[]> [
-  /^(master|release)$/,
+  /^(master|main|release)$/,
   /^develop$/,
   /^v.+/,
   /^release-.+/,
