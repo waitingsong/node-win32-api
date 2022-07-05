@@ -33,11 +33,11 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@waiting/shared-core": "^19.0.0",
+    "@waiting/shared-core": "^19.1.0",
     "cross-env": "7"
   },
   "peerDependencies": {
-    "@waiting/shared-types": "^19.0.0"
+    "@waiting/shared-types": "^19.0.1"
   },
   "engines": {
     "node": ">=16.13.0"
