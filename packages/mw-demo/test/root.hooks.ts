@@ -1,6 +1,6 @@
 import 'tsconfig-paths/register'
-import assert from 'assert/strict'
-import { join } from 'path'
+import assert from 'node:assert/strict'
+import { join } from 'node:path'
 
 import * as WEB from '@midwayjs/koa'
 import { createApp, close, createHttpRequest } from '@midwayjs/mock'

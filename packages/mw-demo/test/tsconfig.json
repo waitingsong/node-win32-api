@@ -9,7 +9,7 @@
     "noPropertyAccessFromIndexSignature": false,
     "noUnusedLocals": false,
     "sourceMap": false,
-    "target": "ESNEXT"
+    "target": "ESNext"
   },
   "include": [
     "**/*.ts"

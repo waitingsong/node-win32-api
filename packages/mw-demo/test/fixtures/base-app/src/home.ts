@@ -21,7 +21,7 @@ export class HomeController {
 
   @Get('/')
   async home(ctx: Context): Promise<TestRespBody> {
-    const { 
+    const {
       cookies, 
       header, 
       url,

@@ -56,6 +56,6 @@
     "purge": "npm run clean && rm node_modules -rf && rm package-lock.json -f",
     "test": "cross-env MIDWAY_SERVER_ENV=unittest TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
     "test:local": "cross-env MIDWAY_SERVER_ENV=unittest TS_NODE_PROJECT=test/tsconfig.json ../../node_modules/.bin/mocha --parallel=false",
-    "tsc": "tsc -p tsconfig.json"
+    "tsc": "tsc -b"
   }
 }
