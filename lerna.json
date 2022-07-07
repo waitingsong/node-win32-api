@@ -17,7 +17,8 @@
         "package-lock.json",
         "packages/demo",
         "packages/mw-demo"
-      ]
+      ],
+      "verifyAccess": false
     },
     "bootstrap": {
       "hoist": true,
