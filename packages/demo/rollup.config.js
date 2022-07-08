@@ -18,7 +18,6 @@ if (name.slice(0, 1) === '@') {
 name = parseName(name)
 console.log({ name })
 
-const targetDir = dirname(pkg.main)
 const deps = pkg.dependencies
 const peerDeps = pkg.peerDependencies
 
