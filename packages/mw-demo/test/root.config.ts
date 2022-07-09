@@ -3,7 +3,7 @@ import { IncomingHttpHeaders } from 'node:http'
 import supertest, { SuperTest } from 'supertest'
 
 import { config } from '@/config.unittest'
-import { Application } from '~/interface'
+import { Application, IMidwayContainer } from '~/interface'
 import {
   Config,
   MiddlewareConfig,
@@ -23,6 +23,7 @@ export interface TestRespBody {
 export interface TestConfig {
   CI: boolean
   app: Application
+  container: IMidwayContainer
   config: Config
   host: string
   httpRequest: SuperTest<supertest.Test>
