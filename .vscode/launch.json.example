@@ -15,6 +15,7 @@
         "--colors",
         "--parallel=false"
       ],
+      "console": "internalConsole",
       "env": {
         "NODE_ENV": "unittest",
         "TS_NODE_PROJECT": "test/tsconfig.json",
@@ -24,6 +25,7 @@
         "POSTGRES_USER": "postgres",
         "POSTGRES_PASSWORD": ""
       },
+      "internalConsoleOptions": "openOnFirstSessionStart",
       "request": "launch",
       "restart": false,
       "runtimeArgs": [
@@ -31,42 +33,7 @@
         "test:local",
         "--",
         "--runInBand",
-        "--preserve-symlinks",
-        "--inspect-brk"
-      ],
-      "runtimeExecutable": "npm",
-      "skipFiles": [
-        "**/node_modules/rxjs/**",
-        "**/node_modules/mocha/**",
-        "<node_internals>/**",
-        "<node_internals>/**/*.js"
-      ],
-      "internalConsoleOptions": "openOnSessionStart",
-      "timeout": 30000
-    },
-    {
-      "name": "Midway TEST",
-      "type": "node",
-      "autoAttachChildProcesses": true,
-      "console": "integratedTerminal",
-      "env": {
-        "NODE_ENV": "unittest",
-        "TS_NODE_PROJECT": "test/tsconfig.json",
-        "POSTGRES_HOST": "",
-        "POSTGRES_PORT": "5432",
-        "POSTGRES_DB": "",
-        "POSTGRES_USER": "postgres",
-        "POSTGRES_PASSWORD": ""
-      },
-      "request": "launch",
-      "restart": false,
-      "runtimeArgs": [
-        "run",
-        "test:local",
-        "--",
-        "--runInBand",
-        "--preserve-symlinks",
-        "--inspect-brk"
+        "--preserve-symlinks"
       ],
       "runtimeExecutable": "npm",
       "skipFiles": [
@@ -89,7 +56,7 @@
         "POSTGRES_HOST": "",
         "POSTGRES_PORT": "5432",
         "POSTGRES_DB": "",
-        "POSTGRES_USER": "",
+        "POSTGRES_USER": "postgres",
         "POSTGRES_PASSWORD": ""
       },
       "request": "launch",
