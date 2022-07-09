@@ -46,8 +46,6 @@ jobs:
             node_modules
             package-lock.json
             packages/*/.eslintcache
-            packages/*/.vscode
-            packages/*/dist
             packages/*/node_modules
             packages/*/package-lock.json
           key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}

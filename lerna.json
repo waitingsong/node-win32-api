@@ -25,6 +25,7 @@
         "egg"
       ],
       "npmClientArgs": [
+        "--no-audit"
       ]
     },
     "version": {

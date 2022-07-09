@@ -51,6 +51,7 @@
       "console": "integratedTerminal",
       "env": {
         "NODE_ENV": "unittest",
+        "TS_NODE_PROJECT": "test/tsconfig.json",
         "POSTGRES_HOST": "",
         "POSTGRES_PORT": "5432",
         "POSTGRES_DB": "",
