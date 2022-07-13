@@ -54,7 +54,7 @@
   },
   "scripts": {
     "build": "npm run tsc && npm run rp",
-    "clean": "npm run clean:lock & npm run clean:cache & rm -rf dist/* -rf",
+    "clean": "npm run clean:lock & npm run clean:cache & rm -rf dist/*",
     "clean:cache": "rm -rf .eslintcache .vscode/.tsbuildinfo .vscode/.tsbuildinfo.*",
     "clean:lock": "rm package-lock.json -f",
     "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json c8 mocha --loader=ts-node/esm --parallel=false",
@@ -64,7 +64,6 @@
     "rp": "rollup -c rollup.config.js --context this",
     "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --loader=ts-node/esm",
     "test:local": "cross-env TS_NODE_PROJECT=test/tsconfig.json ../../node_modules/.bin/mocha --loader=ts-node/esm --parallel=false",
-    "tsc": "tsc -b ",
-    "tsc:w": "tsc -p tsconfig.json -w"
+    "tsc": "tsc -b "
   }
 }
