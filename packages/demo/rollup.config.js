@@ -156,7 +156,8 @@ if (production) {
 */
 
 if (pkg.bin) {
-  const shebang = `#!/usr/bin/env node\n\n${banner}`
+  // const shebang = `#!/usr/bin/env node\n\n${banner}`
+  const shebang = `#!/usr/bin/env ts-node-esm\n\n${banner}`
 
   for (const binPath of Object.values(pkg.bin)) {
     if (! binPath) {
@@ -173,7 +174,8 @@ if (pkg.bin) {
         {
           file: binPath,
           banner: shebang,
-          format: 'cjs',
+          // format: 'cjs',
+          format: 'esm',
           globals,
         },
       ],
