@@ -15,7 +15,6 @@
     "@midwayjs/web": "^3.3.0",
     "@rollup/plugin-commonjs": "22",
     "@rollup/plugin-node-resolve": "13",
-    "@swc/core": "^1.2.208",
     "@types/mocha": "9",
     "@types/node": "18",
     "@types/rewire": "2",
