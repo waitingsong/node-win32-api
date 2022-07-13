@@ -7,7 +7,7 @@ import { Application, IMidwayContainer } from '~/interface'
 import {
   Config,
   MiddlewareConfig,
-} from '~/lib/types'
+} from '~/lib/index'
 
 
 const CI = !! process.env.CI
