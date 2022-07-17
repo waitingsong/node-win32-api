@@ -147,6 +147,9 @@ function createEnumWinProc(): M.WNDENUMPROC {
             tmpMap.set(lParam, point)
           }
         }
+        else {
+          console.warn('lParam is not number')
+        }
         return false // stop loop if return false
       }
 
