@@ -13,7 +13,7 @@ import {
   StructFactory,
 } from '../src/index.js'
 
-import { calcLpszWindow } from './config.unittest.js'
+import { calcLpszClassNotepad } from './config.unittest.js'
 import { user32, user32Sync } from './helper.js'
 
 
@@ -24,14 +24,14 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe('find app window by user32.EnumWindows()', () => {
     it('await', async () => {
-      const child = spawn('calc.exe')
+      const child = spawn('notepad.exe')
       const enumWindowsProc = createEnumWinProc()
 
       console.log(new Date().toLocaleTimeString())
       await sleep(3000)
       console.log(new Date().toLocaleTimeString())
 
-      const hWnd = await user32.FindWindowExW(0, 0, null, calcLpszWindow)
+      const hWnd = await user32.FindWindowExW(0, 0, calcLpszClassNotepad, null)
       assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
 
       // Change title of the Calculator
@@ -70,14 +70,14 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('callback .async', async () => {
-      const child = spawn('calc.exe')
+      const child = spawn('notepad.exe')
       const enumWindowsProc = createEnumWinProc()
 
       console.log(new Date().toLocaleTimeString())
       await sleep(3000)
       console.log(new Date().toLocaleTimeString())
 
-      const hWnd = user32Sync.FindWindowExW(0, 0, null, calcLpszWindow)
+      const hWnd = user32Sync.FindWindowExW(0, 0, calcLpszClassNotepad, null)
       assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
 
       // Change title of the Calculator
