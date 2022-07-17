@@ -18,7 +18,7 @@ import { user32, user32Sync } from './helper.js'
 
 
 const tmpMap = new Map<number | string | bigint, M.POINT>()
-const title = 'new-calc-' + Math.random().toString()
+const title = 'new-title-' + Math.random().toString()
 
 describe(fileShortPath(import.meta.url), () => {
 
@@ -69,7 +69,7 @@ describe(fileShortPath(import.meta.url), () => {
       console.log(new Date().toLocaleTimeString())
     })
 
-    it('callback .async', async () => {
+    it('callback sync', async () => {
       const child = spawn('notepad.exe')
       const enumWindowsProc = createEnumWinProc()
 
