@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.6.0](/compare/v13.5.0...v13.6.0) (2022-07-17)
+
+
+### Bug Fixes
+
+* **boilerplate:** define enum without const 37ffd10
+* **boilerplate:** devDeps version 2e29b42
+
+
+### Features
+
+* **win32-def:** define Virtual-Key Codes 3d39823
+
+
+
+
+
 # [13.5.0](/compare/v13.4.0...v13.5.0) (2022-07-04)
 
 

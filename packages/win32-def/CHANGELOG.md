@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.6.0](https://github.com/waitingsong/node-win32-api/compare/v13.5.0...v13.6.0) (2022-07-17)
+
+
+### Features
+
+* **win32-def:** define Virtual-Key Codes ([3d39823](https://github.com/waitingsong/node-win32-api/commit/3d39823824886a3a518dd9fcf01e9ac77f3c9a4d))
+
+
+
+
+
 # [13.5.0](https://github.com/waitingsong/node-win32-api/compare/v13.4.0...v13.5.0) (2022-07-04)
 
 
