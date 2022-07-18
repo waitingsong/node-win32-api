@@ -4,6 +4,12 @@ import { Def } from '../def.enum.js'
 /** https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx */
 export const POINT = Def.ptr
 
+/**
+ * @link https://docs.microsoft.com/en-us/windows/win32/api/windef/ns-windef-pointl
+ */
+export const POINTL = Def.ptr
+export const PPOINTL = Def.ptr
+
 /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-alttabinfo */
 export const ALTTABINFO = Def.ptr
 

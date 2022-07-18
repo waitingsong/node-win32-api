@@ -50,6 +50,14 @@ export const POINT = {
   y: LONG,
 } as const
 
+/**
+ * @link https://docs.microsoft.com/en-us/windows/win32/api/windef/ns-windef-pointl
+ */
+export const POINTL = {
+  x: LONG,
+  y: LONG,
+} as const
+
 /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-alttabinfo */
 export const ALTTABINFO = {
   cbSize: DWORD,

@@ -47,6 +47,15 @@ export interface POINT extends StructInstanceBase {
   y: LONG
 }
 
+/**
+ * @link https://docs.microsoft.com/en-us/windows/win32/api/windef/ns-windef-pointl
+ */
+export interface POINTL extends StructInstanceBase {
+  x: LONG
+  y: LONG
+}
+export type PPOINTL = _POINTER
+
 /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-alttabinfo */
 export interface ALTTABINFO extends StructInstanceBase {
   cbSize: DWORD
