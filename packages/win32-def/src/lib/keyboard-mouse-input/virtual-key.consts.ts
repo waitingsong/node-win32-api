@@ -14,9 +14,9 @@ export const VK_LBUTTON = 0x01
 export const VK_RBUTTON = 0x02
 /** Control-break processing */
 export const VK_CANCEL = 0x03
-/** Middle mouse button(three - button mouse)  */
+/** Middle mouse button(three - button mouse) */
 export const VK_MBUTTON = 0x04
-/** X1 mouse button  */
+/** X1 mouse button */
 export const VK_XBUTTON1 = 0x05
 /** X2 mouse button */
 export const VK_XBUTTON2 = 0x06
@@ -38,7 +38,7 @@ export const VK_CAPITAL = 0x14
 export const VK_KANA = 0x15
 /** IME Hanguel mode(maintained for compatibility; use VK_HANGUL)  */
 export const VK_HANGUEL = 0x15
-/** IME Hangul mode  */
+/** IME Hangul mode */
 export const VK_HANGUL = 0x15
 /** IME On */
 export const VK_IME_ON = 0x16
@@ -56,11 +56,11 @@ export const VK_CONVERT = 0x1C
 export const VK_NONCONVERT = 0x1D
 /** IME accept */
 export const VK_ACCEPT = 0x1E
-/** IME mode change request  */
+/** IME mode change request */
 export const VK_MODECHANGE = 0x1F
-/** SPACEBAR  */
+/** SPACEBAR */
 export const VK_SPACE = 0x20
-/** PAGE UP key  */
+/** PAGE UP key */
 export const VK_PRIOR = 0x21
 /** PAGE DOWN key */
 export const VK_NEXT = 0x22
@@ -68,27 +68,27 @@ export const VK_NEXT = 0x22
 export const VK_END = 0x23
 /** HOME key */
 export const VK_HOME = 0x24
-/** LEFT ARROW key  */
+/** LEFT ARROW key */
 export const VK_LEFT = 0x25
 /** UP ARROW key */
 export const VK_UP = 0x26
-/**  	RIGHT ARROW key */
+/** RIGHT ARROW key */
 export const VK_RIGHT = 0x27
-/**  	DOWN ARROW key */
+/** DOWN ARROW key */
 export const VK_DOWN = 0x28
-/** 	SELECT key  */
+/** SELECT key */
 export const VK_SELECT = 0x29
-/** 	PRINT key  */
+/** PRINT key */
 export const VK_PRINT = 0x2A
-/**  	EXECUTE key */
+/** EXECUTE key */
 export const VK_EXECUTE = 0x2B
-/**  	PRINT SCREEN key */
+/** PRINT SCREEN key */
 export const VK_SNAPSHOT = 0x2C
-/**  	INS key */
+/** INS key */
 export const VK_INSERT = 0x2D
-/**  	DEL key */
+/** DEL key */
 export const VK_DELETE = 0x2E
-/**  	HELP key */
+/** HELP key */
 export const VK_HELP = 0x2F
 /*
 0x30 = 0 key
@@ -140,35 +140,35 @@ export const VK_SLEEP = 0x5F
 export const VK_NUMPAD0 = 0x60
 /** Numeric keypad 1 key */
 export const VK_NUMPAD1 = 0x61
-/**  	Numeric keypad 2 key */
+/** Numeric keypad 2 key */
 export const VK_NUMPAD2 = 0x62
-/**  	Numeric keypad 3 key */
+/** Numeric keypad 3 key */
 export const VK_NUMPAD3 = 0x63
-/** 	Numeric keypad 4 key */
+/** Numeric keypad 4 key */
 export const VK_NUMPAD4 = 0x64
-/**  	Numeric keypad 5 key */
+/** Numeric keypad 5 key */
 export const VK_NUMPAD5 = 0x65
-/**  	Numeric keypad 6 key */
+/** Numeric keypad 6 key */
 export const VK_NUMPAD6 = 0x66
-/**  	Numeric keypad 7 key */
+/** Numeric keypad 7 key */
 export const VK_NUMPAD7 = 0x67
-/**  	Numeric keypad 8 key */
+/** Numeric keypad 8 key */
 export const VK_NUMPAD8 = 0x68
-/** 	Numeric keypad 9 key  */
+/** Numeric keypad 9 key */
 export const VK_NUMPAD9 = 0x69
-/** 	Multiply key  */
+/** Multiply key */
 export const VK_MULTIPLY = 0x6A
-/**  	Add key */
+/** Add key */
 export const VK_ADD = 0x6B
-/** 	Separator key  */
+/** Separator key */
 export const VK_SEPARATOR = 0x6C
-/** 	Subtract key  */
+/** Subtract key */
 export const VK_SUBTRACT = 0x6D
-/** 	Decimal key  */
+/** Decimal key */
 export const VK_DECIMAL = 0x6E
-/** 	Divide key  */
+/** Divide key */
 export const VK_DIVIDE = 0x6F
-/** 	F1 key  */
+/** F1 key */
 export const VK_F1 = 0x70
 export const VK_F2 = 0x71
 export const VK_F3 = 0x72
@@ -193,39 +193,39 @@ export const VK_F21 = 0x84
 export const VK_F22 = 0x85
 export const VK_F23 = 0x86
 export const VK_F24 = 0x87
-/** NUM LOCK key  */
+/** NUM LOCK key */
 export const VK_NUMLOCK = 0x90
-/** SCROLL LOCK key  */
+/** SCROLL LOCK key */
 export const VK_SCROLL = 0x91
-/** Left SHIFT key  */
+/** Left SHIFT key */
 export const VK_LSHIFT = 0xA0
-/** Right SHIFT key  */
+/** Right SHIFT key */
 export const VK_RSHIFT = 0xA1
-/** Left CONTROL key  */
+/** Left CONTROL key */
 export const VK_LCONTROL = 0xA2
-/** Right CONTROL key  */
+/** Right CONTROL key */
 export const VK_RCONTROL = 0xA3
-/** Left ALT key  */
+/** Left ALT key */
 export const VK_LMENU = 0xA4
-/** Right ALT key  */
+/** Right ALT key */
 export const VK_RMENU = 0xA5
-/** Browser Back key  */
+/** Browser Back key */
 export const VK_BROWSER_BACK = 0xA6
-/** Browser Forward key  */
+/** Browser Forward key */
 export const VK_BROWSER_FORWARD = 0xA7
-/** Browser Refresh key  */
+/** Browser Refresh key */
 export const VK_BROWSER_REFRESH = 0xA8
 /** Browser Stop key */
 export const VK_BROWSER_STOP = 0xA9
-/** Browser Search key  */
+/** Browser Search key */
 export const VK_BROWSER_SEARCH = 0xAA
-/** Browser Favorites key  */
+/** Browser Favorites key */
 export const VK_BROWSER_FAVORITES = 0xAB
-/** Browser Start and Home key  */
+/** Browser Start and Home key */
 export const VK_BROWSER_HOME = 0xAC
-/** Volume Mute key  */
+/** Volume Mute key */
 export const VK_VOLUME_MUTE = 0xAD
-/** Volume Down key  */
+/** Volume Down key */
 export const VK_VOLUME_DOWN = 0xAE
 /** Volume Up key */
 export const VK_VOLUME_UP = 0xAF
