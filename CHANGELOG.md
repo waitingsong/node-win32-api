@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.10.0](/compare/v13.9.0...v13.10.0) (2022-07-18)
+
+
+### Features
+
+* **win32-api:** gdi32.CreateCompatibleBitmap() 3325d3b
+
+
+
+
+
 # [13.9.0](/compare/v13.8.0...v13.9.0) (2022-07-18)
 
 
