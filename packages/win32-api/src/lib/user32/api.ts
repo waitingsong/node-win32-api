@@ -54,6 +54,8 @@ export interface Win32Fns {
     lpszWindow: M.LPCTSTR | null,
   ) => M.HWND
 
+  FlashWindow: (hWnd: M.HWND, bInvert: M.BOOL) => M.BOOL
+
   FlashWindowEx: (pfwi: M.PFLASHWINFO) => M.BOOL
 
   GetAncestor: (hwnd: M.HWND, gaFlags: M.UINT) => M.HWND
@@ -205,6 +207,8 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
   EnumWindows: [W.BOOL, [W.WNDENUMPROC, W.LPARAM] ],
 
   FindWindowExW: [W.HWND, [W.HWND, W.HWND, W.LPCTSTR, W.LPCTSTR] ],
+
+  FlashWindow: [W.BOOL, [W.HWND, W.BOOL] ],
 
   FlashWindowEx: [W.BOOL, [W.FLASHWINFO] ],
 
