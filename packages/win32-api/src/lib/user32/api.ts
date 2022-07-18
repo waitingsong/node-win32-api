@@ -54,6 +54,8 @@ export interface Win32Fns {
     lpszWindow: M.LPCTSTR | null,
   ) => M.HWND
 
+  FlashWindowEx: (pfwi: M.PFLASHWINFO) => M.BOOL
+
   GetAncestor: (hwnd: M.HWND, gaFlags: M.UINT) => M.HWND
 
   /** https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getalttabinfow */
@@ -203,6 +205,8 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
   EnumWindows: [W.BOOL, [W.WNDENUMPROC, W.LPARAM] ],
 
   FindWindowExW: [W.HWND, [W.HWND, W.HWND, W.LPCTSTR, W.LPCTSTR] ],
+
+  FlashWindowEx: [W.BOOL, [W.FLASHWINFO] ],
 
   GetAncestor: [W.HWND, [W.HWND, W.UINT] ],
 
