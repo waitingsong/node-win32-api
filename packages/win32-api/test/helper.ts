@@ -18,6 +18,7 @@ import {
   Kernel32,
   User32,
   Comctl32,
+  Gdi32,
 } from '../src/index.promise.js'
 
 
@@ -26,6 +27,7 @@ export type StructDiType = typeof Struct
 export const Union = UnionDi(ref)
 
 export const comctl32 = Comctl32.load()
+export const gdi32 = Gdi32.load()
 export const knl32 = Kernel32.load()
 export const knl32Sync = K.load()
 export const user32 = User32.load()

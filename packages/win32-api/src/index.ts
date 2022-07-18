@@ -1,4 +1,5 @@
 import * as Comctl32 from './lib/comctl32/index.js'
+import * as Gdi32 from './lib/gdi32/index.js'
 import * as Kernel32 from './lib/kernel32/index.js'
 import * as Ntdll from './lib/ntdll/index.js'
 import * as User32 from './lib/user32/index.js'
@@ -23,6 +24,8 @@ export * as DStruct from 'win32-def/struct.def'
 // window data types
 export * as DTypes from 'win32-def/common.def'
 
+
+export { Gdi32 }
 
 export { User32 as U }
 export { User32 }
