@@ -18,7 +18,7 @@ import { user32, destroyWin } from '../helper.js'
 
 describe(fileShortPath(import.meta.url), () => {
 
-  describe.only('Should FlashWindow() work', () => {
+  describe('Should FlashWindow() work', () => {
     it('true', async () => {
       const child = spawn('notepad.exe')
       await sleep(1000)
