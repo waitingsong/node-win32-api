@@ -7,6 +7,10 @@ import { Def } from './def.enum.js'
 
 const { _WIN64 } = config
 
+/**
+ * @link https://docs.microsoft.com/en-us/windows/win32/secauthz/access-mask-format
+ */
+export const ACCESS_MASK = Def.int32
 export const ATOM = Def.uint16
 export const DWORD = Def.uint32
 export const PVOID = _WIN64 ? Def.uint64Ptr : Def.uint32Ptr

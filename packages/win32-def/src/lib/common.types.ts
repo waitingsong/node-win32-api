@@ -13,6 +13,10 @@ export type WNDPROC = Buffer
 /** number: 32bit, bitint: 64bit  */
 export type PTR_Addr = number | BigIntStr
 
+/**
+ * @link https://docs.microsoft.com/en-us/windows/win32/secauthz/access-mask-format
+ */
+export type ACCESS_MASK = number
 export type ATOM = number // uint16
 export type DWORD = number
 export type PVOID = Buffer
