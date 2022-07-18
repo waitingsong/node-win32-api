@@ -69,6 +69,12 @@ export interface Win32Fns {
     cchItemText: M.INT,
   ) => M.BOOL
 
+  /**
+   * Copies the caret's position to the specified POINT structure.
+   * @link https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcaretpos
+   */
+  GetCaretPos: (lpPoint: M.LPPOINT) => M.BOOL
+
   GetClassInfoExW: (hinst: M.HINSTANCE, lpszClass: M.LPCTSTR, LPWNDCLASSEX: M.LPWNDCLASSEX) => M.BOOL
 
   GetForegroundWindow: () => M.HWND
@@ -215,6 +221,12 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
   GetAncestor: [W.HWND, [W.HWND, W.UINT] ],
 
   GetAltTabInfoW: [W.BOOL, [W.HWND, W.INT, W.INT, W.LPWSTR, W.INT] ],
+
+  /**
+   * Copies the caret's position to the specified POINT structure.
+   * @link https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcaretpos
+   */
+  GetCaretPos: [W.BOOL, [W.LPPOINT] ],
 
   GetClassInfoExW: [W.BOOL, [W.HINSTANCE, W.LPCTSTR, W.LPWNDCLASSEX] ],
 
