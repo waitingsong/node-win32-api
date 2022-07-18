@@ -7,7 +7,7 @@ import { sleep } from 'zx'
 import * as UP from '../src/index.user32.js'
 
 import { calcLpszClassNotepad, calcLpszWindow } from './config.unittest.js'
-import { user32, user32Sync } from './helper.js'
+import { destroyWin, user32, user32Sync } from './helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
@@ -22,10 +22,11 @@ describe(fileShortPath(import.meta.url), () => {
 
       const hWnd = await user32.FindWindowExW(0, 0, calcLpszClassNotepad, null)
       assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
+      await destroyWin(hWnd)
       child.kill()
     })
 
-    it('find window hWnd via callback async', async () => {
+    it.skip('find window hWnd via callback async', async () => {
       const child = spawn('notepad.exe')
 
       console.log(new Date().toLocaleTimeString())
@@ -48,14 +49,16 @@ describe(fileShortPath(import.meta.url), () => {
 
     it('change window title', async () => {
       const child = spawn('notepad.exe')
-      await sleep(2000)
+      await sleep(1000)
       await findNSetWinTitleAsync()
+      child.kill()
     })
 
     it('change window title with partial loading', async () => {
-      const child = spawn('calc.exe')
-      await sleep(2000)
+      const child = spawn('notepad.exe')
+      await sleep(1000)
       await findNSetWinTitleAsyncPartial()
+      child.kill()
     })
 
   })
