@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.8.0](/compare/v13.7.0...v13.8.0) (2022-07-18)
+
+
+### Features
+
+* **win32-api:** user32.GetCaretPos() 62d7a11
+
+
+
+
+
 # [13.7.0](/compare/v13.6.0...v13.7.0) (2022-07-18)
 
 

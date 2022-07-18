@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.8.0](https://github.com/waitingsong/node-win32-api/compare/v13.7.0...v13.8.0) (2022-07-18)
+
+
+### Features
+
+* **win32-api:** user32.GetCaretPos() ([62d7a11](https://github.com/waitingsong/node-win32-api/commit/62d7a11af5a0ab489b17300095798f353c74d3e2))
+
+
+
+
+
 # [13.7.0](https://github.com/waitingsong/node-win32-api/compare/v13.6.0...v13.7.0) (2022-07-18)
 
 
