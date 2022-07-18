@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.7.0](https://github.com/waitingsong/node-win32-api/compare/v13.6.0...v13.7.0) (2022-07-18)
+
+
+### Features
+
+* **win32-api:** user32.FlashWindow() ([a0b1903](https://github.com/waitingsong/node-win32-api/commit/a0b19035070b2211e5cdd15f66ab5e242fa0164c))
+* **win32-api:** user32.FlashWindowEx() ([c04b7af](https://github.com/waitingsong/node-win32-api/commit/c04b7af43331f5d8767af465f7cbd08206af5f89))
+
+
+
+
+
 # [13.6.0](https://github.com/waitingsong/node-win32-api/compare/v13.5.0...v13.6.0) (2022-07-17)
 
 **Note:** Version bump only for package win32-api

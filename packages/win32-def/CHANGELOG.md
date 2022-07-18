@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.7.0](https://github.com/waitingsong/node-win32-api/compare/v13.6.0...v13.7.0) (2022-07-18)
+
+
+### Features
+
+* **win32-def:** define FLASHWINFO structure ([65022ea](https://github.com/waitingsong/node-win32-api/commit/65022ea99b723970d4bcd716a926e2fb7d8f3f55))
+
+
+
+
+
 # [13.6.0](https://github.com/waitingsong/node-win32-api/compare/v13.5.0...v13.6.0) (2022-07-17)
 
 

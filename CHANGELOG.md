@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.7.0](/compare/v13.6.0...v13.7.0) (2022-07-18)
+
+
+### Features
+
+* **win32-api:** user32.FlashWindow() a0b1903
+* **win32-api:** user32.FlashWindowEx() c04b7af
+* **win32-def:** define FLASHWINFO structure 65022ea
+
+
+
+
+
 # [13.6.0](/compare/v13.5.0...v13.6.0) (2022-07-17)
 
 
