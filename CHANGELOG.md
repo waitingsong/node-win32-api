@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.9.0](/compare/v13.8.0...v13.9.0) (2022-07-18)
+
+
+### Features
+
+* **win32-api:** gdi32.CreateCompatibleDC() 956587d
+
+
+
+
+
 # [13.8.0](/compare/v13.7.0...v13.8.0) (2022-07-18)
 
 

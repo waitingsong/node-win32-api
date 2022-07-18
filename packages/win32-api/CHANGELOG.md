@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.9.0](https://github.com/waitingsong/node-win32-api/compare/v13.8.0...v13.9.0) (2022-07-18)
+
+
+### Features
+
+* **win32-api:** gdi32.CreateCompatibleDC() ([956587d](https://github.com/waitingsong/node-win32-api/commit/956587d02a386198a56fddf66cc5cb7acacade2c))
+
+
+
+
+
 # [13.8.0](https://github.com/waitingsong/node-win32-api/compare/v13.7.0...v13.8.0) (2022-07-18)
 
 
