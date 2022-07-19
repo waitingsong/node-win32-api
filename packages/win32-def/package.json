@@ -1,7 +1,7 @@
 {
   "name": "win32-def",
   "author": "waiting",
-  "version": "13.11.0",
+  "version": "13.12.0",
   "description": "win32 definitions for node-ffi",
   "keywords": [
     "api",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.12.0](https://github.com/waitingsong/node-win32-api/compare/v13.11.0...v13.12.0) (2022-07-19)
+
+
+### Features
+
+* **win32-def:** add struct and union types ([016733b](https://github.com/waitingsong/node-win32-api/commit/016733bb5a64d5edef2b9f316505027c0dc383de))
+
+
+
+
+
 # [13.11.0](https://github.com/waitingsong/node-win32-api/compare/v13.10.0...v13.11.0) (2022-07-19)
 
 
