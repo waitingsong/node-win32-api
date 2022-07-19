@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.11.0](https://github.com/waitingsong/node-win32-api/compare/v13.10.0...v13.11.0) (2022-07-19)
+
+
+### Features
+
+* **win32-def:** ACCESS_MASK ([c44979d](https://github.com/waitingsong/node-win32-api/commit/c44979dc4360f6561d19f6a3357880d83b03103c))
+* **win32-def:** struct POINTL ([06ebc02](https://github.com/waitingsong/node-win32-api/commit/06ebc02efa60864ab20397b6406d73478b226c0d))
+
+
+
+
+
 # [13.8.0](https://github.com/waitingsong/node-win32-api/compare/v13.7.0...v13.8.0) (2022-07-18)
 
 **Note:** Version bump only for package win32-def

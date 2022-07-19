@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.11.0](/compare/v13.10.0...v13.11.0) (2022-07-19)
+
+
+### Features
+
+* **win32-def:** ACCESS_MASK c44979d
+* **win32-def:** struct POINTL 06ebc02
+
+
+
+
+
 # [13.10.0](/compare/v13.9.0...v13.10.0) (2022-07-18)
 
 
