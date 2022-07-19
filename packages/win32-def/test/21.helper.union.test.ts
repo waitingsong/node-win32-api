@@ -17,13 +17,13 @@ describe(fileShortPath(import.meta.url), () => {
   describe('UnionType() should work', () => {
     it('normal', () => {
 
-      const duInit = UnionType(DU.RID_DEVICE_INFO_DUMMYUNIONNAME)
-      assert(duInit)
-      assert(! Object.hasOwn(duInit, 'mouse'))
-      assert(! Object.hasOwn(duInit, 'keyboard'))
-      assert(! Object.hasOwn(duInit, 'hid'))
+      const typeinit = UnionType(DU.RID_DEVICE_INFO_DUMMYUNIONNAME)
+      assert(typeinit)
+      assert(! Object.hasOwn(typeinit, 'mouse'))
+      assert(! Object.hasOwn(typeinit, 'keyboard'))
+      assert(! Object.hasOwn(typeinit, 'hid'))
 
-      const DUMMYUNIONNAME = new duInit() as UT.RID_DEVICE_INFO_DUMMYUNIONNAME
+      const DUMMYUNIONNAME = new typeinit() as UT.RID_DEVICE_INFO_DUMMYUNIONNAME
       assert(DUMMYUNIONNAME)
       assert(DUMMYUNIONNAME.mouse === 0)
       assert(DUMMYUNIONNAME.keyboard === 0)
@@ -33,11 +33,11 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe('UnionFactory() should work', () => {
     it('normal', () => {
-      const DUMMYUNIONNAME = UnionFactory<UT.RID_DEVICE_INFO_DUMMYUNIONNAME>(DU.RID_DEVICE_INFO_DUMMYUNIONNAME)
-      assert(DUMMYUNIONNAME)
-      assert(DUMMYUNIONNAME.mouse === 0)
-      assert(DUMMYUNIONNAME.keyboard === 0)
-      assert(DUMMYUNIONNAME.hid === 0)
+      const union = UnionFactory<UT.RID_DEVICE_INFO_DUMMYUNIONNAME>(DU.RID_DEVICE_INFO_DUMMYUNIONNAME)
+      assert(union)
+      assert(union.mouse === 0)
+      assert(union.keyboard === 0)
+      assert(union.hid === 0)
     })
   })
 

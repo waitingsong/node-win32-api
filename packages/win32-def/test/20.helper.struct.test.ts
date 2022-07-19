@@ -17,12 +17,14 @@ describe(fileShortPath(import.meta.url), () => {
     it('normal', () => {
       const rnd = Math.round(Math.random() * 1000000)
 
-      const poinitInit = StructType(DS.POINT)
-      assert(poinitInit)
-      assert(! Object.hasOwn(poinitInit, 'x'))
-      assert(! Object.hasOwn(poinitInit, 'y'))
+      const typeinit = StructType(DS.POINT)
+      assert(typeinit)
+      const keys = Object.keys(DS.POINT)
+      keys.forEach((key) => {
+        assert(! Object.hasOwn(typeinit, key))
+      })
 
-      const point = new poinitInit()
+      const point = new typeinit()
       assert(point)
       point.x = 101
       point.y = rnd
@@ -39,6 +41,11 @@ describe(fileShortPath(import.meta.url), () => {
       assert(point)
       point.x = 101
       point.y = rnd
+
+      const keys = Object.keys(DS.POINT)
+      keys.forEach((key) => {
+        assert(typeof point[key] !== undefined)
+      })
 
       assert(point.x === 101)
       assert(point.y === rnd)
