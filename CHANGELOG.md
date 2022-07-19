@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.13.0](/compare/v13.12.0...v13.13.0) (2022-07-19)
+
+
+### Bug Fixes
+
+* **win32-def:** export /lib/struct/winspool.var.def.js 1761bca
+
+
+### Features
+
+* **win32-def:** def LPRINTER_DEFAULTS 2f4040c
+
+
+
+
+
 # [13.12.0](/compare/v13.11.0...v13.12.0) (2022-07-19)
 
 

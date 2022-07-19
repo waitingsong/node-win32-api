@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.13.0](https://github.com/waitingsong/node-win32-api/compare/v13.12.0...v13.13.0) (2022-07-19)
+
+
+### Bug Fixes
+
+* **win32-def:** export /lib/struct/winspool.var.def.js ([1761bca](https://github.com/waitingsong/node-win32-api/commit/1761bca1924eb57abeb8c43f4566654f97ffadac))
+
+
+### Features
+
+* **win32-def:** def LPRINTER_DEFAULTS ([2f4040c](https://github.com/waitingsong/node-win32-api/commit/2f4040cd7b48e81be0c79c6389cb26e8397d82e2))
+
+
+
+
+
 # [13.12.0](https://github.com/waitingsong/node-win32-api/compare/v13.11.0...v13.12.0) (2022-07-19)
 
 
