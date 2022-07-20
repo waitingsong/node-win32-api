@@ -39,6 +39,7 @@ export async function user32FindWindowEx(
  */
 export async function user32GetWindowText(
   hWnd: M.HWND,
+  /** Not including the null character */
   nMaxCount: M.INT,
 ): Promise<string> {
 
