@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.0.0](https://github.com/waitingsong/node-win32-api/compare/v16.0.1...v17.0.0) (2022-07-20)
+
+
+### Features
+
+* **win32-api:** breaking change genUcsBufferFrom() to ucsBufferFrom() ([52cc0e5](https://github.com/waitingsong/node-win32-api/commit/52cc0e56e621d802c701e53bf3a852b10c0a32ad))
+
+
+
+
+
 ## [16.0.1](https://github.com/waitingsong/node-win32-api/compare/v16.0.0...v16.0.1) (2022-07-20)
 
 
