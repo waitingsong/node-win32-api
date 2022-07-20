@@ -34,23 +34,26 @@ describe(fileShortPath(import.meta.url), () => {
     assert(module)
 
     describe(apiName, () => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (module && module.apiDef) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        const api = module.load() as M.DllFuncs
 
-        for (const fn in api) {
-          if (! {}.hasOwnProperty.call(api, fn)) {
-            continue
+      it('normal', async () => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        if (module && module.apiDef) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          const api = module.load() as M.DllFuncs
+
+          for (const fn in api) {
+            if (! {}.hasOwnProperty.call(api, fn)) {
+              continue
+            }
+            it(`Should ${fn}() be typeof "function"`, () => {
+              assert(typeof api[fn] === 'function', `${fn}`)
+            })
           }
-          it(`Should ${fn}() be typeof "function"`, () => {
-            assert(typeof api[fn] === 'function', `${fn}`)
-          })
         }
-      }
-      else {
-        assert(false, 'module or module.apiDef invalie')
-      }
+        else {
+          assert(false, 'module or module.apiDef invalie')
+        }
+      })
     })
   }
 })

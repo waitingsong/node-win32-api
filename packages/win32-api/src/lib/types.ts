@@ -5,4 +5,6 @@ export const enum DllNames {
   kernel32 = 'kernel32',
   ntdll = 'ntdll',
   user32 = 'user32',
+  winspool = 'winspool.drv',
 }
+

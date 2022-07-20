@@ -48,6 +48,10 @@
       "import": "./dist/index.user32.js",
       "require": "./dist/index.user32.cjs"
     },
+    "./winspool": {
+      "import": "./dist/index.winspool.js",
+      "require": "./dist/index.winspool.cjs"
+    },
     "./package.json": "./package.json"
   },
   "bugs": {

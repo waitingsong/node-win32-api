@@ -2,7 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable import/no-extraneous-dependencies */
-import assert from 'assert'
+import assert from 'node:assert'
+import { copyFileSync, statSync } from 'node:fs'
 
 import ffi from 'ffi-napi'
 import ref from 'ref-napi'
@@ -34,21 +35,94 @@ export function load<T>(
 
   const st = parse_settings(settings)
 
+  const name = dllName.endsWith('.drv')
+    ? preprareDllFile(dllName)
+    : dllName
+
   if (st.singleton) {
-    let inst = get_inst_by_name<T>(dllName)
+    let inst = get_inst_by_name<T>(name)
 
     if (! inst) {
       const ps = gen_api_opts<T>(dllFuncs, fns)
-      inst = ffi.Library(dllName, ps) as unknown as T
-      set_inst_by_name(dllName, inst)
+      // ffi.Library.EXT = ext
+      inst = ffi.Library(name, ps) as unknown as T
+      set_inst_by_name(name, inst)
     }
     return inst
   }
   else {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return ffi.Library(dllName, gen_api_opts<T>(dllFuncs, fns)) as unknown as T
+    return ffi.Library(name, gen_api_opts<T>(dllFuncs, fns)) as unknown as T
   }
 }
+
+function preprareDllFile(file: string): string {
+
+  if (file.startsWith('file://')) {
+    return file
+  }
+  else if (file.startsWith('http://') || file.startsWith('https://')) {
+    return file
+  }
+  else if (file.startsWith('/')) {
+    return file
+  }
+  try {
+    const stat = statSync(file)
+    if (stat.isFile()) {
+      return file
+    }
+  }
+  catch {
+    // void
+  }
+
+  const { HOME, WINDIR } = process.env
+  assert(HOME, 'HOME is not defined')
+  assert(WINDIR, 'WINDIR is not defined')
+
+  const sys32dir = `${WINDIR}/system32`
+  const path = `${sys32dir}/${file}`
+  const target = `${HOME}/${file}.dll`
+
+  const stat = statSync(path)
+  if (! stat.isFile()) {
+    throw new Error(`${file} is not found in path: "${path}"`)
+  }
+
+  try {
+    const stat2 = statSync(target)
+    if (stat2.isFile()) {
+      return target
+    }
+    copyFileSync(path, target)
+  }
+  catch {
+    copyFileSync(path, target)
+  }
+
+  return target
+}
+
+/**
+ * Copy file from src to dest but change the file extension to ext
+ */
+// export async function copyFileWithDllExt(
+//   src: string,
+//   targetDir: string,
+//   ext = 'dll',
+// ): Promise<string> {
+
+//   const [file] = basename(src).split('.')
+//   assert(file)
+
+//   const target = `${targetDir}/${file}.${ext}`
+//   if (await isFileExists(target)) {
+//     return target
+//   }
+//   await copyFile(src, target)
+//   return target
+// }
 
 
 export function loadAsync<T>(

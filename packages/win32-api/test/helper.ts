@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import assert from 'node:assert'
+import { join } from 'node:path'
 
+import { genCurrentDirname } from '@waiting/shared-core'
 import ffi from 'ffi-napi'
 import ref from 'ref-napi'
 import StructDi from 'ref-struct-di'
 import UnionDi from 'ref-union-di'
+import { $ } from 'zx'
 
 import {
   DModel as M,
@@ -19,6 +22,7 @@ import {
   User32,
   Comctl32,
   Gdi32,
+  Winspool,
 } from '../src/index.promise.js'
 
 
@@ -32,6 +36,7 @@ export const knl32 = Kernel32.load()
 export const knl32Sync = K.load()
 export const user32 = User32.load()
 export const user32Sync = U.load()
+export const winspool = Winspool.load()
 
 /** WndProc */
 export function createWndProc(): M.WNDPROC {
