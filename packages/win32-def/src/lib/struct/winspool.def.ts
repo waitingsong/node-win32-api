@@ -1,5 +1,6 @@
 import {
   ACCESS_MASK,
+  DWORD,
   LPTSTR,
 } from '../common.def.js'
 // import { wcharBuffer } from '../fixed-buffer.js'
@@ -23,5 +24,17 @@ export const PRINTER_DEFAULTS = {
   pDevMode: StructType(DEVMODEW),
   // pDevMode: LPDEVMODE,
   DesiredAccess: ACCESS_MASK,
+}
+
+
+/**
+ * Specifies general printer information
+ * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/printer-info-1
+ */
+export const PRINTER_INFO_1 = {
+  Flags: DWORD,
+  pDescription: LPTSTR,
+  pName: LPTSTR,
+  pComment: LPTSTR,
 }
 

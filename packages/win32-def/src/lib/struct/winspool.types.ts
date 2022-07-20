@@ -3,6 +3,7 @@ import {
   StructInstanceBase,
   LPTSTR,
   ACCESS_MASK,
+  DWORD,
 } from '../common.types.js'
 
 import { DEVMODEW } from './wingdi.types.js'
@@ -27,4 +28,25 @@ export interface PRINTER_DEFAULTS extends StructInstanceBase {
 /** A pointer to PRINTER_DEFAULTS */
 export type PPRINTER_DEFAULTS = _POINTER
 export type LPPRINTER_DEFAULTS = _POINTER
+
+
+/**
+ * Specifies general printer information
+ * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/getprinter#parameters
+ */
+export interface PRINTER_INFO_X {
+  1: PRINTER_INFO_1
+}
+
+/**
+ * Specifies general printer information
+ * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/printer-info-1
+ */
+export interface PRINTER_INFO_1 extends StructInstanceBase {
+  Flags: DWORD
+  pDescription: LPTSTR
+  pName: LPTSTR
+  pComment: LPTSTR
+}
+export type PPRINTER_INFO_1 = _POINTER
 

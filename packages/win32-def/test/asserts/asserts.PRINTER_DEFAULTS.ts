@@ -74,3 +74,24 @@ export function ast_pDevMode_DUMMYUNIONNAME2(union: UT.DEVMODEW_DUMMYUNIONNAME2)
 }
 
 
+
+export function ast_PRINTER_INFO_1(struct: ST.PRINTER_INFO_1): void {
+  assert(struct)
+
+  Object.keys(struct).forEach((key) => {
+    assert(typeof struct[key] !== 'undefined')
+  })
+
+
+  const {
+    Flags,
+    pDescription,
+    pName,
+    pComment,
+  } = struct
+
+  assert(Flags === 0)
+  assert(pDescription.toString('ucs2') === '')
+  assert(pName.toString('ucs2') === '')
+  assert(pComment.toString('ucs2') === '')
+}
