@@ -45,9 +45,17 @@ npm install win32-api
 ### [DLL 包装器](./FUN.md)
 
 ```ts
-import { winspoolGetDefaultPrinter } from 'win32-api/fun'
+import { 
+  user32FindWindowEx, 
+  winspoolGetDefaultPrinter,
+} from 'win32-api/fun'
+
 // 获取当前电脑当前用户默认打印机名
-const name = await winspoolGetDefaultPrinter() 
+const printerName = await winspoolGetDefaultPrinter()
+
+const child = spawn('notepad.exe')
+const hWnd = await user32FindWindowEx(0, 0, 'Notepad', null)
+
 ```
 
 ### Find window and set window title
