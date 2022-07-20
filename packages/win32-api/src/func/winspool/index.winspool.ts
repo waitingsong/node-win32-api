@@ -2,7 +2,7 @@ import assert from 'node:assert'
 
 import { getMod } from '../func.helper.js'
 
-import { Win32Fns, dllName, ref } from './helper.js'
+import { Win32Fns, dllName, M, ref } from './helper.js'
 
 
 /**

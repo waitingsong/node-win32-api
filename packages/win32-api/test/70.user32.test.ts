@@ -5,7 +5,10 @@ import { fileShortPath } from '@waiting/shared-core'
 import ffi from 'ffi-napi'
 import { sleep } from 'zx'
 
-import { user32FindWindowEx } from '../src/index.fun.js'
+import {
+  user32FindWindowEx,
+  user32GetWindowText,
+} from '../src/index.fun.js'
 import {
   DModel as M,
   DTypes as W,
@@ -41,12 +44,9 @@ describe(fileShortPath(import.meta.url), () => {
 
       const len = title.length + 1
       assert(len > 0)
-      const buf = Buffer.alloc(len * 2)
-      let str = ''
 
-      await user32.GetWindowTextW(hWnd, buf, len)
-      str = buf.toString('ucs2').replace(/\0+$/, '')
-      assert(str === title, `title should be changed to ${title}, bug got ${str}`)
+      const text = await user32GetWindowText(hWnd, len)
+      assert(text && text === title, `title should be changed to ${title}, bug got ${text ?? 'n/a'}`)
 
       const point = StructFactory<M.POINT>(DS.POINT)
       point.x = 101
