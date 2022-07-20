@@ -5,6 +5,7 @@ import { fileShortPath } from '@waiting/shared-core'
 import ffi from 'ffi-napi'
 import { sleep } from 'zx'
 
+import { user32FindWindowEx } from '../src/index.fun.js'
 import {
   DModel as M,
   DTypes as W,
@@ -13,7 +14,7 @@ import {
   StructFactory,
 } from '../src/index.js'
 
-import { calcLpszClassNotepad } from './config.unittest.js'
+import { calcLpszClassNotepad, calcLpszNotepad } from './config.unittest.js'
 import { user32, user32Sync } from './helper.js'
 
 
@@ -31,7 +32,8 @@ describe(fileShortPath(import.meta.url), () => {
       await sleep(3000)
       console.log(new Date().toLocaleTimeString())
 
-      const hWnd = await user32.FindWindowExW(0, 0, calcLpszClassNotepad, null)
+      const hWnd = await user32FindWindowEx(0, 0, calcLpszNotepad, null)
+      assert(hWnd)
       assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
 
       // Change title of the Calculator
@@ -69,7 +71,7 @@ describe(fileShortPath(import.meta.url), () => {
       console.log(new Date().toLocaleTimeString())
     })
 
-    it('callback sync', async () => {
+    it('sync', async () => {
       const child = spawn('notepad.exe')
       const enumWindowsProc = createEnumWinProc()
 
