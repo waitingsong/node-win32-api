@@ -300,3 +300,10 @@ export function genUcsBufferFrom(str: string | undefined | null): Buffer | null 
   return null
 }
 
+export function ucsBufferToString(buffer: Buffer, charCount?: number | undefined): string {
+  const str = typeof charCount === 'number'
+    ? buffer.toString('ucs2', 0, charCount * 2)
+    : buffer.toString('ucs2')
+  return str.replace(/\0+$/u, '').replace(/^\0+/u, '')
+}
+
