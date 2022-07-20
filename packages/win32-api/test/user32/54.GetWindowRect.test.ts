@@ -4,6 +4,7 @@ import { spawn } from 'node:child_process'
 import { fileShortPath } from '@waiting/shared-core'
 import { sleep } from 'zx'
 
+import { user32FindWindowEx } from '../../src/index.fun.js'
 import {
   DModel as M,
   DTypes as W,
@@ -21,7 +22,7 @@ describe(fileShortPath(import.meta.url), () => {
 
     const rect = StructFactory<M.RECT>(DS.RECT)
 
-    const hWnd = await user32.FindWindowExW(0, 0, null, calcLpszWindow)
+    const hWnd = await user32FindWindowEx(0, 0, null, calcLpszWindow)
     assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
 
     const ret = await user32.GetWindowRect(hWnd, rect.ref())
