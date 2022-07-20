@@ -1,5 +1,5 @@
 import {
-  genUcsBufferFrom,
+  ucsBufferFrom,
   ucsBufferToString,
 } from '../../index.js'
 import { getMod } from '../func.helper.js'
@@ -21,8 +21,8 @@ export async function user32FindWindowEx(
 
   const mod = getMod<Win32Fns>(dllName)
 
-  const lpszClassBuf = genUcsBufferFrom(lpszClass)
-  const lpszWindowBuf = genUcsBufferFrom(lpszWindow)
+  const lpszClassBuf = ucsBufferFrom(lpszClass)
+  const lpszWindowBuf = ucsBufferFrom(lpszWindow)
 
   const hWnd = await mod.FindWindowExW(
     hwndParent,

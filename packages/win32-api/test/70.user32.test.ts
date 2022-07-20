@@ -15,7 +15,7 @@ import {
   DStruct as DS,
   retrieveStructFromPtrAddress,
   StructFactory,
-  genUcsBufferFrom,
+  ucsBufferFrom,
   ucsBufferToString,
 } from '../src/index.js'
 
@@ -42,7 +42,7 @@ describe(fileShortPath(import.meta.url), () => {
       assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
 
       // Change title of the Calculator
-      await user32.SetWindowTextW(hWnd, genUcsBufferFrom(title))
+      await user32.SetWindowTextW(hWnd, ucsBufferFrom(title))
 
       const len = title.length
       assert(len > 0)
@@ -85,7 +85,7 @@ describe(fileShortPath(import.meta.url), () => {
       assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
 
       // Change title of the Calculator
-      user32Sync.SetWindowTextW(hWnd, genUcsBufferFrom(title))
+      user32Sync.SetWindowTextW(hWnd, ucsBufferFrom(title))
 
       const len = title.length + 1
       assert(len > 0)

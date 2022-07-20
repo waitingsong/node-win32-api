@@ -293,7 +293,7 @@ export function retrieveStructFromPtrAddress<R extends StructInstanceBase>(
 }
 
 
-export function genUcsBufferFrom(str: string | undefined | null): Buffer {
+export function ucsBufferFrom(str: string | undefined | null): Buffer {
   if (typeof str === 'string' && str.length) {
     return Buffer.from(str + '\0', 'ucs2')
   }

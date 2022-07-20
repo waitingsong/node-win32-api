@@ -4,7 +4,7 @@ import assert from 'node:assert/strict'
 import { fileShortPath } from '@waiting/shared-core'
 import { sleep } from 'zx'
 
-import { genUcsBufferFrom, ucsBufferToString } from '../src/index.js'
+import { ucsBufferFrom, ucsBufferToString } from '../src/index.js'
 import * as UP from '../src/index.user32.js'
 
 import { calcLpszWindow } from './config.unittest.js'
@@ -69,7 +69,7 @@ async function findNSetWinTitleAsync(): Promise<void> {
   const hWnd = await user32.FindWindowExW(0, 0, null, calcLpszWindow)
 
   assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
-  const ret = await user32.SetWindowTextW(hWnd, genUcsBufferFrom(title))
+  const ret = await user32.SetWindowTextW(hWnd, ucsBufferFrom(title))
   assert(ret, 'SetWindowTextW() failed')
 
   const buf = Buffer.alloc(len * 2)
@@ -88,7 +88,7 @@ async function findNSetWinTitleAsyncPartial(): Promise<void> {
 
   assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
   // Change title of the Calculator
-  await u32.SetWindowTextW(hWnd, genUcsBufferFrom(title))
+  await u32.SetWindowTextW(hWnd, ucsBufferFrom(title))
 
   const buf = Buffer.alloc(len * 2)
   await u32.GetWindowTextW(hWnd, buf, len + 1)
