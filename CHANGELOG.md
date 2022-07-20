@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0](/compare/v14.0.0...v14.1.0) (2022-07-20)
+
+
+### Features
+
+* **win32-api:** fun/winspoolOpenPrinter() 9aa25f2
+
+
+
+
+
 # [14.0.0](/compare/v13.15.0...v14.0.0) (2022-07-20)
 
 
