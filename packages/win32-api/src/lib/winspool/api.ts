@@ -26,11 +26,11 @@ export interface Win32Fns {
   ) => M.BOOL
 
 
-  // OpenPrinterW: (
-  //   pPrinterName: M.LPTSTR,
-  //   phPrinter: M.LPHANDLE,
-  //   pDefault: M.LPPRINTER_DEFAULTS,
-  // ) => M.BOOL
+  OpenPrinterW: (
+    pPrinterName: M.LPTSTR,
+    phPrinter: M.LPHANDLE,
+    pDefault: M.LPPRINTER_DEFAULTS,
+  ) => M.BOOL
 }
 
 
@@ -40,7 +40,7 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
 
   GetPrinterW: [W.BOOL, [W.HANDLE, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD] ],
 
-  // OpenPrinterW: [W.BOOL, [W.LPTSTR, W.LPHANDLE, W.LPRINTER_DEFAULTS] ],
+  OpenPrinterW: [W.BOOL, [W.LPTSTR, W.LPHANDLE, W.LPRINTER_DEFAULTS] ],
 
 }
 
