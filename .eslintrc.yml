@@ -12,4 +12,5 @@ rules:
   "node/no-unpublished-import": 0
   "@typescript-eslint/prefer-ts-expect-error": 0
   "unicorn/filename-case": 0
+  "linebreak-style": 0
 
