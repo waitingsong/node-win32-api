@@ -4,10 +4,13 @@ import assert from 'node:assert/strict'
 import { fileShortPath } from '@waiting/shared-core'
 import { sleep } from 'zx'
 
+import { user32FindWindowEx } from '../src/index.fun.js'
+import { ucsBufferToString, ucsBufferFrom } from '../src/index.js'
 import * as UP from '../src/index.user32.js'
 
-import { calcLpszClassNotepad, calcLpszWindow } from './config.unittest.js'
+import { calcLpszClassNotepad, calcLpszNotepad, calcLpszWindow } from './config.unittest.js'
 import { destroyWin, user32, user32Sync } from './helper.js'
+
 
 
 describe(fileShortPath(import.meta.url), () => {
@@ -20,7 +23,7 @@ describe(fileShortPath(import.meta.url), () => {
       await sleep(2000)
       console.log(new Date().toLocaleTimeString())
 
-      const hWnd = await user32.FindWindowExW(0, 0, calcLpszClassNotepad, null)
+      const hWnd = await user32FindWindowEx(0, 0, calcLpszNotepad, null)
       assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
       await destroyWin(hWnd)
       child.kill()
@@ -72,7 +75,7 @@ async function findNSetWinTitleAsync(): Promise<void> {
   const hWnd = await user32.FindWindowExW(0, 0, calcLpszClassNotepad, null)
 
   assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
-  const ret = await user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
+  const ret = await user32.SetWindowTextW(hWnd, ucsBufferFrom(title))
   assert(ret, 'SetWindowTextW() failed')
 
   const buf = Buffer.alloc(size * 2)
@@ -92,11 +95,11 @@ async function findNSetWinTitleAsyncPartial(): Promise<void> {
 
   assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
   // Change title of the Calculator
-  await u32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
+  await u32.SetWindowTextW(hWnd, ucsBufferFrom(title))
 
   const buf = Buffer.alloc(size * 2)
   await u32.GetWindowTextW(hWnd, buf, size)
-  const str = buf.toString('ucs2').replace(/\0+$/, '')
+  const str = ucsBufferToString(buf)
   assert(str === title, `title should be changed to ${title}, bug got ${str}`)
 }
 
