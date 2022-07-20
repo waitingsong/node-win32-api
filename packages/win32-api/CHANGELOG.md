@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1](https://github.com/waitingsong/node-win32-api/compare/v16.0.0...v16.0.1) (2022-07-20)
+
+
+### Bug Fixes
+
+* **win32-api:** fix char length of user32GetWindowText() ([e0d4a27](https://github.com/waitingsong/node-win32-api/commit/e0d4a2708a4dccdda167cb7c85f285b26c1a2848))
+
+
+
+
+
 # [16.0.0](https://github.com/waitingsong/node-win32-api/compare/v15.1.0...v16.0.0) (2022-07-20)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1](/compare/v16.0.0...v16.0.1) (2022-07-20)
+
+
+### Bug Fixes
+
+* **win32-api:** fix char length of user32GetWindowText() e0d4a27
+
+
+
+
+
 # [16.0.0](/compare/v15.1.0...v16.0.0) (2022-07-20)
 
 
