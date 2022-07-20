@@ -9,7 +9,7 @@ import { Win32Fns, dllName, M, ref } from './helper.js'
  * Retrieves the printer name of the default printer for the current user on the local computer.
  * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/getdefaultprinter
  */
-export async function winspoolGetDefaultPrinter(maxNameLength = 256): Promise<string | undefined> {
+export async function winspoolGetDefaultPrinter(maxNameLength = 256): Promise<string> {
   const mod = getMod<Win32Fns>(dllName)
 
   assert(maxNameLength > 2)
@@ -22,7 +22,7 @@ export async function winspoolGetDefaultPrinter(maxNameLength = 256): Promise<st
 
   const ret = await mod.GetDefaultPrinterW(pszBuf, pcchBuf)
   if (! ret) {
-    return
+    return ''
   }
 
   const pcch = pcchBuf.readUInt32LE()
@@ -31,6 +31,7 @@ export async function winspoolGetDefaultPrinter(maxNameLength = 256): Promise<st
     const psz = pszBuf.toString('ucs2', 0, size * 2).replace(/\0+$/u, '')
     return psz
   }
+  return ''
 }
 
 
@@ -39,7 +40,7 @@ export async function winspoolGetDefaultPrinter(maxNameLength = 256): Promise<st
  * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/openprinter
  * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/openprinter
  */
-export async function winspoolOpenPrinter(printerName: string): Promise<M.HANDLE | undefined> {
+export async function winspoolOpenPrinter(printerName: string): Promise<M.HANDLE> {
   const mod = getMod<Win32Fns>(dllName)
 
   assert(printerName)
@@ -51,5 +52,6 @@ export async function winspoolOpenPrinter(printerName: string): Promise<M.HANDLE
     const hWnd = ptr.readBigInt64LE()
     return hWnd
   }
+  return 0
 }
 

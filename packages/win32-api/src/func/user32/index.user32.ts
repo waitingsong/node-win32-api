@@ -17,7 +17,7 @@ export async function user32FindWindowEx(
   hwndChildAfter: M.HWND,
   lpszClass: string | null,
   lpszWindow: string | null,
-): Promise<M.HWND | undefined> {
+): Promise<M.HWND> {
 
   const mod = getMod<Win32Fns>(dllName)
 
@@ -30,9 +30,7 @@ export async function user32FindWindowEx(
     lpszClassBuf,
     lpszWindowBuf,
   )
-
-  const ret = hWnd ? hWnd : undefined
-  return ret
+  return hWnd
 }
 
 
