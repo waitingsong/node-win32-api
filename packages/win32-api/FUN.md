@@ -3,12 +3,13 @@
 ## Usage
 
 ```ts
-import { funcName } from 'win32-api/fun'
+import { winspoolGetDefaultPrinter } from 'win32-api/fun'
 
-const ret = await funcName()
+const printerName = await winspoolGetDefaultPrinter()
 ```
 
 ## List
 
 - [`winspoolGetDefaultPrinter`](./src/lib/winspool/api.ts)
+- [`winspoolOpenPrinter`](./src/lib/winspool/api.ts)
 
