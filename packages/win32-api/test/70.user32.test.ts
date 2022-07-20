@@ -15,6 +15,8 @@ import {
   DStruct as DS,
   retrieveStructFromPtrAddress,
   StructFactory,
+  genUcsBufferFrom,
+  ucsBufferToString,
 } from '../src/index.js'
 
 import { calcLpszClassNotepad, calcLpszNotepad } from './config.unittest.js'
@@ -40,7 +42,7 @@ describe(fileShortPath(import.meta.url), () => {
       assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
 
       // Change title of the Calculator
-      await user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
+      await user32.SetWindowTextW(hWnd, genUcsBufferFrom(title))
 
       const len = title.length
       assert(len > 0)
@@ -83,7 +85,7 @@ describe(fileShortPath(import.meta.url), () => {
       assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
 
       // Change title of the Calculator
-      user32Sync.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
+      user32Sync.SetWindowTextW(hWnd, genUcsBufferFrom(title))
 
       const len = title.length + 1
       assert(len > 0)
@@ -91,7 +93,7 @@ describe(fileShortPath(import.meta.url), () => {
       let str = ''
 
       user32Sync.GetWindowTextW(hWnd, buf, len)
-      str = buf.toString('ucs2').replace(/\0+$/, '')
+      str = ucsBufferToString(buf)
       assert(str === title, `title should be changed to ${title}, bug got ${str}`)
 
       const point = StructFactory<M.POINT>(DS.POINT)
@@ -138,7 +140,7 @@ function createEnumWinProc(): M.WNDENUMPROC {
       const maxLen = 127
       const buf = Buffer.alloc(maxLen * 2)
       const len = user32Sync.GetWindowTextW(hWnd, buf, maxLen)
-      const name = buf.toString('ucs2').replace(/\0+$/, '')
+      const name = ucsBufferToString(buf)
       name && console.log(name, len)
 
       if (len && name === title) {
