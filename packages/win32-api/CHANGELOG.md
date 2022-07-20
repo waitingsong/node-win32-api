@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.14.0](https://github.com/waitingsong/node-win32-api/compare/v13.13.0...v13.14.0) (2022-07-20)
+
+
+### Features
+
+* **win32-api:** add winspool module ([5444af2](https://github.com/waitingsong/node-win32-api/commit/5444af23b7043cd1aba8fb59147cb553c54f422e))
+
+
+
+
+
 # [13.13.0](https://github.com/waitingsong/node-win32-api/compare/v13.12.0...v13.13.0) (2022-07-19)
 
 **Note:** Version bump only for package win32-api
