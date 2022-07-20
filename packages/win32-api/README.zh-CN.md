@@ -42,6 +42,14 @@ npm install win32-api
 
 ## 使用
 
+### [DLL 包装器](./FUN.md)
+
+```ts
+import { winspoolGetDefaultPrinter } from 'win32-api/fun'
+// 获取当前电脑当前用户默认打印机名
+const name = await winspoolGetDefaultPrinter() 
+```
+
 ### Find window and set window title
 ```ts
 // **查询计算器程序窗口句柄（需要先手动运行一个计算器）**

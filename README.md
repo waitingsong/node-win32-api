@@ -43,6 +43,14 @@ npm install win32-api
 
 ## Usage
 
+### [DLL Wrapper](./FUN.md)
+
+```ts
+import { winspoolGetDefaultPrinter } from 'win32-api/fun'
+// Retrieves the printer name of the default printer for the current user on the local computer
+const name = await winspoolGetDefaultPrinter() 
+```
+
 ### Find window and set window title
 ```ts
 // **Find calc's hWnd, need running a calculator program manually at first**
