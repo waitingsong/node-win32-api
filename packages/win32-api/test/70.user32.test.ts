@@ -42,7 +42,7 @@ describe(fileShortPath(import.meta.url), () => {
       // Change title of the Calculator
       await user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
 
-      const len = title.length + 1
+      const len = title.length
       assert(len > 0)
 
       const text = await user32GetWindowText(hWnd, len)

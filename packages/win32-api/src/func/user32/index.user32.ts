@@ -44,12 +44,12 @@ export async function user32GetWindowText(
 
   const mod = getMod<Win32Fns>(dllName)
 
-  const len = nMaxCount
+  const len = nMaxCount + 1
   const buf = Buffer.alloc(len * 2)
 
-  const ret = await mod.GetWindowTextW(hWnd, buf, len)
+  const ret = await mod.GetWindowTextW(hWnd, buf, nMaxCount)
   if (ret > 0) {
-    const str = ucsBufferToString(buf)
+    const str = ucsBufferToString(buf, len)
     return str
   }
   return ''
