@@ -20,7 +20,7 @@ import {
 describe(fileShortPath(import.meta.url), () => {
 
   describe('Should work', () => {
-    it('normal', async () => {
+    it.only('normal', async () => {
       const name = await winspoolGetDefaultPrinter()
       assert(name)
       const hWnd = await winspoolOpenPrinter(name)

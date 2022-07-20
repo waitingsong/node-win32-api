@@ -1,5 +1,6 @@
 import assert from 'node:assert'
 
+import { genUcsBufferFrom, ucsBufferToString } from '../../index.js'
 import { getMod } from '../func.helper.js'
 
 import { Win32Fns, dllName, M, ref } from './helper.js'
@@ -28,7 +29,7 @@ export async function winspoolGetDefaultPrinter(maxNameLength = 256): Promise<st
   const pcch = pcchBuf.readUInt32LE()
   if (pcch > 0) {
     const size = pcch - 1
-    const psz = pszBuf.toString('ucs2', 0, size * 2).replace(/\0+$/u, '')
+    const psz = ucsBufferToString(pszBuf, size)
     return psz
   }
   return ''
@@ -45,7 +46,7 @@ export async function winspoolOpenPrinter(printerName: string): Promise<M.HANDLE
 
   assert(printerName)
 
-  const nameBuf = Buffer.from(printerName + '\0', 'ucs2')
+  const nameBuf = genUcsBufferFrom(printerName)
   const ptr = Buffer.alloc(8)
   const ret = await mod.OpenPrinterW(nameBuf, ptr, ref.NULL)
   if (ret) {
