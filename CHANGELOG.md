@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.1.0](/compare/v15.0.0...v15.1.0) (2022-07-20)
+
+
+### Features
+
+* **win32-api:** fun/user32GetWindowText() e672a2a
+* **win32-api:** ucsBufferToString() 7136eb3
+
+
+
+
+
 # [15.0.0](/compare/v14.1.0...v15.0.0) (2022-07-20)
 
 

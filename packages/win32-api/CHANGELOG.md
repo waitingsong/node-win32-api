@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.1.0](https://github.com/waitingsong/node-win32-api/compare/v15.0.0...v15.1.0) (2022-07-20)
+
+
+### Features
+
+* **win32-api:** fun/user32GetWindowText() ([e672a2a](https://github.com/waitingsong/node-win32-api/commit/e672a2a38790035b2df78adf26c60062183c58bc))
+* **win32-api:** ucsBufferToString() ([7136eb3](https://github.com/waitingsong/node-win32-api/commit/7136eb3f2c7c4b81964135ac501acf9d21910e27))
+
+
+
+
+
 # [15.0.0](https://github.com/waitingsong/node-win32-api/compare/v14.1.0...v15.0.0) (2022-07-20)
 
 
