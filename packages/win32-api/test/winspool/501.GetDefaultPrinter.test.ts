@@ -22,6 +22,7 @@ describe(fileShortPath(import.meta.url), () => {
       const ret = await winspoolGetDefaultPrinter()
       assert(ret)
       assert(ret.length)
+      console.log(ret)
       if (CI) {
         assert(ret === 'Microsoft Print to PDF')
       }
