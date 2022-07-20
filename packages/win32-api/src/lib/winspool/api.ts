@@ -14,6 +14,7 @@ export interface Win32Fns {
   ) => M.BOOL
 
   /**
+   * Retrieves information about a specified printer.
    * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/getprinter
    * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/getprinter
    */
