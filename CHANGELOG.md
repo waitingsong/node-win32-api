@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.0.0](/compare/v14.1.0...v15.0.0) (2022-07-20)
+
+
+### Features
+
+* **win32-api:** export User32 DLL Wrapper 6288392
+
+
+
+
+
 # [14.1.0](/compare/v14.0.0...v14.1.0) (2022-07-20)
 
 
