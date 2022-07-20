@@ -42,7 +42,10 @@ npm install win32-api
 
 ## 使用
 
-### [DLL 包装器](./FUN.md)
+### DLL Wrapper
+ 
+- [User32](./packages/win32-api/src/func/user32/index.user32.ts)
+- [Winspool](./packages/win32-api/src/func/winspool/index.winspool.ts)
 
 ```ts
 import { 
