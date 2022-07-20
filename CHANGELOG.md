@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0](/compare/v15.1.0...v16.0.0) (2022-07-20)
+
+
+### Features
+
+* **win32-api:** breaking change nMaxCount not contains terminal-null 151878d
+* **win32-api:** breaking change return type of genUcsBufferFrom() fb18c7e
+* **win32-api:** remove undefined from return type of wrapper functions 80f75aa
+
+
+
+
+
 # [15.1.0](/compare/v15.0.0...v15.1.0) (2022-07-20)
 
 

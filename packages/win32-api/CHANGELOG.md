@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0](https://github.com/waitingsong/node-win32-api/compare/v15.1.0...v16.0.0) (2022-07-20)
+
+
+### Features
+
+* **win32-api:** breaking change nMaxCount not contains terminal-null ([151878d](https://github.com/waitingsong/node-win32-api/commit/151878d2e671ad65461290f2f616862377ee3f2a))
+* **win32-api:** breaking change return type of genUcsBufferFrom() ([fb18c7e](https://github.com/waitingsong/node-win32-api/commit/fb18c7e518321b4a143828fb7638c754e8beec35))
+* **win32-api:** remove undefined from return type of wrapper functions ([80f75aa](https://github.com/waitingsong/node-win32-api/commit/80f75aab43595bf42516ed23ef65cef4b808212e))
+
+
+
+
+
 # [15.1.0](https://github.com/waitingsong/node-win32-api/compare/v15.0.0...v15.1.0) (2022-07-20)
 
 
