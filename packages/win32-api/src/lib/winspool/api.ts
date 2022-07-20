@@ -26,6 +26,10 @@ export interface Win32Fns {
   ) => M.BOOL
 
 
+  /**
+   * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/openprinter
+   * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/openprinter
+   */
   OpenPrinterW: (
     pPrinterName: M.LPTSTR,
     phPrinter: M.LPHANDLE,
