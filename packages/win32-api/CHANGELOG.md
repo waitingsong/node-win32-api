@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.0.0](https://github.com/waitingsong/node-win32-api/compare/v13.15.0...v14.0.0) (2022-07-20)
+
+
+### Features
+
+* **win32-api:** DLL Wrapper implementation ([d9502e3](https://github.com/waitingsong/node-win32-api/commit/d9502e34b67262fb9f86f2357d248f43b7f1c0e7))
+
+
+
+
+
 # [13.15.0](https://github.com/waitingsong/node-win32-api/compare/v13.14.0...v13.15.0) (2022-07-20)
 
 
