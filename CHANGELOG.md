@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.1.0](/compare/v17.0.0...v17.1.0) (2022-07-20)
+
+
+### Features
+
+* **win32-def:** PRINTER_INFO_1 eca5a53
+
+
+
+
+
 # [17.0.0](/compare/v16.0.1...v17.0.0) (2022-07-20)
 
 

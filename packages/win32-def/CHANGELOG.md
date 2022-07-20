@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.1.0](https://github.com/waitingsong/node-win32-api/compare/v17.0.0...v17.1.0) (2022-07-20)
+
+
+### Features
+
+* **win32-def:** PRINTER_INFO_1 ([eca5a53](https://github.com/waitingsong/node-win32-api/commit/eca5a53213501be395491a4d066f85c791b7c2b2))
+
+
+
+
+
 # [17.0.0](https://github.com/waitingsong/node-win32-api/compare/v16.0.1...v17.0.0) (2022-07-20)
 
 **Note:** Version bump only for package win32-def
