@@ -4,6 +4,7 @@ import assert from 'node:assert/strict'
 import { fileShortPath } from '@waiting/shared-core'
 import { sleep } from 'zx'
 
+import { user32FindWindowEx } from '../src/index.fun.js'
 import { ucsBufferFrom, ucsBufferToString } from '../src/index.js'
 import * as UP from '../src/index.user32.js'
 
@@ -21,7 +22,7 @@ describe.skip(fileShortPath(import.meta.url), () => {
       await sleep(2000)
       console.log(new Date().toLocaleTimeString())
 
-      const hWnd = await user32.FindWindowExW(0, 0, null, calcLpszWindow)
+      const hWnd = await user32FindWindowEx(0, 0, null, calcLpszWindow)
       assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
       child.kill()
     })
@@ -34,7 +35,8 @@ describe.skip(fileShortPath(import.meta.url), () => {
       console.log(new Date().toLocaleTimeString())
 
       await new Promise<void>((done) => {
-        user32Sync.FindWindowExW.async(0, 0, null, calcLpszWindow, (err, hWnd) => {
+        const buf = ucsBufferFrom(calcLpszWindow)
+        user32Sync.FindWindowExW.async(0, 0, null, buf, (err, hWnd) => {
           if (err) {
             assert(false, err.message)
           }
@@ -66,7 +68,7 @@ describe.skip(fileShortPath(import.meta.url), () => {
 async function findNSetWinTitleAsync(): Promise<void> {
   const title = 'Node-Calculator'
   const len = title.length
-  const hWnd = await user32.FindWindowExW(0, 0, null, calcLpszWindow)
+  const hWnd = await user32.FindWindowExW(0, 0, null, ucsBufferFrom(calcLpszWindow))
 
   assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
   const ret = await user32.SetWindowTextW(hWnd, ucsBufferFrom(title))
@@ -84,7 +86,7 @@ async function findNSetWinTitleAsyncPartial(): Promise<void> {
 
   const title = 'Node-Calculator'
   const len = title.length
-  const hWnd = await u32.FindWindowExW(0, 0, null, calcLpszWindow)
+  const hWnd = await u32.FindWindowExW(0, 0, null, ucsBufferFrom(calcLpszWindow))
 
   assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
   // Change title of the Calculator

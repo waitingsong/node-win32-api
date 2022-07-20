@@ -8,7 +8,7 @@ import { user32FindWindowEx } from '../src/index.fun.js'
 import { ucsBufferToString, ucsBufferFrom } from '../src/index.js'
 import * as UP from '../src/index.user32.js'
 
-import { calcLpszClassNotepad, calcLpszNotepad, calcLpszWindow } from './config.unittest.js'
+import { calcLpszClassNotepad, calcLpszNotepad } from './config.unittest.js'
 import { destroyWin, user32, user32Sync } from './helper.js'
 
 

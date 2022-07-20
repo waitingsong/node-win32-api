@@ -6,13 +6,8 @@ import ref from 'ref-napi'
 import { sleep } from 'zx'
 
 // import * as CS from '../../src/index.consts.js'
-import {
-  DModel as M,
-  DTypes as W,
-  DStruct as DS,
-  StructFactory,
-} from '../../src/index.js'
-import { calcLpszClassNotepad } from '../config.unittest.js'
+import { user32FindWindowEx } from '../../src/index.fun.js'
+import { calcLpszNotepad } from '../config.unittest.js'
 import { user32, destroyWin } from '../helper.js'
 
 
@@ -23,7 +18,7 @@ describe(fileShortPath(import.meta.url), () => {
       const child = spawn('notepad.exe')
       await sleep(1000)
 
-      const hWnd = await user32.FindWindowExW(0, 0, calcLpszClassNotepad, null)
+      const hWnd = await user32FindWindowEx(0, 0, calcLpszNotepad, null)
       assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
 
       const state = await user32.FlashWindow(hWnd, 1)
@@ -41,7 +36,7 @@ describe(fileShortPath(import.meta.url), () => {
       const child = spawn('notepad.exe')
       await sleep(1000)
 
-      const hWnd = await user32.FindWindowExW(0, 0, calcLpszClassNotepad, null)
+      const hWnd = await user32FindWindowEx(0, 0, calcLpszNotepad, null)
       assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
 
       const state = await user32.FlashWindow(hWnd, 0)

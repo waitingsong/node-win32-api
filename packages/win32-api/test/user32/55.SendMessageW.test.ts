@@ -6,6 +6,7 @@ import ref from 'ref-napi'
 import { sleep } from 'zx'
 
 import * as CS from '../../src/index.consts.js'
+import { user32FindWindowEx } from '../../src/index.fun.js'
 import {
   DModel as M,
   DTypes as W,
@@ -28,7 +29,7 @@ describe(fileShortPath(import.meta.url), () => {
       assert(false, ex.message)
     })
 
-    const hWnd = await user32.FindWindowExW(0, 0, null, calcLpszWindow)
+    const hWnd = await user32FindWindowEx(0, 0, null, calcLpszWindow)
     assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
 
     let ret = await user32.SendMessageW(hWnd, CS.WM_COMMAND, 1000, 3)
@@ -42,7 +43,7 @@ describe(fileShortPath(import.meta.url), () => {
     const child = spawn('calc.exe')
     await sleep(1500)
 
-    const hWnd = await user32.FindWindowExW(0, 0, null, calcLpszWindow)
+    const hWnd = await user32FindWindowEx(0, 0, null, calcLpszWindow)
     assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
 
     const copyData = StructFactory<M.COPYDATASTRUCT>(DS.COPYDATASTRUCT)
