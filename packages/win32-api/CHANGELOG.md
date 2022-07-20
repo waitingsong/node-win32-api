@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.15.0](https://github.com/waitingsong/node-win32-api/compare/v13.14.0...v13.15.0) (2022-07-20)
+
+
+### Features
+
+* **win32-api:** winspool.GetPrinterW() ([aac05fa](https://github.com/waitingsong/node-win32-api/commit/aac05facfbce6f49f52b527bfba03b6562fbe068))
+* **win32-api:** winspool.OpenPrinterW() ([b557303](https://github.com/waitingsong/node-win32-api/commit/b557303f6b622d3ed72da87476c5c703fb1e524a))
+
+
+
+
+
 # [13.14.0](https://github.com/waitingsong/node-win32-api/compare/v13.13.0...v13.14.0) (2022-07-20)
 
 

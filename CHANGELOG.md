@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.15.0](/compare/v13.14.0...v13.15.0) (2022-07-20)
+
+
+### Features
+
+* **win32-api:** winspool.GetPrinterW() aac05fa
+* **win32-api:** winspool.OpenPrinterW() b557303
+
+
+
+
+
 # [13.14.0](/compare/v13.13.0...v13.14.0) (2022-07-20)
 
 
