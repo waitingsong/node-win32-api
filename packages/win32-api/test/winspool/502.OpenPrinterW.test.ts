@@ -15,7 +15,6 @@ import {
   DStruct as DS,
   StructFactory,
 } from '../../src/index.js'
-import { winspool } from '../helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
