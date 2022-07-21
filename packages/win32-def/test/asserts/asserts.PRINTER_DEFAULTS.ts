@@ -91,7 +91,7 @@ export function ast_PRINTER_INFO_1(struct: ST.PRINTER_INFO_1): void {
   } = struct
 
   assert(Flags === 0)
-  assert(pDescription.toString('ucs2') === '')
-  assert(pName.toString('ucs2') === '')
-  assert(pComment.toString('ucs2') === '')
+  assert(pDescription === '')
+  assert(pName === '')
+  assert(pComment === '')
 }

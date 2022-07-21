@@ -11,9 +11,9 @@ import { StringBuffer } from './common.types.js'
  * `getter` and `setter` functions are provided to access the buffer contents.
  * The starting and tailing terminal-null of returned string via `getter` is removed.
  */
-export function wcharBuffer(length: number): StringBuffer {
-  assert(length >= 0)
-  return BufferTypeFactory(length * 2, 'ucs2')
+export function wcharBuffer(charLength: number): StringBuffer {
+  assert(charLength >= 0)
+  return BufferTypeFactory(charLength * 2, 'ucs2')
 }
 
 
@@ -26,8 +26,8 @@ export function wcharBuffer(length: number): StringBuffer {
  * @see https://github.com/TooTallNate/ref-struct/issues/28#issuecomment-265626611
  * @ref https://gist.github.com/TooTallNate/80ac2d94b950216a2705
  */
-export function BufferTypeFactory(length: number, encoding?: BufferEncoding): StringBuffer {
-  assert(length >= 0)
+export function BufferTypeFactory(byteLength: number, encoding?: BufferEncoding): StringBuffer {
+  assert(byteLength >= 0)
 
   const inst = Object.create(types.byte, {
     constructor: {
@@ -41,7 +41,7 @@ export function BufferTypeFactory(length: number, encoding?: BufferEncoding): St
       configurable: true,
       enumerable: true,
       writable: false,
-      value: length,
+      value: byteLength,
     },
 
     encoding: {

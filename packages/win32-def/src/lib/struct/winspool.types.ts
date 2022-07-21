@@ -4,6 +4,8 @@ import {
   LPTSTR,
   ACCESS_MASK,
   DWORD,
+  StringBuffer,
+  WCHAR_String,
 } from '../common.types.js'
 
 import { DEVMODEW } from './wingdi.types.js'
@@ -45,9 +47,12 @@ export interface PRINTER_INFO_X {
  */
 export interface PRINTER_INFO_1 extends StructInstanceBase {
   Flags: DWORD
-  pDescription: LPTSTR
-  pName: LPTSTR
-  pComment: LPTSTR
+  pDescription: WCHAR_String
+  pName: WCHAR_String
+  pComment: WCHAR_String
+  // pDescription: LPTSTR
+  // pName: LPTSTR
+  // pComment: LPTSTR
 }
 export type PPRINTER_INFO_1 = _POINTER
 
