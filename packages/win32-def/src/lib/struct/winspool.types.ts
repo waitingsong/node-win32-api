@@ -19,7 +19,7 @@ export interface PRINTER_DEFAULTS extends StructInstanceBase {
   /**
    * Pointer to a null-terminated string that specifies the default data type for a printer.
    */
-  pDatatype: LPTSTR
+  pDatatype: WCHAR_String
   /**
    * Pointer to a DEVMODE structure that identifies the default environment and initialization data for a printer.
    */

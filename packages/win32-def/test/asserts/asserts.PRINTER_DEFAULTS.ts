@@ -15,8 +15,7 @@ export function ast_PRINTER_DEFAULTS(struct: ST.PRINTER_DEFAULTS): void {
   })
 
   const { pDatatype, pDevMode, DesiredAccess } = struct
-  assert(pDatatype)
-  assert(pDatatype)
+  assert(pDatatype === '')
   assert(DesiredAccess === 0)
 
   ast_DEVMODEWStruct(pDevMode)
