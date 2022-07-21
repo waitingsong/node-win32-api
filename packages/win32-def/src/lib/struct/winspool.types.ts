@@ -36,6 +36,7 @@ export type LPPRINTER_DEFAULTS = _POINTER
  */
 export interface PRINTER_INFO_X {
   1: PRINTER_INFO_1
+  [key: number]: StructInstanceBase
 }
 
 /**
