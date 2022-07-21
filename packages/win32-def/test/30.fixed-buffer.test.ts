@@ -11,8 +11,10 @@ describe(fileShortPath(import.meta.url), () => {
     it('normal', () => {
       const deviceName = wcharBuffer(4)
       assert(deviceName)
+      assert(typeof deviceName === 'object')
       assert(typeof deviceName.get === 'function')
       assert(typeof deviceName.set === 'function')
+      assert(typeof deviceName.size === 'number')
     })
 
     it('get()', () => {
@@ -40,6 +42,7 @@ describe(fileShortPath(import.meta.url), () => {
     it('normal', () => {
       const deviceName = BufferTypeFactory(4)
       assert(deviceName)
+      assert(typeof deviceName === 'object')
       assert(typeof deviceName.get === 'function')
       assert(typeof deviceName.set === 'function')
     })
