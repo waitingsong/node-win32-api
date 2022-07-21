@@ -7,7 +7,6 @@ import { copyFileSync, statSync } from 'node:fs'
 
 import ffi from 'ffi-napi'
 import ref from 'ref-napi'
-import StructDi from 'ref-struct-di'
 import {
   AsyncSyncFuncModel,
   DllFuncs,
@@ -20,6 +19,7 @@ import {
   StructDefType,
   StructInstanceBase,
   settingsDefault,
+  StructFactory,
 } from 'win32-def'
 
 
@@ -271,13 +271,10 @@ export function retrieveStructFromPtrAddress<R extends StructInstanceBase>(
 
   assert(dataStructConst, 'dataStructConst is required')
 
-  const StructClass = StructDi(ref)
-  assert(StructClass, 'Struct is required')
-  // @ts-ignore
-  const object = new StructClass(dataStructConst)() as R
-  assert(object, 'StructClass instance is undefined')
+  const struct = StructFactory<R>(dataStructConst)
+  assert(struct)
 
-  const refType = object.ref().ref().type
+  const refType = struct.ref().ref().type
   const buf = Buffer.alloc(8)
   buf.writeInt64LE(address, 0)
   buf.type = refType
