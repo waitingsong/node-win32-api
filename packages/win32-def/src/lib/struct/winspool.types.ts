@@ -1,10 +1,8 @@
 import {
   _POINTER,
   StructInstanceBase,
-  LPTSTR,
   ACCESS_MASK,
   DWORD,
-  StringBuffer,
   WCHAR_String,
 } from '../common.types.js'
 
