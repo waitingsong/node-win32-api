@@ -79,7 +79,7 @@ function getFn(
   const buf = buffer.subarray(offset, offset + this.size)
   if (this.encoding) {
     const str = buf.toString(this.encoding)
-    return str.replace(/^\0+/u, '').replace(/\0+$/u, '')
+    return str.replace(/^\0+|\0+$/ug, '')
   }
   return buf
 }
