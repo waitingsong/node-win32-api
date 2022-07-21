@@ -24,7 +24,7 @@ export const PRINTER_DEFAULTS = {
   pDevMode: StructType(DEVMODEW),
   // pDevMode: LPDEVMODE,
   DesiredAccess: ACCESS_MASK,
-}
+} as const
 
 
 /**
@@ -36,5 +36,5 @@ export const PRINTER_INFO_1 = {
   pDescription: LPTSTR,
   pName: LPTSTR,
   pComment: LPTSTR,
-}
+} as const
 
