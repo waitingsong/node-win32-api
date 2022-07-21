@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.2.1](https://github.com/waitingsong/node-win32-api/compare/v17.2.0...v17.2.1) (2022-07-21)
+
+
+### Performance Improvements
+
+* **win-def:** BufferTypeFactory() string replace ([f1542ab](https://github.com/waitingsong/node-win32-api/commit/f1542abf10acedef761ed28d188a2b91c301af3e))
+
+
+
+
+
 # [17.2.0](https://github.com/waitingsong/node-win32-api/compare/v17.1.1...v17.2.0) (2022-07-21)
 
 

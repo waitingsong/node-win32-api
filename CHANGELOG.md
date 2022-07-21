@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.2.1](/compare/v17.2.0...v17.2.1) (2022-07-21)
+
+
+### Performance Improvements
+
+* **win-def:** BufferTypeFactory() string replace f1542ab
+
+
+
+
+
 # [17.2.0](/compare/v17.1.1...v17.2.0) (2022-07-21)
 
 
