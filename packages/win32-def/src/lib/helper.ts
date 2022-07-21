@@ -27,3 +27,13 @@ export function StructFactory<T>(input: StructDefType): T {
   return new Struct(input)() as unknown as T
 }
 
+export interface StructCharOptions {
+  /**
+   * @default true
+   */
+  useStringBuffer: boolean
+  /**
+   * @default 1024
+   */
+  maxCharLength?: number
+}
