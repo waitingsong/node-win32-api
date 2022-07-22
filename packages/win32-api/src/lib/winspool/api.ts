@@ -6,6 +6,11 @@ import * as W from 'win32-def/common.def'
 export interface Win32Fns {
 
   /**
+   * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/closeprinter
+   */
+  ClosePrinter: (hPrinter: M.HANDLE) => M.BOOL
+
+  /**
    * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/getdefaultprinter
    */
   GetDefaultPrinterW: (
@@ -41,6 +46,8 @@ export interface Win32Fns {
 
 
 export const apiDef: M.DllFuncs<Win32Fns> = {
+
+  ClosePrinter: [W.BOOL, [W.HANDLE] ],
 
   GetDefaultPrinterW: [W.BOOL, [W.LPTSTR, W.LPDWORD] ],
 

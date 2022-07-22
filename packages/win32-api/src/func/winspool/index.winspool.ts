@@ -15,6 +15,15 @@ import {
 } from './helper.js'
 
 
+
+export async function winspoolClosePrinter(hPrinter: M.HANDLE): Promise<boolean> {
+  assert(hPrinter)
+  const mod = getMod<Win32Fns>(dllName)
+
+  const ret = await mod.ClosePrinter(hPrinter.toString())
+  return !! ret
+}
+
 /**
  * Retrieves the printer name of the default printer for the current user on the local computer.
  * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/getdefaultprinter
