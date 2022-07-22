@@ -56,12 +56,13 @@ function retriveStruct_PRINTER_INFO_1(
   const ret: M.PRINTER_INFO_1[] = []
   const blen = pcbNeeded
 
-  const keys = 4
-  const itemLen = keys * 8 // byes
-  const rowLen = maxCount * itemLen
+  const structDef = DS.PRINTER_INFO_1
+  const keyLen = Object.keys(structDef).length
+  const itemLen = keyLen * 8 // byes
+  const bufByteLen = maxCount * itemLen
 
   for (let i = 0; i < maxCount; i += 1) {
-    const buf = Buffer.alloc(rowLen)
+    const buf = Buffer.alloc(bufByteLen)
     pPrinter.copy(buf, 0, i * itemLen)
     const struct = rpi1(buf, blen)
     ret.push(struct)
@@ -109,9 +110,14 @@ function retriveStruct_PRINTER_INFO_4(
   const ret: M.PRINTER_INFO_4[] = []
   const blen = pcbNeeded
 
+  const structDef = DS.PRINTER_INFO_4
+  const keyLen = Object.keys(structDef).length
+  const itemLen = keyLen * 8 // 24 byes
+  const bufByteLen = maxCount * itemLen // 24 * maxCount
+
   for (let i = 0; i < maxCount; i += 1) {
-    const buf = Buffer.alloc(maxCount * 24) // 3key * 8byte * maxCount
-    pPrinter.copy(buf, 0, i * 24)
+    const buf = Buffer.alloc(bufByteLen)
+    pPrinter.copy(buf, 0, i * itemLen)
     const struct = rpi4(buf, blen)
     ret.push(struct)
   }
