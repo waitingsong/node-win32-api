@@ -39,6 +39,7 @@ export enum Def {
   uint32Ptr = 'uint32*',
   uint64Ptr = 'uint64*',
   uintPtrPtr = 'uint**',
+  uint16PtrPtr = 'uint16**',
   uint32PtrPtr = 'uint32**',
   uint64PtrPtr = 'uint64**',
   voidPtr = 'void*',
