@@ -21,7 +21,7 @@ import { CI } from '../root.config.js'
 
 describe(fileShortPath(import.meta.url), () => {
 
-  describe('Should GetPrinter() work', () => {
+  describe('Should winspoolGetPrinter() work', () => {
     it('Level 1', async () => {
       const pname = await winspoolGetDefaultPrinter()
       assert(pname)
@@ -46,7 +46,7 @@ describe(fileShortPath(import.meta.url), () => {
       }
     })
 
-    it.only('Level 4', async () => {
+    it('Level 4', async () => {
       const pname = await winspoolGetDefaultPrinter()
       assert(pname)
       const hWnd = await winspoolOpenPrinter(pname)
