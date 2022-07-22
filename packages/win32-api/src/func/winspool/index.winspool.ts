@@ -13,6 +13,7 @@ import {
   ref,
   retriveStruct_PRINTER_INFO,
 } from './helper.js'
+import { EnumPrintersOptions } from './winspool.types.js'
 
 
 export async function winspoolClosePrinter(hPrinter: M.HANDLE): Promise<boolean> {
@@ -21,6 +22,47 @@ export async function winspoolClosePrinter(hPrinter: M.HANDLE): Promise<boolean>
 
   const ret = await mod.ClosePrinter(hPrinter.toString())
   return !! ret
+}
+
+
+/**
+ * Enumerates available printers, print servers, domains, or print providers.
+ * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/enumprinters
+ */
+export async function winspoolEnumPrinters<Level extends M.EnumPrinters_Level>(
+  options: EnumPrintersOptions<Level>,
+): Promise<M.PRINTER_INFO_X[Level][]> {
+
+  const mod = getMod<Win32Fns>(dllName)
+
+  const name = ucsBufferFrom(options.Name)
+  const level = options.Level
+  assert(level >= 1 && level <= 5, 'level must be >= 1 and <= 5')
+
+  const cbBuf = options.cbBuf ?? 4096
+  assert(cbBuf > 2, 'cbBuf must be > 2')
+  const pPrinterEnum = Buffer.alloc(cbBuf)
+
+  const pcbNeeded = ref.alloc('uint32')
+  const pcReturned = ref.alloc('uint32')
+
+  const ret = await mod.EnumPrintersW(
+    options.Flags,
+    name,
+    level,
+    pPrinterEnum,
+    cbBuf,
+    pcbNeeded,
+    pcReturned,
+  )
+
+  const count = pcReturned.readUInt32LE()
+
+  if (ret && count) {
+    const arr = retriveStruct_PRINTER_INFO(pPrinterEnum, level, count)
+    return arr as unknown as Promise<M.PRINTER_INFO_X[Level][]>
+  }
+  return []
 }
 
 

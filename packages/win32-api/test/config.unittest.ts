@@ -13,3 +13,9 @@ export const calcLpszClassNotepadEdit = Buffer.from('Edit\0', 'ucs2')
 export const calcLpszNotepad = 'Notepad'
 export const calcLpszNotepadEdit = 'Edit'
 
+/** GitHub CI */
+export const githubPrinterNames = [
+  'Microsoft Print to PDF',
+  'Microsoft XPS Document Writer',
+]
+
