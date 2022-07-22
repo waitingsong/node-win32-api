@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.0.0](/compare/v18.4.0...v19.0.0) (2022-07-22)
+
+
+### Features
+
+* **win32-api:** breaking change ReturnType of retriveStruct_PRINTER_INFO() 83d2b0a
+
+
+
+
+
 # [18.4.0](/compare/v18.3.0...v18.4.0) (2022-07-22)
 
 

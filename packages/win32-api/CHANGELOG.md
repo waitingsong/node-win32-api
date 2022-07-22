@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.0.0](https://github.com/waitingsong/node-win32-api/compare/v18.4.0...v19.0.0) (2022-07-22)
+
+
+### Features
+
+* **win32-api:** breaking change ReturnType of retriveStruct_PRINTER_INFO() ([83d2b0a](https://github.com/waitingsong/node-win32-api/commit/83d2b0a14d3e87ae56b505331cba6a11a0dda896))
+
+
+
+
+
 # [18.4.0](https://github.com/waitingsong/node-win32-api/compare/v18.3.0...v18.4.0) (2022-07-22)
 
 **Note:** Version bump only for package win32-api
