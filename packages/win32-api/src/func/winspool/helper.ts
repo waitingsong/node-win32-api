@@ -35,35 +35,40 @@ export function retriveStruct_PRINTER_INFO<L extends M.PRINTER_INFO_LEVEL>(
     : pPrinter.byteLength
   assert(pcb >= 16, 'Buffer too small')
 
+  let ret: M.PRINTER_INFO_X[L][] = []
+
   switch (Level) {
-    case 1:
-      return retriveStruct_PRINTER_INFO_1(pPrinter, maxCount, pcb) as M.PRINTER_INFO_X[L][]
-    case 4:
-      return retriveStruct_PRINTER_INFO_4(pPrinter, maxCount, pcb) as M.PRINTER_INFO_X[L][]
+    case 1: {
+      const structDef = DS.PRINTER_INFO_1
+      ret = loopRead(
+        pPrinter,
+        maxCount,
+        pcb,
+        1,
+        structDef,
+      ) as M.PRINTER_INFO_X[L][]
+      break
+    }
+
+    case 4: {
+      const structDef = DS.PRINTER_INFO_4
+      ret = loopRead(
+        pPrinter,
+        maxCount,
+        pcb,
+        4,
+        structDef,
+      ) as M.PRINTER_INFO_X[L][]
+      break
+    }
+
     default:
       throw new Error(`Level not implemented:${Level}`)
   }
 
-}
-
-
-function retriveStruct_PRINTER_INFO_1(
-  pPrinter: Buffer,
-  maxCount: number,
-  pcbNeeded: number,
-): M.PRINTER_INFO_1[] {
-
-  const structDef = DS.PRINTER_INFO_1
-  const ret = loopRead(
-    pPrinter,
-    maxCount,
-    pcbNeeded,
-    1,
-    structDef,
-  )
-
   return ret
 }
+
 
 
 function rpi1(
@@ -94,25 +99,6 @@ function rpi1(
   return struct
 }
 
-
-
-function retriveStruct_PRINTER_INFO_4(
-  pPrinter: Buffer,
-  maxCount: number,
-  pcbNeeded: number,
-): M.PRINTER_INFO_4[] {
-
-  const structDef = DS.PRINTER_INFO_4
-  const ret = loopRead(
-    pPrinter,
-    maxCount,
-    pcbNeeded,
-    4,
-    structDef,
-  )
-
-  return ret
-}
 
 function rpi4(
   addressBuffer: Buffer,
