@@ -23,7 +23,7 @@ describe(fileShortPath(import.meta.url), () => {
     const rect = StructFactory<M.RECT>(DS.RECT)
 
     const hWnd = await user32FindWindowEx(0, 0, null, calcLpszWindow)
-    assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
+    assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'invalid hWnd')
 
     const ret = await user32.GetWindowRect(hWnd, rect.ref())
     assert(ret !== 0)
