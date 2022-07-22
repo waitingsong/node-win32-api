@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0](https://github.com/waitingsong/node-win32-api/compare/v19.1.0...v19.2.0) (2022-07-22)
+
+
+### Features
+
+* **win32-api:** retriveStruct_PRINTER_INFO() accept 3th param pcbNeeded ([2588e65](https://github.com/waitingsong/node-win32-api/commit/2588e654c8edf2190dc56815f98275c7694c6242))
+
+
+
+
+
 # [19.1.0](https://github.com/waitingsong/node-win32-api/compare/v19.0.0...v19.1.0) (2022-07-22)
 
 
