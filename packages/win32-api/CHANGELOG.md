@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.2.0](https://github.com/waitingsong/node-win32-api/compare/v18.1.0...v18.2.0) (2022-07-22)
+
+
+### Features
+
+* **win32-api:** ClosePrinter(), winspoolClosePrinter() ([fff180f](https://github.com/waitingsong/node-win32-api/commit/fff180f480e9a4347aad4fa2d78424c4e466fab1))
+
+
+
+
+
 # [18.1.0](https://github.com/waitingsong/node-win32-api/compare/v18.0.0...v18.1.0) (2022-07-22)
 
 
