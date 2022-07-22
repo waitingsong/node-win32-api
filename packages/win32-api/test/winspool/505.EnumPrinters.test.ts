@@ -20,7 +20,7 @@ import { CI } from '../root.config.js'
 
 describe(fileShortPath(import.meta.url), () => {
 
-  describe('Should winspoolEnumPrinters() work', () => {
+  describe('Should PRINTER_ENUM_LOCAL work ', () => {
     it('normal', async () => {
       const ret = await winspoolEnumPrinters({
         Flags: PrinterEnumFlags.PRINTER_ENUM_LOCAL,
