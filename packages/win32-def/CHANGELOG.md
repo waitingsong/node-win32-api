@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.0.0](https://github.com/waitingsong/node-win32-api/compare/v17.2.1...v18.0.0) (2022-07-22)
+
+
+### Features
+
+* **win-def:** StructCharOptions ([0aa4846](https://github.com/waitingsong/node-win32-api/commit/0aa484673b45a4f7a64c3f490331a67e5031f294))
+* **win32-def:** breaking change StructFactory(), StructType() accept 2nd options ([6db7266](https://github.com/waitingsong/node-win32-api/commit/6db72666d8db5cf6bdd2d747bfd6242074362012))
+* **win32-def:** breaking change type PRINTER_DEFAUL ([95fba4c](https://github.com/waitingsong/node-win32-api/commit/95fba4c2685868379e78c9ac8ac31d96a404b1d1))
+* **win32-def:** change property of StructCharOptions optional ([36333e2](https://github.com/waitingsong/node-win32-api/commit/36333e20f41abd77af7eb76b2903e9acd8a6aea6))
+
+
+
+
+
 ## [17.2.1](https://github.com/waitingsong/node-win32-api/compare/v17.2.0...v17.2.1) (2022-07-21)
 
 

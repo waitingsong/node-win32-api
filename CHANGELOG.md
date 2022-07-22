@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.0.0](/compare/v17.2.1...v18.0.0) (2022-07-22)
+
+
+### Features
+
+* **win-def:** StructCharOptions 0aa4846
+* **win32-def:** breaking change StructFactory(), StructType() accept 2nd options 6db7266
+* **win32-def:** breaking change type PRINTER_DEFAUL 95fba4c
+* **win32-def:** change property of StructCharOptions optional 36333e2
+
+
+
+
+
 ## [17.2.1](/compare/v17.2.0...v17.2.1) (2022-07-21)
 
 
