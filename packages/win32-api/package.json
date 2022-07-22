@@ -11,6 +11,7 @@
     "user32",
     "comctl32",
     "winspool",
+    "printer",
     "ffi",
     "ESM",
     "typescript",
