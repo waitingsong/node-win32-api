@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.3.0](/compare/v18.2.0...v18.3.0) (2022-07-22)
+
+
+### Features
+
+* **win32-api:** ptrToString() cb09884
+* **win32-api:** ucsBufferSplit() accept 2nd param fe82533
+* **win32-def:** add Def.uint16PtrPtr 14cefcd
+* **win32-def:** enum PrinterEnumFlags 097fc39
+
+
+
+
+
 # [18.2.0](/compare/v18.1.0...v18.2.0) (2022-07-22)
 
 

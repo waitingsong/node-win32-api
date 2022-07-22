@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.3.0](https://github.com/waitingsong/node-win32-api/compare/v18.2.0...v18.3.0) (2022-07-22)
+
+
+### Features
+
+* **win32-def:** add Def.uint16PtrPtr ([14cefcd](https://github.com/waitingsong/node-win32-api/commit/14cefcd8f69350b0e84d56c475c734c3a20f97e6))
+* **win32-def:** enum PrinterEnumFlags ([097fc39](https://github.com/waitingsong/node-win32-api/commit/097fc3922ecb2716aebbe63f3e36d8460f9048a3))
+
+
+
+
+
 # [18.1.0](https://github.com/waitingsong/node-win32-api/compare/v18.0.0...v18.1.0) (2022-07-22)
 
 

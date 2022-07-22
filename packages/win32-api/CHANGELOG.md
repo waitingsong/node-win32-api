@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.3.0](https://github.com/waitingsong/node-win32-api/compare/v18.2.0...v18.3.0) (2022-07-22)
+
+
+### Features
+
+* **win32-api:** ptrToString() ([cb09884](https://github.com/waitingsong/node-win32-api/commit/cb09884689127e68644d628863e41f87666eff34))
+* **win32-api:** ucsBufferSplit() accept 2nd param ([fe82533](https://github.com/waitingsong/node-win32-api/commit/fe82533b891b153d9b7ce391ea0b47e1692b7670))
+
+
+
+
+
 # [18.2.0](https://github.com/waitingsong/node-win32-api/compare/v18.1.0...v18.2.0) (2022-07-22)
 
 
