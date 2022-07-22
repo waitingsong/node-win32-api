@@ -304,3 +304,33 @@ export function ucsBufferToString(buffer: Buffer, charCount?: number | undefined
   return str.replace(/\0+$/u, '').replace(/^\0+/u, '')
 }
 
+
+/**
+ * Split with null till next char (\0)
+ */
+export function ucsBufferSplit(buffer: Buffer): string[] {
+  const ret: string[] = []
+  const row: string[] = []
+  const blen = buffer.byteLength
+
+  if (! blen) { return ret }
+
+  for (let i = 0; i < blen;) {
+    const t1 = ref.readCString(buffer, i)
+    if (t1) {
+      row.push(t1)
+      i += t1.length * 2
+      continue
+    }
+    else if (row.length > 0) {
+      ret.push(row.join(''))
+      row.length = 0
+    }
+    else {
+      i += 2
+    }
+  }
+
+  row.length = 0
+  return ret
+}

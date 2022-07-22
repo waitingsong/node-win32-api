@@ -1,9 +1,18 @@
 import assert from 'node:assert'
 
-import { ucsBufferFrom, ucsBufferToString } from '../../index.js'
+import {
+  ucsBufferFrom,
+  ucsBufferToString,
+} from '../../index.js'
 import { getMod } from '../func.helper.js'
 
-import { Win32Fns, dllName, M, ref } from './helper.js'
+import {
+  Win32Fns,
+  M,
+  dllName,
+  ref,
+  retriveStruct_PRINTER_INFO,
+} from './helper.js'
 
 
 /**
@@ -54,5 +63,42 @@ export async function winspoolOpenPrinter(printerName: string): Promise<M.HANDLE
     return hWnd
   }
   return 0
+}
+
+
+/**
+ * Retrieves information about a specified printer.
+ * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/getprinter
+ * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/getprinter
+ */
+export async function winspoolGetPrinter<Level extends M.PRINTER_INFO_LEVEL>(
+  hPrinter: M.HANDLE,
+  Level: Level,
+  maxByteLength = 4096,
+): Promise<M.PRINTER_INFO_X[Level] | undefined> {
+
+  const mod = getMod<Win32Fns>(dllName)
+
+  const pPrinter = Buffer.alloc(maxByteLength)
+  const cbBuf = pPrinter.byteLength
+  const pcbNeeded = Buffer.alloc(8)
+
+  const ret = await mod.GetPrinterW(
+    hPrinter.toString(),
+    Level,
+    pPrinter,
+    cbBuf,
+    pcbNeeded,
+  )
+  const pcb = pcbNeeded.readUInt32LE()
+
+  if (ret) {
+    const struct = retriveStruct_PRINTER_INFO(pPrinter, Level)
+    return struct
+  }
+
+  if (pcb > 0 && pcb > maxByteLength) {
+    throw new Error(`maxByteLength is too small, increase to value grater than ${pcb}`)
+  }
 }
 

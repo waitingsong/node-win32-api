@@ -36,6 +36,7 @@ export type LPPRINTER_DEFAULTS = _POINTER
  */
 export interface PRINTER_INFO_X {
   1: PRINTER_INFO_1
+  4: PRINTER_INFO_4
   [key: number]: StructInstanceBase
 }
 
@@ -53,4 +54,18 @@ export interface PRINTER_INFO_1 extends StructInstanceBase {
   // pComment: LPTSTR
 }
 export type PPRINTER_INFO_1 = _POINTER
+
+/**
+ * Specifies general printer information
+ * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/printer-info-4
+ * @description The structure can be used to retrieve minimal printer information on a call to EnumPrinters.
+ *  Such a call is a fast and easy way to retrieve the names and attributes of all locally installed printers
+ *  on a system and all remote printer connections that a user has established.
+ */
+export interface PRINTER_INFO_4 extends StructInstanceBase {
+  pPrinterName: WCHAR_String
+  pServerName: WCHAR_String
+  Attributes: DWORD
+}
+export type PPRINTER_INFO_4 = _POINTER
 

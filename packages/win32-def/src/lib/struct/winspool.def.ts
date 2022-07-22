@@ -3,7 +3,6 @@ import {
   DWORD,
   LPTSTR,
 } from '../common.def.js'
-// import { wcharBuffer } from '../fixed-buffer.js'
 import { StructType } from '../helper.js'
 
 import { DEVMODEW } from './wingdi.def.js'
@@ -36,5 +35,19 @@ export const PRINTER_INFO_1 = {
   pDescription: LPTSTR,
   pName: LPTSTR,
   pComment: LPTSTR,
+} as const
+
+
+/**
+ * Specifies general printer information
+ * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/printer-info-4
+ * @description The structure can be used to retrieve minimal printer information on a call to EnumPrinters.
+ *  Such a call is a fast and easy way to retrieve the names and attributes of all locally installed printers
+ *  on a system and all remote printer connections that a user has established.
+ */
+export const PRINTER_INFO_4 = {
+  pPrinterName: LPTSTR,
+  pServerName: LPTSTR,
+  Attributes: DWORD,
 } as const
 
