@@ -26,7 +26,7 @@ describe(fileShortPath(import.meta.url), () => {
         Flags: PrinterEnumFlags.PRINTER_ENUM_LOCAL,
         Level: 4,
       })
-      assertsPInfo(ret, true)
+      assertsPInfo_4(ret, true)
     })
 
     it('options<4>', async () => {
@@ -35,7 +35,7 @@ describe(fileShortPath(import.meta.url), () => {
         Level: 4,
       }
       const ret = await winspoolEnumPrinters(opts)
-      assertsPInfo(ret, false)
+      assertsPInfo_4(ret, false)
     })
 
     it('options as const', async () => {
@@ -44,14 +44,15 @@ describe(fileShortPath(import.meta.url), () => {
         Level: 4,
       } as const // <-- `as const`
       const ret = await winspoolEnumPrinters(opts)
-      assertsPInfo(ret, false)
+      assertsPInfo_4(ret, false)
     })
 
   })
+
 })
 
 
-function assertsPInfo(infos: M.PRINTER_INFO_X[4][], verbose: boolean): void {
+function assertsPInfo_4(infos: M.PRINTER_INFO_X[4][], verbose: boolean): void {
   assert(infos.length)
 
   infos.forEach((info, idx) => {
