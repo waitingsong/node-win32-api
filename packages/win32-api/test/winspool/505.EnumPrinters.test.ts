@@ -49,7 +49,38 @@ describe(fileShortPath(import.meta.url), () => {
 
   })
 
+  describe('Should PRINTER_ENUM_CATEGORY_ALL + PRINTER_ENUM_LOCAL work ', () => {
+    it('normal', async () => {
+      const ret = await winspoolEnumPrinters({
+        Flags: PrinterEnumFlags.PRINTER_ENUM_CATEGORY_ALL | PrinterEnumFlags.PRINTER_ENUM_LOCAL,
+        Level: 1,
+      })
+      assertsPInfo_1(ret, true)
+    })
+
+  })
 })
+
+
+function assertsPInfo_1(infos: M.PRINTER_INFO_X[1][], verbose: boolean): void {
+  assert(infos.length)
+
+  infos.forEach((info, idx) => {
+    assert(info)
+    const { pDescription, pName, pComment, Flags } = info
+    // assert(info.pPrinterName)
+    verbose && console.log({
+      idx,
+      pDescription,
+      pName,
+      pComment,
+      Flags,
+    })
+    // if (CI) {
+    //   githubPrinterNames.includes(pPrinterName)
+    // }
+  })
+}
 
 
 function assertsPInfo_4(infos: M.PRINTER_INFO_X[4][], verbose: boolean): void {
@@ -70,4 +101,3 @@ function assertsPInfo_4(infos: M.PRINTER_INFO_X[4][], verbose: boolean): void {
     }
   })
 }
-
