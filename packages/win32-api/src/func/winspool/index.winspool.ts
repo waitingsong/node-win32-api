@@ -57,9 +57,10 @@ export async function winspoolEnumPrinters<Level extends M.EnumPrinters_Level>(
   )
 
   const count = pcReturned.readUInt32LE()
+  const pcb = pcbNeeded.readUInt32LE()
 
   if (ret && count) {
-    const arr = retriveStruct_PRINTER_INFO(pPrinterEnum, level, count)
+    const arr = retriveStruct_PRINTER_INFO(pPrinterEnum, level, count, pcb)
     return arr as unknown as Promise<M.PRINTER_INFO_X[Level][]>
   }
   return []
@@ -144,7 +145,7 @@ export async function winspoolGetPrinter<Level extends M.PRINTER_INFO_LEVEL>(
   const pcb = pcbNeeded.readUInt32LE()
 
   if (ret) {
-    const [struct] = retriveStruct_PRINTER_INFO(pPrinter, Level, 1)
+    const [struct] = retriveStruct_PRINTER_INFO(pPrinter, Level, 1, pcb)
     // const pPrinter2 = Buffer.alloc(pcb)
     // const cbBuf2 = pcb
     // const pcbNeeded2 = Buffer.alloc(8)

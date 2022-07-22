@@ -25,15 +25,21 @@ export function retriveStruct_PRINTER_INFO<L extends M.PRINTER_INFO_LEVEL>(
   pPrinter: Buffer,
   Level: L,
   maxCount = 1,
+  pcbNeeded?: number,
 ): M.PRINTER_INFO_X[L][] {
 
   assert(maxCount >= 1, 'maxCount must be >= 1')
 
+  const pcb: number = typeof pcbNeeded === 'number'
+    ? pcbNeeded
+    : pPrinter.byteLength
+  assert(pcb >= 16, 'Buffer too small')
+
   switch (Level) {
     case 1:
-      return retriveStruct_PRINTER_INFO_1(pPrinter, maxCount) as M.PRINTER_INFO_X[L][]
+      return retriveStruct_PRINTER_INFO_1(pPrinter, maxCount, pcb) as M.PRINTER_INFO_X[L][]
     case 4:
-      return retriveStruct_PRINTER_INFO_4(pPrinter, maxCount) as M.PRINTER_INFO_X[L][]
+      return retriveStruct_PRINTER_INFO_4(pPrinter, maxCount, pcb) as M.PRINTER_INFO_X[L][]
     default:
       throw new Error(`Level not implemented:${Level}`)
   }
@@ -44,10 +50,11 @@ export function retriveStruct_PRINTER_INFO<L extends M.PRINTER_INFO_LEVEL>(
 function retriveStruct_PRINTER_INFO_1(
   pPrinter: Buffer,
   maxCount: number,
+  pcbNeeded: number,
 ): M.PRINTER_INFO_1[] {
 
   const ret: M.PRINTER_INFO_1[] = []
-  const blen = pPrinter.byteLength
+  const blen = pcbNeeded
 
   const keys = 4
   const itemLen = keys * 8 // byes
@@ -96,10 +103,11 @@ function rpi1(
 function retriveStruct_PRINTER_INFO_4(
   pPrinter: Buffer,
   maxCount: number,
+  pcbNeeded: number,
 ): M.PRINTER_INFO_4[] {
 
   const ret: M.PRINTER_INFO_4[] = []
-  const blen = pPrinter.byteLength
+  const blen = pcbNeeded
 
   for (let i = 0; i < maxCount; i += 1) {
     const buf = Buffer.alloc(maxCount * 24) // 3key * 8byte * maxCount
