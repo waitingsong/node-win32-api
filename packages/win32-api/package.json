@@ -10,6 +10,7 @@
     "kernel32",
     "user32",
     "comctl32",
+    "winspool",
     "ffi",
     "ESM",
     "typescript",
