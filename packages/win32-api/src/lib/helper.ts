@@ -20,7 +20,9 @@ import {
   StructInstanceBase,
   settingsDefault,
   StructFactory,
+  HWND,
 } from 'win32-def'
+
 
 
 const dllInstMap = new Map<string, unknown>() // for DLL.load() with settings.singleton === true
@@ -271,7 +273,7 @@ export function retrieveStructFromPtrAddress<R extends StructInstanceBase>(
 
   assert(dataStructConst, 'dataStructConst is required')
 
-  const struct = StructFactory<R>(dataStructConst)
+  const struct = StructFactory<R>(dataStructConst, { useStringBuffer: true })
   assert(struct)
 
   const refType = struct.ref().ref().type
@@ -308,12 +310,13 @@ export function ucsBufferToString(buffer: Buffer, charCount?: number | undefined
 /**
  * Split with null till next char (\0)
  */
-export function ucsBufferSplit(buffer: Buffer): string[] {
+export function ucsBufferSplit(buffer: Buffer, maxCount?: number): string[] {
   const ret: string[] = []
   const row: string[] = []
   const blen = buffer.byteLength
 
   if (! blen) { return ret }
+  const count = maxCount ? maxCount : blen
 
   for (let i = 0; i < blen;) {
     const t1 = ref.readCString(buffer, i)
@@ -329,8 +332,13 @@ export function ucsBufferSplit(buffer: Buffer): string[] {
     else {
       i += 2
     }
+
+    if (ret.length >= count) {
+      break
+    }
   }
 
   row.length = 0
   return ret
 }
+
