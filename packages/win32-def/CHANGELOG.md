@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.4.0](https://github.com/waitingsong/node-win32-api/compare/v18.3.0...v18.4.0) (2022-07-22)
+
+
+### Features
+
+* **win32-def:** def EnumPrinters_Level ([91f4f00](https://github.com/waitingsong/node-win32-api/commit/91f4f00518a9885e68dab6ba662bcbbd86c501fd))
+
+
+
+
+
 # [18.3.0](https://github.com/waitingsong/node-win32-api/compare/v18.2.0...v18.3.0) (2022-07-22)
 
 

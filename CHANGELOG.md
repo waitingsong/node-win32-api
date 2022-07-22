@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.4.0](/compare/v18.3.0...v18.4.0) (2022-07-22)
+
+
+### Features
+
+* **win32-def:** def EnumPrinters_Level 91f4f00
+
+
+
+
+
 # [18.3.0](/compare/v18.2.0...v18.3.0) (2022-07-22)
 
 
