@@ -75,9 +75,9 @@ export interface StructCharOptions {
   /**
    * @default true
    * @description convert property of Struct from POINTER(like LPSTR, LPWSTR) to StringBuffer,
-   * **Note: typeof value should be WCHAR_String instead of _POINTER**
+   * **Note: typeof value may be WCHAR_String instead of _POINTER**
    */
-  useStringBuffer: boolean
+  useStringBuffer?: boolean
   /**
    * @default 1024
    */
@@ -85,6 +85,6 @@ export interface StructCharOptions {
   /**
    * @default [LPMSG, LPSTR, LPWSTR, LPTSTR, LPWORD ]
    */
-  CharDefs: Def[]
+  CharDefs?: Def[]
 }
 
