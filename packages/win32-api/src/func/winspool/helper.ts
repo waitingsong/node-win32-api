@@ -53,23 +53,18 @@ function retriveStruct_PRINTER_INFO_1(
   pcbNeeded: number,
 ): M.PRINTER_INFO_1[] {
 
-  const ret: M.PRINTER_INFO_1[] = []
-  const blen = pcbNeeded
-
   const structDef = DS.PRINTER_INFO_1
-  const keyLen = Object.keys(structDef).length
-  const itemLen = keyLen * 8 // byes
-  const bufByteLen = maxCount * itemLen
-
-  for (let i = 0; i < maxCount; i += 1) {
-    const buf = Buffer.alloc(bufByteLen)
-    pPrinter.copy(buf, 0, i * itemLen)
-    const struct = rpi1(buf, blen)
-    ret.push(struct)
-  }
+  const ret = loopRead(
+    pPrinter,
+    maxCount,
+    pcbNeeded,
+    1,
+    structDef,
+  )
 
   return ret
 }
+
 
 function rpi1(
   addressBuffer: Buffer,
@@ -107,20 +102,14 @@ function retriveStruct_PRINTER_INFO_4(
   pcbNeeded: number,
 ): M.PRINTER_INFO_4[] {
 
-  const ret: M.PRINTER_INFO_4[] = []
-  const blen = pcbNeeded
-
   const structDef = DS.PRINTER_INFO_4
-  const keyLen = Object.keys(structDef).length
-  const itemLen = keyLen * 8 // 24 byes
-  const bufByteLen = maxCount * itemLen // 24 * maxCount
-
-  for (let i = 0; i < maxCount; i += 1) {
-    const buf = Buffer.alloc(bufByteLen)
-    pPrinter.copy(buf, 0, i * itemLen)
-    const struct = rpi4(buf, blen)
-    ret.push(struct)
-  }
+  const ret = loopRead(
+    pPrinter,
+    maxCount,
+    pcbNeeded,
+    4,
+    structDef,
+  )
 
   return ret
 }
@@ -154,3 +143,43 @@ function rpi4(
   return struct
 }
 
+
+type LoopFuncs<L extends M.PRINTER_INFO_LEVEL = M.PRINTER_INFO_LEVEL> = {
+  [K in L]: (addressBuffer: Buffer, maxByteLength: number) => M.PRINTER_INFO_X[K]
+}
+const loopFuncs: LoopFuncs<1 | 4> = {
+  1: rpi1,
+  4: rpi4,
+}
+
+function loopRead<L extends M.PRINTER_INFO_LEVEL>(
+  pPrinter: Buffer,
+  maxCount: number,
+  pcbNeeded: number,
+  Level: L,
+  structDef: object, // DS.PRINTER_INFO_[L],
+): M.PRINTER_INFO_X[L][] {
+
+  const ret: M.PRINTER_INFO_X[L][] = []
+
+  const blen = pcbNeeded
+  // const structDef = DS.PRINTER_INFO_1
+  const keyLen = Object.keys(structDef).length
+  assert(keyLen >= 1, 'keyLen must be >= 1')
+
+  const itemLen = keyLen * 8 // byes
+  const bufByteLen = maxCount * itemLen
+
+  // @ts-expect-error
+  const fn = loopFuncs[Level] as LoopFuncs[L]
+  assert(typeof fn === 'function')
+
+  for (let i = 0; i < maxCount; i += 1) {
+    const buf = Buffer.alloc(bufByteLen)
+    pPrinter.copy(buf, 0, i * itemLen)
+    const struct = fn(buf, blen)
+    ret.push(struct)
+  }
+
+  return ret
+}
