@@ -342,3 +342,29 @@ export function ucsBufferSplit(buffer: Buffer, maxCount?: number): string[] {
   return ret
 }
 
+
+/**
+ * Read string from address of ptr
+ */
+export function ptrToString(
+  ptrAddress: HWND,
+  maxByteLength: number,
+): string {
+
+  if (! ptrAddress) {
+    return ''
+  }
+
+  assert(maxByteLength >= 2, 'maxByteLength is required')
+
+  const tpl = ref.allocCString('', 'ucs2')
+  const refType = tpl.ref().ref().type
+  const buf = Buffer.alloc(8)
+  buf.writeInt64LE(ptrAddress.toString(), 0)
+  buf.type = refType
+
+  const buf2 = buf.readPointer(0, maxByteLength)
+  const [txt] = ucsBufferSplit(buf2, 1)
+  const ret = txt ?? ''
+  return ret
+}
