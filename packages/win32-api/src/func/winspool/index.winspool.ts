@@ -15,7 +15,6 @@ import {
 } from './helper.js'
 
 
-
 export async function winspoolClosePrinter(hPrinter: M.HANDLE): Promise<boolean> {
   assert(hPrinter)
   const mod = getMod<Win32Fns>(dllName)
@@ -23,6 +22,7 @@ export async function winspoolClosePrinter(hPrinter: M.HANDLE): Promise<boolean>
   const ret = await mod.ClosePrinter(hPrinter.toString())
   return !! ret
 }
+
 
 /**
  * Retrieves the printer name of the default printer for the current user on the local computer.
@@ -83,7 +83,7 @@ export async function winspoolOpenPrinter(printerName: string): Promise<M.HANDLE
 export async function winspoolGetPrinter<Level extends M.PRINTER_INFO_LEVEL>(
   hPrinter: M.HANDLE,
   Level: Level,
-  maxByteLength = 4096,
+  maxByteLength = 1024,
 ): Promise<M.PRINTER_INFO_X[Level] | undefined> {
 
   const mod = getMod<Win32Fns>(dllName)
@@ -102,7 +102,21 @@ export async function winspoolGetPrinter<Level extends M.PRINTER_INFO_LEVEL>(
   const pcb = pcbNeeded.readUInt32LE()
 
   if (ret) {
-    const struct = retriveStruct_PRINTER_INFO(pPrinter, Level)
+    const [struct] = retriveStruct_PRINTER_INFO(pPrinter, Level, 1)
+    // const pPrinter2 = Buffer.alloc(pcb)
+    // const cbBuf2 = pcb
+    // const pcbNeeded2 = Buffer.alloc(8)
+
+    // await mod.GetPrinterW(
+    //   hPrinter.toString(),
+    //   Level,
+    //   pPrinter2,
+    //   cbBuf2,
+    //   pcbNeeded2,
+    // )
+
+    // const [struct] = retriveStruct_PRINTER_INFO(pPrinter2, Level, 1)
+
     return struct
   }
 

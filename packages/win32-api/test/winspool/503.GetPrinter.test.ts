@@ -39,10 +39,15 @@ describe(fileShortPath(import.meta.url), () => {
       const desc = pDescription
       const name = pName
       const comment = pComment.toString()
+
+      assert(typeof pDescription === 'string')
+      assert(typeof pName === 'string')
+      assert(typeof pComment === 'string')
+
       console.log({ desc, name, comment })
       if (CI) {
         assert(name.includes('Microsoft Print to PDF'))
-        assert(comment.includes('Microsoft Print to PDF'))
+        assert(desc.includes('Microsoft Print to PDF'))
       }
     })
 
