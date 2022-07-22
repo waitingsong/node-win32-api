@@ -7,6 +7,7 @@ import {
   StructFactory,
   ucsBufferSplit,
   DModel as M,
+  ptrToString,
 } from '../../index.js'
 import { Winspool as DLL } from '../../index.promise.js'
 
@@ -80,46 +81,24 @@ export function retriveStruct_PRINTER_INFO_1(pPrinter: Buffer): M.PRINTER_INFO_1
 
 export function retriveStruct_PRINTER_INFO_4(pPrinter: Buffer): M.PRINTER_INFO_4 {
   const structDef = DS.PRINTER_INFO_4
-  const pbuf = Buffer.alloc(pPrinter.byteLength)
-  pPrinter.copy(pbuf, 0, 24)
+  const blen = pPrinter.byteLength
 
-  const attr = pPrinter.readUInt32LE(16)
+  // const pbuf = Buffer.alloc(blen)
+  // pPrinter.copy(pbuf, 0, 24)
+  // const txtArr = ucsBufferSplit(pbuf)
+
+  const struct = StructFactory<M.PRINTER_INFO_X[4]>(structDef)
   // pPrinterName: WCHAR_String
   // pServerName: WCHAR_String
   // Attributes: DWORD
+  const addrPName = pPrinter.readUInt64LE(0)
+  struct.pPrinterName = ptrToString(addrPName, blen)
 
-  const txtArr = ucsBufferSplit(pbuf)
+  const addrSName = pPrinter.readUInt64LE(8)
+  struct.pServerName = ptrToString(addrSName, blen)
 
-  const struct = StructFactory<M.PRINTER_INFO_X[4]>(structDef)
-  struct.Attributes = attr
-
-  const keys = Object.keys(structDef)
-  // const keysRev = keys.reverse()
-  const txtLen = txtArr.length
-  keys.forEach((key, idx) => {
-    if (idx >= txtLen) {
-      return
-    }
-    if (typeof txtArr[idx] === 'undefined') {
-      return
-    }
-    const str = txtArr[idx] ?? ''
-    // @ts-ignore
-    if (typeof struct[key] === 'string') {
-      // @ts-ignore
-      struct[key] = str
-    }
-  })
+  struct.Attributes = pPrinter.readUInt32LE(16)
 
   return struct
-
-  // const pDescriptionAddr = pPrinter.readUInt64LE(8)
-  // const pNameAddr = pPrinter.readUInt64LE(16)
-  // const pCommentAddr = pPrinter.readUInt64LE(24)
-  // // @ts-ignore
-  // const ptr = ref.alloc('void **')
-  // ptr.writeBigInt64LE(BigInt(pDescriptionAddr))
-  // const pName = ptr.deref()
-  // void pName
-
 }
+
