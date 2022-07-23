@@ -31,7 +31,7 @@ describe(fileShortPath(import.meta.url), () => {
     console.log({ apiName })
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const module = Win[apiName]
-    assert(module)
+    assert(module, `${apiName} is not found`)
 
     describe(apiName, () => {
 
