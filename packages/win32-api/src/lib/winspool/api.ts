@@ -11,6 +11,13 @@ export interface Win32Fns {
   ClosePrinter: (hPrinter: M.HANDLE) => M.BOOL
 
   /**
+   * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/enddocprinter
+   */
+  EndDocPrinter: (hPrinter: M.HANDLE) => M.BOOL
+
+  EndPagePrinter: (hPrinter: M.HANDLE) => M.BOOL
+
+  /**
    * Enumerates available printers, print servers, domains, or print providers.
    * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/enumprinters
    */
@@ -19,6 +26,20 @@ export interface Win32Fns {
     Name: M.LPTSTR,
     Level: M.DWORD,
     pPrinterEnum: M.LPBYTE,
+    cbBuf: M.DWORD,
+    pcbNeeded: M.LPDWORD,
+    pcReturned: M.LPDWORD,
+  ) => M.BOOL
+
+  /**
+   * Enumerates the data types that a specified print processor supports.
+   * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/enumprintprocessordatatypes
+   */
+  EnumPrintProcessorDatatypesW: (
+    pName: M.LPTSTR,
+    pPrintProcessorName: M.LPTSTR,
+    Level: M.DWORD,
+    pDatatypes: M.LPBYTE,
     cbBuf: M.DWORD,
     pcbNeeded: M.LPDWORD,
     pcReturned: M.LPDWORD,
@@ -74,6 +95,18 @@ export interface Win32Fns {
    */
   StartPagePrinter: (hPrinter: M.HANDLE) => M.BOOL
 
+  /**
+   *
+   * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/writeprinter
+   */
+  WritePrinter: (
+    hPrinter: M.HANDLE,
+    pBuf: M.LPVOID,
+    cbBuf: M.DWORD,
+    pcWritten: M.LPDWORD,
+  ) => M.BOOL
+
+
 }
 
 
@@ -81,7 +114,13 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
 
   ClosePrinter: [W.BOOL, [W.HANDLE] ],
 
+  EndDocPrinter: [W.BOOL, [W.HANDLE] ],
+
+  EndPagePrinter: [W.BOOL, [W.HANDLE] ],
+
   EnumPrintersW: [W.BOOL, [W.DWORD, W.LPTSTR, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD, W.LPDWORD] ],
+
+  EnumPrintProcessorDatatypesW: [W.BOOL, [W.LPTSTR, W.LPTSTR, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD, W.LPDWORD] ],
 
   GetDefaultPrinterW: [W.BOOL, [W.LPTSTR, W.LPDWORD] ],
 
@@ -92,6 +131,8 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
   StartDocPrinterW: [W.DWORD, [W.HANDLE, W.DWORD, W.LPBYTE] ],
 
   StartPagePrinter: [W.BOOL, [W.HANDLE] ],
+
+  WritePrinter: [W.BOOL, [W.HANDLE, W.LPVOID, W.DWORD, W.LPDWORD] ],
 
 }
 
