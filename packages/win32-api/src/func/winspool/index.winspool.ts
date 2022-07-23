@@ -168,3 +168,27 @@ export async function winspoolGetPrinter<Level extends M.PRINTER_INFO_LEVEL>(
   }
 }
 
+
+export async function winspoolStartDocPrinter(
+  hPrinter: M.HANDLE,
+  pDocInfo: M.LPBYTE,
+): Promise<M.DWORD> {
+
+  const mod = getMod<Win32Fns>(dllName)
+
+  assert(hPrinter)
+  assert(pDocInfo)
+
+  const Level = 1
+  const ret = await mod.StartDocPrinterW(hPrinter.toString(), Level, pDocInfo)
+  return ret
+}
+
+export async function winspoolStartPagePrinter(hPrinter: M.HANDLE): Promise<M.DWORD> {
+  const mod = getMod<Win32Fns>(dllName)
+
+  assert(hPrinter)
+  const ret = await mod.StartPagePrinter(hPrinter.toString())
+  return ret
+}
+
