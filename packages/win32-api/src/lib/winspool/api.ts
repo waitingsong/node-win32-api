@@ -68,6 +68,12 @@ export interface Win32Fns {
     pDocInfo: M.LPBYTE,
   ) => M.DWORD
 
+  /**
+   * Notifies the spooler that a page is about to be printed on the specified printer.
+   * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/startpageprinter
+   */
+  StartPagePrinter: (hPrinter: M.HANDLE) => M.BOOL
+
 }
 
 
@@ -84,6 +90,8 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
   OpenPrinterW: [W.BOOL, [W.LPTSTR, W.LPHANDLE, W.LPRINTER_DEFAULTS] ],
 
   StartDocPrinterW: [W.DWORD, [W.HANDLE, W.DWORD, W.LPBYTE] ],
+
+  StartPagePrinter: [W.BOOL, [W.HANDLE] ],
 
 }
 
