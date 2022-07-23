@@ -10,6 +10,18 @@ import { DEVMODEW } from './wingdi.types.js'
 
 
 /**
+ * Describes a document that will be printed.
+ * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/doc-info-1
+ */
+export interface DOC_INFO_1 extends StructInstanceBase {
+  pDocName: Buffer
+  pOutputFile: Buffer
+  pDatatype: Buffer
+}
+export type PDOC_INFO_1 = _POINTER
+
+
+/**
  * Specifies the default data type, environment, initialization data, and access rights for a printer.
  * @link https://docs.microsoft.com/zh-cn/windows/win32/printdocs/printer-defaults
  */

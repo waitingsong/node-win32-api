@@ -1,6 +1,8 @@
 import { Def } from '../def.enum.js'
 
 
+export const DOC_INFO_1 = Def.ptr
+
 /**
  * @link https://docs.microsoft.com/zh-cn/windows/win32/printdocs/printer-defaults
  */

@@ -9,6 +9,17 @@ import { DEVMODEW } from './wingdi.def.js'
 
 
 /**
+ * Describes a document that will be printed.
+ * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/doc-info-1
+ */
+export const DOC_INFO_1 = {
+  pDocName: LPTSTR,
+  pOutputFile: LPTSTR,
+  pDatatype: LPTSTR,
+} as const
+
+
+/**
  * Specifies the default data type, environment, initialization data, and access rights for a printer.
  * @link https://docs.microsoft.com/zh-cn/windows/win32/printdocs/printer-defaults
  */
