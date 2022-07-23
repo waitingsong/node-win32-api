@@ -56,6 +56,18 @@ export interface Win32Fns {
     phPrinter: M.LPHANDLE,
     pDefault: M.LPPRINTER_DEFAULTS,
   ) => M.BOOL
+
+
+  /**
+   * Notifies the print spooler that a document is to be spooled for printing.
+   * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/startdocprinter
+   */
+  StartDocPrinterW: (
+    hPrinter: M.HANDLE,
+    Level: M.DWORD,
+    pDocInfo: M.LPBYTE,
+  ) => M.DWORD
+
 }
 
 
@@ -70,6 +82,8 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
   GetPrinterW: [W.BOOL, [W.HANDLE, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD] ],
 
   OpenPrinterW: [W.BOOL, [W.LPTSTR, W.LPHANDLE, W.LPRINTER_DEFAULTS] ],
+
+  StartDocPrinterW: [W.DWORD, [W.HANDLE, W.DWORD, W.LPBYTE] ],
 
 }
 
