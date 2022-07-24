@@ -259,7 +259,7 @@ function parse_settings(settings?: LoadSettings): LoadSettings {
 
 /**
  * @example ```ts
- * const point = new Struct(DS.POINT)() as M.POINT_Struct
+ * const point = StructFactory<M.POINT_Struct>(DS.POINT)
  * point.x = 123
  * const lParam = point.ref().address()
  * const obj = retrieveStructFromPtrAddress<M.POINT_Struct>(lParam, DS.POINT)
