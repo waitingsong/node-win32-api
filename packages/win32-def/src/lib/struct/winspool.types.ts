@@ -14,7 +14,7 @@ import { DEVMODEW } from './wingdi.types.js'
  * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/datatypes-info-1
  */
 export interface DATATYPES_INFO_1 extends StructInstanceBase {
-  pName: Buffer
+  pName: WCHAR_String
 }
 export type PDATATYPES_INFO_1 = _POINTER
 
@@ -34,7 +34,7 @@ export type PDOC_INFO_1 = _POINTER
  * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/printprocessor-info-1
  */
 export interface PRINTPROCESSOR_INFO_1 extends StructInstanceBase {
-  pName: Buffer
+  pName: WCHAR_String
 }
 export type PPRINTPROCESSOR_INFO_1 = _POINTER
 
