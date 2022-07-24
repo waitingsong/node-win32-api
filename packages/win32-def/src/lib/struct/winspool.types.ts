@@ -9,6 +9,15 @@ import {
 import { DEVMODEW } from './wingdi.types.js'
 
 
+
+/**
+ * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/datatypes-info-1
+ */
+export interface DATATYPES_INFO_1 extends StructInstanceBase {
+  pName: Buffer
+}
+export type PDATATYPES_INFO_1 = _POINTER
+
 /**
  * Describes a document that will be printed.
  * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/doc-info-1
@@ -19,7 +28,6 @@ export interface DOC_INFO_1 extends StructInstanceBase {
   pDatatype: Buffer
 }
 export type PDOC_INFO_1 = _POINTER
-
 
 /**
  * Specifies the name of an installed print processor.

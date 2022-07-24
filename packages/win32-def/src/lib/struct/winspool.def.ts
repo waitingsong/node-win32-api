@@ -9,6 +9,13 @@ import { DEVMODEW } from './wingdi.def.js'
 
 
 /**
+ * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/datatypes-info-1
+ */
+export const DATATYPES_INFO_1 = {
+  pName: LPTSTR,
+} as const
+
+/**
  * Describes a document that will be printed.
  * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/doc-info-1
  */
