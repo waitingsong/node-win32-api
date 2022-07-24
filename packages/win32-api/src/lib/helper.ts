@@ -21,6 +21,7 @@ import {
   settingsDefault,
   StructFactory,
   HWND,
+  Def,
 } from 'win32-def'
 
 
