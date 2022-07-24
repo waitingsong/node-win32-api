@@ -32,6 +32,20 @@ export interface Win32Fns {
   ) => M.BOOL
 
   /**
+   * Enumerates the print processors installed on the specified server.
+   * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/enumprintprocessors
+   */
+  EnumPrintProcessorsW: (
+    pName: M.LPTSTR,
+    pEnvironment: M.LPTSTR,
+    Level: M.DWORD,
+    pPrintProcessorInfo: M.LPBYTE,
+    cbBuf: M.DWORD,
+    pcbNeeded: M.LPDWORD,
+    pcReturned: M.LPDWORD,
+  ) => M.BOOL
+
+  /**
    * Enumerates the data types that a specified print processor supports.
    * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/enumprintprocessordatatypes
    */
@@ -119,6 +133,8 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
   EndPagePrinter: [W.BOOL, [W.HANDLE] ],
 
   EnumPrintersW: [W.BOOL, [W.DWORD, W.LPTSTR, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD, W.LPDWORD] ],
+
+  EnumPrintProcessorsW: [W.BOOL, [W.LPTSTR, W.LPTSTR, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD, W.LPDWORD] ],
 
   EnumPrintProcessorDatatypesW: [W.BOOL, [W.LPTSTR, W.LPTSTR, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD, W.LPDWORD] ],
 

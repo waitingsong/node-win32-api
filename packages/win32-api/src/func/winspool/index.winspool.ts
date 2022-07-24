@@ -67,6 +67,61 @@ export async function winspoolEnumPrinters<Level extends M.EnumPrinters_Level>(
 }
 
 
+export async function winspoolEnumPrintProcessors(
+  pName?: string,
+  pEnvironment?: string,
+): Promise<M.PRINTPROCESSOR_INFO_1[]> {
+// ): Promise<unknown> {
+
+  const mod = getMod<Win32Fns>(dllName)
+
+  const pNameBuf = ucsBufferFrom(pName)
+  const pEnvironmentBuf = ucsBufferFrom(pEnvironment)
+  const Level = 1
+  const pPrintProcessorInfo = Buffer.alloc(512)
+  const cbBuf = pPrintProcessorInfo.byteLength
+  const pcbNeeded = ref.alloc('uint32')
+  const pcReturned = ref.alloc('uint32')
+
+  const ret = await mod.EnumPrintProcessorsW(
+    pNameBuf,
+    pEnvironmentBuf,
+    Level,
+    pPrintProcessorInfo,
+    cbBuf,
+    pcbNeeded,
+    pcReturned,
+  )
+
+  const count = pcReturned.readUInt32LE()
+  const pcb = pcbNeeded.readUInt32LE()
+
+  if (ret && count) {
+    return ret
+    // const arr = retriveStruct_PRINTPROCESSOR_INFO_1(pPrintProcessorInfo, count, pcb)
+    // return arr as unknown as Promise<M.PRINTPROCESSOR_INFO_1[]>
+  }
+  return []
+
+}
+
+// export async function winspoolEnumPrintProcessorDatatypes(
+//   pName: M.LPTSTR,
+//   pPrintProcessorName: M.LPTSTR,
+//   Level: M.DWORD,
+//   pDatatypes: M.LPBYTE,
+//   cbBuf: M.DWORD,
+//   pcbNeeded: M.LPDWORD,
+//   pcReturned: M.LPDWORD,
+// ): Promise<M.DWORD> {
+//   const mod = getMod<Win32Fns>(dllName)
+
+//   assert(hPrinter)
+//   const ret = await mod.EnumPrintProcessorDatatypes(hPrinter.toString())
+//   return ret
+// }
+
+
 /**
  * Retrieves the printer name of the default printer for the current user on the local computer.
  * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/getdefaultprinter
@@ -189,6 +244,15 @@ export async function winspoolStartPagePrinter(hPrinter: M.HANDLE): Promise<M.DW
 
   assert(hPrinter)
   const ret = await mod.StartPagePrinter(hPrinter.toString())
+  return ret
+}
+
+
+export async function winspoolEndPagePrinter(hPrinter: M.HANDLE): Promise<M.DWORD> {
+  const mod = getMod<Win32Fns>(dllName)
+
+  assert(hPrinter)
+  const ret = await mod.EndPagePrinter(hPrinter.toString())
   return ret
 }
 
