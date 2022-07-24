@@ -1,5 +1,8 @@
 /* eslint-disable id-length */
 
+/**
+ * @link https://tootallnate.github.io/ref/
+ */
 export enum Def {
   bool = 'bool',
   byte = 'byte',
@@ -18,6 +21,8 @@ export enum Def {
   uint16 = 'uint16',
   uint32 = 'uint32',
   uint64 = 'uint64',
+  ulong = 'ulong',
+  ulonglong = 'ulonglong',
   ushort = 'ushort',
   void = 'void',
 
@@ -38,10 +43,14 @@ export enum Def {
   uint16Ptr = 'uint16*',
   uint32Ptr = 'uint32*',
   uint64Ptr = 'uint64*',
+  ulonglongPtr = 'ulonglong*',
+  voidPtr = 'void*',
+
   uintPtrPtr = 'uint**',
   uint16PtrPtr = 'uint16**',
   uint32PtrPtr = 'uint32**',
   uint64PtrPtr = 'uint64**',
-  voidPtr = 'void*',
+  ulonglongPtrPtr = 'ulonglong**',
+  voidPtrPtr = 'void**',
 }
 
