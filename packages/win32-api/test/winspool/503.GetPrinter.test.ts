@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
+import { PRINTER_INFO_1, PRINTER_INFO_4 } from 'win32-def'
 
 import {
   winspoolGetDefaultPrinter,
@@ -19,10 +20,11 @@ describe(fileShortPath(import.meta.url), () => {
       const hWnd = await winspoolOpenPrinter(pname)
       assert(hWnd)
 
-      const ret = await winspoolGetPrinter(hWnd, 1)
+      const ret: PRINTER_INFO_1 | undefined = await winspoolGetPrinter(hWnd, 1)
       assert(ret)
 
       const {
+        Flags,
         pDescription,
         pName,
         pComment,
@@ -30,6 +32,8 @@ describe(fileShortPath(import.meta.url), () => {
       const desc = pDescription
       const name = pName
       const comment = pComment.toString()
+
+      assert(typeof Flags === 'number')
 
       assert(typeof pDescription === 'string')
       assert(typeof pName === 'string')
@@ -48,12 +52,13 @@ describe(fileShortPath(import.meta.url), () => {
       const hWnd = await winspoolOpenPrinter(pname)
       assert(hWnd)
 
-      const ret = await winspoolGetPrinter(hWnd, 4)
+      const ret: PRINTER_INFO_4 | undefined = await winspoolGetPrinter(hWnd, 4)
       assert(ret)
 
-      const { pPrinterName, pServerName } = ret
+      const { pPrinterName, pServerName, Attributes } = ret
       assert(pPrinterName)
-      console.log({ pPrinterName, pServerName })
+      assert(Attributes === 576)
+      console.log({ pPrinterName, pServerName, Attributes })
       if (CI) {
         assert(pPrinterName.includes('Microsoft Print to PDF'))
         assert(pServerName === '')
