@@ -2,6 +2,7 @@ import * as Comctl32 from './lib/comctl32/index.js'
 import * as Gdi32 from './lib/gdi32/index.js'
 import * as Kernel32 from './lib/kernel32/index.js'
 import * as Ntdll from './lib/ntdll/index.js'
+import * as Spoolss from './lib/spoolss/index.js'
 import * as User32 from './lib/user32/index.js'
 import * as Constants from './lib/winmsg.js'
 import * as Winspool from './lib/winspool/index.js'
@@ -39,6 +40,7 @@ export { Comctl32 }
 
 export { Ntdll }
 
+export { Spoolss }
 export { Winspool }
 
 export * from './lib/types.js'

@@ -2,13 +2,18 @@ import assert from 'node:assert'
 
 import { FnName, LoadSettings, PromiseFnModel } from 'win32-def'
 
-import { User32, Winspool } from '../index.promise.js'
+import {
+  Spoolss,
+  User32,
+  Winspool,
+} from '../index.promise.js'
 import { DllNames } from '../lib/types.js'
 
 
 const loaders = new Map<DllNames, Loader<unknown>>()
 const mods = new Map<DllNames, PromiseFnModel<unknown>>()
 
+loaders.set(DllNames.spoolss, Spoolss.load)
 loaders.set(DllNames.user32, User32.load)
 loaders.set(DllNames.winspool, Winspool.load)
 
