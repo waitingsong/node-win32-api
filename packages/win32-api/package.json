@@ -46,6 +46,10 @@
       "import": "./dist/index.ntdll.js",
       "require": "./dist/index.ntdll.cjs"
     },
+    "./spoolss": {
+      "import": "./dist/index.spoolss.js",
+      "require": "./dist/index.spoolss.cjs"
+    },
     "./user32": {
       "import": "./dist/index.user32.js",
       "require": "./dist/index.user32.cjs"
