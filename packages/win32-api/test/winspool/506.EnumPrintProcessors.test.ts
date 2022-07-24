@@ -24,6 +24,9 @@ describe(fileShortPath(import.meta.url), () => {
       assert(ret && ret.length)
       ret.forEach((info) => {
         console.log(info.pName)
+        if (typeof info.pName === 'string') {
+          assert(info.pName === 'winprint')
+        }
       })
     })
 
