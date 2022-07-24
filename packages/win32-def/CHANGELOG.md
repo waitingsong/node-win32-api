@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.4.0](https://github.com/waitingsong/node-win32-api/compare/v19.3.0...v19.4.0) (2022-07-24)
+
+
+### Features
+
+* **win32-def:** struct DATATYPES_INFO_1 ([e4a6253](https://github.com/waitingsong/node-win32-api/commit/e4a6253905b84d6ed47d5f11795418f2b80508f8))
+* **win32-def:** struct PRINTPROCESSOR_INFO_1 ([590c087](https://github.com/waitingsong/node-win32-api/commit/590c087a8be7efe944af6bcfe9c66e1f29ee4adb))
+
+
+
+
+
 # [19.3.0](https://github.com/waitingsong/node-win32-api/compare/v19.2.2...v19.3.0) (2022-07-24)
 
 

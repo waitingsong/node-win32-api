@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.4.0](/compare/v19.3.0...v19.4.0) (2022-07-24)
+
+
+### Features
+
+* **win32-def:** struct DATATYPES_INFO_1 e4a6253
+* **win32-def:** struct PRINTPROCESSOR_INFO_1 590c087
+
+
+
+
+
 # [19.3.0](/compare/v19.2.2...v19.3.0) (2022-07-24)
 
 
