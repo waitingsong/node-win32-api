@@ -10,3 +10,9 @@ export const DISPLAY_DEVICEW = Def.ptr
  */
 export const DEVMODEW = Def.ptr
 
+/**
+ * Specifies the name of an installed print processor.
+ * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/printprocessor-info-1
+ */
+export const PRINTPROCESSOR_INFO_1 = Def.ptr
+

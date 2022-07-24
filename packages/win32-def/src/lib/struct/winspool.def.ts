@@ -18,6 +18,13 @@ export const DOC_INFO_1 = {
   pDatatype: LPTSTR,
 } as const
 
+/**
+ * Specifies the name of an installed print processor.
+ * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/printprocessor-info-1
+ */
+export const PRINTPROCESSOR_INFO_1 = {
+  pName: LPTSTR,
+} as const
 
 /**
  * Specifies the default data type, environment, initialization data, and access rights for a printer.
