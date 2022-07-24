@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0](/compare/v19.2.2...v19.3.0) (2022-07-24)
+
+
+### Features
+
+* **win32-def:** DOC_INFO_1 6700cad
+* **win32-def:** update items of enum Def 74dc6d1
+
+
+
+
+
 ## [19.2.2](/compare/v19.2.1...v19.2.2) (2022-07-22)
 
 **Note:** Version bump only for package win32-api

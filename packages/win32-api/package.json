@@ -1,7 +1,7 @@
 {
   "name": "win32-api",
   "author": "waiting",
-  "version": "19.2.2",
+  "version": "19.3.0",
   "description": "FFI definitions of windows win32 api for node-ffi",
   "keywords": [
     "windows",
@@ -70,7 +70,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "win32-def": "^19.0.0"
+    "win32-def": "^19.3.0"
   },
   "devDependencies": {
     "@types/ffi-napi": "*",

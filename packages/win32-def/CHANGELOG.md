@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.3.0](https://github.com/waitingsong/node-win32-api/compare/v19.2.2...v19.3.0) (2022-07-24)
+
+
+### Features
+
+* **win32-def:** DOC_INFO_1 ([6700cad](https://github.com/waitingsong/node-win32-api/commit/6700cadbd3bf88a56e345e5a797c6937e311854e))
+* **win32-def:** update items of enum Def ([74dc6d1](https://github.com/waitingsong/node-win32-api/commit/74dc6d1e18aa86b5d3b76ba9615f8087d32e26dd))
+
+
+
+
+
 # [19.0.0](https://github.com/waitingsong/node-win32-api/compare/v18.4.0...v19.0.0) (2022-07-22)
 
 **Note:** Version bump only for package win32-def
