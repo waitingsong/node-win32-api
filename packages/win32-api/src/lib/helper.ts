@@ -11,6 +11,7 @@ import {
   AsyncSyncFuncModel,
   DllFuncs,
   DllFuncsModel,
+  Def,
   ExpandFnModel,
   FnName,
   FnParams,
@@ -23,6 +24,22 @@ import {
   HWND,
 } from 'win32-def'
 
+
+export const defGroupNumber: Def[] = [
+  Def.float, Def.int16, Def.int32, Def.int64, Def.int8,
+  Def.uint16, Def.uint32, Def.uint64, Def.uint8,
+  Def.long, Def.ulong, Def.longlong, Def.ulonglong,
+]
+
+export const defGroupPointer: Def[] = [
+  Def.boolPtr, Def.bytePtr, Def.charPtr, Def.intPtr, Def.int8Ptr,
+  Def.int16Ptr, Def.int32Ptr, Def.int64Ptr, Def.floatPtr,
+  Def.longPtr, Def.uintPtr, Def.uint8Ptr,
+  Def.intPtrPtr, Def.uint16Ptr, Def.uint32Ptr, Def.uint64Ptr,
+  Def.ulonglongPtr, Def.voidPtr,
+  Def.uintPtrPtr, Def.uint16PtrPtr, Def.uint32PtrPtr, Def.uint64PtrPtr,
+  Def.ulonglongPtrPtr, Def.voidPtrPtr,
+]
 
 
 const dllInstMap = new Map<string, unknown>() // for DLL.load() with settings.singleton === true
@@ -368,3 +385,73 @@ export function ptrToString(
   const ret = txt ?? ''
   return ret
 }
+
+/**
+ * Retrieve struct from Buffer
+ */
+export function bufferToStruct<T extends StructInstanceBase>(
+  src: Buffer,
+  structDef: StructDefType,
+  maxCount = 1,
+  pcbNeeded?: number,
+  align: 4 | 8 = 8, // btye
+): T[] {
+
+  const ret: T[] = []
+
+  const blen = pcbNeeded ? pcbNeeded : src.byteLength
+  assert(blen >= 16, 'Buffer too small')
+
+  // const structDef = DS.PRINTER_INFO_1
+  const keyLen = Object.keys(structDef).length
+  assert(keyLen >= 1, 'keyLen must be >= 1')
+
+  const groupBtyeLen = keyLen * align
+  const bufByteLen = maxCount * groupBtyeLen
+
+  for (let i = 0; i < maxCount; i += 1) {
+    const buf = Buffer.alloc(bufByteLen)
+    src.copy(buf, 0, i * groupBtyeLen)
+    const struct = retriveStruct<T>(structDef, buf, blen, align)
+    ret.push(struct)
+  }
+
+  return ret
+}
+
+function retriveStruct<T extends StructInstanceBase>(
+  structDef: StructDefType, // DS.PRINTER_INFO_[L],
+  src: Buffer,
+  maxReadByteLength: number,
+  align: 4 | 8, // 32bit or 64bit
+): T {
+
+  const struct = StructFactory<T>(structDef, { useStringBuffer: true })
+
+  Object.entries(structDef).forEach(([key, defType], idx) => {
+    const pos = idx * align
+
+    if (typeof defType === 'string') {
+      const valOrAddr = align === 4 ? src.readInt32LE(pos) : src.readInt64LE(pos)
+
+      if (defGroupNumber.includes(defType)) { // number value
+        // @ts-ignore
+        struct[key] = valOrAddr
+      }
+      else if (defGroupPointer.includes(defType)) { // pointer value
+        const ptrVal = ptrToString(valOrAddr, maxReadByteLength)
+        // @ts-ignore
+        struct[key] = ptrVal
+      }
+      else {
+        throw new TypeError(`Unknown key: "${key}", type: "${defType}"`)
+      }
+    }
+    else {
+      throw new Error(`Not implemented, only Def type is supported: key: "${key}"`)
+    }
+  })
+
+  return struct
+}
+
