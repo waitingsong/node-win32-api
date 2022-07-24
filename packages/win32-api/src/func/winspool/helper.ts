@@ -8,6 +8,7 @@ import {
   DStruct as DS,
   DModel as M,
   bufferToStruct,
+  bufferToStruct,
 } from '../../index.js'
 import { Winspool as DLL } from '../../index.promise.js'
 
@@ -184,3 +185,22 @@ function loopRead<L extends M.PRINTER_INFO_LEVEL>(
 }
 */
 
+
+
+export function retriveStruct_PRINTPROCESSOR_INFO_1(
+  pPrintProcessorInfo: Buffer,
+  count: number,
+  pcb: number,
+): M.PRINTPROCESSOR_INFO_1[] {
+
+  if (! pcb) { return [] }
+
+  const structs = bufferToStruct<M.PRINTPROCESSOR_INFO_1>(
+    pPrintProcessorInfo,
+    DS.PRINTPROCESSOR_INFO_1,
+    count,
+    pcb,
+  )
+
+  return structs
+}

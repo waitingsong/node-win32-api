@@ -12,6 +12,7 @@ import {
   dllName,
   ref,
   retriveStruct_PRINTER_INFO,
+  retriveStruct_PRINTPROCESSOR_INFO_1,
 } from './helper.js'
 import { EnumPrintersOptions } from './winspool.types.js'
 
@@ -71,7 +72,6 @@ export async function winspoolEnumPrintProcessors(
   pName?: string,
   pEnvironment?: string,
 ): Promise<M.PRINTPROCESSOR_INFO_1[]> {
-// ): Promise<unknown> {
 
   const mod = getMod<Win32Fns>(dllName)
 
@@ -97,9 +97,8 @@ export async function winspoolEnumPrintProcessors(
   const pcb = pcbNeeded.readUInt32LE()
 
   if (ret && count) {
-    return ret
-    // const arr = retriveStruct_PRINTPROCESSOR_INFO_1(pPrintProcessorInfo, count, pcb)
-    // return arr as unknown as Promise<M.PRINTPROCESSOR_INFO_1[]>
+    const arr = retriveStruct_PRINTPROCESSOR_INFO_1(pPrintProcessorInfo, count, pcb)
+    return arr
   }
   return []
 
