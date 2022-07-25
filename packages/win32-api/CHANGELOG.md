@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.5.0](https://github.com/waitingsong/node-win32-api/compare/v19.4.0...v19.5.0) (2022-07-25)
+
+
+### Features
+
+* **win32-api:** helper bufferToStruct() ([86539fd](https://github.com/waitingsong/node-win32-api/commit/86539fd194f9275e5bff98a51ae74a3e97efd1db))
+
+
+
+
+
 # [19.4.0](https://github.com/waitingsong/node-win32-api/compare/v19.3.0...v19.4.0) (2022-07-24)
 
 **Note:** Version bump only for package win32-api
