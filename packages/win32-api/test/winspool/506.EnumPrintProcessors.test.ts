@@ -19,7 +19,7 @@ import { CI } from '../root.config.js'
 describe(fileShortPath(import.meta.url), () => {
 
   describe('Should work ', () => {
-    it.only('normal', async () => {
+    it('normal', async () => {
       const ret = await winspoolEnumPrintProcessors()
       assert(ret && ret.length)
       ret.forEach((info) => {
