@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.6.0](https://github.com/waitingsong/node-win32-api/compare/v19.5.0...v19.6.0) (2022-07-25)
+
+
+### Features
+
+* **win32-def:** StructPropToWCHAR, StructPropToBuffer ([ba40d35](https://github.com/waitingsong/node-win32-api/commit/ba40d35ad9f48e32b68583a794897da87cba635a))
+
+
+
+
+
 # [19.4.0](https://github.com/waitingsong/node-win32-api/compare/v19.3.0...v19.4.0) (2022-07-24)
 
 
