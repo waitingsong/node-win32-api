@@ -4,9 +4,13 @@ import StructDi from 'ref-struct-di'
 import UnionDi from 'ref-union-di'
 
 import { LPMSG, LPSTR, LPTSTR, LPWORD, LPWSTR } from './common.def.js'
+import { WCHAR_String } from './common.types.js'
 import { Def } from './def.enum.js'
 import { StructDefType, StructTypeConstructor } from './ffi.types.js'
 import { wcharBuffer } from './fixed-buffer.js'
+
+
+export const bufferAlign = process.arch.includes('64') ? 8 : 4
 
 
 // const UnionDi = _UnionDi
@@ -42,10 +46,26 @@ export function StructType<T extends StructDefType>(
   // @ts-expect-error
   return Struct(initType)
 }
-export function StructFactory<T>(input: StructDefType, options?: StructCharOptions): T {
+export function StructFactory<T, UseStringBuffer extends boolean = true>(
+  input: StructDefType,
+  // options?: StructCharOptions & { useStringBuffer: UseStringBuffer | undefined },
+  options?: StructCharOptions,
+): StructFactoryReturnType<T, UseStringBuffer> {
+
   const initType = genInitTyp(input, options)
   // @ts-expect-error
-  return new Struct(initType)() as unknown as T
+  return new Struct(initType)() as unknown as StructFactoryReturnType<T, UseStringBuffer>
+}
+
+export type StructFactoryReturnType<T, O extends boolean> =
+  O extends true
+    ? PtrToWCHAR<T>
+    : T
+
+type PtrToWCHAR<T> = {
+  [P in keyof T]: T[P] extends Buffer
+    ? WCHAR_String
+    : T[P]
 }
 
 function genInitTyp(input: StructDefType, options?: StructCharOptions): StructDefType {

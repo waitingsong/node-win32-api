@@ -8,6 +8,7 @@ import {
   StructInstanceBase,
   WCHAR_String,
   LPCTSTR,
+  DOC_INFO_1,
 } from '../src/index.js'
 import * as DS from '../src/index.struct.js'
 import * as DU from '../src/index.union.js'
@@ -18,6 +19,36 @@ import { ast_PRINTER_INFO_1 } from './asserts/asserts.PRINTER_DEFAULTS.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
+
+
+  describe('struct should work', () => {
+    it('default', async () => {
+      const name = 'foo'
+      const docInfo = StructFactory<DOC_INFO_1>(DS.DOC_INFO_1)
+      assert(typeof docInfo.pDocName === 'string')
+      docInfo.pDocName = name
+      docInfo.pDatatype = 'RAW'
+    })
+
+    it('useStringBuffer: true', async () => {
+      const name = 'foo'
+      const docInfo = StructFactory<DOC_INFO_1, true>(DS.DOC_INFO_1, { useStringBuffer: true })
+      assert(typeof docInfo.pDocName === 'string')
+      docInfo.pDocName = name
+      docInfo.pDatatype = 'RAW'
+    })
+
+    it('useStringBuffer: false', async () => {
+      const name = 'foo'
+      const docInfo = StructFactory<DOC_INFO_1, false>(DS.DOC_INFO_1, { useStringBuffer: false })
+      assert(typeof docInfo.pDocName === 'object')
+      assert(Buffer.isBuffer(docInfo.pDocName))
+      docInfo.pDocName = Buffer.from(name + '\0')
+      docInfo.pDatatype = Buffer.from('RAW\0')
+    })
+  })
+
+
   describe('PRINTER_INFO_1 struct should work', () => {
     it('nomal', () => {
       const struct = StructFactory<ST.PRINTER_INFO_1>(DS.PRINTER_INFO_1)
@@ -44,7 +75,7 @@ describe(fileShortPath(import.meta.url), () => {
       const opts: StructCharOptions = {
         useStringBuffer: false,
       }
-      const struct = StructFactory<ST.PRINTER_INFO_1>(DS.PRINTER_INFO_1, opts)
+      const struct = StructFactory<ST.PRINTER_INFO_1, false>(DS.PRINTER_INFO_1, opts)
       assert(struct)
 
       const { Flags, pDescription, pName, pComment } = struct
@@ -80,24 +111,10 @@ describe(fileShortPath(import.meta.url), () => {
       assert(false, 'should throw Error but not')
     })
 
-    it('useStringBuffer, invalid CharDefs', () => {
-      const opts: StructCharOptions = {
-        useStringBuffer: true,
-        CharDefs: [DWORD],
-      }
-      const struct = StructFactory<ST.PRINTER_INFO_1>(DS.PRINTER_INFO_1, opts)
-      assert(struct)
-
-      const { Flags, pDescription, pName, pComment } = struct
-      assert(typeof Flags === 'string', typeof Flags)
-      assert(typeof pDescription === 'object', typeof pDescription)
-      assert(typeof pName === 'object')
-      assert(typeof pComment === 'object')
-    })
   })
 
-  describe('struct should work type _POINTER', () => {
-    it('nomal', () => {
+  describe('struct should work type User', () => {
+    it('default', () => {
       interface User extends StructInstanceBase {
         name: WCHAR_String
         address: LPCTSTR
@@ -112,10 +129,10 @@ describe(fileShortPath(import.meta.url), () => {
 
       const { name, address } = struct
       assert(typeof name === 'string')
-      assert(typeof address === 'string', typeof address) // hint show 'Buffer'
+      assert(typeof address === 'string', typeof address)
     })
 
-    it('Buffer encoding only support ucs2', () => {
+    it('useStringBuffer: true', () => {
       interface User extends StructInstanceBase {
         name: WCHAR_String
         address: LPCTSTR
@@ -125,23 +142,41 @@ describe(fileShortPath(import.meta.url), () => {
         address: LPTSTR,
       } as const
 
-      const struct = StructFactory<User>(user)
+      const struct = StructFactory<User, true>(user)
       assert(struct)
 
       struct.name = 'foo'
       assert(struct.name === 'foo')
 
+      struct.address = 'bar'
+      const p1 = struct.address.toString()
+      assert(p1 === 'bar', p1)
+    })
+
+    it('useStringBuffer: false will wrong get, set', () => {
+      interface User extends StructInstanceBase {
+        name: WCHAR_String
+        address: LPCTSTR
+      }
+      const user = {
+        name: LPTSTR,
+        address: LPTSTR,
+      } as const
+
+      const struct = StructFactory<User, false>(user, { useStringBuffer: false })
+      assert(struct)
+
       struct.address = Buffer.from('bar', 'ucs2')
       const p1 = struct.address.toString('ucs2')
-      assert(p1 === 'bar', p1)
+      assert(p1 === 'b', p1)
 
-      const p2 = 'bar1'
-      struct.address = Buffer.from(p2, 'utf8')
-      const p3 = struct.address.toString('utf8')
-      assert(p3 !== p2, p3)
-
-      const p4 = struct.address.toString('ucs2')
-      assert(p4 !== p2, p4)
+      try {
+        struct.name = 'foo' // actually Buffer
+      }
+      catch {
+        return
+      }
+      assert(false, 'should throw Error but not')
     })
   })
 

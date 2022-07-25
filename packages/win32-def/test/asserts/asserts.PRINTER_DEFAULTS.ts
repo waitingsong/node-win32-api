@@ -1,13 +1,16 @@
 import assert from 'node:assert/strict'
 
 
+
 import * as DS from '../../src/index.struct.js'
 import * as DU from '../../src/index.union.js'
 import * as ST from '../../src/lib/struct/index.struct.types.js'
 import * as UT from '../../src/lib/union/index.union.types.js'
 
+import { StructFactoryReturnType } from '~/index.js'
 
-export function ast_PRINTER_DEFAULTS(struct: ST.PRINTER_DEFAULTS): void {
+
+export function ast_PRINTER_DEFAULTS(struct: StructFactoryReturnType<ST.PRINTER_DEFAULTS, true>): void {
   assert(struct)
 
   Object.keys(struct).forEach((key) => {
@@ -74,7 +77,7 @@ export function ast_pDevMode_DUMMYUNIONNAME2(union: UT.DEVMODEW_DUMMYUNIONNAME2)
 
 
 
-export function ast_PRINTER_INFO_1(struct: ST.PRINTER_INFO_1): void {
+export function ast_PRINTER_INFO_1(struct: StructFactoryReturnType<ST.PRINTER_INFO_1, true>): void {
   assert(struct)
 
   Object.keys(struct).forEach((key) => {

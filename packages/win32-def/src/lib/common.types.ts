@@ -229,6 +229,7 @@ export interface UnionInstanceBase {
 export interface StringBuffer extends ref.Type<string> {
   size: number
   encoding: BufferEncoding | void
+  offsetBuffers: Map<number, Buffer>
   set: (
     buffer: Buffer,
     offset: number,

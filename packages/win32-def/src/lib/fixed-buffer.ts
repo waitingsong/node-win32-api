@@ -4,6 +4,8 @@ import assert from 'assert'
 import { types } from 'ref-napi'
 
 import { StringBuffer } from './common.types.js'
+import { bufferAlign } from './helper.js'
+
 
 /**
  * Fixed length "Buffer" type, for use in Struct type definitions.
@@ -42,6 +44,7 @@ export function BufferTypeFactory(byteLength: number, encoding?: BufferEncoding)
       enumerable: true,
       writable: false,
       value: byteLength,
+      // value: bufferAlign, // 64 or 32 bits
     },
 
     encoding: {
@@ -53,16 +56,23 @@ export function BufferTypeFactory(byteLength: number, encoding?: BufferEncoding)
 
     get: {
       configurable: true,
-      enumerable: true,
+      enumerable: false,
       writable: true,
       value: getFn,
     },
 
     set: {
       configurable: true,
-      enumerable: true,
+      enumerable: false,
       writable: true,
       value: setFn,
+    },
+
+    offsetBuffers: {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: new Map<number, Buffer>(),
     },
   }) as StringBuffer
 
@@ -76,7 +86,14 @@ function getFn(
   offset: number,
 ): Buffer | string {
 
-  const buf = buffer.subarray(offset, offset + this.size)
+  const buf = this.offsetBuffers.get(offset)
+  void buffer
+
+  if (! buf) {
+    return ''
+  }
+
+  // const buf = buffer.subarray(offset, offset + this.size)
   if (this.encoding) {
     const str = buf.toString(this.encoding)
     return str.replace(/^\0+|\0+$/ug, '')
@@ -95,7 +112,10 @@ function setFn(
 
   if (typeof value === 'string') {
     assert(this.encoding, 'BufferType.encoding is required when setting a string')
-    buf = Buffer.from(value, this.encoding)
+    const val = value
+      ? value.endsWith('\0') ? value : `${value}\0`
+      : '\0'
+    buf = Buffer.from(val, this.encoding)
   }
   else if (Array.isArray(value)) {
     buf = Buffer.from(value)
@@ -107,13 +127,21 @@ function setFn(
     throw new TypeError('Buffer instance expected')
   }
 
-
-  if (buf.length > this.size) {
+  if (buf.length > this.size + 2) {
     throw new Error(
       `Buffer given is ${buf.length} bytes, but only ${this.size} bytes available`,
     )
   }
 
-  buf.copy(buffer, offset)
+  this.offsetBuffers.set(offset, buf)
+  const addr = buf.address()
+  if (bufferAlign === 8) {
+    buffer.writeUInt64LE(addr, offset)
+  }
+  else {
+    buffer.writeUInt32LE(addr, offset)
+  }
+  // buf.copy(buffer, offset)
 }
+
 

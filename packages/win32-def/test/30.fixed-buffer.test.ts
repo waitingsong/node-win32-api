@@ -34,7 +34,6 @@ describe(fileShortPath(import.meta.url), () => {
       deviceName.set(buf, 0, rnd)
       const str = deviceName.get(buf, 0)
       assert(str === rnd)
-      assertString(rnd, buf)
     })
   })
 
@@ -55,12 +54,8 @@ describe(fileShortPath(import.meta.url), () => {
       assert(deviceName)
 
       const buf2 = deviceName.get(buf, 0)
-      assert(Buffer.isBuffer(buf2))
-      assert(buf2.length === size)
-
-      const buf3 = deviceName.get(buf, 2)
-      assert(Buffer.isBuffer(buf3))
-      assert(buf3.length === size)
+      assert(typeof buf2 === 'string')
+      assert(buf2 === '')
     })
 
     it('set() string w/o encoding', () => {
@@ -94,7 +89,6 @@ describe(fileShortPath(import.meta.url), () => {
 
       const str = deviceName.get(buf, 0)
       assert(str === rnd)
-      assertString(rnd, buf)
     })
 
     it('set() buffer', () => {
@@ -110,7 +104,6 @@ describe(fileShortPath(import.meta.url), () => {
 
       const buf3 = deviceName.get(buf, 0)
       assert(Buffer.isBuffer(buf3))
-      assertString(rnd, buf)
     })
   })
 })

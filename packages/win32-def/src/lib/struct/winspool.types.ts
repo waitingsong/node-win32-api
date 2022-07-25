@@ -35,7 +35,7 @@ export type PDOC_INFO_1 = _POINTER
  * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/printprocessor-info-1
  */
 export interface PRINTPROCESSOR_INFO_1 extends StructInstanceBase {
-  pName: WCHAR_String
+  pName: LPTSTR
 }
 export type PPRINTPROCESSOR_INFO_1 = _POINTER
 
@@ -48,7 +48,7 @@ export interface PRINTER_DEFAULTS extends StructInstanceBase {
   /**
    * Pointer to a null-terminated string that specifies the default data type for a printer.
    */
-  pDatatype: WCHAR_String
+  pDatatype: Buffer
   /**
    * Pointer to a DEVMODE structure that identifies the default environment and initialization data for a printer.
    */
@@ -77,12 +77,9 @@ export interface PRINTER_INFO_X {
  */
 export interface PRINTER_INFO_1 extends StructInstanceBase {
   Flags: DWORD
-  pDescription: WCHAR_String
-  pName: WCHAR_String
-  pComment: WCHAR_String
-  // pDescription: LPTSTR
-  // pName: LPTSTR
-  // pComment: LPTSTR
+  pDescription: LPTSTR
+  pName: LPTSTR
+  pComment: LPTSTR
 }
 export type PPRINTER_INFO_1 = _POINTER
 
@@ -94,8 +91,8 @@ export type PPRINTER_INFO_1 = _POINTER
  *  on a system and all remote printer connections that a user has established.
  */
 export interface PRINTER_INFO_4 extends StructInstanceBase {
-  pPrinterName: WCHAR_String
-  pServerName: WCHAR_String
+  pPrinterName: LPTSTR
+  pServerName: LPTSTR
   Attributes: DWORD
 }
 export type PPRINTER_INFO_4 = _POINTER

@@ -2,7 +2,10 @@
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import { BigIntStr, TuplePush as Push } from '@waiting/shared-types'
 
-import { StringBuffer, UnionInstanceBase } from './common.types.js'
+import {
+  StringBuffer,
+  UnionInstanceBase,
+} from './common.types.js'
 import { Def } from './def.enum.js'
 
 
