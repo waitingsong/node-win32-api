@@ -246,3 +246,21 @@ export type PRINTER_INFO_LEVEL = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
  */
 export type EnumPrinters_Level = 1 | 2 | 4 | 5
 
+
+/**
+ * Convert Struct property to WCHAR_String if Buffer
+ */
+export type StructPropToWCHAR<T> = {
+  [P in keyof T]: T[P] extends Buffer
+  ? WCHAR_String
+  : T[P]
+}
+/**
+ * Convert Struct property to Buffer if WCHAR_String
+ */
+export type StructPropToBuffer<T> = {
+  [P in keyof T]: T[P] extends WCHAR_String
+  ? Buffer
+  : T[P]
+}
+
