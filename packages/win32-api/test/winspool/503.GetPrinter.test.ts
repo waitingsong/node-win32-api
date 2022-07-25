@@ -23,6 +23,7 @@ describe(fileShortPath(import.meta.url), () => {
       assert(ret)
 
       const {
+        Flags,
         pDescription,
         pName,
         pComment,
@@ -30,6 +31,9 @@ describe(fileShortPath(import.meta.url), () => {
       const desc = pDescription
       const name = pName
       const comment = pComment.toString()
+
+      assert(typeof Flags === 'number')
+      // assert(Flags === 576)
 
       assert(typeof pDescription === 'string')
       assert(typeof pName === 'string')
