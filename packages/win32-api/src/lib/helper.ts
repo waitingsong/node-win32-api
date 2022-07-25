@@ -25,6 +25,8 @@ import {
 } from 'win32-def'
 
 
+export const isArch64 = process.arch.includes('64')
+
 export const defGroupNumber: Def[] = [
   Def.float, Def.int16, Def.int32, Def.int64, Def.int8,
   Def.uint16, Def.uint32, Def.uint64, Def.uint8,
@@ -432,7 +434,8 @@ function retriveStruct<T extends StructInstanceBase>(
     const pos = idx * align
 
     if (typeof defType === 'string') {
-      const valOrAddr = align === 4 ? src.readInt32LE(pos) : src.readInt64LE(pos)
+      const valOrAddr = readAddrValue(src, defType, pos)
+      assert(typeof valOrAddr !== 'undefined')
 
       if (defGroupNumber.includes(defType)) { // number value
         // @ts-ignore
@@ -455,3 +458,35 @@ function retriveStruct<T extends StructInstanceBase>(
   return struct
 }
 
+
+function readAddrValue(
+  src: Buffer,
+  defType: Def,
+  pos: number,
+): string | number | bigint | undefined {
+
+  let ret
+
+  if (defGroupPointer.includes(defType)) {
+    ret = isArch64 ? src.readInt64LE(pos) : src.readInt32LE(pos)
+  }
+  else if (defGroupNumber.includes(defType)) {
+    if (defType.includes('64')) {
+      ret = src.readInt64LE(pos)
+    }
+    else if (defType.includes('32')) {
+      ret = src.readInt32LE(pos)
+    }
+    else if (defType.includes('16')) {
+      ret = src.readInt16LE(pos)
+    }
+    else {
+      throw new Error(`Unknown defType: ${defType}`)
+    }
+  }
+  else {
+    throw new Error(`Unknown defType: ${defType}`)
+  }
+
+  return ret
+}

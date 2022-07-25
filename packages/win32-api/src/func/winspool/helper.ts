@@ -9,6 +9,7 @@ import {
   StructFactory,
   DModel as M,
   ptrToString,
+  bufferToStruct,
 } from '../../index.js'
 import { Winspool as DLL } from '../../index.promise.js'
 
@@ -40,24 +41,38 @@ export function retriveStruct_PRINTER_INFO<L extends M.PRINTER_INFO_LEVEL>(
   switch (Level) {
     case 1: {
       const structDef = DS.PRINTER_INFO_1
-      ret = loopRead(
+      // ret = loopRead(
+      //   pPrinter,
+      //   maxCount,
+      //   pcb,
+      //   1,
+      //   structDef,
+      // ) as M.PRINTER_INFO_X[L][]
+      ret = bufferToStruct<M.PRINTER_INFO_X[1]>(
         pPrinter,
+        structDef,
         maxCount,
         pcb,
-        1,
-        structDef,
       ) as M.PRINTER_INFO_X[L][]
+
       break
     }
 
     case 4: {
       const structDef = DS.PRINTER_INFO_4
-      ret = loopRead(
+      // ret = loopRead(
+      //   pPrinter,
+      //   maxCount,
+      //   pcb,
+      //   4,
+      //   structDef,
+      // ) as M.PRINTER_INFO_X[L][]
+
+      ret = bufferToStruct<M.PRINTER_INFO_X[4]>(
         pPrinter,
+        structDef,
         maxCount,
         pcb,
-        4,
-        structDef,
       ) as M.PRINTER_INFO_X[L][]
       break
     }
@@ -70,7 +85,7 @@ export function retriveStruct_PRINTER_INFO<L extends M.PRINTER_INFO_LEVEL>(
 }
 
 
-
+/*
 function rpi1(
   addressBuffer: Buffer,
   maxByteLength: number,
@@ -169,3 +184,5 @@ function loopRead<L extends M.PRINTER_INFO_LEVEL>(
 
   return ret
 }
+*/
+
