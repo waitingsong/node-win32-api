@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.7.0](/compare/v19.6.0...v19.7.0) (2022-07-25)
+
+
+### Features
+
+* **win32-api:** def DLL spoolss b879bbf
+* **win32-api:** export fun/spoolss e050e4d
+* **win32-api:** export spoolss 349c143
+* **win32-api:** winspool.StartDocPrinterW() 0b9bd65
+* **win32-api:** winspool.StartPagePrinter() 3fddfd6
+* **win32-api:** winspool.WritePrinter() 588145a
+
+
+
+
+
 # [19.6.0](/compare/v19.5.0...v19.6.0) (2022-07-25)
 
 

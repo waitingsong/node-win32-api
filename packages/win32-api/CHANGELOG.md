@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.7.0](https://github.com/waitingsong/node-win32-api/compare/v19.6.0...v19.7.0) (2022-07-25)
+
+
+### Features
+
+* **win32-api:** def DLL spoolss ([b879bbf](https://github.com/waitingsong/node-win32-api/commit/b879bbf73b4ac4d76758c841d8e88a65a4d2acb1))
+* **win32-api:** export fun/spoolss ([e050e4d](https://github.com/waitingsong/node-win32-api/commit/e050e4d5f2f9e0851063baca5ca2aa0dee13da48))
+* **win32-api:** export spoolss ([349c143](https://github.com/waitingsong/node-win32-api/commit/349c1432ebcb5c86ffc0ee340211a7eb926ff534))
+* **win32-api:** winspool.StartDocPrinterW() ([0b9bd65](https://github.com/waitingsong/node-win32-api/commit/0b9bd6562d33b3b90dda694f8608c80aaf46e1b7))
+* **win32-api:** winspool.StartPagePrinter() ([3fddfd6](https://github.com/waitingsong/node-win32-api/commit/3fddfd6feed5c2c793877642f47a2616dfe85cba))
+* **win32-api:** winspool.WritePrinter() ([588145a](https://github.com/waitingsong/node-win32-api/commit/588145a072e7db74b881253bd3d9a353a5136e5e))
+
+
+
+
+
 # [19.6.0](https://github.com/waitingsong/node-win32-api/compare/v19.5.0...v19.6.0) (2022-07-25)
 
 **Note:** Version bump only for package win32-api
