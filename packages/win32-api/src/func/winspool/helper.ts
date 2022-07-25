@@ -203,3 +203,22 @@ export function retriveStruct_PRINTPROCESSOR_INFO_1(
 
   return structs
 }
+
+
+export function retriveStruct_DATATYPES_INFO_1(
+  pPrintProcessorInfo: Buffer,
+  count: number,
+  pcb: number,
+): M.DATATYPES_INFO_1[] {
+
+  if (! pcb) { return [] }
+
+  const structs = bufferToStruct<M.DATATYPES_INFO_1>(
+    pPrintProcessorInfo,
+    DS.DATATYPES_INFO_1,
+    count,
+    pcb,
+  )
+
+  return structs
+}

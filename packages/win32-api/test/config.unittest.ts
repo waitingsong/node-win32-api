@@ -14,8 +14,21 @@ export const calcLpszNotepad = 'Notepad'
 export const calcLpszNotepadEdit = 'Edit'
 
 /** GitHub CI */
-export const githubPrinterNames = [
+export const githubPrinterNames: string[] = [
   'Microsoft Print to PDF',
   'Microsoft XPS Document Writer',
+]
+
+export const processDataTypes: string[] = [
+  'RAW',
+  // 'RAW[FF appended]',
+  // 'RAW[FF auto]',
+  // 'NT EMF 1.003',
+  // 'NT EMF 1.006',
+  // 'NT EMF 1.007',
+  // 'NT EMF 1.008',
+  'NT EMF',
+  'TEXT',
+  'XPS2GDI',
 ]
 

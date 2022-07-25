@@ -13,6 +13,7 @@ import {
   ref,
   retriveStruct_PRINTER_INFO,
   retriveStruct_PRINTPROCESSOR_INFO_1,
+  retriveStruct_DATATYPES_INFO_1,
 } from './helper.js'
 import { EnumPrintersOptions } from './winspool.types.js'
 
@@ -68,6 +69,10 @@ export async function winspoolEnumPrinters<Level extends M.EnumPrinters_Level>(
 }
 
 
+/**
+ * Enumerates the print processors installed on the specified server.
+ * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/enumprintprocessors
+ */
 export async function winspoolEnumPrintProcessors(
   pName?: string,
   pEnvironment?: string,
@@ -104,21 +109,40 @@ export async function winspoolEnumPrintProcessors(
 
 }
 
-// export async function winspoolEnumPrintProcessorDatatypes(
-//   pName: M.LPTSTR,
-//   pPrintProcessorName: M.LPTSTR,
-//   Level: M.DWORD,
-//   pDatatypes: M.LPBYTE,
-//   cbBuf: M.DWORD,
-//   pcbNeeded: M.LPDWORD,
-//   pcReturned: M.LPDWORD,
-// ): Promise<M.DWORD> {
-//   const mod = getMod<Win32Fns>(dllName)
+export async function winspoolEnumPrintProcessorDatatypes(
+  pName?: string,
+  pPrintProcessorName?: string,
+): Promise<M.DATATYPES_INFO_1[]> {
 
-//   assert(hPrinter)
-//   const ret = await mod.EnumPrintProcessorDatatypes(hPrinter.toString())
-//   return ret
-// }
+  const mod = getMod<Win32Fns>(dllName)
+
+  const pNameBuf = ucsBufferFrom(pName)
+  const pPrintProcessorNameBuf = ucsBufferFrom(pPrintProcessorName)
+  const Level = 1
+  const pDatatypes = Buffer.alloc(1024)
+  const cbBuf = pDatatypes.byteLength
+  const pcbNeeded = ref.alloc('uint32')
+  const pcReturned = ref.alloc('uint32')
+
+  const ret = await mod.EnumPrintProcessorDatatypesW(
+    pNameBuf,
+    pPrintProcessorNameBuf,
+    Level,
+    pDatatypes,
+    cbBuf,
+    pcbNeeded,
+    pcReturned,
+  )
+
+  const count = pcReturned.readUInt32LE()
+  const pcb = pcbNeeded.readUInt32LE()
+
+  if (ret && count) {
+    const arr = retriveStruct_DATATYPES_INFO_1(pDatatypes, count, pcb)
+    return arr
+  }
+  return []
+}
 
 
 /**
