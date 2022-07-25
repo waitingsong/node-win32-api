@@ -8,7 +8,6 @@ import {
   DStruct as DS,
   DModel as M,
   bufferToStruct,
-  bufferToStruct,
 } from '../../index.js'
 import { Winspool as DLL } from '../../index.promise.js'
 
