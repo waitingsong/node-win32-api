@@ -4,6 +4,7 @@ import {
   ACCESS_MASK,
   DWORD,
   WCHAR_String,
+  LPTSTR,
 } from '../common.types.js'
 
 import { DEVMODEW } from './wingdi.types.js'
@@ -23,9 +24,9 @@ export type PDATATYPES_INFO_1 = _POINTER
  * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/doc-info-1
  */
 export interface DOC_INFO_1 extends StructInstanceBase {
-  pDocName: Buffer
-  pOutputFile: Buffer
-  pDatatype: Buffer
+  pDocName: LPTSTR
+  pOutputFile: LPTSTR
+  pDatatype: LPTSTR
 }
 export type PDOC_INFO_1 = _POINTER
 
