@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.8.0](/compare/v19.7.0...v19.8.0) (2022-07-26)
+
+
+### Features
+
+* **win32-api:** def const DefGroupNumber, DefGroupPointer 694835b
+* **win32-api:** retrieveStructFromPtrAddress() accept 3rd param 27b87fa
+* **win32-api:** spoolss.EnumPrintProcessorsW() d023967
+* **win32-api:** winspool apis 2d5b833
+* **win32-api:** winspoolEnumPrintProcessorDatatypes() a3eca83
+* **win32-api:** winspoolEnumPrintProcessors() 9fd9bde
+* **win32-def:** change DOC_INFO_1 f10020f
+
+
+
+
+
 # [19.7.0](/compare/v19.6.0...v19.7.0) (2022-07-25)
 
 

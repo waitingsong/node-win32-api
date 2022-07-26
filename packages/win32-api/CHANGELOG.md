@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.8.0](https://github.com/waitingsong/node-win32-api/compare/v19.7.0...v19.8.0) (2022-07-26)
+
+
+### Features
+
+* **win32-api:** def const DefGroupNumber, DefGroupPointer ([694835b](https://github.com/waitingsong/node-win32-api/commit/694835ba1bd6960b84e857d6df618a62c4cf91f5))
+* **win32-api:** retrieveStructFromPtrAddress() accept 3rd param ([27b87fa](https://github.com/waitingsong/node-win32-api/commit/27b87fa124beb02a436eee266e15a00b79ae320f))
+* **win32-api:** spoolss.EnumPrintProcessorsW() ([d023967](https://github.com/waitingsong/node-win32-api/commit/d023967daf004361c99734b555e17c4c817f88a2))
+* **win32-api:** winspool apis ([2d5b833](https://github.com/waitingsong/node-win32-api/commit/2d5b833ee473e0bf320998984db91fca4d1126a3))
+* **win32-api:** winspoolEnumPrintProcessorDatatypes() ([a3eca83](https://github.com/waitingsong/node-win32-api/commit/a3eca83fd106ab4b75911fe73ec100c72b9056a7))
+* **win32-api:** winspoolEnumPrintProcessors() ([9fd9bde](https://github.com/waitingsong/node-win32-api/commit/9fd9bde1e8a1f8748c323b2989c374536ad98dfb))
+
+
+
+
+
 # [19.7.0](https://github.com/waitingsong/node-win32-api/compare/v19.6.0...v19.7.0) (2022-07-25)
 
 
