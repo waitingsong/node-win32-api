@@ -142,7 +142,7 @@ jobs:
           REDIS_HOST: redis
           REDIS_PORT: 6379
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
 
 
     services:
