@@ -289,11 +289,15 @@ function parse_settings(settings?: LoadSettings): LoadSettings {
 export function retrieveStructFromPtrAddress<R extends StructInstanceBase>(
   address: number,
   dataStructConst: StructDefType,
+  maxCharLength = 1024,
 ): R | undefined {
 
   assert(dataStructConst, 'dataStructConst is required')
 
-  const struct = StructFactory<R>(dataStructConst, { useStringBuffer: true })
+  const struct = StructFactory<R>(dataStructConst, {
+    useStringBuffer: true,
+    maxCharLength,
+  })
   assert(struct)
 
   const refType = struct.ref().ref().type
