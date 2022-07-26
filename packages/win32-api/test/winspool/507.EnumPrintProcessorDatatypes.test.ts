@@ -14,8 +14,8 @@ import {
   DStruct as DS,
   StructFactory,
 } from '../../src/index.js'
-import { CI } from '../root.config.js'
 import { processDataTypes } from '../config.unittest.js'
+import { CI } from '../root.config.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
