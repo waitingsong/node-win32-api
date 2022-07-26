@@ -12,9 +12,7 @@ jobs:
     strategy:
       matrix:
         node: [16]
-        os: [windows-latest]
-        # node: [18]
-        # os: [windows-latest]
+        os: [windows-2019, windows-latest]
 
     steps:
       - uses: actions/checkout@v3
