@@ -11,8 +11,8 @@ jobs:
 
     strategy:
       matrix:
-        node: [16, 18]
-        os: [windows-2019, windows-latest]
+        node: [16]
+        os: [windows-latest]
         # node: [18]
         # os: [windows-latest]
 
@@ -105,6 +105,6 @@ jobs:
           REDIS_PORT: 6379
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
 
 

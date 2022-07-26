@@ -7,7 +7,6 @@
     "noEmit": true,
     "noImplicitAny": false,
     "noImplicitThis": false,
-    "noPropertyAccessFromIndexSignature": false,
     "noUnusedLocals": false,
     "sourceMap": false,
     "target": "ESNEXT"
