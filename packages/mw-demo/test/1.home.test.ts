@@ -15,6 +15,7 @@ describe(filename, () => {
 
     const resp = await httpRequest
       .get(path)
+      .expect(200)
     const ret = resp.body as TestRespBody
     const { url, header, config } = ret
     const { host } = header
