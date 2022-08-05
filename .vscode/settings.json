@@ -1,6 +1,7 @@
 {
   "debug.node.autoAttach": "on",
   "editor.detectIndentation": false,
+  "editor.experimental.stickyScroll.enabled": true,
   "editor.minimap.renderCharacters": false,
   "editor.renderFinalNewline": false,
   "editor.tabSize": 2,

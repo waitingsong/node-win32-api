@@ -1,12 +1,14 @@
 {
   "debug.node.autoAttach": "on",
   "editor.detectIndentation": false,
+  "editor.experimental.stickyScroll.enabled": true,
   "editor.minimap.renderCharacters": false,
   "editor.renderFinalNewline": false,
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.organizeImports": false
   },
   "eslint.run": "onSave",
   "eslint.validate": [
