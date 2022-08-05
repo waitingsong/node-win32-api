@@ -53,7 +53,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "npm run tsc && npm run rp",
+    "build": "npm run tsc && tsc-alias && npm run rp",
     "clean": "npm run clean:lock & npm run clean:cache & rm -rf dist/*",
     "clean:cache": "rm -rf .eslintcache .vscode/.tsbuildinfo .vscode/.tsbuildinfo.*",
     "clean:lock": "rm package-lock.json -f",
