@@ -12,7 +12,7 @@
   ],
   "type": "module",
   "bin": {},
-  "types": "./dist/index.d.ts",
+  "types": "./src/index.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -33,11 +33,7 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@waiting/shared-core": "^20.3.0",
     "cross-env": "7"
-  },
-  "peerDependencies": {
-    "@waiting/shared-types": "^20.2.0"
   },
   "engines": {
     "node": ">=16.13.0"

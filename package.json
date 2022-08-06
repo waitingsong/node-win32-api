@@ -21,6 +21,8 @@
     "@types/rimraf": "3",
     "@types/yargs": "17",
     "@waiting/eslint-config": "^8.5.0",
+    "@waiting/shared-core": "^20.3.0",
+    "@waiting/shared-types": "^20.2.0",
     "coveralls": "3",
     "debug": "^4.3.0",
     "eslint": "^8.20.0",
