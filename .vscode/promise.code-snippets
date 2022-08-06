@@ -1,0 +1,31 @@
+{
+  "Pomise any": {
+    "scope": "typescript",
+    "prefix": "pms.any",
+    "body": [
+      "Promise<$1>"
+    ],
+    "description": ""
+  },
+
+  "Pomise void": {
+    "scope": "typescript",
+    "prefix": "pms.void",
+    "body": [
+      "Promise<void>"
+    ],
+    "description": ""
+  },
+
+  "Pomise New": {
+    "scope": "typescript,javascript",
+    "prefix": "pms.new",
+    "body": [
+      "new Promise<void>((done, reject) => {",
+      "  $1",
+      "})",
+    ],
+    "description": ""
+  },
+}
+
