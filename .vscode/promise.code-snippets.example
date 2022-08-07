@@ -27,5 +27,23 @@
     ],
     "description": ""
   },
+
+  "Pomise done": {
+    "scope": "typescript,javascript",
+    "prefix": "pms.done",
+    "body": [
+      "Promise.resolve<void>($1)"
+    ],
+    "description": ""
+  },
+
+  "Pomise Reject": {
+    "scope": "typescript,javascript",
+    "prefix": "pms.reject",
+    "body": [
+      "Promise.reject($1)"
+    ],
+    "description": ""
+  },
 }
 
