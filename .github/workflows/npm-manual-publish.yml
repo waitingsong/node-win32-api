@@ -45,9 +45,6 @@ jobs:
           path: |
             node_modules
             package-lock.json
-            packages/*/.eslintcache
-            packages/*/node_modules
-            packages/*/package-lock.json
           key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-

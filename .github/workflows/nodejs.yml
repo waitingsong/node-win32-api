@@ -76,6 +76,7 @@ jobs:
 
       - name: Inatall Dependencies
         run: |
+          chown -R 1001:121 "/github/home/.npm"
           chmod a+w -R .
           # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
