@@ -30,7 +30,11 @@
     },
     "version": {
       "conventionalCommits": true,
-      "allowBranch": ["main", "release"],
+      "allowBranch": [
+        "main", 
+        "release",
+        "fix"
+      ],
       "registry": "https://registry.npmjs.org/"
     }
   },
