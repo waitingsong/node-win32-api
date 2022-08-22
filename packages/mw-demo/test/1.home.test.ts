@@ -17,11 +17,10 @@ describe(filename, () => {
       .get(path)
       .expect(200)
     const ret = resp.body as TestRespBody
-    const { url, header, config } = ret
+    const { url, header } = ret
     const { host } = header
     assert(url === '/')
     assert(host && testConfig.host.includes(host))
-    assert.deepEqual(config, testConfig.config)
   })
 
 })
