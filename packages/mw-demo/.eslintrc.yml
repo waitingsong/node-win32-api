@@ -3,5 +3,8 @@ parserOptions:
   project: 'tsconfig.eslint.json'
 
 rules:
-  "import/no-extraneous-dependencies": 0
+  "@typescript-eslint/prefer-ts-expect-error": 0
+
+ignorePatterns:
+  - fixtures
 
