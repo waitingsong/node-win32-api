@@ -45,9 +45,9 @@ jobs:
           uname -a
           export DEBIAN_FRONTEND=noninteractive
           apt-get update -qq --yes > /dev/null
-          apt-get upgrade -qq --yes > /dev/null
+          # apt-get upgrade -qq --yes > /dev/null
           apt-get install -qq --yes --no-install-recommends bash dnsutils git jq locales net-tools wget > /dev/null
-          apt-get install -qq --yes postgresql-client > /dev/null
+          apt-get install -qq --yes postgresql-client libpq-dev > /dev/null
           uname -a
           npm -v && node -v
           git --version
