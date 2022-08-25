@@ -161,7 +161,14 @@ export interface Win32Fns {
   /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setforegroundwindow */
   SetForegroundWindow: (hWnd: M.HWND) => M.BOOL
 
-  SetWindowPos: (hWnd: M.HWND, hWndInsertAfter: M.HWND | null, X: M.INT, Y: M.INT, cx: M.INT, cy: M.INT, uFlags: M.UINT) => M.BOOL
+  SetWindowPos: (
+    hWnd: M.HWND,
+    hWndInsertAfter: M.HWND | null,
+    X: M.INT,
+    Y: M.INT,
+    cx: M.INT,
+    cy: M.INT,
+    uFlags: M.UINT) => M.BOOL
 
   SetWindowTextW: (hWnd: M.HWND, lpString: M.LPCTSTR | null) => M.BOOL
 
