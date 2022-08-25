@@ -127,6 +127,8 @@ export interface Win32Fns {
 
   GetWindowThreadProcessId: (hWnd: M.HWND, lpdwProcessId: M.LPDWORD | null) => M.DWORD
 
+  IsIconic: (hWnd: M.HWND) => M.BOOL
+
   IsWindowVisible: (hWnd: M.HWND) => M.BOOL
 
   PeekMessageW: (
@@ -158,6 +160,8 @@ export interface Win32Fns {
 
   /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setforegroundwindow */
   SetForegroundWindow: (hWnd: M.HWND) => M.BOOL
+
+  SetWindowPos: (hWnd: M.HWND, hWndInsertAfter: M.HWND | null, X: M.INT, Y: M.INT, cx: M.INT, cy: M.INT, uFlags: M.UINT) => M.BOOL
 
   SetWindowTextW: (hWnd: M.HWND, lpString: M.LPCTSTR | null) => M.BOOL
 
@@ -257,6 +261,8 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
 
   GetWindowThreadProcessId: [W.DWORD, [W.HWND, W.LPDWORD] ],
 
+  IsIconic: [W.BOOL, [W.HWND] ],
+
   IsWindowVisible: [W.BOOL, [W.HWND] ],
 
   PeekMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT, W.UINT] ],
@@ -270,6 +276,8 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
   SendMessageW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
 
   SetForegroundWindow: [W.BOOL, [W.HWND] ],
+
+  SetWindowPos: [W.BOOL, [W.HWND, W.HWND, W.INT, W.INT, W.INT, W.INT, W.UINT] ],
 
   SetWindowTextW: [W.BOOL, [W.HWND, W.LPCTSTR] ],
 
