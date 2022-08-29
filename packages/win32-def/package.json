@@ -15,7 +15,7 @@
   "type": "module",
   "bin": {},
   "main": "dist/index.js",
-  "types": "src/index.ts",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./src/index.ts",
