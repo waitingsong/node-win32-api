@@ -23,7 +23,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-core": "^20.5.0"
+    "@waiting/shared-core": "^20.6.3"
   },
   "devDependencies": {
     "cross-env": "7"
