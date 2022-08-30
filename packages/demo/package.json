@@ -12,7 +12,7 @@
   ],
   "type": "module",
   "bin": {},
-  "types": "./src/index.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
