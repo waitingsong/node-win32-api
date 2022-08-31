@@ -17,10 +17,10 @@ export enum Msg {
 
 export interface Config {
   /**
-   * Enable http route /hello
+   * Enable default http route, eg. /hello
    * @default false
    */
-  enableHelloRoute?: boolean | undefined
+  enableDefaultRoute?: boolean | undefined
 }
 
 export interface MiddlewareOptions {

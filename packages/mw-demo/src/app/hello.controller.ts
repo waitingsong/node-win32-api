@@ -19,7 +19,7 @@ export class HelloController {
   }
 
   valiateRoute(): void {
-    if (! this.config.enableHelloRoute) {
+    if (! this.config.enableDefaultRoute) {
       throw new Error('route is not enabled')
     }
   }

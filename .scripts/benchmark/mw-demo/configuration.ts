@@ -1,9 +1,11 @@
+// @ts-nocheck
 import 'tsconfig-paths/register'
 import assert from 'node:assert'
 import { join } from 'node:path'
 
 import { ILifeCycle } from '@midwayjs/core'
 import { App, Config, Configuration } from '@midwayjs/decorator'
+import * as koa from '@midwayjs/koa'
 
 import {
   ConfigKey,
@@ -17,6 +19,9 @@ import { Application, IMidwayContainer } from '~/interface'
 @Configuration({
   namespace: ConfigKey.namespace,
   importConfigs: [join(__dirname, 'config')],
+  imports: [
+    koa,
+  ],
 })
 export class AutoConfiguration implements ILifeCycle {
 
