@@ -54,6 +54,7 @@ jobs:
         run: |
           .github/workflows/fix.sh
           npm i -g c8 lerna rollup zx node-gyp
+          # npm run purge
           npm run bootstrap
         env:
           CI: true

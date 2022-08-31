@@ -4,6 +4,11 @@ parserOptions:
 
 rules:
   "@typescript-eslint/prefer-ts-expect-error": 0
+  "import/no-extraneous-dependencies":
+    - 2
+    - packageDir:
+      - ./
+      - ../../node_modules/@mwcp/base/
 
 ignorePatterns:
   - fixtures

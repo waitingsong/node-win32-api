@@ -96,6 +96,7 @@ jobs:
           .github/workflows/fix.sh
           npm i -g c8 lerna rollup zx
           # .github/workflows/fix.sh
+          # npm run purge
           npm run bootstrap
         env:
           CI: true
