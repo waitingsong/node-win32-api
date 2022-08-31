@@ -1,9 +1,9 @@
-import { Config, MiddlewareConfig } from '../index'
 import {
   initialConfig,
   initialMiddlewareConfig,
   initMiddlewareOptions,
 } from '../lib/config'
+import { Config, MiddlewareConfig } from '../lib/types'
 
 
 export const demoConfig: Config = {

@@ -6,7 +6,7 @@ import {
 
 
 export const initialConfig: Readonly<Config> = {
-  secret: '',
+  enableHelloRoute: false,
 }
 export const initMiddlewareOptions: MiddlewareOptions = {
   debug: false,

@@ -7,7 +7,7 @@ import { App, Config, Configuration } from '@midwayjs/decorator'
 import {
   ConfigKey,
   MiddlewareConfig,
-} from './lib/index'
+} from './lib/types'
 import { DemoMiddleware } from './middleware/index.middleware'
 
 import { Application, IMidwayContainer } from '~/interface'

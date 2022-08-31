@@ -1,4 +1,4 @@
-import assert from 'assert/strict'
+import assert from 'node:assert/strict'
 
 import {
   App,
@@ -9,8 +9,7 @@ import {
   ScopeEnum,
 } from '@midwayjs/decorator'
 
-import { ConfigKey } from './config'
-import { Config } from './types'
+import { Config, ConfigKey } from './types'
 
 import type { Application } from '~/interface'
 

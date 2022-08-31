@@ -10,12 +10,17 @@ export enum ConfigKey {
 }
 
 export enum Msg {
+  hello = 'hello world',
   AuthFailed = 'Authentication Failed',
 }
 
 
 export interface Config {
-  secret: string
+  /**
+   * Enable http route /hello
+   * @default false
+   */
+  enableHelloRoute?: boolean | undefined
 }
 
 export interface MiddlewareOptions {

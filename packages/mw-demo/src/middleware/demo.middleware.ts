@@ -1,10 +1,10 @@
 import { Middleware } from '@midwayjs/decorator'
 
 import {
-  ConfigKey,
   DemoComponent,
   Demo2Component,
 } from '../lib/index'
+import { ConfigKey } from '../lib/types'
 import {
   getMiddlewareConfig,
   matchFunc,

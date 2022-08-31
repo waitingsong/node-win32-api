@@ -4,7 +4,7 @@ import {
   Config,
   ConfigKey,
   MiddlewareConfig,
-} from '../lib/index'
+} from '../lib/types'
 
 import type { Application, Context } from '~/interface'
 
