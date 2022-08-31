@@ -15,15 +15,3 @@ export const initialMiddlewareConfig: Readonly<Omit<MiddlewareConfig, 'ignore' |
   enableMiddleware: true,
 }
 
-export enum ConfigKey {
-  namespace = 'demo',
-  config = 'demoConfig',
-  middlewareConfig = 'demoMiddlewareConfig',
-  componentName = 'demoComponent',
-  middlewareName = 'demoMiddleware'
-}
-
-export enum Msg {
-  AuthFailed = 'Authentication Failed',
-}
-
