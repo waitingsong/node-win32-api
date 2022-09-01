@@ -127,6 +127,11 @@ export interface Win32Fns {
 
   GetWindowThreadProcessId: (hWnd: M.HWND, lpdwProcessId: M.LPDWORD | null) => M.DWORD
 
+  /**
+   * @docs https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-monitorfromwindow
+   */
+  MonitorFromWindow: (hWnd: M.HWND, dwFlags: M.DWORD) => M.HMONITOR
+
   IsIconic: (hWnd: M.HWND) => M.BOOL
 
   IsWindowVisible: (hWnd: M.HWND) => M.BOOL
@@ -267,6 +272,8 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
   GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT] ],
 
   GetWindowThreadProcessId: [W.DWORD, [W.HWND, W.LPDWORD] ],
+
+  MonitorFromWindow: [W.HWND, [W.HANDLE, W.DWORD] ],
 
   IsIconic: [W.BOOL, [W.HWND] ],
 
