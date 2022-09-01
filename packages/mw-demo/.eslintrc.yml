@@ -10,6 +10,4 @@ rules:
       - ./
       - ../../node_modules/@mwcp/base/
 
-ignorePatterns:
-  - fixtures
 
