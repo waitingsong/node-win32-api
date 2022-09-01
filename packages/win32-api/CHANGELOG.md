@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.1.0](https://github.com/waitingsong/node-win32-api/compare/v20.0.0...v20.1.0) (2022-09-01)
+
+
+### Features
+
+* **win32-api:** user32.MonitorFromWindow() ([271e9ac](https://github.com/waitingsong/node-win32-api/commit/271e9acbdf54d9e5d3cbb18aa64574542072d660))
+
+
+
+
+
 # [20.0.0](https://github.com/waitingsong/node-win32-api/compare/v19.8.3...v20.0.0) (2022-08-29)
 
 **Note:** Version bump only for package win32-api
