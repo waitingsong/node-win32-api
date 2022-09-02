@@ -4,9 +4,9 @@ import { join, basename } from 'node:path'
 import { stat, copyFile } from 'node:fs/promises'
 
 
-
 const pkgDir = argv.p ?? ''
-const httpPath = argv.t ?? ''
+const httpPath = argv.api ?? ''
+const configTpl = argv.tpl ?? pkgDir
 
 assert(pkgDir, 'pkg dir is required with -p')
 
@@ -21,10 +21,19 @@ catch {
   throw new Error(`Path is not exists: ${dir}`)
 }
 
+let tplDir = '.'
+try {
+  const tplStat = await stat(join(__dirname, configTpl))
+  if (tplStat.isDirectory()) {
+    tplDir = configTpl
+  }
+}
+catch { void 0 }
+
 const files = [
   ['start.js'],
   ['benchmark.mjs'],
-  [`${pkgDir}/configuration.ts`, `src/configuration.ts`],
+  [`${tplDir}/configuration.ts`, `src/configuration.ts`],
 ]
 for (const [file, dst] of files) {
   const filePath = join(__dirname, file)

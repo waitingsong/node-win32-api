@@ -6,7 +6,7 @@ import { ILifeCycle } from '@midwayjs/core'
 import { Configuration } from '@midwayjs/decorator'
 import * as koa from '@midwayjs/koa'
 
-import { ConfigKey } from './lib/config'
+import { ConfigKey } from './lib/types'
 
 
 @Configuration({
