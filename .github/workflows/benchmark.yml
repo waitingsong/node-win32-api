@@ -105,10 +105,10 @@ jobs:
         env:
           CI: true
 
-      - name: Benchmark
+      - name: Benchmark hello
         timeout-minutes: 10
         run: |
-          .scripts/benchmark/start-benchmark.mjs --p=mw-demo --api=demo/hello
+          .scripts/benchmark/start-benchmark.mjs --api=demo/hello --p=mw-demo
 
     services:
       postgres:
