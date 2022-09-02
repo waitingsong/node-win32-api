@@ -1,5 +1,4 @@
-import { initialConfig } from '../lib/config'
-import { Config } from '../lib/types'
+import { Config, MiddlewareConfig } from '../lib/types'
 
 
 export const keys = 123456
@@ -8,8 +7,16 @@ export const koa = {
 }
 
 export const demoConfig: Config = {
-  ...initialConfig,
   enableDefaultRoute: true,
 }
 
+export const demoMiddlewareConfig: Readonly<Omit<MiddlewareConfig, 'match'>> = {
+  enableMiddleware: true,
+  ignore: [
+    '/',
+    '/ping',
+    '/favicon.ico',
+    '/favicon.png',
+  ],
+}
 
