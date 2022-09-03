@@ -1,3 +1,3 @@
 
-export * from './hello.controller'
+export * from './default.controller'
 

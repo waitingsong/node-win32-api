@@ -8,7 +8,7 @@ import { Config, ConfigKey, Msg } from '../lib/types'
 
 
 @Controller(`/${ConfigKey.namespace}`)
-export class HelloController {
+export class DefaultComponentController {
 
   @_Config(ConfigKey.config) readonly config: Config
 

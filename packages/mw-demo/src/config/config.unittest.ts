@@ -1,4 +1,4 @@
-import { Config, MiddlewareConfig } from '../lib/types'
+import { Config, ConfigKey, MiddlewareConfig } from '../lib/types'
 
 
 export const keys = 123456
@@ -17,6 +17,7 @@ export const demoMiddlewareConfig: Readonly<Omit<MiddlewareConfig, 'match'>> = {
     '/ping',
     '/favicon.ico',
     '/favicon.png',
+    new RegExp(`/${ConfigKey.namespace}/.*`),
   ],
 }
 
