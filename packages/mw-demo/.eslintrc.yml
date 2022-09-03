@@ -8,6 +8,5 @@ rules:
     - 2
     - packageDir:
       - ./
-      - ../../node_modules/@mwcp/base/
-
+      - ../../node_modules/@mwcp/share/
 

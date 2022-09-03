@@ -1,3 +1,4 @@
+import type { Application, Context } from '@mwcp/share'
 import { isPathMatchRules } from '@waiting/shared-core'
 
 import {
@@ -5,8 +6,6 @@ import {
   ConfigKey,
   MiddlewareConfig,
 } from '../lib/types'
-
-import type { Application, Context } from '~/interface'
 
 
 /**

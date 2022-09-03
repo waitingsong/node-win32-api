@@ -8,10 +8,9 @@ import {
   Scope,
   ScopeEnum,
 } from '@midwayjs/decorator'
+import type { Application } from '@mwcp/share'
 
 import { Config, ConfigKey } from './types'
-
-import type { Application } from '~/interface'
 
 
 @Provide()

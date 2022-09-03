@@ -4,14 +4,13 @@ import { join } from 'node:path'
 
 import { ILifeCycle } from '@midwayjs/core'
 import { App, Config, Configuration } from '@midwayjs/decorator'
+import type { Application, IMidwayContainer } from '@mwcp/share'
 
 import {
   ConfigKey,
   MiddlewareConfig,
 } from './lib/types'
 import { DemoMiddleware } from './middleware/index.middleware'
-
-import { Application, IMidwayContainer } from '~/interface'
 
 
 @Configuration({

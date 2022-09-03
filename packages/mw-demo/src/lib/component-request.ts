@@ -6,10 +6,9 @@ import {
   Inject,
   Provide,
 } from '@midwayjs/decorator'
+import type { Context } from '@mwcp/share'
 
 import { Config, ConfigKey } from './types'
-
-import type { Context } from '~/interface'
 
 
 @Provide()
