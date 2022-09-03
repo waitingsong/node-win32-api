@@ -46,7 +46,7 @@
     "bp:add": "git remote add bp https://github.com/waitingsong/npm-mono-base",
     "bp:sync": "git fetch --all -v && git pull origin && git merge bp/main -m \"Merge remote-tracking branch 'bp/main'\" ",
     "bp:syncxo": "git fetch --all -v && git pull origin && git merge bp/main -m \"Merge remote-tracking branch 'bp/main'\" -Xours",
-    "bootstrap": "lerna bootstrap --loglevel notice",
+    "bootstrap": "lerna bootstrap --loglevel notice --concurrency 4",
     "bootstrap2": "lerna bootstrap --loglevel notice -- --legacy-peer-deps",
     "postbootstrap": "npm run repo:init",
     "build": "sh .scripts/build.sh",
