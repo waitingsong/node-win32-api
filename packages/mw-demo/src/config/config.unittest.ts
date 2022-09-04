@@ -1,4 +1,5 @@
-import { Config, ConfigKey, MiddlewareConfig } from '../lib/types'
+import { initialConfig, initialMiddlewareConfig } from '~/lib/config'
+import { Config, ConfigKey, MiddlewareConfig } from '~/lib/types'
 
 
 export const keys = 123456
@@ -7,10 +8,12 @@ export const koa = {
 }
 
 export const demoConfig: Config = {
+  ...initialConfig,
   enableDefaultRoute: true,
 }
 
 export const demoMiddlewareConfig: Readonly<Omit<MiddlewareConfig, 'match'>> = {
+  ...initialMiddlewareConfig,
   enableMiddleware: true,
   ignore: [
     '/',

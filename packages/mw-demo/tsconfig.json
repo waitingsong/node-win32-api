@@ -9,6 +9,7 @@
       "~/*": ["./src/*"],
       "@/*": ["./test/*"]
     },
+    "rootDir": "src",
     "target": "ES2022",
     "tsBuildInfoFile": ".vscode/.tsbuildinfo"
   },
