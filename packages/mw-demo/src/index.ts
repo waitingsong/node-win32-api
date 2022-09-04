@@ -7,8 +7,8 @@ import {
 
 
 export { AutoConfiguration as Configuration } from './configuration'
-export * from './lib/index'
 export * from './app/index.controller'
+export * from './lib/index'
 export {
   getComponentConfig,
   getMiddlewareConfig,

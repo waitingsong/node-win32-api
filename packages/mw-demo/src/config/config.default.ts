@@ -11,7 +11,7 @@ export const koa = {
   port: 7001,
 }
 
-export const demoConfig: Config = {
+export const demoConfig: Readonly<Config> = {
   ...initialConfig,
 }
 

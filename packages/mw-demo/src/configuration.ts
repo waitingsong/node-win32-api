@@ -30,7 +30,7 @@ export class AutoConfiguration implements ILifeCycle {
     assert(this.app, 'this.app must be set')
 
     if (this.config.enableDefaultRoute && this.mwConfig.ignore) {
-      this.mwConfig.ignore.push(new RegExp(`/${ConfigKey.namespace}/.+`))
+      this.mwConfig.ignore.push(new RegExp(`/${ConfigKey.namespace}/.+`, 'u'))
     }
 
     const { enableMiddleware } = this.mwConfig

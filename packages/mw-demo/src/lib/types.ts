@@ -1,3 +1,4 @@
+import { BaseConfig } from '@mwcp/share'
 import { MiddlewareConfig as MWConfig } from '@waiting/shared-types'
 
 
@@ -15,7 +16,7 @@ export enum Msg {
 }
 
 
-export interface Config {
+export interface Config extends BaseConfig {
   /**
    * Enable default http route, eg. /hello
    * @default false
