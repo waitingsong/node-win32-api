@@ -5,6 +5,7 @@ import autocannon from 'autocannon'
 
 
 const api = argv.api ?? ''
+const reqestAvg = argv.qps ?? 2800
 
 const format = function (bytes) {
   return (bytes / 1024 / 1024).toFixed(2) + ' MB'
@@ -78,7 +79,6 @@ echo`Running benchmark...`
 const results = await cannon()
 echo`QPS:  ${results.requests.average}`
 
-const reqestAvg = 3000
 // retry qps.
 if (results.requests.average < reqestAvg) {
   console.log(`Benchmark failed, QPS is too low then ${reqestAvg} `)
