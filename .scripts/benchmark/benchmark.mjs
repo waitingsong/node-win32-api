@@ -104,7 +104,7 @@ echo`  - third memory  (after  gc1), rss=${format(thirdMem.rss)}, heapUsed =${fo
 
 // 第一次检查，gc 后和初始化持平
 const ratio1 = +Math.abs(thirdMem.heapUsed / firstMem.heapUsed).toFixed(2)
-echo`ratio1: ${ratio1}`
+echo`ratio3-1: ${ratio1}`
 if (ratio1 > 1.1) {
   console.error('check1: memory leak warning')
   exitWithError()
@@ -138,15 +138,15 @@ echo`  - fifth  memory (after  gc2), rss=${format(fifthMem.rss)}, heapUsed =${fo
 
 // 第二次检查，第二次 gc 中的堆内存和第一次 gc 持平，gc 前的数值不定，容错率大一些
 const ratio2 = +Math.abs(fourthMem.heapUsed / secondMem.heapUsed).toFixed(2)
-echo`ratio2: ${ratio2}`
-if (ratio2 > 1.5) {
+echo`ratio4-2: ${ratio2}`
+if (ratio2 > 1.9) {
   console.error('check2: memory leak warning')
   exitWithError()
 }
 
 // 第三次检查，第三次 gc 之后和第一次 gc 结果持平
 const ratio3 = +Math.abs(fifthMem.heapUsed / thirdMem.heapUsed).toFixed(2)
-echo`ratio3: ${ratio3}`
+echo`ratio5-3: ${ratio3}`
 if (ratio3 > 1.2) {
   console.error('check3: memory leak warning')
   exitWithError()
