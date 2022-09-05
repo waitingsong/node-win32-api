@@ -21,6 +21,7 @@ export class DemoMiddleware implements IMiddleware<Context, NextFunction> {
 
   match(ctx?: Context) {
     if (ctx) {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (! ctx.state) {
         ctx.state = {}
       }
@@ -52,6 +53,7 @@ async function middleware(
   const demo2Component = await ctx.requestContext.getAsync(Demo2Component) // request
   void demo2Component
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return next()
 }
 
