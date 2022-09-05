@@ -45,6 +45,11 @@ function registerMiddleware(
   app: Application,
 ): void {
 
+  const mwNames = app.getMiddleware().getNames()
+  if (mwNames.includes(DemoMiddleware.name)) {
+    return
+  }
+
   // @ts-ignore
   app.getMiddleware().insertLast(DemoMiddleware)
 }
