@@ -105,6 +105,7 @@
   "terminal.integrated.autoReplies": {
     "Terminate batch job (Y/N)?": "Y\r",
     "终止批处理操作吗(Y/N)?": "Y\r",
+    "[ Midway ] Pre Process Force Exit.": "\r"
   },
   "terminal.integrated.profiles.windows": {
     "git-bash": {
