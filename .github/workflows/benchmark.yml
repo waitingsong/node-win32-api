@@ -14,7 +14,7 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     container: node:18-bullseye
-    timeout-minutes: 20
+    timeout-minutes: 60
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
 
     strategy:
@@ -63,7 +63,9 @@ jobs:
           sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen
           locale-gen
           locale -a
+          netstat -tunpl
           chmod a+w -R .
+          dig jaeger
 
       - name: Verify
         run: |
@@ -105,10 +107,13 @@ jobs:
         env:
           CI: true
 
-      - name: Benchmark hello
+      - name: Benchmark demo
         timeout-minutes: 10
         run: |
           .scripts/benchmark/start-benchmark.mjs --qps=2800 --api=demo/hello --p=mw-demo
+        env:
+          CI: true
+          JAEGER_AGENT_HOST: jaeger
 
     services:
       postgres:
@@ -121,4 +126,19 @@ jobs:
           POSTGRES_PASSWORD: postgres
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+      jaeger:
+        image: jaegertracing/all-in-one
+        env:
+          TZ: 'Asia/Chongqing'
+          COLLECTOR_OTLP_ENABLED: 'true'
+        ports:
+          - 6831:6831/udp
+          - 6832:6832/udp
+          - 4317:4317
+          - 4318:4318
+          - 14268:14268
+          - 14250:14250
+          - 16686:16686
+          - 16686:16686/udp
 
