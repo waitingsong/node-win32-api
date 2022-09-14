@@ -41,7 +41,7 @@ for (const [file, dst] of files) {
   const filePath = join(__dirname, file)
   const fileStat = await stat(filePath)
   if (! fileStat.isFile()) {
-    throw new Error(`"${filePath}" is not a file`)
+    console.warn(`"${filePath}" is not a file`)
   }
   const dstPath = dst ? `${dir}/${dst}` : `${dir}/${basename(file)}`
   await copyFile(filePath, dstPath)
