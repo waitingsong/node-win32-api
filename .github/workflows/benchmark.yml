@@ -113,7 +113,7 @@ jobs:
           .scripts/benchmark/start-benchmark.mjs --qps=2800 --api=demo/hello --p=mw-demo
         env:
           CI: true
-          JAEGER_AGENT_HOST: jaeger
+          OTEL_EXPORTER_AGENT_HOST: jaeger
 
     services:
       postgres:

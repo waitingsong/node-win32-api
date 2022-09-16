@@ -161,7 +161,8 @@ jobs:
           # redis
           REDIS_HOST: redis
           REDIS_PORT: 6379
-          JAEGER_AGENT_HOST: jaeger
+          # otel
+          OTEL_EXPORTER_AGENT_HOST: jaeger
 
       - name: NPM Publish
         run: |
