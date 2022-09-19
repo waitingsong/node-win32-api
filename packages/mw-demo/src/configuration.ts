@@ -6,6 +6,7 @@ import { ILifeCycle } from '@midwayjs/core'
 import { App, Config, Configuration } from '@midwayjs/decorator'
 import type { Application, IMidwayContainer } from '@mwcp/share'
 
+import { useComponents } from './imports'
 import {
   Config as Conf,
   ConfigKey,
@@ -17,6 +18,7 @@ import { DemoMiddleware } from './middleware/index.middleware'
 @Configuration({
   namespace: ConfigKey.namespace,
   importConfigs: [join(__dirname, 'config')],
+  imports: useComponents,
 })
 export class AutoConfiguration implements ILifeCycle {
 
