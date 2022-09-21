@@ -29,7 +29,10 @@ export class AutoConfiguration implements ILifeCycle {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async onReady(_container: IMidwayContainer): Promise<void> {
-    assert(this.app, 'this.app must be set')
+    assert(
+      this.app,
+      'this.app undefined. If start for development, please set env first like `export MIDWAY_SERVER_ENV=local`',
+    )
 
     if (this.config.enableDefaultRoute && this.mwConfig.ignore) {
       this.mwConfig.ignore.push(new RegExp(`/${ConfigKey.namespace}/.+`, 'u'))
