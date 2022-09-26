@@ -42,7 +42,7 @@
   "scripts": {
     "build": "npm run tsc && tsc-alias",
     "clean": "npm run clean:lock & npm run clean:cache & rm -rf dist/*",
-    "clean:cache": "rm -rf .eslintcache .vscode/.tsbuildinfo .vscode/.tsbuildinfo.*",
+    "clean:cache": "rm -rf .eslintcache .tsbuildinfo",
     "clean:lock": "rm package-lock.json -f",
     "cov": "cross-env MIDWAY_SERVER_ENV=unittest TS_NODE_PROJECT=test/tsconfig.json c8 mocha --parallel=false",
     "debug": "cross-env MIDWAY_SERVER_ENV=local ../../node_modules/.bin/midway-bin dev -ts --fast --debug",

@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "incremental": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "dist",
@@ -9,8 +10,7 @@
       "~/*": ["./src/*"],
       "@/*": ["./test/*"]
     },
-    "target": "ES2022",
-    "tsBuildInfoFile": ".vscode/.tsbuildinfo"
+    "target": "ES2022"
   },
   "include": [
     "src/**/*.ts"

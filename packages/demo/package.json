@@ -51,7 +51,7 @@
   "scripts": {
     "build": "npm run tsc && tsc-alias && npm run rp",
     "clean": "npm run clean:lock & npm run clean:cache & rm -rf dist/*",
-    "clean:cache": "rm -rf .eslintcache .vscode/.tsbuildinfo .vscode/.tsbuildinfo.*",
+    "clean:cache": "rm -rf .eslintcache .tsbuildinfo",
     "clean:lock": "rm package-lock.json -f",
     "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json c8 mocha --loader=ts-node/esm --parallel=false",
     "lint": "eslint --fix --cache {src,test}/**/*.ts",

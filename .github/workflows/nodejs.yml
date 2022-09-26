@@ -33,6 +33,7 @@ jobs:
             node_modules
             package-lock.json
             packages/*/.eslintcache
+            packages/*/.tsbuildinfo
             packages/*/.vscode
             packages/*/dist
             packages/*/node_modules

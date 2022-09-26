@@ -32,7 +32,6 @@
     "strictPropertyInitialization": false,
     "stripInternal": true,
     "target": "ES2022",
-    "tsBuildInfoFile": ".vscode/.tsbuildinfo",
     "types" : ["mocha", "node"]
   },
   "include": [
