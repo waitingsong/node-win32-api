@@ -77,7 +77,7 @@
       "restart": true,
       "runtimeArgs": [
         "run",
-        "debug",
+        "dev",
         "--",
         "--preserve-symlinks"
       ],
