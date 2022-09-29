@@ -90,7 +90,7 @@ jobs:
           chown -R 1001:121 "/github/home/.npm"
           chmod a+w -R .
           export cwd=`pwd`
-          npm i --no-audit -g lerna zx autocannon
+          npm i --no-audit -g autocannon c8 lerna rollup zx
           # npm run purge
           npm run bootstrap
         env:

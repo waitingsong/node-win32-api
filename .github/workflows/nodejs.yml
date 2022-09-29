@@ -86,7 +86,7 @@ jobs:
           # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
           # .github/workflows/fix.sh
-          npm i --no-audit -g c8 lerna rollup zx
+          npm i --no-audit -g autocannon c8 lerna rollup zx
           # npm run purge
           npm run bootstrap
         env:

@@ -7,6 +7,7 @@ import { stat, copyFile } from 'node:fs/promises'
 const pkgDir = argv.p ?? ''
 const httpPath = argv.api ?? ''
 const qps = argv.qps
+const sleepTime = argv.wait ?? 25000
 
 assert(pkgDir, 'pkg dir is required with -p')
 
@@ -55,10 +56,10 @@ echo(chalk.blue('[benchmark] build example complete'))
 let gotError = false
 try {
   echo(chalk.blue('\n[benchmark] start'))
-  await $`zx benchmark.mjs --api=${httpPath} --qps=${qps}`
+  await $`zx benchmark.mjs --api=${httpPath} --qps=${qps} --wait=${sleepTime}`
 }
 catch (ex) {
-  console.error(ex)
+  //console.error(ex)
   gotError = true
   throw ex
 }
