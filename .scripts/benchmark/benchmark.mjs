@@ -12,13 +12,14 @@ const format = function (bytes) {
 };
 
 const url = `http://127.0.0.1:7001/${api}`
+const connections = 100
 
 const cannon = () => {
   return new Promise((resolve, reject) => {
     autocannon(
       {
         url,
-        connections: 100,
+        connections,
         pipelining: 2,
         duration: 30,
       },
@@ -153,7 +154,7 @@ if (ratio3 > 1.2) {
 }
 
 echo` \n`
-await $`autocannon -c 100 -p 2 -d 60 http://127.0.0.1:7001/${api}`
+await $`autocannon -c ${connections} -p 2 -d 60 http://127.0.0.1:7001/${api}`
 echo` \n`
 
 
