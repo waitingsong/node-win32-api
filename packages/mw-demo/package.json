@@ -33,6 +33,7 @@
     "node": ">=16.13.0"
   },
   "files": [
+    "README.*.md",
     "bin/*.js",
     "dist"
   ],

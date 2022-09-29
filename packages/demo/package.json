@@ -39,6 +39,7 @@
     "node": ">=16.13.0"
   },
   "files": [
+    "README.*.md",
     "tsconfig.json",
     "Dockerfile",
     "src/**/*.ts",
