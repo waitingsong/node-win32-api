@@ -40,22 +40,33 @@ export class AutoConfiguration implements ILifeCycle {
 
     const { enableMiddleware } = this.mwConfig
     if (enableMiddleware) {
-      registerMiddleware(this.app)
+      registerMiddleware(this.app, DemoMiddleware)
     }
   }
 
 }
 
+
 function registerMiddleware(
   app: Application,
+  middleware: { name: string },
+  postion: 'first' | 'last' = 'last',
 ): void {
 
   const mwNames = app.getMiddleware().getNames()
-  if (mwNames.includes(DemoMiddleware.name)) {
+  if (mwNames.includes(middleware.name)) {
     return
   }
 
-  // @ts-ignore
-  app.getMiddleware().insertLast(DemoMiddleware)
+  switch (postion) {
+    case 'first':
+      // @ts-ignore
+      app.getMiddleware().insertFirst(middleware)
+      break
+    case 'last':
+      // @ts-ignore
+      app.getMiddleware().insertLast(middleware)
+      break
+  }
 }
 
