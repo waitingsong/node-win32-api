@@ -15,7 +15,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     container: node:18-bullseye
     timeout-minutes: 60
-    if: ${{ github.actor != 'dependabot[bot]' }}
 
     strategy:
       matrix:
