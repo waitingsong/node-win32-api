@@ -11,7 +11,7 @@
     "@midwayjs/mock": "^3.5.0",
     "@midwayjs/web": "^3.5.0",
     "@rollup/plugin-commonjs": "22",
-    "@rollup/plugin-node-resolve": "14",
+    "@rollup/plugin-node-resolve": "15",
     "@types/mocha": "10",
     "@types/node": "18",
     "@types/rewire": "2",
