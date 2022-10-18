@@ -1,0 +1,136 @@
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: manual-publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      semver:
+        description: 'Leave empty or input major|minor|patch'
+        required: false
+        default: ''
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    container: node:18-bullseye
+    timeout-minutes: 60
+
+    strategy:
+      matrix:
+        node: ['current']
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # pulls all commits (needed for lerna / semantic release to correctly version)
+          fetch-depth: "0"
+      # Caution: disable fix below at FIRST publish, then enable
+      - name: Fix for semantic release
+        # pulls all tags (needed for lerna / semantic release to correctly version)
+        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Cache
+        uses: actions/cache@v3
+        id: cache-lerna
+        env:
+          cache-name: cache-lerna
+        with:
+          path: |
+            node_modules
+            package-lock.json
+          key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-
+
+      - name: Prepare
+        run: |
+          uname -a
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get update -qq --yes > /dev/null
+          # apt-get upgrade -qq --yes > /dev/null
+          apt-get install -qq --yes --no-install-recommends bash dnsutils git jq locales net-tools wget > /dev/null
+          apt-get install -qq --yes postgresql-client libpq-dev > /dev/null
+          uname -a
+          npm -v && node -v
+          git --version
+          openssl version
+          cat /etc/*release
+          sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen
+          locale-gen
+          locale -a
+          netstat -tunpl
+          chmod a+w -R .
+
+      - name: Verify
+        run: |
+          echo $GITHUB_REF
+          # github project/settings/Secrets/New repository secret: NPM_TOKEN
+          npm ping
+          npm whoami
+        env:
+          CI: true
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Inatall Dependencies
+        timeout-minutes: 15
+        run: |
+          chmod a+w -R .
+          # DO NOT execute: npm config set unsafe-perm=true
+          export cwd=`pwd`
+          .github/workflows/fix.sh
+          npm i --no-audit -g autocannon c8 lerna rollup zx
+          # npm run purge
+          npm run bootstrap
+        env:
+          CI: true
+
+      - name: Build
+        run: |
+          chmod a+w -R .
+          whoami
+          export cwd=`pwd`
+          . .scripts/ci/ci-env.sh
+          .scripts/ci/ci-prepare.sh
+          # .github/workflows/fix.sh
+          npm run build --if-present
+        env:
+          CI: true
+
+      - name: Lint
+        run: |
+          export cwd=`pwd`
+          . .scripts/ci/ci-env.sh
+          .scripts/ci/ci-prepare.sh
+          npm run lint:nofix
+          npm run lint:cycle
+        env:
+          CI: true
+
+      - name: NPM Publish
+        run: |
+          npm ping
+          npm whoami
+          chmod a+w -R .
+          export cwd=`pwd`
+          . .scripts/ci/ci-env.sh
+          # git restore .
+          git reset --hard
+          git config user.name $GITHUB_ACTOR
+          git config user.email gh-actions-${GITHUB_ACTOR}@github.com
+          # npm run pub major
+          .scripts/publish.sh --yes --no-verify-access --conventional-commits --create-release github ${{ github.event.inputs.semver }}
+          git push -v origin --follow-tags
+        env:
+          CI: true
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+
