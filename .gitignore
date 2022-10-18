@@ -3,6 +3,7 @@ dbconfig.json
 package-lock.json
 yarn.lock
 package.json.lerna_backup
+tsconfig.tsbuildinfo
 
 .coveralls.yml
 .factorypath
