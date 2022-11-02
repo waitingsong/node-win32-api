@@ -1,8 +1,8 @@
 {
-  "name": "@mw-components/demo",
+  "name": "@mwcp/demo",
   "author": "waiting",
   "version": "0.0.0",
-  "description": "midway component demo",
+  "description": "midway component boilerplate",
   "private": true,
   "keywords": [
     "midway",
