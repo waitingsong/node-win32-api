@@ -7,7 +7,7 @@ on: [push]
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    container: node:18-bullseye
+    container: node:current
     timeout-minutes: 60
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
 
