@@ -64,7 +64,7 @@
     "pub:canary": "bash .scripts/publish.sh --canary",
     "pub:beta": "bash .scripts/publish.sh --dist-tag beta --force-publish=*",
     "pub:next": "bash .scripts/publish.sh --dist-tag next",
-    "purge": "npm run clean & lerna run purge & rm node_modules -rf & rm package-lock.json -f",
+    "purge": "npm run clean & lerna run purge & rm node_modules -rf & rm package-lock.json -f & nx reset",
     "postpurge": "npm run refresh",
     "repo:init": "sh .githooks/init-repo.sh",
     "refresh": "npm run bootstrap && npm run build",
