@@ -141,7 +141,7 @@ echo`  - fifth  memory (after  gc2), rss=${format(fifthMem.rss)}, heapUsed =${fo
 // 第二次检查，第二次 gc 中的堆内存和第一次 gc 持平，gc 前的数值不定，容错率大一些
 const ratio2 = +Math.abs(fourthMem.heapUsed / Math.max(secondMem.heapUsed, firstMem.heapUsed) ).toFixed(2)
 echo`ratio4-(2|1): ${ratio2}`
-if (ratio2 > 1.6) {
+if (ratio2 > 2.0) {
   console.error('check2: memory leak warning')
   exitWithError()
 }
