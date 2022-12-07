@@ -45,6 +45,7 @@ jobs:
 
       - name: Prepare
         run: |
+          pwd
           uname -a
           export DEBIAN_FRONTEND=noninteractive
           apt-get update -qq --yes > /dev/null
@@ -95,6 +96,7 @@ jobs:
 
       - name: Build
         run: |
+          pwd
           chmod a+w -R .
           whoami
           export cwd=`pwd`
