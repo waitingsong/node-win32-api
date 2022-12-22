@@ -68,6 +68,19 @@ export interface Win32Fns {
   ) => M.BOOL
 
   /**
+   * Retrieves information about a specified print job
+   * @docs https://learn.microsoft.com/en-us/windows/win32/printdocs/getjob
+   */
+  GetJobW: (
+    Handler: M.HANDLE,
+    JobId: M.DWORD,
+    Level: M.DWORD,
+    pJob: M.LPBYTE,
+    cbBuf: M.DWORD,
+    pcbNeeded: M.LPDWORD,
+  ) => M.BOOL
+
+  /**
    * Retrieves information about a specified printer.
    * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/getprinter
    * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/getprinter
@@ -139,6 +152,8 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
   EnumPrintProcessorDatatypesW: [W.BOOL, [W.LPTSTR, W.LPTSTR, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD, W.LPDWORD] ],
 
   GetDefaultPrinterW: [W.BOOL, [W.LPTSTR, W.LPDWORD] ],
+
+  GetJobW: [W.BOOL, [W.HANDLE, W.DWORD, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD] ],
 
   GetPrinterW: [W.BOOL, [W.HANDLE, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD] ],
 
