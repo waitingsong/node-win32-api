@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.2.0](https://github.com/waitingsong/node-win32-api/compare/v20.1.0...v20.2.0) (2022-12-22)
+
+
+### Features
+
+* **win32-api:** winspool GetJobW() ([4f63359](https://github.com/waitingsong/node-win32-api/commit/4f633590794dcd22d9f4c2c6785f441694f5bad2))
+
+
+
+
+
 # [20.1.0](https://github.com/waitingsong/node-win32-api/compare/v20.0.0...v20.1.0) (2022-09-01)
 
 

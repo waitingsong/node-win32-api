@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.2.0](/compare/v20.1.0...v20.2.0) (2022-12-22)
+
+
+### Features
+
+* **win32-api:** winspool GetJobW() 4f63359
+
+
+
+
+
 # [20.1.0](/compare/v20.0.0...v20.1.0) (2022-09-01)
 
 
