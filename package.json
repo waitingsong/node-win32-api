@@ -6,7 +6,7 @@
   "devDependencies": {
     "@commitlint/cli": "17",
     "@commitlint/config-conventional": "17",
-    "@midwayjs/cli": "^2.0.5",
+    "@midwayjs/cli": "^2.0.8",
     "@midwayjs/mock": "^3.9.0",
     "@midwayjs/web": "^3.9.0",
     "@rollup/plugin-commonjs": "24",
@@ -16,7 +16,7 @@
     "@types/rewire": "2",
     "@types/rimraf": "3",
     "@waiting/eslint-config": "^8.8.0",
-    "@waiting/shared-core": "^20.11.0",
+    "@waiting/shared-core": "^20.11.2",
     "@waiting/shared-types": "^20.11.0",
     "autocannon": "^7.10.0",
     "coveralls": "3",
@@ -32,7 +32,7 @@
     "rxjs": "^7.6.0",
     "rxrunscript": "^11.0.1",
     "ts-node": "^10.9.1",
-    "tsc-alias": "^1.8.1",
+    "tsc-alias": "^1.8.2",
     "tsconfig-paths": "4",
     "typescript": "^4.9.4",
     "zx": "7"

@@ -23,7 +23,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-core": "^20.11.0"
+    "@waiting/shared-core": "^20.11.2"
   },
   "devDependencies": {
     "@mwcp/share": "^2.3.2",
