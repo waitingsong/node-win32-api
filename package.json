@@ -6,7 +6,7 @@
   "devDependencies": {
     "@commitlint/cli": "17",
     "@commitlint/config-conventional": "17",
-    "@midwayjs/cli": "^2.0.8",
+    "@midwayjs/cli": "^2.0.9",
     "@midwayjs/mock": "^3.9.0",
     "@midwayjs/web": "^3.9.0",
     "@rollup/plugin-commonjs": "24",
@@ -21,7 +21,7 @@
     "autocannon": "^7.10.0",
     "coveralls": "3",
     "debug": "^4.3.4",
-    "eslint": "^8.30.0",
+    "eslint": "^8.31.0",
     "lerna-relinker": "^1.5.0",
     "madge": "^5.0.1",
     "mocha": "10",
