@@ -120,6 +120,8 @@ jobs:
           chmod a+w -R .
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
+          # fix: fatal: detected dubious ownership in repository
+          git config --global --add safe.directory $cwd
           # git restore .
           git reset --hard
           git config user.name $GITHUB_ACTOR
