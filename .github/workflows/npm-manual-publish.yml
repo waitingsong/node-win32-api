@@ -13,12 +13,12 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    container: node:18-bullseye
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    container: node:current
+    timeout-minutes: 60
 
     strategy:
       matrix:
-        node: [18]
+        node: ['current']
         os: [ubuntu-latest]
 
     steps:
@@ -45,9 +45,6 @@ jobs:
           path: |
             node_modules
             package-lock.json
-            packages/*/.eslintcache
-            packages/*/node_modules
-            packages/*/package-lock.json
           key: ${{ runner.OS }}-build-2-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-2-${{ env.cache-name }}-${{ github.ref }}-
@@ -57,9 +54,9 @@ jobs:
           uname -a
           export DEBIAN_FRONTEND=noninteractive
           apt-get update -qq --yes > /dev/null
-          apt-get upgrade -qq --yes > /dev/null
+          # apt-get upgrade -qq --yes > /dev/null
           apt-get install -qq --yes --no-install-recommends bash dnsutils git jq locales net-tools wget > /dev/null
-          apt-get install -qq --yes postgresql-client > /dev/null
+          apt-get install -qq --yes postgresql-client libpq-dev > /dev/null
           uname -a
           npm -v && node -v
           npm -g root
@@ -69,7 +66,9 @@ jobs:
           sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen
           locale-gen
           locale -a
+          netstat -tunpl
           chmod a+w -R .
+          dig jaeger
 
       - name: Verify
         run: |
@@ -88,13 +87,14 @@ jobs:
           PGPASSWORD: postgres
 
       - name: Inatall Dependencies
+        timeout-minutes: 15
         run: |
           chmod a+w -R .
           # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
           .github/workflows/fix.sh
-          npm i -g c8 lerna rollup zx
-          # .github/workflows/fix.sh
+          npm i --no-audit -g autocannon c8 lerna rollup zx
+          # npm run purge
           npm run bootstrap
         env:
           CI: true
@@ -128,6 +128,8 @@ jobs:
           chmod a+w -R .
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
+          # fix: fatal: detected dubious ownership in repository
+          git config --global --add safe.directory $cwd
           # git restore .
           git reset --hard
           git config user.name $GITHUB_ACTOR
@@ -142,15 +144,4 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
-    # services:
-    #   postgres:
-    #     image: postgres:alpine
-    #     ports:
-    #       - 5432:5432
-    #     env:
-    #       POSTGRES_DB: db_ci_test
-    #       POSTGRES_USER: postgres
-    #       POSTGRES_PASSWORD: postgres
-    #     # needed because the postgres container does not provide a healthcheck
-    #     options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 

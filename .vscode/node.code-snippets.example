@@ -1,0 +1,19 @@
+{
+  "assert": {
+    "scope": "typescript",
+    "prefix": "ipt.assert",
+    "body": [
+      "import assert from 'node:assert'",
+    ],
+    "description": ""
+  },
+
+  "assert strict": {
+    "scope": "typescript",
+    "prefix": "ipt.assertStrict",
+    "body": [
+      "import assert from 'node:assert/strict'",
+    ],
+    "description": ""
+  },
+}

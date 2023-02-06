@@ -1,31 +1,42 @@
 {
   "compilerOptions": {
-    "declaration": false,
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationMap": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
+    "exactOptionalPropertyTypes": true,
     "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
     "incremental": true,
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "newLine": "lf",
     "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "dist",
+    "paths": {
+      "~/*": ["./src/*"],
+      "@/*": ["./test/*"]
+    },
+    "preserveConstEnums": true,
     "pretty": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "strict": true,
     "strictPropertyInitialization": false,
     "stripInternal": true,
-    "target": "ES2021",
-    "tsBuildInfoFile": ".vscode/.tsbuildinfo",
+    "target": "ES2022",
     "types" : ["mocha", "node"]
   },
   "include": [
     "src/**/*.ts",
-    "packages/*/src/**/*.ts"
+    "packages/**/*.ts"
   ],
   "exclude": [
     "asset",

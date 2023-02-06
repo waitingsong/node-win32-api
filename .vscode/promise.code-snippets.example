@@ -1,0 +1,58 @@
+{
+  "Pomise unknown": {
+    "scope": "typescript",
+    "prefix": "pms.unknown",
+    "body": [
+      "Promise<unknown>"
+    ],
+    "description": ""
+  },
+
+  "Pomise any": {
+    "scope": "typescript",
+    "prefix": "pms.any",
+    "body": [
+      "Promise<$1>"
+    ],
+    "description": ""
+  },
+
+  "Pomise void": {
+    "scope": "typescript",
+    "prefix": "pms.void",
+    "body": [
+      "Promise<void>"
+    ],
+    "description": ""
+  },
+
+  "Pomise New": {
+    "scope": "typescript,javascript",
+    "prefix": "pms.new",
+    "body": [
+      "new Promise<void>((done, reject) => {",
+      "  $1",
+      "})",
+    ],
+    "description": ""
+  },
+
+  "Pomise done": {
+    "scope": "typescript,javascript",
+    "prefix": "pms.done",
+    "body": [
+      "Promise.resolve<void>($1)"
+    ],
+    "description": ""
+  },
+
+  "Pomise Reject": {
+    "scope": "typescript,javascript",
+    "prefix": "pms.reject",
+    "body": [
+      "Promise.reject($1)"
+    ],
+    "description": ""
+  },
+}
+

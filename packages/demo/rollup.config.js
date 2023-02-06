@@ -1,4 +1,8 @@
 import { basename } from 'node:path'
+import assert from 'node:assert'
+
+import dts from "rollup-plugin-dts"
+
 // import commonjs from '@rollup/plugin-commonjs'
 // import resolve from '@rollup/plugin-node-resolve'
 // import { terser } from 'rollup-plugin-terser'
@@ -82,6 +86,8 @@ if (pkg.exports) {
     if (typeof row !== 'object') { return }
     if (! row.import && ! row.require) { return }
 
+    const names = genFileNamesForCTS(row)
+
     config.push(
       {
         external: external.concat(nodeModule),
@@ -96,6 +102,17 @@ if (pkg.exports) {
             sourcemapExcludeSources: true,
           },
         ],
+      },
+      {
+        external: external.concat(nodeModule),
+        input: names.srcPath,
+        output: [
+          {
+            file: names.ctsPath,
+            format: 'cjs',
+          },
+        ],
+        plugins: [dts()],
       },
     )
   })
@@ -195,6 +212,30 @@ function parseName(name) {
     throw new TypeError('name invalid')
   }
   return name
+}
+
+function genFileNamesForCTS(row) {
+  const path = row.import
+  assert(path, 'path is required')
+  assert(typeof path === 'string', 'path must be a string')
+
+  let srcPath = row.types
+  let baseName = ''
+
+  if (path.startsWith('./src/') && path.endsWith('.ts')) {
+    baseName = basename(path, '.ts')
+    srcPath = srcPath ?? path
+  }
+  else if (path.startsWith('./dist/') && path.endsWith('.js')) {
+    baseName = basename(path, '.js')
+    srcPath = srcPath ?? `./src/${baseName}.ts`
+  }
+
+  const ctsPath = `./dist/${baseName}.d.cts`
+  return {
+    srcPath,
+    ctsPath,
+  }
 }
 
 export default config
