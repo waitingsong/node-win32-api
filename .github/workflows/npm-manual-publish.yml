@@ -29,7 +29,10 @@ jobs:
       # Caution: disable fix below at FIRST publish, then enable
       - name: Fix for semantic release
         # pulls all tags (needed for lerna / semantic release to correctly version)
-        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+        run: |
+          export cwd=`pwd`
+          git config --global --add safe.directory $cwd
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
