@@ -2,7 +2,7 @@ import { basename } from 'node:path'
 // import commonjs from '@rollup/plugin-commonjs'
 // import resolve from '@rollup/plugin-node-resolve'
 // import { terser } from 'rollup-plugin-terser'
-import pkg from './package.json'
+import pkg from './package.json' assert { type: 'json' }
 
 // `npm run build` -> `production` is true
 // `npm run dev` -> `production` is false
