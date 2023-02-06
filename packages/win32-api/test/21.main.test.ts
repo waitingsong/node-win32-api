@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
-import { normalize } from 'node:path'
+import { join, normalize } from 'node:path'
 
-import { join, fileShortPath, genCurrentDirname } from '@waiting/shared-core'
+import { fileShortPath, genCurrentDirname } from '@waiting/shared-core'
 
 import {
   DModel as M,

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import assert from 'node:assert'
-import { join } from 'node:path'
 
 import { genCurrentDirname } from '@waiting/shared-core'
 import ffi from 'ffi-napi'
