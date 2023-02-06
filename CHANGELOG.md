@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.3.0](https://github.com/waitingsong/node-win32-api/compare/v20.2.0...v20.3.0) (2023-02-06)
+
+
+### Bug Fixes
+
+* **boilerplate:** define enum without const ([37ffd10](https://github.com/waitingsong/node-win32-api/commit/37ffd10749d0aaa7c3d0ddf8e3c41c7a9bfedc3b))
+* **boilerplate:** devDeps version ([2e29b42](https://github.com/waitingsong/node-win32-api/commit/2e29b42d3eb679cdbced3a0a3d65a9172bd2da34))
+
+
+
+
+
 # [20.2.0](/compare/v20.1.0...v20.2.0) (2022-12-22)
 
 
