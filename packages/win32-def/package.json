@@ -54,13 +54,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-types": "^20.2.0"
+    "@waiting/shared-types": "^20.11.0"
   },
   "devDependencies": {
-    "@types/ref-napi": "^3.0.4",
-    "@types/ref-struct-di": "^1.1.6",
-    "@types/ref-union-di": "^1.0.3",
-    "@waiting/shared-core": "^20.3.0",
+    "@types/ref-napi": "^3.0.6",
+    "@types/ref-struct-di": "^1.1.8",
+    "@types/ref-union-di": "^1.0.5",
+    "@waiting/shared-core": "^20.11.4",
     "cross-env": "7"
   },
   "peerDependencies": {
