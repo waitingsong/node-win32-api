@@ -13,6 +13,7 @@ import * as Win from '../src/index.js'
 
 
 const __dirname = genCurrentDirname(import.meta.url)
+// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 const dllDir = normalize(join(__dirname, '/../src/lib/'))
 const dlls: string[] = []
 
