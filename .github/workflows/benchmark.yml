@@ -1,19 +1,22 @@
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+name: benchmark
 
-name: ci
-
-on: [push]
+on:
+  push:
+    paths-ignore:
+      - 'site/**'
+      - '*.md'
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     container: node:current
     timeout-minutes: 60
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }} && ${{ github.actor != 'dependabot[bot]' }}
+    # if: github.actor != 'dependabot[bot]'
 
     strategy:
       matrix:
-        node: ['lts/*']
+        node: ['current']
         os: [ubuntu-latest]
 
     steps:
@@ -31,21 +34,19 @@ jobs:
         with:
           path: |
             node_modules
-            node_modules/.cache/nx
             package-lock.json
             packages/*/.eslintcache
-            packages/*/.tsbuildinfo
             packages/*/.vscode
+            packages/*/.tsbuildinfo
             packages/*/dist
             packages/*/node_modules
             packages/*/package-lock.json
-          key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-
+            ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-
 
       - name: Prepare
         run: |
-          pwd
           uname -a
           export DEBIAN_FRONTEND=noninteractive
           apt-get update -qq --yes > /dev/null
@@ -84,10 +85,8 @@ jobs:
         timeout-minutes: 15
         run: |
           chown -R 1001:121 "/github/home/.npm"
-          # chmod a+w -R .
-          # DO NOT execute: npm config set unsafe-perm=true
+          chmod a+w -R .
           export cwd=`pwd`
-          # .github/workflows/fix.sh
           npm i --no-audit -g autocannon c8 lerna rollup zx
           # npm run purge
           npm run bootstrap
@@ -96,8 +95,7 @@ jobs:
 
       - name: Build
         run: |
-          pwd
-          # chmod a+w -R .
+          chmod a+w -R .
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
@@ -107,69 +105,13 @@ jobs:
         env:
           CI: true
 
-      - name: Lint
+      - name: Benchmark demo
+        timeout-minutes: 10
         run: |
-          export cwd=`pwd`
-          . .scripts/ci/ci-env.sh
-          .scripts/ci/ci-prepare.sh
-          npm run lint:s
-          npm run lint:cycle
+          .scripts/benchmark/start-benchmark.mjs --qps=2800 --api=demo/hello --p=mw-demo
         env:
           CI: true
-
-      # - name: Init Database
-      #   run: |
-      #     export cwd=`pwd`
-      #     . .scripts/ci/ci-env.sh
-      #     .scripts/ci/ci-prepare.sh
-      #     .scripts/ci/ci-init-db.sh
-      #   env:
-      #     CI: true
-      #     POSTGRES_HOST: postgres
-      #     POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-      #     POSTGRES_DB: db_ci_test
-      #     POSTGRES_USER: postgres
-      #     POSTGRES_PASSWORD: postgres
-      #     PGPASSWORD: postgres
-
-      - name: Testing
-        run: |
-          export cwd=`pwd`
-          . .scripts/ci/ci-env.sh
-          .scripts/ci/ci-prepare.sh
-          npm run ci
-        env:
-          CI: true
-          # use `localhost` if running the job on the VM
-          # use `postgres` if running the job on a container
-          POSTGRES_HOST: postgres
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-          POSTGRES_DB: db_ci_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          PGPASSWORD: postgres
-          # redis
-          REDIS_HOST: redis
-          REDIS_PORT: 6379
-
-          ALI_ALB_IPS: ${{ secrets.ALI_ALB_IPS }}
-          ALI_ALB_GROUPID: ${{ secrets.ALI_ALB_GROUPID }}
-
-          ALI_ECS_AID: ${{ secrets.ALI_ECS_AID }}
-          ALI_ECS_ASECRET: ${{ secrets.ALI_ECS_ASECRET }}
-          ALI_ECS_IDS: ${{ secrets.ALI_ECS_IDS }}
-          ALI_ECS_IPS: ${{ secrets.ALI_ECS_IPS }}
-
-          ALI_OSS_AID: ${{ secrets.ALI_OSS_AID }}
-          ALI_OSS_ASECRET: ${{ secrets.ALI_OSS_ASECRET }}
-          ALI_OSS_ENDPOINT: ${{ secrets.ALI_OSS_ENDPOINT }}
-          ALI_OSS_BUCKET: ${{ secrets.ALI_OSS_BUCKET }}
-
           OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-
 
     services:
       postgres:
@@ -196,4 +138,3 @@ jobs:
           - 6832:6832/udp
           - 14250:14250
           - 16686:16686
-

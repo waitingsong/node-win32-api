@@ -1,39 +1,14 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "declaration": true,
-    "declarationMap": true,
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-    "exactOptionalPropertyTypes": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
     "incremental": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "newLine": "lf",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "outDir": "dist",
     "paths": {
       "~/*": ["./src/*"],
       "@/*": ["./test/*"]
     },
-    "preserveConstEnums": true,
-    "pretty": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "strict": true,
-    "strictPropertyInitialization": false,
-    "stripInternal": true,
-    "target": "ES2022",
-    "tsBuildInfoFile": ".vscode/.tsbuildinfo",
-    "types" : ["mocha", "node"]
+    "tsBuildInfoFile": ".tsbuildinfo"
   },
   "ts-node": {
     "esm": true,
@@ -44,15 +19,5 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
-  "exclude": [
-    "asset",
-    "app/public",
-    "app/views",
-    "dist",
-    "node_modules*",
-    "test",
-    "**/*.d.ts",
-    "**/*.spec.ts"
   ]
 }

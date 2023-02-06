@@ -2,17 +2,19 @@
 
 name: ci-win
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    timeout-minutes: 60
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }} && ${{ github.actor != 'dependabot[bot]' }}
+    # if:  github.actor != 'dependabot[bot]'
 
     strategy:
       matrix:
-        node: [16]
-        os: [windows-2019, windows-latest]
+        node: ['current']
+        os: [windows-latest]
 
     steps:
       - uses: actions/checkout@v3
@@ -29,21 +31,22 @@ jobs:
         with:
           path: |
             node_modules
+            node_modules/.cache/nx
             package-lock.json
             packages/*/.eslintcache
+            packages/*/.tsbuildinfo
             packages/*/.vscode
             packages/*/dist
             packages/*/package-lock.json
-          key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-
+            ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-
 
       - name: Prepare
         shell: bash
         run: |
           uname -a
           npm -v && node -v
-          npm -g root
           git --version
           openssl version
           ./.githooks/init-repo.sh
@@ -51,10 +54,12 @@ jobs:
           git config --local core.eol lf
 
       - name: Inatall Dependencies
+        timeout-minutes: 15
         shell: bash
         run: |
           .github/workflows/fix.sh
           npm i -g c8 lerna rollup zx node-gyp
+          # npm run purge
           npm run bootstrap
         env:
           CI: true
