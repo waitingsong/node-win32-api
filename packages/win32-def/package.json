@@ -18,27 +18,22 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./src/index.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
     "./consts": {
-      "types": "./src/index.consts.ts",
       "import": "./dist/index.consts.js",
       "require": "./dist/index.consts.cjs"
     },
     "./common.def": {
-      "types": "./src/index.def.ts",
       "import": "./dist/index.def.js",
       "require": "./dist/index.def.cjs"
     },
     "./struct.def": {
-      "types": "./src/index.struct.ts",
       "import": "./dist/index.struct.js",
       "require": "./dist/index.struct.cjs"
     },
     "./union.def": {
-      "types": "./src/index.union.ts",
       "import": "./dist/index.union.js",
       "require": "./dist/index.union.cjs"
     },
