@@ -12,11 +12,11 @@ import { wcharBuffer } from './fixed-buffer.js'
 // const UnionDi = _UnionDi
 const Union = UnionDi(ref)
 export function UnionType<T extends StructDefType>(input: T): StructTypeConstructor<T> {
-  // @ts-expect-error
+  // @ts-ignore
   return Union(input)
 }
 export function UnionFactory<T>(input: StructDefType): T {
-  // @ts-expect-error
+  // @ts-ignore
   return new Union(input)() as unknown as T
 }
 
@@ -39,12 +39,12 @@ export function StructType<T extends StructDefType>(
 ): StructTypeConstructor<T> {
 
   const initType = genInitTyp(input, options)
-  // @ts-expect-error
+  // @ts-ignore
   return Struct(initType)
 }
 export function StructFactory<T>(input: StructDefType, options?: StructCharOptions): T {
   const initType = genInitTyp(input, options)
-  // @ts-expect-error
+  // @ts-ignore
   return new Struct(initType)() as unknown as T
 }
 
