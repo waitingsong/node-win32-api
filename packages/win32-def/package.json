@@ -49,7 +49,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-types": "^20.11.0"
+    "@waiting/shared-types": "^21.0.0"
   },
   "devDependencies": {
     "@types/ref-napi": "^3.0.6",
