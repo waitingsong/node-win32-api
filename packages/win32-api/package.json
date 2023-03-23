@@ -81,7 +81,7 @@
     "@types/ref-napi": "^3.0.6",
     "@types/ref-struct-di": "^1.1.8",
     "@types/ref-union-di": "^1.0.5",
-    "@waiting/shared-core": "^20.11.4",
+    "@waiting/shared-core": "^21.0.0",
     "cross-env": "7",
     "ffi-napi": "^4.0.3",
     "ref-napi": "^3.0.3",
