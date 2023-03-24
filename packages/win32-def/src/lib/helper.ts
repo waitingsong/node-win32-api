@@ -37,18 +37,15 @@ export function StructType<T extends StructDefType>(
   input: T,
   options?: StructCharOptions,
 ): StructTypeConstructor<T> {
-
-  const initType = genInitTyp(input, options)
   // @ts-ignore
-  return Struct(initType)
+  return genInitTyp<T>(input, options)
 }
 export function StructFactory<T>(input: StructDefType, options?: StructCharOptions): T {
-  const initType = genInitTyp(input, options)
   // @ts-ignore
-  return new Struct(initType)() as unknown as T
+  return new genInitTyp<T>(input, options)()
 }
 
-function genInitTyp(input: StructDefType, options?: StructCharOptions): StructDefType {
+function genInitTyp(input: StructDefType, options?: StructCharOptions): StructTypeConstructor {
   const opts: Required<StructCharOptions> = {
     ...defaultStructCharOptions,
     ...options,
@@ -61,14 +58,20 @@ function genInitTyp(input: StructDefType, options?: StructCharOptions): StructDe
       && opts.CharDefs.includes(value)) {
 
       initType[key] = wcharBuffer(opts.maxCharLength)
-    }
-    else {
-      // @TODO recursive convertion
+    } else if (
+      typeof value === 'object'
+      && value
+      // This is the same check "ref-napi" does to determine if the type
+      && !('size' in value && 'indirection' in value)
+    ) {
+      initType[key] = genInitTyp(value as StructDefType, options) as StructTypeConstructor
+    } else {
       initType[key] = value
     }
   })
 
-  return initType
+  // @ts-ignore
+  return Struct(initType)
 }
 
 export interface StructCharOptions {
