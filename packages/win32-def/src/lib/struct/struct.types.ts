@@ -215,8 +215,8 @@ export type LPRECT = _POINTER
 
 export interface WINDOWINFO extends StructInstanceBase {
   cbSize: DWORD
-  rcWindow: VOID
-  rcClient: VOID
+  rcWindow: RECT
+  rcClient: RECT
   dwStyle: DWORD
   dwExStyle: DWORD
   dwWindowStatus: DWORD
