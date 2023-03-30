@@ -7,7 +7,9 @@ parserOptions:
 # https://github.com/benmosher/eslint-plugin-import
 # https://github.com/sindresorhus/eslint-plugin-unicorn
 rules:
-  unicorn/filename-case: 2
   # Use tsconfig.json noUnusedLocals:true instead
   "@typescript-eslint/no-unused-vars": 0
+  "node/no-unpublished-import": 0
+  "@typescript-eslint/prefer-ts-expect-error": 0
+  "unicorn/filename-case": 0
 

@@ -1,0 +1,24 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "declaration": false,
+    "declarationMap": false,
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "noUnusedLocals": false,
+    "sourceMap": false,
+    "target": "ESNext"
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "asset/",
+    "fixtures/",
+    "node_modules*",
+    "**/*.d.ts",
+    "**/*.spec.ts"
+  ]
+}

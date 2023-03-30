@@ -1,6 +1,7 @@
 import {
   access,
   copyFile,
+  mkdir,
   readdir,
   readFile,
   stat,
@@ -22,6 +23,7 @@ import { promisify } from 'util'
 
 
 export const copyFileAsync = promisify(copyFile)
+export const mkdirAsync = promisify(mkdir)
 export const readFileAsync = promisify(readFile)
 export const readDirAsync = promisify(readdir)
 export const statAsync = promisify(stat)
@@ -55,3 +57,35 @@ export function genRandomInt(max: number): number {
   return Math.floor(Math.random() * Math.floor(max))
 }
 
+
+export async function cpGlobalConfigsToPkgs(
+  baseDir: string,
+  configPaths: string[],
+  pkgBase: string,
+): Promise<string[]> {
+
+  const pkgs = await readDirAsync(pkgBase)
+  const ret: string[] = []
+
+  for (const pkg of pkgs) {
+    for (const path of configPaths) {
+      try {
+        const dst = `${pkg}/${path}`
+        const dstDir = dirname(join(pkgBase, dst))
+        if ( ! await isPathAccessible(dstDir)) {
+          await mkdirAsync(dstDir)
+        }
+        await copyFileAsync(
+          join(baseDir, path),
+          join(pkgBase, dst),
+        )
+        ret.push(dst)
+      }
+      catch (ex: any) {
+        console.log(ex.message)
+      }
+    }
+  }
+
+  return ret
+}

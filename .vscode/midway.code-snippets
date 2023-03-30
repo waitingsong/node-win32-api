@@ -1,0 +1,52 @@
+{
+  "Import MyError": {
+    "scope": "typescript",
+    "prefix": "ipt.MyError",
+    "body": [
+      "import MyError from '~/util/my-error'",
+    "$1",
+    ],
+    "description": ""
+  },
+
+  "Import decorator for Controller": {
+    "scope": "typescript",
+    "prefix": "ipt.decorator-controller",
+    "body": [
+      "import {",
+    "  ALL,",
+    "  Controller,",
+    "  Get,",
+    "  Inject,",
+    "  Provide,",
+    "  Query,",
+    "  Validate,",
+    "} from '@midwayjs/decorator'",
+    "$1",
+    ],
+    "description": ""
+  },
+
+  "Import decorator for Service": {
+    "scope": "typescript",
+    "prefix": "ipt.decorator-service",
+    "body": [
+      "import {",
+    "  Inject,",
+    "  Provide,",
+    "} from '@midwayjs/decorator'",
+    "$1",
+    ],
+    "description": ""
+  },
+
+  "Throw new MyError": {
+    "scope": "typescript",
+    "prefix": "MyError",
+    "body": [
+      "throw new MyError($1)",
+    ],
+    "description": ""
+  },
+
+}

@@ -1,8 +1,12 @@
-import { dirname } from 'path'
-import commonjs from 'rollup-plugin-commonjs'
-import resolve from 'rollup-plugin-node-resolve'
-import { terser } from 'rollup-plugin-terser'
-import pkg from './package.json'
+import { basename, dirname } from 'node:path'
+import assert from 'node:assert'
+
+import dts from "rollup-plugin-dts"
+
+// import commonjs from '@rollup/plugin-commonjs'
+// import resolve from '@rollup/plugin-node-resolve'
+// import { terser } from 'rollup-plugin-terser'
+import pkg from './package.json' assert { type: 'json' }
 
 // `npm run build` -> `production` is true
 // `npm run dev` -> `production` is false
@@ -16,8 +20,8 @@ if (name.slice(0, 1) === '@') {
   }
 }
 name = parseName(name)
+console.log({ name })
 
-const targetDir = dirname(pkg.main)
 const deps = pkg.dependencies
 const peerDeps = pkg.peerDependencies
 
@@ -31,7 +35,7 @@ const banner = `
  * @license ${pkg.license}
  * @link ${pkg.homepage}
  */
-`.trimLeft()
+`.trimStart()
 const uglifyOpts = {
   mangle:   true,
   compress: {
@@ -74,89 +78,112 @@ if (peerDeps && Object.keys(peerDeps).length) {
 }
 external = [...new Set(external)]
 
+const config = []
+const input = 'dist/index.js'
 
-const config = [
-  // CommonJS (for Node) and ES module (for bundlers) build.
-  {
-    external: external.concat(nodeModule),
-    input: pkg.module,
-    output: [
+if (pkg.exports) {
+  Object.entries(pkg.exports).forEach(([key, row]) => {
+    if (typeof row !== 'object') { return }
+    if (! row.import && ! row.require) { return }
+
+    const names = genFileNamesForCTS(row)
+    // console.log({ src: row.import, names })
+
+    config.push(
       {
-        file: pkg.main,
-        amd: { id: name },
-        banner,
-        format: 'cjs',
-        globals,
-        name,
-        sourcemap: true,
+        external: external.concat(nodeModule),
+        input: row.import,
+        output: [
+          {
+            file: row.require,
+            banner,
+            format: 'cjs',
+            globals,
+            sourcemap: true,
+            sourcemapExcludeSources: true,
+          },
+        ],
       },
-    ],
-  },
-]
-
-if (pkg.es2015) {
-  config[0].output.push(
+      {
+        external: external.concat(nodeModule),
+        input: names.srcPath,
+        output: [
+          {
+            file: names.ctsPath,
+            format: 'cjs',
+          },
+        ],
+        plugins: [dts()],
+      },
+    )
+  })
+}
+else if (pkg.main) {
+  config.push(
     {
-      banner,
-      format: 'es',
-      file: pkg.es2015,
-      sourcemap: true,
+      external: external.concat(nodeModule),
+      input,
+      output: [
+        {
+          file: 'dist/index.cjs',
+          amd: { id: name },
+          banner,
+          format: 'cjs',
+          globals,
+          name,
+          sourcemap: true,
+          sourcemapExcludeSources: true,
+        },
+      ],
     },
-
   )
 }
 
-if (production && pkg.es2015) {
+
+/*
+if (production) {
   config.push(
     // esm minify
     {
       external: external.concat(nodeModule),
-      input: pkg.module,
+      input,
       plugins: [ terser(uglifyOpts) ],
       output: {
         banner,
-        file: parseName(pkg.es2015) + '.min.js',
+        file: 'dist/index.min.mjs',
         format: 'es',
         sourcemap: true,
+        sourcemapExcludeSources: true,
       },
     },
-  )
-}
-
-if (pkg.browser) {
-  config.push(
-    // umd bundle min
+    // cjs minify
     {
-      external: nodeModule,
-      input: pkg.module,
-      plugins: [
-        resolve({
-          mainFields: ['browser', 'module', 'main']
-        }),
-        commonjs(),
-        production && terser(uglifyOpts),
-      ],
+      external: external.concat(nodeModule),
+      input,
+      plugins: [ terser(uglifyOpts) ],
       output: {
-        amd: { id: name },
         banner,
-        file: `${targetDir}/${name}.umd.min.js`,
-        format: 'umd',
-        globals,
-        name,
-        sourcemap: production ? true : false,
+        file: 'dist/index.min.cjs',
+        format: 'cjs',
+        sourcemap: true,
+        sourcemapExcludeSources: true,
       },
     },
   )
 }
+*/
 
 if (pkg.bin) {
-  const shebang = `#!/usr/bin/env node\n\n${banner}`
+  // const shebang = `#!/usr/bin/env node\n\n${banner}`
+  const shebang = `#!/usr/bin/env ts-node-esm\n\n${banner}`
 
   for (const binPath of Object.values(pkg.bin)) {
     if (! binPath) {
       continue
     }
-    const binSrcPath = binPath.includes('dist/') ? binPath : `./dist/${binPath}`
+    const binSrcPath = binPath.includes('bin/') && ! binPath.includes('dist/bin/')
+      ? binPath.replace('bin/', 'dist/bin/')
+      : binPath
 
     config.push({
       external: external.concat(nodeModule),
@@ -165,7 +192,7 @@ if (pkg.bin) {
         {
           file: binPath,
           banner: shebang,
-          format: 'cjs',
+          format: 'esm',
           globals,
         },
       ],
@@ -179,20 +206,37 @@ if (pkg.bin) {
 // remove pkg.name extension if exists
 function parseName(name) {
   if (typeof name === 'string' && name) {
-    const arr = name.split('.')
-    const len = arr.length
-
-    if (len > 2) {
-      return arr.slice(0, -1).join('.')
-    }
-    else if (len === 2 || len === 1) {
-      return arr[0]
-    }
+    return basename(name)
   }
   else {
     throw new TypeError('name invalid')
   }
   return name
+}
+
+function genFileNamesForCTS(row) {
+  const path = row.import
+  assert(path, 'path is required')
+  assert(typeof path === 'string', 'path must be a string')
+
+  let srcPath = row.types
+  let baseName = ''
+  let prefixDir = dirname(path).split('/').slice(2).join('/')
+
+  if (path.startsWith('./src/') && path.endsWith('.ts')) {
+    baseName = basename(path, '.ts')
+    srcPath = srcPath ?? path
+  }
+  else if (path.startsWith('./dist/') && path.endsWith('.js')) {
+    baseName = basename(path, '.js')
+    srcPath = srcPath ?? `./src/${prefixDir}/${baseName}.ts`
+  }
+
+  const ctsPath = `./dist/${prefixDir}/${baseName}.d.cts`
+  return {
+    srcPath,
+    ctsPath,
+  }
 }
 
 export default config

@@ -1,11 +1,14 @@
+.ssh/
 dbconfig.json
 package-lock.json
 yarn.lock
 package.json.lerna_backup
+tsconfig.tsbuildinfo
 
 .coveralls.yml
 .factorypath
 .githooks
+.history
 .mvn
 .tsbuildinfo
 .tsbuildinfo.*
@@ -17,13 +20,30 @@ node_modules*
 run/
 target/
 Thumbs.db
+v8cov
 
-*.__built-tables.ts
 *.bak
 *.d.ts
 *.map
 *.md5
 *.[oa]
+
+
+# for midway.js
+.env_temp
+.serverless
+
+
+# for lerna mono repo
+# egg, midway
+/packages/*/*.js
+/packages/*/config/
+/packages/*/lib/
+/packages/*/test/demo/*.js
+test/app/**/*.js
+test/fixtures/**/*.js
+**/test/fixtures/**/*.js
+.mwcc-cache
 
 
 # for java
@@ -42,8 +62,14 @@ src/config.properties
 # for gradle
 .gradle
 gradle-app.setting
-!gradle-wrapper.jar
+# !gradle-wrapper.jar
+gradle-wrapper.jar
 .gradletasknamecache
+gradlew
+gradlew.bat
+local.properties
+GeneratedPluginRegistrant.java
+captures
 
 
 # for oracle
@@ -61,6 +87,9 @@ nbdist/
 # http://git-scm.com/docs/gitignore
 
 *~
+*.njsproj
+*.ntvs*
+*.sln
 *.sw[mnpcod]
 *.log
 *.tmp
@@ -77,7 +106,9 @@ log.txt
 .tmp/
 .versions/
 www/
+bazel-out/
 dist/
+out-tsc/
 tmp/
 temp/
 hooks/
@@ -113,7 +144,7 @@ UserInterfaceState.xcuserstate
 *.suo
 *.[Cc]ache
 *.ncb
-[Tt]humbs.db 
+[Tt]humbs.db
 Ankh.NoLoad
 
 *_i.c
@@ -230,6 +261,7 @@ proguard/
 *.ear
 *.zip
 *.tar.gz
+*.tgz
 *.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
@@ -238,3 +270,88 @@ hs_err_pid*
 
 # End of https://www.gitignore.io/api/java
 
+
+*.pyc
+*.swp
+.atom/
+.buildlog/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/pubspec.lock
+
+# Web related
+*/lib/generated_plugin_registrant.dart
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+*/android/app/debug
+*/android/app/profile
+*/android/app/release
+
+# Remember to never publicly share your keystore.
+# See https://flutter.dev/docs/deployment/android#reference-the-keystore-from-the-app
+key.properties
+
+
+# ios
+*.mode1v3
+*.mode2v3
+*.moved-aside
+*.pbxuser
+*.perspectivev3
+*.xccheckout
+*.xcscmblueprint
+**/*sync/
+.sconsign.dblite
+.tags*
+**/.vagrant/
+**/DerivedData/
+Icon?
+**/Pods/
+**/.symlinks/
+profile
+xcuserdata
+**/.generated/
+*/Flutter/App.framework
+*/Flutter/Flutter.framework
+*/Flutter/Flutter.podspec
+*/Flutter/Generated.xcconfig
+*/Flutter/app.flx
+*/Flutter/app.zip
+*/Flutter/flutter_assets/
+flutter_export_environment.sh
+ServiceDefinitions.json
+*/Runner/GeneratedPluginRegistrant.*
+
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+Carthage/Build
+iOSInjectionProject/
+
+# Exceptions to above rules.
+!default.mode1v3
+!default.mode2v3
+!default.pbxuser
+!default.perspectivev3

@@ -25,6 +25,6 @@ code=$?
 #echo -e 'node exitCode:' $code
 
 if [[ $code = 0 ]] ; then
-  commitlint -e
+  commitlint -e ./.git/COMMIT_EDITMSG
 fi
 

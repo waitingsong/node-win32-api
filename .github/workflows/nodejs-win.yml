@@ -1,0 +1,115 @@
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: ci-win
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }} && ${{ github.actor != 'dependabot[bot]' }}
+    # if:  github.actor != 'dependabot[bot]'
+
+    strategy:
+      matrix:
+        node: ['current']
+        os: [windows-latest]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Cache
+        uses: actions/cache@v3
+        id: cache-lerna-win
+        env:
+          cache-name: cache-lerna-win
+        with:
+          path: |
+            node_modules
+            node_modules/.cache/nx
+            package-lock.json
+            packages/*/.eslintcache
+            packages/*/.tsbuildinfo
+            packages/*/.vscode
+            packages/*/dist
+            packages/*/package-lock.json
+          key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-
+
+      - name: Prepare
+        shell: bash
+        run: |
+          uname -a
+          npm -v && node -v
+          git --version
+          openssl version
+          ./.githooks/init-repo.sh
+          git config --local core.autocrlf false
+          git config --local core.eol lf
+          export cwd=`pwd`
+          git config --global --add safe.directory $cwd
+
+      - name: Inatall Dependencies
+        timeout-minutes: 15
+        shell: bash
+        run: |
+          .github/workflows/fix.sh
+          npm i -g c8 lerna rollup zx node-gyp
+          # npm run purge
+          npm run bootstrap
+        env:
+          CI: true
+
+      - name: Build
+        shell: bash
+        run: |
+          whoami
+          export cwd=`pwd`
+          . .scripts/ci/ci-env.sh
+          .scripts/ci/ci-prepare.sh
+          npm run build --if-present
+        env:
+          CI: true
+
+      - name: Lint
+        shell: bash
+        run: |
+          export cwd=`pwd`
+          . .scripts/ci/ci-env.sh
+          .scripts/ci/ci-prepare.sh
+          npm run lint:s
+          npm run lint:cycle
+        env:
+          CI: true
+
+      - name: Testing
+        shell: bash
+        run: |
+          export cwd=`pwd`
+          . .scripts/ci/ci-env.sh
+          .scripts/ci/ci-prepare.sh
+          npm run ci
+        env:
+          CI: true
+          # use `localhost` if running the job on the VM
+          # use `postgres` if running the job on a container
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          POSTGRES_DB: db_ci_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          PGPASSWORD: postgres
+          # redis
+          REDIS_HOST: redis
+          REDIS_PORT: 6379
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+
+

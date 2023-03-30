@@ -1,26 +1,42 @@
 {
+  "version": "0.0.0",
   "packages": [
     "packages/*"
   ],
+  "ignore": [],
   "command": {
     "publish": {
       "ignoreChanges": [
-        "*.md"
-      ]
+        "*.md",
+        ".githooks",
+        ".scripts",
+        ".vscode",
+        "package-lock.json",
+        "packages/demo",
+        "packages/mw-demo"
+      ],
+      "verifyAccess": false
     },
     "bootstrap": {
       "hoist": true,
       "noCi": true,
-      "nohoist": ["cross-env"],
+      "nohoist": [
+        "cross-env",
+        "egg"
+      ],
       "npmClientArgs": [
-        "--no-package-lock"
+        "--no-audit"
       ]
     },
     "version": {
       "conventionalCommits": true,
+      "allowBranch": [
+        "main",
+        "release",
+        "fix"
+      ],
       "registry": "https://registry.npmjs.org/"
     }
   },
-  "npmClient": "npm",
-  "version": "0.0.0"
+  "npmClient": "npm"
 }

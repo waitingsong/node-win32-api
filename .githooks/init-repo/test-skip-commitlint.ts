@@ -33,8 +33,8 @@ export function isSkipCommitlint(options: IsNeedCommitlintOpts): Observable<numb
     return of(1)
   }
 
-  const protectRule$ = ofrom(protectBranch).pipe(defaultIfEmpty())
-  const skipRule$ = ofrom(skipMsg).pipe(defaultIfEmpty())
+  const protectRule$ = ofrom(protectBranch).pipe(defaultIfEmpty(void 0))
+  const skipRule$ = ofrom(skipMsg).pipe(defaultIfEmpty(void 0))
 
   const content$ = pathAccessible(commitFile).pipe(
     tap(path => {
@@ -51,14 +51,20 @@ export function isSkipCommitlint(options: IsNeedCommitlintOpts): Observable<numb
     share(),
   )
 
-  const protectTest$ = combineLatest(of(branchName), protectRule$).pipe(
-    map(([branch, regex]) => regex && regex.test(branch) ? true : false),
+  const protectTest$ = combineLatest({
+    branch: of(branchName),
+    regex: protectRule$,
+  }).pipe(
+    map(({ branch, regex}) => regex && regex.test(branch) ? true : false),
     filter(matched => matched),
     mapTo(0), // process.exit(0)
     defaultIfEmpty(1),  // not skip commitlint
   )
-  const skipTest$ = combineLatest(content$, skipRule$).pipe(
-    map(([{ head }, regex]) => regex && regex.test(head) ? true : false),
+  const skipTest$ = combineLatest({
+    content: content$,
+    regex: skipRule$,
+  }).pipe(
+    map(({ content, regex }) => regex && regex.test(content.head) ? true : false),
     filter(matched => matched),
     mapTo(1), // process.exit(1)
     defaultIfEmpty(0),  // not skip commitlint
