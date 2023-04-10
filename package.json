@@ -17,7 +17,7 @@
     "@types/rimraf": "4",
     "@waiting/eslint-config": "^8.8.0",
     "@waiting/shared-core": "^20.11.4",
-    "@waiting/shared-types": "^20.11.0",
+    "@waiting/shared-types": "^21.1.0",
     "autocannon": "^7.10.0",
     "coveralls": "3",
     "debug": "^4.3.4",
