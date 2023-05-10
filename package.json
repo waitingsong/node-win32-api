@@ -12,7 +12,7 @@
     "@rollup/plugin-commonjs": "24",
     "@rollup/plugin-node-resolve": "15",
     "@types/mocha": "10",
-    "@types/node": "18",
+    "@types/node": "20",
     "@types/rewire": "2",
     "@types/rimraf": "4",
     "@waiting/eslint-config": "^8.8.0",
