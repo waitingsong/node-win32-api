@@ -1,7 +1,7 @@
 {
   "include": [
-    "packages/*/src/*.ts",
-    "packages/*/src/**/*.ts"
+    "src/*.ts",
+    "src/**/*.ts"
   ],
   "exclude": [
     ".githooks",
@@ -17,6 +17,7 @@
     "**/*.js"
   ],
   "reporter": [
+    "text",
     "html",
     "json",
     "text-summary"

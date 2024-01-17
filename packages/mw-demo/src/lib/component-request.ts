@@ -8,7 +8,7 @@ import {
 } from '@midwayjs/core'
 import type { Context } from '@mwcp/share'
 
-import { Config, ConfigKey } from './types'
+import { Config, ConfigKey } from './types.js'
 
 
 @Provide()

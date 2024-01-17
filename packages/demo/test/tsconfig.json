@@ -1,24 +1,21 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "declaration": false,
     "declarationMap": false,
-    "inlineSourceMap": false,
     "noEmit": true,
     "noImplicitAny": false,
     "noImplicitThis": false,
+    "noPropertyAccessFromIndexSignature": false,
     "noUnusedLocals": false,
-    "sourceMap": false,
-    "target": "ESNEXT"
+    "sourceMap": false
   },
   "include": [
-    "**/*.ts"
+    "../src/",
+    "./**/*.ts"
   ],
   "exclude": [
-    "asset/",
-    "fixtures/",
-    "node_modules*",
-    "**/*.d.ts",
-    "**/*.spec.ts"
-  ]
+    "fixtures",
+    "**/*.d.ts"
+  ],
 }

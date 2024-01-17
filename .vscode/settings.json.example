@@ -83,6 +83,7 @@
   "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
   "git.ignoreLimitWarning": true,
+  "markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
   "markdown-pdf.outputDirectory": "d:/",
   "plantuml.render": "PlantUMLServer",
   "plantuml.server": "https://www.plantuml.com/plantuml",
@@ -121,7 +122,7 @@
       "args": ["-l"]
     }
   },
-  "terminal.integrated.defaultProfile.windows": "git-bash",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
   "terminal.integrated.defaultProfile.linux": "bash (login)",
   "typescript.autoClosingTags": false,
   "typescript.format.enable": true,

@@ -1,2 +1,3 @@
 
-export * from './demo.middleware'
+export * from './demo.middleware.js'
+

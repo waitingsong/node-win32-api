@@ -1,7 +1,7 @@
 
-export * from './config'
-export { DemoComponent } from './component-singleton'
-export { Demo2Component } from './component-request'
+export * from './config.js'
+export { DemoComponent } from './component-singleton.js'
+export { Demo2Component } from './component-request.js'
 
 export {
   Config as DemoConfig,
@@ -9,5 +9,5 @@ export {
   MiddlewareConfig as DemoMiddlewareConfig,
   MiddlewareOptions as DemoMiddlewareOptions,
   Msg as DemoMsg,
-} from './types'
+} from './types.js'
 

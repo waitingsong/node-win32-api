@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node: ['current']
+        node: ['lts/*']
         os: [windows-latest]
 
     steps:
@@ -31,12 +31,13 @@ jobs:
         with:
           path: |
             node_modules
-            node_modules/.cache/nx
+            # node_modules/.cache/nx
             package-lock.json
-            packages/*/.eslintcache
+            # packages/*/.eslintcache
             packages/*/.tsbuildinfo
             packages/*/.vscode
             packages/*/dist
+            packages/*/node_modules
             packages/*/package-lock.json
           key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
@@ -45,11 +46,11 @@ jobs:
       - name: Prepare
         shell: bash
         run: |
+          pwd
           uname -a
           npm -v && node -v
           git --version
           openssl version
-          ./.githooks/init-repo.sh
           git config --local core.autocrlf false
           git config --local core.eol lf
           export cwd=`pwd`
@@ -59,16 +60,17 @@ jobs:
         timeout-minutes: 15
         shell: bash
         run: |
-          .github/workflows/fix.sh
-          npm i -g c8 lerna rollup zx node-gyp
+          export cwd=`pwd`
+          npm i --no-audit -g autocannon c8 lerna rollup tsx zx
           # npm run purge
-          npm run bootstrap
+          npm i
         env:
           CI: true
 
       - name: Build
         shell: bash
         run: |
+          pwd
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh

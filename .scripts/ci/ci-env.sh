@@ -18,3 +18,7 @@ export GRADLE_USER_HOME=.gradle-bin
 # flutter
 export PUB_CACHE="$CI_PROJECT_DIR/.pub-cache"
 
+# nodejs
+export NODE_OPTIONS="$NODE_OPTIONS --no-warnings"
+
+

@@ -1,40 +1,15 @@
 {
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "declaration": true,
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "incremental": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "newLine": "lf",
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "outDir": "dist",
-    "paths": {
-      "~/*": ["../../../src/*"],
-      "@/*": ["../../../test/*"]
-    },
-    "pretty": true,
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "strict": true,
-    "strictPropertyInitialization": false,
-    "stripInternal": true,
-    "target": "ESNext",
-    "tsBuildInfoFile": ".vscode/.tsbuildinfo",
-    "types" : ["mocha", "node"]
+    "rootDir": "../../..",
+    "declarationMap": false,
+    "strictPropertyInitialization": false
   },
   "include": [
-    "src/**/*.ts"
+    "../../../src/**/*.ts",
+    "../../../test/**/*.ts"
   ],
   "exclude": [
-    "asset",
-    "app/public",
-    "app/views",
     "dist",
     "node_modules*",
     "test",

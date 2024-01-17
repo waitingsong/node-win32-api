@@ -1,6 +1,12 @@
 {
   "name": "base-app",
   "version": "1.0.0",
+  "type": "module",
+  "imports": {
+    "#package.json": "../../../package.json",
+    "##/*": "../../../dist/*",
+    "#@/*": "../../../test/*"
+  },
   "dependencies": {
   }
 }

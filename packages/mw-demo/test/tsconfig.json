@@ -1,24 +1,20 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "declaration": false,
     "declarationMap": false,
-    "module": "commonjs",
+    "noEmit": true,
     "noImplicitAny": false,
     "noImplicitThis": false,
     "noPropertyAccessFromIndexSignature": false,
     "noUnusedLocals": false,
-    "sourceMap": false,
-    "target": "ESNext"
+    "sourceMap": false
   },
   "include": [
-    "**/*.ts"
+    "../src/",
+    "./**/*.ts"
   ],
   "exclude": [
-    "asset/",
-    "fixtures/",
-    "node_modules*",
-    "**/*.d.ts",
-    "**/*.spec.ts"
-  ]
+    "**/*.d.ts"
+  ],
 }

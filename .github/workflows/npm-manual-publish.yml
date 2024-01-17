@@ -18,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        node: ['current']
+        node: ['lts/*']
         os: [ubuntu-latest]
 
     steps:
@@ -99,10 +99,10 @@ jobs:
           chmod a+w -R .
           # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
-          .github/workflows/fix.sh
-          npm i --no-audit -g autocannon c8 lerna rollup zx
+          # .github/workflows/fix.sh
+          npm i --no-audit -g autocannon c8 lerna rollup tsx zx
           # npm run purge
-          npm run bootstrap
+          npm i --no-audit
         env:
           CI: true
 
@@ -113,7 +113,6 @@ jobs:
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
-          # .github/workflows/fix.sh
           npm run build --if-present
         env:
           CI: true
@@ -180,7 +179,9 @@ jobs:
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
           # npm run pub major
-          .scripts/publish.sh --yes --no-verify-access --conventional-commits --create-release github ${{ github.event.inputs.semver }}
+          rm -rf package-lock.json
+          rm -rf packages/*/package-lock.json
+          .scripts/publish.sh --yes --no-private --conventional-commits --create-release github ${{ github.event.inputs.semver }}
           git push -v origin --follow-tags
         env:
           CI: true

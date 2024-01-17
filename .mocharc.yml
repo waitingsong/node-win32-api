@@ -2,15 +2,18 @@
 bail: true
 full-trace: true
 enable-source-maps: true
+node-option:
+  - no-warnings
+  - "loader=ts-node/esm"
+  - "enable-source-maps"
 require:
-  - ts-node/register
   - tsconfig-paths/register.js
-  - test/root.hooks.ts
-#loader:
+  - test/setup.ts
+# loader:
 #  - ts-node/esm
 spec:
   - test/**/*.test.ts
-timeout: 120000
+timeout: 90000
 ui: bdd
 parallel: true
 exit: true

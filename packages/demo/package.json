@@ -12,12 +12,14 @@
   ],
   "type": "module",
   "bin": {},
-  "types": "./dist/index.d.ts",
+  "types": "dist/index.d.ts",
+  "imports": {
+    "#package.json": "./package.json",
+    "##/*": "./src/*",
+    "#@/*": "./test/*"
+  },
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
+    ".": "./dist/index.js",
     "./package.json": "./package.json"
   },
   "bugs": {
@@ -32,37 +34,40 @@
   "dependencies": {
   },
   "devDependencies": {
-    "cross-env": "7"
   },
   "engines": {
-    "node": ">=16.13.0"
+    "node": ">=18.12.0"
   },
   "files": [
     "README.*.md",
-    "tsconfig.json",
     "Dockerfile",
+    "npm-shrinkwrap.json",
+    "tsconfig.json",
+    "tsconfig.base.json",
+    "asset",
     "src/**/*.ts",
-    "bin/*.js",
-    "dist"
+    "bin",
+    "database",
+    "dist",
+    "!**/*.spec.*",
+    "!**/*.tsbuildinfo"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "build": "npm run tsc && tsc-alias && npm run rp",
-    "clean": "npm run clean:lock & npm run clean:cache & rm -rf dist/*",
+    "clean": "npm run clean:lock && npm run clean:dist && npm run clean:log",
     "clean:cache": "rm -rf .eslintcache .tsbuildinfo",
-    "clean:lock": "rm package-lock.json -f",
-    "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json c8 mocha --loader=ts-node/esm --parallel=false",
+    "clean:dist": "npm run clean:cache && rm -rf dist/*",
+    "clean:lock": "rm -f package-lock.json",
+    "clean:log": "rm -rf ./logs ./run",
+    "cov": "c8 --all npm run test -- --parallel=false",
     "lint": "eslint --fix --cache {src,test}/**/*.ts",
     "lint:nofix": "eslint --cache {src,test}/**/*.ts",
-    "purge": "npm run clean && rm node_modules -rf",
-    "rp": "rollup -c rollup.config.js --context this",
-    "prepack": "rm -f dist/tsconfig.tsbuildinfo",
     "pretest": "npm run build",
-    "pretest:local": "npm run build",
-    "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --loader=ts-node/esm",
-    "test:local": "cross-env TS_NODE_PROJECT=test/tsconfig.json ../../node_modules/.bin/mocha --loader=ts-node/esm --parallel=false",
-    "tsc": "tsc -b "
+    "rp": "tsx bin-hashbang.js",
+    "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --jobs=4",
+    "tsc": "tsc -b"
   }
 }

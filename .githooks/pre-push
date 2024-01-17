@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sh .githooks/set-scripts-executable.sh
+

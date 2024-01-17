@@ -2,7 +2,7 @@ import {
   Config,
   MiddlewareConfig,
   MiddlewareOptions,
-} from './types'
+} from './types.js'
 
 
 export const initialConfig: Readonly<Config> = {

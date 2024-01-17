@@ -1,11 +1,6 @@
 import { basename, dirname } from 'node:path'
 import assert from 'node:assert'
 
-import dts from "rollup-plugin-dts"
-
-// import commonjs from '@rollup/plugin-commonjs'
-// import resolve from '@rollup/plugin-node-resolve'
-// import { terser } from 'rollup-plugin-terser'
 import pkg from './package.json' assert { type: 'json' }
 
 // `npm run build` -> `production` is true
@@ -79,103 +74,12 @@ if (peerDeps && Object.keys(peerDeps).length) {
 external = [...new Set(external)]
 
 const config = []
-const input = 'dist/index.js'
 
-if (pkg.exports) {
-  Object.entries(pkg.exports).forEach(([key, row]) => {
-    if (typeof row !== 'object') { return }
-    if (! row.import && ! row.require) { return }
-
-    const names = genFileNamesForCTS(row)
-    // console.log({ src: row.import, names })
-
-    config.push(
-      {
-        external: external.concat(nodeModule),
-        input: row.import,
-        output: [
-          {
-            file: row.require,
-            banner,
-            format: 'cjs',
-            globals,
-            sourcemap: true,
-            sourcemapExcludeSources: true,
-          },
-        ],
-      },
-      {
-        external: external.concat(nodeModule),
-        input: names.srcPath,
-        output: [
-          {
-            file: names.ctsPath,
-            format: 'cjs',
-          },
-        ],
-        plugins: [dts()],
-      },
-    )
-  })
-}
-else if (pkg.main) {
-  config.push(
-    {
-      external: external.concat(nodeModule),
-      input,
-      output: [
-        {
-          file: 'dist/index.cjs',
-          amd: { id: name },
-          banner,
-          format: 'cjs',
-          globals,
-          name,
-          sourcemap: true,
-          sourcemapExcludeSources: true,
-        },
-      ],
-    },
-  )
-}
-
-
-/*
-if (production) {
-  config.push(
-    // esm minify
-    {
-      external: external.concat(nodeModule),
-      input,
-      plugins: [ terser(uglifyOpts) ],
-      output: {
-        banner,
-        file: 'dist/index.min.mjs',
-        format: 'es',
-        sourcemap: true,
-        sourcemapExcludeSources: true,
-      },
-    },
-    // cjs minify
-    {
-      external: external.concat(nodeModule),
-      input,
-      plugins: [ terser(uglifyOpts) ],
-      output: {
-        banner,
-        file: 'dist/index.min.cjs',
-        format: 'cjs',
-        sourcemap: true,
-        sourcemapExcludeSources: true,
-      },
-    },
-  )
-}
-*/
 
 if (pkg.bin) {
   // const shebang = `#!/usr/bin/env node\n\n${banner}`
-  const shebang = `#!/usr/bin/env ts-node-esm\n\n${banner}`
+  // const shebang = `#!/usr/bin/env ts-node-esm\n\n${banner}`
+  const shebang = `#!/usr/bin/env tsx\n\n${banner}`
 
   for (const binPath of Object.values(pkg.bin)) {
     if (! binPath) {

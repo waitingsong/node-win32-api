@@ -1,9 +1,13 @@
 .ssh/
 dbconfig.json
 package-lock.json
+package-lock.json.*
 yarn.lock
 package.json.lerna_backup
 tsconfig.tsbuildinfo
+npm-shrinkwrap.json
+!/tsconfig.base.json
+tsconfig.base.json
 
 .coveralls.yml
 .factorypath
@@ -40,6 +44,9 @@ v8cov
 /packages/*/config/
 /packages/*/lib/
 /packages/*/test/demo/*.js
+/packages/*/tsconfig.base.json
+/packages/*/tsconfig.eslint.json
+
 test/app/**/*.js
 test/fixtures/**/*.js
 **/test/fixtures/**/*.js

@@ -2,7 +2,7 @@
 
 name: ci
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node: ['lts/*']
+        node: ['lts/*', 'current']
         os: [ubuntu-latest]
 
     steps:
@@ -31,9 +31,9 @@ jobs:
         with:
           path: |
             node_modules
-            node_modules/.cache/nx
+            # node_modules/.cache/nx
             package-lock.json
-            packages/*/.eslintcache
+            # packages/*/.eslintcache
             packages/*/.tsbuildinfo
             packages/*/.vscode
             packages/*/dist
@@ -86,25 +86,21 @@ jobs:
         timeout-minutes: 15
         run: |
           chown -R 1001:121 "/github/home/.npm"
-          # chmod a+w -R .
           # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
           # .github/workflows/fix.sh
-          npm i --no-audit -g autocannon c8 lerna rollup zx
-          # npm run purge
-          npm run bootstrap
+          npm i --no-audit -g autocannon c8 lerna rollup tsx zx
+          npm i
         env:
           CI: true
 
       - name: Build
         run: |
           pwd
-          # chmod a+w -R .
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
-          # .github/workflows/fix.sh
           npm run build --if-present
         env:
           CI: true
@@ -183,7 +179,11 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         # needed because the postgres container does not provide a healthcheck
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
       jaeger:
         image: jaegertracing/all-in-one

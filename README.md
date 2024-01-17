@@ -12,6 +12,11 @@
 
 以下所有命令行操作都在 `git-bash` 窗口中执行
 
+## 安装全局依赖
+```sh
+npm i -g c8 lerna rollup tsx
+```
+
 ## 创建新项目
 
 ### 克隆新项目仓库
@@ -40,8 +45,7 @@ sh init-project.sh
 sh init-project.sh @foo/my_project
 
 # 初始化依赖
-npm run repo:init
-lerna list
+npm install
 ```
 
 ### 根据模板选择初始化子包
@@ -140,16 +144,11 @@ npm run purge
 [`demo`]: https://github.com/waitingsong/npm-mono-base/tree/main/packages/demo
 [main-svg]: https://img.shields.io/npm/v/kmore.svg?maxAge=7200
 [main-ch]: https://github.com/waitingsong/kmore/tree/main/packages/demo/CHANGELOG.md
-[main-d-svg]: https://david-dm.org/waitingsong/kmore.svg?path=packages/kmore
-[main-d-link]: https://david-dm.org/waitingsong/kmore.svg?path=packages/kmore
-[main-dd-svg]: https://david-dm.org/waitingsong/kmore/dev-status.svg?path=packages/kmore
-[main-dd-link]: https://david-dm.org/waitingsong/kmore?path=packages/kmore#info=devDependencies
+
 
 [`demo-cli`]: https://github.com/waitingsong/kmore/tree/main/packages/kmore-cli
 [cli-svg]: https://img.shields.io/npm/v/kmore-cli.svg?maxAge=7200
 [cli-ch]: https://github.com/waitingsong/kmore/tree/main/packages/kmore-clie/CHANGELOG.md
-[cli-d-svg]: https://david-dm.org/waitingsong/kmore.svg?path=packages/kmore-cli
-[cli-d-link]: https://david-dm.org/waitingsong/kmore.svg?path=packages/kmore-cli
-[cli-dd-svg]: https://david-dm.org/waitingsong/kmore/dev-status.svg?path=packages/kmore-cli
-[cli-dd-link]: https://david-dm.org/waitingsong/kmore?path=packages/kmore-cli#info=devDependencies
+
+
 

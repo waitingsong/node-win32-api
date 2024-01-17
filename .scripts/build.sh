@@ -1,4 +1,5 @@
 #!/bin/bash
+. .scripts/env.sh
 
 input="$@"
 scope=''

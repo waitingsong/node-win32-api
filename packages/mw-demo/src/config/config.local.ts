@@ -2,7 +2,7 @@ import { initialConfig, initialMiddlewareConfig } from '##/lib/config.js'
 import type { Config, MiddlewareConfig } from '##/lib/types.js'
 
 
-export const keys = Date.now().toString()
+export const keys = 123456
 export const koa = {
   port: 7001,
 }

@@ -1,5 +1,5 @@
 import { BaseConfig } from '@mwcp/share'
-import { MiddlewareConfig as MWConfig } from '@waiting/shared-types'
+import type { MiddlewareConfig as MWConfig } from '@waiting/shared-types'
 
 
 export enum ConfigKey {

@@ -4,10 +4,10 @@ import {
   Get,
 } from '@midwayjs/core'
 
-import { Config, ConfigKey, Msg } from '../lib/types'
+import { Config, ConfigKey, Msg } from '##/lib/types.js'
 
 
-@Controller(`/${ConfigKey.namespace}`)
+@Controller(`/_${ConfigKey.namespace}`)
 export class DefaultComponentController {
 
   @_Config(ConfigKey.config) readonly config: Config

@@ -3,17 +3,17 @@ import {
   Config,
   ConfigKey,
   MiddlewareConfig,
-} from './lib/types'
+} from './lib/types.js'
 
 
-export { AutoConfiguration as Configuration } from './configuration'
-export * from './app/index.controller'
-export * from './lib/index'
+export { AutoConfiguration as Configuration } from './configuration.js'
+export * from './app/index.controller.js'
+export * from './lib/index.js'
+export * from './middleware/index.middleware.js'
 export {
   getComponentConfig,
   getMiddlewareConfig,
-} from './util/common'
-export * from './middleware/demo.middleware'
+} from './util/common.js'
 
 // @ts-ignore
 declare module '@midwayjs/core/dist/interface' {
