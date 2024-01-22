@@ -6,8 +6,10 @@
 # Date: 2023.07.21
 #
 
-if [[ -f $HOME/.nvm/nvm.sh ]]; then
-  . $HOME/.nvm/nvm.sh
+if [[ -z $NVM_DIR ]]; then
+  if [[ -f $HOME/.nvm/nvm.sh ]]; then
+    . $HOME/.nvm/nvm.sh
+  fi
 fi
 
 branch=$( git branch | grep \* | cut -d ' ' -f2 )

@@ -8,8 +8,10 @@
 # Date: 2017.02.09
 #
 
-if [[ -f $HOME/.nvm/nvm.sh ]]; then
-  . $HOME/.nvm/nvm.sh
+if [[ -z $NVM_DIR ]]; then
+  if [[ -f $HOME/.nvm/nvm.sh ]]; then
+    . $HOME/.nvm/nvm.sh
+  fi
 fi
 
 if git rev-parse --verify HEAD >/dev/null 2>&1
@@ -28,7 +30,7 @@ fi
 # ------------- parse ts
 files=$(git diff --cached --name-only --diff-filter=ACMR $against|grep '\.ts$')
 if [[ $files != "" ]] ; then
-  # echo $files | xargs eslint --fix 
+  # echo $files | xargs eslint --fix
   npm run lint
   rc=$?
   if [[ $rc != 0 ]] ; then
