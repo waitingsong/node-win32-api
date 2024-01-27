@@ -83,7 +83,6 @@
       ],
       "runtimeExecutable": "npm",
       "skipFiles": [
-        "**/node_modules/**",
         "**/node_modules/rxjs/**",
         "<node_internals>/**",
         "<node_internals>/**/*.js"

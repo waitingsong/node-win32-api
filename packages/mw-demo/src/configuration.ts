@@ -13,6 +13,7 @@ import {
   MidwayInformationService,
   MidwayWebRouterService,
 } from '@midwayjs/core'
+import { TraceInit } from '@mwcp/otel'
 import {
   Application,
   IMidwayContainer,
@@ -65,6 +66,7 @@ export class AutoConfiguration implements ILifeCycle {
     }
   }
 
+  @TraceInit({ namespace: ConfigKey.namespace })
   async onReady(container: IMidwayContainer): Promise<void> {
     void container
     assert(

@@ -32,8 +32,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@midwayjs/info": "^3.14.0",
-    "@mwcp/share": "*"
+    "@mwcp/otel": "20 -22",
+    "@mwcp/share": "20 - 22"
   },
   "devDependencies": {
   },
