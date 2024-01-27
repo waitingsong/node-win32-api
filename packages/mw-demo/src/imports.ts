@@ -1,5 +1,6 @@
 import * as info from '@midwayjs/info'
 import * as koa from '@midwayjs/koa'
+import * as swagger from '@midwayjs/swagger'
 
 
 /* c8 ignore next 4 */
@@ -10,9 +11,14 @@ const CI = !! (process.env['MIDWAY_SERVER_ENV'] === 'unittest'
 )
 
 export const useComponents: IComponentInfo[] = []
-if (CI && ! useComponents.includes(koa)) {
-  useComponents.push(koa)
-  useComponents.push(info)
+if (CI) {
+  if ( ! useComponents.includes(koa)) {
+    useComponents.push(koa)
+    useComponents.push(info)
+  }
+  if ( ! useComponents.includes(swagger)) {
+    useComponents.push(swagger)
+  }
 }
 
 export interface IComponentInfo {

@@ -3,25 +3,26 @@ import {
   Controller,
   Get,
 } from '@midwayjs/core'
+import { ApiResponse } from '@midwayjs/swagger'
+
+import { DefaultApi } from './default.types.js'
 
 import { Config, ConfigKey, Msg } from '##/lib/types.js'
 
 
-@Controller(`/_${ConfigKey.namespace}`)
+@Controller(DefaultApi.base)
 export class DefaultComponentController {
 
-  @_Config(ConfigKey.config) readonly config: Config
+  @_Config(ConfigKey.config) private readonly config: Config
 
-  @Get('/hello')
-  hello(): string {
-    this.valiateRoute()
+  @Get(DefaultApi.hello)
+  @ApiResponse({
+    type: 'string',
+    description: Msg.hello,
+  })
+  async hello(): Promise<string > {
+    void this.config
     return Msg.hello
-  }
-
-  valiateRoute(): void {
-    if (! this.config.enableDefaultRoute) {
-      throw new Error('route is not enabled')
-    }
   }
 
 }
