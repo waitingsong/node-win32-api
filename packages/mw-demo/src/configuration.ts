@@ -3,7 +3,7 @@ import assert from 'node:assert'
 
 import {
   App,
-  Config,
+  Config as _Config,
   Configuration,
   ILifeCycle,
   ILogger,
@@ -54,8 +54,8 @@ export class AutoConfiguration implements ILifeCycle {
 
   @Logger() protected readonly logger: ILogger
 
-  @Config(ConfigKey.config) protected readonly config: Conf
-  @Config(ConfigKey.middlewareConfig) protected readonly mwConfig: MiddlewareConfig
+  @_Config(ConfigKey.config) protected readonly config: Conf
+  @_Config(ConfigKey.middlewareConfig) protected readonly mwConfig: MiddlewareConfig
 
   async onConfigLoad(): Promise<void> {
     if (! this.config.enableDefaultRoute) {
