@@ -31,8 +31,8 @@ jobs:
         # pulls all tags (needed for lerna / semantic release to correctly version)
         run: |
           export cwd=`pwd`
-          git config --global --add safe.directory $cwd
-          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+          git config --global --add safe.directory $cwd || true
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/* || true
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
@@ -81,7 +81,7 @@ jobs:
           CI: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Inatall Dependencies
+      - name: Install Dependencies
         timeout-minutes: 15
         run: |
           chmod a+w -R .
