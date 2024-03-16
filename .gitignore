@@ -46,6 +46,7 @@ v8cov
 /packages/*/test/demo/*.js
 /packages/*/tsconfig.base.json
 /packages/*/tsconfig.eslint.json
+/packages/*/.npmrc
 
 test/app/**/*.js
 test/fixtures/**/*.js
