@@ -1,7 +1,7 @@
 {
   "name": "npm-mono-base",
   "version": "1.0.0",
-  "description": "",
+  "description": "nodejs模板",
   "private": true,
   "type": "module",
   "devDependencies": {
