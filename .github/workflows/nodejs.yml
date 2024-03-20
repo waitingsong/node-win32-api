@@ -82,7 +82,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
           PGPASSWORD: postgres
 
-      - name: Inatall Dependencies
+      - name: Install Dependencies
         timeout-minutes: 15
         run: |
           chown -R 1001:121 "/github/home/.npm"

@@ -56,7 +56,7 @@ jobs:
           export cwd=`pwd`
           git config --global --add safe.directory $cwd
 
-      - name: Inatall Dependencies
+      - name: Install Dependencies
         timeout-minutes: 15
         shell: bash
         run: |
