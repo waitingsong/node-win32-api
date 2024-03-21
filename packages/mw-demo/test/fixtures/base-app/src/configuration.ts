@@ -8,10 +8,12 @@ import * as SRC from '../../../../dist/index.js'
   imports: [SRC],
 })
 export class AutoConfiguration {
+
   @App() readonly app: Application
 
   async onReady(): Promise<void> {
     // const foo = this.app.getConfig() as unknown
     // void foo
   }
+
 }

@@ -61,9 +61,11 @@ async function updateConfig(mockApp: Application, config: TestConfig): Promise<v
 }
 
 async function updateConfig2(mockApp: Application, config: TestConfig): Promise<void> {
-  void mockApp, config
+  void mockApp
+  void config
 }
 
 async function clean(mockApp: Application, config: TestConfig): Promise<void> {
-  void mockApp, config
+  void mockApp
+  void config
 }

@@ -60,7 +60,7 @@ async function middleware(
 function wrapRespToJson(ctx: Context): void {
 
   const { status } = ctx
-  const body = ctx.body as JsonResp | void
+  const body = ctx.body as JsonResp | undefined
 
   // 判断是否已经包裹过
   if (body && typeof body === 'object' && typeof body.code === 'number') {
@@ -82,7 +82,7 @@ function wrapRespToJson(ctx: Context): void {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function genJsonBody(ctx: Context, payload: JsonResp | void): JsonResp {
+function genJsonBody(ctx: Context, payload: JsonResp | undefined): JsonResp {
   const { status, reqId } = ctx
   const body: JsonResp = {
     code: status >= 200 && status < 400 ? 0 : status,

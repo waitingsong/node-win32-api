@@ -6,7 +6,7 @@ import { ConfigKey, Msg } from '##/lib/types.js'
 import { RespData, TestRespBody, testConfig } from '#@/root.config.js'
 
 
-describe(fileShortPath(import.meta.url), function() {
+describe(fileShortPath(import.meta.url), () => {
 
   const path = '/'
   const helloPath = `/_${ConfigKey.namespace}/hello`

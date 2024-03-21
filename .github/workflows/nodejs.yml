@@ -166,7 +166,9 @@ jobs:
           OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 
     services:

@@ -15,7 +15,7 @@ export {
   getMiddlewareConfig,
 } from './util/common.js'
 
-// @ts-ignore
+// @ts-expect-error for midway
 declare module '@midwayjs/core/dist/interface' {
   interface MidwayConfig {
     [ConfigKey.config]: Partial<Config>

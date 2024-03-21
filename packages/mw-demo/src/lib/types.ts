@@ -7,7 +7,7 @@ export enum ConfigKey {
   config = 'demoConfig',
   middlewareConfig = 'demoMiddlewareConfig',
   componentName = 'demoComponent',
-  middlewareName = 'demoMiddleware'
+  middlewareName = 'demoMiddleware',
 }
 
 export enum Msg {
