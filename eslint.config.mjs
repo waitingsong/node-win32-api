@@ -10,11 +10,12 @@ const srcRules = {
     bundledDependencies: false,
     packageDir: [
       './',
-      '../../node_modules/@mwcp/share/',
+      // '../../node_modules/@mwcp/share/',
     ],
   }],
 }
 const testRules = {
+  '@typescript-eslint/no-explicit-any': 0
 }
 
 const languageOptions = {
