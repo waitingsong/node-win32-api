@@ -3,13 +3,6 @@ import srcConfig from '@waiting/eslint-config'
 import testConfig from '@waiting/eslint-config/test'
 
 
-const CI = !! ((process.env['CI']
-  ?? process.env['MIDWAY_SERVER_ENV'] === 'unittest')
-  || process.env['MIDWAY_SERVER_ENV'] === 'local'
-  || process.env['NODE_ENV'] === 'unittest'
-  || process.env['NODE_ENV'] === 'local'
-)
-
 const srcRules = {
   'import/no-extraneous-dependencies': [2, {
     devDependencies: false,
@@ -22,11 +15,6 @@ const srcRules = {
   }],
 }
 const testRules = {
-}
-
-if (CI) {
-  srcRules['@stylistic/linebreak-style'] = 0
-  testRules['@stylistic/linebreak-style'] = 0
 }
 
 const languageOptions = {
