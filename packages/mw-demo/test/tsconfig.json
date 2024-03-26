@@ -8,13 +8,11 @@
     "noImplicitThis": false,
     "noPropertyAccessFromIndexSignature": false,
     "noUnusedLocals": false,
+    "rootDir": "..",
     "sourceMap": false
   },
   "include": [
     "../src/",
-    "./**/*.ts"
-  ],
-  "exclude": [
-    "**/*.d.ts"
-  ],
+    "."
+  ]
 }

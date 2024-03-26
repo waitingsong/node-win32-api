@@ -60,7 +60,7 @@
   },
   "scripts": {
     "build": "npm run tsc && tsc-alias",
-    "build:test": "tsc -p test/tsconfig.json",
+    "build:unit": "tsc -p test/tsconfig.json",
     "clean": "npm run clean:lock && npm run clean:dist && npm run clean:log",
     "clean:cache": "rm -rf .eslintcache .tsbuildinfo",
     "clean:dist": "npm run clean:cache && rm -rf dist/*",
@@ -72,7 +72,7 @@
     "lint": "eslint --fix --cache src test",
     "lint:nofix": "eslint --cache src test",
     "predev": "npm run build",
-    "pretest": "npm run build && npm run build:test",
+    "pretest": "npm run build && npm run build:unit",
     "start": "cross-env NODE_ENV=production node ./bootstrap.js",
     "test": "cross-env MIDWAY_SERVER_ENV=unittest TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
     "tsc": "tsc -b"

@@ -21,6 +21,7 @@
     "outDir": "dist",
     "paths": {
       "##/*": ["src/*"],
+      "#a/*": ["src/app/*"],
       "#@/*": ["test/*"]
     },
     "preserveConstEnums": true,
@@ -43,6 +44,7 @@
     "app/public",
     "app/views",
     "dist",
+    "fixtures",
     "node_modules*",
     "**/*.d.ts",
     "**/*.spec.ts"
