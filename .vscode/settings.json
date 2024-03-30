@@ -120,9 +120,7 @@
   "terminal.integrated.profiles.linux": {
     "bash (login)": {
       "path": "bash",
-      "args": [
-        "-l"
-      ]
+      "args": ["-l"]
     }
   },
   "terminal.integrated.defaultProfile.windows": "Git Bash",

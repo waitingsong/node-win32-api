@@ -31,7 +31,6 @@ jobs:
         with:
           path: |
             node_modules
-            # node_modules/.cache/nx
             package-lock.json
             # packages/*/.eslintcache
             packages/*/.tsbuildinfo

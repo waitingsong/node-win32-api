@@ -69,7 +69,6 @@ jobs:
           locale-gen
           locale -a
           netstat -tunpl
-          # chmod a+w -R .
 
       - name: Verify
         run: |
@@ -84,7 +83,6 @@ jobs:
       - name: Install Dependencies
         timeout-minutes: 15
         run: |
-          # chmod a+w -R .
           export cwd=`pwd`
           npm i --no-audit -g autocannon c8 lerna rollup tsx zx
           npm i --no-audit
@@ -93,7 +91,6 @@ jobs:
 
       - name: Build
         run: |
-          # chmod a+w -R .
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
@@ -116,7 +113,6 @@ jobs:
         run: |
           npm ping
           npm whoami
-          # chmod a+w -R .
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           # fix: fatal: detected dubious ownership in repository
