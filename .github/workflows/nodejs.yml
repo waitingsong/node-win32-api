@@ -60,7 +60,6 @@ jobs:
           locale-gen
           locale -a
           netstat -tunpl
-          # chmod a+w -R .
           dig jaeger
           export cwd=`pwd`
           git config --global --add safe.directory $cwd
@@ -147,21 +146,20 @@ jobs:
           # redis
           REDIS_HOST: redis
           REDIS_PORT: 6379
-
+          # otel
+          OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
+          # aliyun
           ALI_ALB_IPS: ${{ secrets.ALI_ALB_IPS }}
           ALI_ALB_GROUPID: ${{ secrets.ALI_ALB_GROUPID }}
-
           ALI_ECS_AID: ${{ secrets.ALI_ECS_AID }}
           ALI_ECS_ASECRET: ${{ secrets.ALI_ECS_ASECRET }}
           ALI_ECS_IDS: ${{ secrets.ALI_ECS_IDS }}
           ALI_ECS_IPS: ${{ secrets.ALI_ECS_IPS }}
-
           ALI_OSS_AID: ${{ secrets.ALI_OSS_AID }}
           ALI_OSS_ASECRET: ${{ secrets.ALI_OSS_ASECRET }}
           ALI_OSS_ENDPOINT: ${{ secrets.ALI_OSS_ENDPOINT }}
           ALI_OSS_BUCKET: ${{ secrets.ALI_OSS_BUCKET }}
 
-          OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
