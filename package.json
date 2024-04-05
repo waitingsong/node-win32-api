@@ -27,11 +27,11 @@
     "mocha-lcov-reporter": "1",
     "mwtsc": "^1.7.2",
     "nx": "18",
-    "swagger-ui-dist": "^5.12.0",
+    "swagger-ui-dist": "^5.13.0",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.8",
     "tsx": "4",
-    "typescript": "^5.4.3",
+    "typescript": "^5.4.4",
     "zx": "7"
   },
   "engines": {
