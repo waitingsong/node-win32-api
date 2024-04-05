@@ -3,7 +3,6 @@ import assert from 'node:assert'
 
 import {
   App,
-  Config as _Config,
   Configuration,
   ILifeCycle,
   ILogger,
@@ -17,6 +16,7 @@ import { TraceInit } from '@mwcp/otel'
 import {
   Application,
   IMidwayContainer,
+  MConfig,
   registerMiddleware,
   deleteRouter,
 } from '@mwcp/share'
@@ -26,7 +26,7 @@ import * as LocalConfig from './config/config.local.js'
 import * as UnittestConfig from './config/config.unittest.js'
 import { useComponents } from './imports.js'
 import {
-  Config as Conf,
+  Config,
   ConfigKey,
   MiddlewareConfig,
 } from './lib/types.js'
@@ -54,8 +54,8 @@ export class AutoConfiguration implements ILifeCycle {
 
   @Logger() protected readonly logger: ILogger
 
-  @_Config(ConfigKey.config) protected readonly config: Conf
-  @_Config(ConfigKey.middlewareConfig) protected readonly mwConfig: MiddlewareConfig
+  @MConfig(ConfigKey.config) protected readonly config: Config
+  @MConfig(ConfigKey.middlewareConfig) protected readonly mwConfig: MiddlewareConfig
 
   async onConfigLoad(): Promise<void> {
     if (! this.config.enableDefaultRoute) {

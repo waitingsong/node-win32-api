@@ -1,12 +1,11 @@
 import assert from 'node:assert/strict'
 
 import {
-  Config as _Config,
   Init,
   Inject,
   Provide,
 } from '@midwayjs/core'
-import type { Context } from '@mwcp/share'
+import { Context, MConfig } from '@mwcp/share'
 
 import { Config, ConfigKey } from './types.js'
 
@@ -14,7 +13,7 @@ import { Config, ConfigKey } from './types.js'
 @Provide()
 export class Demo2Component {
 
-  @_Config(ConfigKey.config) protected readonly config: Config
+  @MConfig(ConfigKey.config) protected readonly config: Config
 
   @Inject() readonly ctx: Context
 
