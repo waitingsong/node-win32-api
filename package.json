@@ -16,13 +16,10 @@
     "@waiting/eslint-config": "^10.19.0",
     "@waiting/shared-core": "^23.3.0",
     "@waiting/shared-types": "^23.2.1",
-    "autocannon": "7",
-    "c8": "9",
     "coveralls": "3",
     "cross-env": "7",
     "debug": "^4.3.4",
     "eslint": "8",
-    "madge": "6",
     "mocha": "10",
     "mocha-lcov-reporter": "1",
     "mwtsc": "^1.7.2",
@@ -30,9 +27,7 @@
     "swagger-ui-dist": "^5.13.0",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.8",
-    "tsx": "4",
-    "typescript": "^5.4.4",
-    "zx": "7"
+    "typescript": "^5.4.4"
   },
   "engines": {
     "node": ">=20.11.0"

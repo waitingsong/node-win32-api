@@ -9,7 +9,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     container: node:current
     timeout-minutes: 60
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    # if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[perf]') }}
 
     strategy:
       matrix:
@@ -32,12 +33,8 @@ jobs:
           path: |
             node_modules
             package-lock.json
-            # packages/*/.eslintcache
             packages/*/.tsbuildinfo
-            packages/*/.vscode
             packages/*/dist
-            packages/*/node_modules
-            packages/*/package-lock.json
           key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-
@@ -86,7 +83,7 @@ jobs:
           # chown -R 1001:121 "/github/home/.npm"
           # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
-          npm i --no-audit -g autocannon c8 lerna rollup tsx zx
+          npm i --no-audit -g c8 lerna madge tsx zx
           npm i
         env:
           CI: true

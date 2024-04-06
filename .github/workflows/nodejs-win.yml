@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }} && ${{ github.actor != 'dependabot[bot]' }}
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[perf]') }}
     # if:  github.actor != 'dependabot[bot]'
 
     strategy:
@@ -32,12 +32,10 @@ jobs:
           path: |
             node_modules
             package-lock.json
-            # packages/*/.eslintcache
             packages/*/.tsbuildinfo
-            packages/*/.vscode
             packages/*/dist
             packages/*/node_modules
-            packages/*/package-lock.json
+            C:\npm\prefix\node_modules
           key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-
@@ -60,7 +58,7 @@ jobs:
         shell: bash
         run: |
           export cwd=`pwd`
-          npm i --no-audit -g autocannon c8 lerna rollup tsx zx
+          npm i --no-audit -g c8 lerna madge rollup tsx zx
           npm i
         env:
           CI: true
