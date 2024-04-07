@@ -15,6 +15,8 @@ export {
   getMiddlewareConfig,
 } from './util/common.js'
 
+export * from './interface.js'
+
 // @ts-expect-error for midway
 declare module '@midwayjs/core/dist/interface' {
   interface MidwayConfig {
