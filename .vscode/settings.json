@@ -151,5 +151,16 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": false
   },
-  "workbench.editor.wrapTabs": false
+  "workbench.editor.wrapTabs": false,
+  "workbench.editor.customLabels.enabled": true,
+  "workbench.editor.customLabels.patterns": {
+    "test/**/*": "${dirname}/${filename}.${extname} - test",
+    "dist/**/*": "${dirname}/${filename}.${extname} - dist",
+    "**/*": "${dirname}/${filename}.${extname}",
+    "packages/**/src/*": "${dirname(1)}/${dirname}/${filename}.${extname}",
+    "packages/**/test/*": "${dirname(1)}/${dirname}/${filename}.${extname}",
+    "packages/**/src/**/*": "${dirname(1)}/${dirname}/${filename}.${extname} - ${dirname(2)}",
+    "packages/**/test/**/*": "${dirname(1)}/${dirname}/${filename}.${extname} - ${dirname(2)}",
+    "packages/**/*": "${dirname(1)}/${dirname}/${filename}.${extname}"
+  }
 }
