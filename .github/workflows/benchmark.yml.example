@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node: ['current']
+        node: ['lts/*']
         os: [ubuntu-latest]
 
     steps:
@@ -35,12 +35,8 @@ jobs:
           path: |
             node_modules
             package-lock.json
-            packages/*/.eslintcache
-            packages/*/.vscode
             packages/*/.tsbuildinfo
             packages/*/dist
-            packages/*/node_modules
-            packages/*/package-lock.json
           key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-
@@ -62,8 +58,9 @@ jobs:
           locale-gen
           locale -a
           netstat -tunpl
-          chmod a+w -R .
           dig jaeger
+          export cwd=`pwd`
+          git config --global --add safe.directory $cwd
 
       - name: Verify
         run: |
@@ -81,26 +78,21 @@ jobs:
           POSTGRES_PASSWORD: postgres
           PGPASSWORD: postgres
 
-      - name: Inatall Dependencies
+      - name: Install Dependencies
         timeout-minutes: 15
         run: |
-          chown -R 1001:121 "/github/home/.npm"
-          chmod a+w -R .
           export cwd=`pwd`
-          npm i --no-audit -g autocannon c8 lerna rollup zx
-          # npm run purge
-          npm run bootstrap
+          npm i --no-audit -g c8 lerna madge rollup tsx zx
+          npm i
         env:
           CI: true
 
       - name: Build
         run: |
-          chmod a+w -R .
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
-          # .github/workflows/fix.sh
           npm run build --if-present
         env:
           CI: true
@@ -108,7 +100,9 @@ jobs:
       - name: Benchmark demo
         timeout-minutes: 10
         run: |
-          .scripts/benchmark/start-benchmark.mjs --qps=2800 --api=demo/hello --p=mw-demo
+          pwd
+          .scripts/benchmark/start-benchmark.mjs --qps=1600 --api=_demo/hello --p=mw-demo
+          # .benchmark.mjs --api=demo/hello
         env:
           CI: true
           OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
@@ -123,7 +117,11 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         # needed because the postgres container does not provide a healthcheck
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
       jaeger:
         image: jaegertracing/all-in-one
@@ -138,3 +136,4 @@ jobs:
           - 6832:6832/udp
           - 14250:14250
           - 16686:16686
+

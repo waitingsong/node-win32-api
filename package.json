@@ -16,6 +16,7 @@
     "@waiting/eslint-config": "^10.19.0",
     "@waiting/shared-core": "^23.3.0",
     "@waiting/shared-types": "^23.2.1",
+    "autocannon": "7",
     "coveralls": "3",
     "cross-env": "7",
     "debug": "^4.3.4",

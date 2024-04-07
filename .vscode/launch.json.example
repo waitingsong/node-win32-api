@@ -67,7 +67,7 @@
         "OTEL_EXPORTER_OTLP_ENDPOINT": "http://127.0.0.1:4317",
         "TS_NODE_TYPE_CHECK": "false",
         "TS_NODE_TRANSPILE_ONLY": "true",
-        "POSTGRES_HOST": "",
+        "POSTGRES_HOST": "127.0.0.1",
         "POSTGRES_PORT": "5432",
         "POSTGRES_DB": "",
         "POSTGRES_USER": "postgres",
