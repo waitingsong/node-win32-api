@@ -84,7 +84,7 @@ jobs:
         timeout-minutes: 15
         run: |
           export cwd=`pwd`
-          npm i --no-audit -g lerna rollup tsx zx
+          npm i --no-audit -g lerna rollup tsx zx madge
           npm i --no-audit
         env:
           CI: true
