@@ -8,14 +8,9 @@ import {
 
 export { AutoConfiguration as Configuration } from './configuration.js'
 export * from './app/index.controller.js'
+export * from './interface.js'
 export * from './lib/index.js'
 export * from './middleware/index.middleware.js'
-export {
-  getComponentConfig,
-  getMiddlewareConfig,
-} from './util/common.js'
-
-export * from './interface.js'
 
 // @ts-expect-error for midway
 declare module '@midwayjs/core/dist/interface' {
