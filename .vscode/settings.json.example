@@ -155,14 +155,16 @@
   "workbench.editor.customLabels.enabled": true,
   "workbench.editor.customLabels.patterns": {
     "src/app/**/*.ts": "${dirname}/${filename}",
-    "test/**/*": "${dirname}/${filename}.${extname} - test",
-    "dist/**/*": "${dirname}/${filename}.${extname} - dist",
-    "packages/**/src/app/**": "${dirname(1)}/${dirname}/${filename}",
-    "packages/**/src/*": "${dirname(1)}/${dirname}/${filename}.${extname}",
-    "packages/**/test/*": "${dirname(1)}/${dirname}/${filename}.${extname}",
-    "packages/**/src/**/*": "${dirname(1)}/${dirname}/${filename}.${extname} - ${dirname(2)}",
-    "packages/**/test/**/*": "${dirname(1)}/${dirname}/${filename}.${extname} - ${dirname(2)}",
-    "packages/**/*": "${dirname(1)}/${dirname}/${filename}.${extname}",
-    "**/*": "${dirname}/${filename}.${extname}"
+    "src/**": "${dirname}/${filename}.${extname}"
+    "test/**": "${dirname}/${filename}.${extname} - test",
+    "dist/**": "${dirname}/${filename}.${extname} - dist",
+    "packages/*/src/app/**": "${dirname(1)}/${dirname}/${filename} src",
+    "packages/*/src/*.*": "${filename}.${extname} src",
+    "packages/*/test/*.*": "${filename}.${extname} test",
+    "packages/*/src/**": "${dirname}/${filename}.${extname} - src",
+    "packages/*/test/**": "${dirname}/${filename}.${extname} - test",
+    "packages/*/*.*": "${dirname}/${filename}.${extname}",
+    "packages/*/**": "${dirname(1)}/${dirname}/${filename}.${extname}",
+    "**/node_modules/**/*": "${filename}.${extname} - ${dirname(2)}/${dirname(1)}/${dirname}"
   }
 }
