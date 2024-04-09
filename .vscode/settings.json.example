@@ -34,7 +34,7 @@
     "build": true,
     "commitlint.*": true,
     "coverage": true,
-    "dist": true,
+    "dist": false,
     "logs": true,
     "out": true,
     "package-lock.json": true,
@@ -156,8 +156,8 @@
   "workbench.editor.customLabels.patterns": {
     "src/app/**/*.ts": "${dirname}/${filename}",
     "src/**": "${dirname}/${filename}.${extname}"
-    "test/**": "${dirname}/${filename}.${extname} - test",
-    "dist/**": "${dirname}/${filename}.${extname} - dist",
+    "test/**": "${filename}.${extname} - test",
+    "dist/**": "${filename}.${extname} - dist",
     "packages/*/src/app/**": "${dirname(1)}/${dirname}/${filename} src",
     "packages/*/src/*.*": "${filename}.${extname} src",
     "packages/*/test/*.*": "${filename}.${extname} test",
