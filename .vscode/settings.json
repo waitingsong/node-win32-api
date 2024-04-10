@@ -155,7 +155,7 @@
   "workbench.editor.customLabels.enabled": true,
   "workbench.editor.customLabels.patterns": {
     "src/app/**/*.ts": "${dirname}/${filename}",
-    "src/**": "${dirname}/${filename}.${extname}"
+    "src/**": "${dirname}/${filename}.${extname}",
     "test/**": "${filename}.${extname} - test",
     "dist/**": "${filename}.${extname} - dist",
     "packages/*/src/app/**": "${dirname(1)}/${dirname}/${filename} src",
