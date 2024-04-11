@@ -7,7 +7,7 @@ export const apiBase = {
   demo: '/demo',
 }
 
-export const apiPath = {
+export const apiMethod = {
   root: '/',
   hello: 'hello',
   component: 'component',

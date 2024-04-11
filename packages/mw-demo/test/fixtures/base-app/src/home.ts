@@ -9,7 +9,7 @@ import {
   ConfigKey,
   MiddlewareConfig,
 } from '../../../../dist/lib/types.js'
-import { apiBase, apiPath } from '../../../api-test.js'
+import { apiBase, apiMethod } from '../../../api-test.js'
 import { RespData } from '../../../root.config.js'
 
 
@@ -19,7 +19,7 @@ export class HomeController {
   @MConfig(ConfigKey.config) protected readonly config: Config
   @MConfig(ConfigKey.middlewareConfig) protected readonly mwConfig: MiddlewareConfig
 
-  @Get(apiPath.root)
+  @Get(apiMethod.root)
   async home(ctx: Context): Promise<RespData> {
     const {
       cookies,

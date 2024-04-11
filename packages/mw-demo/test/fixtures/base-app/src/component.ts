@@ -11,7 +11,7 @@ import {
   ConfigKey,
   MiddlewareConfig,
 } from '../../../../dist/lib/types.js'
-import { apiBase, apiPath } from '../../../api-test.js'
+import { apiBase, apiMethod } from '../../../api-test.js'
 import { RespData } from '../../../root.config.js'
 
 
@@ -24,7 +24,7 @@ export class HomeController {
   @Inject() protected readonly demoComponent: DemoComponent
   @Inject() protected readonly demo2Component: Demo2Component
 
-  @Get(`/${apiPath.component}`)
+  @Get(`/${apiMethod.component}`)
   async home(ctx: Context): Promise<RespData> {
     const {
       cookies,
