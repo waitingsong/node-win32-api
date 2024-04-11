@@ -1,9 +1,11 @@
 import {
   Controller,
   Get,
+  Inject,
 } from '@midwayjs/core'
 import { Context, MConfig } from '@mwcp/share'
 
+import { DemoComponent, Demo2Component } from '../../../../dist/lib/index.js'
 import {
   Config,
   ConfigKey,
@@ -19,7 +21,10 @@ export class HomeController {
   @MConfig(ConfigKey.config) protected readonly config: Config
   @MConfig(ConfigKey.middlewareConfig) protected readonly mwConfig: MiddlewareConfig
 
-  @Get(apiPath.root)
+  @Inject() protected readonly demoComponent: DemoComponent
+  @Inject() protected readonly demo2Component: Demo2Component
+
+  @Get(`/${apiPath.component}`)
   async home(ctx: Context): Promise<RespData> {
     const {
       cookies,

@@ -3,19 +3,19 @@ import assert from 'node:assert/strict'
 import { fileShortPath } from '@waiting/shared-core'
 
 import { ConfigKey, Msg } from '##/lib/types.js'
+import { apiBase, apiPath } from '#@/api-test.js'
 import { RespData, TestRespBody, testConfig } from '#@/root.config.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
 
-  const path = '/'
-  const helloPath = `/_${ConfigKey.namespace}/hello`
+  const helloPath = `${apiBase.prefix}/${apiPath.hello}`
 
-  it(`Should ${path} work`, async () => {
+  it(`Should ${apiBase.root} work`, async () => {
     const { app, httpRequest } = testConfig
 
     const resp = await httpRequest
-      .get(path)
+      .get(apiBase.root)
       .expect(200)
 
     const ret = resp.body as TestRespBody | RespData
