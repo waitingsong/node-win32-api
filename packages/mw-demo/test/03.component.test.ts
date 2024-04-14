@@ -16,8 +16,8 @@ describe(fileShortPath(import.meta.url), () => {
 
     const resp = await httpRequest
       .get(url)
-      .expect(200)
 
+    assert(resp.ok, resp.text)
     const ret = resp.text
     assert(ret.includes(url), JSON.stringify(ret, null, 2))
   })

@@ -16,8 +16,9 @@ describe(fileShortPath(import.meta.url), () => {
 
     const resp = await httpRequest
       .get(apiBase.root)
-      .expect(200)
+      // .expect(200)
 
+    assert(resp.ok, resp.text)
     const ret = resp.body as TestRespBody | RespData
     assert(typeof ret === 'object', JSON.stringify(ret, null, 2))
 
@@ -43,8 +44,8 @@ describe(fileShortPath(import.meta.url), () => {
 
     const resp = await httpRequest
       .get(helloPath)
-      .expect(200)
 
+    assert(resp.ok, resp.text)
     const ret = resp.text
     assert(ret.includes(Msg.hello), JSON.stringify(ret, null, 2))
   })
