@@ -14,7 +14,7 @@ const srcRules = {
     bundledDependencies: false,
     packageDir: [
       './',
-      await genModuleAbsolutePathIfExists(projectDir, 'node_modules/@mwcp/share'),
+      await genModuleAbsolutePathIfExists(projectDir, 'node_modules/@mwcp/share') ?? '.',
     ],
   }],
 }
