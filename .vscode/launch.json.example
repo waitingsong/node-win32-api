@@ -54,6 +54,7 @@
         "<node_internals>/**",
         "<node_internals>/**/*.js"
       ],
+      "smartStep": false,
       "timeout": 30000
     },
     {
