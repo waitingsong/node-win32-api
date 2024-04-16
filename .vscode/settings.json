@@ -94,6 +94,7 @@
     ".gitlab": false,
     ".scripts": false,
     ".tsbuildinfo": true,
+    "dist": true,
     "i18n": true,
     "library/": true,
     "node_modules": true,
