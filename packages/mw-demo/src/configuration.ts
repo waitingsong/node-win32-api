@@ -58,6 +58,7 @@ export class AutoConfiguration implements ILifeCycle {
   @MConfig(ConfigKey.middlewareConfig) protected readonly mwConfig: MiddlewareConfig
 
   async onConfigLoad(): Promise<void> {
+    /* c8 ignore next 3 */
     if (! this.config.enableDefaultRoute) {
       await deleteRouter(`/_${ConfigKey.namespace}`, this.webRouterService)
     }
