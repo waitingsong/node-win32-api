@@ -1,4 +1,13 @@
 {
+  "Pomise unknown": {
+    "scope": "typescript",
+    "prefix": "pms.unknown",
+    "body": [
+      "Promise<unknown>"
+    ],
+    "description": ""
+  },
+
   "Pomise any": {
     "scope": "typescript",
     "prefix": "pms.any",

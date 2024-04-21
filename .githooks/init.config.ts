@@ -18,6 +18,7 @@ export const globalConfigFileArr: string[] = [
   '.vscode/settings.json.example',
   '.vscode/ci.code-snippets.example',
   '.vscode/midway.code-snippets.example',
+  '.vscode/promise.code-snippets.example',
   './tsconfig.base.json',
   './tsconfig.eslint.json',
   './rollup.config.js',
