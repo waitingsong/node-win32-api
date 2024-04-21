@@ -45,7 +45,7 @@
     "bootstrap": "npm i --loglevel info --disturl=https://npmmirror.com/dist/",
     "build": "sh .scripts/build.sh",
     "ci": "npm run cov",
-    "clean": "lerna clean --loglevel error --yes && lerna run clean && nx reset",
+    "clean": "lerna clean --loglevel error --yes && lerna run clean",
     "cov": "sh .scripts/cov.sh",
     "lint": "sh .scripts/lint.sh",
     "lint:cycle": "lerna exec -- madge --circular --extensions ts src",
