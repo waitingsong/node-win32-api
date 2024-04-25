@@ -3,7 +3,7 @@ import { basename } from 'node:path'
 import { readFile, writeFile } from 'node:fs/promises'
 import assert from 'node:assert'
 
-import pkg from './package.json' assert { type: 'json' }
+import pkg from './package.json' with { type: 'json' }
 
 let name = pkg.name
 
@@ -58,7 +58,6 @@ function parseName(name) {
   else {
     throw new TypeError('name invalid')
   }
-  return name
 }
 
 
