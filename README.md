@@ -37,7 +37,7 @@ curl -kL https://github.com.cnpmjs.org/waitingsong/npm-mono-base/raw/main/packag
 git add package.json
 git commit -m "chore: initialize"
 npm run bp:add
-git fetch bp -v && git merge bp/main --allow-unrelated-histories -m "Merge remote-tracking branch 'bp/main'"
+npm run bp:sync-force
 
 # 使用目录名作为项目名
 sh init-project.sh
