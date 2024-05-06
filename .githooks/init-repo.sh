@@ -31,6 +31,7 @@ fi;
 echo It may going for a long time. Plese wait...
 .githooks/gen-file-from-example.mts
 
-nx reset
 lerna list
+set +e
+nx reset
 echo init done
