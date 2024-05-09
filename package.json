@@ -23,7 +23,7 @@
     "mocha": "10",
     "mocha-lcov-reporter": "1",
     "mwtsc": "^1.8.1",
-    "nx": "19",
+    "nx": "18",
     "swagger-ui-dist": "^5.17.6",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.8",
