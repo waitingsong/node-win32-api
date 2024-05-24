@@ -80,7 +80,6 @@ jobs:
       - name: Install Dependencies
         timeout-minutes: 15
         run: |
-          # chown -R 1001:121 "/github/home/.npm"
           # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
           npm i --no-audit -g c8 lerna madge tsx zx
