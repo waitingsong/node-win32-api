@@ -25,7 +25,6 @@ if [ -z "$CI" ]; then
   git config --local remote.origin.prune true
   git config --local remote.origin.tagopt --tags
   git config --local remote.pushdefault origin
-  npm update --no-audit
 fi;
 
 echo It may going for a long time. Plese wait...
