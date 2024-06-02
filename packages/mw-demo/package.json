@@ -32,8 +32,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@mwcp/otel": "29",
-    "@mwcp/share": "29"
+    "@mwcp/otel": "30",
+    "@mwcp/share": "30"
   },
   "devDependencies": {
   },
