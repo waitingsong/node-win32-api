@@ -56,7 +56,7 @@
     "pub:next": "bash .scripts/publish.sh --dist-tag next",
     "purge": "sh .scripts/purge.sh",
     "repo:init": "sh .githooks/init-repo.sh",
-    "refresh": "npm run clean && npm update && npm run build",
+    "refresh": "npm run clean && npm update --no-audit && npm run build",
     "test": "lerna run test",
     "ptest": "sh .scripts/test.sh"
   }
