@@ -21,7 +21,6 @@
     "eslint": "8",
     "mocha": "10",
     "mwtsc": "^1.10.0",
-    "nx": "19",
     "swagger-ui-dist": "^5.17.12",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",

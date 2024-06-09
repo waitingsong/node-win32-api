@@ -32,5 +32,4 @@ echo It may going for a long time. Plese wait...
 
 lerna list
 set +e
-nx reset
 echo init done
