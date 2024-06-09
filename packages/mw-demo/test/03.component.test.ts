@@ -14,10 +14,9 @@ describe(fileShortPath(import.meta.url), () => {
   it(`Should ${url} work`, async () => {
     const { app, httpRequest } = testConfig
 
-    const resp = await httpRequest
-      .get(url)
-
+    const resp = await httpRequest.get(url)
     assert(resp.ok, resp.text)
+
     const ret = resp.text
     assert(ret.includes(url), JSON.stringify(ret, null, 2))
   })
