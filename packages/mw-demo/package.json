@@ -72,7 +72,7 @@
     "lint": "eslint --fix --cache src test",
     "lint:nofix": "eslint --cache src test",
     "predev": "npm run build",
-    "pretest": "npm run build && npm run build:unit",
+    "pretest": "npm run build:unit",
     "start": "cross-env NODE_ENV=production node ./bootstrap.js",
     "start:gc": "cross-env NODE_ENV=local node --trace_gc ./bootstrap.js",
     "test": "cross-env MIDWAY_SERVER_ENV=unittest TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",

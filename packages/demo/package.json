@@ -66,7 +66,7 @@
     "cov": "c8 --all npm run test -- --parallel=false",
     "lint": "eslint --fix --cache src test",
     "lint:nofix": "eslint --cache src test",
-    "pretest": "npm run build && npm run build:unit",
+    "pretest": "npm run build:unit",
     "rp": "tsx bin-hashbang.js",
     "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --jobs=4",
     "tsc": "tsc -p tsconfig.json"
