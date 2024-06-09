@@ -5,14 +5,14 @@ import {
 } from '@midwayjs/core'
 import { Context, MConfig } from '@mwcp/share'
 
-import { DemoComponent, Demo2Component } from '../../../../dist/lib/index.js'
+import { apiBase, apiMethod } from './types/api-test.js'
+import { DemoComponent, Demo2Component } from './types/lib-index.js'
 import {
   Config,
   ConfigKey,
   MiddlewareConfig,
-} from '../../../../dist/lib/types.js'
-import { apiBase, apiMethod } from '../../../api-test.js'
-import { RespData } from '../../../root.config.js'
+} from './types/lib-types.js'
+import { RespData } from './types/root.config.js'
 
 
 @Controller(apiBase.root)
