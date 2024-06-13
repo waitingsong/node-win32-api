@@ -4,7 +4,8 @@
 [![GitHub tag](https://img.shields.io/github/tag/waitingsong/npm-mono-base.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![](https://img.shields.io/badge/lang-TypeScript-blue.svg)]()
-[![ci](https://github.com/waitingsong/npm-mono-base/workflows/ci/badge.svg)](https://github.com/waitingsong/npm-mono-base/actions?query=workflow%3A%22ci%22)
+[![ci](https://github.com/waitingsong/npm-mono-base/actions/workflows/nodejs.yml/badge.svg
+)](https://github.com/waitingsong/npm-mono-base/actions)
 [![codecov](https://codecov.io/gh/waitingsong/npm-mono-base/branch/main/graph/badge.svg?token=Voxor5PtnG)](https://codecov.io/gh/waitingsong/npm-mono-base)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
