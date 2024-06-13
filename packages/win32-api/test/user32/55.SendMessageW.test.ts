@@ -14,7 +14,7 @@ import {
   StructFactory,
 } from '../../src/index.js'
 import { calcLpszWindow } from '../config.unittest.js'
-import { user32, destroyWin } from '../helper.js'
+import { user32, destroyWin, assertsHwnd } from '../helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
@@ -30,7 +30,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     const hWnd = await user32FindWindowEx(0, 0, null, calcLpszWindow)
-    assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
+    assertsHwnd(hWnd)
 
     let ret = await user32.SendMessageW(hWnd, CS.WM_COMMAND, 1000, 3)
     assert(ret === 0)
@@ -44,7 +44,7 @@ describe(fileShortPath(import.meta.url), () => {
     await sleep(1500)
 
     const hWnd = await user32FindWindowEx(0, 0, null, calcLpszWindow)
-    assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
+    assertsHwnd(hWnd)
 
     const copyData = StructFactory<M.COPYDATASTRUCT>(DS.COPYDATASTRUCT)
     const msgBuff = Buffer.from('foo\0', 'ucs2')

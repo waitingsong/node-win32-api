@@ -20,7 +20,7 @@ import {
 } from '../src/index.js'
 
 import { calcLpszClassNotepad, calcLpszNotepad } from './config.unittest.js'
-import { user32, user32Sync } from './helper.js'
+import { assertsHwnd, user32, user32Sync } from './helper.js'
 
 
 const tmpMap = new Map<number | string | bigint, M.POINT>()
@@ -39,7 +39,7 @@ describe(fileShortPath(import.meta.url), () => {
 
       const hWnd = await user32FindWindowEx(0, 0, calcLpszNotepad, null)
       assert(hWnd)
-      assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
+      assertsHwnd(hWnd)
 
       // Change title of the Calculator
       await user32.SetWindowTextW(hWnd, ucsBufferFrom(title))
@@ -57,8 +57,8 @@ describe(fileShortPath(import.meta.url), () => {
       const adress = point.ref().address()
       tmpMap.delete(adress)
 
-      await enumWindows(enumWindowsProc, adress)
-      console.log({ adress })
+      await enumWindows(enumWindowsProc, address)
+      console.log({ address })
 
       const point2 = tmpMap.get(adress)
       assert(point2, 'point2 should be got')
@@ -82,7 +82,7 @@ describe(fileShortPath(import.meta.url), () => {
       console.log(new Date().toLocaleTimeString())
 
       const hWnd = user32Sync.FindWindowExW(0, 0, calcLpszClassNotepad, null)
-      assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
+      assertsHwnd(hWnd)
 
       // Change title of the Calculator
       user32Sync.SetWindowTextW(hWnd, ucsBufferFrom(title))
@@ -100,19 +100,19 @@ describe(fileShortPath(import.meta.url), () => {
       point.x = 101
       point.y = Math.round(Math.random() * 1000000)
 
-      const adress = point.ref().address()
-      tmpMap.delete(adress)
+      const address = point.ref().address()
+      tmpMap.delete(address)
 
-      await enumWindows(enumWindowsProc, adress)
-      console.log({ adress })
+      await enumWindows(enumWindowsProc, address)
+      console.log({ address })
 
-      const point2 = tmpMap.get(adress)
+      const point2 = tmpMap.get(address)
       assert(point2, 'point2 should be got')
       if (point2) {
         assert(point.x === point2.x)
         assert(point.y === point2.y)
       }
-      tmpMap.delete(adress)
+      tmpMap.delete(address)
 
       child.kill()
       console.log({ killed: child.killed })

@@ -12,7 +12,7 @@ import {
   calcLpszNotepad,
   calcLpszNotepadEdit,
 } from '../config.unittest.js'
-import { user32, destroyWin } from '../helper.js'
+import { user32, destroyWin, assertsHwnd } from '../helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
@@ -22,10 +22,10 @@ describe(fileShortPath(import.meta.url), () => {
     await sleep(1500)
 
     const hWnd = await user32FindWindowEx(0, 0, calcLpszNotepad, null)
-    assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
+    assertsHwnd(hWnd)
 
     const hWndEdit = await user32FindWindowEx(hWnd, 0, calcLpszNotepadEdit, null)
-    assert((typeof hWndEdit === 'string' && hWndEdit.length > 0) || hWndEdit > 0)
+    assertsHwnd(hWndEdit)
 
     const txt = 'Hello World.' + Math.random().toString()
     const msgBuff = ucsBufferFrom(txt)

@@ -113,7 +113,8 @@ export async function createWindow(wndProc: M.WNDPROC): Promise<M.HWND> {
     ref.NULL,
   )
 
-  assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'CreateWindowExW() failed')
+  assertsHwnd(hWnd)
+
   // @FIXME timeout
   // await user32.ShowWindow(hWnd, 1)
   await user32.UpdateWindow(hWnd)
@@ -122,22 +123,25 @@ export async function createWindow(wndProc: M.WNDPROC): Promise<M.HWND> {
 }
 
 export async function changeTitle(hWnd: M.HANDLE, title: string): Promise<string> {
-  if (typeof hWnd === 'number' && hWnd > 0
-    || Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)
-  ) {
+  if (typeof hWnd === 'number' && hWnd > 0) {
     // Change title of the Calculator
     const res = await user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
-    if (! res) {
-      throw new Error('changeTitle failed')
-    }
-    else {
+    if (res) {
       const tt = await getTitle(hWnd)
       return tt
     }
+    throw new Error('changeTitle failed')
   }
-  else {
-    return ''
+  else if (Buffer.isBuffer(hWnd) && ! ref.isNull(hWnd) && ref.address(hWnd)) {
+    // Change title of the Calculator
+    const res = await user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
+    if (res) {
+      const tt = await getTitle(hWnd)
+      return tt
+    }
+    throw new Error('changeTitle failed')
   }
+  return ''
 }
 
 
@@ -151,10 +155,23 @@ export async function getTitle(handle: M.HANDLE): Promise<string> {
   const len = 127
   const buf = Buffer.alloc(len * 2)
   await user32.GetWindowTextW(handle, buf, len)
-  const ret = buf.toString('ucs2').replace(/\0+$/, '')
+  const ret = buf.toString('ucs2').replace(/\0+$/u, '')
   return ret
 }
 
 export function destroyWin(hWnd: M.HWND): Promise<M.BOOL> {
   return user32.DestroyWindow(hWnd)
+}
+
+
+export function assertsHwnd(hWnd: M.HWND | string | number | bigint): void {
+  if (typeof hWnd === 'string') {
+    assert(hWnd.length > 0, 'found no window')
+  }
+  else if (typeof hWnd === 'number' || typeof hWnd === 'bigint') {
+    assert(hWnd > 0, 'found no window')
+  }
+  else {
+    assert(false, 'found no window')
+  }
 }

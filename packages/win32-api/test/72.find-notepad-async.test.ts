@@ -9,7 +9,7 @@ import { ucsBufferToString, ucsBufferFrom } from '../src/index.js'
 import * as UP from '../src/index.user32.js'
 
 import { calcLpszClassNotepad, calcLpszNotepad } from './config.unittest.js'
-import { destroyWin, user32, user32Sync } from './helper.js'
+import { assertsHwnd, destroyWin, user32, user32Sync } from './helper.js'
 
 
 
@@ -24,7 +24,7 @@ describe(fileShortPath(import.meta.url), () => {
       console.log(new Date().toLocaleTimeString())
 
       const hWnd = await user32FindWindowEx(0, 0, calcLpszNotepad, null)
-      assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
+      assertsHwnd(hWnd)
       await destroyWin(hWnd)
       child.kill()
     })
@@ -42,7 +42,7 @@ describe(fileShortPath(import.meta.url), () => {
             assert(false, err.message)
           }
 
-          assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no notepad window')
+          assertsHwnd(hWnd)
           child.kill()
           done()
         })
@@ -74,13 +74,13 @@ async function findNSetWinTitleAsync(): Promise<void> {
   const size = len + 1
   const hWnd = await user32.FindWindowExW(0, 0, calcLpszClassNotepad, null)
 
-  assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
+  assertsHwnd(hWnd)
   const ret = await user32.SetWindowTextW(hWnd, ucsBufferFrom(title))
   assert(ret, 'SetWindowTextW() failed')
 
   const buf = Buffer.alloc(size * 2)
   await user32.GetWindowTextW(hWnd, buf, size)
-  const str = buf.toString('ucs2').replace(/\0+$/, '')
+  const str = buf.toString('ucs2').replace(/\0+$/u, '')
   assert(str === title.trim(), `title should be changed to "${title}", bug got "${str}"`)
 }
 
@@ -93,7 +93,7 @@ async function findNSetWinTitleAsyncPartial(): Promise<void> {
   const size = len + 1
   const hWnd = await u32.FindWindowExW(0, 0, calcLpszClassNotepad, null)
 
-  assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'found no calc window')
+  assertsHwnd(hWnd)
   // Change title of the Calculator
   await u32.SetWindowTextW(hWnd, ucsBufferFrom(title))
 
