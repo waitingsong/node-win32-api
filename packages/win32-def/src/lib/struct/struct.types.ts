@@ -19,7 +19,6 @@ import {
   ULONG,
   ULONG_PTR,
   USHORT,
-  VOID,
   WNDPROC,
   WORD,
   WPARAM,
