@@ -74,6 +74,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@lwahonen/ffi-napi": "^4.0.12",
+    "@lwahonen/ref-napi": "^4.0.8",
     "win32-def": "^20.5.0"
   },
   "devDependencies": {
@@ -83,14 +85,10 @@
     "@types/ref-union-di": "^1.0.5",
     "@waiting/shared-core": "^20.11.4",
     "cross-env": "7",
-    "ffi-napi": "^4.0.3",
-    "ref-napi": "^3.0.3",
     "ref-struct-di": "^1.1.1",
     "ref-union-di": "^1.0.1"
   },
   "peerDependencies": {
-    "ffi-napi": "^4.0.3",
-    "ref-napi": "^3.0.3",
     "ref-struct-di": "^1.1.1",
     "ref-union-di": "^1.0.1"
   },
