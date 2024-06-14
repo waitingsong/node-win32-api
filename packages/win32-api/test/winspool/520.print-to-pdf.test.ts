@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
-import ref from 'ref-napi'
+import ref from '@lwahonen/ref-napi'
 import { StructPropToWCHAR } from 'win32-def'
 import { PrinterEnumFlags } from 'win32-def/consts'
 

@@ -2,7 +2,6 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 
 import { fileShortPath } from '@waiting/shared-core'
-import ref from 'ref-napi'
 import { FLASHW_ALL, FLASHW_CAPTION } from 'win32-def/consts'
 import { sleep } from 'zx'
 

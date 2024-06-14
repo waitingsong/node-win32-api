@@ -1,7 +1,7 @@
 import assert from 'assert'
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { types } from 'ref-napi'
+import { types } from '@lwahonen/ref-napi'
 
 import { StringBuffer } from './common.types.js'
 

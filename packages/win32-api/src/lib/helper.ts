@@ -5,8 +5,8 @@
 import assert from 'node:assert'
 import { copyFileSync, statSync } from 'node:fs'
 
-import ffi from 'ffi-napi'
-import ref from 'ref-napi'
+import ffi from '@lwahonen/ffi-napi'
+import ref from '@lwahonen/ref-napi'
 import {
   AsyncSyncFuncModel,
   DllFuncs,

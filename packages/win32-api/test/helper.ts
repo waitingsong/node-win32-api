@@ -2,8 +2,8 @@
 import assert from 'node:assert'
 
 import { genCurrentDirname } from '@waiting/shared-core'
-import ffi from 'ffi-napi'
-import ref from 'ref-napi'
+import ffi from '@lwahonen/ffi-napi'
+import ref from '@lwahonen/ref-napi'
 import StructDi from 'ref-struct-di'
 import UnionDi from 'ref-union-di'
 import { $ } from 'zx'

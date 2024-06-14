@@ -2,7 +2,6 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 
 import { fileShortPath } from '@waiting/shared-core'
-import ref from 'ref-napi'
 import { sleep } from 'zx'
 
 // import * as CS from '../../src/index.consts.js'

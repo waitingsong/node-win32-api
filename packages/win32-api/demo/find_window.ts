@@ -8,7 +8,7 @@
  * @link https://github.com/waitingsong/node-win32-api
  */
 
-import * as ref from 'ref-napi'
+import * as ref from '@lwahonen/ref-napi'
 
 import {
   U,

@@ -1,7 +1,7 @@
 import assert from 'node:assert'
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import ref from 'ref-napi'
+import ref from '@lwahonen/ref-napi'
 
 import {
   DllNames,

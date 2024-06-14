@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
-import ref from 'ref-napi'
 
 import {
   DModel as M,
@@ -12,7 +11,6 @@ import {
   bufferToStruct,
 } from '../../src/index.js'
 import { githubPrinterNames } from '../config.unittest.js'
-import { CI } from '../root.config.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import ref from 'ref-napi'
+import ref from '@lwahonen/ref-napi'
 import StructDi from 'ref-struct-di'
 import UnionDi from 'ref-union-di'
 

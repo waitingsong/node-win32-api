@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
-import ref from 'ref-napi'
+import ref from '@lwahonen/ref-napi'
 
 import {
   DModel as M,

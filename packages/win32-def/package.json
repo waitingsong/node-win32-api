@@ -52,11 +52,11 @@
     "@waiting/shared-types": "^20.11.0"
   },
   "devDependencies": {
+    "@lwahonen/ref-napi": "^4.0.8",
     "@types/ref-napi": "^3.0.6",
     "@types/ref-struct-di": "^1.1.8",
     "@types/ref-union-di": "^1.0.5",
     "@waiting/shared-core": "^20.11.4",
-    "@lwahonen/ref-napi": "^4.0.8",
     "cross-env": "7"
   },
   "peerDependencies": {

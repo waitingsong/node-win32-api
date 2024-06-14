@@ -5,7 +5,7 @@
 
 import { BigIntStr } from '@waiting/shared-types'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import ref from 'ref-napi'
+import ref from '@lwahonen/ref-napi'
 
 
 export type _POINTER = Buffer
