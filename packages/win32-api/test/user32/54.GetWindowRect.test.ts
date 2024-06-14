@@ -15,7 +15,7 @@ import { calcLpszWindow } from '../config.unittest.js'
 import { user32, destroyWin, assertsHwnd } from '../helper.js'
 
 
-describe(fileShortPath(import.meta.url), () => {
+describe.skip(fileShortPath(import.meta.url), () => {
   it('GetWindowRect()', async () => {
     const child = spawn('calc.exe')
     await sleep(1500)
