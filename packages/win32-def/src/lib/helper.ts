@@ -42,6 +42,7 @@ export function StructType<T extends StructDefType>(
 }
 export function StructFactory<T>(input: StructDefType, options?: StructCharOptions): T {
   // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   return (new genInitTyp(input, options)()) as unknown as T
 }
 
