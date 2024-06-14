@@ -12,7 +12,7 @@ import {
   StructFactory,
 } from '../../src/index.js'
 import { calcLpszWindow } from '../config.unittest.js'
-import { user32, destroyWin } from '../helper.js'
+import { user32, destroyWin, assertsHwnd } from '../helper.js'
 
 
 describe.skip(fileShortPath(import.meta.url), () => {
@@ -23,7 +23,7 @@ describe.skip(fileShortPath(import.meta.url), () => {
     const rect = StructFactory<M.RECT>(DS.RECT)
 
     const hWnd = await user32FindWindowEx(0, 0, null, calcLpszWindow)
-    assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'invalid hWnd')
+    assertsHwnd(hWnd)
 
     const ret = await user32.GetWindowRect(hWnd, rect.ref())
     assert(ret !== 0)

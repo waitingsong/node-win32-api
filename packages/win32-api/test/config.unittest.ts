@@ -1,11 +1,15 @@
+import { isWinLocaleChinese } from './util.js'
+
+
+const isWinChinese = await isWinLocaleChinese()
 
 // for win7/8
 export const calcLpszClass = Buffer.from('CalcFrame\0', 'ucs2')
 // for win10
 // export const calcLpszWindow = Buffer.from('Calculator\0', 'ucs2')
 // export const calcLpszWindowNotepad = Buffer.from('Notepad\0', 'ucs2')
-export const calcLpszWindow = 'Calculator'
-export const calcLpszWindowNotepad = 'Notepad'
+export const calcLpszWindow = isWinChinese ? '计算器' : 'Calculator'
+export const calcLpszWindowNotepad = isWinChinese ? '记事本' : 'Notepad'
 
 export const calcLpszClassNotepad = Buffer.from('Notepad\0', 'ucs2')
 export const calcLpszClassNotepadEdit = Buffer.from('Edit\0', 'ucs2')

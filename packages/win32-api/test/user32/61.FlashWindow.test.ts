@@ -8,7 +8,7 @@ import { sleep } from 'zx'
 // import * as CS from '../../src/index.consts.js'
 import { user32FindWindowEx } from '../../src/index.fun.js'
 import { calcLpszNotepad } from '../config.unittest.js'
-import { user32, destroyWin } from '../helper.js'
+import { user32, destroyWin, assertsHwnd } from '../helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
@@ -19,7 +19,7 @@ describe(fileShortPath(import.meta.url), () => {
       await sleep(1000)
 
       const hWnd = await user32FindWindowEx(0, 0, calcLpszNotepad, null)
-      assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
+      assertsHwnd(hWnd)
 
       const state = await user32.FlashWindow(hWnd, 1)
       assert(state > 0)
@@ -37,7 +37,7 @@ describe(fileShortPath(import.meta.url), () => {
       await sleep(1000)
 
       const hWnd = await user32FindWindowEx(0, 0, calcLpszNotepad, null)
-      assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
+      assertsHwnd(hWnd)
 
       const state = await user32.FlashWindow(hWnd, 0)
       assert(state > 0)

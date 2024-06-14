@@ -15,7 +15,7 @@ import {
   StructFactory,
 } from '../../src/index.js'
 import { calcLpszNotepad } from '../config.unittest.js'
-import { user32, destroyWin } from '../helper.js'
+import { user32, destroyWin, assertsHwnd } from '../helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
@@ -26,7 +26,7 @@ describe(fileShortPath(import.meta.url), () => {
       await sleep(1000)
 
       const hWnd = await user32FindWindowEx(0, 0, calcLpszNotepad, null)
-      assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
+      assertsHwnd(hWnd)
 
       const pfwi = StructFactory<M.FLASHWINFO>(DS.FLASHWINFO)
       pfwi.cbSize = pfwi.ref().byteLength
@@ -47,7 +47,7 @@ describe(fileShortPath(import.meta.url), () => {
       await sleep(1000)
 
       const hWnd = await user32FindWindowEx(0, 0, calcLpszNotepad, null)
-      assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0)
+      assertsHwnd(hWnd)
 
       const pfwi = StructFactory<M.FLASHWINFO>(DS.FLASHWINFO)
       pfwi.cbSize = pfwi.ref().byteLength

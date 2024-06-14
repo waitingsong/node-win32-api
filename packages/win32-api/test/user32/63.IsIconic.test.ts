@@ -6,7 +6,7 @@ import { sleep } from 'zx'
 
 import { user32FindWindowEx } from '../../src/index.fun.js'
 import { calcLpszWindow } from '../config.unittest.js'
-import { user32, destroyWin } from '../helper.js'
+import { user32, destroyWin, assertsHwnd } from '../helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
@@ -15,7 +15,7 @@ describe(fileShortPath(import.meta.url), () => {
     await sleep(1500)
 
     const hWnd = await user32FindWindowEx(0, 0, null, calcLpszWindow)
-    assert((typeof hWnd === 'string' && hWnd.length > 0) || hWnd > 0, 'invalid hWnd')
+    assertsHwnd(hWnd)
 
     assert(! await user32.IsIconic(hWnd))
     await user32.ShowWindow(hWnd, 2) // minimize
