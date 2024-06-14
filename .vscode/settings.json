@@ -3,11 +3,11 @@
   "editor.detectIndentation": false,
   "editor.stickyScroll.enabled": true,
   "editor.minimap.renderCharacters": false,
-  "editor.renderFinalNewline": false,
+  "editor.renderFinalNewline": "off",
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "eslint.run": "onSave",
   "eslint.validate": [
@@ -146,6 +146,19 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": false
   },
-  "workbench.editor.wrapTabs": false
+  "workbench.editor.wrapTabs": false,
+  "cSpell.words": [
+    "ALTTABINFO",
+    "HBRUSH",
+    "HCURSOR",
+    "HICON",
+    "HINSTANCE",
+    "HWND",
+    "LPARAM",
+    "LPCTSTR",
+    "PWSTR",
+    "WNDPROC",
+    "WPARAM"
+  ]
 }
 
