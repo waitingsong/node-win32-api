@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.6.0](https://github.com/waitingsong/node-win32-api/compare/v20.5.0...v20.6.0) (2024-06-14)
+
+
+### Features
+
+* **win32-api:** user32.BroadcastSystemMessage() ([3b7a546](https://github.com/waitingsong/node-win32-api/commit/3b7a546df9390abedf93fd297518d2259d2f542c))
+* **win32-api:** user32.RegisterWindowMessageW() ([3161b1b](https://github.com/waitingsong/node-win32-api/commit/3161b1b035cf5f9cb6a4347ecd4a909526aae850))
+
+
+
+
+
 # [20.5.0](https://github.com/waitingsong/node-win32-api/compare/v20.4.1...v20.5.0) (2024-06-14)
 
 **Note:** Version bump only for package win32-api
