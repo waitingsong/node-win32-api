@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.7.0](https://github.com/waitingsong/node-win32-api/compare/v20.6.0...v20.7.0) (2024-06-14)
+
+
+### Features
+
+* **win32-api:** user32.SendMessageTimeoutW() ([76f81cb](https://github.com/waitingsong/node-win32-api/commit/76f81cb49684febb43806192d27435358725d2e6))
+
+
+
+
+
 # [20.6.0](https://github.com/waitingsong/node-win32-api/compare/v20.5.0...v20.6.0) (2024-06-14)
 
 
