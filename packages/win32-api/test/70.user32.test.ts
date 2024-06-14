@@ -54,19 +54,19 @@ describe(fileShortPath(import.meta.url), () => {
       point.x = 101
       point.y = Math.round(Math.random() * 1000000)
 
-      const adress = point.ref().address()
-      tmpMap.delete(adress)
+      const address = point.ref().address()
+      tmpMap.delete(address)
 
       await enumWindows(enumWindowsProc, address)
       console.log({ address })
 
-      const point2 = tmpMap.get(adress)
+      const point2 = tmpMap.get(address)
       assert(point2, 'point2 should be got')
       if (point2) {
         assert(point.x === point2.x)
         assert(point.y === point2.y)
       }
-      tmpMap.delete(adress)
+      tmpMap.delete(address)
 
       child.kill()
       console.log({ killed: child.killed })
