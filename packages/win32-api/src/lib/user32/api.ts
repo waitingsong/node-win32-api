@@ -159,6 +159,11 @@ export interface Win32Fns {
   RegisterClassExW: (lpwcx: M.LPWNDCLASSEX) => M.ATOM
 
   /**
+   * https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerwindowmessagew
+   */
+  RegisterWindowMessageW: (lpString: M.LPCTSTR) => M.UINT
+
+  /**
    * ref: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-sendmessagew
    */
   SendMessageW: (hWnd: M.HWND, Msg: M.UINT, wPARAM: M.WPARAM, lPARAM: M.LPARAM) => M.LRESULT
@@ -286,6 +291,8 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
   PrintWindow: [W.BOOL, [W.HWND, W.HDC, W.UINT] ],
 
   RegisterClassExW: [W.ATOM, [W.WNDCLASSEX] ],
+
+  RegisterWindowMessageW: [W.UINT, [W.LPCTSTR] ],
 
   SendMessageW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
 
