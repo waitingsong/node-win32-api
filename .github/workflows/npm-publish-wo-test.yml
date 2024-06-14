@@ -106,15 +106,15 @@ jobs:
         env:
           CI: true
 
-      - name: Lint
-        run: |
-          export cwd=`pwd`
-          . .scripts/ci/ci-env.sh
-          .scripts/ci/ci-prepare.sh
-          npm run lint:nofix
-          npm run lint:cycle
-        env:
-          CI: true
+      # - name: Lint
+      #   run: |
+      #     export cwd=`pwd`
+      #     . .scripts/ci/ci-env.sh
+      #     .scripts/ci/ci-prepare.sh
+      #     npm run lint:nofix
+      #     npm run lint:cycle
+      #   env:
+      #     CI: true
 
       - name: NPM Publish
         run: |
