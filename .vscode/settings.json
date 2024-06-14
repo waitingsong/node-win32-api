@@ -146,6 +146,19 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": false
   },
-  "workbench.editor.wrapTabs": false
+  "workbench.editor.wrapTabs": false,
+  "cSpell.words": [
+    "ALTTABINFO",
+    "HBRUSH",
+    "HCURSOR",
+    "HICON",
+    "HINSTANCE",
+    "HWND",
+    "LPARAM",
+    "LPCTSTR",
+    "PWSTR",
+    "WNDPROC",
+    "WPARAM"
+  ]
 }
 
