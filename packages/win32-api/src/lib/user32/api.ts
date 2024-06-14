@@ -173,6 +173,18 @@ export interface Win32Fns {
    */
   SendMessageW: (hWnd: M.HWND, Msg: M.UINT, wPARAM: M.WPARAM, lPARAM: M.LPARAM) => M.LRESULT
 
+  /**
+   * @url https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-SendMessageTimeoutW
+   */
+  SendMessageTimeoutW: (
+    hWnd: M.HWND,
+    Msg: M.UINT,
+    wParam: M.WPARAM,
+    lParam: M.LPARAM,
+    fuFlags: M.UINT,
+    uTimeout: M.UINT,
+    lpdwResult: M.DWORD_PTR) => M.LRESULT
+
   /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setforegroundwindow */
   SetForegroundWindow: (hWnd: M.HWND) => M.BOOL
 
@@ -302,6 +314,8 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
   RegisterWindowMessageW: [W.UINT, [W.LPCTSTR] ],
 
   SendMessageW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
+
+  SendMessageTimeoutW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM, W.UINT, W.UINT, W.DWORD_PTR] ],
 
   SetForegroundWindow: [W.BOOL, [W.HWND] ],
 
