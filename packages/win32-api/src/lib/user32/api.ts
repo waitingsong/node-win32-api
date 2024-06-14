@@ -7,6 +7,11 @@ import * as W from 'win32-def/common.def'
 export interface Win32Fns {
   BringWindowToTop: (hWnd: M.HWND) => M.BOOL
 
+  /**
+   * https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-broadcastsystemmessage
+   */
+  BroadcastSystemMessage: (flags: M.DWORD, lpInfo: M.LPDWORD, Msg: M.UINT, wParam: M.WPARAM, lParam: M.LPARAM) => M.LRESULT
+
   ClientToScreen: (hWnd: M.HWND, lpPoint: M.LPPOINT) => M.BOOL
 
   /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-closewindow */
@@ -206,6 +211,8 @@ export interface Win32Fns {
 
 export const apiDef: M.DllFuncs<Win32Fns> = {
   BringWindowToTop: [W.BOOL, [W.HWND] ],
+
+  BroadcastSystemMessage: [W.LRESULT, [W.DWORD, W.LPDWORD, W.UINT, W.WPARAM, W.LPARAM] ],
 
   /** url: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-clienttoscreen */
   ClientToScreen: [W.BOOL, [W.HWND, W.LPPOINT] ],
