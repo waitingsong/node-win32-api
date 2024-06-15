@@ -16,7 +16,7 @@ export const DWORD = Def.uint32
 export const PVOID = _WIN64 ? Def.uint64Ptr : Def.uint32Ptr
 /**
  * `uint32` or `uint64` used as value usage (memory address) instead of PVOID (Buffer),
- * Use `HANDLE` (number) for params defintion of the api,
+ * Use `HANDLE` (number) for params definition of the api,
  * @see https://stackoverflow.com/questions/18266626/what-is-the-range-of-a-windows-handle-on-a-64-bits-application/29526711#29526711
  */
 export const HANDLE = _WIN64 ? Def.uint64 : Def.uint32
