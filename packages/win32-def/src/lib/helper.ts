@@ -62,6 +62,7 @@ function genInitTyp(input: StructDefType, options?: StructCharOptions): StructTy
     }
     else if (
       typeof value === 'object'
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       && value
       // This is the same check "ref-napi" does to determine if the type
       && ! ('size' in value && 'indirection' in value)
