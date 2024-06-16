@@ -80,7 +80,7 @@ export interface LoadSettings {
 // export { FFIBuffer as Buffer }
 
 
-// custome
+// custom
 export type PID = number
 export type PPID = number
 
