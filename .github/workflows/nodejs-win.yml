@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node: ['16']
+        node: ['lts/*']
         os: [windows-2019, windows-latest]
 
     steps:
@@ -59,7 +59,7 @@ jobs:
         shell: bash
         run: |
           .github/workflows/fix.sh
-          npm i -g c8 lerna@6 rollup zx node-gyp
+          npm i -g c8 lerna rollup zx node-gyp
           # npm run purge
           npm run bootstrap
         env:
