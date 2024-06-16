@@ -7,7 +7,7 @@ import {
   DTypes as W,
   DStruct as DS,
   StructFactory,
-} from '../src/index.js'
+} from '##/index.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
