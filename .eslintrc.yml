@@ -13,4 +13,5 @@ rules:
   "@typescript-eslint/prefer-ts-expect-error": 0
   "unicorn/filename-case": 0
   "linebreak-style": 0
+  "node/shebang": 0
 

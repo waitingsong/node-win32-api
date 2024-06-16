@@ -8,6 +8,7 @@ rules:
   "unicorn/filename-case": 0
   "@typescript-eslint/prefer-ts-expect-error": 0
   "linebreak-style": 0
+  "node/shebang": 0
 
 ignorePatterns:
   - fixtures

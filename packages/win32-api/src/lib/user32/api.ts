@@ -10,7 +10,12 @@ export interface Win32Fns {
   /**
    * https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-broadcastsystemmessage
    */
-  BroadcastSystemMessage: (flags: M.DWORD, lpInfo: M.LPDWORD, Msg: M.UINT, wParam: M.WPARAM, lParam: M.LPARAM) => M.LRESULT
+  BroadcastSystemMessage: (
+    flags: M.DWORD,
+    lpInfo: M.LPDWORD,
+    Msg: M.UINT,
+    wParam: M.WPARAM,
+    lParam: M.LPARAM) => M.LRESULT
 
   ClientToScreen: (hWnd: M.HWND, lpPoint: M.LPPOINT) => M.BOOL
 
