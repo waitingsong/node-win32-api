@@ -6,12 +6,13 @@ import {
   apiDef,
   dllName,
   load,
-} from '../src/index.ntdll.js'
+} from '##/index.comctl32.js'
+import { DllNames } from '##/lib/types.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
   it('Should exports work', () => {
-    assert(dllName === 'ntdll')
+    assert(dllName === DllNames.comctl32)
     assert(Object.keys(apiDef).length > 0)
     assert(typeof load === 'function')
   })

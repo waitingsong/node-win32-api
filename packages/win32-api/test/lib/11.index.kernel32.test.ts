@@ -6,12 +6,13 @@ import {
   apiDef,
   dllName,
   load,
-} from '../src/index.comctl32.js'
+} from '##/index.kernel32.js'
+import { DllNames } from '##/lib/types.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
   it('Should exports work', () => {
-    assert(dllName === 'comctl32')
+    assert(dllName === DllNames.kernel32)
     assert(Object.keys(apiDef).length > 0)
     assert(typeof load === 'function')
   })

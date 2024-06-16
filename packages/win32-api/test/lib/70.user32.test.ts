@@ -2,13 +2,13 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 
 import { fileShortPath } from '@waiting/shared-core'
-import ffi from 'ffi-napi'
+import ffi from 'koffi'
 import { sleep } from 'zx'
 
 import {
   user32FindWindowEx,
   user32GetWindowText,
-} from '../src/index.fun.js'
+} from '##/index.fun.js'
 import {
   DModel as M,
   DTypes as W,
@@ -17,7 +17,7 @@ import {
   StructFactory,
   ucsBufferFrom,
   ucsBufferToString,
-} from '../src/index.js'
+} from '##/index.js'
 
 import { calcLpszClassNotepad, calcLpszNotepad } from './config.unittest.js'
 import { assertsHwnd, user32, user32Sync } from './helper.js'

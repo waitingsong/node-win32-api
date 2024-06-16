@@ -8,8 +8,8 @@ import {
   DModel as M,
   DTypes as W,
   DStruct as DS,
-} from '../src/index.js'
-import * as Win from '../src/index.js'
+} from '##/index.js'
+import * as Win from '##/index.js'
 
 
 const __dirname = genCurrentDirname(import.meta.url)
@@ -38,7 +38,7 @@ describe(fileShortPath(import.meta.url), () => {
 
       it('normal', async () => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        if (module && module.apiDef) {
+        if (module?.apiDef) {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           const api = module.load() as M.DllFuncs
 

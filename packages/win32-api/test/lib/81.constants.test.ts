@@ -2,9 +2,9 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import * as CS from '../src/index.consts.js'
-import { MN_GETHMENU } from '../src/index.consts.js'
-import { Constants } from '../src/index.js'
+import * as CS from '##/index.consts.js'
+import { MN_GETHMENU } from '##/index.consts.js'
+import { Constants } from '##/index.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

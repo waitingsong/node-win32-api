@@ -7,17 +7,16 @@ import {
   DModel as M,
   DTypes as W,
   DStruct as DS,
-} from '../src/index.js'
-
+} from '##/index.js'
 import {
   changeTitle,
   createWindow,
   createWndProc,
   destroyWin,
-} from './helper.js'
+} from '#@/helper.js'
 
 
-// skip due to timout
+// skip due to timeout
 // Note: may crash
 describe.skip(fileShortPath(import.meta.url), () => {
 

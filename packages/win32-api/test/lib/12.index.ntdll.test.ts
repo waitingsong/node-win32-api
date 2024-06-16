@@ -6,12 +6,13 @@ import {
   apiDef,
   dllName,
   load,
-} from '../src/index.kernel32.js'
+} from '##/index.ntdll.js'
+import { DllNames } from '##/lib/types.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
   it('Should exports work', () => {
-    assert(dllName === 'kernel32')
+    assert(dllName === DllNames.ntdll)
     assert(Object.keys(apiDef).length > 0)
     assert(typeof load === 'function')
   })
