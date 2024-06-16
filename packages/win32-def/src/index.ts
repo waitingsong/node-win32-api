@@ -17,4 +17,3 @@ export * from './lib/fixed-buffer.js'
 export * from './lib/struct/index.struct.types.js'
 export * from './lib/union/index.union.types.js'
 
-
