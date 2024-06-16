@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.0.0](https://github.com/waitingsong/node-win32-api/compare/v20.7.0...v21.0.0) (2024-06-16)
+
+
+### Features
+
+* **win32-def:** add enums ([b5fdf54](https://github.com/waitingsong/node-win32-api/commit/b5fdf54f30effdfa6c909c05ce80768a010e46d4))
+* **win32-def:** breaking change re-expose Virtual-Key Codes via enum VirtualKey ([ce5f8ca](https://github.com/waitingsong/node-win32-api/commit/ce5f8ca6530f0365f08230bd484381bef6269c1e))
+
+
+
+
+
 # [20.5.0](https://github.com/waitingsong/node-win32-api/compare/v20.4.1...v20.5.0) (2024-06-14)
 
 **Note:** Version bump only for package win32-def
