@@ -1,0 +1,16 @@
+{
+  "Try-Cache": {
+    "scope": "typescript,javascript",
+    "prefix": "trycache",
+    "body": [
+      "try {",
+      "  $1",
+      "}",
+      "catch (ex) {",
+      "  $2",
+      "}"
+    ],
+    "description": ""
+  },
+}
+

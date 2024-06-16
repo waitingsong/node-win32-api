@@ -7,8 +7,10 @@
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
   },
+  "eslint.experimental.useFlatConfig": true,
   "eslint.run": "onSave",
   "eslint.validate": [
     "javascript",
@@ -32,7 +34,7 @@
     "build": true,
     "commitlint.*": true,
     "coverage": true,
-    "dist": true,
+    "dist": false,
     "logs": true,
     "out": true,
     "package-lock.json": true,
@@ -62,6 +64,7 @@
   "files.insertFinalNewline": true,
   "files.refactoring.autoSave": true,
   "files.watcherExclude": {
+    ".tsbuildinfo": true,
     "coverage/**": true,
     "dist/**": true,
     "packages/*/dist/**": true,
@@ -81,6 +84,7 @@
   "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
   "git.ignoreLimitWarning": true,
+  "markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
   "markdown-pdf.outputDirectory": "d:/",
   "plantuml.render": "PlantUMLServer",
   "plantuml.server": "https://www.plantuml.com/plantuml",
@@ -89,6 +93,8 @@
   "search.exclude": {
     ".gitlab": false,
     ".scripts": false,
+    ".tsbuildinfo": true,
+    "dist": true,
     "i18n": true,
     "library/": true,
     "node_modules": true,
@@ -118,7 +124,7 @@
       "args": ["-l"]
     }
   },
-  "terminal.integrated.defaultProfile.windows": "git-bash",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
   "terminal.integrated.defaultProfile.linux": "bash (login)",
   "typescript.autoClosingTags": false,
   "typescript.format.enable": true,
@@ -147,18 +153,19 @@
     "editor.formatOnSave": false
   },
   "workbench.editor.wrapTabs": false,
-  "cSpell.words": [
-    "ALTTABINFO",
-    "HBRUSH",
-    "HCURSOR",
-    "HICON",
-    "HINSTANCE",
-    "HWND",
-    "LPARAM",
-    "LPCTSTR",
-    "PWSTR",
-    "WNDPROC",
-    "WPARAM"
-  ]
+  "workbench.editor.customLabels.enabled": true,
+  "workbench.editor.customLabels.patterns": {
+    "src/app/**/*.ts": "${dirname}/${filename}",
+    "src/**": "${dirname}/${filename}.${extname}",
+    "test/**": "${filename}.${extname} - test",
+    "dist/**": "${filename}.${extname} - dist",
+    "packages/*/src/app/**": "${dirname(1)}/${dirname}/${filename} src",
+    "packages/*/src/*.*": "${filename}.${extname} src",
+    "packages/*/test/*.*": "${filename}.${extname} test",
+    "packages/*/src/**": "${dirname}/${filename}.${extname} - src",
+    "packages/*/test/**": "${dirname}/${filename}.${extname} - test",
+    "packages/*/*.*": "${dirname}/${filename}.${extname}",
+    "packages/*/**": "${dirname(1)}/${dirname}/${filename}.${extname}",
+    "**/node_modules/**/*": "${filename}.${extname} - ${dirname(2)}/${dirname(1)}/${dirname}"
+  }
 }
-

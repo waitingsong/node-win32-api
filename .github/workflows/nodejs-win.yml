@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         node: ['lts/*']
-        os: [windows-2019, windows-latest]
+        os: [windows-2019]
 
     steps:
       - uses: actions/checkout@v4
@@ -31,13 +31,11 @@ jobs:
         with:
           path: |
             node_modules
-            node_modules/.cache/nx
             package-lock.json
-            packages/*/.eslintcache
             packages/*/.tsbuildinfo
-            packages/*/.vscode
             packages/*/dist
-            packages/*/package-lock.json
+            packages/*/node_modules
+            C:\npm\prefix\node_modules
           key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-
@@ -45,29 +43,31 @@ jobs:
       - name: Prepare
         shell: bash
         run: |
+          pwd
           uname -a
           npm -v && node -v
-          npm -g root
           git --version
           openssl version
           ./.githooks/init-repo.sh
           git config --local core.autocrlf false
           git config --local core.eol lf
+          export cwd=`pwd`
+          git config --global --add safe.directory $cwd
 
       - name: Install Dependencies
         timeout-minutes: 15
         shell: bash
         run: |
-          .github/workflows/fix.sh
-          npm i -g c8 lerna rollup zx node-gyp
-          # npm run purge
-          npm run bootstrap
+          export cwd=`pwd`
+          npm i --no-audit -g c8 lerna rollup zx node-gyp
+          npm i
         env:
           CI: true
 
       - name: Build
         shell: bash
         run: |
+          pwd
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh

@@ -1,12 +1,8 @@
 {
   "version": "21.0.2",
-  "packages": [
-    "packages/*"
-  ],
   "command": {
     "publish": {
       "ignoreChanges": [
-        "*.md",
         ".githooks",
         ".scripts",
         ".vscode",
@@ -16,23 +12,21 @@
       ],
       "verifyAccess": false
     },
-    "bootstrap": {
-      "hoist": true,
-      "noCi": true,
-      "nohoist": [
-        "cross-env",
-        "egg"
-      ],
-      "npmClientArgs": [
-        "--no-audit"
-      ]
-    },
     "version": {
       "conventionalCommits": true,
       "allowBranch": [
         "main",
+        "fix",
         "release",
-        "fix"
+        "versioning_*"
+      ],
+      "ignoreChanges": [
+        ".githooks",
+        ".scripts",
+        ".vscode",
+        "package-lock.json",
+        "packages/demo",
+        "packages/mw-demo"
       ],
       "registry": "https://registry.npmjs.org/"
     }
