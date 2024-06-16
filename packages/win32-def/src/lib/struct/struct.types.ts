@@ -104,7 +104,9 @@ export interface KEYBDINPUT extends StructInstanceBase {
 }
 export type PKEYBDINPUT = _POINTER
 
-/** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagmouseinput */
+/**
+ * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-mouseinput
+ */
 export interface MOUSEINPUT extends StructInstanceBase {
   dx: LONG
   dy: LONG
