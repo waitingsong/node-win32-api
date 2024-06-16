@@ -176,11 +176,9 @@ console.log(dd)
 // **Find calc's hWnd, need running a calculator program manually at first**
 import * as ref from 'ref-napi'
 
-import {
-  DModel as M,
-  DTypes as W,
-  DStruct as DS,
-} from 'win32-api'
+import * as M from 'win32-def'
+import * as W from 'win32-def/common.def'
+import * as DS from 'win32-def/struct.def'
 import { Kernel32, User32 } from 'win32-api/promise'
 
 

@@ -119,7 +119,9 @@ console.log(ref.deref(buf))  // ← 12345
 ```ts
 // use of types and windef:
 import ref from 'ref-napi'
-import { DModel as M } from 'win32-api'
+import * as M from 'win32-def'
+import * as W from 'win32-def/common.def'
+import * as DS from 'win32-def/struct.def'
 import { Kernel32, User32 } from 'win32-api/promise'
 
 const knl32 = Kernel32.load()
@@ -140,11 +142,9 @@ console.log(hInstanceBuffer.readBigUInt64LE())  // -> 140734814748672n (7FFF60A4
 ```ts
 // struct usage with ref-struct
 import { retrieveStructFromPtrAddress, StructFactory } from 'win32-api'
-import {
-  DModel as M,
-  DTypes as W,
-  DStruct as DS,
-} from 'win32-api'
+import * as M from 'win32-def'
+import * as W from 'win32-def/common.def'
+import * as DS from 'win32-def/struct.def'
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/dd162805(v=vs.85).aspx
 const point = StructFactory<M.POINT>(DS.POINT)
@@ -156,12 +156,9 @@ console.log(point)
 ### [Struct](https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-def/src/lib/struct/)
 ```ts
 import { StructFactory } from 'win32-api'
-import {
-  DModel as M,
-  DTypes as W,
-  DStruct as DS,
-} from 'win32-api'
-
+import * as M from 'win32-def'
+import * as W from 'win32-def/common.def'
+import * as DS from 'win32-def/struct.def'
 
 // https://docs.microsoft.com/zh-cn/windows/win32/api/wingdi/ns-wingdi-display_devicew 
 const dd: M.DISPLAY_DEVICEW = StructFactory(DS.DISPLAY_DEVICEW)
@@ -174,12 +171,9 @@ console.log(dd)
 ```ts
 // **Find calc's hWnd, need running a calculator program manually at first**
 import * as ref from 'ref-napi'
-
-import {
-  DModel as M,
-  DTypes as W,
-  DStruct as DS,
-} from 'win32-api'
+import * as M from 'win32-def'
+import * as W from 'win32-def/common.def'
+import * as DS from 'win32-def/struct.def'
 import { Kernel32, User32 } from 'win32-api/promise'
 
 
