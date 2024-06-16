@@ -1,4 +1,5 @@
 
+export * from './virtual-key.enum.js'
 export * from './wingdi.enum.js'
 export * from './winspool.enum.js'
 export * from './winuser.const.js'
