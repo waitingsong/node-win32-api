@@ -54,7 +54,7 @@ jobs:
           git config --local core.autocrlf false
           git config --local core.eol lf
 
-      - name: Inatall Dependencies
+      - name: Install Dependencies
         timeout-minutes: 15
         shell: bash
         run: |
@@ -76,16 +76,16 @@ jobs:
         env:
           CI: true
 
-      # - name: Lint
-      #   shell: bash
-      #   run: |
-      #     export cwd=`pwd`
-      #     . .scripts/ci/ci-env.sh
-      #     .scripts/ci/ci-prepare.sh
-      #     npm run lint:s
-      #     npm run lint:cycle
-      #   env:
-      #     CI: true
+      - name: Lint
+        shell: bash
+        run: |
+          export cwd=`pwd`
+          . .scripts/ci/ci-env.sh
+          .scripts/ci/ci-prepare.sh
+          npm run lint:s
+          npm run lint:cycle
+        env:
+          CI: true
 
       - name: Testing
         shell: bash

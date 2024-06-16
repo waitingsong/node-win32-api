@@ -65,7 +65,7 @@ jobs:
           chmod a+w -R .
           dig jaeger
 
-      - name: Inatall Dependencies
+      - name: Install Dependencies
         timeout-minutes: 15
         run: |
           chown -R 1001:121 "/github/home/.npm"
@@ -92,15 +92,15 @@ jobs:
         env:
           CI: true
 
-      # - name: Lint
-      #   run: |
-      #     export cwd=`pwd`
-      #     . .scripts/ci/ci-env.sh
-      #     .scripts/ci/ci-prepare.sh
-      #     npm run lint:s
-      #     npm run lint:cycle
-      #   env:
-      #     CI: true
+      - name: Lint
+        run: |
+          export cwd=`pwd`
+          . .scripts/ci/ci-env.sh
+          .scripts/ci/ci-prepare.sh
+          npm run lint:s
+          npm run lint:cycle
+        env:
+          CI: true
 
 
     # services:
