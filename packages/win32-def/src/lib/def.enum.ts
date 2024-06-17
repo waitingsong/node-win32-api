@@ -5,8 +5,11 @@
  * @link https://tootallnate.github.io/ref/
  */
 export enum Def {
+  // intPtr = 'int*',
+  ptr = 'int*',
+
   bool = 'bool',
-  byte = 'int*',
+  byte = 'ptr',
   int = 'int',
   int8 = 'int8',
   int16 = 'int16',
@@ -15,7 +18,6 @@ export enum Def {
   float = 'float',
   long = 'long',
   longlong = 'longlong',
-  ptr = 'pointer',
   uchar = 'uchar',
   uint = 'uint',
   uint8 = 'uint8',
@@ -30,7 +32,6 @@ export enum Def {
   boolPtr = 'bool*',
   bytePtr = 'byte*',
   charPtr = 'char*',
-  intPtr = 'byte',
   int8Ptr = 'int8*',
   int16Ptr = 'int16*',
   int32Ptr = 'int32*',
