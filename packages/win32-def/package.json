@@ -34,6 +34,10 @@
       "import": "./dist/index.def.js",
       "require": "./dist/index.def.cjs"
     },
+    "./windef": {
+      "import": "./dist/lib/windef/windef.index.js",
+      "require": "./dist/lib/windef/windef.index.cjs"
+    },
     "./winuser": {
       "import": "./dist/lib/winuser/winuser.index.js",
       "require": "./dist/lib/winuser/winuser.index.cjs"
