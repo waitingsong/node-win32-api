@@ -9,7 +9,7 @@
     "@midwayjs/cli": "^2.0.10",
     "@midwayjs/mock": "^3.10.3",
     "@midwayjs/web": "^3.10.3",
-    "@rollup/plugin-commonjs": "24",
+    "@rollup/plugin-commonjs": "26",
     "@rollup/plugin-node-resolve": "15",
     "@types/mocha": "10",
     "@types/node": "18",
