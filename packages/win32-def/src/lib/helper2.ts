@@ -232,3 +232,10 @@ function genUnionCached(def: KoffiDefType, name: string, pointer: string): Koffi
   const ret = genSimpleUnion(data, name, pointer)
   return ret
 }
+
+
+export function genFixedInt16Array(length: number): IKoffiCType {
+  assert(length > 0, `length must be greater than 0, but got ${length}`)
+  const type = ffi.array('int16_t', length, 'Array')
+  return type
+}
