@@ -1,6 +1,6 @@
 import * as W from '../common.def.js'
 import * as M from '../common.types.js'
-import { KoffiTypeResult, genStruct } from '../helper2.js'
+import { genStruct, type KoffiTypeResult } from '../helper2.js'
 import { RECT_Factory, type RECT_Type } from '../windef/RECT.js'
 
 

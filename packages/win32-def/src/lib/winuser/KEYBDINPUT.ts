@@ -1,6 +1,6 @@
 import * as W from '../common.def.js'
 import * as M from '../common.types.js'
-import { KoffiTypeResult, genSimpleStruct } from '../helper2.js'
+import { genSimpleStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'KEYBDINPUT'

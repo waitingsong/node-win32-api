@@ -1,6 +1,6 @@
 import * as W from '../common.def.js'
 import * as M from '../common.types.js'
-import { type KoffiTypeResult, genStruct } from '../helper2.js'
+import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 import { HARDWAREINPUT_Factory, type HARDWAREINPUT_TYPE } from './HARDWAREINPUT.js'
 import { KEYBDINPUT_Factory, type KEYBDINPUT_Type } from './KEYBDINPUT.js'
