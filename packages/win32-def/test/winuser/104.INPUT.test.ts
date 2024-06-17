@@ -8,10 +8,10 @@ import { INPUT_Factory, INPUT_Type, LPINPUT } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 
-const fn = 'INPUT_Factory'
-const factory = INPUT_Factory
 const name = 'INPUT'
 const pointer = LPINPUT
+const factory = INPUT_Factory
+const fn = `${name}_Factory`
 
 const INPUT_KEYBOARD = INPUT.INPUT_KEYBOARD
 const KEYEVENTF_KEYUP = KEYBDINPUT.KEYEVENTF_KEYUP

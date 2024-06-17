@@ -6,10 +6,10 @@ import { INITCOMMONCONTROLSEX_Factory, LPINITCOMMONCONTROLSEX } from '##/index.s
 import { assertStructUnion } from '#@/helper.js'
 
 
-const fn = 'INITCOMMONCONTROLSEX_Factory'
-const factory = INITCOMMONCONTROLSEX_Factory
 const name = 'INITCOMMONCONTROLSEX'
 const pointer = LPINITCOMMONCONTROLSEX
+const factory = INITCOMMONCONTROLSEX_Factory
+const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {
   describe(fn, () => {

@@ -6,10 +6,10 @@ import { POINT_Factory, LPPOINT } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 
-const fn = 'POINT_Factory'
-const factory = POINT_Factory
 const name = 'POINT'
 const pointer = LPPOINT
+const factory = POINT_Factory
+const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {
   describe(fn, () => {

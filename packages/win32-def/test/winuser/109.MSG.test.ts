@@ -6,10 +6,10 @@ import { MSG_Factory, LPMSG } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 
-const fn = 'MSG_Factory'
-const factory = MSG_Factory
 const name = 'MSG'
 const pointer = LPMSG
+const factory = MSG_Factory
+const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {
   describe(fn, () => {

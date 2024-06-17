@@ -6,10 +6,10 @@ import { KEYBDINPUT_Factory, LPKEYBDINPUT } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 
-const fn = 'KEYBDINPUT_Factory'
-const factory = KEYBDINPUT_Factory
 const name = 'KEYBDINPUT'
 const pointer = LPKEYBDINPUT
+const factory = KEYBDINPUT_Factory
+const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {
   describe(fn, () => {

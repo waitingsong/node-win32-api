@@ -6,10 +6,10 @@ import { RAWHID_Factory, LPRAWHID } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 
-const fn = 'RAWHID_Factory'
-const factory = RAWHID_Factory
 const name = 'RAWHID'
 const pointer = LPRAWHID
+const factory = RAWHID_Factory
+const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {
   describe(fn, () => {

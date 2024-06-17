@@ -6,10 +6,10 @@ import { ALTTABINFO_Factory, LPALTTABINFO } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 
-const fn = 'ALTTABINFO_Factory'
-const factory = ALTTABINFO_Factory
 const name = 'ALTTABINFO'
 const pointer = LPALTTABINFO
+const factory = ALTTABINFO_Factory
+const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {
   describe(fn, () => {

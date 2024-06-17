@@ -6,10 +6,10 @@ import { MOUSEINPUT_Factory, LPMOUSEINPUT } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 
-const fn = 'MOUSEINPUT_Factory'
-const factory = MOUSEINPUT_Factory
 const name = 'MOUSEINPUT'
 const pointer = LPMOUSEINPUT
+const factory = MOUSEINPUT_Factory
+const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {
   describe(fn, () => {

@@ -6,10 +6,10 @@ import { COPYDATASTRUCT_Factory, LPCOPYDATASTRUCT } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 
-const fn = 'COPYDATASTRUCT_Factory'
-const factory = COPYDATASTRUCT_Factory
 const name = 'COPYDATASTRUCT'
 const pointer = LPCOPYDATASTRUCT
+const factory = COPYDATASTRUCT_Factory
+const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {
   describe(fn, () => {

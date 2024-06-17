@@ -7,8 +7,8 @@ import { assertStructUnion } from '#@/helper.js'
 
 
 const name = 'RAWINPUTDEVICELIST'
-const factory = RAWINPUTDEVICELIST_Factory
 const pointer = LPRAWINPUTDEVICELIST
+const factory = RAWINPUTDEVICELIST_Factory
 const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {
