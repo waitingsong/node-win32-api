@@ -32,6 +32,6 @@ export interface RID_DEVICE_INFO_MOUSE_Type {
   fHasHorizontalWheel: M.BOOL
 }
 
-export const LPRID_DEVICE_INFO_MOUSE = ptr
+export const PRID_DEVICE_INFO_MOUSE = ptr
 export const RID_DEVICE_INFO_MOUSE_Init = init
 
