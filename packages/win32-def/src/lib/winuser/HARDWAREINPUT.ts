@@ -1,6 +1,6 @@
 import * as W from '../common.def.js'
 import * as M from '../common.types.js'
-import { genSimpleStruct, type KoffiTypeResult } from '../helper2.js'
+import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'HARDWAREINPUT'
@@ -16,7 +16,7 @@ const init = {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-hardwareinput
  */
 export function HARDWAREINPUT_Factory(): KoffiTypeResult {
-  return genSimpleStruct(init, key, ptr)
+  return genStruct(init, key, ptr)
 }
 /**
  * HARDWAREINPUT structure

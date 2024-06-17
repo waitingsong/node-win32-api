@@ -1,6 +1,6 @@
 import * as W from '../common.def.js'
 import * as M from '../common.types.js'
-import { type KoffiTypeResult, genSimpleStruct } from '../helper2.js'
+import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'FLASHWINFO'
@@ -19,7 +19,7 @@ const init = {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-FLASHWINFO
  */
 export function FLASHWINFO_Factory(): KoffiTypeResult {
-  return genSimpleStruct(init, key, ptr)
+  return genStruct(init, key, ptr)
 }
 
 /**
