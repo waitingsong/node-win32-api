@@ -6,7 +6,7 @@
  */
 export enum Def {
   bool = 'bool',
-  byte = 'byte',
+  byte = 'int*',
   int = 'int',
   int8 = 'int8',
   int16 = 'int16',
@@ -30,7 +30,7 @@ export enum Def {
   boolPtr = 'bool*',
   bytePtr = 'byte*',
   charPtr = 'char*',
-  intPtr = 'int*',
+  intPtr = 'byte',
   int8Ptr = 'int8*',
   int16Ptr = 'int16*',
   int32Ptr = 'int32*',
