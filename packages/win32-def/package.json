@@ -34,6 +34,10 @@
       "import": "./dist/index.def.js",
       "require": "./dist/index.def.cjs"
     },
+    "./struct": {
+      "import": "./dist/index.struct.js",
+      "require": "./dist/index.struct.cjs"
+    },
     "./windef": {
       "import": "./dist/lib/windef/windef.index.js",
       "require": "./dist/lib/windef/windef.index.cjs"
