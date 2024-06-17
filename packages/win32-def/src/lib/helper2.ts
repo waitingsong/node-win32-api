@@ -148,6 +148,9 @@ function genStructCached(def: KoffiDefComplexType, name: string, pointer: string
         const nested = genUnion(value as KoffiDefType) // do not pass key
         data[key] = nested.CType
       }
+      else if (Object.keys(value).length === 0) {
+        return // maybe fix array
+      }
       else {
         assert(false, `key ${key} must start with 's' or 'u'`)
       }
@@ -213,6 +216,9 @@ function genUnionCached(def: KoffiDefType, name: string, pointer: string): Koffi
         // @ts-expect-error
         const nested = genUnion(value) // do not pass key
         data[key] = nested.CType
+      }
+      else if (Object.keys(value).length === 0) {
+        return // maybe fix array
       }
       else {
         assert(false, `key ${key} must start with 's' or 'u'`)
