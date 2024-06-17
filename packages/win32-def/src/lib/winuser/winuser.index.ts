@@ -7,4 +7,5 @@ export * from './KEYBDINPUT.js'
 export * from './MOUSEINPUT.js'
 export * from './MSG.js'
 export * from './RAWHID.js'
+export * from './RAWINPUTDEVICELIST.js'
 
