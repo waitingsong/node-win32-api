@@ -10,7 +10,8 @@ const init = {
 } as const
 
 /**
- * PRINTPROCESSOR_INFO_1 structure
+ * PRINTPROCESSOR_INFO_1 structure,
+ * Specifies the name of an installed print processor.
  * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/printprocessor-info-1
  */
 export function PRINTPROCESSOR_INFO_1_Factory(): KoffiTypeResult {
@@ -18,7 +19,8 @@ export function PRINTPROCESSOR_INFO_1_Factory(): KoffiTypeResult {
 }
 
 /**
- * PRINTPROCESSOR_INFO_1 structure
+ * PRINTPROCESSOR_INFO_1 structure,
+ * Specifies the name of an installed print processor.
  * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/printprocessor-info-1
  */
 export interface PRINTPROCESSOR_INFO_1_Type {
