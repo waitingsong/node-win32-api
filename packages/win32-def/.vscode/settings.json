@@ -227,6 +227,7 @@
     "LPSTR",
     "LPTSTR",
     "LPVOID",
+    "LPWINDOWINFO",
     "LPWNDCLASSEX",
     "LPWNDCLASSEXW",
     "LPWORD",
