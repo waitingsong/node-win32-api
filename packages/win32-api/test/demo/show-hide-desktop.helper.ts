@@ -1,6 +1,6 @@
 // ref: https://koffi.dev/unions
 import { INPUT, KEYBDINPUT, VirtualKey } from 'win32-def/consts'
-import type { INPUT_Type } from 'win32-def/winuser'
+import type { INPUT_Type } from 'win32-def/struct'
 
 
 const INPUT_KEYBOARD = INPUT.INPUT_KEYBOARD

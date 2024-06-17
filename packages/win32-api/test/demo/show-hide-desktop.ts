@@ -5,7 +5,7 @@ import assert from 'node:assert/strict'
 
 import { sleep } from '@waiting/shared-core'
 import ffi from 'koffi'
-import { INPUT_Factory } from 'win32-def/winuser'
+import { INPUT_Factory } from 'win32-def/struct'
 
 import { events } from './show-hide-desktop.helper.js'
 
