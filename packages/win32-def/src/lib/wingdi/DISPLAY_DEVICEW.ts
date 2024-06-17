@@ -1,19 +1,17 @@
-import ffi from 'koffi'
-
 import * as W from '../common.def.js'
 import * as M from '../common.types.js'
-import { genStruct, type KoffiTypeResult } from '../helper2.js'
+import { genFixedInt16Array, genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'DISPLAY_DEVICEW'
 const ptr = `${key}*`
 const init = {
   cb: W.DWORD,
-  DeviceName: ffi.array('int16_t', 32, 'Array'),
-  DeviceString: ffi.array('int16_t', 128, 'Array'),
+  DeviceName: genFixedInt16Array(32),
+  DeviceString: genFixedInt16Array(128),
   StateFlags: W.DWORD,
-  DeviceID: ffi.array('int16_t', 128, 'Array'),
-  DeviceKey: ffi.array('int16_t', 128, 'Array'),
+  DeviceID: genFixedInt16Array(128),
+  DeviceKey: genFixedInt16Array(128),
 } as const
 
 /**
