@@ -11,6 +11,8 @@ export * from './RAWHID.js'
 export * from './RAWINPUTDEVICELIST.js'
 export * from './RAWINPUTHEADER.js'
 export * from './RAWKEYBOARD.js'
+// export * from './RID_DEVICE_INFO.js'
+export * from './RID_DEVICE_INFO_MOUSE.js'
 export * from './WNDCLASSEX.js'
 export * from './WINDOWINFO.js'
 
