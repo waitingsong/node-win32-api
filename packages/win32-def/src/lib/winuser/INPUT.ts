@@ -7,6 +7,8 @@ import { KEYBDINPUT_Factory, type KEYBDINPUT_Type } from './KEYBDINPUT.js'
 import { MOUSEINPUT_Factory, type MOUSEINPUT_Type } from './MOUSEINPUT.js'
 
 
+const key = 'INPUT'
+const ptr = `${key}*`
 const init = {
   type: W.UINT32,
   u: {
@@ -15,8 +17,6 @@ const init = {
     hi: HARDWAREINPUT_Factory,
   },
 } as const
-const key = 'INPUT'
-const ptr = `${key}*`
 
 
 /**

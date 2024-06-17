@@ -3,6 +3,8 @@ import * as M from '../common.types.js'
 import { KoffiTypeResult, genSimpleStruct } from '../helper2.js'
 
 
+const key = 'MOUSEINPUT'
+const ptr = `${key}*`
 const init = {
   dx: W.LONG,
   dy: W.LONG,
@@ -11,8 +13,6 @@ const init = {
   time: W.UINT32,
   dwExtraInfo: W.PUINT,
 } as const
-const key = 'MOUSEINPUT'
-const ptr = `${key}*`
 
 
 /**

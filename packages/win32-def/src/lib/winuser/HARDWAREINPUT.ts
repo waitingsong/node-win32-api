@@ -3,6 +3,14 @@ import * as M from '../common.types.js'
 import { KoffiTypeResult, genSimpleStruct } from '../helper2.js'
 
 
+const key = 'HARDWAREINPUT'
+const ptr = `${key}*`
+const init = {
+  uMsg: W.UINT32,
+  wParamL: W.UINT16,
+  wParamH: W.UINT16,
+} as const
+
 /**
  * HARDWAREINPUT structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-hardwareinput
@@ -19,14 +27,6 @@ export interface HARDWAREINPUT_TYPE {
   wParamL: M.UINT16
   wParamH: M.UINT16
 }
-
-const init = {
-  uMsg: W.UINT32,
-  wParamL: W.UINT16,
-  wParamH: W.UINT16,
-} as const
-const key = 'HARDWAREINPUT'
-const ptr = `${key}*`
 
 export const LPHARDWAREINPUT = ptr
 export const HARDWAREINPUT_Init = init

@@ -3,12 +3,12 @@ import * as M from '../common.types.js'
 import { KoffiTypeResult, genSimpleStruct } from '../helper2.js'
 
 
+const key = 'POINT'
+const ptr = `${key}*`
 const init = {
   x: W.LONG,
   y: W.LONG,
 } as const
-const key = 'POINT'
-const ptr = `${key}*`
 
 
 /**

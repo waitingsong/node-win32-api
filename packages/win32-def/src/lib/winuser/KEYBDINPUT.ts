@@ -3,6 +3,8 @@ import * as M from '../common.types.js'
 import { KoffiTypeResult, genSimpleStruct } from '../helper2.js'
 
 
+const key = 'KEYBDINPUT'
+const ptr = `${key}*`
 const init = {
   wVk: W.UINT16,
   wScan: W.UINT16,
@@ -10,8 +12,6 @@ const init = {
   time: W.UINT32,
   dwExtraInfo: W.PUINT,
 } as const
-const key = 'KEYBDINPUT'
-const ptr = `${key}*`
 
 
 /**
