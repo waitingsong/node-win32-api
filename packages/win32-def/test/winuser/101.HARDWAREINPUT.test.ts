@@ -1,6 +1,6 @@
 import { fileShortPath } from '@waiting/shared-core'
 
-import { HARDWAREINPUT_Factory, LPHARDWAREINPUT } from '##/lib/winuser/winuser.index.js'
+import { HARDWAREINPUT_Factory, LPHARDWAREINPUT } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

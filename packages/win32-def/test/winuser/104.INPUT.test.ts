@@ -4,11 +4,7 @@ import { fileShortPath, sleep } from '@waiting/shared-core'
 import ffi from 'koffi'
 import { INPUT, KEYBDINPUT, VirtualKey } from 'win32-def/consts'
 
-import {
-  INPUT_Factory,
-  INPUT_Type,
-  LPINPUT,
-} from '##/lib/winuser/winuser.index.js'
+import { INPUT_Factory, INPUT_Type, LPINPUT } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

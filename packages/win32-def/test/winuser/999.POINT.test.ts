@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { POINT_Factory, LPPOINT } from '##/lib/winuser/winuser.index.js'
+import { POINT_Factory, LPPOINT } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

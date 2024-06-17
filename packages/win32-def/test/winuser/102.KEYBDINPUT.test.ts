@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { KEYBDINPUT_Factory, LPKEYBDINPUT } from '##/lib/winuser/winuser.index.js'
+import { KEYBDINPUT_Factory, LPKEYBDINPUT } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

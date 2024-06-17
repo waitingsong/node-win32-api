@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { INITCOMMONCONTROLSEX_Factory, LPINITCOMMONCONTROLSEX } from '##/lib/winuser/winuser.index.js'
+import { INITCOMMONCONTROLSEX_Factory, LPINITCOMMONCONTROLSEX } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

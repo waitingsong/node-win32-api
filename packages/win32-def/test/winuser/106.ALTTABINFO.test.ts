@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { ALTTABINFO_Factory, LPALTTABINFO } from '##/lib/winuser/winuser.index.js'
+import { ALTTABINFO_Factory, LPALTTABINFO } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

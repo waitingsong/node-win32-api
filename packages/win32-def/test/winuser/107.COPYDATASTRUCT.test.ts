@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { COPYDATASTRUCT_Factory, LPCOPYDATASTRUCT } from '##/lib/winuser/winuser.index.js'
+import { COPYDATASTRUCT_Factory, LPCOPYDATASTRUCT } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 
