@@ -9,4 +9,5 @@ export * from './MSG.js'
 export * from './RAWHID.js'
 export * from './RAWINPUTDEVICELIST.js'
 export * from './RAWINPUTHEADER.js'
+export * from './RAWKEYBOARD.js'
 
