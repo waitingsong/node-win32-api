@@ -9,13 +9,14 @@ import { assertStructUnion } from '#@/helper.js'
 const name = 'WNDCLASSEXW'
 const pointer = LPWNDCLASSEXW
 const factory = WNDCLASSEXW_Factory
+const size = 80
 const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {
   describe(fn, () => {
     it('normal', () => {
       const data = factory()
-      assertStructUnion(data, { name, pointer, size: 80 })
+      assertStructUnion(data, { name, pointer, size })
     })
   })
 })

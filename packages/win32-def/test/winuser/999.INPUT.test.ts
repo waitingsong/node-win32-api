@@ -11,6 +11,7 @@ import { assertStructUnion } from '#@/helper.js'
 const name = 'INPUT'
 const pointer = LPINPUT
 const factory = INPUT_Factory
+const size = 40
 const fn = `${name}_Factory`
 
 const INPUT_KEYBOARD = INPUT.INPUT_KEYBOARD
@@ -22,7 +23,7 @@ describe(fileShortPath(import.meta.url), () => {
   describe(fn, () => {
     it('normal', () => {
       const data = factory()
-      assertStructUnion(data, { name, pointer, size: 40 })
+      assertStructUnion(data, { name, pointer, size })
     })
 
     it('Show/hide desktop with Win+D shortcut', async () => {
