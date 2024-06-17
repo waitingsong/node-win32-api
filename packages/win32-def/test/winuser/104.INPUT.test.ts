@@ -9,12 +9,13 @@ import {
   INPUT_Type,
   LPINPUT,
 } from '##/lib/winuser/winuser.index.js'
+import { assertStructUnion } from '#@/helper.js'
 
 
 const fn = 'INPUT_Factory'
 const factory = INPUT_Factory
-const key = 'INPUT'
-const ptr = LPINPUT
+const name = 'INPUT'
+const pointer = LPINPUT
 
 const INPUT_KEYBOARD = INPUT.INPUT_KEYBOARD
 const KEYEVENTF_KEYUP = KEYBDINPUT.KEYEVENTF_KEYUP
@@ -25,10 +26,7 @@ describe(fileShortPath(import.meta.url), () => {
   describe(fn, () => {
     it('normal', () => {
       const data = factory()
-      assert(data)
-      assert(data.name === key)
-      assert(data.pointer === ptr)
-      assert(data.size === 40, `size: ${data.size}`)
+      assertStructUnion(data, { name, pointer, size: 40 })
     })
 
     it('Show/hide desktop with Win+D shortcut', async () => {
