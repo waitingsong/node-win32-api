@@ -15,7 +15,7 @@ export enum Def {
   float = 'float',
   long = 'long',
   longlong = 'longlong',
-  ptr = 'pointer',
+  // ptr = 'pointer',
   uchar = 'uchar',
   uint = 'uint',
   uint8 = 'uint8',
