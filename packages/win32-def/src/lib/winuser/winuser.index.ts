@@ -11,4 +11,5 @@ export * from './RAWINPUTDEVICELIST.js'
 export * from './RAWINPUTHEADER.js'
 export * from './RAWKEYBOARD.js'
 export * from './WNDCLASSEX.js'
+export * from './WINDOWINFO.js'
 
