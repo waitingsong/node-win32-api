@@ -31,7 +31,7 @@ export const VOID = Def.void
 export const WCHAR = Def.uint16
 export const WORD = Def.int16
 
-export const BOOL = Def.int
+export const BOOL = Def.int32
 export const BOOLEAN = Def.bool
 export const BYTE = Def.byte
 export const CALLBACK = ptr // https://msdn.microsoft.com/en-us/library/windows/desktop/ms633573(v=vs.85).aspx
