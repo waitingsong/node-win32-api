@@ -13,7 +13,7 @@
     "@rollup/plugin-node-resolve": "15",
     "@types/mocha": "10",
     "@types/node": "18",
-    "@waiting/eslint-config": "^8.8.0",
+    "@waiting/eslint-config": "^10.25.1",
     "@waiting/shared-core": "^20.11.4",
     "@waiting/shared-types": "^20.11.0",
     "autocannon": "^7.10.0",
