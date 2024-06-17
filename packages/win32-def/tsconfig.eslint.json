@@ -5,16 +5,11 @@
   },
   "include": [
     "src/**/*.ts",
+    "src/**/*.mts",
     "test/**/*.ts",
-    "test_browser/**/*.ts"
-  ],
-  "exclude": [
-    "asset",
-    "app/public",
-    "app/views",
-    "dist",
-    "node_modules*",
-    "test/fixtures",
-    "**/*.d.ts"
+    "test/**/*.mts",
+    "test_browser/**/*.ts",
+    "packages/*/src/**/*.ts",
+    "packages/*/test/**/*.ts"
   ]
 }

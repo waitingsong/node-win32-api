@@ -174,6 +174,11 @@ export interface Win32Fns {
   RegisterWindowMessageW: (lpString: M.LPCTSTR) => M.UINT
 
   /**
+   * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput
+   */
+  // SendInput: (cInputs: M.UINT, pInputs: M.LPINPUT, cbSize: M.INT) => M.UINT
+
+  /**
    * ref: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-sendmessagew
    */
   SendMessageW: (hWnd: M.HWND, Msg: M.UINT, wPARAM: M.WPARAM, lPARAM: M.LPARAM) => M.LRESULT
@@ -227,14 +232,14 @@ export interface Win32Fns {
 
 
 export const apiDef: M.DllFuncs<Win32Fns> = {
-  BringWindowToTop: [W.BOOL, [W.HWND] ],
+  BringWindowToTop: [W.BOOL, [W.HWND]],
 
-  BroadcastSystemMessage: [W.LRESULT, [W.DWORD, W.LPDWORD, W.UINT, W.WPARAM, W.LPARAM] ],
+  BroadcastSystemMessage: [W.LRESULT, [W.DWORD, W.LPDWORD, W.UINT, W.WPARAM, W.LPARAM]],
 
   /** url: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-clienttoscreen */
-  ClientToScreen: [W.BOOL, [W.HWND, W.LPPOINT] ],
+  ClientToScreen: [W.BOOL, [W.HWND, W.LPPOINT]],
 
-  CloseWindow: [W.BOOL, [W.HWND] ],
+  CloseWindow: [W.BOOL, [W.HWND]],
 
   CreateWindowExW: [
     W.HWND, [
@@ -244,101 +249,101 @@ export const apiDef: M.DllFuncs<Win32Fns> = {
     ],
   ],
 
-  DefWindowProcW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
+  DefWindowProcW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM]],
 
-  DestroyWindow: [W.BOOL, [W.HWND] ],
+  DestroyWindow: [W.BOOL, [W.HWND]],
 
-  DispatchMessageW: [W.LRESULT, [W.LPMSG] ],
+  DispatchMessageW: [W.LRESULT, [W.LPMSG]],
 
   /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-enumdisplaydevicesw */
-  EnumDisplayDevicesW: [W.BOOL, [W.LPCWSTR, W.DWORD, W.DISPLAY_DEVICEW, W.DWORD] ],
+  EnumDisplayDevicesW: [W.BOOL, [W.LPCWSTR, W.DWORD, W.DISPLAY_DEVICEW, W.DWORD]],
 
-  EnumThreadWindows: [W.BOOL, [W.DWORD, W.WNDENUMPROC, W.LPARAM] ],
+  EnumThreadWindows: [W.BOOL, [W.DWORD, W.WNDENUMPROC, W.LPARAM]],
 
-  EnumWindows: [W.BOOL, [W.WNDENUMPROC, W.LPARAM] ],
+  EnumWindows: [W.BOOL, [W.WNDENUMPROC, W.LPARAM]],
 
-  FindWindowExW: [W.HWND, [W.HWND, W.HWND, W.LPCTSTR, W.LPCTSTR] ],
+  FindWindowExW: [W.HWND, [W.HWND, W.HWND, W.LPCTSTR, W.LPCTSTR]],
 
-  FlashWindow: [W.BOOL, [W.HWND, W.BOOL] ],
+  FlashWindow: [W.BOOL, [W.HWND, W.BOOL]],
 
-  FlashWindowEx: [W.BOOL, [W.FLASHWINFO] ],
+  FlashWindowEx: [W.BOOL, [W.FLASHWINFO]],
 
-  GetAncestor: [W.HWND, [W.HWND, W.UINT] ],
+  GetAncestor: [W.HWND, [W.HWND, W.UINT]],
 
-  GetAltTabInfoW: [W.BOOL, [W.HWND, W.INT, W.INT, W.LPWSTR, W.INT] ],
+  GetAltTabInfoW: [W.BOOL, [W.HWND, W.INT, W.INT, W.LPWSTR, W.INT]],
 
   /**
    * Copies the caret's position to the specified POINT structure.
    * @link https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcaretpos
    */
-  GetCaretPos: [W.BOOL, [W.LPPOINT] ],
+  GetCaretPos: [W.BOOL, [W.LPPOINT]],
 
-  GetClassInfoExW: [W.BOOL, [W.HINSTANCE, W.LPCTSTR, W.LPWNDCLASSEX] ],
+  GetClassInfoExW: [W.BOOL, [W.HINSTANCE, W.LPCTSTR, W.LPWNDCLASSEX]],
 
-  GetForegroundWindow: [W.HWND, [] ],
+  GetForegroundWindow: [W.HWND, []],
 
-  GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT] ],
+  GetMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT]],
 
-  GetParent: [W.HWND, [W.HWND] ],
+  GetParent: [W.HWND, [W.HWND]],
 
-  GetRawInputDeviceInfoW: [W.UINT, [W.HANDLE, W.UINT, W.LPVOID, W.PUINT] ],
+  GetRawInputDeviceInfoW: [W.UINT, [W.HANDLE, W.UINT, W.LPVOID, W.PUINT]],
 
-  GetRawInputDeviceList: [W.INT, [W.PRAWINPUTDEVICELIST, W.PUINT, W.UINT] ],
+  GetRawInputDeviceList: [W.INT, [W.PRAWINPUTDEVICELIST, W.PUINT, W.UINT]],
 
-  GetTopWindow: [W.HWND, [W.HWND] ],
+  GetTopWindow: [W.HWND, [W.HWND]],
 
-  GetWindow: [W.HWND, [W.HWND, W.UINT] ],
+  GetWindow: [W.HWND, [W.HWND, W.UINT]],
 
-  GetWindowInfo: [W.BOOL, [W.HWND, W.PWINDOWINFO] ],
+  GetWindowInfo: [W.BOOL, [W.HWND, W.PWINDOWINFO]],
 
-  GetWindowLongW: [W.LONG, [W.HWND, W.INT] ],
+  GetWindowLongW: [W.LONG, [W.HWND, W.INT]],
 
   /** only under x64 */
-  GetWindowLongPtrW: [W.LONG_PTR, [W.HWND, W.INT] ],
+  GetWindowLongPtrW: [W.LONG_PTR, [W.HWND, W.INT]],
 
-  GetWindowRect: [W.BOOL, [W.HWND, W.RECT] ],
+  GetWindowRect: [W.BOOL, [W.HWND, W.RECT]],
 
-  GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT] ],
+  GetWindowTextW: [W.INT, [W.HWND, W.LPTSTR, W.INT]],
 
-  GetWindowThreadProcessId: [W.DWORD, [W.HWND, W.LPDWORD] ],
+  GetWindowThreadProcessId: [W.DWORD, [W.HWND, W.LPDWORD]],
 
-  MonitorFromWindow: [W.HWND, [W.HANDLE, W.DWORD] ],
+  MonitorFromWindow: [W.HWND, [W.HANDLE, W.DWORD]],
 
-  IsIconic: [W.BOOL, [W.HWND] ],
+  IsIconic: [W.BOOL, [W.HWND]],
 
-  IsWindowVisible: [W.BOOL, [W.HWND] ],
+  IsWindowVisible: [W.BOOL, [W.HWND]],
 
-  PeekMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT, W.UINT] ],
+  PeekMessageW: [W.BOOL, [W.LPMSG, W.HWND, W.UINT, W.UINT, W.UINT]],
 
-  PostMessageW: [W.BOOL, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
+  PostMessageW: [W.BOOL, [W.HWND, W.UINT, W.WPARAM, W.LPARAM]],
 
-  PrintWindow: [W.BOOL, [W.HWND, W.HDC, W.UINT] ],
+  PrintWindow: [W.BOOL, [W.HWND, W.HDC, W.UINT]],
 
-  RegisterClassExW: [W.ATOM, [W.WNDCLASSEX] ],
+  RegisterClassExW: [W.ATOM, [W.WNDCLASSEX]],
 
-  RegisterWindowMessageW: [W.UINT, [W.LPCTSTR] ],
+  RegisterWindowMessageW: [W.UINT, [W.LPCTSTR]],
 
-  SendMessageW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM] ],
+  SendMessageW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM]],
 
-  SendMessageTimeoutW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM, W.UINT, W.UINT, W.DWORD_PTR] ],
+  SendMessageTimeoutW: [W.LRESULT, [W.HWND, W.UINT, W.WPARAM, W.LPARAM, W.UINT, W.UINT, W.DWORD_PTR]],
 
-  SetForegroundWindow: [W.BOOL, [W.HWND] ],
+  SetForegroundWindow: [W.BOOL, [W.HWND]],
 
-  SetWindowPos: [W.BOOL, [W.HWND, W.HWND, W.INT, W.INT, W.INT, W.INT, W.UINT] ],
+  SetWindowPos: [W.BOOL, [W.HWND, W.HWND, W.INT, W.INT, W.INT, W.INT, W.UINT]],
 
-  SetWindowTextW: [W.BOOL, [W.HWND, W.LPCTSTR] ],
+  SetWindowTextW: [W.BOOL, [W.HWND, W.LPCTSTR]],
 
-  SetWinEventHook: [W.HWINEVENTHOOK, [W.UINT, W.UINT, W.HMODULE, W.WINEVENTPROC, W.DWORD, W.DWORD, W.UINT] ],
+  SetWinEventHook: [W.HWINEVENTHOOK, [W.UINT, W.UINT, W.HMODULE, W.WINEVENTPROC, W.DWORD, W.DWORD, W.UINT]],
 
-  ShowWindow: [W.BOOL, [W.HWND, W.INT] ],
+  ShowWindow: [W.BOOL, [W.HWND, W.INT]],
 
-  TranslateMessage: [W.BOOL, [W.LPMSG] ],
+  TranslateMessage: [W.BOOL, [W.LPMSG]],
 
-  TranslateMessageEx: [W.BOOL, [W.LPMSG] ],
+  TranslateMessageEx: [W.BOOL, [W.LPMSG]],
 
-  UnhookWinEvent: [W.BOOL, [W.HWINEVENTHOOK] ],
+  UnhookWinEvent: [W.BOOL, [W.HWINEVENTHOOK]],
 
-  UpdateWindow: [W.BOOL, [W.HWND] ],
+  UpdateWindow: [W.BOOL, [W.HWND]],
 }
 
 

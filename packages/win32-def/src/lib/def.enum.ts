@@ -1,6 +1,7 @@
 /* eslint-disable id-length */
 
 /**
+ * @link https://koffi.dev/input
  * @link https://tootallnate.github.io/ref/
  */
 export enum Def {

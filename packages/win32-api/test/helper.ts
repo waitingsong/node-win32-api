@@ -2,7 +2,7 @@
 import assert from 'node:assert'
 
 import { genCurrentDirname } from '@waiting/shared-core'
-import ffi from 'ffi-napi'
+import ffi from 'koffi'
 import ref from 'ref-napi'
 import StructDi from 'ref-struct-di'
 import UnionDi from 'ref-union-di'
@@ -39,6 +39,7 @@ export const winspool = Winspool.load()
 
 /** WndProc */
 export function createWndProc(): M.WNDPROC {
+  // @ts-expect-error
   const WndProc = ffi.Callback(
     W.UINT32,
     [W.HWND, W.UINT, W.WPARAM, W.LPARAM],

@@ -1,23 +1,22 @@
 {
   "include": [
+    "dist",
+    "src/*.ts",
     "src/**/*.ts"
   ],
   "exclude": [
     ".githooks",
-    "dist",
     "node_modules*",
     "src/bin",
     "src/domain.ts",
     "src/interface.ts",
-    "test*",
     "**/node_modules*",
-    "**/*.d.ts",
-    "**/*.js"
-  ],
-  "extension": [
-    ".ts"
+    "test",
+    "test*",
+    "**/*.d.ts"
   ],
   "reporter": [
+    "text",
     "html",
     "json",
     "text-summary"

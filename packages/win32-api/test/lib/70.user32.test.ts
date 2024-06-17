@@ -31,7 +31,6 @@ describe(fileShortPath(import.meta.url), () => {
   describe('find app window by user32.EnumWindows()', () => {
     it('await', async () => {
       const child = spawn('notepad.exe')
-      const enumWindowsProc = createEnumWinProc()
 
       console.log(new Date().toLocaleTimeString())
       await sleep(3000)
@@ -56,6 +55,8 @@ describe(fileShortPath(import.meta.url), () => {
 
       const address = point.ref().address()
       tmpMap.delete(address)
+
+      const enumWindowsProc = createEnumWinProc()
 
       await enumWindows(enumWindowsProc, address)
       console.log({ address })
@@ -128,6 +129,7 @@ describe(fileShortPath(import.meta.url), () => {
  * if calling frequently in a short time
  */
 function createEnumWinProc(): M.WNDENUMPROC {
+  // @ts-expect-error
   const enumWindowsProc = ffi.Callback(
     W.BOOL,
     [W.HWND, W.LPARAM],

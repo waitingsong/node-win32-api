@@ -5,7 +5,7 @@
 import assert from 'node:assert'
 import { copyFileSync, statSync } from 'node:fs'
 
-import ffi from 'ffi-napi'
+import ffi from 'koffi'
 import ref from 'ref-napi'
 import {
   AsyncSyncFuncModel,
@@ -23,6 +23,8 @@ import {
   StructFactory,
   HWND,
 } from 'win32-def'
+
+// import { convert2DllFuncsRs } from './helper-rs.js'
 
 
 export const isArch64 = process.arch.includes('64')
@@ -57,7 +59,7 @@ export function load<T>(
   const st = parse_settings(settings)
 
   const name = dllName.endsWith('.drv')
-    ? preprareDllFile(dllName)
+    ? prepareDllFile(dllName)
     : dllName
 
   if (st.singleton) {
@@ -65,19 +67,27 @@ export function load<T>(
 
     if (! inst) {
       const ps = gen_api_opts<T>(dllFuncs, fns)
+      // const ps2 = convert2DllFuncsRs(name, ps)
+
       // ffi.Library.EXT = ext
-      inst = ffi.Library(name, ps) as unknown as T
+      // @ts-expect-error
+      inst = ffi.define(name, ps) as unknown as T
+      Object.defineProperty(inst, name, {
+        value: name,
+        enumerable: false,
+      })
       set_inst_by_name(name, inst)
     }
     return inst
   }
   else {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    // @ts-expect-error
     return ffi.Library(name, gen_api_opts<T>(dllFuncs, fns)) as unknown as T
   }
 }
 
-function preprareDllFile(file: string): string {
+function prepareDllFile(file: string): string {
 
   if (file.startsWith('file://')) {
     return file
@@ -226,7 +236,7 @@ export function gen_api_opts<T = DllFuncsModel>(
       }
       // @ts-ignore
       const ps = dllFuncs[fn] as FnParams | undefined
-      assert(ps, `dellFuncs has no property mehod name "${fn}"`)
+      assert(ps, `dellFuncs has no property method name "${fn}"`)
 
       Object.defineProperty(ret, fn, {
         value: ps,
@@ -243,7 +253,7 @@ export function gen_api_opts<T = DllFuncsModel>(
       assert(ps, `dellFuncs has no property mehod name "${fn}"`)
 
       Object.defineProperty(ret, fn, {
-        value: ps as FnParams,
+        value: ps,
         writable: false,
         enumerable: true,
         configurable: false,

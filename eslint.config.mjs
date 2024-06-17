@@ -18,9 +18,13 @@ const srcRules = {
       await genModuleAbsolutePathIfExists(projectDir, 'node_modules/@mwcp/share') ?? '.',
     ],
   }],
+  'id-length': 0,
+  'unicorn/filename-case': 0,
 }
 const testRules = {
   '@typescript-eslint/no-explicit-any': 0,
+  'id-length': 0,
+  'unicorn/filename-case': 0,
 }
 
 const languageOptions = {
