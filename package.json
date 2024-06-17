@@ -27,7 +27,7 @@
     "tsc-alias": "^1.8.2",
     "tsconfig-paths": "4",
     "typescript": "^5.4.5",
-    "zx": "7"
+    "zx": "8"
   },
   "engines": {
     "node": ">=16.13.0"
