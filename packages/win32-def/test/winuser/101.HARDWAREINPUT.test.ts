@@ -13,7 +13,7 @@ describe(fileShortPath(import.meta.url), () => {
   describe(fn, () => {
     it('normal', () => {
       const data = factory()
-      assertStructUnion(data, { name, pointer, size: 40 })
+      assertStructUnion(data, { name, pointer, size: 8 })
     })
   })
 })
