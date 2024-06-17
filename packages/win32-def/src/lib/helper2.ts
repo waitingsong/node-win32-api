@@ -118,7 +118,9 @@ const regUnionName = /^u\d*$/u
 function genStructCached(def: KoffiDefComplexType, name: string, pointer: string): KoffiTypeResult {
   if (name) {
     const data = cacheStructMap.get(name)
-    if (data) { return data }
+    if (data) {
+      return data
+    }
   }
   const data = {
     ...def,
@@ -179,7 +181,9 @@ export function genUnion(def: KoffiDefType, name?: string, pointer?: string): Ko
 function genUnionCached(def: KoffiDefType, name: string, pointer: string): KoffiTypeResult {
   if (name) {
     const data = cacheUnionMap.get(name)
-    if (data) { return data }
+    if (data) {
+      return data
+    }
   }
 
   const data = {
