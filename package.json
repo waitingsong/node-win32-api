@@ -4,7 +4,7 @@
   "description": "FFI definitions of windows win32 api for node-ffi",
   "private": true,
   "devDependencies": {
-    "@commitlint/cli": "17",
+    "@commitlint/cli": "19",
     "@commitlint/config-conventional": "17",
     "@midwayjs/cli": "^2.0.10",
     "@midwayjs/mock": "^3.10.3",
