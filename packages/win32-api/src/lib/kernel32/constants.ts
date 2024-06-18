@@ -1,5 +1,5 @@
 /** https://docs.microsoft.com/en-us/windows/desktop/api/winbase/nf-winbase-setthreadexecutionstate */
-export const enum EXECUTION_STATE {
+export enum EXECUTION_STATE {
   /**
    * Enables away mode. This value must be specified with ES_CONTINUOUS.
    * Away mode should be used only by media-recording and media-distribution

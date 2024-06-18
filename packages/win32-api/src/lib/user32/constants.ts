@@ -1,7 +1,7 @@
 /* eslint-disable no-bitwise */
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/ms633548(v=vs.85).aspx
-export const enum CmdShow {
+export enum CmdShow {
   // Hides the window and activates another window.
   SW_HIDE = 0,
 
