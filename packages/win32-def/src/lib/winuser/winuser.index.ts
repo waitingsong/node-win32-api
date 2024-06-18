@@ -15,6 +15,6 @@ export * from './RID_DEVICE_INFO.js'
 export * from './RID_DEVICE_INFO_HID.js'
 export * from './RID_DEVICE_INFO_KEYBOARD.js'
 export * from './RID_DEVICE_INFO_MOUSE.js'
-export * from './WNDCLASSEX.js'
+export * from './WNDCLASSEXW.js'
 export * from './WINDOWINFO.js'
 
