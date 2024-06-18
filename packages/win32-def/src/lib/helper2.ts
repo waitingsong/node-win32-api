@@ -3,7 +3,7 @@ import assert from 'assert'
 import ffi from 'koffi'
 import type { IKoffiCType, TypeSpecWithAlignment } from 'koffi'
 
-import { StringArray } from './common.types.js'
+import { WCHARArray } from './common.types.js'
 
 
 export interface KoffiTypeResult {
@@ -249,7 +249,7 @@ export function genFixedArray(length: number): IKoffiCType {
 }
 
 
-export function decodeInt16Array(input: StringArray, length = -1): string {
+export function decodeInt16Array(input: WCHARArray, length = -1): string {
   assert(input, 'input must be an object')
   assert(typeof input.buffer === 'object', 'input.buffer must be an object')
   assert(typeof input.byteLength === 'number', 'input.byteLength must be a number')

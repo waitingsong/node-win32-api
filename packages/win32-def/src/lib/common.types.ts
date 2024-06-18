@@ -34,7 +34,7 @@ export type LONG_PTR = PTR_Addr
 export type ULONG_PTR = PTR_Addr
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type VOID = any
-export type WCHAR = StringArray
+export type WCHAR = UINT16
 export type WCHAR_String = string
 export type PWCHAR_String = _POINTER
 
@@ -269,7 +269,7 @@ export type StructPropToBuffer<T> = {
  * Generate a fixed-length array of int16_t,
  * via genFixedInt16Array()
  */
-export interface StringArray {
+export interface WCHAR_Array {
   buffer: object
   byteLength: number
   byteOffset: number

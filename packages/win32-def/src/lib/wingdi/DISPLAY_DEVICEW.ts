@@ -28,11 +28,11 @@ export function DISPLAY_DEVICEW_Factory(): KoffiTypeResult {
  */
 export interface DISPLAY_DEVICEW_Type {
   cb: M.DWORD
-  DeviceName: M.WCHAR
-  DeviceString: M.WCHAR
+  DeviceName: M.WCHAR_Array
+  DeviceString: M.WCHAR_Array
   StateFlags: M.DWORD
-  DeviceID: M.WCHAR
-  DeviceKey: M.WCHAR
+  DeviceID: M.WCHAR_Array
+  DeviceKey: M.WCHAR_Array
 }
 
 export const LPDISPLAY_DEVICEW = ptr
