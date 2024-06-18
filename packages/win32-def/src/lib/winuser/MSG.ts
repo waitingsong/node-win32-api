@@ -5,7 +5,7 @@ import { POINT_Factory, type POINT_Type } from '../windef/POINT.js'
 
 
 const key = 'MSG'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   hwnd: W.HWND,
   message: W.UINT,

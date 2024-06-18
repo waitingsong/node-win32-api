@@ -5,7 +5,7 @@ import { DEVMODEW_Factory, DEVMODEW_Type } from '../wingdi/DEVMODEW.js'
 
 
 const key = 'PRINTER_DEFAULTS'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   pDatatype: W.LPTSTR,
   pDevMode: DEVMODEW_Factory,

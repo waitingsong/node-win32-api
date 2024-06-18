@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'RAWHID'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   dwSizeHid: W.DWORD,
   dwCount: W.DWORD,

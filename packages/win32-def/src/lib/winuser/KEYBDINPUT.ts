@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'KEYBDINPUT'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   wVk: W.UINT16,
   wScan: W.UINT16,

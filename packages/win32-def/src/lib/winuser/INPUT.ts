@@ -8,7 +8,7 @@ import { MOUSEINPUT_Factory, type MOUSEINPUT_Type } from './MOUSEINPUT.js'
 
 
 const key = 'INPUT'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   type: W.UINT32,
   u: {

@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'RAWINPUTDEVICELIST'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   hDevice: W.HANDLE,
   dwType: W.DWORD,

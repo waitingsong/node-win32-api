@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'RAWKEYBOARD'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   MakeCode: W.USHORT,
   Flags: W.USHORT,

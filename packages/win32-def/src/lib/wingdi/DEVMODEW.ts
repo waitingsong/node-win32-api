@@ -5,7 +5,7 @@ import { POINT_Factory, POINT_Type } from '../windef/POINT.js'
 
 
 const key = 'DEVMODEW'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   dmDeviceName: genFixedInt16Array(32),
   dmSpecVersion: W.WORD,

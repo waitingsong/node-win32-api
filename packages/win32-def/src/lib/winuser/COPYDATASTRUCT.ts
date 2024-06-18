@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'COPYDATASTRUCT'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   dwData: W.ULONG_PTR,
   cbData: W.DWORD,

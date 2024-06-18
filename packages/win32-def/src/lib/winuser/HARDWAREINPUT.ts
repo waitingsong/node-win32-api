@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'HARDWAREINPUT'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   uMsg: W.UINT32,
   wParamL: W.UINT16,

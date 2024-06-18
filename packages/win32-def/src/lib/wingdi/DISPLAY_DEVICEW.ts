@@ -4,7 +4,7 @@ import { genFixedInt16Array, genStruct, type KoffiTypeResult } from '../helper2.
 
 
 const key = 'DISPLAY_DEVICEW'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   cb: W.DWORD,
   DeviceName: genFixedInt16Array(32),

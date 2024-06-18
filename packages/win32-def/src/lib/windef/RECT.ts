@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'RECT'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   left: W.LONG,
   top: W.LONG,

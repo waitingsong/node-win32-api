@@ -5,7 +5,7 @@ import { RECT_Factory, type RECT_Type } from '../windef/RECT.js'
 
 
 const key = 'WINDOWINFO'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   cbSize: W.DWORD,
   rcWindow: RECT_Factory,

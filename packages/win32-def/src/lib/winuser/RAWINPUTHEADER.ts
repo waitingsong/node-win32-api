@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'RAWINPUTHEADER'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   dwType: W.DWORD,
   dwSize: W.DWORD,

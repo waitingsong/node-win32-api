@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'RID_DEVICE_INFO_HID'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   dwVendorId: W.DWORD,
   dwProductId: W.DWORD,

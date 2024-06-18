@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'PRINTER_INFO_1'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   Flags: W.DWORD,
   pDescription: W.LPTSTR,

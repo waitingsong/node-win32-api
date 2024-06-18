@@ -8,7 +8,7 @@ import { RID_DEVICE_INFO_MOUSE_Factory, type RID_DEVICE_INFO_MOUSE_Type } from '
 
 
 const key = 'RID_DEVICE_INFO'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   cbSize: W.DWORD,
   dwType: W.DWORD,

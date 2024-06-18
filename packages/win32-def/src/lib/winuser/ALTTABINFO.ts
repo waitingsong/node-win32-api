@@ -5,7 +5,7 @@ import { POINT_Factory, type POINT_Type } from '../windef/POINT.js'
 
 
 const key = 'ALTTABINFO'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   cbSize: W.DWORD,
   cItems: W.INT,

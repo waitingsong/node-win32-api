@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'FLASHWINFO'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   cbSize: W.UINT,
   hwnd: W.HWND,

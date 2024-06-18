@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'MOUSEINPUT'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   dx: W.LONG,
   dy: W.LONG,

@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'WNDCLASSEXW'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   cbSize: W.UINT,
   style: W.UINT,

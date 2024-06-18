@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'RID_DEVICE_INFO_MOUSE'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   dwId: W.DWORD,
   dwNumberOfButtons: W.DWORD,

@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'INITCOMMONCONTROLSEX'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   dwSize: W.DWORD,
   dwICC: W.DWORD,

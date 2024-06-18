@@ -4,7 +4,7 @@ import { genStruct, type KoffiTypeResult } from '../helper2.js'
 
 
 const key = 'FILETIME'
-const ptr = `${key}*`
+const ptr = `${key} *`
 const init = {
   dwLowDateTime: W.DWORD,
   dwHighDateTime: W.DWORD,
