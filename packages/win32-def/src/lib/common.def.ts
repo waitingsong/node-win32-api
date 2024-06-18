@@ -212,7 +212,6 @@ export const WNDPROC = ptr
 export const WPARAM = UINT_PTR
 // A pointer to an INITCOMMONCONTROLSEX
 export const LPINITCOMMONCONTROLSEX = ptr
-export const LPWNDCLASSEX = ptr // A pointer to a WNDCLASSEX
 export const PWINDOWINFO = ptr // A pointer to a WINDOWINFO structure
 
 export const PFILETIME = ptr // A pointer to a FILETIME
