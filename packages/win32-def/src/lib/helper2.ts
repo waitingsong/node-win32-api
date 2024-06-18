@@ -236,7 +236,13 @@ function genUnionCached(def: KoffiDefType, name: string, pointer: string): Koffi
 
 export function genFixedInt16Array(length: number): IKoffiCType {
   assert(length > 0, `length must be greater than 0, but got ${length}`)
-  // const type = ffi.array('int16_t', length, 'Array')
   const type = ffi.array('int16_t', length)
   return type
 }
+
+export function genFixedArray(length: number): IKoffiCType {
+  assert(length > 0, `length must be greater than 0, but got ${length}`)
+  const type = ffi.array('int16_t', length, 'Array')
+  return type
+}
+
