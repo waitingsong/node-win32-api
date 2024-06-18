@@ -17,14 +17,8 @@ import {
   FnParams,
   LoadSettings,
   PromiseFnModel,
-  StructDefType,
-  StructInstanceBase,
   settingsDefault,
-  StructFactory,
-  HWND,
 } from 'win32-def'
-
-// import { convert2DllFuncsRs } from './helper-rs.js'
 
 
 export const isArch64 = process.arch.includes('64')
@@ -286,45 +280,6 @@ function parse_settings(settings?: LoadSettings): LoadSettings {
 }
 
 
-/**
- * @example ```ts
- * const point = StructFactory<M.POINT_Struct>(DS.POINT)
- * point.x = 123
- * const lParam = point.ref().address()
- * const obj = retrieveStructFromPtrAddress<M.POINT_Struct>(lParam, DS.POINT)
- * obj && console.log({ objx: obj.x, objy: obj.y })
- * ```
- */
-export function retrieveStructFromPtrAddress<R extends StructInstanceBase>(
-  address: number,
-  dataStructConst: StructDefType,
-  maxCharLength = 1024,
-): R | undefined {
-
-  assert(dataStructConst, 'dataStructConst is required')
-
-  const struct = StructFactory<R>(dataStructConst, {
-    useStringBuffer: true,
-    maxCharLength,
-  })
-  assert(struct)
-
-  const refType = struct.ref().ref().type
-  const buf = Buffer.alloc(8)
-  buf.writeInt64LE(address, 0)
-  buf.type = refType
-
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    const ret = buf.deref().deref() as R
-    return ret
-  }
-  catch (ex) {
-    console.warn(ex)
-  }
-}
-
-
 export function ucsBufferFrom(str: string | undefined | null): Buffer {
   if (typeof str === 'string' && str.length) {
     return Buffer.from(str + '\0', 'ucs2')
@@ -346,12 +301,12 @@ export function ucsBufferToString(buffer: Buffer, charCount?: number | undefined
 export function ucsBufferSplit(buffer: Buffer, maxCount?: number): string[] {
   const ret: string[] = []
   const row: string[] = []
-  const blen = buffer.byteLength
+  const { byteLength } = buffer
 
-  if (! blen) { return ret }
-  const count = maxCount ? maxCount : blen
+  if (! byteLength) { return ret }
+  const count = maxCount ? maxCount : byteLength
 
-  for (let i = 0; i < blen;) {
+  for (let i = 0; i < byteLength;) {
     const t1 = ref.readCString(buffer, i)
     if (t1) {
       row.push(t1)
@@ -376,131 +331,3 @@ export function ucsBufferSplit(buffer: Buffer, maxCount?: number): string[] {
 }
 
 
-/**
- * Read string from address of ptr
- */
-export function ptrToString(
-  ptrAddress: HWND,
-  maxByteLength: number,
-): string {
-
-  if (! ptrAddress) {
-    return ''
-  }
-
-  assert(maxByteLength >= 2, 'maxByteLength is required')
-
-  const tpl = ref.allocCString('', 'ucs2')
-  const refType = tpl.ref().ref().type
-  const buf = Buffer.alloc(8)
-  buf.writeInt64LE(ptrAddress.toString(), 0)
-  buf.type = refType
-
-  const buf2 = buf.readPointer(0, maxByteLength)
-  const [txt] = ucsBufferSplit(buf2, 1)
-  const ret = txt ?? ''
-  return ret
-}
-
-/**
- * Retrieve struct from Buffer
- */
-export function bufferToStruct<T extends StructInstanceBase>(
-  src: Buffer,
-  structDef: StructDefType,
-  maxCount = 1,
-  pcbNeeded?: number,
-  align: 4 | 8 = 8, // btye
-): T[] {
-
-  const ret: T[] = []
-
-  const blen = pcbNeeded ? pcbNeeded : src.byteLength
-  assert(blen >= 16, 'Buffer too small')
-
-  // const structDef = DS.PRINTER_INFO_1
-  const keyLen = Object.keys(structDef).length
-  assert(keyLen >= 1, 'keyLen must be >= 1')
-
-  const groupBtyeLen = keyLen * align
-  const bufByteLen = maxCount * groupBtyeLen
-
-  for (let i = 0; i < maxCount; i += 1) {
-    const buf = Buffer.alloc(bufByteLen)
-    src.copy(buf, 0, i * groupBtyeLen)
-    const struct = retriveStruct<T>(structDef, buf, blen, align)
-    ret.push(struct)
-  }
-
-  return ret
-}
-
-function retriveStruct<T extends StructInstanceBase>(
-  structDef: StructDefType, // DS.PRINTER_INFO_[L],
-  src: Buffer,
-  maxReadByteLength: number,
-  align: 4 | 8, // 32bit or 64bit
-): T {
-
-  const struct = StructFactory<T>(structDef, { useStringBuffer: true })
-
-  Object.entries(structDef).forEach(([key, defType], idx) => {
-    const pos = idx * align
-
-    if (typeof defType === 'string') {
-      const valOrAddr = readAddrValue(src, defType, pos)
-      assert(typeof valOrAddr !== 'undefined')
-
-      if (defGroupNumber.includes(defType)) { // number value
-        // @ts-ignore
-        struct[key] = valOrAddr
-      }
-      else if (defGroupPointer.includes(defType)) { // pointer value
-        const ptrVal = ptrToString(valOrAddr, maxReadByteLength)
-        // @ts-ignore
-        struct[key] = ptrVal
-      }
-      else {
-        throw new TypeError(`Unknown key: "${key}", type: "${defType}"`)
-      }
-    }
-    else {
-      throw new Error(`Not implemented, only Def type is supported: key: "${key}"`)
-    }
-  })
-
-  return struct
-}
-
-
-function readAddrValue(
-  src: Buffer,
-  defType: Def,
-  pos: number,
-): string | number | bigint | undefined {
-
-  let ret
-
-  if (defGroupPointer.includes(defType)) {
-    ret = isArch64 ? src.readInt64LE(pos) : src.readInt32LE(pos)
-  }
-  else if (defGroupNumber.includes(defType)) {
-    if (defType.includes('64')) {
-      ret = src.readInt64LE(pos)
-    }
-    else if (defType.includes('32')) {
-      ret = src.readInt32LE(pos)
-    }
-    else if (defType.includes('16')) {
-      ret = src.readInt16LE(pos)
-    }
-    else {
-      throw new Error(`Unknown defType: ${defType}`)
-    }
-  }
-  else {
-    throw new Error(`Unknown defType: ${defType}`)
-  }
-
-  return ret
-}

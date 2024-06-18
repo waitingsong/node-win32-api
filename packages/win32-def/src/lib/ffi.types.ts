@@ -2,17 +2,10 @@
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import { BigIntStr, TuplePush as Push } from '@waiting/shared-types'
 
-import { StringBuffer, UnionInstanceBase } from './common.types.js'
-import { Def } from './def.enum.js'
-
 
 export type _WIN64 = boolean
 export type _UNICODE = boolean
 
-/* windows data defination type */
-export interface StructDefType {
-  [prop: string]: Def | StructDefType | StringBuffer | UnionInstanceBase | StructTypeConstructor
-}
 export type StructTypeConstructor<T = object> = new () => Record<keyof T, string | number | BigIntStr | Buffer>
 
 export interface LoadSettings {
@@ -106,17 +99,13 @@ export type DllFuncs<T = DllFuncsModel> = Record<keyof T, FnParams>
  * }
  * ```
  */
-export interface DllFuncsModel {
-  [funcName: string]: SyncFnModel
-}
+export type DllFuncsModel = Record<string, SyncFnModel>
 export type SyncFnModel = (...args: any[]) => boolean | number | BigIntStr | Buffer | void
 export type AsyncFnModel = (...args: any[]) => Promise<boolean | number | BigIntStr | Buffer | void>
 export type AsyncSyncFuncModel = SyncFnModel & {
   async: (...args: any[]) => void,
 }
-export interface AsyncFuncModel {
-  [key: string]: AsyncFnModel
-}
+export type AsyncFuncModel = Record<string, AsyncFnModel>
 
 
 /* eslint-disable @typescript-eslint/indent */
@@ -155,12 +144,12 @@ export interface AsyncFuncModel {
  */
 export type ExpandFnModel<T> = {
   [K in keyof T]: 'async' extends keyof T[K]
-  ? T[K]
-  : T[K] extends AsyncSyncFuncModel
     ? T[K]
-    : T[K] extends SyncFnModel
-      ? T[K] & AppendSyncFnWithAsync<T[K]>
-      : never
+    : T[K] extends AsyncSyncFuncModel
+      ? T[K]
+      : T[K] extends SyncFnModel
+        ? T[K] & AppendSyncFnWithAsync<T[K]>
+        : never
 }
 interface AppendSyncFnWithAsync<Fn extends SyncFnModel> {
   async: (
