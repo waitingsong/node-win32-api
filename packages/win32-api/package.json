@@ -13,6 +13,7 @@
     "winspool",
     "printer",
     "ffi",
+    "koffi",
     "ESM",
     "typescript",
     "ts"
