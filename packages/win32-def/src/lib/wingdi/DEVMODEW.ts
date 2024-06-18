@@ -1,5 +1,3 @@
-import ffi from 'koffi'
-
 import * as W from '../common.def.js'
 import * as M from '../common.types.js'
 import { genFixedInt16Array, genStruct, type KoffiTypeResult } from '../helper2.js'
