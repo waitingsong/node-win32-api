@@ -110,7 +110,6 @@ export const LPHANDLE = _WIN64 ? Def.int64Ptr : Def.int32Ptr
 export const LPINT = ptr
 export const LPLONG = Def.int32Ptr
 export const LPMSG = ptr
-export const LPPOINT = ptr
 export const LPSTR = Def.charPtr
 export const LPWSTR = Def.uint16Ptr
 export const LPTSTR = Def.uint16Ptr
