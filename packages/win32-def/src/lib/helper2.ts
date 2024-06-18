@@ -3,6 +3,8 @@ import assert from 'assert'
 import ffi from 'koffi'
 import type { IKoffiCType, TypeSpecWithAlignment } from 'koffi'
 
+import { StringArray } from './common.types.js'
+
 
 export interface KoffiTypeResult {
   name: string
@@ -246,15 +248,6 @@ export function genFixedArray(length: number): IKoffiCType {
   return type
 }
 
-/**
- * Generate a fixed-length array of int16_t
- */
-export interface StringArray {
-  buffer: object
-  byteLength: number
-  byteOffset: number
-  length: number
-}
 
 export function decodeInt16Array(input: StringArray, length = -1): string {
   assert(input, 'input must be an object')
