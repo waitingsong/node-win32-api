@@ -2,12 +2,12 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { FLASHWINFO_Factory, LPFLASHWINFO } from '##/index.struct.js'
+import { FLASHWINFO_Factory, PFLASHWINFO } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 
 const name = 'FLASHWINFO'
-const pointer = LPFLASHWINFO
+const pointer = PFLASHWINFO
 const factory = FLASHWINFO_Factory
 const size = 32
 const fn = `${name}_Factory`

@@ -34,6 +34,6 @@ export interface FLASHWINFO_Type {
   dwTimeout: M.DWORD
 }
 
-export const LPFLASHWINFO = ptr
+export const PFLASHWINFO = ptr
 export const FLASHWINFO_Init = init
 
