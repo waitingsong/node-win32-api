@@ -1,13 +1,16 @@
 {
   "debug.node.autoAttach": "on",
   "editor.detectIndentation": false,
+  "editor.stickyScroll.enabled": true,
   "editor.minimap.renderCharacters": false,
   "editor.renderFinalNewline": "off",
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
   },
+  "eslint.experimental.useFlatConfig": true,
   "eslint.run": "onSave",
   "eslint.validate": [
     "javascript",
@@ -31,7 +34,7 @@
     "build": true,
     "commitlint.*": true,
     "coverage": true,
-    "dist": true,
+    "dist": false,
     "logs": true,
     "out": true,
     "package-lock.json": true,
@@ -61,6 +64,7 @@
   "files.insertFinalNewline": true,
   "files.refactoring.autoSave": true,
   "files.watcherExclude": {
+    ".tsbuildinfo": true,
     "coverage/**": true,
     "dist/**": true,
     "packages/*/dist/**": true,
@@ -80,6 +84,7 @@
   "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
   "git.ignoreLimitWarning": true,
+  "markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
   "markdown-pdf.outputDirectory": "d:/",
   "plantuml.render": "PlantUMLServer",
   "plantuml.server": "https://www.plantuml.com/plantuml",
@@ -88,7 +93,8 @@
   "search.exclude": {
     ".gitlab": false,
     ".scripts": false,
-    "dist*": true,
+    ".tsbuildinfo": true,
+    "dist": true,
     "i18n": true,
     "library/": true,
     "node_modules": true,
@@ -105,6 +111,7 @@
   "terminal.integrated.autoReplies": {
     "Terminate batch job (Y/N)?": "Y\r",
     "终止批处理操作吗(Y/N)?": "Y\r",
+    "[ Midway ] Pre Process Force Exit.": "\r"
   },
   "terminal.integrated.profiles.windows": {
     "git-bash": {
@@ -117,7 +124,7 @@
       "args": ["-l"]
     }
   },
-  "terminal.integrated.defaultProfile.windows": "git-bash",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
   "terminal.integrated.defaultProfile.linux": "bash (login)",
   "typescript.autoClosingTags": false,
   "typescript.format.enable": true,
