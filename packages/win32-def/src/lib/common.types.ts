@@ -5,12 +5,12 @@
 
 import { BigIntStr } from '@waiting/shared-types'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import ref from 'ref-napi'
+// import ref from 'ref-napi'
 
 
 export type _POINTER = Buffer
 export type WNDPROC = Buffer
-/** number: 32bit, bitint: 64bit  */
+/** number: 32bit, bigint: 64bit  */
 export type PTR_Addr = number | BigIntStr
 
 /**
@@ -22,7 +22,7 @@ export type DWORD = number
 export type PVOID = Buffer
 /**
  * `uint32` or `uint64` used as value usage (memory address) instead of PVOID (Buffer),
- * Use `HANDLE` (number) for params defintion of the api,
+ * Use `HANDLE` (number) for params definition of the api,
  * @see https://stackoverflow.com/questions/18266626/what-is-the-range-of-a-windows-handle-on-a-64-bits-application/29526711#29526711
  */
 export type HANDLE = number | BigIntStr
@@ -217,24 +217,24 @@ export type va_list = _POINTER
 // see src/lib/win-model/struct.ts
 
 
-export interface StructInstanceBase {
-  ref: () => Buffer
-}
+// export interface StructInstanceBase {
+//   ref: () => Buffer
+// }
 
-export interface UnionInstanceBase {
-  ref: () => Buffer
-}
+// export interface UnionInstanceBase {
+//   ref: () => Buffer
+// }
 
 
-export interface StringBuffer extends ref.Type<string> {
-  size: number
-  encoding: BufferEncoding | void
-  set: (
-    buffer: Buffer,
-    offset: number,
-    value: string | number[] | Buffer,
-  ) => void
-}
+// export interface StringBuffer extends ref.Type<string> {
+//   size: number
+//   encoding: BufferEncoding | void
+//   set: (
+//     buffer: Buffer,
+//     offset: number,
+//     value: string | number[] | Buffer,
+//   ) => void
+// }
 
 
 /**

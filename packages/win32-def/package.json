@@ -6,6 +6,7 @@
   "keywords": [
     "api",
     "ffi",
+    "koffi",
     "win32",
     "windows",
     "ESM",
@@ -74,13 +75,7 @@
     "koffi": "^2.8.9"
   },
   "devDependencies": {
-    "@types/ref-napi": "^3.0.6",
-    "@types/ref-struct-di": "^1.1.8",
-    "@types/ref-union-di": "^1.0.5",
-    "@waiting/shared-core": "^20.11.4",
-    "ref-napi": "^3.0.3",
-    "ref-struct-di": "^1.1.1",
-    "ref-union-di": "^1.0.1"
+    "@waiting/shared-core": "^20.11.4"
   },
   "engines": {
     "node": ">=18.12.0"
