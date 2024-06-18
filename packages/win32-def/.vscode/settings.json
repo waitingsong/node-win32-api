@@ -153,6 +153,21 @@
     "editor.formatOnSave": false
   },
   "workbench.editor.wrapTabs": false,
+  "workbench.editor.customLabels.enabled": true,
+  "workbench.editor.customLabels.patterns": {
+    "src/app/**/*.ts": "${dirname}/${filename}",
+    "src/**": "${dirname}/${filename}.${extname}",
+    "test/**": "${filename}.${extname} - test",
+    "dist/**": "${filename}.${extname} - dist",
+    "packages/*/src/app/**": "${dirname(1)}/${dirname}/${filename} src",
+    "packages/*/src/*.*": "${filename}.${extname} src",
+    "packages/*/test/*.*": "${filename}.${extname} test",
+    "packages/*/src/**": "${dirname}/${filename}.${extname} - src",
+    "packages/*/test/**": "${dirname}/${filename}.${extname} - test",
+    "packages/*/*.*": "${dirname}/${filename}.${extname}",
+    "packages/*/**": "${dirname(1)}/${dirname}/${filename}.${extname}",
+    "**/node_modules/**/*": "${filename}.${extname} - ${dirname(2)}/${dirname(1)}/${dirname}"
+  },
   "cSpell.words": [
     "ALTTABINFO",
     "CCHAR",
