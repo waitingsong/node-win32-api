@@ -246,3 +246,29 @@ export function genFixedArray(length: number): IKoffiCType {
   return type
 }
 
+/**
+ * Generate a fixed-length array of int16_t
+ */
+export interface StringArray {
+  buffer: object
+  byteLength: number
+  byteOffset: number
+  length: number
+}
+
+export function decodeInt16Array(input: StringArray, length = -1): string {
+  assert(input, 'input must be an object')
+  assert(typeof input.buffer === 'object', 'input.buffer must be an object')
+  assert(typeof input.byteLength === 'number', 'input.byteLength must be a number')
+  assert(typeof input.byteOffset === 'number', 'input.byteOffset must be a number')
+  assert(typeof input.length === 'number', 'input.length must be a number')
+  // const str = Buffer.from(input.buffer).toString('ucs2')
+  // return str
+  const str = ffi.decode(input, 'char16_t', length) as string
+  return str || ''
+}
+
+export function bufferToString(input: Buffer, charNum = 0): string {
+  return charNum > 0 ? input.toString('ucs2', 0, charNum * 2) : input.toString('ucs2')
+}
+
