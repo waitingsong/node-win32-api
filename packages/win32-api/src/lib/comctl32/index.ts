@@ -3,8 +3,8 @@ import { FnName, LoadSettings } from 'win32-def'
 import { loadAsync as _load } from '../helper.js'
 import { DllNames } from '../types.js'
 
-import { Win32Fns } from './api.types.js'
 import { apiDef } from './api.def.js'
+import { Win32Fns } from './api.types.js'
 
 
 export { apiDef }
