@@ -41,25 +41,18 @@ export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
 
 function bindMethods<T>(inst: T, name: string, fn: KoffiFunction): void {
   const nameSync = name
-  bindSyncOnInst(inst, nameSync, fn)
-
-  const nameAsync = `${name}Async`
-  bindAsyncOnInst(inst, nameAsync, fn)
-}
-
-function bindSyncOnInst<T>(inst: T, name: string, fn: KoffiFunction): void {
-  Object.defineProperty(inst, name, {
+  Object.defineProperty(inst, nameSync, {
     enumerable: true,
     value: fn,
   })
-}
 
-function bindAsyncOnInst<T>(inst: T, name: string, fn: KoffiFunction): void {
-  Object.defineProperty(inst, name, {
+  const nameAsync = `${name}Async`
+  Object.defineProperty(inst, nameAsync, {
     enumerable: true,
-    value: (args: unknown[]) => callFnAsync(fn, args),
+    value: (...args: unknown[]) => callFnAsync(fn, args),
   })
 }
+
 
 function callFnAsync(fn: KoffiFunction, args: unknown[]) {
   return new Promise<unknown>((done, reject) => {
