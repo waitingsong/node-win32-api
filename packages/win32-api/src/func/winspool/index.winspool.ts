@@ -1,4 +1,5 @@
 import assert from 'node:assert'
+import * as S from 'win32-def/struct'
 
 import {
   ucsBufferFrom,
@@ -11,8 +12,8 @@ import {
   M,
   dllName,
   ref,
-  retriveStruct_PRINTER_INFO,
-  retriveStruct_PRINTPROCESSOR_INFO_1,
+  retriveStruct_PRINTER_INFO as retrieveStruct_PRINTER_INFO,
+  retriveStruct_PRINTPROCESSOR_INFO_1 as retrieveStruct_PRINTPROCESSOR_INFO_1,
   retriveStruct_DATATYPES_INFO_1,
 } from './helper.js'
 import { EnumPrintersOptions } from './winspool.types.js'
@@ -33,7 +34,7 @@ export async function winspoolClosePrinter(hPrinter: M.HANDLE): Promise<boolean>
  */
 export async function winspoolEnumPrinters<Level extends M.EnumPrinters_Level>(
   options: EnumPrintersOptions<Level>,
-): Promise<M.PRINTER_INFO_X[Level][]> {
+): Promise<S.PRINTER_INFO_X_Type<Level>[]> {
 
   const mod = getMod<Win32Fns>(dllName)
 
@@ -62,8 +63,8 @@ export async function winspoolEnumPrinters<Level extends M.EnumPrinters_Level>(
   const pcb = pcbNeeded.readUInt32LE()
 
   if (ret && count) {
-    const arr = retriveStruct_PRINTER_INFO(pPrinterEnum, level, count, pcb)
-    return arr as unknown as Promise<M.PRINTER_INFO_X[Level][]>
+    const arr = retrieveStruct_PRINTER_INFO(pPrinterEnum, level, count, pcb)
+    return arr as unknown as Promise<S.PRINTER_INFO_X_Type<Level>[]>
   }
   return []
 }
@@ -76,7 +77,7 @@ export async function winspoolEnumPrinters<Level extends M.EnumPrinters_Level>(
 export async function winspoolEnumPrintProcessors(
   pName?: string,
   pEnvironment?: string,
-): Promise<M.PRINTPROCESSOR_INFO_1[]> {
+): Promise<S.PRINTPROCESSOR_INFO_1_Type[]> {
 
   const mod = getMod<Win32Fns>(dllName)
 
@@ -102,7 +103,7 @@ export async function winspoolEnumPrintProcessors(
   const pcb = pcbNeeded.readUInt32LE()
 
   if (ret && count) {
-    const arr = retriveStruct_PRINTPROCESSOR_INFO_1(pPrintProcessorInfo, count, pcb)
+    const arr = retrieveStruct_PRINTPROCESSOR_INFO_1(pPrintProcessorInfo, count, pcb)
     return arr
   }
   return []
@@ -223,7 +224,7 @@ export async function winspoolGetPrinter<Level extends M.PRINTER_INFO_LEVEL>(
   const pcb = pcbNeeded.readUInt32LE()
 
   if (ret) {
-    const [struct] = retriveStruct_PRINTER_INFO(pPrinter, Level, 1, pcb)
+    const [struct] = retrieveStruct_PRINTER_INFO(pPrinter, Level, 1, pcb)
     // const pPrinter2 = Buffer.alloc(pcb)
     // const cbBuf2 = pcb
     // const pcbNeeded2 = Buffer.alloc(8)
