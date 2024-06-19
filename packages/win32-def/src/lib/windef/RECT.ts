@@ -1,15 +1,16 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
-import { genStruct, type KoffiTypeResult } from '../helper2.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
+import { genStruct } from '../helper2.js'
+import type { KoffiTypeResult } from '../types.js'
 
 
 const key = 'RECT'
 const ptr = `${key} *`
 const init = {
-  left: W.LONG,
-  top: W.LONG,
-  right: W.LONG,
-  bottom: W.LONG,
+  left: D.LONG,
+  top: D.LONG,
+  right: D.LONG,
+  bottom: D.LONG,
 } as const
 
 
@@ -26,10 +27,10 @@ export function RECT_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/windef/ns-windef-RECT
  */
 export interface RECT_Type {
-  left: M.LONG
-  top: M.LONG
-  right: M.LONG
-  bottom: M.LONG
+  left: T.LONG
+  top: T.LONG
+  right: T.LONG
+  bottom: T.LONG
 }
 
 export const LPRECT = ptr

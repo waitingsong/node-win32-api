@@ -1,13 +1,14 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
-import { genStruct, type KoffiTypeResult } from '../helper2.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
+import { genStruct } from '../helper2.js'
+import type { KoffiTypeResult } from '../types.js'
 
 
 const key = 'POINT'
 const ptr = `${key} *`
 const init = {
-  x: W.LONG,
-  y: W.LONG,
+  x: D.LONG,
+  y: D.LONG,
 } as const
 
 
@@ -24,8 +25,8 @@ export function POINT_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/windef/ns-windef-point
  */
 export interface POINT_Type {
-  x: M.LONG
-  y: M.LONG
+  x: T.LONG
+  y: T.LONG
 }
 
 export const LPPOINT = ptr
