@@ -17,6 +17,10 @@ export interface LoadSettings {
  * @link https://koffi.dev/functions#calling-conventions
  */
   convention?: CallingConvention
+  /**
+   * @default true
+   */
+  autoGc?: boolean // for DLL.load(), do garbage collection(DLL.unload()) when unload
 }
 
 /**
