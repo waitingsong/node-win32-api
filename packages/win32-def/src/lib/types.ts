@@ -50,9 +50,12 @@ type AsyncFunction<T extends (...args: any) => unknown> = (...args: Parameters<T
 
 
 /**
- * The data must be the new one after each call of the struct factory function
+ * The return value of payload always be new one after each call of the struct factory function or access payload
  */
 export interface StructFactoryResult<T extends object = object> extends KoffiTypeResult {
+  /**
+   * Struct payload for _Out_ or _Inout_ parameter
+   */
   payload: T
 }
 
