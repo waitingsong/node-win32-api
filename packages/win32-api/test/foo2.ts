@@ -4,7 +4,8 @@ import koffi from 'koffi'
 const user32 = koffi.load('user32.dll')
 
 // const FindWindowEx = user32.func('FindWindowExW', 'int', ['int', 'int', 'str16', 'str16'])
-const FindWindowEx = user32.func('FindWindowExW', 'int', ['int', 'int', 'int16*', 'int16*'])
+// const FindWindowEx = user32.func('FindWindowExW', 'int', ['int', 'int', 'int16*', 'int16*'])
+const FindWindowEx = user32.func('FindWindowExW', 'int', ['int', 'int', 'int16_t*', 'int16*'])
 const GetWindowThreadProcessId = user32.func('GetWindowThreadProcessId', 'int', ['int', 'int16*'])
 const GetWindowTextW = user32.func('GetWindowTextW', 'int', ['int', 'uint16*', 'int'])
 // const GetWindowTextW = user32.func('GetWindowTextW', 'int', ['int', 'str16', 'int'])
