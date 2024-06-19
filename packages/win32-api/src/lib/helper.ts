@@ -18,9 +18,10 @@ import {
   LoadSettings,
   PromiseFnModel,
   settingsDefault,
+  CallingConvention,
 } from 'win32-def'
 
-import { CallingConvention } from './types.js'
+import { KoffiFunction, LoadOptions, RegisterFunctionOpts } from './types.js'
 
 
 export const isArch64 = process.arch.includes('64')
@@ -41,66 +42,40 @@ export const defGroupPointer: Def[] = [
   Def.ulonglongPtrPtr, Def.voidPtrPtr,
 ]
 
+export function load<T>(options: LoadOptions<T>): T {
+  const { dll, dllFuncs, usedFuncNames, settings } = options
 
-const dllInstMap = new Map<string, unknown>() // for DLL.load() with settings.singleton === true
-// const hasAsyncProxy = '__hasAsyncProxy__'
+  const libName = dll.endsWith('.drv')
+    ? prepareDllFile(dll)
+    : dll
 
-export function load<T>(
-  dllName: string,
-  dllFuncs: DllFuncs<T>,
-  fns?: FnName[],
-  settings?: LoadSettings,
-): T {
+  const lib = koffi.load(libName)
 
   const st = parse_settings(settings)
+  const ps = gen_api_opts<T>(dllFuncs, usedFuncNames)
 
-  const name = dllName.endsWith('.drv')
-    ? prepareDllFile(dllName)
-    : dllName
+  assert(dllFuncs)
+  const inst = {} as T
 
-  if (st.singleton) {
-    let inst = get_inst_by_name<T>(name)
+  for (const [name, params] of Object.entries(ps)) {
+    const func = registerFunction({
+      lib,
+      name,
+      // @ts-expect-error ignore T
+      params,
+      convention: st.convention,
+    })
 
-    if (! inst) {
-      const ps = gen_api_opts<T>(dllFuncs, fns)
-      // const ps2 = convert2DllFuncsRs(name, ps)
-
-      // ffi.Library.EXT = ext
-      // @ts-expect-error
-      inst = koffi.define(name, ps) as unknown as T
-      Object.defineProperty(inst, name, {
-        value: name,
-        enumerable: false,
-      })
-      set_inst_by_name(name, inst)
-    }
-    return inst
+    Object.defineProperty(inst, name, {
+      enumerable: true,
+      value: func,
+    })
   }
-  else {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    // @ts-expect-error
-    return koffi.Library(name, gen_api_opts<T>(dllFuncs, fns)) as unknown as T
-  }
+
+  return inst
 }
 
-export interface RegisterFunctionOpts {
-  /**
-   * DLL library,
-   * lib = koffi.load('user32.dll')
-   */
-  lib: koffi.IKoffiLib
-  /** function name */
-  name: string
-  /** function parameters */
-  params: FnParams
-  /**
-   * Calling convention
-   * @default 'Stdcall' (for Windows)
-   * @link https://koffi.dev/functions#calling-conventions
-   */
-  convention?: CallingConvention
-}
-export function registerFunction(options: RegisterFunctionOpts): koffi.KoffiFunction {
+export function registerFunction(options: RegisterFunctionOpts): KoffiFunction {
   const { lib, name, params, convention = CallingConvention.Stdcall } = options
   const { [0]: retType, [1]: args } = params
 
@@ -110,6 +85,7 @@ export function registerFunction(options: RegisterFunctionOpts): koffi.KoffiFunc
     return func
   }
   const func = lib.func(convention, name, retType, args)
+  // console.log(func.info)
   return func
 }
 
@@ -182,14 +158,8 @@ function prepareDllFile(file: string): string {
 // }
 
 
-export function loadAsync<T>(
-  dllName: string,
-  dllFuncs: DllFuncs<T>,
-  fns?: FnName[],
-  settings?: LoadSettings,
-): PromiseFnModel<T> {
-
-  const inst = load<ExpandFnModel<DllFuncsModel>>(dllName, dllFuncs, fns, settings)
+export function loadAsync<T>(options: LoadOptions<T>): PromiseFnModel<T> {
+  const inst = load<ExpandFnModel<DllFuncsModel>>(options)
   assert(inst)
 
   const instAsync = {} as PromiseFnModel<T>
@@ -290,13 +260,6 @@ export function gen_api_opts<T = DllFuncsModel>(
   return ret
 }
 
-function get_inst_by_name<T>(dllName: string): T | undefined {
-  return dllInstMap.get(dllName) as T | undefined
-}
-
-function set_inst_by_name<T>(dllName: string, inst: T): void {
-  dllInstMap.set(dllName, inst)
-}
 
 function parse_settings(settings?: LoadSettings): LoadSettings {
   const st: LoadSettings = { ...settingsDefault }
