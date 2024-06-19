@@ -15,13 +15,13 @@ export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
     ? prepareDllFile(dll)
     : dll
 
-  const lib = koffi.load(libName)
 
   const st = parse_settings(settings)
   const ps = gen_api_opts<T>(dllFuncs, usedFuncNames)
 
   assert(dllFuncs)
   const inst = {} as LibFuncs<T>
+  const lib = koffi.load(libName)
 
   for (const [name, params] of Object.entries(ps)) {
     const func = registerFunction({
