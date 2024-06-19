@@ -64,10 +64,6 @@
       "import": "./dist/index.winspool.js",
       "require": "./dist/index.winspool.cjs"
     },
-    "./fun": {
-      "import": "./dist/index.fun.js",
-      "require": "./dist/index.fun.cjs"
-    },
     "./package.json": "./package.json"
   },
   "bugs": {
