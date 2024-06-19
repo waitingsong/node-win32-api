@@ -26,6 +26,7 @@ describe(fileShortPath(import.meta.url), () => {
       })
 
       const res = inst.GetCursorPos(pos)
+      assert(res > 0)
       console.info({ res, pos })
       assert(pos.x > 0 && pos.y > 0)
 
@@ -44,6 +45,7 @@ describe(fileShortPath(import.meta.url), () => {
       })
 
       const res = inst.GetCursorPos(pos)
+      assert(res > 0)
       assert(pos.x > 0 && pos.y > 0)
 
       const pos2 = {} as POINT_Type
@@ -62,8 +64,7 @@ describe(fileShortPath(import.meta.url), () => {
         dllFuncs: apiDef,
       })
 
-      const res = inst.GetCursorPos(pos)
-      console.info({ res, pos })
+      inst.GetCursorPos(pos)
       assert(pos.x > 0 && pos.y > 0)
 
       const inst2 = load<Win32Fns>({
