@@ -209,32 +209,7 @@ export type WNDENUMPROC = WNDPROC
 export type WORD = INT16
 export type WPARAM = UINT_PTR
 
-
-
 export type va_list = _POINTER
-
-/* ------------------ struct ---------------------- */
-// see src/lib/win-model/struct.ts
-
-
-// export interface StructInstanceBase {
-//   ref: () => Buffer
-// }
-
-// export interface UnionInstanceBase {
-//   ref: () => Buffer
-// }
-
-
-// export interface StringBuffer extends ref.Type<string> {
-//   size: number
-//   encoding: BufferEncoding | void
-//   set: (
-//     buffer: Buffer,
-//     offset: number,
-//     value: string | number[] | Buffer,
-//   ) => void
-// }
 
 
 /**
