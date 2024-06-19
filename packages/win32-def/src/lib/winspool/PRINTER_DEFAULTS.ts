@@ -1,15 +1,16 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
-import { genStruct, type KoffiTypeResult } from '../helper2.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
+import { genStruct } from '../helper2.js'
+import type { KoffiTypeResult } from '../types.js'
 import { DEVMODEW_Factory, DEVMODEW_Type } from '../wingdi/DEVMODEW.js'
 
 
 const key = 'PRINTER_DEFAULTS'
 const ptr = `${key} *`
 const init = {
-  pDatatype: W.LPTSTR,
+  pDatatype: D.LPTSTR,
   pDevMode: DEVMODEW_Factory,
-  DesiredAccess: W.ACCESS_MASK,
+  DesiredAccess: D.ACCESS_MASK,
 } as const
 
 /**
@@ -30,12 +31,12 @@ export interface PRINTER_DEFAULTS_Type {
   /**
    * Pointer to a null-terminated string that specifies the default data type for a printer.
    */
-  pDatatype: M.LPTSTR
+  pDatatype: T.LPTSTR
   /**
    * Pointer to a DEVMODE structure that identifies the default environment and initialization data for a printer.
    */
   pDevMode: DEVMODEW_Type
-  DesiredAccess: M.ACCESS_MASK
+  DesiredAccess: T.ACCESS_MASK
 }
 
 export const PPRINTER_DEFAULTS = ptr

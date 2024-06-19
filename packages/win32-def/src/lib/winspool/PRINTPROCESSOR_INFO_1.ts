@@ -1,12 +1,13 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
-import { genStruct, type KoffiTypeResult } from '../helper2.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
+import { genStruct } from '../helper2.js'
+import type { KoffiTypeResult } from '../types.js'
 
 
 const key = 'PRINTPROCESSOR_INFO_1'
 const ptr = `${key} *`
 const init = {
-  pName: W.LPTSTR,
+  pName: D.LPTSTR,
 } as const
 
 /**
@@ -24,7 +25,7 @@ export function PRINTPROCESSOR_INFO_1_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/printprocessor-info-1
  */
 export interface PRINTPROCESSOR_INFO_1_Type {
-  pName: M.LPTSTR
+  pName: T.LPTSTR
 }
 
 export const PPRINTPROCESSOR_INFO_1 = ptr

@@ -1,14 +1,15 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
-import { genStruct, type KoffiTypeResult } from '../helper2.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
+import { genStruct } from '../helper2.js'
+import type { KoffiTypeResult } from '../types.js'
 
 
 const key = 'PRINTER_INFO_4'
 const ptr = `${key} *`
 const init = {
-  pPrinterName: W.LPTSTR,
-  pServerName: W.LPTSTR,
-  Attributes: W.DWORD,
+  pPrinterName: D.LPTSTR,
+  pServerName: D.LPTSTR,
+  Attributes: D.DWORD,
 } as const
 
 /**
@@ -32,9 +33,9 @@ export function PRINTER_INFO_4_Factory(): KoffiTypeResult {
  *  on a system and all remote printer connections that a user has established.
  */
 export interface PRINTER_INFO_4_Type {
-  pPrinterName: M.LPTSTR
-  pServerName: M.LPTSTR
-  Attributes: M.DWORD
+  pPrinterName: T.LPTSTR
+  pServerName: T.LPTSTR
+  Attributes: T.DWORD
 }
 
 export const PPRINTER_INFO_4 = ptr
