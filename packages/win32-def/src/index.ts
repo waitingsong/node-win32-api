@@ -14,4 +14,5 @@ export * from './lib/helper2.js'
 export * from './lib/ffi.types.js'
 export * from './lib/types.js'
 export * from './lib/util.js'
+export * from './lib/loader/loader.js'
 
