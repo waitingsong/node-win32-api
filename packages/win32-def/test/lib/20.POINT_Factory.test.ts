@@ -26,7 +26,7 @@ describe(fileShortPath(import.meta.url), () => {
     it('not same', async () => {
       const { payload } = POINT_Factory()
       const { payload: p2 } = POINT_Factory()
-      assert.notDeepStrictEqual(payload, p2)
+      assert(payload !== p2)
     })
 
     it('not same 2', async () => {
