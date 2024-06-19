@@ -4,6 +4,8 @@
     "noEmit": true
   },
   "include": [
+    "demo/**/*.mts",
+    "demo/**/*.ts",
     "src/**/*.ts",
     "src/**/*.mts",
     "test/**/*.ts",
