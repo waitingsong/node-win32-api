@@ -1,6 +1,6 @@
 /* eslint-disable id-length */
-import * as M from 'win32-def'
-import * as W from 'win32-def/common.def'
+import * as T from 'win32-def'
+import * as D from 'win32-def/def'
 
 
 export interface Win32Fns {
@@ -8,77 +8,77 @@ export interface Win32Fns {
   /**
    * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/closeprinter
    */
-  ClosePrinter: (hPrinter: M.HANDLE) => M.BOOL
+  ClosePrinter: (hPrinter: T.HANDLE) => T.BOOL
 
   /**
    * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/enddocprinter
    */
-  EndDocPrinter: (hPrinter: M.HANDLE) => M.BOOL
+  EndDocPrinter: (hPrinter: T.HANDLE) => T.BOOL
 
-  EndPagePrinter: (hPrinter: M.HANDLE) => M.BOOL
+  EndPagePrinter: (hPrinter: T.HANDLE) => T.BOOL
 
   /**
    * Enumerates available printers, print servers, domains, or print providers.
    * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/enumprinters
    */
   EnumPrintersW: (
-    Flags: M.DWORD,
-    Name: M.LPTSTR,
-    Level: M.DWORD,
-    pPrinterEnum: M.LPBYTE,
-    cbBuf: M.DWORD,
-    pcbNeeded: M.LPDWORD,
-    pcReturned: M.LPDWORD,
-  ) => M.BOOL
+    Flags: T.DWORD,
+    Name: T.LPTSTR,
+    Level: T.DWORD,
+    pPrinterEnum: T.LPBYTE,
+    cbBuf: T.DWORD,
+    pcbNeeded: T.LPDWORD,
+    pcReturned: T.LPDWORD,
+  ) => T.BOOL
 
   /**
    * Enumerates the print processors installed on the specified server.
    * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/enumprintprocessors
    */
   EnumPrintProcessorsW: (
-    pName: M.LPTSTR,
-    pEnvironment: M.LPTSTR,
-    Level: M.DWORD,
-    pPrintProcessorInfo: M.LPBYTE,
-    cbBuf: M.DWORD,
-    pcbNeeded: M.LPDWORD,
-    pcReturned: M.LPDWORD,
-  ) => M.BOOL
+    pName: T.LPTSTR,
+    pEnvironment: T.LPTSTR,
+    Level: T.DWORD,
+    pPrintProcessorInfo: T.LPBYTE,
+    cbBuf: T.DWORD,
+    pcbNeeded: T.LPDWORD,
+    pcReturned: T.LPDWORD,
+  ) => T.BOOL
 
   /**
    * Enumerates the data types that a specified print processor supports.
    * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/enumprintprocessordatatypes
    */
   EnumPrintProcessorDatatypesW: (
-    pName: M.LPTSTR,
-    pPrintProcessorName: M.LPTSTR,
-    Level: M.DWORD,
-    pDatatypes: M.LPBYTE,
-    cbBuf: M.DWORD,
-    pcbNeeded: M.LPDWORD,
-    pcReturned: M.LPDWORD,
-  ) => M.BOOL
+    pName: T.LPTSTR,
+    pPrintProcessorName: T.LPTSTR,
+    Level: T.DWORD,
+    pDatatypes: T.LPBYTE,
+    cbBuf: T.DWORD,
+    pcbNeeded: T.LPDWORD,
+    pcReturned: T.LPDWORD,
+  ) => T.BOOL
 
   /**
    * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/getdefaultprinter
    */
   GetDefaultPrinterW: (
-    pszBuffer: M.LPTSTR,
-    pcchBuffer: M.LPDWORD,
-  ) => M.BOOL
+    pszBuffer: T.LPTSTR,
+    pcchBuffer: T.LPDWORD,
+  ) => T.BOOL
 
   /**
    * Retrieves information about a specified print job
    * @docs https://learn.microsoft.com/en-us/windows/win32/printdocs/getjob
    */
   GetJobW: (
-    Handler: M.HANDLE,
-    JobId: M.DWORD,
-    Level: M.DWORD,
-    pJob: M.LPBYTE,
-    cbBuf: M.DWORD,
-    pcbNeeded: M.LPDWORD,
-  ) => M.BOOL
+    Handler: T.HANDLE,
+    JobId: T.DWORD,
+    Level: T.DWORD,
+    pJob: T.LPBYTE,
+    cbBuf: T.DWORD,
+    pcbNeeded: T.LPDWORD,
+  ) => T.BOOL
 
   /**
    * Retrieves information about a specified printer.
@@ -86,12 +86,12 @@ export interface Win32Fns {
    * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/getprinter
    */
   GetPrinterW: (
-    hPrinter: M.HANDLE,
-    Level: M.DWORD,
-    pPrinter: M.LPBYTE,
-    cbBuf: M.DWORD,
-    pcbNeeded: M.LPDWORD,
-  ) => M.BOOL
+    hPrinter: T.HANDLE,
+    Level: T.DWORD,
+    pPrinter: T.LPBYTE,
+    cbBuf: T.DWORD,
+    pcbNeeded: T.LPDWORD,
+  ) => T.BOOL
 
 
   /**
@@ -100,10 +100,10 @@ export interface Win32Fns {
    * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/openprinter
    */
   OpenPrinterW: (
-    pPrinterName: M.LPTSTR,
-    phPrinter: M.LPHANDLE,
-    pDefault: M.LPPRINTER_DEFAULTS,
-  ) => M.BOOL
+    pPrinterName: T.LPTSTR,
+    phPrinter: T.LPHANDLE,
+    pDefault: T.LPPRINTER_DEFAULTS,
+  ) => T.BOOL
 
 
   /**
@@ -111,59 +111,59 @@ export interface Win32Fns {
    * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/startdocprinter
    */
   StartDocPrinterW: (
-    hPrinter: M.HANDLE,
-    Level: M.DWORD,
-    pDocInfo: M.LPBYTE,
-  ) => M.DWORD
+    hPrinter: T.HANDLE,
+    Level: T.DWORD,
+    pDocInfo: T.LPBYTE,
+  ) => T.DWORD
 
   /**
    * Notifies the spooler that a page is about to be printed on the specified printer.
    * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/startpageprinter
    */
-  StartPagePrinter: (hPrinter: M.HANDLE) => M.BOOL
+  StartPagePrinter: (hPrinter: T.HANDLE) => T.BOOL
 
   /**
    *
    * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/writeprinter
    */
   WritePrinter: (
-    hPrinter: M.HANDLE,
-    pBuf: M.LPVOID,
-    cbBuf: M.DWORD,
-    pcWritten: M.LPDWORD,
-  ) => M.BOOL
+    hPrinter: T.HANDLE,
+    pBuf: T.LPVOID,
+    cbBuf: T.DWORD,
+    pcWritten: T.LPDWORD,
+  ) => T.BOOL
 
 
 }
 
 
-export const apiDef: M.DllFuncs<Win32Fns> = {
+export const apiDef: T.DllFuncs<Win32Fns> = {
 
-  ClosePrinter: [W.BOOL, [W.HANDLE] ],
+  ClosePrinter: [D.BOOL, [D.HANDLE] ],
 
-  EndDocPrinter: [W.BOOL, [W.HANDLE] ],
+  EndDocPrinter: [D.BOOL, [D.HANDLE] ],
 
-  EndPagePrinter: [W.BOOL, [W.HANDLE] ],
+  EndPagePrinter: [D.BOOL, [D.HANDLE] ],
 
-  EnumPrintersW: [W.BOOL, [W.DWORD, W.LPTSTR, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD, W.LPDWORD] ],
+  EnumPrintersW: [D.BOOL, [D.DWORD, D.LPTSTR, D.DWORD, D.LPBYTE, D.DWORD, D.LPDWORD, D.LPDWORD] ],
 
-  EnumPrintProcessorsW: [W.BOOL, [W.LPTSTR, W.LPTSTR, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD, W.LPDWORD] ],
+  EnumPrintProcessorsW: [D.BOOL, [D.LPTSTR, D.LPTSTR, D.DWORD, D.LPBYTE, D.DWORD, D.LPDWORD, D.LPDWORD] ],
 
-  EnumPrintProcessorDatatypesW: [W.BOOL, [W.LPTSTR, W.LPTSTR, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD, W.LPDWORD] ],
+  EnumPrintProcessorDatatypesW: [D.BOOL, [D.LPTSTR, D.LPTSTR, D.DWORD, D.LPBYTE, D.DWORD, D.LPDWORD, D.LPDWORD] ],
 
-  GetDefaultPrinterW: [W.BOOL, [W.LPTSTR, W.LPDWORD] ],
+  GetDefaultPrinterW: [D.BOOL, [D.LPTSTR, D.LPDWORD] ],
 
-  GetJobW: [W.BOOL, [W.HANDLE, W.DWORD, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD] ],
+  GetJobW: [D.BOOL, [D.HANDLE, D.DWORD, D.DWORD, D.LPBYTE, D.DWORD, D.LPDWORD] ],
 
-  GetPrinterW: [W.BOOL, [W.HANDLE, W.DWORD, W.LPBYTE, W.DWORD, W.LPDWORD] ],
+  GetPrinterW: [D.BOOL, [D.HANDLE, D.DWORD, D.LPBYTE, D.DWORD, D.LPDWORD] ],
 
-  OpenPrinterW: [W.BOOL, [W.LPTSTR, W.LPHANDLE, W.LPRINTER_DEFAULTS] ],
+  OpenPrinterW: [D.BOOL, [D.LPTSTR, D.LPHANDLE, D.LPRINTER_DEFAULTS] ],
 
-  StartDocPrinterW: [W.DWORD, [W.HANDLE, W.DWORD, W.LPBYTE] ],
+  StartDocPrinterW: [D.DWORD, [D.HANDLE, D.DWORD, D.LPBYTE] ],
 
-  StartPagePrinter: [W.BOOL, [W.HANDLE] ],
+  StartPagePrinter: [D.BOOL, [D.HANDLE] ],
 
-  WritePrinter: [W.BOOL, [W.HANDLE, W.LPVOID, W.DWORD, W.LPDWORD] ],
+  WritePrinter: [D.BOOL, [D.HANDLE, D.LPVOID, D.DWORD, D.LPDWORD] ],
 
 }
 
