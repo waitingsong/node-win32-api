@@ -1,7 +1,7 @@
 import * as D from '../common.def.js'
 import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
-import type { KoffiTypeResult } from '../types.js'
+import type { StructFactoryResult } from '../types.js'
 import { POINT_Factory, type POINT_Type } from '../windef/POINT.js'
 
 
@@ -23,7 +23,7 @@ const init = {
  * ALTTABINFO structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-alttabinfo
  */
-export function ALTTABINFO_Factory(): KoffiTypeResult {
+export function ALTTABINFO_Factory(): StructFactoryResult {
   return genStruct(init, key, ptr)
 }
 

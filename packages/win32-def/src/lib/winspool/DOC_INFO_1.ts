@@ -1,7 +1,7 @@
 import * as D from '../common.def.js'
 import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
-import type { KoffiTypeResult } from '../types.js'
+import type { StructFactoryResult } from '../types.js'
 
 
 const key = 'DOC_INFO_1'
@@ -17,7 +17,7 @@ const init = {
  * Describes a document that will be printed.
  * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/doc-info-1
  */
-export function DOC_INFO_1_Factory(): KoffiTypeResult {
+export function DOC_INFO_1_Factory(): StructFactoryResult {
   return genStruct(init, key, ptr)
 }
 

@@ -1,7 +1,7 @@
 import * as D from '../common.def.js'
 import * as T from '../common.types.js'
 import { genFixedInt16Array, genStruct } from '../helper2.js'
-import type { KoffiTypeResult } from '../types.js'
+import type { StructFactoryResult } from '../types.js'
 
 
 const key = 'DISPLAY_DEVICEW'
@@ -19,7 +19,7 @@ const init = {
  * DISPLAY_DEVICEW structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-display_devicew
  */
-export function DISPLAY_DEVICEW_Factory(): KoffiTypeResult {
+export function DISPLAY_DEVICEW_Factory(): StructFactoryResult {
   return genStruct(init, key, ptr)
 }
 

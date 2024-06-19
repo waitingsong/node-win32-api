@@ -1,7 +1,7 @@
 import * as D from '../common.def.js'
 import * as T from '../common.types.js'
 import { genFixedInt16Array, genStruct } from '../helper2.js'
-import type { KoffiTypeResult } from '../types.js'
+import type { StructFactoryResult } from '../types.js'
 import { POINT_Factory, POINT_Type } from '../windef/POINT.js'
 
 
@@ -61,7 +61,7 @@ const init = {
  * DEVMODEW structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-devmodew
  */
-export function DEVMODEW_Factory(): KoffiTypeResult {
+export function DEVMODEW_Factory(): StructFactoryResult {
   return genStruct(init, key, ptr)
 }
 

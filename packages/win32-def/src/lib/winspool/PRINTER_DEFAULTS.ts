@@ -1,7 +1,7 @@
 import * as D from '../common.def.js'
 import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
-import type { KoffiTypeResult } from '../types.js'
+import type { StructFactoryResult } from '../types.js'
 import { DEVMODEW_Factory, DEVMODEW_Type } from '../wingdi/DEVMODEW.js'
 
 
@@ -18,7 +18,7 @@ const init = {
  * Specifies the default data type, environment, initialization data, and access rights for a printer.
  * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/printer-defaults
  */
-export function PRINTER_DEFAULTS_Factory(): KoffiTypeResult {
+export function PRINTER_DEFAULTS_Factory(): StructFactoryResult {
   return genStruct(init, key, ptr)
 }
 

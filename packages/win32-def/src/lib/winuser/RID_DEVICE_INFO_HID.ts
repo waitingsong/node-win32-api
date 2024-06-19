@@ -1,7 +1,7 @@
 import * as D from '../common.def.js'
 import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
-import type { KoffiTypeResult } from '../types.js'
+import type { StructFactoryResult } from '../types.js'
 
 
 const key = 'RID_DEVICE_INFO_HID'
@@ -19,7 +19,7 @@ const init = {
  * RID_DEVICE_INFO_HID structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RID_DEVICE_INFO_HID
  */
-export function RID_DEVICE_INFO_HID_Factory(): KoffiTypeResult {
+export function RID_DEVICE_INFO_HID_Factory(): StructFactoryResult {
   return genStruct(init, key, ptr)
 }
 

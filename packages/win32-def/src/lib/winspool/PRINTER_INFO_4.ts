@@ -1,7 +1,7 @@
 import * as D from '../common.def.js'
 import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
-import type { KoffiTypeResult } from '../types.js'
+import type { StructFactoryResult } from '../types.js'
 
 
 const key = 'PRINTER_INFO_4'
@@ -20,7 +20,7 @@ const init = {
  *  Such a call is a fast and easy way to retrieve the names and attributes of all locally installed printers
  *  on a system and all remote printer connections that a user has established.
  */
-export function PRINTER_INFO_4_Factory(): KoffiTypeResult {
+export function PRINTER_INFO_4_Factory(): StructFactoryResult {
   return genStruct(init, key, ptr)
 }
 

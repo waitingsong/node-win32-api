@@ -1,7 +1,7 @@
 import * as D from '../common.def.js'
 import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
-import type { KoffiTypeResult } from '../types.js'
+import type { StructFactoryResult } from '../types.js'
 
 
 const key = 'WNDCLASSEXW'
@@ -27,7 +27,7 @@ const init = {
  * WNDCLASSEXW structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-wndclassexw
  */
-export function WNDCLASSEXW_Factory(): KoffiTypeResult {
+export function WNDCLASSEXW_Factory(): StructFactoryResult {
   return genStruct(init, key, ptr)
 }
 

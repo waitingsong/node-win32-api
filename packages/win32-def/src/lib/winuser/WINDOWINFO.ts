@@ -1,7 +1,7 @@
 import * as D from '../common.def.js'
 import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
-import type { KoffiTypeResult } from '../types.js'
+import type { StructFactoryResult } from '../types.js'
 import { RECT_Factory, type RECT_Type } from '../windef/RECT.js'
 
 
@@ -25,7 +25,7 @@ const init = {
  * WINDOWINFO structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-WINDOWINFO
  */
-export function WINDOWINFO_Factory(): KoffiTypeResult {
+export function WINDOWINFO_Factory(): StructFactoryResult {
   return genStruct(init, key, ptr)
 }
 

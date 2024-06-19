@@ -1,7 +1,7 @@
 import * as D from '../common.def.js'
 import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
-import type { KoffiTypeResult } from '../types.js'
+import type { StructFactoryResult } from '../types.js'
 
 
 const key = 'RECT'
@@ -18,7 +18,7 @@ const init = {
  * RECT structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/windef/ns-windef-RECT
  */
-export function RECT_Factory(): KoffiTypeResult {
+export function RECT_Factory(): StructFactoryResult {
   return genStruct(init, key, ptr)
 }
 
