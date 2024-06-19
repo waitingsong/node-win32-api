@@ -106,7 +106,7 @@
     "clean:lock": "rm -f package-lock.json",
     "clean:log": "rm -rf ./logs ./run",
     "cov": "c8 --all npm run test -- --parallel=false",
-    "lint": "eslint --fix --cache src test",
+    "lint": "eslint --fix --cache src test demo",
     "lint:nofix": "eslint --cache src test",
     "pretest": "npm run build:unit",
     "rp": "rollup -c rollup.config.js --context this",
