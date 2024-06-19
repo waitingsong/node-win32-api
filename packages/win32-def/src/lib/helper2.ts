@@ -3,8 +3,6 @@ import assert from 'assert'
 import ffi from 'koffi'
 import type { IKoffiCType, TypeSpecWithAlignment } from 'koffi'
 
-import { WCHAR_Array } from './common.types.js'
-
 
 export interface KoffiTypeResult {
   name: string
