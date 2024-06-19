@@ -1,4 +1,5 @@
 import * as T from 'win32-def'
+import * as S from 'win32-def/struct'
 
 
 export interface Win32Fns {
@@ -33,7 +34,7 @@ export interface Win32Fns {
   GetProcessHeaps: (NumberOfHeaps: T.DWORD, ProcessHeaps: T.PHANDLE) => T.DWORD
 
   /** https://docs.microsoft.com/en-us/windows/desktop/api/processthreadsapi/nf-processthreadsapi-getsystemtimes */
-  GetSystemTimes: (lpIdleTime: T.PFILETIME, lpKernelTime: T.PFILETIME, lpUserTime: T.PFILETIME) => T.BOOL
+  GetSystemTimes: (lpIdleTime: S.FILETIME_Type, lpKernelTime: S.FILETIME_Type, lpUserTime: S.FILETIME_Type) => T.BOOL
 
   HeapFree: (hHeap: T.HANDLE, dwFlags: T.DWORD, lpMem: T.LPVOID | null) => T.BOOL
 
