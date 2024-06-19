@@ -1,5 +1,5 @@
 import assert from 'node:assert'
-import { copyFileSync, statSync } from 'node:fs'
+// import { copyFileSync, statSync } from 'node:fs'
 
 import { settingsDefault } from '../config.js'
 import { Def } from '../def.enum.js'
@@ -131,7 +131,7 @@ export function parse_settings(settings?: LoadSettings): LoadSettings {
   return st
 }
 
-
+/*
 export function prepareDllFile(file: string): string {
 
   if (file.startsWith('file://')) {
@@ -178,5 +178,5 @@ export function prepareDllFile(file: string): string {
   }
 
   return target
-}
+} */
 

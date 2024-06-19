@@ -5,7 +5,7 @@ import koffi from 'koffi'
 import { CallingConvention } from '../ffi.types.js'
 import { LoadOptions, KoffiFunction, IKoffiLib, LibFuncs } from '../types.js'
 
-import { gen_api_opts, parse_settings, prepareDllFile, registerFunction } from './loader.helper.js'
+import { gen_api_opts, parse_settings, registerFunction } from './loader.helper.js'
 
 
 const cacheLibMap = new Map<string, IKoffiLib>()
@@ -20,9 +20,10 @@ function setLibToCache(dll: string, lib: IKoffiLib): void {
 export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
   const { dll, dllFuncs, usedFuncNames, settings } = options
 
-  const libName = dll.endsWith('.drv')
-    ? prepareDllFile(dll)
-    : dll
+  // const libName = dll.endsWith('.drv')
+  //   ? prepareDllFile(dll)
+  //   : dll
+  const libName = dll
 
   const st = parse_settings(settings)
   const ps = gen_api_opts<T>(dllFuncs, usedFuncNames)
