@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 
@@ -11,7 +11,7 @@ import { MOUSEINPUT_Factory, type MOUSEINPUT_Type } from './MOUSEINPUT.js'
 const key = 'INPUT'
 const ptr = `${key} *`
 const init = {
-  type: W.UINT32,
+  type: D.UINT32,
   u: {
     mi: MOUSEINPUT_Factory,
     ki: KEYBDINPUT_Factory,
@@ -33,7 +33,7 @@ export function INPUT_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-input
  */
 export interface INPUT_Type {
-  type: M.UINT32
+  type: T.UINT32
   u: {
     mi?: MOUSEINPUT_Type,
     ki?: KEYBDINPUT_Type,

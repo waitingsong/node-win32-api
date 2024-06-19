@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 
@@ -7,11 +7,11 @@ import type { KoffiTypeResult } from '../types.js'
 const key = 'FLASHWINFO'
 const ptr = `${key} *`
 const init = {
-  cbSize: W.UINT,
-  hwnd: W.HWND,
-  dwFlags: W.DWORD,
-  uCount: W.UINT,
-  dwTimeout: W.DWORD,
+  cbSize: D.UINT,
+  hwnd: D.HWND,
+  dwFlags: D.DWORD,
+  uCount: D.UINT,
+  dwTimeout: D.DWORD,
 } as const
 
 
@@ -28,11 +28,11 @@ export function FLASHWINFO_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-FLASHWINFO
  */
 export interface FLASHWINFO_Type {
-  cbSize: M.UINT
-  hwnd: M.HWND
-  dwFlags: M.DWORD
-  uCount: M.UINT
-  dwTimeout: M.DWORD
+  cbSize: T.UINT
+  hwnd: T.HWND
+  dwFlags: T.DWORD
+  uCount: T.UINT
+  dwTimeout: T.DWORD
 }
 
 export const PFLASHWINFO = ptr

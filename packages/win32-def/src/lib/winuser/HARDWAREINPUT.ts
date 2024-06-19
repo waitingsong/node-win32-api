@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 
@@ -7,9 +7,9 @@ import type { KoffiTypeResult } from '../types.js'
 const key = 'HARDWAREINPUT'
 const ptr = `${key} *`
 const init = {
-  uMsg: W.UINT32,
-  wParamL: W.UINT16,
-  wParamH: W.UINT16,
+  uMsg: D.UINT32,
+  wParamL: D.UINT16,
+  wParamH: D.UINT16,
 } as const
 
 /**
@@ -24,9 +24,9 @@ export function HARDWAREINPUT_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-hardwareinput
  */
 export interface HARDWAREINPUT_TYPE {
-  uMsg: M.UINT32
-  wParamL: M.UINT16
-  wParamH: M.UINT16
+  uMsg: T.UINT32
+  wParamL: T.UINT16
+  wParamH: T.UINT16
 }
 
 export const LPHARDWAREINPUT = ptr

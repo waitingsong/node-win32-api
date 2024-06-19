@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 import { RECT_Factory, type RECT_Type } from '../windef/RECT.js'
@@ -8,16 +8,16 @@ import { RECT_Factory, type RECT_Type } from '../windef/RECT.js'
 const key = 'WINDOWINFO'
 const ptr = `${key} *`
 const init = {
-  cbSize: W.DWORD,
+  cbSize: D.DWORD,
   rcWindow: RECT_Factory,
   rcClient: RECT_Factory,
-  dwStyle: W.DWORD,
-  dwExStyle: W.DWORD,
-  dwWindowStatus: W.DWORD,
-  cxWindowBorders: W.UINT,
-  cyWindowBorders: W.UINT,
-  atomWindowType: W.ATOM,
-  wCreatorVersion: W.WORD,
+  dwStyle: D.DWORD,
+  dwExStyle: D.DWORD,
+  dwWindowStatus: D.DWORD,
+  cxWindowBorders: D.UINT,
+  cyWindowBorders: D.UINT,
+  atomWindowType: D.ATOM,
+  wCreatorVersion: D.WORD,
 } as const
 
 
@@ -34,16 +34,16 @@ export function WINDOWINFO_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-WINDOWINFO
  */
 export interface WINDOWINFO_Type {
-  cbSize: M.DWORD
+  cbSize: T.DWORD
   rcWindow: RECT_Type
   rcClient: RECT_Type
-  dwStyle: M.DWORD
-  dwExStyle: M.DWORD
-  dwWindowStatus: M.DWORD
-  cxWindowBorders: M.UINT
-  cyWindowBorders: M.UINT
-  atomWindowType: M.ATOM
-  wCreatorVersion: M.WORD
+  dwStyle: T.DWORD
+  dwExStyle: T.DWORD
+  dwWindowStatus: T.DWORD
+  cxWindowBorders: T.UINT
+  cyWindowBorders: T.UINT
+  atomWindowType: T.ATOM
+  wCreatorVersion: T.WORD
 }
 
 export const LPWINDOWINFO = ptr

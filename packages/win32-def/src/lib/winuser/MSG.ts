@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 import { POINT_Factory, type POINT_Type } from '../windef/POINT.js'
@@ -8,13 +8,13 @@ import { POINT_Factory, type POINT_Type } from '../windef/POINT.js'
 const key = 'MSG'
 const ptr = `${key} *`
 const init = {
-  hwnd: W.HWND,
-  message: W.UINT,
-  wParam: W.WPARAM,
-  lParam: W.LPARAM,
-  time: W.DWORD,
+  hwnd: D.HWND,
+  message: D.UINT,
+  wParam: D.WPARAM,
+  lParam: D.LPARAM,
+  time: D.DWORD,
   pt: POINT_Factory,
-  lPrivate: W.DWORD,
+  lPrivate: D.DWORD,
 } as const
 
 
@@ -31,13 +31,13 @@ export function MSG_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-msg
  */
 export interface MSG_Type {
-  hwnd: M.HWND
-  message: M.UINT
-  wParam: M.WPARAM
-  lParam: M.LPARAM
-  time: M.DWORD
+  hwnd: T.HWND
+  message: T.UINT
+  wParam: T.WPARAM
+  lParam: T.LPARAM
+  time: T.DWORD
   pt: POINT_Type
-  lPrivate: M.DWORD
+  lPrivate: T.DWORD
 }
 
 export const LPMSG = ptr

@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 
@@ -7,8 +7,8 @@ import type { KoffiTypeResult } from '../types.js'
 const key = 'RAWINPUTDEVICELIST'
 const ptr = `${key} *`
 const init = {
-  hDevice: W.HANDLE,
-  dwType: W.DWORD,
+  hDevice: D.HANDLE,
+  dwType: D.DWORD,
 } as const
 
 
@@ -25,8 +25,8 @@ export function RAWINPUTDEVICELIST_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RAWINPUTDEVICELIST
  */
 export interface RAWINPUTDEVICELIST_Type {
-  hDevice: M.HANDLE
-  dwType: M.DWORD
+  hDevice: T.HANDLE
+  dwType: T.DWORD
 }
 
 export const LPRAWINPUTDEVICELIST = ptr

@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 
@@ -11,8 +11,8 @@ import { RID_DEVICE_INFO_MOUSE_Factory, type RID_DEVICE_INFO_MOUSE_Type } from '
 const key = 'RID_DEVICE_INFO'
 const ptr = `${key} *`
 const init = {
-  cbSize: W.DWORD,
-  dwType: W.DWORD,
+  cbSize: D.DWORD,
+  dwType: D.DWORD,
   u: {
     mouse: RID_DEVICE_INFO_MOUSE_Factory,
     keyboard: RID_DEVICE_INFO_KEYBOARD_Factory,
@@ -34,8 +34,8 @@ export function RID_DEVICE_INFO_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RID_DEVICE_INFO
  */
 export interface RID_DEVICE_INFO_Type {
-  cbSize: M.DWORD
-  dwType: M.DWORD
+  cbSize: T.DWORD
+  dwType: T.DWORD
   u: {
     mouse: RID_DEVICE_INFO_MOUSE_Type,
     keyboard: RID_DEVICE_INFO_KEYBOARD_Type,

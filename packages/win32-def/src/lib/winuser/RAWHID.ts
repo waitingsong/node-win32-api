@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 
@@ -7,10 +7,10 @@ import type { KoffiTypeResult } from '../types.js'
 const key = 'RAWHID'
 const ptr = `${key} *`
 const init = {
-  dwSizeHid: W.DWORD,
-  dwCount: W.DWORD,
+  dwSizeHid: D.DWORD,
+  dwCount: D.DWORD,
   /** bRawData[1] */
-  bRawData: W.BYTE,
+  bRawData: D.BYTE,
 } as const
 
 
@@ -27,10 +27,10 @@ export function RAWHID_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-rawhid
  */
 export interface RAWHID_Type {
-  dwSizeHid: M.DWORD
-  dwCount: M.DWORD
+  dwSizeHid: T.DWORD
+  dwCount: T.DWORD
   /** bRawData[1] */
-  bRawData: M.BYTE
+  bRawData: T.BYTE
 }
 
 export const LPRAWHID = ptr

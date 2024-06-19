@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 
@@ -7,12 +7,12 @@ import type { KoffiTypeResult } from '../types.js'
 const key = 'RAWKEYBOARD'
 const ptr = `${key} *`
 const init = {
-  MakeCode: W.USHORT,
-  Flags: W.USHORT,
-  Reserved: W.USHORT,
-  VKey: W.USHORT,
-  Message: W.UINT,
-  ExtraInformation: W.ULONG,
+  MakeCode: D.USHORT,
+  Flags: D.USHORT,
+  Reserved: D.USHORT,
+  VKey: D.USHORT,
+  Message: D.UINT,
+  ExtraInformation: D.ULONG,
 } as const
 
 
@@ -29,12 +29,12 @@ export function RAWKEYBOARD_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RAWKEYBOARD
  */
 export interface RAWKEYBOARD_Type {
-  MakeCode: M.USHORT
-  Flags: M.USHORT
-  Reserved: M.USHORT
-  VKey: M.USHORT
-  Message: M.UINT
-  ExtraInformation: M.ULONG
+  MakeCode: T.USHORT
+  Flags: T.USHORT
+  Reserved: T.USHORT
+  VKey: T.USHORT
+  Message: T.UINT
+  ExtraInformation: T.ULONG
 }
 
 export const LPRAWKEYBOARD = ptr

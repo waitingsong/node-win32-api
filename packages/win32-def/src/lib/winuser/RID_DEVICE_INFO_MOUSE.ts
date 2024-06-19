@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 
@@ -7,10 +7,10 @@ import type { KoffiTypeResult } from '../types.js'
 const key = 'RID_DEVICE_INFO_MOUSE'
 const ptr = `${key} *`
 const init = {
-  dwId: W.DWORD,
-  dwNumberOfButtons: W.DWORD,
-  dwSampleRate: W.DWORD,
-  fHasHorizontalWheel: W.BOOL,
+  dwId: D.DWORD,
+  dwNumberOfButtons: D.DWORD,
+  dwSampleRate: D.DWORD,
+  fHasHorizontalWheel: D.BOOL,
 } as const
 
 
@@ -27,10 +27,10 @@ export function RID_DEVICE_INFO_MOUSE_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RID_DEVICE_INFO_MOUSE
  */
 export interface RID_DEVICE_INFO_MOUSE_Type {
-  dwId: M.DWORD
-  dwNumberOfButtons: M.DWORD
-  dwSampleRate: M.DWORD
-  fHasHorizontalWheel: M.BOOL
+  dwId: T.DWORD
+  dwNumberOfButtons: T.DWORD
+  dwSampleRate: T.DWORD
+  fHasHorizontalWheel: T.BOOL
 }
 
 export const PRID_DEVICE_INFO_MOUSE = ptr

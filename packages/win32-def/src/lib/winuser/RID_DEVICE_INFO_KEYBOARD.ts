@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 
@@ -7,12 +7,12 @@ import type { KoffiTypeResult } from '../types.js'
 const key = 'RID_DEVICE_INFO_KEYBOARD'
 const ptr = `${key} *`
 const init = {
-  dwType: W.DWORD,
-  dwSubType: W.DWORD,
-  dwKeyboardMode: W.DWORD,
-  dwNumberOfFunctionKeys: W.DWORD,
-  dwNumberOfIndicators: W.DWORD,
-  dwNumberOfKeysTotal: W.DWORD,
+  dwType: D.DWORD,
+  dwSubType: D.DWORD,
+  dwKeyboardMode: D.DWORD,
+  dwNumberOfFunctionKeys: D.DWORD,
+  dwNumberOfIndicators: D.DWORD,
+  dwNumberOfKeysTotal: D.DWORD,
 } as const
 
 
@@ -29,12 +29,12 @@ export function RID_DEVICE_INFO_KEYBOARD_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RID_DEVICE_INFO_KEYBOARD
  */
 export interface RID_DEVICE_INFO_KEYBOARD_Type {
-  dwType: M.DWORD
-  dwSubType: M.DWORD
-  dwKeyboardMode: M.DWORD
-  dwNumberOfFunctionKeys: M.DWORD
-  dwNumberOfIndicators: M.DWORD
-  dwNumberOfKeysTotal: M.DWORD
+  dwType: T.DWORD
+  dwSubType: T.DWORD
+  dwKeyboardMode: T.DWORD
+  dwNumberOfFunctionKeys: T.DWORD
+  dwNumberOfIndicators: T.DWORD
+  dwNumberOfKeysTotal: T.DWORD
 }
 
 export const PRID_DEVICE_INFO_KEYBOARD = ptr

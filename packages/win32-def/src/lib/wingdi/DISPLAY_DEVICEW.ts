@@ -1,15 +1,16 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
-import { genFixedInt16Array, genStruct, type KoffiTypeResult } from '../helper2.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
+import { genFixedInt16Array, genStruct } from '../helper2.js'
+import type { KoffiTypeResult } from '../types.js'
 
 
 const key = 'DISPLAY_DEVICEW'
 const ptr = `${key} *`
 const init = {
-  cb: W.DWORD,
+  cb: D.DWORD,
   DeviceName: genFixedInt16Array(32),
   DeviceString: genFixedInt16Array(128),
-  StateFlags: W.DWORD,
+  StateFlags: D.DWORD,
   DeviceID: genFixedInt16Array(128),
   DeviceKey: genFixedInt16Array(128),
 } as const
@@ -27,12 +28,12 @@ export function DISPLAY_DEVICEW_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-display_devicew
  */
 export interface DISPLAY_DEVICEW_Type {
-  cb: M.DWORD
-  DeviceName: M.WCHAR_Array
-  DeviceString: M.WCHAR_Array
-  StateFlags: M.DWORD
-  DeviceID: M.WCHAR_Array
-  DeviceKey: M.WCHAR_Array
+  cb: T.DWORD
+  DeviceName: T.WCHAR_Array
+  DeviceString: T.WCHAR_Array
+  StateFlags: T.DWORD
+  DeviceID: T.WCHAR_Array
+  DeviceKey: T.WCHAR_Array
 }
 
 export const LPDISPLAY_DEVICEW = ptr

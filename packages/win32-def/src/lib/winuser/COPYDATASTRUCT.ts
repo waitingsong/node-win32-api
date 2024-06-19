@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 
@@ -7,9 +7,9 @@ import type { KoffiTypeResult } from '../types.js'
 const key = 'COPYDATASTRUCT'
 const ptr = `${key} *`
 const init = {
-  dwData: W.ULONG_PTR,
-  cbData: W.DWORD,
-  lpData: W.PVOID,
+  dwData: D.ULONG_PTR,
+  cbData: D.DWORD,
+  lpData: D.PVOID,
 } as const
 
 
@@ -26,9 +26,9 @@ export function COPYDATASTRUCT_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-copydatastruct
  */
 export interface COPYDATASTRUCT_Type {
-  dwData: M.ULONG_PTR
-  cbData: M.DWORD
-  lpData: M.PVOID
+  dwData: T.ULONG_PTR
+  cbData: T.DWORD
+  lpData: T.PVOID
 }
 
 export const LPCOPYDATASTRUCT = ptr

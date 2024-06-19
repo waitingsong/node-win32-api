@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 
@@ -7,10 +7,10 @@ import type { KoffiTypeResult } from '../types.js'
 const key = 'RAWINPUTHEADER'
 const ptr = `${key} *`
 const init = {
-  dwType: W.DWORD,
-  dwSize: W.DWORD,
-  hDevice: W.HANDLE,
-  wParam: W.WPARAM,
+  dwType: D.DWORD,
+  dwSize: D.DWORD,
+  hDevice: D.HANDLE,
+  wParam: D.WPARAM,
 } as const
 
 
@@ -27,10 +27,10 @@ export function RAWINPUTHEADER_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RAWINPUTHEADER
  */
 export interface RAWINPUTHEADER_Type {
-  dwType: M.DWORD
-  dwSize: M.DWORD
-  hDevice: M.HANDLE
-  wParam: M.WPARAM
+  dwType: T.DWORD
+  dwSize: T.DWORD
+  hDevice: T.HANDLE
+  wParam: T.WPARAM
 }
 
 export const LPRAWINPUTHEADER = ptr

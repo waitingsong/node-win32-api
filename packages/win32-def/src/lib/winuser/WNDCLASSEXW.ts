@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 
@@ -7,19 +7,19 @@ import type { KoffiTypeResult } from '../types.js'
 const key = 'WNDCLASSEXW'
 const ptr = `${key} *`
 const init = {
-  cbSize: W.UINT,
-  style: W.UINT,
+  cbSize: D.UINT,
+  style: D.UINT,
   // 'lpfnWndProc': ffi.Function('int32', ['pointer', 'uint32', 'int32', 'uint32']) ,
-  lpfnWndProc: W.WNDPROC,
-  cbClsExtra: W.INT,
-  cbWndExtra: W.INT,
-  hInstance: W.HINSTANCE,
-  hIcon: W.HICON,
-  hCursor: W.HCURSOR,
-  hbrBackground: W.HBRUSH,
-  lpszMenuName: W.LPCTSTR,
-  lpszClassName: W.LPCTSTR,
-  hIconSm: W.HICON,
+  lpfnWndProc: D.WNDPROC,
+  cbClsExtra: D.INT,
+  cbWndExtra: D.INT,
+  hInstance: D.HINSTANCE,
+  hIcon: D.HICON,
+  hCursor: D.HCURSOR,
+  hbrBackground: D.HBRUSH,
+  lpszMenuName: D.LPCTSTR,
+  lpszClassName: D.LPCTSTR,
+  hIconSm: D.HICON,
 } as const
 
 
@@ -36,19 +36,19 @@ export function WNDCLASSEXW_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-wndclassexw
  */
 export interface WNDCLASSEXW_Type {
-  cbSize: M.UINT
-  style: M.UINT
+  cbSize: T.UINT
+  style: T.UINT
   // 'lpfnWndProc': ffi.Function('int32', ['pointer', 'uint32', 'int32', 'uint32']) ,
-  lpfnWndProc: M.WNDPROC
-  cbClsExtra: M.INT
-  cbWndExtra: M.INT
-  hInstance: M.HINSTANCE
-  hIcon: M.HICON
-  hCursor: M.HCURSOR
-  hbrBackground: M.HBRUSH
-  lpszMenuName: M.LPCTSTR
-  lpszClassName: M.LPCTSTR
-  hIconSm: M.HICON
+  lpfnWndProc: T.WNDPROC
+  cbClsExtra: T.INT
+  cbWndExtra: T.INT
+  hInstance: T.HINSTANCE
+  hIcon: T.HICON
+  hCursor: T.HCURSOR
+  hbrBackground: T.HBRUSH
+  lpszMenuName: T.LPCTSTR
+  lpszClassName: T.LPCTSTR
+  hIconSm: T.HICON
 }
 
 export const LPWNDCLASSEXW = ptr

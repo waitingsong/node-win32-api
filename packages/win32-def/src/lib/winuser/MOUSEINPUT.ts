@@ -1,5 +1,5 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
 import { genStruct } from '../helper2.js'
 import type { KoffiTypeResult } from '../types.js'
 
@@ -7,12 +7,12 @@ import type { KoffiTypeResult } from '../types.js'
 const key = 'MOUSEINPUT'
 const ptr = `${key} *`
 const init = {
-  dx: W.LONG,
-  dy: W.LONG,
-  mouseData: W.UINT32,
-  dwFlags: W.UINT32,
-  time: W.UINT32,
-  dwExtraInfo: W.PUINT,
+  dx: D.LONG,
+  dy: D.LONG,
+  mouseData: D.UINT32,
+  dwFlags: D.UINT32,
+  time: D.UINT32,
+  dwExtraInfo: D.PUINT,
 } as const
 
 
@@ -29,12 +29,12 @@ export function MOUSEINPUT_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-mouseinput
  */
 export interface MOUSEINPUT_Type {
-  dx: M.LONG
-  dy: M.LONG
-  mouseData: M.UINT32
-  dwFlags: M.UINT32
-  time: M.UINT32
-  dwExtraInfo: M.PUINT
+  dx: T.LONG
+  dy: T.LONG
+  mouseData: T.UINT32
+  dwFlags: T.UINT32
+  time: T.UINT32
+  dwExtraInfo: T.PUINT
 }
 
 export const LPMOUSEINPUT = ptr

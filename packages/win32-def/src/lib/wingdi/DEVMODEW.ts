@@ -1,6 +1,7 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
-import { genFixedInt16Array, genStruct, type KoffiTypeResult } from '../helper2.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
+import { genFixedInt16Array, genStruct } from '../helper2.js'
+import type { KoffiTypeResult } from '../types.js'
 import { POINT_Factory, POINT_Type } from '../windef/POINT.js'
 
 
@@ -8,52 +9,52 @@ const key = 'DEVMODEW'
 const ptr = `${key} *`
 const init = {
   dmDeviceName: genFixedInt16Array(32),
-  dmSpecVersion: W.WORD,
-  dmDriverVersion: W.WORD,
-  dmSize: W.WORD,
-  dmDriverExtra: W.WORD,
-  dmFields: W.DWORD,
+  dmSpecVersion: D.WORD,
+  dmDriverVersion: D.WORD,
+  dmSize: D.WORD,
+  dmDriverExtra: D.WORD,
+  dmFields: D.DWORD,
   u1: {
     s1: {
-      dmOrientation: W.SHORT,
-      dmPaperSize: W.SHORT,
-      dmPaperLength: W.SHORT,
-      dmPaperWidth: W.SHORT,
-      dmScale: W.SHORT,
-      dmCopies: W.SHORT,
-      dmDefaultSource: W.SHORT,
-      dmPrintQuality: W.SHORT,
+      dmOrientation: D.SHORT,
+      dmPaperSize: D.SHORT,
+      dmPaperLength: D.SHORT,
+      dmPaperWidth: D.SHORT,
+      dmScale: D.SHORT,
+      dmCopies: D.SHORT,
+      dmDefaultSource: D.SHORT,
+      dmPrintQuality: D.SHORT,
     },
     dmPosition: POINT_Factory,
     s2: {
       dmPosition: POINT_Factory,
-      dmDisplayOrientation: W.DWORD,
-      dmDisplayFixedOutput: W.DWORD,
+      dmDisplayOrientation: D.DWORD,
+      dmDisplayFixedOutput: D.DWORD,
     },
   },
-  dmColor: W.SHORT,
-  dmDuplex: W.SHORT,
-  dmYResolution: W.SHORT,
-  dmTTOption: W.SHORT,
-  dmCollate: W.SHORT,
+  dmColor: D.SHORT,
+  dmDuplex: D.SHORT,
+  dmYResolution: D.SHORT,
+  dmTTOption: D.SHORT,
+  dmCollate: D.SHORT,
   dmFormName: genFixedInt16Array(32),
-  dmLogPixels: W.WORD,
-  dmBitsPerPel: W.DWORD,
-  dmPelsWidth: W.DWORD,
-  dmPelsHeight: W.DWORD,
+  dmLogPixels: D.WORD,
+  dmBitsPerPel: D.DWORD,
+  dmPelsWidth: D.DWORD,
+  dmPelsHeight: D.DWORD,
   u2: {
-    dmDisplayFlags: W.DWORD,
-    dmNup: W.DWORD,
+    dmDisplayFlags: D.DWORD,
+    dmNup: D.DWORD,
   },
-  dmDisplayFrequency: W.DWORD,
-  dmICMMethod: W.DWORD,
-  dmICMIntent: W.DWORD,
-  dmMediaType: W.DWORD,
-  dmDitherType: W.DWORD,
-  dmReserved1: W.DWORD,
-  dmReserved2: W.DWORD,
-  dmPanningWidth: W.DWORD,
-  dmPanningHeight: W.DWORD,
+  dmDisplayFrequency: D.DWORD,
+  dmICMMethod: D.DWORD,
+  dmICMIntent: D.DWORD,
+  dmMediaType: D.DWORD,
+  dmDitherType: D.DWORD,
+  dmReserved1: D.DWORD,
+  dmReserved2: D.DWORD,
+  dmPanningWidth: D.DWORD,
+  dmPanningHeight: D.DWORD,
 } as const
 
 /**
@@ -69,53 +70,53 @@ export function DEVMODEW_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-devmodew
  */
 export interface DEVMODEW_Type {
-  dmDeviceName: M.WCHAR
-  dmSpecVersion: M.WORD
-  dmDriverVersion: M.WORD
-  dmSize: M.WORD
-  dmDriverExtra: M.WORD
-  dmFields: M.DWORD
+  dmDeviceName: T.WCHAR
+  dmSpecVersion: T.WORD
+  dmDriverVersion: T.WORD
+  dmSize: T.WORD
+  dmDriverExtra: T.WORD
+  dmFields: T.DWORD
   u1: {
     s1: {
-      dmOrientation: M.SHORT,
-      dmPaperSize: M.SHORT,
-      dmPaperLength: M.SHORT,
-      dmPaperWidth: M.SHORT,
-      dmScale: M.SHORT,
-      dmCopies: M.SHORT,
-      dmDefaultSource: M.SHORT,
-      dmPrintQuality: M.SHORT,
+      dmOrientation: T.SHORT,
+      dmPaperSize: T.SHORT,
+      dmPaperLength: T.SHORT,
+      dmPaperWidth: T.SHORT,
+      dmScale: T.SHORT,
+      dmCopies: T.SHORT,
+      dmDefaultSource: T.SHORT,
+      dmPrintQuality: T.SHORT,
     },
     dmPosition: POINT_Type,
     s2: {
       dmPosition: POINT_Type,
-      dmDisplayOrientation: M.DWORD,
-      dmDisplayFixedOutput: M.DWORD,
+      dmDisplayOrientation: T.DWORD,
+      dmDisplayFixedOutput: T.DWORD,
     },
   }
-  dmColor: M.SHORT
-  dmDuplex: M.SHORT
-  dmYResolution: M.SHORT
-  dmTTOption: M.SHORT
-  dmCollate: M.SHORT
-  dmFormName: M.WCHAR
-  dmLogPixels: M.WORD
-  dmBitsPerPel: M.DWORD
-  dmPelsWidth: M.DWORD
-  dmPelsHeight: M.DWORD
+  dmColor: T.SHORT
+  dmDuplex: T.SHORT
+  dmYResolution: T.SHORT
+  dmTTOption: T.SHORT
+  dmCollate: T.SHORT
+  dmFormName: T.WCHAR
+  dmLogPixels: T.WORD
+  dmBitsPerPel: T.DWORD
+  dmPelsWidth: T.DWORD
+  dmPelsHeight: T.DWORD
   u2: {
-    dmDisplayFlags: M.DWORD,
-    dmNup: M.DWORD,
+    dmDisplayFlags: T.DWORD,
+    dmNup: T.DWORD,
   }
-  dmDisplayFrequency: M.DWORD
-  dmICMMethod: M.DWORD
-  dmICMIntent: M.DWORD
-  dmMediaType: M.DWORD
-  dmDitherType: M.DWORD
-  dmReserved1: M.DWORD
-  dmReserved2: M.DWORD
-  dmPanningWidth: M.DWORD
-  dmPanningHeight: M.DWORD
+  dmDisplayFrequency: T.DWORD
+  dmICMMethod: T.DWORD
+  dmICMIntent: T.DWORD
+  dmMediaType: T.DWORD
+  dmDitherType: T.DWORD
+  dmReserved1: T.DWORD
+  dmReserved2: T.DWORD
+  dmPanningWidth: T.DWORD
+  dmPanningHeight: T.DWORD
 }
 
 export const LPDEVMODEW = ptr
