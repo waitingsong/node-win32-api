@@ -206,6 +206,7 @@ export async function winspoolGetPrinter<Level extends M.PRINTER_INFO_LEVEL>(
   hPrinter: M.HANDLE,
   Level: Level,
   maxByteLength = 1024,
+  // @ts-expect-error @FIXME
 ): Promise<S.PRINTER_INFO_X_Type<Level> | undefined> {
 
   const mod = getMod<Win32Fns>(dllName)
