@@ -12,4 +12,5 @@ export * from './lib/def.enum.js'
 export * from './lib/common.types.js'
 export * from './lib/helper2.js'
 export * from './lib/ffi.types.js'
+export * from './lib/util.js'
 

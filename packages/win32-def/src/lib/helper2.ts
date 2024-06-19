@@ -236,6 +236,10 @@ function genUnionCached(def: KoffiDefType, name: string, pointer: string): Koffi
 }
 
 
+/**
+ * Generate a fixed int16_t array.
+ * convert it back to string through decodeInt16Array()
+ */
 export function genFixedInt16Array(length: number): IKoffiCType {
   assert(length > 0, `length must be greater than 0, but got ${length}`)
   const type = ffi.array('int16_t', length)
@@ -246,22 +250,5 @@ export function genFixedArray(length: number): IKoffiCType {
   assert(length > 0, `length must be greater than 0, but got ${length}`)
   const type = ffi.array('int16_t', length, 'Array')
   return type
-}
-
-
-export function decodeInt16Array(input: WCHAR_Array, length = -1): string {
-  assert(input, 'input must be an object')
-  assert(typeof input.buffer === 'object', 'input.buffer must be an object')
-  assert(typeof input.byteLength === 'number', 'input.byteLength must be a number')
-  assert(typeof input.byteOffset === 'number', 'input.byteOffset must be a number')
-  assert(typeof input.length === 'number', 'input.length must be a number')
-  // const str = Buffer.from(input.buffer).toString('ucs2')
-  // return str
-  const str = ffi.decode(input, 'char16_t', length) as string
-  return str || ''
-}
-
-export function bufferToString(input: Buffer, charNum = 0): string {
-  return charNum > 0 ? input.toString('ucs2', 0, charNum * 2) : input.toString('ucs2')
 }
 
