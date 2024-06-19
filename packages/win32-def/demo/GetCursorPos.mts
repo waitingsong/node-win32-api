@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict'
 
 import ffi from 'koffi'
-import { POINT_Factory, POINT_Type } from 'win32-def/struct'
+import { POINT_Factory } from 'win32-def/struct'
 
 
 console.info('GetCursorPos()')

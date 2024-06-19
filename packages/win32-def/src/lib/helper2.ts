@@ -147,7 +147,7 @@ function genStructCached(def: KoffiDefComplexType, name: string, pointer: string
     if (typeof value === 'string') { return }
 
     if (typeof value === 'function') {
-      const nested = value()
+      const nested = value() as KoffiTypeResult
       assert(nested, `nested struct must be an object, but got ${typeof nested}`)
       data[key] = nested.CType
     }
@@ -214,7 +214,7 @@ function genUnionCached(def: KoffiDefType, name: string, pointer: string): Koffi
 
     if (typeof value === 'function') {
       // @ts-expect-error factory function of struct or union
-      const nested = value()
+      const nested = value() as KoffiTypeResult
       assert(nested, `nested struct must be an object, but got ${typeof nested}`)
       data[key] = nested.CType
     }
