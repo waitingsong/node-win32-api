@@ -12,9 +12,9 @@ import {
   M,
   dllName,
   ref,
-  retriveStruct_PRINTER_INFO as retrieveStruct_PRINTER_INFO,
-  retriveStruct_PRINTPROCESSOR_INFO_1 as retrieveStruct_PRINTPROCESSOR_INFO_1,
-  retriveStruct_DATATYPES_INFO_1,
+  retrieveStruct_PRINTER_INFO,
+  retrieveStruct_PRINTPROCESSOR_INFO_1,
+  retrieveStruct_DATATYPES_INFO_1,
 } from './helper.js'
 import { EnumPrintersOptions } from './winspool.types.js'
 
@@ -139,7 +139,7 @@ export async function winspoolEnumPrintProcessorDatatypes(
   const pcb = pcbNeeded.readUInt32LE()
 
   if (ret && count) {
-    const arr = retriveStruct_DATATYPES_INFO_1(pDatatypes, count, pcb)
+    const arr = retrieveStruct_DATATYPES_INFO_1(pDatatypes, count, pcb)
     return arr
   }
   return []
@@ -199,14 +199,14 @@ export async function winspoolOpenPrinter(printerName: string): Promise<M.HANDLE
 
 /**
  * Retrieves information about a specified printer.
- * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/getprinter
- * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/getprinter
+ * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/getprinter
+ * @link https://learn.microsoft.com/zh-cn/windows/win32/printdocs/getprinter
  */
 export async function winspoolGetPrinter<Level extends M.PRINTER_INFO_LEVEL>(
   hPrinter: M.HANDLE,
   Level: Level,
   maxByteLength = 1024,
-): Promise<M.PRINTER_INFO_X[Level] | undefined> {
+): Promise<S.PRINTER_INFO_X_Type<Level> | undefined> {
 
   const mod = getMod<Win32Fns>(dllName)
 

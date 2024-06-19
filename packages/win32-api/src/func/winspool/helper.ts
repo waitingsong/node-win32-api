@@ -20,7 +20,7 @@ export const dllName = DllNames.winspool
 export type Win32Fns = DLL.Win32Fns
 
 
-export function retriveStruct_PRINTER_INFO<L extends M.PRINTER_INFO_LEVEL>(
+export function retrieveStruct_PRINTER_INFO<L extends M.PRINTER_INFO_LEVEL>(
   pPrinter: Buffer,
   Level: L,
   maxCount = 1,
@@ -186,7 +186,7 @@ function loopRead<L extends M.PRINTER_INFO_LEVEL>(
 
 
 
-export function retriveStruct_PRINTPROCESSOR_INFO_1(
+export function retrieveStruct_PRINTPROCESSOR_INFO_1(
   pPrintProcessorInfo: Buffer,
   count: number,
   pcb: number,
@@ -205,7 +205,7 @@ export function retriveStruct_PRINTPROCESSOR_INFO_1(
 }
 
 
-export function retriveStruct_DATATYPES_INFO_1(
+export function retrieveStruct_DATATYPES_INFO_1(
   pPrintProcessorInfo: Buffer,
   count: number,
   pcb: number,
