@@ -61,8 +61,8 @@ const init = {
  * DEVMODEW structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-devmodew
  */
-export function DEVMODEW_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function DEVMODEW_Factory(): StructFactoryResult<DEVMODEW_Type> {
+  return genStruct<DEVMODEW_Type>(init, key, ptr)
 }
 
 /**

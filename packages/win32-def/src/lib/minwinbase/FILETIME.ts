@@ -16,8 +16,8 @@ const init = {
  * FILETIME structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/minwinbase/ns-minwinbase-filetime
  */
-export function FILETIME_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function FILETIME_Factory(): StructFactoryResult<FILETIME_Type> {
+  return genStruct<FILETIME_Type>(init, key, ptr)
 }
 
 /**

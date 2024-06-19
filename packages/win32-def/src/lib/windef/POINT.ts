@@ -16,8 +16,8 @@ const init = {
  * POINT structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/windef/ns-windef-point
  */
-export function POINT_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function POINT_Factory(): StructFactoryResult<POINT_Type> {
+  return genStruct<POINT_Type>(init, key, ptr)
 }
 
 /**

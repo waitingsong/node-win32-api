@@ -16,8 +16,8 @@ const init = {
  * INITCOMMONCONTROLSEX structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/commctrl/nf-commctrl-initcommoncontrolsex
  */
-export function INITCOMMONCONTROLSEX_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function INITCOMMONCONTROLSEX_Factory(): StructFactoryResult<INITCOMMONCONTROLSEX_Type> {
+  return genStruct<INITCOMMONCONTROLSEX_Type>(init, key, ptr)
 }
 
 /**

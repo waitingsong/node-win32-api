@@ -16,7 +16,7 @@ const cacheUnionMap = new Map<string, KoffiTypeResult>()
  * - key s{number} means struct
  * - key u{number} means union
  */
-export function genStruct<T extends object = object>(def: KoffiDefComplexType, name?: string, pointer?: string): StructFactoryResult {
+export function genStruct<T extends object = object>(def: KoffiDefComplexType, name?: string, pointer?: string): StructFactoryResult<T> {
   const struct = genComplexStruct(def, name, pointer)
   const ret: StructFactoryResult = {
     ...struct,

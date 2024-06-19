@@ -18,8 +18,8 @@ const init = {
  * RECT structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/windef/ns-windef-RECT
  */
-export function RECT_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function RECT_Factory(): StructFactoryResult<RECT_Type> {
+  return genStruct<RECT_Type>(init, key, ptr)
 }
 
 /**
