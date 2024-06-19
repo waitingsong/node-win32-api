@@ -21,7 +21,7 @@ export function genStruct<T extends object = object>(def: KoffiDefComplexType, n
   const ret: StructFactoryResult<T> = {
     ...struct,
     // data must be the new one after each call of the struct factory function
-    data: {} as T,
+    payload: {} as T,
   }
   return ret
 }

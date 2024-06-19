@@ -53,7 +53,7 @@ type AsyncFunction<T extends (...args: any) => unknown> = (...args: Parameters<T
  * The data must be the new one after each call of the struct factory function
  */
 export interface StructFactoryResult<T extends object = object> extends KoffiTypeResult {
-  data: T
+  payload: T
 }
 
 export interface KoffiTypeResult {
