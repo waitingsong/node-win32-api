@@ -76,6 +76,7 @@ describe(fileShortPath(import.meta.url), () => {
       const pos2 = comb.payload
       assert(typeof pos2.x === 'undefined')
       await inst2.GetCursorPosAsync(pos2)
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       assert(pos2.x > 0 && pos2.y > 0, `pos2.x: ${pos2.x}, pos2.y: ${pos2.y}`)
 
       assert.deepEqual(pos, pos2)
