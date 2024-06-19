@@ -1,18 +1,12 @@
 import assert from 'node:assert'
-
-// eslint-disable-next-line import/no-extraneous-dependencies
-import ref from 'ref-napi'
+import * as T from 'win32-def'
 
 import {
   DllNames,
-  Types as T,
-  bufferToStruct,
 } from '../../index.js'
 import { Winspool as DLL } from '../../index.promise.js'
 import * as S from 'win32-def/struct'
 
-
-export { T, S, ref }
 
 export const dllName = DllNames.winspool
 export type Win32Fns = DLL.Win32Fns

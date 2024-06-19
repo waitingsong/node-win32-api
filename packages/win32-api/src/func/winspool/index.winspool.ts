@@ -1,4 +1,5 @@
 import assert from 'node:assert'
+import * as T from 'win32-def'
 import * as S from 'win32-def/struct'
 
 import {
@@ -9,9 +10,7 @@ import { getMod } from '../func.helper.js'
 
 import {
   Win32Fns,
-  T,
   dllName,
-  ref,
   retrieveStruct_PRINTER_INFO,
   retrieveStruct_PRINTPROCESSOR_INFO_1,
   retrieveStruct_DATATYPES_INFO_1,

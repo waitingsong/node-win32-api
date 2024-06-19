@@ -1,4 +1,4 @@
-import { T } from './helper.js'
+import * as T from 'win32-def'
 
 
 export interface EnumPrintersOptions<Lvl extends T.EnumPrinters_Level> {
