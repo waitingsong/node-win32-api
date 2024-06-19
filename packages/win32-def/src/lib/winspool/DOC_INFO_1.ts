@@ -17,8 +17,8 @@ const init = {
  * Describes a document that will be printed.
  * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/doc-info-1
  */
-export function DOC_INFO_1_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function DOC_INFO_1_Factory(): StructFactoryResult<DOC_INFO_1_Type> {
+  return genStruct<DOC_INFO_1_Type>(init, key, ptr)
 }
 
 /**

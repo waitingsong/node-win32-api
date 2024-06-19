@@ -18,8 +18,8 @@ const init = {
  * Specifies general printer information
  * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/PRINTER-INFO-1
  */
-export function PRINTER_INFO_1_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function PRINTER_INFO_1_Factory(): StructFactoryResult<PRINTER_INFO_1_Type> {
+  return genStruct<PRINTER_INFO_1_Type>(init, key, ptr)
 }
 
 /**

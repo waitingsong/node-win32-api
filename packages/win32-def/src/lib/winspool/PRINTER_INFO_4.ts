@@ -20,8 +20,8 @@ const init = {
  *  Such a call is a fast and easy way to retrieve the names and attributes of all locally installed printers
  *  on a system and all remote printer connections that a user has established.
  */
-export function PRINTER_INFO_4_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function PRINTER_INFO_4_Factory(): StructFactoryResult<PRINTER_INFO_4_Type> {
+  return genStruct<PRINTER_INFO_4_Type>(init, key, ptr)
 }
 
 /**

@@ -15,8 +15,8 @@ const init = {
  * Specifies the name of an installed print processor.
  * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/printprocessor-info-1
  */
-export function PRINTPROCESSOR_INFO_1_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function PRINTPROCESSOR_INFO_1_Factory(): StructFactoryResult<PRINTPROCESSOR_INFO_1_Type> {
+  return genStruct<PRINTPROCESSOR_INFO_1_Type>(init, key, ptr)
 }
 
 /**

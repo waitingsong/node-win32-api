@@ -18,8 +18,8 @@ const init = {
  * Specifies the default data type, environment, initialization data, and access rights for a printer.
  * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/printer-defaults
  */
-export function PRINTER_DEFAULTS_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function PRINTER_DEFAULTS_Factory(): StructFactoryResult<PRINTER_DEFAULTS_Type> {
+  return genStruct<PRINTER_DEFAULTS_Type>(init, key, ptr)
 }
 
 /**
