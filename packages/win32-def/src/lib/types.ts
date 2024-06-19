@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { IKoffiLib } from 'koffi'
+import type { IKoffiLib, IKoffiCType, TypeSpecWithAlignment } from 'koffi'
 import type { CallingConvention, DllFuncs, FnName, FnParams, LoadSettings } from 'win32-def'
 
 
@@ -48,3 +48,12 @@ export type LibFuncs<T extends object> = T & {
 
 type AsyncFunction<T extends (...args: any) => unknown> = (...args: Parameters<T>) => Promise<ReturnType<T>>
 
+
+export interface KoffiTypeResult {
+  name: string
+  pointer: string
+  CType: IKoffiCType
+  size: number
+}
+export type KoffiDefType = Record<string, TypeSpecWithAlignment>
+export type KoffiDefComplexType = Record<string, TypeSpecWithAlignment | object>

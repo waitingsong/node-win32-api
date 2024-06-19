@@ -1,6 +1,7 @@
 import * as W from '../common.def.js'
 import * as M from '../common.types.js'
-import { genStruct, type KoffiTypeResult } from '../helper2.js'
+import { genStruct } from '../helper2.js'
+import type { KoffiTypeResult } from '../types.js'
 
 
 const key = 'COPYDATASTRUCT'

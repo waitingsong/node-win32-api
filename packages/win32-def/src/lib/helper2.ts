@@ -1,19 +1,10 @@
 import assert from 'assert'
 
 import ffi from 'koffi'
-import type { IKoffiCType, TypeSpecWithAlignment } from 'koffi'
+import type { IKoffiCType } from 'koffi'
 
+import type { KoffiDefComplexType, KoffiDefType, KoffiTypeResult } from './types.js'
 
-export interface KoffiTypeResult {
-  name: string
-  pointer: string
-  CType: IKoffiCType
-  size: number
-}
-export type KoffiDefType = Record<string, TypeSpecWithAlignment>
-export type KoffiDefComplexType = Record<string, TypeSpecWithAlignment | object>
-
-// type TypeSpec = string | IKoffiCType;
 
 const cacheStructMap = new Map<string, KoffiTypeResult>()
 const cacheUnionMap = new Map<string, KoffiTypeResult>()
@@ -135,7 +126,7 @@ function genStructCached(def: KoffiDefComplexType, name: string, pointer: string
     if (typeof value === 'string') { return }
 
     if (typeof value === 'function') {
-      const nested = value() as KoffiTypeResult | undefined
+      const nested = value()
       assert(nested, `nested struct must be an object, but got ${typeof nested}`)
       data[key] = nested.CType
     }
@@ -202,7 +193,7 @@ function genUnionCached(def: KoffiDefType, name: string, pointer: string): Koffi
 
     if (typeof value === 'function') {
       // @ts-expect-error factory function of struct or union
-      const nested = value() as KoffiTypeResult | undefined
+      const nested = value()
       assert(nested, `nested struct must be an object, but got ${typeof nested}`)
       data[key] = nested.CType
     }
