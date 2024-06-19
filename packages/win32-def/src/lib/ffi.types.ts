@@ -40,8 +40,8 @@ export type DllFuncs<T = DllFuncsModel> = Record<keyof T, FnParams>
  * ```
  */
 export type DllFuncsModel = Record<string, SyncFnModel>
-export type SyncFnModel = (...args: any[]) => boolean | number | BigIntStr | Buffer | void
-export type AsyncFnModel = (...args: any[]) => Promise<boolean | number | BigIntStr | Buffer | void>
+export type SyncFnModel = (...args: any[]) => boolean | number | BigIntStr | Buffer | undefined
+export type AsyncFnModel = (...args: any[]) => Promise<boolean | number | BigIntStr | Buffer | undefined>
 export type AsyncSyncFuncModel = SyncFnModel & {
   async: (...args: any[]) => void,
 }

@@ -38,7 +38,7 @@ describe(fileShortPath(import.meta.url), () => {
 
       try {
         const input = factory()
-        const size = input.size
+        assert(input.size === size, `size: ${input.size}`)
 
         const SendInput = user32.func('__stdcall', 'SendInput', 'uint', ['uint', input.pointer, 'int'])
         const res = SendInput(events.length, events, size) as number
