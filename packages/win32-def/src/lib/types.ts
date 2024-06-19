@@ -49,6 +49,13 @@ export type LibFuncs<T extends object> = T & {
 type AsyncFunction<T extends (...args: any) => unknown> = (...args: Parameters<T>) => Promise<ReturnType<T>>
 
 
+/**
+ * The data must be the new one after each call of the struct factory function
+ */
+export interface StructFactoryResult<T extends object = object> extends KoffiTypeResult {
+  data: T
+}
+
 export interface KoffiTypeResult {
   name: string
   pointer: string
