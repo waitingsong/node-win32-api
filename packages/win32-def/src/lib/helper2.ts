@@ -17,13 +17,17 @@ const cacheUnionMap = new Map<string, KoffiTypeResult>()
  * - key u{number} means union
  */
 export function genStruct<T extends object = object>(def: KoffiDefComplexType, name?: string, pointer?: string): StructFactoryResult<T> {
-  const struct = genComplexStruct(def, name, pointer)
-  const ret: StructFactoryResult<T> = {
-    ...struct,
-    // data must be the new one after each call of the struct factory function
-    payload: {} as T,
+  const struct = genComplexStruct(def, name, pointer) as StructFactoryResult<T> | KoffiTypeResult
+  // @ts-expect-error payload
+  if (typeof struct.payload === 'undefined') {
+    // payload must be the new one after each call of the struct factory function
+    Object.defineProperty(struct, 'payload', {
+      get: () => {
+        return {}
+      },
+    })
   }
-  return ret
+  return struct as StructFactoryResult<T>
 }
 
 /**
