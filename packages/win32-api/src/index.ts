@@ -11,20 +11,13 @@ import * as Winspool from './lib/winspool/index.js'
 export {
   config,
   Config,
-  UnionFactory,
-  UnionFactory as UnionFactor,
-  UnionType,
-  StructFactory,
-  StructType,
 } from 'win32-def'
-// model of window data types
-export * as DModel from 'win32-def'
-// ffi model
-export * as FModel from 'win32-def'
-// window data types of structure
-export * as DStruct from 'win32-def/struct.def'
-// window data types
-export * as DTypes from 'win32-def/common.def'
+/** model of window data types */
+export * as Types from 'win32-def'
+/** window data types of structure */
+export * as Struct from 'win32-def/struct'
+/** window data types */
+export * as Def from 'win32-def/def'
 
 
 export { Gdi32 }
@@ -49,4 +42,5 @@ export { Constants }
 export { Constants as CS }
 
 export * from './lib/helper.js'
+
 
