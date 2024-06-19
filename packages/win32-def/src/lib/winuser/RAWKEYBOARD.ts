@@ -20,8 +20,8 @@ const init = {
  * RAWKEYBOARD structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RAWKEYBOARD
  */
-export function RAWKEYBOARD_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function RAWKEYBOARD_Factory(): StructFactoryResult<RAWKEYBOARD_Type> {
+  return genStruct<RAWKEYBOARD_Type>(init, key, ptr)
 }
 
 /**

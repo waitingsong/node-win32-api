@@ -27,8 +27,8 @@ const init = {
  * WNDCLASSEXW structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-wndclassexw
  */
-export function WNDCLASSEXW_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function WNDCLASSEXW_Factory(): StructFactoryResult<WNDCLASSEXW_Type> {
+  return genStruct<WNDCLASSEXW_Type>(init, key, ptr)
 }
 
 /**

@@ -25,8 +25,8 @@ const init = {
  * WINDOWINFO structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-WINDOWINFO
  */
-export function WINDOWINFO_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function WINDOWINFO_Factory(): StructFactoryResult<WINDOWINFO_Type> {
+  return genStruct<WINDOWINFO_Type>(init, key, ptr)
 }
 
 /**

@@ -20,8 +20,8 @@ const init = {
  * MOUSEINPUT structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-mouseinput
  */
-export function MOUSEINPUT_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function MOUSEINPUT_Factory(): StructFactoryResult<MOUSEINPUT_Type> {
+  return genStruct<MOUSEINPUT_Type>(init, key, ptr)
 }
 
 /**

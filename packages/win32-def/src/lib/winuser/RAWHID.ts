@@ -18,8 +18,8 @@ const init = {
  * RAWHID structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-rawhid
  */
-export function RAWHID_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function RAWHID_Factory(): StructFactoryResult<RAWHID_Type> {
+  return genStruct<RAWHID_Type>(init, key, ptr)
 }
 
 /**

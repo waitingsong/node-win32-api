@@ -19,8 +19,8 @@ const init = {
  * RID_DEVICE_INFO_HID structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RID_DEVICE_INFO_HID
  */
-export function RID_DEVICE_INFO_HID_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function RID_DEVICE_INFO_HID_Factory(): StructFactoryResult<RID_DEVICE_INFO_HID_Type> {
+  return genStruct<RID_DEVICE_INFO_HID_Type>(init, key, ptr)
 }
 
 /**

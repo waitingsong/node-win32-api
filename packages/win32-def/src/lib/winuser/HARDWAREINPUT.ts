@@ -16,8 +16,8 @@ const init = {
  * HARDWAREINPUT structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-hardwareinput
  */
-export function HARDWAREINPUT_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function HARDWAREINPUT_Factory(): StructFactoryResult<HARDWAREINPUT_TYPE> {
+  return genStruct<HARDWAREINPUT_TYPE>(init, key, ptr)
 }
 /**
  * HARDWAREINPUT structure

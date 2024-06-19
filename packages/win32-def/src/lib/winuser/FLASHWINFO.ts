@@ -19,8 +19,8 @@ const init = {
  * FLASHWINFO structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-FLASHWINFO
  */
-export function FLASHWINFO_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function FLASHWINFO_Factory(): StructFactoryResult<FLASHWINFO_Type> {
+  return genStruct<FLASHWINFO_Type>(init, key, ptr)
 }
 
 /**

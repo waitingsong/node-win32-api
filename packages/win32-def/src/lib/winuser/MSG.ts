@@ -22,8 +22,8 @@ const init = {
  * MSG structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-msg
  */
-export function MSG_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function MSG_Factory(): StructFactoryResult<MSG_Type> {
+  return genStruct<MSG_Type>(init, key, ptr)
 }
 
 /**

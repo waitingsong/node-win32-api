@@ -20,8 +20,8 @@ const init = {
  * RID_DEVICE_INFO_KEYBOARD structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RID_DEVICE_INFO_KEYBOARD
  */
-export function RID_DEVICE_INFO_KEYBOARD_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function RID_DEVICE_INFO_KEYBOARD_Factory(): StructFactoryResult<RID_DEVICE_INFO_KEYBOARD_Type> {
+  return genStruct<RID_DEVICE_INFO_KEYBOARD_Type>(init, key, ptr)
 }
 
 /**

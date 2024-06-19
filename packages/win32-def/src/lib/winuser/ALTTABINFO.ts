@@ -23,8 +23,8 @@ const init = {
  * ALTTABINFO structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-alttabinfo
  */
-export function ALTTABINFO_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function ALTTABINFO_Factory(): StructFactoryResult<ALTTABINFO_Type> {
+  return genStruct<ALTTABINFO_Type>(init, key, ptr)
 }
 
 /**

@@ -19,8 +19,8 @@ const init = {
  * KEYBDINPUT structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-keybdinput
  */
-export function KEYBDINPUT_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function KEYBDINPUT_Factory(): StructFactoryResult<KEYBDINPUT_Type> {
+  return genStruct<KEYBDINPUT_Type>(init, key, ptr)
 }
 
 /**

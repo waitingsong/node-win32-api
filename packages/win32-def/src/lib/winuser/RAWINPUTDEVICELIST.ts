@@ -16,8 +16,8 @@ const init = {
  * RAWINPUTDEVICELIST structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RAWINPUTDEVICELIST
  */
-export function RAWINPUTDEVICELIST_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function RAWINPUTDEVICELIST_Factory(): StructFactoryResult<RAWINPUTDEVICELIST_Type> {
+  return genStruct<RAWINPUTDEVICELIST_Type>(init, key, ptr)
 }
 
 /**

@@ -17,8 +17,8 @@ const init = {
  * COPYDATASTRUCT structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-copydatastruct
  */
-export function COPYDATASTRUCT_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function COPYDATASTRUCT_Factory(): StructFactoryResult<COPYDATASTRUCT_Type> {
+  return genStruct<COPYDATASTRUCT_Type>(init, key, ptr)
 }
 
 /**

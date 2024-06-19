@@ -18,8 +18,8 @@ const init = {
  * RID_DEVICE_INFO_MOUSE structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RID_DEVICE_INFO_MOUSE
  */
-export function RID_DEVICE_INFO_MOUSE_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function RID_DEVICE_INFO_MOUSE_Factory(): StructFactoryResult<RID_DEVICE_INFO_MOUSE_Type> {
+  return genStruct<RID_DEVICE_INFO_MOUSE_Type>(init, key, ptr)
 }
 
 /**

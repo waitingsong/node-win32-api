@@ -18,8 +18,8 @@ const init = {
  * RAWINPUTHEADER structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RAWINPUTHEADER
  */
-export function RAWINPUTHEADER_Factory(): StructFactoryResult {
-  return genStruct(init, key, ptr)
+export function RAWINPUTHEADER_Factory(): StructFactoryResult<RAWINPUTHEADER_Type> {
+  return genStruct<RAWINPUTHEADER_Type>(init, key, ptr)
 }
 
 /**
