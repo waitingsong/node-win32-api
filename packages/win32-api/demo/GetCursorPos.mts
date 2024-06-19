@@ -5,6 +5,7 @@ import assert from 'node:assert/strict'
 import ffi from 'koffi'
 import { POINT_Factory, POINT_Type } from 'win32-def/struct'
 
+
 console.info('GetCursorPos()')
 
 const user32 = ffi.load('user32.dll')
@@ -16,8 +17,8 @@ try {
   const func = user32.func('GetCursorPos', 'int', [`_Out_ ${comb.pointer}`])
   // const func = user32.func(`int __stdcall GetCursorPos(_Out_ ${comb.pointer}pos)`)
 
-  const res = func(pos)
-  console.log({ res, pos })
+  const res = func(pos) as number
+  console.info({ res, pos })
   assert(pos.x > 0 && pos.y > 0)
 }
 finally {
