@@ -31,7 +31,7 @@
       "import": "./dist/index.consts.js",
       "require": "./dist/index.consts.cjs"
     },
-    "./common.def": {
+    "./def": {
       "import": "./dist/index.def.js",
       "require": "./dist/index.def.cjs"
     },
