@@ -2,8 +2,8 @@ import assert from 'node:assert'
 
 import { fileShortPath } from '@waiting/shared-core'
 import ffi from 'koffi'
-import { POINT_Factory, POINT_Type } from 'win32-def/struct'
 
+import { POINT_Factory, POINT_Type } from '##/index.struct.js'
 import { registerFunction } from '##/lib/loader/loader.helper.js'
 
 
