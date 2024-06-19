@@ -4,6 +4,7 @@ import type { CallingConvention, DllFuncs, FnName, FnParams, LoadSettings } from
 
 
 export type { KoffiFunction } from 'koffi'
+export type { IKoffiLib }
 
 export interface RegisterFunctionOpts {
   /**

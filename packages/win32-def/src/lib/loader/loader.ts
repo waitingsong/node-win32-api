@@ -3,10 +3,19 @@ import assert from 'node:assert'
 import koffi from 'koffi'
 
 import { CallingConvention } from '../ffi.types.js'
-import { LoadOptions, KoffiFunction, LibFuncs } from '../types.js'
+import { LoadOptions, KoffiFunction, IKoffiLib, LibFuncs } from '../types.js'
 
 import { gen_api_opts, parse_settings, prepareDllFile, registerFunction } from './loader.helper.js'
 
+
+const cacheLibMap = new Map<string, IKoffiLib>()
+
+function getLibFromCache(dll: string): IKoffiLib | undefined {
+  return cacheLibMap.get(dll)
+}
+function setLibToCache(dll: string, lib: IKoffiLib): void {
+  cacheLibMap.set(dll, lib)
+}
 
 export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
   const { dll, dllFuncs, usedFuncNames, settings } = options
@@ -15,13 +24,17 @@ export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
     ? prepareDllFile(dll)
     : dll
 
-
   const st = parse_settings(settings)
   const ps = gen_api_opts<T>(dllFuncs, usedFuncNames)
 
   assert(dllFuncs)
   const inst = {} as LibFuncs<T>
-  const lib = koffi.load(libName)
+
+  let lib = getLibFromCache(libName)
+  if (! lib) {
+    lib = koffi.load(libName)
+    setLibToCache(libName, lib)
+  }
 
   for (const [name, params] of Object.entries(ps)) {
     const func = registerFunction({
