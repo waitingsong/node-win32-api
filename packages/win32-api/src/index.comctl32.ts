@@ -1,3 +1,3 @@
 
-export * from './lib/comctl32/index.promise.js'
+export * from './lib/comctl32/index.js'
 
