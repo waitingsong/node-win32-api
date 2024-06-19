@@ -11,6 +11,22 @@ export type StructTypeConstructor<T = object> = new () => Record<keyof T, string
 export interface LoadSettings {
   singleton: boolean // for DLL.load()
   _WIN64?: boolean // default from process.arch
+  /**
+ * Calling convention
+ * @default 'Stdcall' (for Windows)
+ * @link https://koffi.dev/functions#calling-conventions
+ */
+  convention?: CallingConvention
+}
+
+/**
+ * @link https://koffi.dev/functions#calling-conventions
+ */
+export enum CallingConvention {
+  Cdecl = '',
+  Stdcall = '__stdcall',
+  Fastcall = '__fastcall',
+  Thiscall = '__thiscall',
 }
 
 // custom
