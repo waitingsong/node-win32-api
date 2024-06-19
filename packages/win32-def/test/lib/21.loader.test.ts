@@ -65,14 +65,15 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('sync + async with different inst', async () => {
-      const { payload: pos } = POINT_Factory()
+      const comb = POINT_Factory()
+      const pos = comb.payload
       const inst = load<Win32Fns>(options)
 
       inst.GetCursorPos(pos)
       assert(pos.x > 0 && pos.y > 0)
 
       const inst2 = load<Win32Fns>(options)
-      const pos2 = {} as POINT_Type
+      const pos2 = comb.payload
       await inst2.GetCursorPosAsync(pos2)
       assert(pos2.x > 0 && pos2.y > 0, `pos2.x: ${pos2.x}, pos2.y: ${pos2.y}`)
 

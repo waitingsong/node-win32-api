@@ -24,12 +24,30 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('not same', async () => {
+      const comb = POINT_Factory()
+      const p1 = comb.payload
+      const p2 = comb.payload
+      assert(p1 !== p2)
+
+      const { payload: p3 } = comb
+      const { payload: p4 } = comb
+      assert(p3 !== p4)
+      assert(p3 !== p1)
+      assert(p3 !== p2)
+
+      p1.x = 1
+      assert(typeof p2.x === 'undefined')
+      assert(typeof p3.x === 'undefined')
+      assert(typeof p4.x === 'undefined')
+    })
+
+    it('not same 2', async () => {
       const { payload } = POINT_Factory()
       const { payload: p2 } = POINT_Factory()
       assert(payload !== p2)
     })
 
-    it('not same 2', async () => {
+    it('not same 3', async () => {
       const { payload } = POINT_Factory()
       assert(payload)
       assert(typeof payload.x === 'undefined')
