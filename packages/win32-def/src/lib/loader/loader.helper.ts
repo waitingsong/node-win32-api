@@ -4,9 +4,8 @@ import { copyFileSync, statSync } from 'node:fs'
 import { settingsDefault } from '../config.js'
 import { Def } from '../def.enum.js'
 import {
-  AsyncSyncFuncModel,
   DllFuncs,
-  DllFuncsModel,
+  DllFuncsType,
   FnName,
   FnParams,
   LoadSettings,
@@ -49,34 +48,11 @@ export function registerFunction(options: RegisterFunctionOpts): KoffiFunction {
 }
 
 
-
-export async function callFnAsync<T extends AsyncSyncFuncModel>(
-  target: T,
-  args: unknown[],
-): Promise<unknown> {
-
-  assert(target)
-  assert(typeof target.async === 'function')
-
-  return new Promise<unknown>((done, reject) => {
-    const cb = (err: Error | undefined, result: unknown) => {
-      if (err) {
-        reject(err)
-        return
-      }
-      done(result)
-    }
-    // @ts-ignore
-    Reflect.apply(target.async, null, [...args, cb])
-  })
-}
-
-
 /**
  * Generate function definitions via converting macro windows data type (like PVOID) to the expected value.
  * Skip assignment if property undefined
  */
-export function gen_api_opts<T = DllFuncsModel>(
+export function gen_api_opts<T = DllFuncsType>(
   dllFuncs: DllFuncs<T>,
   fns?: FnName[],
 ): DllFuncs<T> {
