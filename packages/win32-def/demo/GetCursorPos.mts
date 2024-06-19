@@ -10,11 +10,10 @@ console.info('GetCursorPos()')
 
 const user32 = ffi.load('user32.dll')
 
-const comb = POINT_Factory()
-const pos = { } as POINT_Type
+const { payload: pos, pointer } = POINT_Factory()
 
 try {
-  const func = user32.func('GetCursorPos', 'int', [`_Out_ ${comb.pointer}`])
+  const func = user32.func('GetCursorPos', 'int', [`_Out_ ${pointer}`])
   // const func = user32.func(`int __stdcall GetCursorPos(_Out_ ${comb.pointer}pos)`)
 
   const res = func(pos) as number

@@ -23,11 +23,10 @@ export const events: INPUT_Type[] = [
   make_keyboard_event(VK_RWIN, false),
 ]
 
-export const input = INPUT_Factory()
+export const { size, pointer } = INPUT_Factory()
 
 try {
-  const { size } = input
-  const SendInput = user32.func('__stdcall', 'SendInput', 'uint', ['uint', input.pointer, 'int'])
+  const SendInput = user32.func('__stdcall', 'SendInput', 'uint', ['uint', pointer, 'int'])
 
   const res = SendInput(events.length, events, size) as number
   assert(res === events.length)

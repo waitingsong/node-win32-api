@@ -10,13 +10,11 @@ import * as S from 'win32-def/struct'
 
 console.info('EnumDisplayDevicesW()')
 
-const st = S.DISPLAY_DEVICEW_Factory()
-console.info('size', st.size)
-const dd = {
-  cb: st.size,
-} as S.DISPLAY_DEVICEW_Type
+const { size, CType, payload } = S.DISPLAY_DEVICEW_Factory()
+console.info({ size })
+payload.cb = size
 
-const typeInfo = ffi.introspect(st.CType)
+const typeInfo = ffi.introspect(CType)
 console.info({ typeInfo })
 
 const user32 = ffi.load('user32.dll')
@@ -28,11 +26,11 @@ try {
     [D.LPCWSTR, D.DWORD, `_Inout_ ${S.LPDISPLAY_DEVICEW}`, D.DWORD],
   )
 
-  const res = func(null, 0, dd, 1) as number
-  const DeviceID = decodeInt16Array(dd.DeviceID)
-  const DeviceKey = decodeInt16Array(dd.DeviceKey)
-  const DeviceName = decodeInt16Array(dd.DeviceName)
-  const DeviceString = decodeInt16Array(dd.DeviceString)
+  const res = func(null, 0, payload, 1) as number
+  const DeviceID = decodeInt16Array(payload.DeviceID)
+  const DeviceKey = decodeInt16Array(payload.DeviceKey)
+  const DeviceName = decodeInt16Array(payload.DeviceName)
+  const DeviceString = decodeInt16Array(payload.DeviceString)
 
   console.info({ res, DeviceID, DeviceKey, DeviceName, DeviceString })
 
