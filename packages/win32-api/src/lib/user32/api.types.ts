@@ -1,104 +1,104 @@
-import * as D from 'win32-def'
+import * as T from 'win32-def'
 import * as S from 'win32-def/struct'
 
 
 // export interface Win32Fns extends M.DllFuncsModel {
 export interface Win32Fns {
-  BringWindowToTop: (hWnd: D.HWND) => D.BOOL
+  BringWindowToTop: (hWnd: T.HWND) => T.BOOL
 
   /**
    * https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-broadcastsystemmessage
    */
   BroadcastSystemMessage: (
-    flags: D.DWORD,
-    lpInfo: D.LPDWORD,
-    Msg: D.UINT,
-    wParam: D.WPARAM,
-    lParam: D.LPARAM) => D.LRESULT
+    flags: T.DWORD,
+    lpInfo: T.LPDWORD,
+    Msg: T.UINT,
+    wParam: T.WPARAM,
+    lParam: T.LPARAM) => T.LRESULT
 
-  ClientToScreen: (hWnd: D.HWND, lpPoint: D.LPPOINT) => D.BOOL
+  ClientToScreen: (hWnd: T.HWND, lpPoint: T.LPPOINT) => T.BOOL
 
   /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-closewindow */
-  CloseWindow: (hWnd: D.HWND) => D.BOOL
+  CloseWindow: (hWnd: T.HWND) => T.BOOL
 
   CreateWindowExW: (
-    dwExStyle: D.DWORD,
-    lpClassName: D.LPCTSTR | null,
-    lpWindowName: D.LPCTSTR | null,
-    dwStyle: D.DWORD,
-    x: D.INT,
-    y: D.INT,
-    nWidth: D.INT,
-    nHeight: D.INT,
-    hWndParent: D.HWND,
-    HMENU: D.HMENU,
-    HINSTANCE: D.HINSTANCE,
-    LPVOID: D.LPVOID,
-  ) => D.HWND
+    dwExStyle: T.DWORD,
+    lpClassName: T.LPCTSTR | null,
+    lpWindowName: T.LPCTSTR | null,
+    dwStyle: T.DWORD,
+    x: T.INT,
+    y: T.INT,
+    nWidth: T.INT,
+    nHeight: T.INT,
+    hWndParent: T.HWND,
+    HMENU: T.HMENU,
+    HINSTANCE: T.HINSTANCE,
+    LPVOID: T.LPVOID,
+  ) => T.HWND
 
-  DefWindowProcW: (hWnd: D.HWND, Msg: D.UINT, wParam: D.WPARAM, lParam: D.LPARAM) => D.LRESULT
+  DefWindowProcW: (hWnd: T.HWND, Msg: T.UINT, wParam: T.WPARAM, lParam: T.LPARAM) => T.LRESULT
 
   /** https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-destroywindow */
-  DestroyWindow: (hWnd: D.HWND) => D.BOOL
+  DestroyWindow: (hWnd: T.HWND) => T.BOOL
 
-  DispatchMessageW: (lpMsg: D.LPMSG) => D.LRESULT
+  DispatchMessageW: (lpMsg: T.LPMSG) => T.LRESULT
 
   /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-enumdisplaydevicesw */
   EnumDisplayDevicesW: (
-    lpDevice: D.LPCWSTR,
-    iDevNum: D.DWORD,
+    lpDevice: T.LPCWSTR,
+    iDevNum: T.DWORD,
     lpDisplayDevice: S.DISPLAY_DEVICEW_Type,
-    dwFlags: D.DWORD,
-  ) => D.BOOL
+    dwFlags: T.DWORD,
+  ) => T.BOOL
 
-  EnumThreadWindows: (dwThreadId: D.DWORD, lpfn: D.WNDENUMPROC, lParam: D.LPARAM) => D.BOOL
+  EnumThreadWindows: (dwThreadId: T.DWORD, lpfn: T.WNDENUMPROC, lParam: T.LPARAM) => T.BOOL
 
   // EnumWindows: EnumWindows
-  EnumWindows: (lpEnumFunc: D.WNDENUMPROC, lParam: D.LPARAM) => D.BOOL
+  EnumWindows: (lpEnumFunc: T.WNDENUMPROC, lParam: T.LPARAM) => T.BOOL
 
   FindWindowExW: (
-    hwndParent: D.HWND,
-    hwndChildAfter: D.HWND,
-    lpszClass: D.LPCTSTR | null,
-    lpszWindow: D.LPCTSTR | null,
-  ) => D.HWND
+    hwndParent: T.HWND,
+    hwndChildAfter: T.HWND,
+    lpszClass: T.LPCTSTR | null,
+    lpszWindow: T.LPCTSTR | null,
+  ) => T.HWND
 
-  FlashWindow: (hWnd: D.HWND, bInvert: D.BOOL) => D.BOOL
+  FlashWindow: (hWnd: T.HWND, bInvert: T.BOOL) => T.BOOL
 
-  FlashWindowEx: (pfwi: S.FLASHWINFO_Type) => D.BOOL
+  FlashWindowEx: (pfwi: S.FLASHWINFO_Type) => T.BOOL
 
-  GetAncestor: (hwnd: D.HWND, gaFlags: D.UINT) => D.HWND
+  GetAncestor: (hwnd: T.HWND, gaFlags: T.UINT) => T.HWND
 
   /** https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getalttabinfow */
   GetAltTabInfoW: (
-    hWnd: D.HWND,
-    iItem: D.INT,
+    hWnd: T.HWND,
+    iItem: T.INT,
     pati: S.ALTTABINFO_Type,
-    pszItemText: D.LPWSTR | null,
-    cchItemText: D.INT,
-  ) => D.BOOL
+    pszItemText: T.LPWSTR | null,
+    cchItemText: T.INT,
+  ) => T.BOOL
 
   /**
    * Copies the caret's position to the specified POINT structure.
    * @link https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcaretpos
    */
-  GetCaretPos: (lpPoint: D.LPPOINT) => D.BOOL
+  GetCaretPos: (lpPoint: T.LPPOINT) => T.BOOL
 
-  GetClassInfoExW: (hinst: D.HINSTANCE, lpszClass: D.LPCTSTR, LPWNDCLASSEX: S.WNDCLASSEXW_Type) => D.BOOL
+  GetClassInfoExW: (hinst: T.HINSTANCE, lpszClass: T.LPCTSTR, LPWNDCLASSEX: S.WNDCLASSEXW_Type) => T.BOOL
 
-  GetForegroundWindow: () => D.HWND
+  GetForegroundWindow: () => T.HWND
 
-  GetMessageW: (lpMsg: D.LPMSG, HWND: D.HWND, wMsgFilterMin: D.UINT, wMsgFilterMax: D.UINT) => D.BOOL
+  GetMessageW: (lpMsg: T.LPMSG, HWND: T.HWND, wMsgFilterMin: T.UINT, wMsgFilterMax: T.UINT) => T.BOOL
 
-  GetParent: (hWnd: D.HWND) => D.HWND
+  GetParent: (hWnd: T.HWND) => T.HWND
 
   /** https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getrawinputdeviceinfow */
   GetRawInputDeviceInfoW: (
-    hDevice: D.HANDLE,
-    uiCommand: D.UINT,
-    pData: D.LPVOID,
-    pcbSize: D.PUINT,
-  ) => D.UINT
+    hDevice: T.HANDLE,
+    uiCommand: T.UINT,
+    pData: T.LPVOID,
+    pcbSize: T.PUINT,
+  ) => T.UINT
 
   /** https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getrawinputdevicelist */
   GetRawInputDeviceList: (
@@ -109,68 +109,68 @@ export interface Win32Fns {
      * the function returns the actual number of devices in this variable
      * and fails with ERROR_INSUFFICIENT_BUFFER.
      */
-    puiNumDevices: D.PUINT,
-    cbSize: D.UINT,
-  ) => D.INT
+    puiNumDevices: T.PUINT,
+    cbSize: T.UINT,
+  ) => T.INT
 
-  GetTopWindow: (hWnd: D.HWND) => D.HWND
+  GetTopWindow: (hWnd: T.HWND) => T.HWND
 
-  GetWindow: (hWnd: D.HWND, uCmd: D.UINT) => D.HWND
+  GetWindow: (hWnd: T.HWND, uCmd: T.UINT) => T.HWND
 
-  GetWindowInfo: (hwnd: D.HWND, pwi: S.WINDOWINFO_Type) => D.BOOL // Note that you must set the pwi.cbSize!
+  GetWindowInfo: (hwnd: T.HWND, pwi: S.WINDOWINFO_Type) => T.BOOL // Note that you must set the pwi.cbSize!
 
-  GetWindowLongW: (hWnd: D.HWND, nIndex: D.INT) => D.LONG
+  GetWindowLongW: (hWnd: T.HWND, nIndex: T.INT) => T.LONG
 
   /** only under x64 */
-  GetWindowLongPtrW: (hWnd: D.HWND, nIndex: D.INT) => D.LONG_PTR
+  GetWindowLongPtrW: (hWnd: T.HWND, nIndex: T.INT) => T.LONG_PTR
 
   /**
    * @see https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowrect
    */
-  GetWindowRect: (hWnd: D.HWND, LPRECT: S.RECT_Type) => D.BOOL
+  GetWindowRect: (hWnd: T.HWND, LPRECT: S.RECT_Type) => T.BOOL
 
   /**
    * @docs https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowtextw
    */
-  GetWindowTextW: (hWnd: D.HWND, lpString: D.LPCTSTR, nMaxCount: D.INT) => D.INT
+  GetWindowTextW: (hWnd: T.HWND, lpString: T.LPCTSTR, nMaxCount: T.INT) => T.INT
 
-  GetWindowThreadProcessId: (hWnd: D.HWND, lpdwProcessId: D.LPDWORD | null) => D.DWORD
+  GetWindowThreadProcessId: (hWnd: T.HWND, lpdwProcessId: T.LPDWORD | null) => T.DWORD
 
   /**
    * @docs https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-monitorfromwindow
    */
-  MonitorFromWindow: (hWnd: D.HWND, dwFlags: D.DWORD) => D.HMONITOR
+  MonitorFromWindow: (hWnd: T.HWND, dwFlags: T.DWORD) => T.HMONITOR
 
-  IsIconic: (hWnd: D.HWND) => D.BOOL
+  IsIconic: (hWnd: T.HWND) => T.BOOL
 
-  IsWindowVisible: (hWnd: D.HWND) => D.BOOL
+  IsWindowVisible: (hWnd: T.HWND) => T.BOOL
 
   PeekMessageW: (
-    lpMsg: D.LPMSG,
-    HWND: D.HWND,
-    wMsgFilterMin: D.UINT,
-    wMsgFilterMax: D.UINT,
-    wRemoveMsg: D.UINT,
-  ) => D.BOOL
+    lpMsg: T.LPMSG,
+    HWND: T.HWND,
+    wMsgFilterMin: T.UINT,
+    wMsgFilterMax: T.UINT,
+    wRemoveMsg: T.UINT,
+  ) => T.BOOL
 
   /**
    * ref: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-postmessagew
    */
-  PostMessageW: (hWnd: D.HWND, Msg: D.UINT, wPARAM: D.WPARAM, lPARAM: D.LPARAM) => D.BOOL
+  PostMessageW: (hWnd: T.HWND, Msg: T.UINT, wPARAM: T.WPARAM, lPARAM: T.LPARAM) => T.BOOL
 
   /** https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-printwindow */
   PrintWindow: (
-    hwnd: D.HWND,
-    hdcBlt: D.HDC,
-    nFlags: D.UINT,
-  ) => D.BOOL
+    hwnd: T.HWND,
+    hdcBlt: T.HDC,
+    nFlags: T.UINT,
+  ) => T.BOOL
 
-  RegisterClassExW: (lpwcx: S.WNDCLASSEXW_Type) => D.ATOM
+  RegisterClassExW: (lpwcx: S.WNDCLASSEXW_Type) => T.ATOM
 
   /**
    * https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerwindowmessagew
    */
-  RegisterWindowMessageW: (lpString: D.LPCTSTR) => D.UINT
+  RegisterWindowMessageW: (lpString: T.LPCTSTR) => T.UINT
 
   /**
    * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput
@@ -180,52 +180,52 @@ export interface Win32Fns {
   /**
    * ref: https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-sendmessagew
    */
-  SendMessageW: (hWnd: D.HWND, Msg: D.UINT, wPARAM: D.WPARAM, lPARAM: D.LPARAM) => D.LRESULT
+  SendMessageW: (hWnd: T.HWND, Msg: T.UINT, wPARAM: T.WPARAM, lPARAM: T.LPARAM) => T.LRESULT
 
   /**
    * @url https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-SendMessageTimeoutW
    */
   SendMessageTimeoutW: (
-    hWnd: D.HWND,
-    Msg: D.UINT,
-    wParam: D.WPARAM,
-    lParam: D.LPARAM,
-    fuFlags: D.UINT,
-    uTimeout: D.UINT,
-    lpdwResult: D.DWORD_PTR) => D.LRESULT
+    hWnd: T.HWND,
+    Msg: T.UINT,
+    wParam: T.WPARAM,
+    lParam: T.LPARAM,
+    fuFlags: T.UINT,
+    uTimeout: T.UINT,
+    lpdwResult: T.DWORD_PTR) => T.LRESULT
 
   /** https://docs.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setforegroundwindow */
-  SetForegroundWindow: (hWnd: D.HWND) => D.BOOL
+  SetForegroundWindow: (hWnd: T.HWND) => T.BOOL
 
   SetWindowPos: (
-    hWnd: D.HWND,
-    hWndInsertAfter: D.HWND | null,
-    X: D.INT,
-    Y: D.INT,
-    cx: D.INT,
-    cy: D.INT,
-    uFlags: D.UINT) => D.BOOL
+    hWnd: T.HWND,
+    hWndInsertAfter: T.HWND | null,
+    X: T.INT,
+    Y: T.INT,
+    cx: T.INT,
+    cy: T.INT,
+    uFlags: T.UINT) => T.BOOL
 
-  SetWindowTextW: (hWnd: D.HWND, lpString: D.LPCTSTR | null) => D.BOOL
+  SetWindowTextW: (hWnd: T.HWND, lpString: T.LPCTSTR | null) => T.BOOL
 
   SetWinEventHook: (
-    eventMin: D.UINT,
-    eventMax: D.UINT,
-    hmodWinEventProc: D.HMODULE,
-    lpfnWinEventProc: D.WINEVENTPROC,
-    idProcess: D.DWORD,
-    idThread: D.DWORD,
-    dwflags: D.UINT,
-  ) => D.HWINEVENTHOOK
+    eventMin: T.UINT,
+    eventMax: T.UINT,
+    hmodWinEventProc: T.HMODULE,
+    lpfnWinEventProc: T.WINEVENTPROC,
+    idProcess: T.DWORD,
+    idThread: T.DWORD,
+    dwflags: T.UINT,
+  ) => T.HWINEVENTHOOK
 
-  ShowWindow: (hWnd: D.HWND, nCmdShow: D.INT) => D.BOOL
+  ShowWindow: (hWnd: T.HWND, nCmdShow: T.INT) => T.BOOL
 
-  TranslateMessage: (lpMsg: D.LPMSG) => D.BOOL
+  TranslateMessage: (lpMsg: T.LPMSG) => T.BOOL
 
-  TranslateMessageEx: (lpMsg: D.LPMSG) => D.BOOL
+  TranslateMessageEx: (lpMsg: T.LPMSG) => T.BOOL
 
-  UnhookWinEvent: (hWinEventHook: D.HWINEVENTHOOK) => D.BOOL
+  UnhookWinEvent: (hWinEventHook: T.HWINEVENTHOOK) => T.BOOL
 
-  UpdateWindow: (hWnd: D.HWND) => D.BOOL
+  UpdateWindow: (hWnd: T.HWND) => T.BOOL
 }
 
