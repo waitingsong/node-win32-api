@@ -1,4 +1,5 @@
 import * as T from 'win32-def'
+import * as S from 'win32-def/struct'
 
 
 export interface Win32Fns {
@@ -100,7 +101,7 @@ export interface Win32Fns {
   OpenPrinterW: (
     pPrinterName: T.LPTSTR,
     phPrinter: T.LPHANDLE,
-    pDefault: T.LPPRINTER_DEFAULTS,
+    pDefault: S.PRINTER_DEFAULTS_Type,
   ) => T.BOOL
 
 

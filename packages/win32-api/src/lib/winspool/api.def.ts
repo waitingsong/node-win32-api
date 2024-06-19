@@ -1,5 +1,7 @@
 import { DllFuncs } from 'win32-def'
 import * as D from 'win32-def/def'
+import * as S from 'win32-def/struct'
+
 import { Win32Fns } from './api.types.js'
 
 
@@ -23,7 +25,7 @@ export const apiDef: DllFuncs<Win32Fns> = {
 
   GetPrinterW: [D.BOOL, [D.HANDLE, D.DWORD, D.LPBYTE, D.DWORD, D.LPDWORD] ],
 
-  OpenPrinterW: [D.BOOL, [D.LPTSTR, D.LPHANDLE, D.LPRINTER_DEFAULTS] ],
+  OpenPrinterW: [D.BOOL, [D.LPTSTR, D.LPHANDLE, S.PPRINTER_DEFAULTS] ],
 
   StartDocPrinterW: [D.DWORD, [D.HANDLE, D.DWORD, D.LPBYTE] ],
 
