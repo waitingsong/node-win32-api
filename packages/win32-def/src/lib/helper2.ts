@@ -3,11 +3,28 @@ import assert from 'assert'
 import ffi from 'koffi'
 import type { IKoffiCType } from 'koffi'
 
-import type { KoffiDefComplexType, KoffiDefType, KoffiTypeResult } from './types.js'
+import type { KoffiDefComplexType, KoffiDefType, KoffiTypeResult, StructFactoryResult } from './types.js'
 
 
 const cacheStructMap = new Map<string, KoffiTypeResult>()
 const cacheUnionMap = new Map<string, KoffiTypeResult>()
+
+
+/**
+ * Generate a complex struct,
+ * def can have nested struct or union
+ * - key s{number} means struct
+ * - key u{number} means union
+ */
+export function genStruct<T extends object = object>(def: KoffiDefComplexType, name?: string, pointer?: string): StructFactoryResult {
+  const struct = genComplexStruct(def, name, pointer)
+  const ret: StructFactoryResult = {
+    ...struct,
+    // data must be the new one after each call of the struct factory function
+    data: {} as T,
+  }
+  return ret
+}
 
 /**
  * Generate a simple struct
@@ -90,7 +107,7 @@ function genSimpleUnionCached(def: KoffiDefType, name: string, pointer: string):
  * - key s{number} means struct
  * - key u{number} means union
  */
-export function genStruct(def: KoffiDefComplexType, name?: string, pointer?: string): KoffiTypeResult {
+export function genComplexStruct(def: KoffiDefComplexType, name?: string, pointer?: string): KoffiTypeResult {
   const key = name ? name.trim() : ''
   let pname = pointer ?? ''
   if (key && ! pname) {
@@ -132,7 +149,7 @@ function genStructCached(def: KoffiDefComplexType, name: string, pointer: string
     }
     else if (typeof value === 'object') {
       if (regStructName.test(key)) {
-        const nested = genStruct(value as KoffiDefComplexType) // do not pass key
+        const nested = genComplexStruct(value as KoffiDefComplexType) // do not pass key
         data[key] = nested.CType
       }
       else if (regUnionName.test(key)) {
@@ -200,7 +217,7 @@ function genUnionCached(def: KoffiDefType, name: string, pointer: string): Koffi
     else if (typeof value === 'object') {
       if (regStructName.test(key)) {
         // @ts-expect-error
-        const nested = genStruct(value) // do not pass key
+        const nested = genComplexStruct(value) // do not pass key
         data[key] = nested.CType
       }
       else if (regUnionName.test(key)) {
