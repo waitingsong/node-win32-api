@@ -13,7 +13,7 @@ export interface LoadSettings {
   _WIN64?: boolean // default from process.arch
   /**
  * Calling convention
- * @default 'Stdcall' (for Windows)
+ * @default 'Cdecl'
  * @link https://koffi.dev/functions#calling-conventions
  */
   convention?: CallingConvention
