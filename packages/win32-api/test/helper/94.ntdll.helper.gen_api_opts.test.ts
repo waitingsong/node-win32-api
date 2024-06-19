@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { DModel as M } from '../../src/index.js'
+import { Types as M } from '../../src/index.js'
 import * as Win from '../../src/index.js'
 import * as H from '../../src/lib/helper.js'
 

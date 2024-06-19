@@ -4,7 +4,7 @@ import { fileShortPath } from '@waiting/shared-core'
 import { sleep } from 'zx'
 
 import {
-  DModel as M,
+  Types as M,
   DTypes as W,
   DStruct as DS,
 } from '##/index.js'

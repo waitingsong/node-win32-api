@@ -5,7 +5,7 @@ import { join, normalize } from 'node:path'
 import { fileShortPath, genCurrentDirname } from '@waiting/shared-core'
 
 import * as Win from '../../src/index.js'
-import { DModel as M } from '../../src/index.js'
+import { Types as M } from '../../src/index.js'
 import * as H from '../../src/lib/helper.js'
 
 

@@ -9,7 +9,7 @@ import UnionDi from 'ref-union-di'
 import { $ } from 'zx'
 
 import {
-  DModel as M,
+  Types as M,
   DTypes as W,
   DStruct as DS,
   K,

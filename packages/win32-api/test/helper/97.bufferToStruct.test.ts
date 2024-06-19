@@ -4,7 +4,7 @@ import { fileShortPath } from '@waiting/shared-core'
 import ref from 'ref-napi'
 
 import {
-  DModel as M,
+  Types as M,
   DTypes as W,
   DStruct as DS,
   StructFactory,

@@ -6,7 +6,7 @@ import { sleep } from 'zx'
 
 import { user32FindWindowEx } from '../../src/index.fun.js'
 import {
-  DModel as M,
+  Types as M,
   DTypes as W,
   DStruct as DS,
   StructFactory,

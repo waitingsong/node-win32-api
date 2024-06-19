@@ -5,7 +5,7 @@ import { join, normalize } from 'node:path'
 import { fileShortPath, genCurrentDirname } from '@waiting/shared-core'
 
 import {
-  DModel as M,
+  Types as M,
   DTypes as W,
   DStruct as DS,
 } from '##/index.js'

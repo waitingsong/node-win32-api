@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { fileShortPath } from '@waiting/shared-core'
 
 import {
-  DModel as M,
+  Types as M,
   DTypes as W,
   DStruct as DS,
   StructFactory,

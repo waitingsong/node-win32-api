@@ -10,7 +10,7 @@ import {
   user32GetWindowText,
 } from '##/index.fun.js'
 import {
-  DModel as M,
+  Types as M,
   DTypes as W,
   DStruct as DS,
   retrieveStructFromPtrAddress,
