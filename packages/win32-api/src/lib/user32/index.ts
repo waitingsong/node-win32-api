@@ -1,6 +1,6 @@
 import { ExpandFnModel, FnName, LoadSettings } from 'win32-def'
 
-import { load as hload } from '../helper.js'
+import { load as _load } from '../helper.js'
 import { DllNames } from '../types.js'
 
 import { Win32Fns } from './api.types.js'
@@ -24,5 +24,5 @@ export const dllName = DllNames.user32
 export const load = (
   fns?: FnName[],
   settings?: LoadSettings,
-) => hload<ExpandFnModel<Win32Fns>>(dllName, apiDef, fns, settings)
+) => _load<ExpandFnModel<Win32Fns>>(dllName, apiDef, fns, settings)
 

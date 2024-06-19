@@ -1,6 +1,6 @@
 import { FnName, LoadSettings } from 'win32-def'
 
-import { loadAsync as hload } from '../helper.js'
+import { loadAsync as _load } from '../helper.js'
 import { DllNames } from '../types.js'
 
 import { Win32Fns } from './api.types.js'
@@ -13,5 +13,5 @@ export const dllName = DllNames.gdi32
 export const load = (
   fns?: FnName[],
   settings?: LoadSettings,
-) => hload<Win32Fns>(dllName, apiDef, fns, settings)
+) => _load<Win32Fns>(dllName, apiDef, fns, settings)
 
