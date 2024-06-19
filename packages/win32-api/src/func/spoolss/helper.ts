@@ -3,14 +3,15 @@ import ref from 'ref-napi'
 
 import {
   DllNames,
-  DStruct as DS,
   Types as M,
 } from '../../index.js'
 import { Spoolss as DLL } from '../../index.promise.js'
+import * as S from 'win32-def/struct'
+
 
 
 export {
-  M, DS, ref,
+  M, S, ref,
 }
 
 export const dllName = DllNames.spoolss

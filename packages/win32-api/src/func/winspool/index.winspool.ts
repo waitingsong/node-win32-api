@@ -9,7 +9,7 @@ import { getMod } from '../func.helper.js'
 
 import {
   Win32Fns,
-  M,
+  T,
   dllName,
   ref,
   retrieveStruct_PRINTER_INFO,
@@ -19,7 +19,7 @@ import {
 import { EnumPrintersOptions } from './winspool.types.js'
 
 
-export async function winspoolClosePrinter(hPrinter: M.HANDLE): Promise<boolean> {
+export async function winspoolClosePrinter(hPrinter: T.HANDLE): Promise<boolean> {
   assert(hPrinter)
   const mod = getMod<Win32Fns>(dllName)
 
@@ -32,7 +32,7 @@ export async function winspoolClosePrinter(hPrinter: M.HANDLE): Promise<boolean>
  * Enumerates available printers, print servers, domains, or print providers.
  * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/enumprinters
  */
-export async function winspoolEnumPrinters<Level extends M.EnumPrinters_Level>(
+export async function winspoolEnumPrinters<Level extends T.EnumPrinters_Level>(
   options: EnumPrintersOptions<Level>,
 ): Promise<S.PRINTER_INFO_X_Type<Level>[]> {
 
@@ -113,7 +113,7 @@ export async function winspoolEnumPrintProcessors(
 export async function winspoolEnumPrintProcessorDatatypes(
   pName?: string,
   pPrintProcessorName?: string,
-): Promise<M.DATATYPES_INFO_1[]> {
+): Promise<T.DATATYPES_INFO_1[]> {
 
   const mod = getMod<Win32Fns>(dllName)
 
@@ -181,7 +181,7 @@ export async function winspoolGetDefaultPrinter(maxNameLength = 256): Promise<st
  * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/openprinter
  * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/openprinter
  */
-export async function winspoolOpenPrinter(printerName: string): Promise<M.HANDLE> {
+export async function winspoolOpenPrinter(printerName: string): Promise<T.HANDLE> {
   const mod = getMod<Win32Fns>(dllName)
 
   assert(printerName)
@@ -202,8 +202,8 @@ export async function winspoolOpenPrinter(printerName: string): Promise<M.HANDLE
  * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/getprinter
  * @link https://learn.microsoft.com/zh-cn/windows/win32/printdocs/getprinter
  */
-export async function winspoolGetPrinter<Level extends M.PRINTER_INFO_LEVEL>(
-  hPrinter: M.HANDLE,
+export async function winspoolGetPrinter<Level extends T.PRINTER_INFO_LEVEL>(
+  hPrinter: T.HANDLE,
   Level: Level,
   maxByteLength = 1024,
   // @ts-expect-error @FIXME
@@ -250,9 +250,9 @@ export async function winspoolGetPrinter<Level extends M.PRINTER_INFO_LEVEL>(
 
 
 export async function winspoolStartDocPrinter(
-  hPrinter: M.HANDLE,
-  pDocInfo: M.LPBYTE,
-): Promise<M.DWORD> {
+  hPrinter: T.HANDLE,
+  pDocInfo: T.LPBYTE,
+): Promise<T.DWORD> {
 
   const mod = getMod<Win32Fns>(dllName)
 
@@ -264,7 +264,7 @@ export async function winspoolStartDocPrinter(
   return ret
 }
 
-export async function winspoolStartPagePrinter(hPrinter: M.HANDLE): Promise<M.DWORD> {
+export async function winspoolStartPagePrinter(hPrinter: T.HANDLE): Promise<T.DWORD> {
   const mod = getMod<Win32Fns>(dllName)
 
   assert(hPrinter)
@@ -273,7 +273,7 @@ export async function winspoolStartPagePrinter(hPrinter: M.HANDLE): Promise<M.DW
 }
 
 
-export async function winspoolEndPagePrinter(hPrinter: M.HANDLE): Promise<M.DWORD> {
+export async function winspoolEndPagePrinter(hPrinter: T.HANDLE): Promise<T.DWORD> {
   const mod = getMod<Win32Fns>(dllName)
 
   assert(hPrinter)

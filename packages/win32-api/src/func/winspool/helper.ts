@@ -5,23 +5,20 @@ import ref from 'ref-napi'
 
 import {
   DllNames,
-  DStruct as DS,
-  Types as M,
+  Types as T,
   bufferToStruct,
 } from '../../index.js'
 import { Winspool as DLL } from '../../index.promise.js'
 import * as S from 'win32-def/struct'
 
 
-export {
-  M, DS, ref,
-}
+export { T, S, ref }
 
 export const dllName = DllNames.winspool
 export type Win32Fns = DLL.Win32Fns
 
 
-export function retrieveStruct_PRINTER_INFO<L extends M.PRINTER_INFO_LEVEL>(
+export function retrieveStruct_PRINTER_INFO<L extends T.PRINTER_INFO_LEVEL>(
   pPrinter: Buffer,
   Level: L,
   maxCount = 1,
@@ -49,12 +46,12 @@ export function retrieveStruct_PRINTER_INFO<L extends M.PRINTER_INFO_LEVEL>(
       //   1,
       //   structDef,
       // ) as M.PRINTER_INFO_X[L][]
-      ret = bufferToStruct<M.PRINTER_INFO_X[1]>(
+      ret = bufferToStruct<T.PRINTER_INFO_X[1]>(
         pPrinter,
         structDef,
         maxCount,
         pcb,
-      ) as M.PRINTER_INFO_X[L][]
+      ) as T.PRINTER_INFO_X[L][]
 
       break
     }
@@ -69,12 +66,12 @@ export function retrieveStruct_PRINTER_INFO<L extends M.PRINTER_INFO_LEVEL>(
       //   structDef,
       // ) as M.PRINTER_INFO_X[L][]
 
-      ret = bufferToStruct<M.PRINTER_INFO_X[4]>(
+      ret = bufferToStruct<T.PRINTER_INFO_X[4]>(
         pPrinter,
         structDef,
         maxCount,
         pcb,
-      ) as M.PRINTER_INFO_X[L][]
+      ) as T.PRINTER_INFO_X[L][]
       break
     }
 
@@ -193,11 +190,11 @@ export function retrieveStruct_PRINTPROCESSOR_INFO_1(
   pPrintProcessorInfo: Buffer,
   count: number,
   pcb: number,
-): M.PRINTPROCESSOR_INFO_1[] {
+): T.PRINTPROCESSOR_INFO_1[] {
 
   if (! pcb) { return [] }
 
-  const structs = bufferToStruct<M.PRINTPROCESSOR_INFO_1>(
+  const structs = bufferToStruct<T.PRINTPROCESSOR_INFO_1>(
     pPrintProcessorInfo,
     DS.PRINTPROCESSOR_INFO_1,
     count,
@@ -212,11 +209,11 @@ export function retrieveStruct_DATATYPES_INFO_1(
   pPrintProcessorInfo: Buffer,
   count: number,
   pcb: number,
-): M.DATATYPES_INFO_1[] {
+): T.DATATYPES_INFO_1[] {
 
   if (! pcb) { return [] }
 
-  const structs = bufferToStruct<M.DATATYPES_INFO_1>(
+  const structs = bufferToStruct<T.DATATYPES_INFO_1>(
     pPrintProcessorInfo,
     DS.DATATYPES_INFO_1,
     count,

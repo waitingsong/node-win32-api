@@ -1,7 +1,7 @@
-import { M } from './helper.js'
+import { T } from './helper.js'
 
 
-export interface EnumPrintersOptions<Lvl extends M.EnumPrinters_Level> {
+export interface EnumPrintersOptions<Lvl extends T.EnumPrinters_Level> {
   /**
    * PrinterEnumFlags
    * @see https://docs.microsoft.com/en-us/windows/win32/printdocs/printer-enum-flags
