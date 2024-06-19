@@ -25,9 +25,14 @@ describe(fileShortPath(import.meta.url), () => {
         // usedFuncNames: ['GetCursorPos'],
       })
 
-      const res = await inst.GetCursorPosAsync(pos)
+      const res = inst.GetCursorPos(pos)
       console.info({ res, pos })
       assert(pos.x > 0 && pos.y > 0)
+
+      const pos2 = {} as POINT_Type
+      const res2 = await inst.GetCursorPosAsync(pos2)
+      console.info({ res2, pos2 })
+      assert(pos2.x > 0 && pos2.y > 0)
     })
   })
 })
