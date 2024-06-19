@@ -32,37 +32,9 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./promise": {
-      "import": "./dist/index.promise.js",
-      "require": "./dist/index.promise.cjs"
-    },
     "./consts": {
       "import": "./dist/index.consts.js",
       "require": "./dist/index.consts.cjs"
-    },
-    "./comctl32": {
-      "import": "./dist/index.comctl32.js",
-      "require": "./dist/index.comctl32.cjs"
-    },
-    "./kernel32": {
-      "import": "./dist/index.kernel32.js",
-      "require": "./dist/index.kernel32.cjs"
-    },
-    "./ntdll": {
-      "import": "./dist/index.ntdll.js",
-      "require": "./dist/index.ntdll.cjs"
-    },
-    "./spoolss": {
-      "import": "./dist/index.spoolss.js",
-      "require": "./dist/index.spoolss.cjs"
-    },
-    "./user32": {
-      "import": "./dist/index.user32.js",
-      "require": "./dist/index.user32.cjs"
-    },
-    "./winspool": {
-      "import": "./dist/index.winspool.js",
-      "require": "./dist/index.winspool.cjs"
     },
     "./package.json": "./package.json"
   },
