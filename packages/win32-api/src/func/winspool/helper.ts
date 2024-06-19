@@ -10,6 +10,7 @@ import {
   bufferToStruct,
 } from '../../index.js'
 import { Winspool as DLL } from '../../index.promise.js'
+import * as S from 'win32-def/struct'
 
 
 export {
@@ -25,7 +26,8 @@ export function retrieveStruct_PRINTER_INFO<L extends M.PRINTER_INFO_LEVEL>(
   Level: L,
   maxCount = 1,
   pcbNeeded?: number,
-): M.PRINTER_INFO_X[L][] {
+  // @ts-expect-error L
+): S.PRINTER_INFO_X_Type<L>[] {
 
   assert(maxCount >= 1, 'maxCount must be >= 1')
 
@@ -34,7 +36,8 @@ export function retrieveStruct_PRINTER_INFO<L extends M.PRINTER_INFO_LEVEL>(
     : pPrinter.byteLength
   assert(pcb >= 16, 'Buffer too small')
 
-  let ret: M.PRINTER_INFO_X[L][] = []
+  // @ts-expect-error L
+  let ret: S.PRINTER_INFO_X_Type<L>[] = []
 
   switch (Level) {
     case 1: {
