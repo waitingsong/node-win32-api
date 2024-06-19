@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
 import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
