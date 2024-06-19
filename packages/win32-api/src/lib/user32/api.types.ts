@@ -47,7 +47,7 @@ export interface Win32Fns {
   EnumDisplayDevicesW: (
     lpDevice: D.LPCWSTR,
     iDevNum: D.DWORD,
-    lpDisplayDevice: D.PDISPLAY_DEVICEW,
+    lpDisplayDevice: S.DISPLAY_DEVICEW_Type,
     dwFlags: D.DWORD,
   ) => D.BOOL
 
@@ -65,7 +65,7 @@ export interface Win32Fns {
 
   FlashWindow: (hWnd: D.HWND, bInvert: D.BOOL) => D.BOOL
 
-  FlashWindowEx: (pfwi: D.PFLASHWINFO) => D.BOOL
+  FlashWindowEx: (pfwi: S.FLASHWINFO_Type) => D.BOOL
 
   GetAncestor: (hwnd: D.HWND, gaFlags: D.UINT) => D.HWND
 
@@ -73,7 +73,7 @@ export interface Win32Fns {
   GetAltTabInfoW: (
     hWnd: D.HWND,
     iItem: D.INT,
-    pati: D.PALTTABINFO,
+    pati: S.ALTTABINFO_Type,
     pszItemText: D.LPWSTR | null,
     cchItemText: D.INT,
   ) => D.BOOL
@@ -84,7 +84,7 @@ export interface Win32Fns {
    */
   GetCaretPos: (lpPoint: D.LPPOINT) => D.BOOL
 
-  GetClassInfoExW: (hinst: D.HINSTANCE, lpszClass: D.LPCTSTR, LPWNDCLASSEX: D.LPWNDCLASSEX) => D.BOOL
+  GetClassInfoExW: (hinst: D.HINSTANCE, lpszClass: D.LPCTSTR, LPWNDCLASSEX: S.WNDCLASSEXW_Type) => D.BOOL
 
   GetForegroundWindow: () => D.HWND
 
@@ -103,7 +103,7 @@ export interface Win32Fns {
   /** https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getrawinputdevicelist */
   GetRawInputDeviceList: (
     /** An array of RAWINPUTDEVICELIST */
-    pRawInputDeviceList: D.PRAWINPUTDEVICELIST,
+    pRawInputDeviceList: S.RAWINPUTDEVICELIST_Type,
     /**
      * If this value is less than the number of devices attached to the system,
      * the function returns the actual number of devices in this variable
@@ -117,7 +117,7 @@ export interface Win32Fns {
 
   GetWindow: (hWnd: D.HWND, uCmd: D.UINT) => D.HWND
 
-  GetWindowInfo: (hwnd: D.HWND, pwi: D.PWINDOWINFO) => D.BOOL // Note that you must set the pwi.cbSize!
+  GetWindowInfo: (hwnd: D.HWND, pwi: S.WINDOWINFO_Type) => D.BOOL // Note that you must set the pwi.cbSize!
 
   GetWindowLongW: (hWnd: D.HWND, nIndex: D.INT) => D.LONG
 
