@@ -18,7 +18,7 @@ const cacheUnionMap = new Map<string, KoffiTypeResult>()
  */
 export function genStruct<T extends object = object>(def: KoffiDefComplexType, name?: string, pointer?: string): StructFactoryResult<T> {
   const struct = genComplexStruct(def, name, pointer)
-  const ret: StructFactoryResult = {
+  const ret: StructFactoryResult<T> = {
     ...struct,
     // data must be the new one after each call of the struct factory function
     data: {} as T,
