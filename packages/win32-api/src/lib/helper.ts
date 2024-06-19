@@ -5,7 +5,7 @@
 import assert from 'node:assert'
 import { copyFileSync, statSync } from 'node:fs'
 
-import ffi from 'koffi'
+import koffi from 'koffi'
 import ref from 'ref-napi'
 import {
   AsyncSyncFuncModel,
@@ -19,6 +19,8 @@ import {
   PromiseFnModel,
   settingsDefault,
 } from 'win32-def'
+
+import { CallingConvention } from './types.js'
 
 
 export const isArch64 = process.arch.includes('64')
@@ -65,7 +67,7 @@ export function load<T>(
 
       // ffi.Library.EXT = ext
       // @ts-expect-error
-      inst = ffi.define(name, ps) as unknown as T
+      inst = koffi.define(name, ps) as unknown as T
       Object.defineProperty(inst, name, {
         value: name,
         enumerable: false,
@@ -77,8 +79,38 @@ export function load<T>(
   else {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     // @ts-expect-error
-    return ffi.Library(name, gen_api_opts<T>(dllFuncs, fns)) as unknown as T
+    return koffi.Library(name, gen_api_opts<T>(dllFuncs, fns)) as unknown as T
   }
+}
+
+export interface RegisterFunctionOpts {
+  /**
+   * DLL library,
+   * lib = koffi.load('user32.dll')
+   */
+  lib: koffi.IKoffiLib
+  /** function name */
+  name: string
+  /** function parameters */
+  params: FnParams
+  /**
+   * Calling convention
+   * @default 'Stdcall' (for Windows)
+   * @link https://koffi.dev/functions#calling-conventions
+   */
+  convention?: CallingConvention
+}
+export function registerFunction(options: RegisterFunctionOpts): koffi.KoffiFunction {
+  const { lib, name, params, convention = CallingConvention.Stdcall } = options
+  const { [0]: retType, [1]: args } = params
+
+  // const func = user32.func('GetCursorPos', 'int', [`_Out_ ${comb.pointer}`])
+  if (convention === CallingConvention.Cdecl) {
+    const func = lib.func(name, retType, args)
+    return func
+  }
+  const func = lib.func(convention, name, retType, args)
+  return func
 }
 
 function prepareDllFile(file: string): string {

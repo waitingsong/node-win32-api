@@ -9,3 +9,14 @@ export const enum DllNames {
   winspool = 'winspool.drv',
 }
 
+
+/**
+ * @link https://koffi.dev/functions#calling-conventions
+ */
+export enum CallingConvention {
+  Cdecl = '',
+  Stdcall = '__stdcall',
+  Fastcall = '__fastcall',
+  Thiscall = '__thiscall',
+}
+
