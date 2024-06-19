@@ -38,7 +38,7 @@ export enum Def {
   floatPtr = 'float*',
   longPtr = 'long*',
   uintPtr = 'uint*',
-  uint8Ptr = 'uint8*',
+  uint8Ptr = 'uint8_t*',
 
   intPtrPtr = 'int**',
   uint16Ptr = 'uint16_t*',
