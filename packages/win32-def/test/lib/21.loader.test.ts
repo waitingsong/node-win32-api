@@ -33,6 +33,8 @@ describe(fileShortPath(import.meta.url), () => {
       const res2 = await inst.GetCursorPosAsync(pos2)
       console.info({ res2, pos2 })
       assert(pos2.x > 0 && pos2.y > 0)
+
+      assert.deepEqual(pos, pos2)
     })
   })
 })
