@@ -35,7 +35,7 @@ describe(fileShortPath(import.meta.url), () => {
       // inst.unload()
     })
 
-    it.only('usedFuncNames', async () => {
+    it('usedFuncNames', async () => {
       POINT_Factory()
       const pos = {} as POINT_Type
 
