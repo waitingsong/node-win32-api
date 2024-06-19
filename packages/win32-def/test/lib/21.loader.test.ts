@@ -29,19 +29,51 @@ describe(fileShortPath(import.meta.url), () => {
       console.info({ res, pos })
       assert(pos.x > 0 && pos.y > 0)
 
-      // do NOT call unload() on Windows
+      // Do NOT call unload() on Windows
       // inst.unload()
+    })
 
-      const inst2 = load<Win32Fns>({
+    it('sync + async', async () => {
+      POINT_Factory()
+      const pos = {} as POINT_Type
+
+      const inst = load<Win32Fns>({
         dll: 'user32.dll',
         dllFuncs: apiDef,
         // usedFuncNames: ['GetCursorPos'],
       })
 
+      const res = inst.GetCursorPos(pos)
+      assert(pos.x > 0 && pos.y > 0)
+
       const pos2 = {} as POINT_Type
-      const res2 = await inst2.GetCursorPosAsync(pos2)
-      console.info({ res2, pos2 })
-      assert(pos2.x > 0 && pos2.y > 0)
+      await inst.GetCursorPosAsync(pos2)
+      assert(pos2.x > 0 && pos2.y > 0, `pos2.x: ${pos2.x}, pos2.y: ${pos2.y}`)
+
+      assert.deepEqual(pos, pos2)
+    })
+
+    it('sync + async with different inst', async () => {
+      POINT_Factory()
+      const pos = {} as POINT_Type
+
+      const inst = load<Win32Fns>({
+        dll: 'user32.dll',
+        dllFuncs: apiDef,
+      })
+
+      const res = inst.GetCursorPos(pos)
+      console.info({ res, pos })
+      assert(pos.x > 0 && pos.y > 0)
+
+      const inst2 = load<Win32Fns>({
+        dll: 'user32.dll',
+        dllFuncs: apiDef,
+      })
+
+      const pos2 = {} as POINT_Type
+      await inst2.GetCursorPosAsync(pos2)
+      assert(pos2.x > 0 && pos2.y > 0, `pos2.x: ${pos2.x}, pos2.y: ${pos2.y}`)
 
       assert.deepEqual(pos, pos2)
     })
