@@ -9,11 +9,6 @@ import { gen_api_opts, parse_settings, prepareDllFile, registerFunction } from '
 
 
 export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
-  const inst = regFunc<T>(options)
-  return inst
-}
-
-function regFunc<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
   const { dll, dllFuncs, usedFuncNames, settings } = options
 
   const libName = dll.endsWith('.drv')
@@ -37,14 +32,19 @@ function regFunc<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
       convention: st.convention ?? CallingConvention.Cdecl,
     })
 
-    const nameSync = `${name}Sync`
-    bindSyncOnInst(inst, nameSync, func)
-
-    const nameAsync = name
-    bindAsyncOnInst(inst, nameAsync, func)
+    bindMethods(inst, name, func)
   }
 
   return inst
+}
+
+
+function bindMethods<T>(inst: T, name: string, fn: KoffiFunction): void {
+  const nameSync = name
+  bindSyncOnInst(inst, nameSync, fn)
+
+  const nameAsync = `${name}Async`
+  bindAsyncOnInst(inst, nameAsync, fn)
 }
 
 function bindSyncOnInst<T>(inst: T, name: string, fn: KoffiFunction): void {
@@ -73,5 +73,4 @@ function callFnAsync(fn: KoffiFunction, args: unknown[]) {
     fn.async(...args, asyncCallback)
   })
 }
-
 
