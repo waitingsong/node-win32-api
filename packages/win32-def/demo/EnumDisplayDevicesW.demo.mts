@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict'
 
 import ffi from 'koffi'
-import * as W from 'win32-def/common.def'
+import * as D from 'win32-def/def'
 import * as S from 'win32-def/struct'
 import { decodeInt16Array } from 'win32-def'
 
@@ -23,8 +23,8 @@ try {
   const func = user32.func(
     '__stdcall',
     'EnumDisplayDevicesW',
-    W.BOOL,
-    [W.LPCWSTR, W.DWORD, `_Inout_ ${S.LPDISPLAY_DEVICEW}`, W.DWORD])
+    D.BOOL,
+    [D.LPCWSTR, D.DWORD, `_Inout_ ${S.LPDISPLAY_DEVICEW}`, D.DWORD])
 
   const res = func(null, 0, dd, 1) as number
   const DeviceID = decodeInt16Array(dd.DeviceID)
