@@ -5,6 +5,7 @@ import assert from 'node:assert/strict'
 import ffi from 'koffi'
 import { POINT_Factory, POINT_Type } from 'win32-def/struct'
 
+
 console.info('GetCursorPos()')
 
 const user32 = ffi.load('user32.dll')

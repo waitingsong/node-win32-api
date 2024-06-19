@@ -1,10 +1,11 @@
 #!/usr/bin/env tsx
+/* eslint-disable import/no-extraneous-dependencies */
 import assert from 'node:assert/strict'
 
 import ffi from 'koffi'
+import { decodeInt16Array } from 'win32-def'
 import * as D from 'win32-def/def'
 import * as S from 'win32-def/struct'
-import { decodeInt16Array } from 'win32-def'
 
 
 console.info('EnumDisplayDevicesW()')
@@ -24,7 +25,8 @@ try {
     '__stdcall',
     'EnumDisplayDevicesW',
     D.BOOL,
-    [D.LPCWSTR, D.DWORD, `_Inout_ ${S.LPDISPLAY_DEVICEW}`, D.DWORD])
+    [D.LPCWSTR, D.DWORD, `_Inout_ ${S.LPDISPLAY_DEVICEW}`, D.DWORD],
+  )
 
   const res = func(null, 0, dd, 1) as number
   const DeviceID = decodeInt16Array(dd.DeviceID)
@@ -39,7 +41,7 @@ try {
   assert(DeviceName === '\\\\.\\DISPLAY1', DeviceName)
   assert(DeviceString.length > 0)
   const flag = ['Microsoft Hyper-V', 'Intel', 'AMD', 'Radeon'].some(val => DeviceString.includes(val))
-  assert(flag === true, DeviceString)
+  assert(flag, DeviceString)
 }
 finally {
   user32.unload()

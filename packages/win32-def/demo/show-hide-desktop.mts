@@ -1,21 +1,20 @@
 #!/usr/bin/env tsx
 import assert from 'node:assert/strict'
 
+import { sleep } from '@waiting/shared-core'
 import ffi from 'koffi'
-
 import { INPUT, KEYBDINPUT, VirtualKey } from 'win32-def/consts'
 import { INPUT_Factory, type INPUT_Type } from 'win32-def/struct'
-import { sleep } from '@waiting/shared-core'
 
 
 console.info('Show/hide desktop with Win+D shortcut')
 
 const user32 = ffi.load('user32.dll')
 
-const INPUT_KEYBOARD = INPUT.INPUT_KEYBOARD
-const KEYEVENTF_KEYUP = KEYBDINPUT.KEYEVENTF_KEYUP
-const VK_RWIN = VirtualKey.VK_RWIN
-const VK_D = VirtualKey.VK_D
+const { INPUT_KEYBOARD } = INPUT
+const { KEYEVENTF_KEYUP } = KEYBDINPUT
+const { VK_RWIN } = VirtualKey
+const { VK_D } = VirtualKey
 
 export const events: INPUT_Type[] = [
   make_keyboard_event(VK_RWIN, true),
@@ -27,7 +26,7 @@ export const events: INPUT_Type[] = [
 export const input = INPUT_Factory()
 
 try {
-  const size = input.size
+  const { size } = input
   const SendInput = user32.func('__stdcall', 'SendInput', 'uint', ['uint', input.pointer, 'int'])
 
   const res = SendInput(events.length, events, size) as number
@@ -46,7 +45,7 @@ try {
 
 }
 finally {
-  console.log('end')
+  console.info('end')
   user32.unload()
 }
 
