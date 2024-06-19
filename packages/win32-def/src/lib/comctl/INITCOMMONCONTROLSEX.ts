@@ -1,13 +1,14 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
-import { genStruct, type KoffiTypeResult } from '../helper2.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
+import { genStruct } from '../helper2.js'
+import type { KoffiTypeResult } from '../types.js'
 
 
 const key = 'INITCOMMONCONTROLSEX'
 const ptr = `${key} *`
 const init = {
-  dwSize: W.DWORD,
-  dwICC: W.DWORD,
+  dwSize: D.DWORD,
+  dwICC: D.DWORD,
 } as const
 
 
@@ -24,8 +25,8 @@ export function INITCOMMONCONTROLSEX_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/commctrl/nf-commctrl-initcommoncontrolsex
  */
 export interface INITCOMMONCONTROLSEX_Type {
-  dwSize: M.DWORD
-  dwICC: M.DWORD
+  dwSize: T.DWORD
+  dwICC: T.DWORD
 }
 
 export const LPINITCOMMONCONTROLSEX = ptr

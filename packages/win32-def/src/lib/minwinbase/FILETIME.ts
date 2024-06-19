@@ -1,13 +1,14 @@
-import * as W from '../common.def.js'
-import * as M from '../common.types.js'
-import { genStruct, type KoffiTypeResult } from '../helper2.js'
+import * as D from '../common.def.js'
+import * as T from '../common.types.js'
+import { genStruct } from '../helper2.js'
+import type { KoffiTypeResult } from '../types.js'
 
 
 const key = 'FILETIME'
 const ptr = `${key} *`
 const init = {
-  dwLowDateTime: W.DWORD,
-  dwHighDateTime: W.DWORD,
+  dwLowDateTime: D.DWORD,
+  dwHighDateTime: D.DWORD,
 } as const
 
 
@@ -24,8 +25,8 @@ export function FILETIME_Factory(): KoffiTypeResult {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/minwinbase/ns-minwinbase-filetime
  */
 export interface FILETIME_Type {
-  dwLowDateTime: M.DWORD
-  dwHighDateTime: M.DWORD
+  dwLowDateTime: T.DWORD
+  dwHighDateTime: T.DWORD
 }
 
 export const LPFILETIME = ptr
