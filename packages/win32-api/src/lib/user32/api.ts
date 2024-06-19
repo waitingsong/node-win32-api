@@ -48,7 +48,7 @@ export interface Win32Fns {
   EnumDisplayDevicesW: (
     lpDevice: M.LPCWSTR,
     iDevNum: M.DWORD,
-    lpDisplayDevice: M.PDISPLAY_DEVICEW,
+    lpDisplayDevice: S.LPDISPLAY_DEVICEW,
     dwFlags: M.DWORD,
   ) => M.BOOL
 

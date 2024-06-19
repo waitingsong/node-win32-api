@@ -6,7 +6,7 @@ import ref from 'ref-napi'
 import {
   DllNames,
   DStruct as DS,
-  DModel as M,
+  Types as M,
   bufferToStruct,
 } from '../../index.js'
 import { Winspool as DLL } from '../../index.promise.js'

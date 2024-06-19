@@ -4,7 +4,7 @@ import ref from 'ref-napi'
 import {
   DllNames,
   DStruct as DS,
-  DModel as M,
+  Types as M,
 } from '../../index.js'
 import { Spoolss as DLL } from '../../index.promise.js'
 

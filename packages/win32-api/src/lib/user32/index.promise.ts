@@ -1,4 +1,5 @@
 import { FnName, LoadSettings } from 'win32-def'
+import * as M from 'win32-def'
 
 import { loadAsync as hload } from '../helper.js'
 import { DllNames } from '../types.js'
@@ -7,6 +8,8 @@ import { apiDef, Win32Fns } from './api.js'
 // for user32.constants
 import * as constants from './constants.js'
 
+
+M.DllFuncsModel
 
 export { apiDef }
 export { constants }
