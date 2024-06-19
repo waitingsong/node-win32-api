@@ -34,6 +34,10 @@ export const defGroupPointer: Def[] = [
 
 const regCacheMap = new WeakMap<RegisterFunctionOpts['lib'], Map<string, KoffiFunction>>()
 
+/**
+ * @note do not call it directly, use `load()` instead!
+ *  Case of making sure the library is loaded only once
+ */
 export function registerFunction(options: RegisterFunctionOpts): KoffiFunction {
   const { lib, name, params, convention = CallingConvention.Stdcall } = options
   const cache = getRegisterFunctionFromCache(options)

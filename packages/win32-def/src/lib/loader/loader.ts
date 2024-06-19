@@ -28,13 +28,21 @@ export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
   const ps = gen_api_opts<T>(dllFuncs, usedFuncNames)
 
   assert(dllFuncs)
-  const inst = {} as LibFuncs<T>
+  const inst = { } as LibFuncs<T>
 
   let lib = getLibFromCache(libName)
   if (! lib) {
     lib = koffi.load(libName)
+    Object.defineProperty(inst, 'unload', {
+      enumerable: false,
+      value: () => {
+        lib?.unload()
+        cacheLibMap.delete(libName)
+      },
+    })
     setLibToCache(libName, lib)
   }
+
 
   for (const [name, params] of Object.entries(ps)) {
     const func = registerFunction({

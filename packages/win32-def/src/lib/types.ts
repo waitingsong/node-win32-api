@@ -32,11 +32,19 @@ export interface LoadOptions<T = unknown> {
 }
 
 
-export type LibFuncs<T extends object> = {
+export type LibFuncs<T extends object> = T & {
   [K in keyof T as `${K & string}Async`]: T[K] extends (...args: any) => unknown
     ? AsyncFunction<T[K]>
     : never
-} & T
+} & {
+  /**
+   * @note Unload the library
+   * - On windows, do not call this function, it will cause later calls to functions in the library to fail!
+   * - On some platforms (such as with the musl C library on Linux), shared libraries cannot be unloaded,
+   *  so the library will remain loaded and memory mapped after the call to lib.unload().
+   */
+  unload: () => void,
+}
 
 type AsyncFunction<T extends (...args: any) => unknown> = (...args: Parameters<T>) => Promise<ReturnType<T>>
 

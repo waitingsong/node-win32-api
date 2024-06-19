@@ -29,8 +29,17 @@ describe(fileShortPath(import.meta.url), () => {
       console.info({ res, pos })
       assert(pos.x > 0 && pos.y > 0)
 
+      // do NOT call unload() on Windows
+      // inst.unload()
+
+      const inst2 = load<Win32Fns>({
+        dll: 'user32.dll',
+        dllFuncs: apiDef,
+        // usedFuncNames: ['GetCursorPos'],
+      })
+
       const pos2 = {} as POINT_Type
-      const res2 = await inst.GetCursorPosAsync(pos2)
+      const res2 = await inst2.GetCursorPosAsync(pos2)
       console.info({ res2, pos2 })
       assert(pos2.x > 0 && pos2.y > 0)
 
