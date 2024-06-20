@@ -1,15 +1,16 @@
-import { DllFuncs } from 'win32-def'
-import * as W from 'win32-def/def'
+import { FuncDefList } from 'win32-def'
+import * as D from 'win32-def/def'
+
 import { Win32Fns } from './api.types.js'
 
 
-export const apiDef: DllFuncs<Win32Fns> = {
+export const apiDef: FuncDefList<Win32Fns> = {
 
-  EndDocPrinter: [W.BOOL, [W.HANDLE] ],
+  EndDocPrinter: [D.BOOL, [D.HANDLE]],
 
-  EndPagePrinter: [W.BOOL, [W.HANDLE] ],
+  EndPagePrinter: [D.BOOL, [D.HANDLE]],
 
-  WritePrinter: [W.BOOL, [W.HANDLE, W.LPVOID, W.DWORD, W.LPDWORD] ],
+  WritePrinter: [D.BOOL, [D.HANDLE, D.LPVOID, D.DWORD, D.LPDWORD]],
 
 }
 

@@ -1,12 +1,11 @@
-import { DllFuncs } from 'win32-def'
+import { FuncDefList } from 'win32-def'
 import * as D from 'win32-def/def'
 import * as S from 'win32-def/struct'
-
 
 import { Win32Fns } from './api.types.js'
 
 
-export const apiDef: DllFuncs<Win32Fns> = {
+export const apiDef: FuncDefList<Win32Fns> = {
   BringWindowToTop: [D.BOOL, [D.HWND]],
 
   BroadcastSystemMessage: [D.LRESULT, [D.DWORD, D.LPDWORD, D.UINT, D.WPARAM, D.LPARAM]],
