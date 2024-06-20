@@ -1,4 +1,4 @@
-import { EnumPrinters_Level } from '../common.types.js'
+import { EnumPrinters_Level } from '##/lib/common.types.js'
 
 import { PRINTER_INFO_1_Type } from './PRINTER_INFO_1.js'
 import { PRINTER_INFO_4_Type } from './PRINTER_INFO_4.js'

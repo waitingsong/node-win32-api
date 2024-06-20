@@ -1,7 +1,7 @@
-import * as D from '../common.def.js'
-import * as T from '../common.types.js'
-import { genStruct } from '../struct.helper.js'
-import type { StructFactoryResult } from '../types.js'
+import * as D from '##/lib/common.def.js'
+import * as T from '##/lib/common.types.js'
+import { genStruct } from '##/lib/struct.helper.js'
+import type { StructFactoryResult } from '##/lib/types.js'
 
 import { RID_DEVICE_INFO_HID_Factory, type RID_DEVICE_INFO_HID_Type } from './RID_DEVICE_INFO_HID.js'
 import { RID_DEVICE_INFO_KEYBOARD_Factory, type RID_DEVICE_INFO_KEYBOARD_Type } from './RID_DEVICE_INFO_KEYBOARD.js'

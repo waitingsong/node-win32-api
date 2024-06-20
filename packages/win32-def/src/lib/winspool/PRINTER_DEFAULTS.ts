@@ -1,7 +1,8 @@
-import * as D from '../common.def.js'
-import * as T from '../common.types.js'
-import { genStruct } from '../struct.helper.js'
-import type { StructFactoryResult } from '../types.js'
+import * as D from '##/lib/common.def.js'
+import * as T from '##/lib/common.types.js'
+import { genStruct } from '##/lib/struct.helper.js'
+import type { StructFactoryResult } from '##/lib/types.js'
+
 import { DEVMODEW_Factory, DEVMODEW_Type } from '../wingdi/DEVMODEW.js'
 
 
