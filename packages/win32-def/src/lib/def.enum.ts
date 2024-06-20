@@ -28,9 +28,9 @@ export enum Def {
   void = 'void',
 
   boolPtr = 'bool*',
-  bytePtr = 'byte*',
+  bytePtr = 'int*',
   charPtr = 'char*',
-  intPtr = 'byte',
+  intPtr = 'int',
   int8Ptr = 'int8_t*',
   int16Ptr = 'int16_t*',
   int32Ptr = 'int32_t*',
