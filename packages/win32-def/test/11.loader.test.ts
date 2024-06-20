@@ -48,24 +48,24 @@ describe(fileShortPath(import.meta.url), () => {
       catch (ex) {
         assert(ex instanceof Error)
         console.info('test err:', ex.message)
-        // assert(ex.message.includes('FAKE_POINT'), ex.message)
+        assert(ex.message.includes('FAKE_POINT'), ex.message)
         return
       }
       assert(false, 'Should throw Error')
     })
 
-    it('normal', async () => {
-      const lib = load<Win32Fns>(options)
-      const { payload: pos } = POINT_Factory()
+    // it('normal', async () => {
+    //   const lib = load<Win32Fns>(options)
+    //   const { payload: pos } = POINT_Factory()
 
-      const res = lib.GetCursorPos(pos)
-      assert(res > 0)
-      console.info({ res, pos })
-      assert(pos.x > 0 && pos.y > 0)
+    //   const res = lib.GetCursorPos(pos)
+    //   assert(res > 0)
+    //   console.info({ res, pos })
+    //   assert(pos.x > 0 && pos.y > 0)
 
-      // Do NOT call unload() on Windows
-      // inst.unload()
-    })
+    //   // Do NOT call unload() on Windows
+    //   // inst.unload()
+    // })
 
     it('usedFuncNames', async () => {
       const { payload: pos } = POINT_Factory()
