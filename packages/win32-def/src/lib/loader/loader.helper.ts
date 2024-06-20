@@ -10,7 +10,7 @@ import {
   LoadSettings,
   CallingConvention,
 } from '../ffi.types.js'
-import * as Structs from '../struct/struct.index.js'
+import { structFactoryMap } from '../struct.factory.js'
 import { KoffiFunction, RegisterFunctionOpts, StructFactory } from '../types.js'
 
 
@@ -154,8 +154,6 @@ function prepareStructFromFuncDefList(input: FuncDefList): Set<StructFactory> {
   return fns
 }
 
-const structFactoryMap = new Map<string, StructFactory>()
-
 function retrieveStructFactoryFromParams(params: string[]): Set<StructFactory> {
   const fns = new Set<StructFactory>()
 
@@ -174,18 +172,6 @@ function retrieveStructFactoryFromParams(params: string[]): Set<StructFactory> {
 }
 
 function retrieveStructTypeStringFromParams(params: string[]): string[] {
-  if (! structFactoryMap.size) {
-    Object.entries(Structs).forEach(([key, val]) => {
-      if (typeof val === 'function') {
-        structFactoryMap.set(key, val)
-      }
-    })
-  }
-
-  if (! structFactoryMap.size) {
-    return []
-  }
-
   const ret: string[] = []
   // '_Inout_ POINT*' or 'POINT *' or 'POINT*'
   const regex = /\b(\w+)\s?\*$/u
