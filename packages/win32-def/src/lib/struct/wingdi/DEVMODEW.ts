@@ -63,7 +63,7 @@ const init = {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-devmodew
  */
 export function DEVMODEW_Factory(): StructFactoryResult<DEVMODEW_Type> {
-  return genStruct<DEVMODEW_Type>(init, key, ptr)
+  return genStruct<DEVMODEW_Type>(init, key, ptr, ['dmSize'])
 }
 
 /**
