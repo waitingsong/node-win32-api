@@ -31,8 +31,8 @@ jobs:
         # pulls all tags (needed for lerna / semantic release to correctly version)
         run: |
           export cwd=`pwd`
-          git config --global --add safe.directory $cwd
-          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+          git config --global --add safe.directory $cwd || true
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/* || true
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
@@ -48,9 +48,9 @@ jobs:
           path: |
             node_modules
             package-lock.json
-          key: ${{ runner.OS }}-build-2-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-build-2-${{ env.cache-name }}-${{ github.ref }}-
+            ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-
 
       - name: Prepare
         run: |
@@ -62,7 +62,6 @@ jobs:
           apt-get install -qq --yes postgresql-client libpq-dev > /dev/null
           uname -a
           npm -v && node -v
-          npm -g root
           git --version
           openssl version
           cat /etc/*release
@@ -70,8 +69,6 @@ jobs:
           locale-gen
           locale -a
           netstat -tunpl
-          chmod a+w -R .
-          dig jaeger
 
       - name: Verify
         run: |
@@ -79,6 +76,11 @@ jobs:
           # github project/settings/Secrets/New repository secret: NPM_TOKEN
           npm ping
           npm whoami
+          psql -V
+          dig postgres
+          echo "\l" | psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d postgres
+          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "\d+"
+          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "SHOW TIMEZONE;"
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -92,24 +94,18 @@ jobs:
       - name: Install Dependencies
         timeout-minutes: 15
         run: |
-          chmod a+w -R .
-          # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
-          .github/workflows/fix.sh
-          npm i --no-audit -g autocannon c8 lerna rollup zx
-          # npm run purge
-          npm run bootstrap
+          npm i --no-audit -g autocannon c8 lerna rollup tsx zx
+          npm i --no-audit
         env:
           CI: true
 
       - name: Build
         run: |
-          chmod a+w -R .
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
-          # .github/workflows/fix.sh
           npm run build --if-present
         env:
           CI: true
@@ -119,7 +115,7 @@ jobs:
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
-          npm run lint:s
+          npm run lint:nofix
           npm run lint:cycle
         env:
           CI: true

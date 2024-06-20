@@ -10,9 +10,7 @@
 
 import * as ref from 'ref-napi'
 
-import {
-  U,
-} from '../src/index' // as local
+import { U } from '../src/index' // as local
 
 
 const user32 = U.load()

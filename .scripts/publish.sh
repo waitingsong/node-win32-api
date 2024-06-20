@@ -68,10 +68,15 @@ fi
 # npm run bootstrap
 # npm run build
 
-echo ">>> lerna publishing..."
+rm -rf $appDir/package-lock.json
+rm -rf $appDir/packages/*/package-lock.json
+
+echo ">>> lerna pre-publish-valiate"
 "$scriptDir/pre-publish-valiate.sh"
 
 echo $*
+echo ">>> lerna publishing..."
+git status
 if [ -z "$NPM_VERSION_REGISTRY" ]; then
   lerna publish $*
 else

@@ -42,7 +42,7 @@
       "restart": false,
       "runtimeArgs": [
         "run",
-        "test:local",
+        "test",
         "--",
         "--runInBand",
         "--preserve-symlinks"
@@ -54,6 +54,7 @@
         "<node_internals>/**",
         "<node_internals>/**/*.js"
       ],
+      "smartStep": false,
       "timeout": 30000
     },
     {
@@ -67,7 +68,7 @@
         "OTEL_EXPORTER_OTLP_ENDPOINT": "http://127.0.0.1:4317",
         "TS_NODE_TYPE_CHECK": "false",
         "TS_NODE_TRANSPILE_ONLY": "true",
-        "POSTGRES_HOST": "",
+        "POSTGRES_HOST": "127.0.0.1",
         "POSTGRES_PORT": "5432",
         "POSTGRES_DB": "",
         "POSTGRES_USER": "postgres",
@@ -83,7 +84,6 @@
       ],
       "runtimeExecutable": "npm",
       "skipFiles": [
-        "**/node_modules/**",
         "**/node_modules/rxjs/**",
         "<node_internals>/**",
         "<node_internals>/**/*.js"

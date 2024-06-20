@@ -6,8 +6,10 @@
   "keywords": [
     "api",
     "ffi",
+    "koffi",
     "win32",
     "windows",
+    "Electron",
     "ESM",
     "typescript",
     "ts"
@@ -16,6 +18,11 @@
   "bin": {},
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "imports": {
+    "#package.json": "./package.json",
+    "##/*": "./src/*",
+    "#@/*": "./test/*"
+  },
   "exports": {
     ".": {
       "import": "./dist/index.js",
@@ -25,17 +32,13 @@
       "import": "./dist/index.consts.js",
       "require": "./dist/index.consts.cjs"
     },
-    "./common.def": {
+    "./def": {
       "import": "./dist/index.def.js",
       "require": "./dist/index.def.cjs"
     },
-    "./struct.def": {
+    "./struct": {
       "import": "./dist/index.struct.js",
       "require": "./dist/index.struct.cjs"
-    },
-    "./union.def": {
-      "import": "./dist/index.union.js",
-      "require": "./dist/index.union.cjs"
     },
     "./package.json": "./package.json"
   },
@@ -49,44 +52,46 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-types": "^20.11.0"
+    "@waiting/shared-types": "^20.11.0",
+    "koffi": "^2.8.9"
   },
   "devDependencies": {
-    "@types/ref-napi": "^3.0.6",
-    "@types/ref-struct-di": "^1.1.8",
-    "@types/ref-union-di": "^1.0.5",
-    "@waiting/shared-core": "^20.11.4",
-    "cross-env": "7"
-  },
-  "peerDependencies": {
-    "ref-napi": "^3.0.3",
-    "ref-struct-di": "^1.1.1",
-    "ref-union-di": "^1.0.1"
+    "@waiting/shared-core": "^20.11.4"
   },
   "engines": {
-    "node": ">=14.15.0"
+    "node": ">=18.12.0"
   },
   "files": [
+    "README.*.md",
+    "Dockerfile",
+    "npm-shrinkwrap.json",
     "tsconfig.json",
+    "tsconfig.base.json",
+    "asset",
     "src/**/*.ts",
-    "bin/*.js",
-    "dist"
+    "bin",
+    "database",
+    "dist",
+    "!**/*.spec.*",
+    "!**/*.tsbuildinfo"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "npm run tsc && npm run rp",
-    "clean": "npm run clean:lock & npm run clean:cache & rm -rf dist/*",
-    "clean:cache": "rm -rf .eslintcache .vscode/.tsbuildinfo .vscode/.tsbuildinfo.*",
-    "clean:lock": "rm package-lock.json -f",
-    "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json c8 mocha --loader=ts-node/esm --parallel=false",
-    "lint": "eslint --fix --cache {src,test}/**/*.ts",
-    "lint:nofix": "eslint --cache {src,test}/**/*.ts",
-    "purge": "npm run clean && rm node_modules -rf",
+    "build": "npm run tsc && tsc-alias && npm run rp",
+    "build:unit": "tsc -p test/tsconfig.json",
+    "clean": "npm run clean:lock && npm run clean:dist && npm run clean:log",
+    "clean:cache": "rm -rf .eslintcache .tsbuildinfo",
+    "clean:dist": "npm run clean:cache && rm -rf dist/*",
+    "clean:lock": "rm -f package-lock.json",
+    "clean:log": "rm -rf ./logs ./run",
+    "cov": "c8 --all npm run test -- --parallel=false",
+    "lint": "eslint --fix --cache src test demo",
+    "lint:nofix": "eslint --cache src test",
+    "pretest": "npm run build:unit",
     "rp": "rollup -c rollup.config.js --context this",
-    "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --loader=ts-node/esm",
-    "test:local": "cross-env TS_NODE_PROJECT=test/tsconfig.json ../../node_modules/.bin/mocha --loader=ts-node/esm --parallel=false",
-    "tsc": "tsc -b "
+    "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --jobs=2",
+    "tsc": "tsc -p tsconfig.json"
   }
 }

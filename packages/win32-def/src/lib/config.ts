@@ -1,5 +1,5 @@
 // dict of windef value
-import { LoadSettings } from './ffi.types.js'
+import { CallingConvention, LoadSettings } from './ffi.types.js'
 
 
 export const config: Config = {
@@ -10,6 +10,8 @@ export interface Config {
 }
 
 export const settingsDefault: LoadSettings = {
-  singleton: true,
   _WIN64: config._WIN64,
+  convention: CallingConvention.Cdecl,
+  autoCreateStruct: true,
 }
+

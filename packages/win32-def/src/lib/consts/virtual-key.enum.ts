@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-duplicate-enum-values */
 /**
  * Virtual-Key Codes
  *
@@ -37,7 +38,7 @@ export enum VirtualKey {
   /** IME Kana mode */
   VK_KANA = 0x15,
   /** IME Hanguel mode(maintained for compatibility; use VK_HANGUL)  */
-  VK_HANGUEL = 0x15,
+  // VK_HANGUEL = 0x15,
   /** IME Hangul mode */
   VK_HANGUL = 0x15,
   /** IME On */

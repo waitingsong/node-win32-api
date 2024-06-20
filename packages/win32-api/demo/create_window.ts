@@ -31,13 +31,14 @@ import {
   DTypes as W,
   // K,
   U,
-} from '../src/index' // as local
+} from '../src/index'
+// as local
 
 const Struct = StructDi(ref)
 
 // const knl32 = K.load()
-const user32 = U.load()  // load all apis defined in lib/{dll}/api from user32.dll
-const comctl32 = C.load()  // load all apis defined in lib/{dll}/api from user32.dll
+const user32 = U.load() // load all apis defined in lib/{dll}/api from user32.dll
+const comctl32 = C.load() // load all apis defined in lib/{dll}/api from user32.dll
 
 // WndProc
 const WndProc = ffi.Callback(
@@ -123,7 +124,7 @@ function createWindow(title: string): M.HWND {
   wClass.lpszClassName = className
   wClass.hIconSm = ref.NULL
 
-  if (!user32.RegisterClassExW(wClass.ref())) {
+  if (! user32.RegisterClassExW(wClass.ref())) {
     throw new Error('Error registering class')
   }
   // const dStyle = U.constants.WS_OVERLAPPEDWINDOW
@@ -152,11 +153,11 @@ function createWindow(title: string): M.HWND {
 
 
 function changeTitle(hWnd: Buffer, title: string): string {
-  if (hWnd && !ref.isNull(hWnd) && ref.address(hWnd)) {
+  if (hWnd && ! ref.isNull(hWnd) && ref.address(hWnd)) {
     // Change title of the Calculator
     const res = user32.SetWindowTextW(hWnd, Buffer.from(title + '\0', 'ucs2'))
 
-    if (!res) {
+    if (! res) {
       console.error('failed with', res)
       return ''
     }

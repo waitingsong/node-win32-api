@@ -18,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        node: ['16']
+        node: ['lts/*']
         os: [ubuntu-latest]
 
     steps:
@@ -31,8 +31,8 @@ jobs:
         # pulls all tags (needed for lerna / semantic release to correctly version)
         run: |
           export cwd=`pwd`
-          git config --global --add safe.directory $cwd
-          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+          git config --global --add safe.directory $cwd || true
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/* || true
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
@@ -69,7 +69,6 @@ jobs:
           locale-gen
           locale -a
           netstat -tunpl
-          chmod a+w -R .
 
       - name: Verify
         run: |
@@ -84,24 +83,18 @@ jobs:
       - name: Install Dependencies
         timeout-minutes: 15
         run: |
-          chmod a+w -R .
-          # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
-          .github/workflows/fix.sh
-          npm i --no-audit -g autocannon c8 lerna@6 rollup zx
-          # npm run purge
-          npm run bootstrap
+          npm i --no-audit -g c8 lerna rollup tsx zx madge
+          npm i --no-audit
         env:
           CI: true
 
       - name: Build
         run: |
-          chmod a+w -R .
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
-          # .github/workflows/fix.sh
           npm run build --if-present
         env:
           CI: true
@@ -120,17 +113,17 @@ jobs:
         run: |
           npm ping
           npm whoami
-          chmod a+w -R .
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           # fix: fatal: detected dubious ownership in repository
           git config --global --add safe.directory $cwd
-          # git restore .
           git reset --hard
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
           # npm run pub major
-          .scripts/publish.sh --yes --no-verify-access --conventional-commits --create-release github ${{ github.event.inputs.semver }}
+          rm -rf package-lock.json
+          rm -rf packages/*/package-lock.json
+          .scripts/publish.sh --yes --no-private --conventional-commits --create-release github ${{ github.event.inputs.semver }}
           git push -v origin --follow-tags
         env:
           CI: true
