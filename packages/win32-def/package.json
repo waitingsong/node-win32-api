@@ -39,26 +39,6 @@
       "import": "./dist/index.struct.js",
       "require": "./dist/index.struct.cjs"
     },
-    "./comctl": {
-      "import": "./dist/lib/comctl/comctl.index.js",
-      "require": "./dist/lib/comctl/comctl.index.cjs"
-    },
-    "./windef": {
-      "import": "./dist/lib/windef/windef.index.js",
-      "require": "./dist/lib/windef/windef.index.cjs"
-    },
-    "./wingdi": {
-      "import": "./dist/lib/wingdi/wingdi.index.js",
-      "require": "./dist/lib/wingdi/wingdi.index.cjs"
-    },
-    "./winspool": {
-      "import": "./dist/lib/winspool/winspool.index.js",
-      "require": "./dist/lib/winspool/winspool.index.cjs"
-    },
-    "./winuser": {
-      "import": "./dist/lib/winuser/winuser.index.js",
-      "require": "./dist/lib/winuser/winuser.index.cjs"
-    },
     "./package.json": "./package.json"
   },
   "bugs": {
