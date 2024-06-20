@@ -110,7 +110,7 @@
     "lint:nofix": "eslint --cache src test",
     "pretest": "npm run build:unit",
     "rp": "rollup -c rollup.config.js --context this",
-    "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --jobs=4",
+    "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --jobs=2",
     "tsc": "tsc -p tsconfig.json"
   }
 }
