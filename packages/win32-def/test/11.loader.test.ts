@@ -1,10 +1,9 @@
 import assert from 'node:assert'
 
 import { fileShortPath } from '@waiting/shared-core'
-import ffi from 'koffi'
 
 import * as D from '##/index.def.js'
-import { FuncDefList, LoadOptions } from '##/index.js'
+import { LoadOptions } from '##/index.js'
 import * as T from '##/index.js'
 import { POINT_Factory, POINT_Type, LPDISPLAY_DEVICEW, LPPOINT } from '##/index.struct.js'
 import { load } from '##/lib/loader/loader.js'
@@ -117,5 +116,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
   })
+
+
 })
 
