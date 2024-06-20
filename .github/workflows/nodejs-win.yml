@@ -56,7 +56,7 @@ jobs:
         shell: bash
         run: |
           export cwd=`pwd`
-          npm i --no-audit -g c8 lerna rollup tsx zx node-gyp
+          npm i --no-audit -g c8 lerna madge rollup tsx zx node-gyp
           npm i
         env:
           CI: true
