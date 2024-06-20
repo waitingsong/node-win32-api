@@ -9,7 +9,9 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe('DISPLAY_DEVICEW_Factory()', () => {
     it('normal', async () => {
-      const { size, payload } = DISPLAY_DEVICEW_Factory()
+      const { size, payload, sizeColumns } = DISPLAY_DEVICEW_Factory()
+      assert(sizeColumns?.length === 1)
+      assert(sizeColumns?.[0] === 'cb')
       assert(payload.cb === size)
       try {
         payload.cb = 10
