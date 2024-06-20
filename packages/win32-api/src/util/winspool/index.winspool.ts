@@ -1,4 +1,5 @@
 import assert from 'node:assert'
+
 import * as T from 'win32-def'
 import * as S from 'win32-def/struct'
 
@@ -6,7 +7,7 @@ import {
   ucsBufferFrom,
   ucsBufferToString,
 } from '../../index.js'
-import { getMod } from '../func.helper.js'
+import { getMod } from '../util.helper.js'
 
 import {
   Win32Fns,

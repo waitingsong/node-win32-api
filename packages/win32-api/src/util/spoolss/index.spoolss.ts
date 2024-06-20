@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 
-import { getMod } from '../func.helper.js'
+import { getMod } from '../util.helper.js'
 
 import {
   Win32Fns,

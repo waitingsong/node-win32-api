@@ -2,7 +2,7 @@ import {
   ucsBufferFrom,
   ucsBufferToString,
 } from '../../index.js'
-import { getMod } from '../func.helper.js'
+import { getMod } from '../util.helper.js'
 
 import { Win32Fns, dllName, M } from './helper.js'
 
