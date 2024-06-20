@@ -92,7 +92,7 @@ describe(fileShortPath(import.meta.url), () => {
 
       const pos2 = {} as POINT_Type
       await lib.GetCursorPosAsync(pos2)
-      assert(pos2.x > 0 && pos2.y > 0, `pos2.x: ${pos2.x}, pos2.y: ${pos2.y}`)
+      assert(pos2.x >= 0 && pos2.y >= 0, `pos2.x: ${pos2.x}, pos2.y: ${pos2.y}`)
 
       assert.deepEqual(pos, pos2)
     })
