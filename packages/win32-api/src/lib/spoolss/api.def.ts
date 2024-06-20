@@ -10,7 +10,7 @@ export const apiDef: FuncDefList<Win32Fns> = {
 
   EndPagePrinter: [D.BOOL, [D.HANDLE]],
 
-  WritePrinter: [D.BOOL, [D.HANDLE, D.LPVOID, D.DWORD, D.LPDWORD]],
+  WritePrinter: [D.BOOL, [D.HANDLE, D.LPVOID, D.DWORD, `_Out_ ${D.LPDWORD}`]],
 
 }
 
