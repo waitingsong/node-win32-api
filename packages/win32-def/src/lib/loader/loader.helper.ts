@@ -152,7 +152,6 @@ export function createStructFromFuncDefList(input: FuncDefList): void {
   const structFactories = prepareStructFromFuncDefList(input)
   structFactories.forEach((factory) => {
     factory()
-    void 0
   })
 }
 
@@ -168,7 +167,9 @@ function prepareStructFromFuncDefList(input: FuncDefList): Set<StructFactory> {
       }
     }
     catch (ex) {
-      const msg = `Failed to create struct for function: ${name}, you may need to create it manually.`
+      assert(ex instanceof Error)
+      const msg = `Failed to create struct for function: ${name}, you may need to create it manually.
+      Error: ${ex.message}`
       throw new Error(msg, { cause: ex })
     }
   }
