@@ -1,5 +1,5 @@
 import * as D from '##/index.def.js'
-import { DllFuncs } from '##/index.js'
+import { FuncDefList } from '##/index.js'
 import * as T from '##/index.js'
 import { POINT_Type, LPPOINT, LPDISPLAY_DEVICEW, DISPLAY_DEVICEW_Type } from '##/index.struct.js'
 
@@ -20,7 +20,7 @@ export interface Win32Fns {
   ) => T.BOOL
 }
 
-export const apiDef: DllFuncs<Win32Fns> = {
+export const apiDef: FuncDefList<Win32Fns> = {
   GetCursorPos: [D.BOOL, [`_Out_ ${LPPOINT}`]],
   FindWindowExW: [D.HWND, [D.HWND, D.HWND, D.LPCTSTR, D.LPCTSTR]],
   EnumDisplayDevicesW: [D.BOOL, [D.LPCWSTR, D.DWORD, `_Inout_ ${LPDISPLAY_DEVICEW}`, D.DWORD]],

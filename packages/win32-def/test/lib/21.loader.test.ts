@@ -4,7 +4,7 @@ import { fileShortPath } from '@waiting/shared-core'
 import ffi from 'koffi'
 
 import * as D from '##/index.def.js'
-import { DllFuncs, LoadOptions } from '##/index.js'
+import { FuncDefList, LoadOptions } from '##/index.js'
 import * as T from '##/index.js'
 import { POINT_Factory, POINT_Type, LPPOINT } from '##/index.struct.js'
 import { load } from '##/lib/loader/loader.js'
@@ -21,8 +21,8 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe('registerFunction()', () => {
     it('normal', async () => {
-      const { payload: pos } = POINT_Factory()
       const lib = load<Win32Fns>(options)
+      const { payload: pos } = POINT_Factory()
 
       const res = lib.GetCursorPos(pos)
       assert(res > 0)
