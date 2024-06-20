@@ -1,5 +1,4 @@
 export * as Kernel32 from './lib/kernel32/index.js'
-export * as Ntdll from './lib/ntdll/index.js'
 export * as Spoolss from './lib/spoolss/index.js'
 export * as User32 from './lib/user32/index.js'
 export * as Constants from './lib/winmsg.js'
