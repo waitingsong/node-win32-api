@@ -1,3 +1,3 @@
 
-export * from './FindWindowEx.js'
+export * from './FindWindowExW.js'
 
