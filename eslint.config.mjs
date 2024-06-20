@@ -20,11 +20,13 @@ const srcRules = {
   }],
   'id-length': 0,
   'unicorn/filename-case': 0,
+  '@typescript-eslint/no-duplicate-enum-values': 0,
 }
 const testRules = {
   '@typescript-eslint/no-explicit-any': 0,
   'id-length': 0,
   'unicorn/filename-case': 0,
+  '@typescript-eslint/no-duplicate-enum-values': 0,
 }
 
 const languageOptions = {
