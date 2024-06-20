@@ -25,7 +25,7 @@ const init = {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-alttabinfo
  */
 export function ALTTABINFO_Factory(): StructFactoryResult<ALTTABINFO_Type> {
-  return genStruct<ALTTABINFO_Type>(init, key, ptr)
+  return genStruct<ALTTABINFO_Type>(init, key, ptr, ['cbSize'])
 }
 
 /**
