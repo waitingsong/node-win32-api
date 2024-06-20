@@ -1,7 +1,4 @@
 import assert from 'node:assert'
-// import { copyFileSync, statSync } from 'node:fs'
-
-import * as Structs from '##/index.struct.js'
 
 import { settingsDefault } from '../config.js'
 import { Def } from '../def.enum.js'
@@ -13,6 +10,7 @@ import {
   LoadSettings,
   CallingConvention,
 } from '../ffi.types.js'
+import * as Structs from '../struct/struct.index.js'
 import { KoffiFunction, RegisterFunctionOpts, StructFactory } from '../types.js'
 
 
@@ -133,13 +131,27 @@ export function parse_settings(settings?: LoadSettings): LoadSettings {
   return st
 }
 
+
 export function createStructFromFuncDefList(input: FuncDefList): void {
+  const structFactories = prepareStructFromFuncDefList(input)
+  structFactories.forEach((factory) => {
+    factory()
+    void 0
+  })
+}
+
+function prepareStructFromFuncDefList(input: FuncDefList): Set<StructFactory> {
+  const fns = new Set<StructFactory>()
   for (const [name, params] of Object.entries(input)) {
     void name
-    const structArr = retrieveStructFactoryFromParams(params[1] as string[])
-    void structArr
+    const structSet = retrieveStructFactoryFromParams(params[1] as string[])
+    if (structSet.size) {
+      structSet.forEach((fn) => {
+        fns.add(fn)
+      })
+    }
   }
-
+  return fns
 }
 
 const structFactoryMap = new Map<string, StructFactory>()

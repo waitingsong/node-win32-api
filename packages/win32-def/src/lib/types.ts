@@ -69,5 +69,6 @@ export interface KoffiTypeResult {
 export type KoffiDefType = Record<string, TypeSpecWithAlignment>
 export type KoffiDefComplexType = Record<string, TypeSpecWithAlignment | object>
 
-export type StructFactory<T extends object = object> = (def: KoffiDefComplexType, name?: string, pointer?: string) => StructFactoryResult<T>
+export type StructFactory = () => StructFactoryResult
+
 
