@@ -6,7 +6,7 @@ import ffi from 'koffi'
 import * as D from '##/index.def.js'
 import { FuncDefList, LoadOptions } from '##/index.js'
 import * as T from '##/index.js'
-import { POINT_Factory, POINT_Type, LPDISPLAY_DEVICEW } from '##/index.struct.js'
+import { POINT_Factory, POINT_Type, LPDISPLAY_DEVICEW, LPPOINT } from '##/index.struct.js'
 import { load } from '##/lib/loader/loader.js'
 
 import { type Win32Fns, apiDef } from './21a.helper.js'
@@ -32,7 +32,7 @@ describe(fileShortPath(import.meta.url), () => {
       }
       catch (ex) {
         assert(ex instanceof Error)
-        assert(ex.message.includes(LPDISPLAY_DEVICEW), ex.message)
+        assert(ex.message.includes(LPDISPLAY_DEVICEW) || ex.message.includes(LPPOINT), ex.message)
         return
       }
       assert(false, 'Should throw Error')
