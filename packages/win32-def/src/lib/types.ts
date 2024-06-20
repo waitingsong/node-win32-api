@@ -57,14 +57,15 @@ export interface StructFactoryResult<T extends object = object> extends KoffiTyp
   /**
    * Struct payload for _Out_ or _Inout_ parameter
    */
-  payload: T
+  readonly payload: T
+  readonly sizeColumns?: PropertyKey[]
 }
 
 export interface KoffiTypeResult {
-  name: string
-  pointer: string
-  CType: IKoffiCType
-  size: number
+  readonly name: string
+  readonly pointer: string
+  readonly CType: IKoffiCType
+  readonly size: number
 }
 export type KoffiDefType = Record<string, TypeSpecWithAlignment>
 export type KoffiDefComplexType = Record<string, TypeSpecWithAlignment | object>

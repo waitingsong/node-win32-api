@@ -29,16 +29,24 @@ export function genStruct<T extends object = object>(
 }
 
 function bindPayloadGetter(struct: StructFactoryResult, sizeColumns: PropertyKey[] | undefined): void {
+  if (typeof struct.sizeColumns === 'undefined') {
+    Object.defineProperty(struct, 'sizeColumns', {
+      enumerable: true,
+      writable: false,
+      value: sizeColumns,
+    })
+  }
+
   if (typeof struct.payload === 'undefined') {
     // payload must be the new one after each call of the struct factory function
     Object.defineProperty(struct, 'payload', {
       get: function (this: StructFactoryResult) {
-        if (! sizeColumns?.length) {
+        if (! this.sizeColumns?.length) {
           return {}
         }
 
         const ret = {}
-        sizeColumns.forEach((key) => {
+        this.sizeColumns.forEach((key) => {
           if (key) {
             Object.defineProperty(ret, key, {
               enumerable: true,
