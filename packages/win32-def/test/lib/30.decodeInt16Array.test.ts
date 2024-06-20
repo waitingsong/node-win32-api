@@ -10,7 +10,7 @@ import * as T from '##/index.js'
 import { DISPLAY_DEVICEW_Factory } from '##/index.struct.js'
 import { load } from '##/lib/loader/loader.js'
 
-import { type Win32Fns, apiDef } from './21a.helper.js'
+import { type Win32Fns, apiDef } from './31a.helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
