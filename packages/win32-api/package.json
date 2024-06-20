@@ -37,8 +37,8 @@
       "require": "./dist/index.consts.cjs"
     },
     "./util": {
-      "import": "./dist/util/util.index.js",
-      "require": "./dist/util/util.index.cjs"
+      "import": "./dist/index.util.js",
+      "require": "./dist/index.util.cjs"
     },
     "./package.json": "./package.json"
   },
