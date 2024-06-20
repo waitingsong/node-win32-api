@@ -21,8 +21,8 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe('decodeInt16Array()', () => {
     it('normal', async () => {
-      const child = spawn('calc.exe')
-      await sleep(1500)
+      // const child = spawn('notepad.exe')
+      // await sleep(1500)
 
       try {
         const lib = load<Win32Fns>(options)
@@ -46,7 +46,7 @@ describe(fileShortPath(import.meta.url), () => {
         assert(flag, DeviceString)
       }
       finally {
-        child.kill() // not work on Windows?
+        // child.kill() // not work on Windows?
       }
     })
   })
