@@ -9,7 +9,6 @@ export type _UNICODE = boolean
 export type StructTypeConstructor<T = object> = new () => Record<keyof T, string | number | BigIntStr | Buffer>
 
 export interface LoadSettings {
-  singleton: boolean // for DLL.load()
   _WIN64?: boolean // default from process.arch
   /**
  * Calling convention
