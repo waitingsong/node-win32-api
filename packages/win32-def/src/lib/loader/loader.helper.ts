@@ -3,15 +3,15 @@ import assert from 'node:assert'
 import { settingsDefault } from '../config.js'
 import { Def } from '../def.enum.js'
 import {
-  FuncDefList,
-  DllFuncsType,
-  FnDefName,
-  FnDefParams,
-  LoadSettings,
+  type FuncDefList,
+  type DllFuncsType,
+  type FnDefName,
+  type FnDefParams,
+  type LoadSettings,
   CallingConvention,
 } from '../ffi.types.js'
 import { structFactoryMap } from '../struct.factory.js'
-import { KoffiFunction, RegisterFunctionOpts, StructFactory } from '../types.js'
+import type { IKoffiLib, KoffiFunction, LibFuncs, RegisterFunctionOpts, StructFactory } from '../types.js'
 
 
 export const isArch64 = process.arch.includes('64')
@@ -34,13 +34,69 @@ export const defGroupPointer: Def[] = [
 
 const regCacheMap = new WeakMap<RegisterFunctionOpts['lib'], Map<string, KoffiFunction>>()
 
+
+// #region bindMethodsFromFuncDefList
+
+export interface BindOptions<T extends object> {
+  lib: IKoffiLib
+  inst: LibFuncs<T>
+  config: LoadSettings
+  funcDefList: FuncDefList<T>
+}
+
+export function bindMethodsFromFuncDefList(options: BindOptions<object>): void {
+  const { lib, inst, config, funcDefList } = options
+
+  for (const [name, params] of Object.entries(funcDefList)) {
+    const func = registerFunction({
+      lib,
+      name,
+      // @ts-expect-error ignore unknown
+      params,
+      convention: config.convention ?? CallingConvention.Cdecl,
+    })
+
+    bindMethods(inst, name, func)
+  }
+}
+
+function bindMethods<T>(inst: T, name: string, fn: KoffiFunction): void {
+  const nameSync = name
+  Object.defineProperty(inst, nameSync, {
+    enumerable: true,
+    value: fn,
+  })
+
+  const nameAsync = `${name}Async`
+  Object.defineProperty(inst, nameAsync, {
+    enumerable: true,
+    value: (...args: unknown[]) => callFnAsync(fn, args),
+  })
+}
+
+
+function callFnAsync(fn: KoffiFunction, args: unknown[]) {
+  return new Promise<unknown>((done, reject) => {
+    const asyncCallback = (err: Error | undefined, result: unknown) => {
+      if (err) {
+        reject(err)
+        return
+      }
+      done(result)
+    }
+    fn.async(...args, asyncCallback)
+  })
+}
+
+
+
 // #region registerFunction
 
 /**
  * @note do not call it directly, use `load()` instead!
  *  Case of making sure the library is loaded only once
  */
-export function registerFunction(options: RegisterFunctionOpts): KoffiFunction {
+function registerFunction(options: RegisterFunctionOpts): KoffiFunction {
   const { lib, name, params, convention = CallingConvention.Stdcall } = options
   const cache = getRegisterFunctionFromCache(options)
   if (cache) {
