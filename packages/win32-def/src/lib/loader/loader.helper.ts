@@ -159,12 +159,17 @@ export function createStructFromFuncDefList(input: FuncDefList): void {
 function prepareStructFromFuncDefList(input: FuncDefList): Set<StructFactory> {
   const fns = new Set<StructFactory>()
   for (const [name, params] of Object.entries(input)) {
-    void name
-    const structSet = retrieveStructFactoryFromParams(params[1] as string[])
-    if (structSet.size) {
-      structSet.forEach((fn) => {
-        fns.add(fn)
-      })
+    try {
+      const structSet = retrieveStructFactoryFromParams(params[1] as string[])
+      if (structSet.size) {
+        structSet.forEach((fn) => {
+          fns.add(fn)
+        })
+      }
+    }
+    catch (ex) {
+      const msg = `Failed to create struct for function: ${name}, you may need to create it manually.`
+      throw new Error(msg, { cause: ex })
     }
   }
   return fns
@@ -178,11 +183,22 @@ function retrieveStructFactoryFromParams(params: string[]): Set<StructFactory> {
     return fns
   }
 
+  const failed: string[] = []
+
   structNames.forEach((key) => {
     const factoryName = `${key}_Factory`
     const fn = structFactoryMap.get(factoryName)
-    fn && fns.add(fn)
+    if (fn) {
+      fns.add(fn)
+    }
+    else {
+      failed.push(key)
+    }
   })
+
+  if (failed.length) {
+    throw new Error(`Failed to find struct factory for: ${failed.join(', ')}`)
+  }
 
   return fns
 }
