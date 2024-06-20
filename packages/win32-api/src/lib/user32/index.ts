@@ -8,12 +8,12 @@ import { Win32Fns } from './api.types.js'
 import * as constants from './constants.js'
 
 
-export type LibFns = LibFuncs<Win32Fns>
-
 export { apiDef }
 export { constants }
 export { Win32Fns }
+
 export const dllName = DllNames.user32
+export type LibFns = LibFuncs<Win32Fns>
 
 export const load = (fns?: LoadOptions['usedFuncNames'], settings?: LoadOptions['settings']) => _load<Win32Fns>({
   dll: dllName + '.dll',
