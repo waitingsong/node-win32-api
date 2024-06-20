@@ -88,7 +88,7 @@ export interface Win32Fns {
     hPrinter: T.HANDLE,
     Level: T.DWORD,
     // @TODO 1-9
-    pPrinter: T.LPBYTE | S.PRINTER_INFO_X_Type<1 | 4>,
+    pPrinter: T.LPBYTE | S.PRINTER_INFO_X_Type<1 | 4 | 5>,
     cbBuf: T.DWORD,
     pcbNeeded: T.LPDWORD,
   ) => T.BOOL
