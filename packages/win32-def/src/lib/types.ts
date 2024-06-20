@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { IKoffiLib, IKoffiCType, TypeSpecWithAlignment } from 'koffi'
-import type { CallingConvention, DllFuncs, FnName, FnParams, LoadSettings } from 'win32-def'
+
+import type { CallingConvention, FnDefName, FnDefParams, FuncDefList, LoadSettings } from './ffi.types.js'
 
 
 export type { KoffiFunction } from 'koffi'
@@ -15,7 +16,7 @@ export interface RegisterFunctionOpts {
   /** function name */
   name: string
   /** function parameters */
-  params: FnParams
+  params: FnDefParams
   /**
    * Calling convention
    * @default 'Stdcall' (for Windows)
@@ -26,8 +27,8 @@ export interface RegisterFunctionOpts {
 
 export interface LoadOptions<T = unknown> {
   dll: string
-  dllFuncs: DllFuncs<T>
-  usedFuncNames?: FnName[]
+  dllFuncs: FuncDefList<T>
+  usedFuncNames?: FnDefName[]
   settings?: LoadSettings
 }
 

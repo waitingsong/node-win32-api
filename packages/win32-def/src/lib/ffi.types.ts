@@ -37,17 +37,16 @@ export enum CallingConvention {
 export type PID = number
 export type PPID = number
 
-export type FnName = string
-export type FnParam = string // param type for definition of FFI
-export type FnRetType = FnParam
-export type FnCallParam = FnParam // each param of calling function
-export type FnCallParams = FnCallParam[] | never[] // calling params
-export type FnParams = [FnRetType, FnCallParams] // def for ffi [returnType, [calling param, ...]]
+export type FnDefName = string
+export type FnDefParam = string // param type for definition of FFI
+export type FnDefRetType = FnDefParam
+export type FnDefCallParam = FnDefParam // each param of calling function
+export type FnDefCallParams = FnDefCallParam[] | never[] // calling params
+export type FnDefParams = [FnDefRetType, FnDefCallParams] // def for ffi [returnType, [calling param, ...]]
 // export interface DllFuncs {
 //   [fn: string]: FnParams
 // }
-// export type DllFuncs<T> = Record<keyof T, FnParams>
-export type DllFuncs<T = DllFuncsType> = Record<keyof T, FnParams>
+export type FuncDefList<T = DllFuncsType> = Record<(keyof T) & string, FnDefParams>
 
 /**
  * usage:
