@@ -7,7 +7,7 @@ import { Win32Fns } from './api.types.js'
 export const apiDef: FuncDefList<Win32Fns> = {
   FormatMessageW: [
     D.DWORD,
-    [D.DWORD, D.LPCVOID, D.DWORD, D.DWORD, D.LPTSTR, D.DWORD, D.va_list],
+    [D.DWORD, D.LPCVOID, D.DWORD, D.DWORD, `_Out_ ${D.LPTSTR}`, D.DWORD, D.va_list],
   ],
 
   FreeConsole: [D.BOOL, []],
@@ -17,7 +17,7 @@ export const apiDef: FuncDefList<Win32Fns> = {
   /** err code: https://msdn.microsoft.com/zh-cn/library/windows/desktop/ms681381(v=vs.85).aspx */
   GetLastError: [D.DWORD, []],
 
-  /** retrieve value from buf by ret.ref().readUInt32() */
+  /** retrieve value from buf by readUInt32() */
   GetModuleHandleW: [D.HMODULE, [D.LPCTSTR]],
 
   /** flags, optional LPCTSTR name, ref hModule */
@@ -25,7 +25,7 @@ export const apiDef: FuncDefList<Win32Fns> = {
 
   GetProcessHeaps: [D.DWORD, [D.DWORD, D.PHANDLE]],
 
-  GetSystemTimes: [D.BOOL, [D.PFILETIME, D.PFILETIME, D.PFILETIME]],
+  GetSystemTimes: [D.BOOL, [`_Out_ ${D.PFILETIME}`, `_Out_ ${D.PFILETIME}`, `_Out_ ${D.PFILETIME}`]],
 
   HeapFree: [D.BOOL, [D.HANDLE, D.DWORD, D.LPVOID]],
 

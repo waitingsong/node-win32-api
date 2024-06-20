@@ -4,7 +4,7 @@ import * as S from 'win32-def/struct'
 
 export interface Win32Fns {
   /**
-   * https://msdn.microsoft.com/en-us/library/windows/desktop/ms679351(v=vs.85).aspx
+   * https://learn.microsoft.com/zh-cn/windows/win32/api/winbase/nf-winbase-formatmessage?redirectedfrom=MSDN
    * dwLanguageId: https://msdn.microsoft.com/en-us/library/windows/desktop/dd318693(v=vs.85).aspx
    */
   FormatMessageW: (
