@@ -6,7 +6,7 @@ import ffi from 'koffi'
 import * as D from '##/index.def.js'
 import { FuncDefList, LoadOptions } from '##/index.js'
 import * as T from '##/index.js'
-import { POINT_Factory, POINT_Type, LPPOINT } from '##/index.struct.js'
+import { POINT_Factory, POINT_Type, LPDISPLAY_DEVICEW } from '##/index.struct.js'
 import { load } from '##/lib/loader/loader.js'
 
 import { type Win32Fns, apiDef } from './21a.helper.js'
@@ -20,6 +20,24 @@ describe(fileShortPath(import.meta.url), () => {
   }
 
   describe('registerFunction()', () => {
+    // run first
+    it('autoCreateStruct=false', async () => {
+      try {
+        load<Win32Fns>({
+          ...options,
+          settings: {
+            autoCreateStruct: false,
+          },
+        })
+      }
+      catch (ex) {
+        assert(ex instanceof Error)
+        assert(ex.message.includes(LPDISPLAY_DEVICEW), ex.message)
+        return
+      }
+      assert(false, 'Should throw Error')
+    })
+
     it('normal', async () => {
       const lib = load<Win32Fns>(options)
       const { payload: pos } = POINT_Factory()
@@ -81,6 +99,7 @@ describe(fileShortPath(import.meta.url), () => {
 
       assert.deepEqual(pos, pos2)
     })
+
   })
 })
 
