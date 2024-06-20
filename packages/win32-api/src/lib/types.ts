@@ -1,9 +1,5 @@
-import type { IKoffiLib } from 'koffi'
-import type { CallingConvention, DllFuncs, FnName, FnParams, LoadSettings } from 'win32-def'
-
 
 export type { KoffiFunction } from 'koffi'
-
 
 export const enum DllNames {
   comctl32 = 'comctl32',
@@ -14,6 +10,5 @@ export const enum DllNames {
   user32 = 'user32',
   winspool = 'winspool.drv',
 }
-
 
 
