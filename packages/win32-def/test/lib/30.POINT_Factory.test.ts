@@ -3,9 +3,6 @@ import assert from 'node:assert'
 import { fileShortPath } from '@waiting/shared-core'
 
 import { POINT_Factory, POINT_Type, LPPOINT } from '##/index.struct.js'
-import { load } from '##/lib/loader/loader.js'
-
-import { Win32Fns, apiDef } from './31a.helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

@@ -9,7 +9,7 @@ import * as T from '##/index.js'
 import { POINT_Factory, POINT_Type, LPDISPLAY_DEVICEW, LPPOINT } from '##/index.struct.js'
 import { load } from '##/lib/loader/loader.js'
 
-import { type Win32Fns, apiDef } from './21a.helper.js'
+import { type Win32Fns, apiDef } from './api.helper.js'
 
 
 

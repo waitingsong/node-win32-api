@@ -1,16 +1,13 @@
 import assert from 'node:assert'
-import { spawn } from 'node:child_process'
 
 import { fileShortPath, sleep } from '@waiting/shared-core'
-import ffi from 'koffi'
 
 import * as D from '##/index.def.js'
 import { LoadOptions, decodeInt16Array } from '##/index.js'
 import * as T from '##/index.js'
 import { DISPLAY_DEVICEW_Factory } from '##/index.struct.js'
 import { load } from '##/lib/loader/loader.js'
-
-import { type Win32Fns, apiDef } from './31a.helper.js'
+import { type Win32Fns, apiDef } from '#@/api.helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
