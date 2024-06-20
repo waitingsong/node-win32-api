@@ -9,7 +9,7 @@ import * as T from '##/index.js'
 import { POINT_Factory, POINT_Type, LPDISPLAY_DEVICEW, LPPOINT } from '##/index.struct.js'
 import { load } from '##/lib/loader/loader.js'
 
-import { type Win32Fns, apiDef } from './api.helper.js'
+import { type Win32Fns, apiDef, apiDefFake } from './api.helper.js'
 
 
 // Make sure this suit run as early as possible, for testing Struct not created case !
@@ -34,6 +34,21 @@ describe(fileShortPath(import.meta.url), () => {
       catch (ex) {
         assert(ex instanceof Error)
         assert(ex.message.includes(LPDISPLAY_DEVICEW) || ex.message.includes(LPPOINT), ex.message)
+        return
+      }
+      assert(false, 'Should throw Error')
+    })
+
+    it('fake struct in param', async () => {
+      try {
+        load<Win32Fns>({
+          ...options,
+          dllFuncs: apiDefFake,
+        })
+      }
+      catch (ex) {
+        assert(ex instanceof Error)
+        assert(ex.message.includes('FAKE_POINT'), ex.message)
         return
       }
       assert(false, 'Should throw Error')
