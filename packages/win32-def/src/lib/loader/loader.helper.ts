@@ -89,50 +89,6 @@ function callFnAsync(fn: KoffiFunction, args: unknown[]) {
 }
 
 
-
-// #region registerFunction
-
-/**
- * @note do not call it directly, use `load()` instead!
- *  Case of making sure the library is loaded only once
- */
-function registerFunction(options: RegisterFunctionOpts): KoffiFunction {
-  const { lib, name, params, convention = CallingConvention.Stdcall } = options
-  const cache = getRegisterFunctionFromCache(options)
-  if (cache) {
-    return cache
-  }
-
-  const { [0]: retType, [1]: args } = params
-  let func: KoffiFunction
-  // const func = user32.func('GetCursorPos', 'int', [`_Out_ ${comb.pointer}`])
-  if (convention === CallingConvention.Cdecl) {
-    func = lib.func(name, retType, args)
-  }
-  else {
-    func = lib.func(convention, name, retType, args)
-  }
-  // console.log(func.info)
-  setRegisterFunctionToCache(options, func)
-  return func
-}
-
-function getRegisterFunctionFromCache(options: RegisterFunctionOpts): KoffiFunction | undefined {
-  const { lib, name } = options
-  const cache = regCacheMap.get(lib)
-  return cache?.get(name)
-}
-
-function setRegisterFunctionToCache(options: RegisterFunctionOpts, func: KoffiFunction): void {
-  const { lib, name } = options
-  let cache = regCacheMap.get(lib)
-  if (! cache) {
-    cache = new Map<string, KoffiFunction>()
-    regCacheMap.set(lib, cache)
-  }
-  cache.set(name, func)
-}
-
 // #region gen_api_opts
 
 /**
@@ -243,6 +199,50 @@ function retrieveStructTypeStringFromParams(params: string[]): string[] {
   })
 
   return ret
+}
+
+
+// #region registerFunction
+
+/**
+ * @note do not call it directly, use `load()` instead!
+ *  Case of making sure the library is loaded only once
+ */
+function registerFunction(options: RegisterFunctionOpts): KoffiFunction {
+  const { lib, name, params, convention = CallingConvention.Stdcall } = options
+  const cache = getRegisterFunctionFromCache(options)
+  if (cache) {
+    return cache
+  }
+
+  const { [0]: retType, [1]: args } = params
+  let func: KoffiFunction
+  // const func = user32.func('GetCursorPos', 'int', [`_Out_ ${comb.pointer}`])
+  if (convention === CallingConvention.Cdecl) {
+    func = lib.func(name, retType, args)
+  }
+  else {
+    func = lib.func(convention, name, retType, args)
+  }
+  // console.log(func.info)
+  setRegisterFunctionToCache(options, func)
+  return func
+}
+
+function getRegisterFunctionFromCache(options: RegisterFunctionOpts): KoffiFunction | undefined {
+  const { lib, name } = options
+  const cache = regCacheMap.get(lib)
+  return cache?.get(name)
+}
+
+function setRegisterFunctionToCache(options: RegisterFunctionOpts, func: KoffiFunction): void {
+  const { lib, name } = options
+  let cache = regCacheMap.get(lib)
+  if (! cache) {
+    cache = new Map<string, KoffiFunction>()
+    regCacheMap.set(lib, cache)
+  }
+  cache.set(name, func)
 }
 
 
