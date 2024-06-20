@@ -1,4 +1,4 @@
-import { type LoadOptions, load as _load } from 'win32-def'
+import { type LibFuncs, type LoadOptions, load as _load } from 'win32-def'
 
 import { DllNames } from '../types.js'
 
@@ -7,6 +7,8 @@ import { Win32Fns } from './api.types.js'
 // for user32.constants
 import * as constants from './constants.js'
 
+
+export type LibFns = LibFuncs<Win32Fns>
 
 export { apiDef }
 export { constants }
