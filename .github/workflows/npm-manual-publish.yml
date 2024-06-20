@@ -69,7 +69,6 @@ jobs:
           locale-gen
           locale -a
           netstat -tunpl
-          dig jaeger
 
       - name: Verify
         run: |
@@ -96,7 +95,7 @@ jobs:
         timeout-minutes: 15
         run: |
           export cwd=`pwd`
-          npm i --no-audit -g autocannon c8 lerna rollup zx
+          npm i --no-audit -g autocannon c8 lerna rollup tsx zx
           npm i --no-audit
         env:
           CI: true

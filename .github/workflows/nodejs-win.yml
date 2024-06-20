@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node: ['lts/*']
+        node: ['lts/*', '18']
         os: [windows-2019]
 
     steps:
@@ -48,18 +48,15 @@ jobs:
           npm -v && node -v
           git --version
           openssl version
-          ./.githooks/init-repo.sh
           git config --local core.autocrlf false
           git config --local core.eol lf
-          export cwd=`pwd`
-          git config --global --add safe.directory $cwd
 
       - name: Install Dependencies
         timeout-minutes: 15
         shell: bash
         run: |
           export cwd=`pwd`
-          npm i --no-audit -g c8 lerna rollup zx node-gyp
+          npm i --no-audit -g c8 lerna rollup tsx zx node-gyp
           npm i
         env:
           CI: true
