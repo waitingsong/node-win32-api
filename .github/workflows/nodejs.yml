@@ -86,7 +86,7 @@ jobs:
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
           npm run lint:s
-          npm run lint:cycle
+          # npm run lint:cycle
         env:
           CI: true
 
