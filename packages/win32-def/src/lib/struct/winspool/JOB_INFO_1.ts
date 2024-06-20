@@ -3,7 +3,8 @@ import * as T from '##/lib/common.types.js'
 import { genStruct } from '##/lib/struct.helper.js'
 import type { StructFactoryResult } from '##/lib/types.js'
 
-import { type SYSTEMTIME_Type, SYSTEMTIME_Factory } from '../struct.index.js'
+import { SYSTEMTIME_Factory, type SYSTEMTIME_Type } from '../minwinbase/SYSTEMTIME.js'
+
 
 
 const key = 'JOB_INFO_1'
