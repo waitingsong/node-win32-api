@@ -27,7 +27,7 @@ const init = {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-WINDOWINFO
  */
 export function WINDOWINFO_Factory(): StructFactoryResult<WINDOWINFO_Type> {
-  return genStruct<WINDOWINFO_Type>(init, key, ptr)
+  return genStruct<WINDOWINFO_Type>(init, key, ptr, ['cbSize'])
 }
 
 /**
