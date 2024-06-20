@@ -2,7 +2,7 @@ import assert from 'node:assert'
 
 import koffi from 'koffi'
 
-import { LoadOptions, IKoffiLib, LibFuncs } from '../types.js'
+import type { LoadOptions, IKoffiLib, LibFuncs } from '../types.js'
 
 import { bindMethodsFromFuncDefList, createStructFromFuncDefList, gen_api_opts, parse_settings } from './loader.helper.js'
 
@@ -62,3 +62,4 @@ function setLibToCache(dll: string, lib: IKoffiLib): void {
 function removeLibFromCache(dll: string): void {
   cacheLibMap.delete(dll)
 }
+
