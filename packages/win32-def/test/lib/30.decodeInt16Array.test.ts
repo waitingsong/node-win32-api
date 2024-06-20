@@ -21,29 +21,33 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe('decodeInt16Array()', () => {
     it('normal', async () => {
-      const { size, payload } = DISPLAY_DEVICEW_Factory()
-      payload.cb = size
-
-      const lib = load<Win32Fns>(options)
-
       const child = spawn('calc.exe')
       await sleep(1500)
 
-      const res = await lib.EnumDisplayDevicesWAsync(null, 0, payload, 1)
+      try {
+        const lib = load<Win32Fns>(options)
+        const { size, payload } = DISPLAY_DEVICEW_Factory()
+        payload.cb = size
 
-      const DeviceID = decodeInt16Array(payload.DeviceID)
-      const DeviceKey = decodeInt16Array(payload.DeviceKey)
-      const DeviceName = decodeInt16Array(payload.DeviceName)
-      const DeviceString = decodeInt16Array(payload.DeviceString)
+        const res = await lib.EnumDisplayDevicesWAsync(null, 0, payload, 1)
 
-      console.info({ res, DeviceID, DeviceKey, DeviceName, DeviceString })
+        const DeviceID = decodeInt16Array(payload.DeviceID)
+        const DeviceKey = decodeInt16Array(payload.DeviceKey)
+        const DeviceName = decodeInt16Array(payload.DeviceName)
+        const DeviceString = decodeInt16Array(payload.DeviceString)
 
-      assert(DeviceID.startsWith('PCI\\VEN_') || DeviceID.includes('VMBUS') || DeviceID === '', DeviceID)
-      assert(typeof DeviceKey === 'string', DeviceKey)
-      assert(DeviceName === '\\\\.\\DISPLAY1', DeviceName)
-      assert(DeviceString.length > 0)
-      const flag = ['Microsoft Hyper-V', 'Intel', 'AMD', 'Radeon'].some(val => DeviceString.includes(val))
-      assert(flag, DeviceString)
+        console.info({ res, DeviceID, DeviceKey, DeviceName, DeviceString })
+
+        assert(DeviceID.startsWith('PCI\\VEN_') || DeviceID.includes('VMBUS') || DeviceID === '', DeviceID)
+        assert(typeof DeviceKey === 'string', DeviceKey)
+        assert(DeviceName === '\\\\.\\DISPLAY1', DeviceName)
+        assert(DeviceString.length > 0)
+        const flag = ['Microsoft Hyper-V', 'Intel', 'AMD', 'Radeon'].some(val => DeviceString.includes(val))
+        assert(flag, DeviceString)
+      }
+      finally {
+        child.kill() // not work on Windows?
+      }
     })
   })
 })
