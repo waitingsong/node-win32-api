@@ -7,7 +7,7 @@ import { assertStructUnion } from '#@/helper.js'
 const name = 'SYSTEMTIME'
 const pointer = LPSYSTEMTIME
 const factory = SYSTEMTIME_Factory
-const size = 8
+const size = 16
 const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {
