@@ -10,9 +10,12 @@ const fnAsyncName: keyof LibFns = 'FindWindowExWAsync'
 type FnType = LibFns['FindWindowExWAsync']
 
 /**
- * Retrieves a handle to the specified printer or print server or other types of handles in the print subsystem.
- * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/openprinter
- * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/openprinter
+ * Retrieves a handle to a window whose class name and window name match the specified strings.
+ * The function searches child windows, beginning with the one following the specified child window.
+ * This function does not perform a case-sensitive search.
+ *
+ * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-findwindowexw
+ * @link https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-findwindowexw
  */
 export async function FindWindowExW(
   hwndParent: T.HWND,
