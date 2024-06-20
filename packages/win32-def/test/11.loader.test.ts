@@ -12,6 +12,7 @@ import { load } from '##/lib/loader/loader.js'
 import { type Win32Fns, apiDef } from './api.helper.js'
 
 
+// Make sure this suit run as early as possible, for testing Struct not created case !
 
 describe(fileShortPath(import.meta.url), () => {
   const options: LoadOptions<Win32Fns> = {
