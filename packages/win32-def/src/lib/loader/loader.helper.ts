@@ -204,14 +204,22 @@ function retrieveStructFactoryFromParams(params: string[]): Set<StructFactory> {
   return fns
 }
 
+const DefValuesSet = new Set(Object.values(Def))
+
 function retrieveStructTypeStringFromParams(params: string[]): string[] {
   const ret: string[] = []
   // '_Inout_ POINT*' or 'POINT *' or 'POINT*'
   const regex = /\b(\w+)\s?\*$/u
   params.map((val) => {
     const match = val.match(regex)
-    if (match?.[1]) {
-      ret.push(match[1].trim())
+    const key = match?.[1]?.trim()
+    if (key) {
+      // if Def contains key, then skip
+      // @ts-expect-error
+      if (DefValuesSet.has(key)) {
+        return
+      }
+      ret.push(key)
     }
   })
 
