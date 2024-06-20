@@ -46,7 +46,7 @@ describe(fileShortPath(import.meta.url), () => {
         assert(flag, DeviceString)
       }
       finally {
-        // child.kill() // not work on Windows?
+        // child.kill()
       }
     })
   })
