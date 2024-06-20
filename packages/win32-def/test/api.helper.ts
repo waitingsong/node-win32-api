@@ -18,8 +18,12 @@ export interface Win32Fns {
     lpDisplayDevice: DISPLAY_DEVICEW_Type,
     dwFlags: T.DWORD,
   ) => T.BOOL
+
+  // test fake struct
+  ClientToScreen: (hWnd: T.HWND, lpPoint: T.LPPOINT) => T.BOOL
 }
 
+// @ts-expect-error skip ClientToScreen
 export const apiDef: FuncDefList<Win32Fns> = {
   GetCursorPos: [D.BOOL, [`_Out_ ${LPPOINT}`]],
   FindWindowExW: [D.HWND, [D.HWND, D.HWND, D.LPCTSTR, D.LPCTSTR]],
@@ -30,5 +34,6 @@ export const apiDefFake: FuncDefList<Win32Fns> = {
   GetCursorPos: [D.BOOL, [`_Out_ FAKE_${LPPOINT}`]],
   FindWindowExW: [D.HWND, [D.HWND, D.HWND, D.LPCTSTR, D.LPCTSTR]],
   EnumDisplayDevicesW: [D.BOOL, [D.LPCWSTR, D.DWORD, `_Inout_ ${LPDISPLAY_DEVICEW}`, D.DWORD]],
+  ClientToScreen: [D.BOOL, [D.HWND, `_Inout_ FAKE${LPPOINT}`]],
 }
 

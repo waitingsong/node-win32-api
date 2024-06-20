@@ -23,8 +23,7 @@ describe(fileShortPath(import.meta.url), () => {
 
       try {
         const lib = load<Win32Fns>(options)
-        const { size, payload } = DISPLAY_DEVICEW_Factory()
-        payload.cb = size
+        const { payload } = DISPLAY_DEVICEW_Factory()
 
         const res = await lib.EnumDisplayDevicesWAsync(null, 0, payload, 1)
 
