@@ -20,7 +20,7 @@ const init = {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-display_devicew
  */
 export function DISPLAY_DEVICEW_Factory(): StructFactoryResult<DISPLAY_DEVICEW_Type> {
-  return genStruct<DISPLAY_DEVICEW_Type>(init, key, ptr)
+  return genStruct<DISPLAY_DEVICEW_Type>(init, key, ptr, ['cb'])
 }
 
 /**

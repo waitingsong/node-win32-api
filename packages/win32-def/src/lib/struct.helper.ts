@@ -16,18 +16,42 @@ const cacheUnionMap = new Map<string, KoffiTypeResult>()
  * - key s{number} means struct
  * - key u{number} means union
  */
-export function genStruct<T extends object = object>(def: KoffiDefComplexType, name?: string, pointer?: string): StructFactoryResult<T> {
+export function genStruct<T extends object = object>(
+  def: KoffiDefComplexType,
+  name?: string,
+  pointer?: string,
+  sizeColumns?: (keyof T)[],
+): StructFactoryResult<T> {
+
   const struct = genComplexStruct(def, name, pointer) as StructFactoryResult<T> | KoffiTypeResult
-  // @ts-expect-error payload
+  bindPayloadGetter(struct as StructFactoryResult, sizeColumns)
+  return struct as StructFactoryResult<T>
+}
+
+function bindPayloadGetter(struct: StructFactoryResult, sizeColumns: PropertyKey[] | undefined): void {
   if (typeof struct.payload === 'undefined') {
     // payload must be the new one after each call of the struct factory function
     Object.defineProperty(struct, 'payload', {
-      get: () => {
-        return {}
+      get: function (this: StructFactoryResult) {
+        if (! sizeColumns?.length) {
+          return {}
+        }
+
+        const ret = {}
+        sizeColumns.forEach((key) => {
+          if (key) {
+            Object.defineProperty(ret, key, {
+              enumerable: true,
+              writable: false,
+              value: this.size,
+            })
+          }
+        })
+        return ret
       },
     })
   }
-  return struct as StructFactoryResult<T>
+
 }
 
 /**
