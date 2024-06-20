@@ -13,6 +13,6 @@ export const settingsDefault: LoadSettings = {
   singleton: true,
   _WIN64: config._WIN64,
   convention: CallingConvention.Cdecl,
-  autoGc: true,
+  autoCreateStruct: true,
 }
 

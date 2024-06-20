@@ -44,7 +44,9 @@ export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
     setLibToCache(libName, lib)
   }
 
-  createStructFromFuncDefList(ps)
+  if (st.autoCreateStruct) {
+    createStructFromFuncDefList(ps)
+  }
 
   for (const [name, params] of Object.entries(ps)) {
     const func = registerFunction({

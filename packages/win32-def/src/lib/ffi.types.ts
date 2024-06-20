@@ -18,9 +18,11 @@ export interface LoadSettings {
  */
   convention?: CallingConvention
   /**
+   * Create struct automatically from parameters of function definition list
+   * @description param like 'POINT*' or 'POINT *', POINT_Factory() will be called
    * @default true
    */
-  autoGc?: boolean // for DLL.load(), do garbage collection(DLL.unload()) when unload
+  autoCreateStruct?: boolean // for load()
 }
 
 /**
