@@ -13,25 +13,65 @@ export const apiDef: FuncDefList<Win32Fns> = {
 
   EndPagePrinter: [D.BOOL, [D.HANDLE]],
 
-  EnumPrintersW: [D.BOOL, [D.DWORD, D.LPTSTR, D.DWORD, D.LPBYTE, D.DWORD, D.LPDWORD, D.LPDWORD]],
+  /**
+   * Enumerates available printers, print servers, domains, or print providers.
+   * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/enumprinters
+   */
+  EnumPrintersW: [D.BOOL, [D.DWORD, D.LPTSTR, D.DWORD, `_Out_ ${D.LPBYTE}`, D.DWORD, D.LPDWORD, D.LPDWORD]],
 
-  EnumPrintProcessorsW: [D.BOOL, [D.LPTSTR, D.LPTSTR, D.DWORD, D.LPBYTE, D.DWORD, D.LPDWORD, D.LPDWORD]],
+  /**
+   * Enumerates the print processors installed on the specified server.
+   * @docs https://learn.microsoft.com/en-us/windows/win32/printdocs/enumprintprocessors
+   */
+  EnumPrintProcessorsW: [D.BOOL, [D.LPTSTR, D.LPTSTR, D.DWORD, `_Out_ ${D.LPBYTE}`, D.DWORD, `_Out_ ${D.LPDWORD}`, `_Out_ ${D.LPDWORD}`]],
 
-  EnumPrintProcessorDatatypesW: [D.BOOL, [D.LPTSTR, D.LPTSTR, D.DWORD, D.LPBYTE, D.DWORD, D.LPDWORD, D.LPDWORD]],
+  /**
+   * Enumerates the data types that a specified print processor supports.
+   * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/enumprintprocessordatatypes
+   */
+  EnumPrintProcessorDatatypesW: [D.BOOL, [D.LPTSTR, D.LPTSTR, D.DWORD, `_Out_ ${D.LPBYTE}`, D.DWORD, `_Out_ ${D.LPDWORD}`, `_Out_ ${D.LPDWORD}`]],
 
-  GetDefaultPrinterW: [D.BOOL, [D.LPTSTR, D.LPDWORD]],
+  /** https://learn.microsoft.com/en-us/windows/win32/printdocs/getdefaultprinter */
+  GetDefaultPrinterW: [D.BOOL, [D.LPTSTR, `_Inout_ ${D.LPDWORD}`]],
 
-  GetJobW: [D.BOOL, [D.HANDLE, D.DWORD, D.DWORD, D.LPBYTE, D.DWORD, D.LPDWORD]],
+  /**
+   * Retrieves information about a specified print job
+   * https://learn.microsoft.com/en-us/windows/win32/printdocs/getjob
+   * @param pJob JOB_INFO_1 or a JOB_INFO_2
+   */
+  GetJobW: [D.BOOL, [D.HANDLE, D.DWORD, D.DWORD, `_Out_ ${D.LPBYTE}`, D.DWORD, `_Out_ ${D.LPDWORD}`]],
 
-  GetPrinterW: [D.BOOL, [D.HANDLE, D.DWORD, D.LPBYTE, D.DWORD, D.LPDWORD]],
+  /**
+   * Retrieves information about a specified printer.
+   * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/getprinter
+   * @link https://learn.microsoft.com/zh-cn/windows/win32/printdocs/getprinter
+   */
+  GetPrinterW: [D.BOOL, [D.HANDLE, D.DWORD, `_Out_ ${D.LPBYTE}`, D.DWORD, `_Out_ ${D.LPDWORD}`]],
 
-  OpenPrinterW: [D.BOOL, [D.LPTSTR, D.LPHANDLE, S.PPRINTER_DEFAULTS]],
+  /**
+   * Retrieves a handle to the specified printer or print server or other types of handles in the print subsystem.
+   * @docs https://learn.microsoft.com/en-us/windows/win32/printdocs/openprinter
+   * @docs https://learn.microsoft.com/zh-cn/windows/win32/printdocs/openprinter
+   */
+  OpenPrinterW: [D.BOOL, [D.LPTSTR, `_Out_ ${D.LPHANDLE}`, S.PPRINTER_DEFAULTS]],
 
-  StartDocPrinterW: [D.DWORD, [D.HANDLE, D.DWORD, D.LPBYTE]],
+  /**
+   * Notifies the print spooler that a document is to be spooled for printing.
+   * @param pDocInfo A pointer to a DOC_INFO_1 structure that describes the document to print.
+   * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/startdocprinter
+   */
+  StartDocPrinterW: [D.DWORD, [D.HANDLE, D.DWORD, S.LPDOC_INFO_1]],
 
+  /**
+   * Notifies the spooler that a page is about to be printed on the specified printer.
+   * @docs https://learn.microsoft.com/zh-cn/windows/win32/printdocs/startpageprinter
+   */
   StartPagePrinter: [D.BOOL, [D.HANDLE]],
 
-  WritePrinter: [D.BOOL, [D.HANDLE, D.LPVOID, D.DWORD, D.LPDWORD]],
+  /**
+   * @link https://learn.microsoft.com/zh-cn/windows/win32/printdocs/writeprinter
+   */
+  WritePrinter: [D.BOOL, [D.HANDLE, D.LPVOID, D.DWORD, `_Out_ ${D.LPDWORD}`]],
 
 }
 

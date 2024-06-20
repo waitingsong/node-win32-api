@@ -18,7 +18,7 @@ export interface Win32Fns {
 
   /**
    * Enumerates available printers, print servers, domains, or print providers.
-   * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/enumprinters
+   * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/enumprinters
    */
   EnumPrintersW: (
     Flags: T.DWORD,
@@ -32,7 +32,7 @@ export interface Win32Fns {
 
   /**
    * Enumerates the print processors installed on the specified server.
-   * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/enumprintprocessors
+   * @docs https://learn.microsoft.com/en-us/windows/win32/printdocs/enumprintprocessors
    */
   EnumPrintProcessorsW: (
     pName: T.LPTSTR,
@@ -46,7 +46,7 @@ export interface Win32Fns {
 
   /**
    * Enumerates the data types that a specified print processor supports.
-   * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/enumprintprocessordatatypes
+   * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/enumprintprocessordatatypes
    */
   EnumPrintProcessorDatatypesW: (
     pName: T.LPTSTR,
@@ -58,9 +58,7 @@ export interface Win32Fns {
     pcReturned: T.LPDWORD,
   ) => T.BOOL
 
-  /**
-   * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/getdefaultprinter
-   */
+  /** https://learn.microsoft.com/en-us/windows/win32/printdocs/getdefaultprinter */
   GetDefaultPrinterW: (
     pszBuffer: T.LPTSTR,
     pcchBuffer: T.LPDWORD,
@@ -68,26 +66,29 @@ export interface Win32Fns {
 
   /**
    * Retrieves information about a specified print job
+   * @param pJob JOB_INFO_1 or a JOB_INFO_2
    * @docs https://learn.microsoft.com/en-us/windows/win32/printdocs/getjob
    */
   GetJobW: (
     Handler: T.HANDLE,
     JobId: T.DWORD,
     Level: T.DWORD,
-    pJob: T.LPBYTE,
+    // @TODO: JOB_INFO_2
+    pJob: S.JOB_INFO_1_Type | T.LPBYTE,
     cbBuf: T.DWORD,
     pcbNeeded: T.LPDWORD,
   ) => T.BOOL
 
   /**
    * Retrieves information about a specified printer.
-   * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/getprinter
-   * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/getprinter
+   * @docs https://learn.microsoft.com/en-us/windows/win32/printdocs/getprinter
+   * @docs https://learn.microsoft.com/zh-cn/windows/win32/printdocs/getprinter
    */
   GetPrinterW: (
     hPrinter: T.HANDLE,
     Level: T.DWORD,
-    pPrinter: T.LPBYTE,
+    // @TODO 1-9
+    pPrinter: T.LPBYTE | S.PRINTER_INFO_X_Type<1 | 4>,
     cbBuf: T.DWORD,
     pcbNeeded: T.LPDWORD,
   ) => T.BOOL
@@ -95,11 +96,11 @@ export interface Win32Fns {
 
   /**
    * Retrieves a handle to the specified printer or print server or other types of handles in the print subsystem.
-   * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/openprinter
-   * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/openprinter
+   * @link https://leran.microsoft.com/en-us/windows/win32/printdocs/openprinter
+   * @link https://leran.microsoft.com/zh-cn/windows/win32/printdocs/openprinter
    */
   OpenPrinterW: (
-    pPrinterName: T.LPTSTR,
+    pPrinterName: T.LPTSTR | null,
     phPrinter: T.LPHANDLE,
     pDefault: S.PRINTER_DEFAULTS_Type,
   ) => T.BOOL
@@ -107,23 +108,23 @@ export interface Win32Fns {
 
   /**
    * Notifies the print spooler that a document is to be spooled for printing.
-   * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/startdocprinter
+   * @param pDocInfo A pointer to a DOC_INFO_1 structure that describes the document to print.
+   * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/startdocprinter
    */
   StartDocPrinterW: (
     hPrinter: T.HANDLE,
     Level: T.DWORD,
-    pDocInfo: T.LPBYTE,
+    pDocInfo: S.DOC_INFO_1_Type,
   ) => T.DWORD
 
   /**
    * Notifies the spooler that a page is about to be printed on the specified printer.
-   * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/startpageprinter
+   * @link https://learn.microsoft.com/zh-cn/windows/win32/printdocs/startpageprinter
    */
   StartPagePrinter: (hPrinter: T.HANDLE) => T.BOOL
 
   /**
-   *
-   * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/writeprinter
+   * @link https://learn.microsoft.com/zh-cn/windows/win32/printdocs/writeprinter
    */
   WritePrinter: (
     hPrinter: T.HANDLE,
@@ -131,6 +132,5 @@ export interface Win32Fns {
     cbBuf: T.DWORD,
     pcWritten: T.LPDWORD,
   ) => T.BOOL
-
 
 }
