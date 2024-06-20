@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node: ['lts/*']
+        node: ['lts/*', 'current']
         os: [ubuntu-latest]
 
     steps:
