@@ -319,6 +319,7 @@
     "RWIN",
     "SCANCODE",
     "SSIZE",
+    "SYSTEMTIME",
     "TBYTE",
     "TCHAR",
     "ulonglong",
