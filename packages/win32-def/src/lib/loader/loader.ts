@@ -7,15 +7,6 @@ import { LoadOptions, IKoffiLib, LibFuncs } from '../types.js'
 import { bindMethodsFromFuncDefList, createStructFromFuncDefList, gen_api_opts, parse_settings } from './loader.helper.js'
 
 
-const cacheLibMap = new Map<string, IKoffiLib>()
-
-function getLibFromCache(dll: string): IKoffiLib | undefined {
-  return cacheLibMap.get(dll)
-}
-function setLibToCache(dll: string, lib: IKoffiLib): void {
-  cacheLibMap.set(dll, lib)
-}
-
 export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
   const { dll, dllFuncs, usedFuncNames, settings } = options
 
@@ -36,8 +27,8 @@ export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
     Object.defineProperty(inst, 'unload', {
       enumerable: false,
       value: () => {
+        removeLibFromCache(libName)
         lib?.unload()
-        cacheLibMap.delete(libName)
       },
     })
     setLibToCache(libName, lib)
@@ -57,3 +48,17 @@ export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
   return inst
 }
 
+
+const cacheLibMap = new Map<string, IKoffiLib>()
+
+function getLibFromCache(dll: string): IKoffiLib | undefined {
+  return cacheLibMap.get(dll)
+}
+
+function setLibToCache(dll: string, lib: IKoffiLib): void {
+  cacheLibMap.set(dll, lib)
+}
+
+function removeLibFromCache(dll: string): void {
+  cacheLibMap.delete(dll)
+}
