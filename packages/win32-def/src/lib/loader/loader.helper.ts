@@ -1,17 +1,19 @@
 import assert from 'node:assert'
 // import { copyFileSync, statSync } from 'node:fs'
 
+import * as Structs from '##/index.struct.js'
+
 import { settingsDefault } from '../config.js'
 import { Def } from '../def.enum.js'
 import {
-  DllFuncs,
+  FuncDefList,
   DllFuncsType,
-  FnName,
-  FnParams,
+  FnDefName,
+  FnDefParams,
   LoadSettings,
   CallingConvention,
 } from '../ffi.types.js'
-import { KoffiFunction, RegisterFunctionOpts } from '../types.js'
+import { KoffiFunction, RegisterFunctionOpts, StructFactory } from '../types.js'
 
 
 export const isArch64 = process.arch.includes('64')
@@ -81,11 +83,11 @@ function setRegisterFunctionToCache(options: RegisterFunctionOpts, func: KoffiFu
  * Skip assignment if property undefined
  */
 export function gen_api_opts<T = DllFuncsType>(
-  dllFuncs: DllFuncs<T>,
-  fns?: FnName[],
-): DllFuncs<T> {
+  dllFuncs: FuncDefList<T>,
+  fns?: FnDefName[],
+): FuncDefList<T> {
 
-  const ret = {} as DllFuncs<T>
+  const ret = {} as FuncDefList<T>
 
   if (fns && Array.isArray(fns) && fns.length) {
     for (const fn of fns) {
@@ -93,7 +95,7 @@ export function gen_api_opts<T = DllFuncsType>(
         continue
       }
       // @ts-ignore
-      const ps = dllFuncs[fn] as FnParams | undefined
+      const ps = dllFuncs[fn] as FnDefParams | undefined
       assert(ps, `dellFuncs has no property method name "${fn}"`)
 
       Object.defineProperty(ret, fn, {
@@ -107,7 +109,7 @@ export function gen_api_opts<T = DllFuncsType>(
   else {
     for (const fn of Object.keys(dllFuncs)) {
       // @ts-ignore
-      const ps = dllFuncs[fn] as FnParams | undefined
+      const ps = dllFuncs[fn] as FnDefParams | undefined
       assert(ps, `dellFuncs has no property method name "${fn}"`)
 
       Object.defineProperty(ret, fn, {
@@ -131,6 +133,59 @@ export function parse_settings(settings?: LoadSettings): LoadSettings {
   return st
 }
 
+export function createStructFromFuncDefList(input: FuncDefList): void {
+  for (const [name, params] of Object.entries(input)) {
+    void name
+    const structArr = retrieveStructFactoryFromParams(params[1] as string[])
+    void structArr
+  }
+
+}
+
+const structFactoryMap = new Map<string, StructFactory>()
+
+function retrieveStructFactoryFromParams(params: string[]): Set<StructFactory> {
+  const fns = new Set<StructFactory>()
+
+  const structNames = retrieveStructTypeStringFromParams(params)
+  if (! structNames.length) {
+    return fns
+  }
+
+  structNames.forEach((key) => {
+    const factoryName = `${key}_Factory`
+    const fn = structFactoryMap.get(factoryName)
+    fn && fns.add(fn)
+  })
+
+  return fns
+}
+
+function retrieveStructTypeStringFromParams(params: string[]): string[] {
+  if (! structFactoryMap.size) {
+    Object.entries(Structs).forEach(([key, val]) => {
+      if (typeof val === 'function') {
+        structFactoryMap.set(key, val)
+      }
+    })
+  }
+
+  if (! structFactoryMap.size) {
+    return []
+  }
+
+  const ret: string[] = []
+  // '_Inout_ POINT*' or 'POINT *' or 'POINT*'
+  const regex = /\b(\w+)\s?\*$/u
+  params.map((val) => {
+    const match = val.match(regex)
+    if (match?.[1]) {
+      ret.push(match[1].trim())
+    }
+  })
+
+  return ret
+}
 /*
 export function prepareDllFile(file: string): string {
 

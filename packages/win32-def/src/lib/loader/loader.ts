@@ -5,7 +5,7 @@ import koffi from 'koffi'
 import { CallingConvention } from '../ffi.types.js'
 import { LoadOptions, KoffiFunction, IKoffiLib, LibFuncs } from '../types.js'
 
-import { gen_api_opts, parse_settings, registerFunction } from './loader.helper.js'
+import { createStructFromFuncDefList, gen_api_opts, parse_settings, registerFunction } from './loader.helper.js'
 
 
 const cacheLibMap = new Map<string, IKoffiLib>()
@@ -44,6 +44,7 @@ export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
     setLibToCache(libName, lib)
   }
 
+  createStructFromFuncDefList(ps)
 
   for (const [name, params] of Object.entries(ps)) {
     const func = registerFunction({
