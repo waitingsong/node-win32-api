@@ -88,7 +88,7 @@ export type HRSRC = HANDLE
 export type HSZ = HANDLE
 export type HWINEVENTHOOK = HANDLE
 export type HWINSTA = HANDLE
-export type HWND = HANDLE // for use of hWnd.ref(), deref() etc
+export type HWND = HANDLE
 /** A 32-bit signed integer */
 export type INT = number
 export type INT_PTR = PTR_Addr
