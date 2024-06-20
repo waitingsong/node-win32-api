@@ -31,7 +31,7 @@ export const apiDef: FuncDefList<Win32Fns> = {
 }
 
 export const apiDefFake: FuncDefList<Win32Fns> = {
-  GetCursorPos: [D.BOOL, [`_Out_ FAKE_${LPPOINT}`]],
+  GetCursorPos: [D.BOOL, [`_Out_ ${LPPOINT}`]],
   FindWindowExW: [D.HWND, [D.HWND, D.HWND, D.LPCTSTR, D.LPCTSTR]],
   EnumDisplayDevicesW: [D.BOOL, [D.LPCWSTR, D.DWORD, `_Inout_ ${LPDISPLAY_DEVICEW}`, D.DWORD]],
   ClientToScreen: [D.BOOL, [D.HWND, `_Inout_ FAKE${LPPOINT}`]],
