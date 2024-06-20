@@ -219,7 +219,7 @@ export type PRINTER_INFO_LEVEL = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 /**
  * @link https://learn.microsoft.com/zh-cn/windows/win32/printdocs/enumprinters
  */
-export type EnumPrinters_Level = 1 | 4
+export type EnumPrinters_Level = 1 | 4 | 5
 // export type EnumPrinters_Level = 1 | 2 | 4 | 5
 
 
