@@ -2,7 +2,7 @@ import assert from 'node:assert'
 
 import koffi from 'koffi'
 
-import { CallingConvention } from '../ffi.types.js'
+import { CallingConvention, FuncDefList, LoadSettings } from '../ffi.types.js'
 import { LoadOptions, KoffiFunction, IKoffiLib, LibFuncs } from '../types.js'
 
 import { createStructFromFuncDefList, gen_api_opts, parse_settings, registerFunction } from './loader.helper.js'
@@ -25,8 +25,8 @@ export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
   //   : dll
   const libName = dll
 
-  const st = parse_settings(settings)
-  const ps = gen_api_opts<T>(dllFuncs, usedFuncNames)
+  const config = parse_settings(settings)
+  const funcDefList = gen_api_opts<T>(dllFuncs, usedFuncNames)
 
   assert(dllFuncs)
   const inst = { } as LibFuncs<T>
@@ -44,23 +44,41 @@ export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
     setLibToCache(libName, lib)
   }
 
-  if (st.autoCreateStruct) {
-    createStructFromFuncDefList(ps)
+  if (config.autoCreateStruct) {
+    createStructFromFuncDefList(funcDefList)
   }
 
-  for (const [name, params] of Object.entries(ps)) {
+  bindMethodsFromFuncDefList({
+    lib,
+    inst,
+    config: config,
+    funcDefList,
+  })
+
+  return inst
+}
+
+export interface BindOptions<T extends object> {
+  lib: IKoffiLib
+  inst: LibFuncs<T>
+  config: LoadSettings
+  funcDefList: FuncDefList<T>
+}
+
+export function bindMethodsFromFuncDefList(options: BindOptions<object>): void {
+  const { lib, inst, config, funcDefList } = options
+
+  for (const [name, params] of Object.entries(funcDefList)) {
     const func = registerFunction({
       lib,
       name,
       // @ts-expect-error ignore unknown
       params,
-      convention: st.convention ?? CallingConvention.Cdecl,
+      convention: config.convention ?? CallingConvention.Cdecl,
     })
 
     bindMethods(inst, name, func)
   }
-
-  return inst
 }
 
 

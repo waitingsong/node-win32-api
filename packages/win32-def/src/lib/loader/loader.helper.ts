@@ -34,6 +34,8 @@ export const defGroupPointer: Def[] = [
 
 const regCacheMap = new WeakMap<RegisterFunctionOpts['lib'], Map<string, KoffiFunction>>()
 
+// #region registerFunction
+
 /**
  * @note do not call it directly, use `load()` instead!
  *  Case of making sure the library is loaded only once
@@ -75,6 +77,7 @@ function setRegisterFunctionToCache(options: RegisterFunctionOpts, func: KoffiFu
   cache.set(name, func)
 }
 
+// #region gen_api_opts
 
 /**
  * Generate function definitions via converting macro windows data type (like PVOID) to the expected value.
@@ -131,6 +134,7 @@ export function parse_settings(settings?: LoadSettings): LoadSettings {
   return st
 }
 
+// #region createStructFromFuncDefList
 
 export function createStructFromFuncDefList(input: FuncDefList): void {
   const structFactories = prepareStructFromFuncDefList(input)
@@ -184,6 +188,8 @@ function retrieveStructTypeStringFromParams(params: string[]): string[] {
 
   return ret
 }
+
+
 /*
 export function prepareDllFile(file: string): string {
 
