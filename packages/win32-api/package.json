@@ -48,18 +48,14 @@
   },
   "license": "MIT",
   "dependencies": {
-    "win32-def": "^21.0.2",
-    "koffi": "^2.8.9"
+    "win32-def": "^21.0.2"
   },
   "devDependencies": {
     "@types/ffi-napi": "*",
     "@types/ref-napi": "^3.0.6",
     "@types/ref-struct-di": "^1.1.8",
     "@types/ref-union-di": "^1.0.5",
-    "@waiting/shared-core": "^20.11.4",
-    "ref-napi": "^3.0.3",
-    "ref-struct-di": "^1.1.1",
-    "ref-union-di": "^1.0.1"
+    "@waiting/shared-core": "^20.11.4"
   },
   "engines": {
     "node": ">=18.12.0"
