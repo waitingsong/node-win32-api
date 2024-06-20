@@ -28,8 +28,8 @@ export interface RegisterFunctionOpts {
 export interface LoadOptions<T = unknown> {
   dll: string
   dllFuncs: FuncDefList<T>
-  usedFuncNames?: FnDefName[]
-  settings?: LoadSettings
+  usedFuncNames?: FnDefName[] | undefined
+  settings?: LoadSettings | undefined
 }
 
 
