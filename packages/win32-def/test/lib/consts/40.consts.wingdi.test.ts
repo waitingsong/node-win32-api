@@ -3,15 +3,15 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { VirtualKey } from '../../src/index.consts.js'
+import * as consts from '##/index.consts.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
 
   describe('wingdi.h should work', () => {
     it('normal', () => {
-      assert(Object.keys(VirtualKey).length > 0)
-      assert(VirtualKey.VK_LBUTTON === 0x01)
+      assert(Object.keys(consts).length > 0)
+      assert(consts.DISPLAYCONFIG_ROTATION.DISPLAYCONFIG_ROTATION_IDENTITY === 1)
     })
   })
 

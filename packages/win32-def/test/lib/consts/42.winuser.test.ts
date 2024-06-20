@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import * as consts from '../../src/index.consts.js'
+import * as consts from '##/index.consts.js'
 
 
 describe(fileShortPath(import.meta.url), () => {
