@@ -1,6 +1,6 @@
 import * as D from '../common.def.js'
 import * as T from '../common.types.js'
-import { genStruct } from '../helper2.js'
+import { genStruct } from '../struct.helper.js'
 import type { StructFactoryResult } from '../types.js'
 
 import { RID_DEVICE_INFO_HID_Factory, type RID_DEVICE_INFO_HID_Type } from './RID_DEVICE_INFO_HID.js'
