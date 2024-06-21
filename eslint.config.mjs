@@ -33,7 +33,7 @@ const languageOptions = {
 
 export default eslint.config(
   {
-    files: ['packages/*/src/**/*.ts', 'src/**/*.ts'],
+    files: ['packages/*/src/**/*.ts', 'src/**/*.ts', 'packages/*/demo/**/*.mts' , 'packages/*/demo/**/*.ts'],
     extends: [
       ...srcConfig,
     ],

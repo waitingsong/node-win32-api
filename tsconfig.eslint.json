@@ -4,12 +4,14 @@
     "noEmit": true
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.mts",
-    "test/**/*.ts",
-    "test/**/*.mts",
-    "test_browser/**/*.ts",
-    "packages/*/src/**/*.ts",
-    "packages/*/test/**/*.ts"
+    "${configDir}/demo/**/*.mts",
+    "${configDir}/demo/**/*.ts",
+    "${configDir}/src/**/*.ts",
+    "${configDir}/src/**/*.mts",
+    "${configDir}/test/**/*.ts",
+    "${configDir}/test/**/*.mts",
+    "${configDir}/test_browser/**/*.ts",
+    "${configDir}/packages/*/src/**/*.ts",
+    "${configDir}/packages/*/test/**/*.ts"
   ]
 }

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "${configDir}",
     "declaration": true,
     "declarationMap": true,
     "emitDecoratorMetadata": true,
@@ -27,6 +27,7 @@
     "preserveConstEnums": true,
     "pretty": true,
     "resolveJsonModule": true,
+    "rootDir": "${configDir}/src",
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
@@ -37,14 +38,14 @@
     "types" : ["mocha", "node"]
   },
   "include": [
-    "src/**/*.ts"
+    "${configDir}/src/**/*.ts"
   ],
   "exclude": [
-    "asset",
-    "app/public",
-    "app/views",
-    "dist",
-    "fixtures",
+    "${configDir}/asset",
+    "${configDir}/app/public",
+    "${configDir}/app/views",
+    "${configDir}/dist",
+    "${configDir}/fixtures",
     "node_modules*",
     "**/*.d.ts",
     "**/*.spec.ts"
