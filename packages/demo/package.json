@@ -63,12 +63,13 @@
     "clean:dist": "npm run clean:cache && rm -rf dist/*",
     "clean:lock": "rm -f package-lock.json",
     "clean:log": "rm -rf ./logs ./run",
-    "cov": "c8 --all npm run test -- --parallel=false",
+    "cov": "c8 --all npm run test --",
     "lint": "eslint --fix --cache src test demo",
     "lint:nofix": "eslint --cache src test",
     "pretest": "npm run build:unit",
     "rp": "tsx bin-hashbang.js",
-    "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --jobs=4",
+    "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha",
+    "deb8g": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
     "tsc": "tsc -p tsconfig.json"
   }
 }
