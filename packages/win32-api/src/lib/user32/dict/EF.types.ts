@@ -7,6 +7,9 @@ import { User32_D } from './CD.types.js'
 
 export class User32_E extends User32_D {
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumchildwindows */
+  EnumChildWindows: (hWndParent: T.HWND, lpEnumFunc: T.WNDENUMPROC, lParam: T.LPARAM) => T.BOOL
+
   /** https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-enumdisplaydevicesw */
   EnumDisplayDevicesW: (
     lpDevice: T.LPCWSTR | null,
@@ -18,8 +21,10 @@ export class User32_E extends User32_D {
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumthreadwindows */
   EnumThreadWindows: (dwThreadId: T.DWORD, lpfn: T.WNDENUMPROC, lParam: T.LPARAM) => T.BOOL
 
-  // EnumWindows: EnumWindows
-  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumwindows */
+  /**
+   * EnumWindows: EnumWindows
+   * https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumwindows
+   */
   EnumWindows: (lpEnumFunc: T.WNDENUMPROC, lParam: T.LPARAM) => T.BOOL
 
 }

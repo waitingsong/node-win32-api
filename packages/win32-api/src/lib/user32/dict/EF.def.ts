@@ -6,6 +6,9 @@ import { DefUser32_D } from './CD.def.js'
 
 export class DefUser32_E extends DefUser32_D {
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumchildwindows */
+  static EnumChildWindows = [D.BOOL, [D.HWND, D.WNDENUMPROC, D.LPARAM]]
+
   /** https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-enumdisplaydevicesw */
   static EnumDisplayDevicesW = [D.BOOL, [D.LPCWSTR, D.DWORD, `_Inout_ ${S.LPDISPLAY_DEVICEW}`, D.DWORD]]
 
