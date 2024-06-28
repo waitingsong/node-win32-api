@@ -4,12 +4,10 @@ import { DllNames } from '##/lib/types.js'
 
 import { DefUser32 } from './api.def.js'
 import { User32 } from './api.types.js'
-// for user32.constants
-import * as constants from './constants.js'
 
 
 export {
-  DefUser32, User32, constants,
+  DefUser32, User32,
 }
 
 export const dllName = DllNames.user32
