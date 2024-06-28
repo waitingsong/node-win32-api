@@ -1,21 +1,21 @@
-import { type LibFuncs, type LoadOptions, load as _load } from 'win32-def'
+import { type FLib, type LoadOptions, load as _load } from 'win32-def'
 
-import { DllNames } from '../types.js'
+import { DllNames } from '##/lib/types.js'
 
-import { apiDef } from './api.def.js'
-import { Win32Fns } from './api.types.js'
+import { DefComctl32 } from './api.def.js'
+import { Comctl32 } from './api.types.js'
 
 
-export { apiDef }
-export { Win32Fns }
+export {
+  DefComctl32, Comctl32,
+}
 
 export const dllName = DllNames.comctl32
-export type LibFns = LibFuncs<Win32Fns>
+export type LibComctl32 = FLib<Comctl32>
 
-export const load = (fns?: LoadOptions['usedFuncNames'], settings?: LoadOptions['settings']) => _load<Win32Fns>({
+export const load = (fns?: LoadOptions['usedFuncNames']) => _load<Comctl32>({
   dll: dllName + '.dll',
-  dllFuncs: apiDef,
+  dllFuncs: DefComctl32,
   usedFuncNames: fns,
-  settings,
 })
 

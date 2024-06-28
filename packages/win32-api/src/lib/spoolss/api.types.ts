@@ -1,24 +1,19 @@
-import * as T from 'win32-def'
+/* c8 ignore start */
+import * as T from 'win32-def/types'
+
+import { DefSpoolss } from './api.def.js'
 
 
-export interface Win32Fns {
+export class Spoolss implements T.LibDef2Type<typeof DefSpoolss> {
 
-  /**
-   * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/enddocprinter
-   */
+  /** https://learn.microsoft.com/en-us/windows/win32/printdocs/enddocprinter */
   EndDocPrinter: (hPrinter: T.HANDLE) => T.BOOL
 
   EndPagePrinter: (hPrinter: T.HANDLE) => T.BOOL
 
-  /**
-   *
-   * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/writeprinter
-   */
-  WritePrinter: (
-    hPrinter: T.HANDLE,
-    pBuf: T.LPVOID,
-    cbBuf: T.DWORD,
-    pcWritten: T.LPDWORD,
-  ) => T.BOOL
+  /** https://learn.microsoft.com/zh-cn/windows/win32/printdocs/writeprinter */
+  WritePrinter: (hPrinter: T.HANDLE, pBuf: T.LPVOID, cbBuf: T.DWORD, pcWritten: T.LPDWORD,) => T.BOOL
 
 }
+
+/* c8 ignore stop */

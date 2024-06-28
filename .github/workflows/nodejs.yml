@@ -64,7 +64,7 @@ jobs:
         run: |
           # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
-          npm i --no-audit -g autocannon c8 lerna madge rollup tsx zx
+          npm i --no-audit -g c8 lerna madge rollup tsx zx
           npm i
         env:
           CI: true

@@ -7,3 +7,5 @@ export * from './winuser-input.enum.js'
 export * from './winuser-keybdinput.enum.js'
 export * from './winuser-mouseinput.enum.js'
 
+export * from './winspool/PRINTER_STATUS.enum.js'
+

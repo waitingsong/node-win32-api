@@ -1,59 +1,102 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { ToAsyncFunction } from '@waiting/shared-types'
 import type { IKoffiLib, IKoffiCType, TypeSpecWithAlignment } from 'koffi'
 
-import type { CallingConvention, FnDefName, FnDefParams, FuncDefList, LoadSettings } from './ffi.types.js'
+import type {
+  CallingConvention,
+  DllFuncsType,
+  FnDefName,
+  FnDefFullParams,
+  FuncDefList,
+} from './ffi.types.js'
 
 
 export type { KoffiFunction } from 'koffi'
 export type { IKoffiLib }
 
-export interface RegisterFunctionOpts {
-  /**
-   * DLL library,
-   * lib = koffi.load('user32.dll')
-   */
-  lib: IKoffiLib
-  /** function name */
-  name: string
-  /** function parameters */
-  params: FnDefParams
-  /**
-   * Calling convention
-   * @default 'Stdcall' (for Windows)
-   * @link https://koffi.dev/functions#calling-conventions
-   */
-  convention?: CallingConvention
-}
 
 export interface LoadOptions<T = unknown> {
   dll: string
   dllFuncs: FuncDefList<T>
   usedFuncNames?: FnDefName[] | undefined
-  settings?: LoadSettings | undefined
+  _WIN64?: boolean // default from process.arch
+  /**
+ * Calling convention
+ * @default 'Cdecl'
+ * @link https://koffi.dev/functions#calling-conventions
+ */
+  convention?: CallingConvention
+  /**
+   * Create struct automatically from parameters of function definition list
+   * @description param like 'POINT*' or 'POINT *', POINT_Factory() will be called
+   * @default true
+   */
+  autoCreateStruct?: boolean // for load()
+  /**
+   * Multiple choice mapper for function parameters
+   */
+  multipleChoiceMapperList?: MultipleChoiceMapperList
+  /**
+   * Force re-register the library, overwriting the existing one
+   * @default false
+   */
+  forceRegister?: boolean
 }
 
 
-export type LibFuncs<T extends object> = T & {
-  [K in keyof T as `${K & string}Async`]: T[K] extends (...args: any) => unknown
-    ? AsyncFunction<T[K]>
+export type LibDefBase = Record<string, FnDefFullParams>
+export type LibDef2Type<T> = Record<Exclude<keyof T, 'prototype'>, (...args: any) => unknown>
+
+/**
+ * FFI library containing functions
+ */
+export type FLib<T extends object = DllFuncsType> = T & FLibExtMethods & {
+  [K in keyof T as K extends `${string}_Async` ? K : `${K & string}_Async`]: T[K] extends (...args: any) => unknown
+    ? ToAsyncFunction<T[K]>
     : never
-} & {
+}
+
+export interface FLibExtMethods {
   /**
    * @note Unload the library
-   * - On windows, do not call this function, it will cause later calls to functions in the library to fail!
+   * - On windows, it may cause later calls to functions in the library to fail!
    * - On some platforms (such as with the musl C library on Linux), shared libraries cannot be unloaded,
    *  so the library will remain loaded and memory mapped after the call to lib.unload().
    */
-  unload: () => void,
+  unload: () => void
+  updateMultipleChoiceMapper: (options: UpdateMultipleChoiceMapperOptions) => void
 }
 
-type AsyncFunction<T extends (...args: any) => unknown> = (...args: Parameters<T>) => Promise<ReturnType<T>>
+export interface UpdateMultipleChoiceMapperOptions {
+  /** update using name+Set */
+  fnName?: string
+  mapperSet?: MultipleChoiceMapperSet
+  /** update using Map (contains name+Set) */
+  mapperList?: MultipleChoiceMapperList
+}
+
+/**
+ * Multiple choice parameter mapper
+ * return the matched function definition arguments if matched,
+ * otherwise return undefined (will then match the next mapper)
+ */
+export type _MultipleChoiceMapper<TRuntimeArgs extends any[] = any, TFnDefArgs extends string[] | readonly string[] = any> = (
+  fnName: string,
+  runtimeArgs: TRuntimeArgs,
+  fnDefCallParamsExpanded: (Readonly<TFnDefArgs> | TFnDefArgs)[]
+) => TFnDefArgs | string[] | readonly string[] | undefined
+
+export type MultipleChoiceMapper<TRuntimeArgs extends any[] = any, TFnDefArgs extends string[] | readonly string[] = any>
+  = _MultipleChoiceMapper<TRuntimeArgs, TFnDefArgs> & { name: string }
+
+export type MultipleChoiceMapperList = Map<string, MultipleChoiceMapperSet>
+export type MultipleChoiceMapperSet = Set<MultipleChoiceMapper>
 
 
 /**
  * The return value of payload always be new one after each call of the struct factory function or access payload
  */
-export interface StructFactoryResult<T extends object = object> extends KoffiTypeResult {
+export interface StructFactoryResult<T extends object = object> extends StructDetail {
   /**
    * Struct payload for _Out_ or _Inout_ parameter
    */
@@ -61,15 +104,16 @@ export interface StructFactoryResult<T extends object = object> extends KoffiTyp
   readonly sizeColumns?: PropertyKey[]
 }
 
-export interface KoffiTypeResult {
+export interface StructDetail {
   readonly name: string
   readonly pointer: string
   readonly CType: IKoffiCType
   readonly size: number
 }
-export type KoffiDefType = Record<string, TypeSpecWithAlignment>
-export type KoffiDefComplexType = Record<string, TypeSpecWithAlignment | object>
-
 export type StructFactory = () => StructFactoryResult
 
+export interface StructInitType {
+  [key: string]: string | IKoffiCType | StructFactory | StructInitType
+}
 
+export type StructInitPlainType = Record<string, TypeSpecWithAlignment>

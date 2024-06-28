@@ -209,13 +209,13 @@ export const WNDPROC = ptr
  * CALLBACK WNDCLASSEX.lpfnWndProc may pass negative number and cause process exit.
  */
 export const WPARAM = UINT_PTR
-// A pointer to an INITCOMMONCONTROLSEX
-export const LPINITCOMMONCONTROLSEX = ptr
-export const PWINDOWINFO = ptr // A pointer to a WINDOWINFO structure
 
-export const PFILETIME = ptr // A pointer to a FILETIME
-export const LPFILETIME = ptr // A pointer to a FILETIME
 
-export const va_list = Def.charPtr
-
+// from https://koffi.dev/input
+export const va_list = 'str16'
+/**
+ * For 'str16' from https://koffi.dev/input
+ */
+export const WString = 'str16'
+export const String = 'str'
 

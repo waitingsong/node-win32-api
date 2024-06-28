@@ -1,16 +1,16 @@
-import { FuncDefList } from 'win32-def'
 import * as D from 'win32-def/def'
+import * as T from 'win32-def/types'
 
-import { Win32Fns } from './api.types.js'
 
+export class DefSpoolss implements T.LibDefBase {
+  [x: string]: T.FnDefFullParams
 
-export const apiDef: FuncDefList<Win32Fns> = {
+  static EndDocPrinter = [D.BOOL, [D.HANDLE]]
 
-  EndDocPrinter: [D.BOOL, [D.HANDLE]],
+  static EndPagePrinter = [D.BOOL, [D.HANDLE]]
 
-  EndPagePrinter: [D.BOOL, [D.HANDLE]],
-
-  WritePrinter: [D.BOOL, [D.HANDLE, D.LPVOID, D.DWORD, `_Out_ ${D.LPDWORD}`]],
+  /** https://learn.microsoft.com/en-us/windows/win32/printdocs/writeprinter */
+  static WritePrinter = [D.BOOL, [D.HANDLE, D.LPVOID, D.DWORD, `_Out_ ${D.LPDWORD}`]]
 
 }
 

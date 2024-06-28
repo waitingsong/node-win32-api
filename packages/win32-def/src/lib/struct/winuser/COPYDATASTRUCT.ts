@@ -1,12 +1,13 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
+
+import { genStruct } from '../struct.helper.js'
 
 
 const key = 'COPYDATASTRUCT'
-const ptr = `${key} *`
-const init = {
+const ptr = `${key}*` as const
+const init: StructInitType = {
   dwData: D.ULONG_PTR,
   cbData: D.DWORD,
   lpData: D.PVOID,
@@ -32,5 +33,6 @@ export interface COPYDATASTRUCT_Type {
 }
 
 export const LPCOPYDATASTRUCT = ptr
-export const COPYDATASTRUCT_Init = init
+export const COPYDATASTRUCT_Name = key
+export const COPYDATASTRUCT_Init: typeof init = init
 

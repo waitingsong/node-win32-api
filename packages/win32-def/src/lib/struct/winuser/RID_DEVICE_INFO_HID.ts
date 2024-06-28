@@ -1,12 +1,13 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
+
+import { genStruct } from '../struct.helper.js'
 
 
 const key = 'RID_DEVICE_INFO_HID'
-const ptr = `${key} *`
-const init = {
+const ptr = `${key}*` as const
+const init: StructInitType = {
   dwVendorId: D.DWORD,
   dwProductId: D.DWORD,
   dwVersionNumber: D.DWORD,
@@ -36,5 +37,6 @@ export interface RID_DEVICE_INFO_HID_Type {
 }
 
 export const PRID_DEVICE_INFO_HID = ptr
-export const RID_DEVICE_INFO_HID_Init = init
+export const RID_DEVICE_INFO_HID_Name = key
+export const RID_DEVICE_INFO_HID_Init: typeof init = init
 

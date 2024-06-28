@@ -1,7 +1,10 @@
-import * as T from 'win32-def'
+/* c8 ignore start */
+import * as T from 'win32-def/types'
+
+import { DefGdi32 } from './api.def.js'
 
 
-export interface Win32Fns {
+export class Gdi32 implements T.LibDef2Type<typeof DefGdi32> {
 
   // CreateBitmap: (
   //   nWidth: M.INT,
@@ -13,7 +16,7 @@ export interface Win32Fns {
 
   /**
    * Creates a bitmap compatible with the device that is associated with the specified device context.
-   * @link https://docs.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createcompatiblebitmap
+   * @link https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createcompatiblebitmap
    */
   CreateCompatibleBitmap: (
     hdc: T.HDC,
@@ -21,8 +24,8 @@ export interface Win32Fns {
     cy: T.INT
   ) => T.HBITMAP
 
-  /**
-   * @link https://docs.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createcompatibledc
-   */
+  /** https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createcompatibledc */
   CreateCompatibleDC: (hdc: T.HDC) => T.HDC
 }
+
+/* c8 ignore stop */

@@ -1,21 +1,21 @@
-import { type LibFuncs, type LoadOptions, load as _load } from 'win32-def'
+import { type FLib, type LoadOptions, load as _load } from 'win32-def'
 
-import { DllNames } from '../types.js'
+import { DllNames } from '##/lib/types.js'
 
-import { apiDef } from './api.def.js'
-import { Win32Fns } from './api.types.js'
+import { DefKernel32 } from './api.def.js'
+import { Kernel32 } from './api.types.js'
 
 
-export { apiDef }
-export { Win32Fns }
+export {
+  DefKernel32, Kernel32,
+}
 
 export const dllName = DllNames.kernel32
-export type LibFns = LibFuncs<Win32Fns>
+export type LibKernel32 = FLib<Kernel32>
 
-export const load = (fns?: LoadOptions['usedFuncNames'], settings?: LoadOptions['settings']) => _load<Win32Fns>({
+export const load = (fns?: LoadOptions['usedFuncNames']) => _load<Kernel32>({
   dll: dllName + '.dll',
-  dllFuncs: apiDef,
+  dllFuncs: DefKernel32,
   usedFuncNames: fns,
-  settings,
 })
 

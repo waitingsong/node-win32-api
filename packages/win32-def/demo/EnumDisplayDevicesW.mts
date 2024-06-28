@@ -8,14 +8,9 @@ import * as D from 'win32-def/def'
 import * as S from 'win32-def/struct'
 
 
-console.info('EnumDisplayDevicesW()')
+console.info('Running EnumDisplayDevicesW()')
 
-const { size, CType, payload } = S.DISPLAY_DEVICEW_Factory()
-console.info({ size })
-payload.cb = size
-
-const typeInfo = ffi.introspect(CType)
-console.info({ typeInfo })
+const { size, payload } = S.DISPLAY_DEVICEW_Factory()
 
 const user32 = ffi.load('user32.dll')
 try {
@@ -44,5 +39,4 @@ try {
 finally {
   user32.unload()
 }
-
 

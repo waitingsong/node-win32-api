@@ -5,7 +5,6 @@ import ffi from 'koffi'
 import { WCHAR_Array } from './common.types.js'
 
 
-
 export function decodeInt16Array(input: WCHAR_Array, length = -1): string {
   assert(input, 'input must be an object')
   assert(typeof input.buffer === 'object', 'input.buffer must be an object')
@@ -18,11 +17,30 @@ export function decodeInt16Array(input: WCHAR_Array, length = -1): string {
   return str || ''
 }
 
-export function bufferToString(input: Buffer, charNum = 0): string {
-  return charNum > 0 ? input.toString('ucs2', 0, charNum * 2) : input.toString('ucs2')
+/**
+ * Convert a Buffer to string with UCS2 encoding, and remove the last '\0'.
+ */
+export function ucsBufferToString(input: Buffer, charNum = 0): string {
+  // read the last 2 bytes to check if it is '\0'
+  const last = input.readUInt16LE(input.length - 2)
+
+  if (charNum > 0) {
+    const n2 = input.length / 2
+    const offset = Math.min(charNum, n2)
+    const txt = input.toString('ucs2', 0, offset * 2)
+    return last === 0 && charNum >= n2 ? txt.slice(0, -1) : txt
+  }
+
+  if (last === 0) { // remove the last '\0'
+    return input.toString('ucs2').slice(0, -1)
+  }
+  return input.toString('ucs2')
 }
 
 
+/**
+ * Convert a string to Buffer with UCS2 encoding, and append a '\0' at the end.
+ */
 export function ucsBufferFrom(str: string): Buffer {
   assert(typeof str === 'string', 'str must be a string ')
   return Buffer.from(str + '\0', 'ucs2')

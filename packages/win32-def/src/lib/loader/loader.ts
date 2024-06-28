@@ -1,65 +1,54 @@
 import assert from 'node:assert'
 
-import koffi from 'koffi'
+import type { DllFuncsType } from '##/lib/ffi.types.js'
+import type { LoadOptions, FLib } from '##/lib/types.js'
 
-import type { LoadOptions, IKoffiLib, LibFuncs } from '../types.js'
+import { processDefList } from './def.helper.js'
+import { LoaderCache } from './loader.cache.js'
+import {
+  bindFLibExtMethods,
+  bindMethodsFromFuncDefList,
+  createStructFromFuncDefList,
+  loadIKoffiLib,
+  parse_settings,
+  saveFnMultipleChoiceMapperList,
+} from './loader.helper.js'
 
-import { bindMethodsFromFuncDefList, createStructFromFuncDefList, gen_api_opts, parse_settings } from './loader.helper.js'
 
+export function load<T extends object>(options: LoadOptions<T>): FLib<T> {
+  const { dll, dllFuncs, usedFuncNames } = options
 
-export function load<T extends object>(options: LoadOptions<T>): LibFuncs<T> {
-  const { dll, dllFuncs, usedFuncNames, settings } = options
-
-  // const libName = dll.endsWith('.drv')
-  //   ? prepareDllFile(dll)
-  //   : dll
+  // const libName = dll.endsWith('.drv') ? prepareDllFile(dll) : dll
   const libName = dll
-
-  const config = parse_settings(settings)
-  const funcDefList = gen_api_opts<T>(dllFuncs, usedFuncNames)
+  const opts = parse_settings(options)
+  const funcDefListMap = processDefList(dllFuncs, usedFuncNames)
 
   assert(dllFuncs)
-  const inst = { } as LibFuncs<T>
+  const inst = {} as FLib<DllFuncsType>
 
-  let lib = getLibFromCache(libName)
+  let lib = LoaderCache.getLibByName(libName)
   if (! lib) {
-    lib = koffi.load(libName)
-    Object.defineProperty(inst, 'unload', {
-      enumerable: false,
-      value: () => {
-        removeLibFromCache(libName)
-        lib?.unload()
-      },
-    })
-    setLibToCache(libName, lib)
+    lib = loadIKoffiLib(libName)
   }
 
-  if (config.autoCreateStruct) {
-    createStructFromFuncDefList(funcDefList)
+  if (options.multipleChoiceMapperList) {
+    saveFnMultipleChoiceMapperList(lib, options.multipleChoiceMapperList)
+  }
+
+  if (opts.autoCreateStruct) {
+    createStructFromFuncDefList(funcDefListMap)
   }
 
   bindMethodsFromFuncDefList({
     lib,
     inst,
-    config: config,
-    funcDefList,
+    loadOptions: opts,
+    funcDefList: funcDefListMap,
+    multipleChoiceMapperList: opts.multipleChoiceMapperList,
+    forceRegister: !! opts.forceRegister,
   })
 
-  return inst
+  bindFLibExtMethods(libName, lib, inst)
+
+  return inst as FLib<T>
 }
-
-
-const cacheLibMap = new Map<string, IKoffiLib>()
-
-function getLibFromCache(dll: string): IKoffiLib | undefined {
-  return cacheLibMap.get(dll)
-}
-
-function setLibToCache(dll: string, lib: IKoffiLib): void {
-  cacheLibMap.set(dll, lib)
-}
-
-function removeLibFromCache(dll: string): void {
-  cacheLibMap.delete(dll)
-}
-

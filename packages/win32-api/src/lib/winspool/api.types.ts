@@ -1,9 +1,11 @@
-import * as T from 'win32-def'
+/* c8 ignore start */
 import * as S from 'win32-def/struct'
+import * as T from 'win32-def/types'
+
+import { DefWinspool } from './api.def.js'
 
 
-export interface Win32Fns {
-
+export class Winspool implements T.LibDef2Type<typeof DefWinspool> {
   /**
    * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/closeprinter
    */
@@ -18,17 +20,36 @@ export interface Win32Fns {
 
   /**
    * Enumerates available printers, print servers, domains, or print providers.
+   * using `Level` to determine the type of `pPrinterEnum`
    * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/enumprinters
    */
-  EnumPrintersW: (
+  EnumPrintersW: <Level extends S.EnumPrinters_Level>(
     Flags: T.DWORD,
-    Name: T.LPTSTR,
-    Level: T.DWORD,
+    Name: T.WString,
+    Level: Level,
+    // pass Buffer, then ffi.decode() to result S.EnumPrinters_Level_X_Type<Level>[]
     pPrinterEnum: T.LPBYTE,
     cbBuf: T.DWORD,
     pcbNeeded: T.LPDWORD,
     pcReturned: T.LPDWORD,
   ) => T.BOOL
+
+  /**
+   * Enumerates available printers, print servers, domains, or print providers.
+   * using `Level` to determine the type of `pPrinterEnum`
+   * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/enumprinters
+   * @description Asynchronous version of EnumPrintersW only for generic type `Level`
+   */
+  EnumPrintersW_Async: <Level extends S.EnumPrinters_Level>(
+    Flags: T.DWORD,
+    Name: T.WString,
+    Level: Level,
+    // pass Buffer, then ffi.decode() to result S.EnumPrinters_Level_X_Type<Level>[]
+    pPrinterEnum: T.LPBYTE,
+    cbBuf: T.DWORD,
+    pcbNeeded: T.LPDWORD,
+    pcReturned: T.LPDWORD,
+  ) => Promise<T.BOOL>
 
   /**
    * Enumerates the print processors installed on the specified server.
@@ -84,15 +105,26 @@ export interface Win32Fns {
    * @docs https://learn.microsoft.com/en-us/windows/win32/printdocs/getprinter
    * @docs https://learn.microsoft.com/zh-cn/windows/win32/printdocs/getprinter
    */
-  GetPrinterW: (
+  GetPrinterW: <Level extends S.PRINTER_INFO_LEVEL> (
     hPrinter: T.HANDLE,
     Level: T.DWORD,
-    // @TODO 1-9
-    pPrinter: T.LPBYTE | S.PRINTER_INFO_X_Type<1 | 4 | 5>,
+    pPrinter: S.PRINTER_INFO_X_Type<Level>, // multiple choice
     cbBuf: T.DWORD,
     pcbNeeded: T.LPDWORD,
   ) => T.BOOL
 
+  /**
+   * Retrieves information about a specified printer.
+   * @docs https://learn.microsoft.com/en-us/windows/win32/printdocs/getprinter
+   * @docs https://learn.microsoft.com/zh-cn/windows/win32/printdocs/getprinter
+   */
+  GetPrinterW_Async: <Level extends S.PRINTER_INFO_LEVEL> (
+    hPrinter: T.HANDLE,
+    Level: T.DWORD,
+    pPrinter: S.PRINTER_INFO_X_Type<Level>, // multiple choice
+    cbBuf: T.DWORD,
+    pcbNeeded: T.LPDWORD,
+  ) => Promise<T.BOOL>
 
   /**
    * Retrieves a handle to the specified printer or print server or other types of handles in the print subsystem.
@@ -100,9 +132,9 @@ export interface Win32Fns {
    * @link https://leran.microsoft.com/zh-cn/windows/win32/printdocs/openprinter
    */
   OpenPrinterW: (
-    pPrinterName: T.LPTSTR | null,
+    pPrinterName: T.WString | null,
     phPrinter: T.LPHANDLE,
-    pDefault: S.PRINTER_DEFAULTS_Type,
+    pDefault: S.PRINTER_DEFAULTS_Type | null,
   ) => T.BOOL
 
 
@@ -124,6 +156,8 @@ export interface Win32Fns {
   StartPagePrinter: (hPrinter: T.HANDLE) => T.BOOL
 
   /**
+   * Notifies the print spooler that data should be written to the specified printer.
+   * @note Only supports GDI printing and must not be used for XPS printing
    * @link https://learn.microsoft.com/zh-cn/windows/win32/printdocs/writeprinter
    */
   WritePrinter: (
@@ -134,3 +168,5 @@ export interface Win32Fns {
   ) => T.BOOL
 
 }
+
+/* c8 ignore stop */

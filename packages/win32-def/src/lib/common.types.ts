@@ -4,8 +4,6 @@
 // https://learn.microsoft.com/en-us/windows/win32/intl/windows-data-types-for-strings
 
 import { BigIntStr } from '@waiting/shared-types'
-// eslint-disable-next-line import/no-extraneous-dependencies
-// import ref from 'ref-napi'
 
 
 export type _POINTER = Buffer
@@ -213,17 +211,6 @@ export type va_list = _POINTER
 
 
 /**
- * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/getprinter#parameters
- */
-export type PRINTER_INFO_LEVEL = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
-/**
- * @link https://learn.microsoft.com/zh-cn/windows/win32/printdocs/enumprinters
- */
-export type EnumPrinters_Level = 1 | 4 | 5
-// export type EnumPrinters_Level = 1 | 2 | 4 | 5
-
-
-/**
  * Convert Struct property to WCHAR_String if Buffer
  */
 export type StructPropToWCHAR<T> = {
@@ -251,3 +238,10 @@ export interface WCHAR_Array {
   byteOffset: number
   length: number
 }
+
+/**
+ * For 'str16' and 'str' from https://koffi.dev/input
+ */
+export type WString = string
+export type String = string
+

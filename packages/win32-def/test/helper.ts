@@ -1,11 +1,11 @@
 import assert from 'node:assert'
 
-import { KoffiTypeResult } from '##/index.js'
+import { StructDetail } from '##/index.js'
 
 
-type ExpectData = Omit<KoffiTypeResult, 'CType'>
+type ExpectData = Omit<StructDetail, 'CType'>
 
-export function assertStructUnion(src: KoffiTypeResult, expect: ExpectData): void {
+export function assertStructUnion(src: StructDetail, expect: ExpectData): void {
   assert(src)
   assert(src.name === expect.name, `name: ${src.name}`)
   assert(src.pointer === expect.pointer, `pointer: ${src.pointer}`)

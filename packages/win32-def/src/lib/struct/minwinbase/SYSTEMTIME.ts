@@ -1,12 +1,13 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
+
+import { genStruct } from '../struct.helper.js'
 
 
 const key = 'SYSTEMTIME'
-const ptr = `${key} *`
-const init = {
+const ptr = `${key}*` as const
+const init: StructInitType = {
   wYear: D.WORD,
   wMonth: D.WORD,
   wDayOfWeek: D.WORD,
@@ -42,5 +43,6 @@ export interface SYSTEMTIME_Type {
 }
 
 export const LPSYSTEMTIME = ptr
-export const SYSTEMTIME_Init = init
+export const SYSTEMTIME_Name = key
+export const SYSTEMTIME_Init: typeof init = init
 

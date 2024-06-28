@@ -40,6 +40,10 @@
       "import": "./dist/index.struct.js",
       "require": "./dist/index.struct.cjs"
     },
+    "./types": {
+      "import": "./dist/index.types.js",
+      "require": "./dist/index.types.cjs"
+    },
     "./package.json": "./package.json"
   },
   "bugs": {
@@ -52,11 +56,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-types": "^20.11.0",
+    "@waiting/shared-types": "^23.13.0",
     "koffi": "^2.8.9"
   },
   "devDependencies": {
-    "@waiting/shared-core": "^20.11.4"
+    "@waiting/shared-core": "^23.13.0"
   },
   "engines": {
     "node": ">=18.12.0"
@@ -86,12 +90,13 @@
     "clean:dist": "npm run clean:cache && rm -rf dist/*",
     "clean:lock": "rm -f package-lock.json",
     "clean:log": "rm -rf ./logs ./run",
-    "cov": "c8 --all npm run test -- --parallel=false",
+    "cov": "c8 --all npm run test -- ",
     "lint": "eslint --fix --cache src test demo",
     "lint:nofix": "eslint --cache src test",
     "pretest": "npm run build:unit",
     "rp": "rollup -c rollup.config.js --context this",
-    "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --jobs=2",
+    "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha",
+    "deb8g": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
     "tsc": "tsc -p tsconfig.json"
   }
 }

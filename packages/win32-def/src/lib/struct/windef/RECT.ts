@@ -1,12 +1,13 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
+
+import { genStruct } from '../struct.helper.js'
 
 
 const key = 'RECT'
-const ptr = `${key} *`
-const init = {
+const ptr = `${key}*` as const
+const init: StructInitType = {
   left: D.LONG,
   top: D.LONG,
   right: D.LONG,
@@ -34,5 +35,6 @@ export interface RECT_Type {
 }
 
 export const LPRECT = ptr
-export const RECT_Init = init
+export const RECT_Name = key
+export const RECT_Init: typeof init = init
 

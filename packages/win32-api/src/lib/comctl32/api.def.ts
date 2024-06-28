@@ -1,10 +1,11 @@
-import { FuncDefList } from 'win32-def'
 import * as D from 'win32-def/def'
+import * as S from 'win32-def/struct'
+import * as T from 'win32-def/types'
 
-import { Win32Fns } from './api.types.js'
 
+export class DefComctl32 implements T.LibDefBase {
+  [x: string]: T.FnDefFullParams
 
-export const apiDef: FuncDefList<Win32Fns> = {
-  InitCommonControlsEx: [D.BOOL, [D.LPINITCOMMONCONTROLSEX]],
+  /** https://learn.microsoft.com/en-us/windows/win32/api/commctrl/nf-commctrl-initcommoncontrolsex */
+  static InitCommonControlsEx = [D.BOOL, [S.LPINITCOMMONCONTROLSEX]]
 }
-

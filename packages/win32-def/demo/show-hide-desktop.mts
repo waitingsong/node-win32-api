@@ -25,29 +25,24 @@ export const events: INPUT_Type[] = [
 
 export const { size, pointer } = INPUT_Factory()
 
-try {
-  const SendInput = user32.func('__stdcall', 'SendInput', 'uint', ['uint', pointer, 'int'])
+const SendInput = user32.func('__stdcall', 'SendInput', 'uint', ['uint', pointer, 'int'])
 
-  const res = SendInput(events.length, events, size) as number
-  assert(res === events.length)
-  // console.info({ res })
+const res = SendInput(events.length, events, size) as number
+assert(res === events.length)
+// console.info({ res })
 
-  await sleep(2000)
+await sleep(2000)
 
-  await SendInput.async(events.length, events, size, (err: Error | undefined, res2: number) => {
-    if (err) {
-      console.error(err)
-      throw err
-    }
-    assert(res2 === events.length)
-  }) as number
+await SendInput.async(events.length, events, size, (err: Error | undefined, res2: number) => {
+  if (err) {
+    console.error(err)
+    throw err
+  }
+  assert(res2 === events.length)
+}) as number
 
-}
-finally {
-  console.info('end')
-  user32.unload()
-}
 
+console.info('finished')
 
 // Utility
 export function make_keyboard_event(vk: VirtualKey, down: boolean) {

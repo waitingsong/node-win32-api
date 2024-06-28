@@ -1,15 +1,15 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
 
 import { SYSTEMTIME_Factory, type SYSTEMTIME_Type } from '../minwinbase/SYSTEMTIME.js'
+import { genStruct } from '../struct.helper.js'
 
 
 
 const key = 'JOB_INFO_1'
-const ptr = `${key} *`
-const init = {
+const ptr = `${key}*` as const
+const init: StructInitType = {
   JobId: D.DWORD,
   pPrinterName: D.LPTSTR,
   pMachineName: D.LPTSTR,
@@ -56,5 +56,6 @@ export interface JOB_INFO_1_Type {
 }
 
 export const PJOB_INFO_1 = ptr
-export const JOB_INFO_1_Init = init
+export const JOB_INFO_1_Name = key
+export const JOB_INFO_1_Init: typeof init = init
 

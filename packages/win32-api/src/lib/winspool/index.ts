@@ -1,21 +1,23 @@
-import { type LibFuncs, type LoadOptions, load as _load } from 'win32-def'
+import { type FLib, type LoadOptions, load as _load } from 'win32-def'
 
-import { DllNames } from '../types.js'
+import { DllNames } from '##/lib/types.js'
 
-import { apiDef } from './api.def.js'
-import { Win32Fns } from './api.types.js'
+import { DefWinspool } from './api.def.js'
+import { Winspool } from './api.types.js'
+import { multipleChoiceMapperList } from './mapper/index.mapper.js'
 
 
-export { apiDef }
-export { Win32Fns }
+export {
+  DefWinspool, Winspool,
+}
 
 export const dllName = DllNames.winspool
-export type LibFns = LibFuncs<Win32Fns>
+export type LibWinspool = FLib<Winspool>
 
-export const load = (fns?: LoadOptions['usedFuncNames'], settings?: LoadOptions['settings']) => _load<Win32Fns>({
-  dll: dllName + '.dll',
-  dllFuncs: apiDef,
+export const load = (fns?: LoadOptions['usedFuncNames']) => _load<Winspool>({
+  dll: dllName,
+  dllFuncs: DefWinspool,
   usedFuncNames: fns,
-  settings,
+  multipleChoiceMapperList: multipleChoiceMapperList,
 })
 

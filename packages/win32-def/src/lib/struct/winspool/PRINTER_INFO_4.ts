@@ -1,14 +1,15 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
+
+import { genStruct } from '../struct.helper.js'
 
 
 const key = 'PRINTER_INFO_4'
-const ptr = `${key} *`
-const init = {
-  pPrinterName: D.LPTSTR,
-  pServerName: D.LPTSTR,
+const ptr = `${key}*` as const
+const init: StructInitType = {
+  pPrinterName: D.WString,
+  pServerName: D.WString,
   Attributes: D.DWORD,
 } as const
 
@@ -33,11 +34,12 @@ export function PRINTER_INFO_4_Factory(): StructFactoryResult<PRINTER_INFO_4_Typ
  *  on a system and all remote printer connections that a user has established.
  */
 export interface PRINTER_INFO_4_Type {
-  pPrinterName: T.LPTSTR
-  pServerName: T.LPTSTR
+  pPrinterName: T.WString
+  pServerName: T.WString | null
   Attributes: T.DWORD
 }
 
 export const PPRINTER_INFO_4 = ptr
-export const PRINTER_INFO_4_Init = init
+export const PRINTER_INFO_4_Name = key
+export const PRINTER_INFO_4_Init: typeof init = init
 

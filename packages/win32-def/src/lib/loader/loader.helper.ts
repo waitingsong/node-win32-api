@@ -1,17 +1,35 @@
 import assert from 'node:assert'
 
-import { settingsDefault } from '../config.js'
-import { Def } from '../def.enum.js'
+import { expandFFIParamArray } from '@waiting/shared-core'
+import koffi from 'koffi'
+
+import { loadOptionsDefault } from '##/lib/config.js'
+import { Def } from '##/lib/def.enum.js'
 import {
-  type FuncDefList,
-  type DllFuncsType,
-  type FnDefName,
-  type FnDefParams,
-  type LoadSettings,
+  type FuncDefListInner,
+  type FnDefArgs,
+  type FnDefFullParams,
   CallingConvention,
-} from '../ffi.types.js'
-import { structFactoryMap } from '../struct.factory.js'
-import type { IKoffiLib, KoffiFunction, LibFuncs, RegisterFunctionOpts, StructFactory } from '../types.js'
+} from '##/lib/ffi.types.js'
+import { structFactoryMap } from '##/lib/struct/struct.factory-map.js'
+import type {
+  FLib,
+  IKoffiLib,
+  KoffiFunction,
+  LoadOptions,
+  MultipleChoiceMapperList,
+  UpdateMultipleChoiceMapperOptions,
+  StructFactory,
+} from '##/lib/types.js'
+
+import { LoaderCache } from './loader.cache.js'
+import type {
+  BindOptions,
+  KoffiFunctionLike,
+  RegisterFunctionOpts,
+  RegisterFunctionOptsInner,
+} from './loader.types.js'
+import { createProxyMethod, updateMultipleChoiceMapperToCache } from './multiple-choice-param.helper.js'
 
 
 export const isArch64 = process.arch.includes('64')
@@ -32,50 +50,113 @@ export const defGroupPointer: Def[] = [
   Def.ulonglongPtrPtr, Def.voidPtrPtr,
 ]
 
-const regCacheMap = new WeakMap<RegisterFunctionOpts['lib'], Map<string, KoffiFunction>>()
 
+// #region loadIKoffiLibAndBindProperties
 
-// #region bindMethodsFromFuncDefList
-
-export interface BindOptions<T extends object> {
-  lib: IKoffiLib
-  inst: LibFuncs<T>
-  config: LoadSettings
-  funcDefList: FuncDefList<T>
+export function loadIKoffiLib(libName: string): IKoffiLib {
+  const lib = koffi.load(libName)
+  assert(lib, `load library ${libName} failed`)
+  LoaderCache.setLibByName(libName, lib)
+  return lib
 }
 
-export function bindMethodsFromFuncDefList(options: BindOptions<object>): void {
-  const { lib, inst, config, funcDefList } = options
+export function bindFLibExtMethods(libName: string, lib: IKoffiLib, inst: FLib) {
+  assert(lib, `load library undefined`)
 
-  for (const [name, params] of Object.entries(funcDefList)) {
-    const func = registerFunction({
-      lib,
-      name,
-      // @ts-expect-error ignore unknown
-      params,
-      convention: config.convention ?? CallingConvention.Cdecl,
+  if (typeof inst.unload === 'undefined') {
+    Object.defineProperty(inst, 'unload', {
+      enumerable: false,
+      value: () => {
+        LoaderCache.removeLibByName(libName)
+        lib.unload()
+      },
     })
+  }
 
-    bindMethods(inst, name, func)
+  if (typeof inst.updateMultipleChoiceMapper === 'undefined') {
+    Object.defineProperty(inst, 'updateMultipleChoiceMapper', {
+      enumerable: false,
+      value: function (this: IKoffiLib, opts2: UpdateMultipleChoiceMapperOptions) {
+        updateMultipleChoiceMapperToCache({
+          ...opts2,
+          lib: this,
+        })
+      }.bind(lib),
+    })
   }
 }
 
-function bindMethods<T>(inst: T, name: string, fn: KoffiFunction): void {
-  const nameSync = name
-  Object.defineProperty(inst, nameSync, {
-    enumerable: true,
-    value: fn,
-  })
+// #region bindMethodsFromFuncDefList
 
-  const nameAsync = `${name}Async`
-  Object.defineProperty(inst, nameAsync, {
-    enumerable: true,
-    value: (...args: unknown[]) => callFnAsync(fn, args),
-  })
+
+export function bindMethodsFromFuncDefList(options: BindOptions): void {
+  const { lib, inst, loadOptions, funcDefList, multipleChoiceMapperList: multipleChoiceMapper } = options
+
+  for (const [name, params] of funcDefList) {
+    const funcs = registerFunction({
+      lib,
+      fnName: name,
+      fnFullParams: params,
+      /* c8 ignore next */
+      convention: loadOptions.convention ?? CallingConvention.Cdecl,
+      forceRegister: !! loadOptions.forceRegister,
+    })
+
+    const { size } = funcs
+    if (size === 1) {
+      for (const [, fn] of funcs.entries()) {
+        bindMethod(inst, name, fn)
+      }
+    }
+    else if (size > 1) {
+      if (! multipleChoiceMapper) {
+        console.info(`multipleChoiceMapper should be set and be a function when multiple choice used.
+      Syntax: (fnName: string, params: string[]) => string[]
+      const user32 = load({
+        dll: 'user32.dll',
+        dllFuncs: defWin32,
+        multipleChoiceMapperList: multipleChoiceMapperList
+      })
+      // OR
+      const user32 = load({
+        dll: 'user32.dll',
+        dllFuncs: defWin32,
+      })
+      user32.updateMultipleChoiceMapper({ mapperList: mapperList })
+        `)
+      }
+
+      const fn = createProxyMethod({
+        lib,
+        name,
+        fnDefRetType: params[0],
+        fnDefCallParams: params[1],
+      })
+      bindMethod(inst, name, fn)
+    }
+  }
 }
 
 
-function callFnAsync(fn: KoffiFunction, args: unknown[]) {
+function bindMethod(inst: FLib, name: string, fn: KoffiFunction | KoffiFunctionLike): void {
+  const nameSync = name
+  if (typeof inst[nameSync] === 'undefined') {
+    Object.defineProperty(inst, nameSync, {
+      enumerable: true,
+      value: fn,
+    })
+  }
+
+  const nameAsync = `${name}_Async`
+  if (typeof inst[nameAsync] === 'undefined') {
+    Object.defineProperty(inst, nameAsync, {
+      enumerable: true,
+      value: (...args: unknown[]) => callFnAsync(fn, args),
+    })
+  }
+}
+
+function callFnAsync(fn: KoffiFunction | KoffiFunctionLike, args: unknown[]) {
   return new Promise<unknown>((done, reject) => {
     const asyncCallback = (err: Error | undefined, result: unknown) => {
       if (err) {
@@ -89,82 +170,37 @@ function callFnAsync(fn: KoffiFunction, args: unknown[]) {
 }
 
 
-// #region gen_api_opts
 
-/**
- * Generate function definitions via converting macro windows data type (like PVOID) to the expected value.
- * Skip assignment if property undefined
- */
-export function gen_api_opts<T = DllFuncsType>(
-  dllFuncs: FuncDefList<T>,
-  fns?: FnDefName[],
-): FuncDefList<T> {
-
-  const ret = {} as FuncDefList<T>
-
-  if (fns && Array.isArray(fns) && fns.length) {
-    for (const fn of fns) {
-      if (! Object.hasOwn(dllFuncs, fn)) {
-        continue
-      }
-      // @ts-ignore
-      const ps = dllFuncs[fn] as FnDefParams | undefined
-      assert(ps, `dellFuncs has no property method name "${fn}"`)
-
-      Object.defineProperty(ret, fn, {
-        value: ps,
-        writable: false,
-        enumerable: true,
-        configurable: false,
-      })
-    }
+export function parse_settings(options: LoadOptions): LoadOptions {
+  const opts: LoadOptions = {
+    ...loadOptionsDefault,
+    ...options,
   }
-  else {
-    for (const fn of Object.keys(dllFuncs)) {
-      // @ts-ignore
-      const ps = dllFuncs[fn] as FnDefParams | undefined
-      assert(ps, `dellFuncs has no property method name "${fn}"`)
-
-      Object.defineProperty(ret, fn, {
-        value: ps,
-        writable: false,
-        enumerable: true,
-        configurable: false,
-      })
-    }
-  }
-
-  return ret
-}
-
-
-export function parse_settings(settings?: LoadSettings): LoadSettings {
-  const st: LoadSettings = { ...settingsDefault }
-  if (typeof settings !== 'undefined' && Object.keys(settings).length) {
-    Object.assign(st, settings)
-  }
-  return st
+  return opts
 }
 
 // #region createStructFromFuncDefList
 
-export function createStructFromFuncDefList(input: FuncDefList): void {
+export function createStructFromFuncDefList(input: FuncDefListInner): void {
   const structFactories = prepareStructFromFuncDefList(input)
   structFactories.forEach((factory) => {
     factory()
   })
 }
 
-function prepareStructFromFuncDefList(input: FuncDefList): Set<StructFactory> {
+function prepareStructFromFuncDefList(input: FuncDefListInner): Set<StructFactory> {
   const fns = new Set<StructFactory>()
-  for (const [name, params] of Object.entries(input)) {
+  for (const [name, params] of input) {
     try {
-      const structSet = retrieveStructFactoryFromParams(params[1] as string[])
-      if (structSet.size) {
-        structSet.forEach((fn) => {
-          fns.add(fn)
-        })
-      }
+      const p2 = expandFFIParamArray(params[1])
+      p2.forEach((args: string[]) => {
+        const structSet = retrieveStructFactoryFromParams(args)
+        if (structSet.size) {
+          structSet.forEach((fn) => {
+            fns.add(fn)
+          })
+        }
+      })
     }
     catch (ex) {
       assert(ex instanceof Error)
@@ -205,6 +241,8 @@ function retrieveStructFactoryFromParams(params: string[]): Set<StructFactory> {
 }
 
 const DefValuesSet = new Set(Object.values(Def))
+// @ts-expect-error
+DefValuesSet.add('char')
 
 function retrieveStructTypeStringFromParams(params: string[]): string[] {
   const ret: string[] = []
@@ -233,43 +271,64 @@ function retrieveStructTypeStringFromParams(params: string[]): string[] {
  * @note do not call it directly, use `load()` instead!
  *  Case of making sure the library is loaded only once
  */
-function registerFunction(options: RegisterFunctionOpts): KoffiFunction {
-  const { lib, name, params, convention = CallingConvention.Stdcall } = options
-  const cache = getRegisterFunctionFromCache(options)
-  if (cache) {
+function registerFunction(options: RegisterFunctionOpts): Map<FnDefArgs, KoffiFunction> {
+  const { lib, fnName, fnFullParams: params, convention = CallingConvention.Stdcall } = options
+  const cache = options.forceRegister ? null : LoaderCache.getRegisteredFuncMap(lib, fnName)
+  if (cache?.size) {
     return cache
   }
 
+  const map = new Map<FnDefArgs, KoffiFunction>()
   const { [0]: retType, [1]: args } = params
-  let func: KoffiFunction
+  if (args.length === 0) {
+    const params2 = [retType, []] as FnDefFullParams
+    // @ts-expect-error params2 is FnDefParams
+    const func = _registerFunction({ lib, fnName: fnName, fnFullParams: params2, convention })
+    map.set([], func)
+    return map
+  }
+
+  // 对于 args 每个成员检查是否为数组，是则迭代处理每个组合进行多次绑定方法
+  const ps = expandFFIParamArray(args)
+
+  ps.forEach((args2) => {
+    const params2 = [retType, args2] as FnDefFullParams
+    // @ts-expect-error params2 is FnDefParams
+    const func = _registerFunction({ lib, fnName: fnName, fnFullParams: params2, convention })
+    map.set(args2, func)
+  })
+
+  return map
+}
+
+function _registerFunction(options: RegisterFunctionOptsInner): KoffiFunction {
+  const { lib, fnName, fnFullParams, convention = CallingConvention.Stdcall } = options
+  const { [0]: retType, [1]: args } = fnFullParams
+  assert(retType, 'retType is empty')
+  assert(args, 'args is empty')
+
+  // let func: KoffiFunction
   // const func = user32.func('GetCursorPos', 'int', [`_Out_ ${comb.pointer}`])
-  if (convention === CallingConvention.Cdecl) {
-    func = lib.func(name, retType, args)
-  }
-  else {
-    func = lib.func(convention, name, retType, args)
-  }
+  // switch (convention) {
+  //   case CallingConvention.Cdecl:
+  //     func = lib.func(fnName, retType, args)
+  //     break
+
+  //   default:
+  //     func = lib.func(convention, fnName, retType, args)
+  // }
+  const func = convention ? lib.func(convention, fnName, retType, args) : lib.func(fnName, retType, args)
   // console.log(func.info)
-  setRegisterFunctionToCache(options, func)
+  LoaderCache.setRegisteredFuncToCache(lib, fnName, func, args)
   return func
 }
 
-function getRegisterFunctionFromCache(options: RegisterFunctionOpts): KoffiFunction | undefined {
-  const { lib, name } = options
-  const cache = regCacheMap.get(lib)
-  return cache?.get(name)
-}
+// #region SaveFnMultipleChoiceMapper
 
-function setRegisterFunctionToCache(options: RegisterFunctionOpts, func: KoffiFunction): void {
-  const { lib, name } = options
-  let cache = regCacheMap.get(lib)
-  if (! cache) {
-    cache = new Map<string, KoffiFunction>()
-    regCacheMap.set(lib, cache)
-  }
-  cache.set(name, func)
+export function saveFnMultipleChoiceMapperList(lib: IKoffiLib, fnMultipleChoiceMapperList: MultipleChoiceMapperList): void {
+  assert(fnMultipleChoiceMapperList.size > 0, 'options.fnMultipleChoiceMapperList contains no item')
+  LoaderCache.updateMultipleChoiceListMapper(lib, fnMultipleChoiceMapperList)
 }
-
 
 /*
 export function prepareDllFile(file: string): string {

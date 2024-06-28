@@ -1,12 +1,13 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
+
+import { genStruct } from '../struct.helper.js'
 
 
 const key = 'RAWINPUTHEADER'
-const ptr = `${key} *`
-const init = {
+const ptr = `${key}*` as const
+const init: StructInitType = {
   dwType: D.DWORD,
   dwSize: D.DWORD,
   hDevice: D.HANDLE,
@@ -34,5 +35,6 @@ export interface RAWINPUTHEADER_Type {
 }
 
 export const LPRAWINPUTHEADER = ptr
-export const RAWINPUTHEADER_Init = init
+export const RAWINPUTHEADER_Name = key
+export const RAWINPUTHEADER_Init: typeof init = init
 

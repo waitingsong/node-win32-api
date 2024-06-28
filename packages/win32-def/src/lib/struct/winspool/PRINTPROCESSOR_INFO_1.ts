@@ -1,12 +1,13 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
+
+import { genStruct } from '../struct.helper.js'
 
 
 const key = 'PRINTPROCESSOR_INFO_1'
-const ptr = `${key} *`
-const init = {
+const ptr = `${key}*` as const
+const init: StructInitType = {
   pName: D.LPTSTR,
 } as const
 
@@ -29,5 +30,6 @@ export interface PRINTPROCESSOR_INFO_1_Type {
 }
 
 export const PPRINTPROCESSOR_INFO_1 = ptr
-export const PRINTPROCESSOR_INFO_1_Init = init
+export const PRINTPROCESSOR_INFO_1_Name = key
+export const PRINTPROCESSOR_INFO_1_Init: typeof init = init
 

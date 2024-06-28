@@ -1,5 +1,6 @@
 // dict of windef value
-import { CallingConvention, LoadSettings } from './ffi.types.js'
+import { CallingConvention } from './ffi.types.js'
+import { LoadOptions } from './types.js'
 
 
 export const config: Config = {
@@ -9,7 +10,7 @@ export interface Config {
   _WIN64: boolean
 }
 
-export const settingsDefault: LoadSettings = {
+export const loadOptionsDefault: Omit<LoadOptions, 'dll' | 'dllFuncs'> = {
   _WIN64: config._WIN64,
   convention: CallingConvention.Cdecl,
   autoCreateStruct: true,

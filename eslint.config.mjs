@@ -16,6 +16,7 @@ const srcRules = {
       '.',
       await genModuleAbsolutePathIfExists(projectDir, 'node_modules/@waiting/shared-core') ?? '.',
       await genModuleAbsolutePathIfExists(projectDir, 'node_modules/@mwcp/share') ?? '.',
+      await genModuleAbsolutePathIfExists(projectDir, 'node_modules/win32-def') ?? '.',
     ],
   }],
   'id-length': 0,

@@ -1,8 +1,11 @@
-import * as T from 'win32-def'
+/* c8 ignore start */
 import * as S from 'win32-def/struct'
+import * as T from 'win32-def/types'
+
+import { DefKernel32 } from './api.def.js'
 
 
-export interface Win32Fns {
+export class Kernel32 implements T.LibDef2Type<typeof DefKernel32> {
   /**
    * https://learn.microsoft.com/zh-cn/windows/win32/api/winbase/nf-winbase-formatmessage?redirectedfrom=MSDN
    * dwLanguageId: https://msdn.microsoft.com/en-us/library/windows/desktop/dd318693(v=vs.85).aspx
@@ -21,10 +24,6 @@ export interface Win32Fns {
 
   GenerateConsoleCtrlEvent: (dwCtrlEvent: T.DWORD, dwProcessGroupId: T.DWORD) => T.BOOL
 
-  /**
-   * Not works correctly
-   * @see https://github.com/node-ffi/node-ffi/issues/261
-   */
   GetLastError: () => T.DWORD
 
   GetModuleHandleW: (lpModuleName: T.LPCTSTR | null) => T.HMODULE
@@ -33,14 +32,17 @@ export interface Win32Fns {
 
   GetProcessHeaps: (NumberOfHeaps: T.DWORD, ProcessHeaps: T.PHANDLE) => T.DWORD
 
-  /** https://docs.microsoft.com/en-us/windows/desktop/api/processthreadsapi/nf-processthreadsapi-getsystemtimes */
+  /** https://learn.microsoft.com/en-us/windows/desktop/api/processthreadsapi/nf-processthreadsapi-getsystemtimes */
   GetSystemTimes: (lpIdleTime: S.FILETIME_Type, lpKernelTime: S.FILETIME_Type, lpUserTime: S.FILETIME_Type) => T.BOOL
+
+  /** https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-gettickcount */
+  GetTickCount: () => T.DWORD
 
   HeapFree: (hHeap: T.HANDLE, dwFlags: T.DWORD, lpMem: T.LPVOID | null) => T.BOOL
 
   OpenProcess: (dwDesiredAccess: T.DWORD, bInheritHandle: T.BOOL, dwProcessId: T.DWORD) => T.HANDLE
 
-  /** https://docs.microsoft.com/en-us/windows/win32/api/debugapi/nf-debugapi-outputdebugstringw */
+  /** https://learn.microsoft.com/en-us/windows/win32/api/debugapi/nf-debugapi-outputdebugstringw */
   OutputDebugStringW: (lpOutputString: T.LPCTSTR) => T.VOID
 
   /** https://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx */
@@ -62,10 +64,10 @@ export interface Win32Fns {
    * This parameter can be one or more of the following values. Join them with single |
    * @returns If the function succeeds, the return value is the previous thread execution state.
    * If the function fails, the return value is NULL.
-   * @see[Docs]{@link https://docs.microsoft.com/en-us/windows/desktop/api/winbase/nf-winbase-setthreadexecutionstate}
+   * @see [Docs](https://learn.microsoft.com/en-us/windows/desktop/api/winbase/nf-winbase-setthreadexecutionstate)
    *
-   * Note: The return value NULL would be converted to zero by node-ffi
    */
   SetThreadExecutionState: (esFlags: T.UINT) => T.UINT
 }
 
+/* c8 ignore stop */

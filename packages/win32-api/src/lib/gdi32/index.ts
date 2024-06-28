@@ -1,21 +1,21 @@
-import { type LibFuncs, type LoadOptions, load as _load } from 'win32-def'
+import { type FLib, type LoadOptions, load as _load } from 'win32-def'
 
-import { DllNames } from '../types.js'
+import { DllNames } from '##/lib/types.js'
 
-import { apiDef } from './api.def.js'
-import { Win32Fns } from './api.types.js'
+import { DefGdi32 } from './api.def.js'
+import { Gdi32 } from './api.types.js'
 
 
-export { apiDef }
-export { Win32Fns }
+export {
+  DefGdi32, Gdi32,
+}
 
 export const dllName = DllNames.gdi32
-export type LibFns = LibFuncs<Win32Fns>
+export type LibGdi32 = FLib<Gdi32>
 
-export const load = (fns?: LoadOptions['usedFuncNames'], settings?: LoadOptions['settings']) => _load<Win32Fns>({
+export const load = (fns?: LoadOptions['usedFuncNames']) => _load<Gdi32>({
   dll: dllName + '.dll',
-  dllFuncs: apiDef,
+  dllFuncs: DefGdi32,
   usedFuncNames: fns,
-  settings,
 })
 

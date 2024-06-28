@@ -95,7 +95,7 @@ jobs:
         timeout-minutes: 15
         run: |
           export cwd=`pwd`
-          npm i --no-audit -g autocannon c8 lerna rollup tsx zx
+          npm i --no-audit -g lerna rollup tsx zx madge
           npm i --no-audit
         env:
           CI: true
@@ -124,17 +124,17 @@ jobs:
         run: |
           npm ping
           npm whoami
-          chmod a+w -R .
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           # fix: fatal: detected dubious ownership in repository
           git config --global --add safe.directory $cwd
-          # git restore .
           git reset --hard
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
           # npm run pub major
-          .scripts/publish.sh --yes --no-verify-access --conventional-commits --create-release github ${{ github.event.inputs.semver }}
+          rm -rf package-lock.json
+          rm -rf packages/*/package-lock.json
+          .scripts/publish.sh --yes --no-private --conventional-commits --create-release github ${{ github.event.inputs.semver }}
           git push -v origin --follow-tags
         env:
           CI: true

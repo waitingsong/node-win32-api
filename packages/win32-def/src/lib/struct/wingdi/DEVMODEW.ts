@@ -1,14 +1,14 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genFixedInt16Array, genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
 
+import { genFixedInt16Array, genStruct } from '../struct.helper.js'
 import { POINT_Factory, POINT_Type } from '../windef/POINT.js'
 
 
 const key = 'DEVMODEW'
-const ptr = `${key} *`
-const init = {
+const ptr = `${key}*` as const
+const init: StructInitType = {
   dmDeviceName: genFixedInt16Array(32),
   dmSpecVersion: D.WORD,
   dmDriverVersion: D.WORD,
@@ -121,5 +121,6 @@ export interface DEVMODEW_Type {
 }
 
 export const LPDEVMODEW = ptr
-export const DEVMODEW_Init = init
+export const DEVMODEW_Name = key
+export const DEVMODEW_Init: typeof init = init
 

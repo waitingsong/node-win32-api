@@ -1,15 +1,16 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
+
+import { genStruct } from '../struct.helper.js'
 
 
 const key = 'DOC_INFO_1'
-const ptr = `${key} *`
-const init = {
-  pDocName: D.LPTSTR,
-  pOutputFile: D.LPTSTR,
-  pDatatype: D.LPTSTR,
+const ptr = `${key}*` as const
+const init: StructInitType = {
+  pDocName: D.WString,
+  pOutputFile: D.WString,
+  pDatatype: D.WString,
 } as const
 
 /**
@@ -27,11 +28,12 @@ export function DOC_INFO_1_Factory(): StructFactoryResult<DOC_INFO_1_Type> {
  * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/doc-info-1
  */
 export interface DOC_INFO_1_Type {
-  pDocName: T.LPTSTR
-  pOutputFile: T.LPTSTR
-  pDatatype: T.LPTSTR
+  pDocName: T.WString
+  pOutputFile: T.WString | null
+  pDatatype: T.WString
 }
 
 export const LPDOC_INFO_1 = ptr
-export const DOC_INFO_1_Init = init
+export const DOC_INFO_1_Name = key
+export const DOC_INFO_1_Init: typeof init = init
 

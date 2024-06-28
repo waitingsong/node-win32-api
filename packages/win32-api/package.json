@@ -56,11 +56,7 @@
     "win32-def": "^21.0.2"
   },
   "devDependencies": {
-    "@types/ffi-napi": "*",
-    "@types/ref-napi": "^3.0.6",
-    "@types/ref-struct-di": "^1.1.8",
-    "@types/ref-union-di": "^1.0.5",
-    "@waiting/shared-core": "^20.11.4"
+    "@waiting/shared-core": "^23.13.0"
   },
   "engines": {
     "node": ">=18.12.0"
@@ -96,6 +92,7 @@
     "pretest": "npm run build:unit",
     "rp": "rollup -c rollup.config.js --context this",
     "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
+    "deb8g": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
     "tsc": "tsc -p tsconfig.json"
   }
 }

@@ -1,14 +1,14 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
 
+import { genStruct } from '../struct.helper.js'
 import { DEVMODEW_Factory, DEVMODEW_Type } from '../wingdi/DEVMODEW.js'
 
 
 const key = 'PRINTER_DEFAULTS'
-const ptr = `${key} *`
-const init = {
+const ptr = `${key}*` as const
+const init: StructInitType = {
   pDatatype: D.LPTSTR,
   pDevMode: DEVMODEW_Factory,
   DesiredAccess: D.ACCESS_MASK,
@@ -41,5 +41,6 @@ export interface PRINTER_DEFAULTS_Type {
 }
 
 export const PPRINTER_DEFAULTS = ptr
-export const PRINTER_DEFAULTS_Init = init
+export const PRINTER_DEFAULTS_Name = key
+export const PRINTER_DEFAULTS_Init: typeof init = init
 

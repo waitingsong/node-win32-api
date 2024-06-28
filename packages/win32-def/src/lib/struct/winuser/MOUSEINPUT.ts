@@ -1,12 +1,13 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
+
+import { genStruct } from '../struct.helper.js'
 
 
 const key = 'MOUSEINPUT'
-const ptr = `${key} *`
-const init = {
+const ptr = `${key}*` as const
+const init: StructInitType = {
   dx: D.LONG,
   dy: D.LONG,
   mouseData: D.UINT32,
@@ -38,5 +39,6 @@ export interface MOUSEINPUT_Type {
 }
 
 export const LPMOUSEINPUT = ptr
-export const MOUSEINPUT_Init = init
+export const MOUSEINPUT_Name = key
+export const MOUSEINPUT_Init: typeof init = init
 

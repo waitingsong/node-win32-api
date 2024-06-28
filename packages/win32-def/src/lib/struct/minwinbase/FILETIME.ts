@@ -1,12 +1,13 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
+
+import { genStruct } from '../struct.helper.js'
 
 
 const key = 'FILETIME'
-const ptr = `${key} *`
-const init = {
+const ptr = `${key}*` as const
+const init: StructInitType = {
   dwLowDateTime: D.DWORD,
   dwHighDateTime: D.DWORD,
 } as const
@@ -30,5 +31,6 @@ export interface FILETIME_Type {
 }
 
 export const LPFILETIME = ptr
-export const FILETIME_Init = init
+export const LPFILETIME_Name = key
+export const FILETIME_Init: typeof init = init
 

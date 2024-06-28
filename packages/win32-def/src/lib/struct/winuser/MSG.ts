@@ -1,14 +1,14 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
 
+import { genStruct } from '../struct.helper.js'
 import { POINT_Factory, type POINT_Type } from '../windef/POINT.js'
 
 
 const key = 'MSG'
-const ptr = `${key} *`
-const init = {
+const ptr = `${key}*` as const
+const init: StructInitType = {
   hwnd: D.HWND,
   message: D.UINT,
   wParam: D.WPARAM,
@@ -42,5 +42,6 @@ export interface MSG_Type {
 }
 
 export const LPMSG = ptr
-export const MSG_Init = init
+export const MSG_Name = key
+export const MSG_Init: typeof init = init
 

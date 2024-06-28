@@ -1,7 +1,8 @@
 import * as D from '##/lib/common.def.js'
 import * as T from '##/lib/common.types.js'
-import { genStruct } from '##/lib/struct.helper.js'
-import type { StructFactoryResult } from '##/lib/types.js'
+import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
+
+import { genStruct } from '../struct.helper.js'
 
 import { HARDWAREINPUT_Factory, type HARDWAREINPUT_TYPE } from './HARDWAREINPUT.js'
 import { KEYBDINPUT_Factory, type KEYBDINPUT_Type } from './KEYBDINPUT.js'
@@ -9,8 +10,8 @@ import { MOUSEINPUT_Factory, type MOUSEINPUT_Type } from './MOUSEINPUT.js'
 
 
 const key = 'INPUT'
-const ptr = `${key} *`
-const init = {
+const ptr = `${key}*` as const
+const init: StructInitType = {
   type: D.UINT32,
   u: {
     mi: MOUSEINPUT_Factory,
@@ -42,7 +43,8 @@ export interface INPUT_Type {
 }
 
 export const LPINPUT = ptr
-export const INPUT_Init = init
+export const INPUT_Name = key
+export const INPUT_Init: typeof init = init
 
 // export const INPUT = koffi.struct('INPUT', {
 //   type: W.UINT32,
