@@ -20,6 +20,9 @@ const init: StructInitType = {
   },
 } as const
 
+export const LPINPUT = ptr
+export const INPUT_Name = key
+export const INPUT_Init: typeof init = init
 
 /**
  * INPUT structure
@@ -41,10 +44,6 @@ export interface INPUT_Type {
     hi?: HARDWAREINPUT_TYPE,
   }
 }
-
-export const LPINPUT = ptr
-export const INPUT_Name = key
-export const INPUT_Init: typeof init = init
 
 // export const INPUT = koffi.struct('INPUT', {
 //   type: W.UINT32,

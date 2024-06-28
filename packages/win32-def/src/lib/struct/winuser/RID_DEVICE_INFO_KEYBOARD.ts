@@ -16,6 +16,9 @@ const init: StructInitType = {
   dwNumberOfKeysTotal: D.DWORD,
 } as const
 
+export const PRID_DEVICE_INFO_KEYBOARD = ptr
+export const RID_DEVICE_INFO_KEYBOARD_Name = key
+export const RID_DEVICE_INFO_KEYBOARD_Init: typeof init = init
 
 /**
  * RID_DEVICE_INFO_KEYBOARD structure
@@ -37,8 +40,3 @@ export interface RID_DEVICE_INFO_KEYBOARD_Type {
   dwNumberOfIndicators: T.DWORD
   dwNumberOfKeysTotal: T.DWORD
 }
-
-export const PRID_DEVICE_INFO_KEYBOARD = ptr
-export const RID_DEVICE_INFO_KEYBOARD_Name = key
-export const RID_DEVICE_INFO_KEYBOARD_Init: typeof init = init
-

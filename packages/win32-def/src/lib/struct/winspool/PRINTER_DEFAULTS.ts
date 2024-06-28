@@ -14,6 +14,10 @@ const init: StructInitType = {
   DesiredAccess: D.ACCESS_MASK,
 } as const
 
+export const PPRINTER_DEFAULTS = ptr
+export const PRINTER_DEFAULTS_Name = key
+export const PRINTER_DEFAULTS_Init: typeof init = init
+
 /**
  * PRINTER_DEFAULTS structure,
  * Specifies the default data type, environment, initialization data, and access rights for a printer.
@@ -39,8 +43,4 @@ export interface PRINTER_DEFAULTS_Type {
   pDevMode: DEVMODEW_Type
   DesiredAccess: T.ACCESS_MASK
 }
-
-export const PPRINTER_DEFAULTS = ptr
-export const PRINTER_DEFAULTS_Name = key
-export const PRINTER_DEFAULTS_Init: typeof init = init
 

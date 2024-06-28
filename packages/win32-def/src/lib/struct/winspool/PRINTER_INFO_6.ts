@@ -11,6 +11,10 @@ const init: StructInitType = {
   dwStatus: D.DWORD,
 } as const
 
+export const PPRINTER_INFO_6 = ptr
+export const PRINTER_INFO_6_Name = key
+export const PRINTER_INFO_6_Init: typeof init = init
+
 /**
  * PRINTER_INFO_6 structure,
  * structure specifies detailed printer information.
@@ -28,8 +32,4 @@ export function PRINTER_INFO_6_Factory(): StructFactoryResult<PRINTER_INFO_6_Typ
 export interface PRINTER_INFO_6_Type {
   dwStatus: PRINTER_STATUS
 }
-
-export const PPRINTER_INFO_6 = ptr
-export const PRINTER_INFO_6_Name = key
-export const PRINTER_INFO_6_Init: typeof init = init
 

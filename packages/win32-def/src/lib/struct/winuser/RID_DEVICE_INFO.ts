@@ -21,6 +21,9 @@ const init: StructInitType = {
   },
 } as const
 
+export const LPRID_DEVICE_INFO = ptr
+export const RID_DEVICE_INFO_Name = key
+export const RID_DEVICE_INFO_Init: typeof init = init
 
 /**
  * RID_DEVICE_INFO structure
@@ -43,8 +46,3 @@ export interface RID_DEVICE_INFO_Type {
     hid: RID_DEVICE_INFO_HID_Type,
   }
 }
-
-export const LPRID_DEVICE_INFO = ptr
-export const RID_DEVICE_INFO_Name = key
-export const RID_DEVICE_INFO_Init: typeof init = init
-

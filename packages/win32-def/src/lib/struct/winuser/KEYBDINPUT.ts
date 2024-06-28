@@ -15,6 +15,9 @@ const init: StructInitType = {
   dwExtraInfo: D.PUINT,
 } as const
 
+export const LPKEYBDINPUT = ptr
+export const KEYBDINPUT_Name = key
+export const KEYBDINPUT_Init: typeof init = init
 
 /**
  * KEYBDINPUT structure
@@ -35,8 +38,3 @@ export interface KEYBDINPUT_Type {
   time: T.DWORD
   dwExtraInfo: T.ULONG_PTR
 }
-
-export const LPKEYBDINPUT = ptr
-export const KEYBDINPUT_Name = key
-export const KEYBDINPUT_Init: typeof init = init
-

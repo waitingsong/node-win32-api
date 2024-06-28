@@ -15,6 +15,10 @@ const init: StructInitType = {
   TransmissionRetryTimeout: D.DWORD,
 } as const
 
+export const PPRINTER_INFO_5 = ptr
+export const PRINTER_INFO_5_Name = key
+export const PRINTER_INFO_5_Init: typeof init = init
+
 /**
  * PRINTER_INFO_5 structure,
  * structure specifies detailed printer information.
@@ -36,8 +40,4 @@ export interface PRINTER_INFO_5_Type {
   DeviceNotSelectedTimeout: T.DWORD
   TransmissionRetryTimeout: T.DWORD
 }
-
-export const PPRINTER_INFO_5 = ptr
-export const PRINTER_INFO_5_Name = key
-export const PRINTER_INFO_5_Init: typeof init = init
 

@@ -13,6 +13,10 @@ const init: StructInitType = {
   wParamH: D.UINT16,
 } as const
 
+export const LPHARDWAREINPUT = ptr
+export const HARDWAREINPUT_Name = key
+export const HARDWAREINPUT_Init: typeof init = init
+
 /**
  * HARDWAREINPUT structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-hardwareinput
@@ -29,8 +33,3 @@ export interface HARDWAREINPUT_TYPE {
   wParamL: T.UINT16
   wParamH: T.UINT16
 }
-
-export const LPHARDWAREINPUT = ptr
-export const HARDWAREINPUT_Name = key
-export const HARDWAREINPUT_Init: typeof init = init
-

@@ -15,6 +15,9 @@ const init: StructInitType = {
   dwTimeout: D.DWORD,
 } as const
 
+export const PFLASHWINFO = ptr
+export const FLASHWINFO_Name = key
+export const FLASHWINFO_Init: typeof init = init
 
 /**
  * FLASHWINFO structure
@@ -35,8 +38,3 @@ export interface FLASHWINFO_Type {
   uCount: T.UINT
   dwTimeout: T.DWORD
 }
-
-export const PFLASHWINFO = ptr
-export const FLASHWINFO_Name = key
-export const FLASHWINFO_Init: typeof init = init
-

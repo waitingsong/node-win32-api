@@ -10,6 +10,10 @@ const init: StructInitType = {
   pDevMode: DEVMODEW_Factory,
 } as const
 
+export const PPRINTER_INFO_9 = ptr
+export const PRINTER_INFO_9_Name = key
+export const PRINTER_INFO_9_Init: typeof init = init
+
 /**
  * PRINTER_INFO_9 structure,
  * structure specifies the per-user default printer settings.
@@ -27,8 +31,4 @@ export function PRINTER_INFO_9_Factory(): StructFactoryResult<PRINTER_INFO_9_Typ
 export interface PRINTER_INFO_9_Type {
   pDevMode: DEVMODEW_Type
 }
-
-export const PPRINTER_INFO_9 = ptr
-export const PRINTER_INFO_9_Name = key
-export const PRINTER_INFO_9_Init: typeof init = init
 

@@ -14,6 +14,9 @@ const init: StructInitType = {
   bRawData: D.BYTE,
 } as const
 
+export const LPRAWHID = ptr
+export const RAWHID_Name = key
+export const RAWHID_Init: typeof init = init
 
 /**
  * RAWHID structure
@@ -33,8 +36,3 @@ export interface RAWHID_Type {
   /** bRawData[1] */
   bRawData: T.BYTE
 }
-
-export const LPRAWHID = ptr
-export const RAWHID_Name = key
-export const RAWHID_Init: typeof init = init
-

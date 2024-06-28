@@ -13,6 +13,9 @@ const init: StructInitType = {
   lpData: D.PVOID,
 } as const
 
+export const LPCOPYDATASTRUCT = ptr
+export const COPYDATASTRUCT_Name = key
+export const COPYDATASTRUCT_Init: typeof init = init
 
 /**
  * COPYDATASTRUCT structure
@@ -31,8 +34,3 @@ export interface COPYDATASTRUCT_Type {
   cbData: T.DWORD
   lpData: T.PVOID
 }
-
-export const LPCOPYDATASTRUCT = ptr
-export const COPYDATASTRUCT_Name = key
-export const COPYDATASTRUCT_Init: typeof init = init
-

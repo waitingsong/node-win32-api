@@ -11,6 +11,10 @@ const init: StructInitType = {
   pName: D.LPTSTR,
 } as const
 
+export const PPRINTPROCESSOR_INFO_1 = ptr
+export const PRINTPROCESSOR_INFO_1_Name = key
+export const PRINTPROCESSOR_INFO_1_Init: typeof init = init
+
 /**
  * PRINTPROCESSOR_INFO_1 structure,
  * Specifies the name of an installed print processor.
@@ -28,8 +32,4 @@ export function PRINTPROCESSOR_INFO_1_Factory(): StructFactoryResult<PRINTPROCES
 export interface PRINTPROCESSOR_INFO_1_Type {
   pName: T.LPTSTR
 }
-
-export const PPRINTPROCESSOR_INFO_1 = ptr
-export const PRINTPROCESSOR_INFO_1_Name = key
-export const PRINTPROCESSOR_INFO_1_Init: typeof init = init
 

@@ -12,6 +12,9 @@ const init: StructInitType = {
   dwICC: D.DWORD,
 } as const
 
+export const LPINITCOMMONCONTROLSEX = ptr
+export const INITCOMMONCONTROLSEX_Name = key
+export const INITCOMMONCONTROLSEX_Init: typeof init = init
 
 /**
  * INITCOMMONCONTROLSEX structure
@@ -29,8 +32,4 @@ export interface INITCOMMONCONTROLSEX_Type {
   dwSize: T.DWORD
   dwICC: T.DWORD
 }
-
-export const LPINITCOMMONCONTROLSEX = ptr
-export const INITCOMMONCONTROLSEX_Name = key
-export const INITCOMMONCONTROLSEX_Init: typeof init = init
 

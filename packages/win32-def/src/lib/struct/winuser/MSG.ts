@@ -18,6 +18,9 @@ const init: StructInitType = {
   lPrivate: D.DWORD,
 } as const
 
+export const LPMSG = ptr
+export const MSG_Name = key
+export const MSG_Init: typeof init = init
 
 /**
  * MSG structure
@@ -40,8 +43,3 @@ export interface MSG_Type {
   pt: POINT_Type
   lPrivate: T.DWORD
 }
-
-export const LPMSG = ptr
-export const MSG_Name = key
-export const MSG_Init: typeof init = init
-

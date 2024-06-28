@@ -13,6 +13,10 @@ const init: StructInitType = {
   Attributes: D.DWORD,
 } as const
 
+export const PPRINTER_INFO_4 = ptr
+export const PRINTER_INFO_4_Name = key
+export const PRINTER_INFO_4_Init: typeof init = init
+
 /**
  * PRINTER_INFO_4 structure,
  * Specifies general printer information
@@ -38,8 +42,4 @@ export interface PRINTER_INFO_4_Type {
   pServerName: T.WString | null
   Attributes: T.DWORD
 }
-
-export const PPRINTER_INFO_4 = ptr
-export const PRINTER_INFO_4_Name = key
-export const PRINTER_INFO_4_Init: typeof init = init
 

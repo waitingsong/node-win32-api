@@ -16,6 +16,10 @@ const init: StructInitType = {
   DeviceKey: genFixedInt16Array(128),
 } as const
 
+export const LPDISPLAY_DEVICEW = ptr
+export const DISPLAY_DEVICEW_Name = key
+export const DISPLAY_DEVICEW_Init: typeof init = init
+
 /**
  * DISPLAY_DEVICEW structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-display_devicew
@@ -36,8 +40,4 @@ export interface DISPLAY_DEVICEW_Type {
   DeviceID: T.WCHAR_Array
   DeviceKey: T.WCHAR_Array
 }
-
-export const LPDISPLAY_DEVICEW = ptr
-export const DISPLAY_DEVICEW_Name = key
-export const DISPLAY_DEVICEW_Init: typeof init = init
 

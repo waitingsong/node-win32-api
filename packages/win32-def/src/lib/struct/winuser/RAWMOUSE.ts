@@ -31,6 +31,10 @@ export function RAWMOUSE_Factory(): StructFactoryResult<RAWMOUSE_Type> {
   return genStruct<RAWMOUSE_Type>(init, key, ptr)
 }
 
+export const LPRAWMOUSE = ptr
+export const RAWMOUSE_Name = key
+export const RAWMOUSE_Init: typeof init = init
+
 /**
  * RAWHID structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RAWMOUSE
@@ -49,8 +53,3 @@ export interface RAWMOUSE_Type {
   lLastY: T.LONG
   ulExtraInformation: T.ULONG
 }
-
-export const LPRAWMOUSE = ptr
-export const RAWMOUSE_Name = key
-export const RAWMOUSE_Init: typeof init = init
-

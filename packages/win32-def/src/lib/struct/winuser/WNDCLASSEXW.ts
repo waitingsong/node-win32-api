@@ -23,6 +23,9 @@ const init: StructInitType = {
   hIconSm: D.HICON,
 } as const
 
+export const LPWNDCLASSEXW = ptr
+export const WNDCLASSEXW_Name = key
+export const WNDCLASSEXW_Init: typeof init = init
 
 /**
  * WNDCLASSEXW structure
@@ -51,8 +54,3 @@ export interface WNDCLASSEXW_Type {
   lpszClassName: T.LPCTSTR
   hIconSm: T.HICON
 }
-
-export const LPWNDCLASSEXW = ptr
-export const WNDCLASSEXW_Name = key
-export const WNDCLASSEXW_Init: typeof init = init
-

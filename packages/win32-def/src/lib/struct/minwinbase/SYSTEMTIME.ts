@@ -18,6 +18,9 @@ const init: StructInitType = {
   wMilliseconds: D.WORD,
 } as const
 
+export const LPSYSTEMTIME = ptr
+export const SYSTEMTIME_Name = key
+export const SYSTEMTIME_Init: typeof init = init
 
 /**
  * SYSTEMTIME structure
@@ -41,8 +44,3 @@ export interface SYSTEMTIME_Type {
   wSecond: T.WORD
   wMilliseconds: T.WORD
 }
-
-export const LPSYSTEMTIME = ptr
-export const SYSTEMTIME_Name = key
-export const SYSTEMTIME_Init: typeof init = init
-

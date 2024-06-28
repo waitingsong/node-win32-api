@@ -16,6 +16,9 @@ const init: StructInitType = {
   dwExtraInfo: D.PUINT,
 } as const
 
+export const LPMOUSEINPUT = ptr
+export const MOUSEINPUT_Name = key
+export const MOUSEINPUT_Init: typeof init = init
 
 /**
  * MOUSEINPUT structure
@@ -37,8 +40,3 @@ export interface MOUSEINPUT_Type {
   time: T.UINT32
   dwExtraInfo: T.PUINT
 }
-
-export const LPMOUSEINPUT = ptr
-export const MOUSEINPUT_Name = key
-export const MOUSEINPUT_Init: typeof init = init
-

@@ -14,6 +14,9 @@ const init: StructInitType = {
   bottom: D.LONG,
 } as const
 
+export const LPRECT = ptr
+export const RECT_Name = key
+export const RECT_Init: typeof init = init
 
 /**
  * RECT structure
@@ -33,8 +36,4 @@ export interface RECT_Type {
   right: T.LONG
   bottom: T.LONG
 }
-
-export const LPRECT = ptr
-export const RECT_Name = key
-export const RECT_Init: typeof init = init
 

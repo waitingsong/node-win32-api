@@ -14,6 +14,10 @@ const init: StructInitType = {
   pComment: D.WString,
 } as const
 
+export const PPRINTER_INFO_1 = ptr
+export const PRINTER_INFO_1_Name = key
+export const PRINTER_INFO_1_Init: typeof init = init
+
 /**
  * PRINTER_INFO_1 structure,
  * Specifies general printer information
@@ -34,8 +38,4 @@ export interface PRINTER_INFO_1_Type {
   pName: T.WString
   pComment: T.WString
 }
-
-export const PPRINTER_INFO_1 = ptr
-export const PRINTER_INFO_1_Name = key
-export const PRINTER_INFO_1_Init: typeof init = init
 

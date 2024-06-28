@@ -14,6 +14,9 @@ const init: StructInitType = {
   wParam: D.WPARAM,
 } as const
 
+export const LPRAWINPUTHEADER = ptr
+export const RAWINPUTHEADER_Name = key
+export const RAWINPUTHEADER_Init: typeof init = init
 
 /**
  * RAWINPUTHEADER structure
@@ -33,8 +36,3 @@ export interface RAWINPUTHEADER_Type {
   hDevice: T.HANDLE
   wParam: T.WPARAM
 }
-
-export const LPRAWINPUTHEADER = ptr
-export const RAWINPUTHEADER_Name = key
-export const RAWINPUTHEADER_Init: typeof init = init
-

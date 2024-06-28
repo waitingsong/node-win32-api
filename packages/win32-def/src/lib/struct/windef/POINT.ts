@@ -12,6 +12,9 @@ const init: StructInitType = {
   y: D.LONG,
 } as const
 
+export const LPPOINT = ptr
+export const POINT_Name = key
+export const POINT_Init: typeof init = init
 
 /**
  * POINT structure
@@ -29,8 +32,3 @@ export interface POINT_Type {
   x: T.LONG
   y: T.LONG
 }
-
-export const LPPOINT = ptr
-export const POINT_Name = key
-export const POINT_Init: typeof init = init
-

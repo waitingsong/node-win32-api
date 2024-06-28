@@ -16,6 +16,9 @@ const init: StructInitType = {
   ExtraInformation: D.ULONG,
 } as const
 
+export const LPRAWKEYBOARD = ptr
+export const RAWKEYBOARD_Name = key
+export const RAWKEYBOARD_Init: typeof init = init
 
 /**
  * RAWKEYBOARD structure
@@ -37,8 +40,3 @@ export interface RAWKEYBOARD_Type {
   Message: T.UINT
   ExtraInformation: T.ULONG
 }
-
-export const LPRAWKEYBOARD = ptr
-export const RAWKEYBOARD_Name = key
-export const RAWKEYBOARD_Init: typeof init = init
-

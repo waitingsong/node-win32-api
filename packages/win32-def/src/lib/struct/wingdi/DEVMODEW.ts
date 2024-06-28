@@ -58,6 +58,11 @@ const init: StructInitType = {
   dmPanningHeight: D.DWORD,
 } as const
 
+export const LPDEVMODEW = ptr
+export const DEVMODEW_Name = key
+export const DEVMODEW_Init: typeof init = init
+
+
 /**
  * DEVMODEW structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-devmodew
@@ -119,8 +124,4 @@ export interface DEVMODEW_Type {
   dmPanningWidth: T.DWORD
   dmPanningHeight: T.DWORD
 }
-
-export const LPDEVMODEW = ptr
-export const DEVMODEW_Name = key
-export const DEVMODEW_Init: typeof init = init
 

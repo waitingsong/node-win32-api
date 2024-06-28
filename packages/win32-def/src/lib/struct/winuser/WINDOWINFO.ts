@@ -21,6 +21,9 @@ const init: StructInitType = {
   wCreatorVersion: D.WORD,
 } as const
 
+export const LPWINDOWINFO = ptr
+export const WINDOWINFO_Name = key
+export const WINDOWINFO_Init: typeof init = init
 
 /**
  * WINDOWINFO structure
@@ -46,8 +49,3 @@ export interface WINDOWINFO_Type {
   atomWindowType: T.ATOM
   wCreatorVersion: T.WORD
 }
-
-export const LPWINDOWINFO = ptr
-export const WINDOWINFO_Name = key
-export const WINDOWINFO_Init: typeof init = init
-

@@ -14,6 +14,9 @@ const init: StructInitType = {
   fHasHorizontalWheel: D.BOOL,
 } as const
 
+export const PRID_DEVICE_INFO_MOUSE = ptr
+export const RID_DEVICE_INFO_MOUSE_Name = key
+export const RID_DEVICE_INFO_MOUSE_Init: typeof init = init
 
 /**
  * RID_DEVICE_INFO_MOUSE structure
@@ -33,8 +36,3 @@ export interface RID_DEVICE_INFO_MOUSE_Type {
   dwSampleRate: T.DWORD
   fHasHorizontalWheel: T.BOOL
 }
-
-export const PRID_DEVICE_INFO_MOUSE = ptr
-export const RID_DEVICE_INFO_MOUSE_Name = key
-export const RID_DEVICE_INFO_MOUSE_Init: typeof init = init
-

@@ -6,7 +6,6 @@ import { SYSTEMTIME_Factory, type SYSTEMTIME_Type } from '../minwinbase/SYSTEMTI
 import { genStruct } from '../struct.helper.js'
 
 
-
 const key = 'JOB_INFO_1'
 const ptr = `${key}*` as const
 const init: StructInitType = {
@@ -24,6 +23,10 @@ const init: StructInitType = {
   PagesPrinted: D.DWORD,
   Submitted: SYSTEMTIME_Factory,
 } as const
+
+export const PJOB_INFO_1 = ptr
+export const JOB_INFO_1_Name = key
+export const JOB_INFO_1_Init: typeof init = init
 
 /**
  * JOB_INFO_1 structure,
@@ -54,8 +57,4 @@ export interface JOB_INFO_1_Type {
   PagesPrinted: T.DWORD
   Submitted: SYSTEMTIME_Type
 }
-
-export const PJOB_INFO_1 = ptr
-export const JOB_INFO_1_Name = key
-export const JOB_INFO_1_Init: typeof init = init
 

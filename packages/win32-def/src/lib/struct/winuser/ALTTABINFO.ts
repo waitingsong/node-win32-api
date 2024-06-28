@@ -20,6 +20,10 @@ const init: StructInitType = {
   ptStart: POINT_Factory,
 } as const
 
+export const LPALTTABINFO = ptr
+export const ALTTABINFO_Name = key
+export const ALTTABINFO_Init: typeof init = init
+
 /**
  * ALTTABINFO structure
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-alttabinfo
@@ -43,8 +47,4 @@ export interface ALTTABINFO_Type {
   cyItem: T.INT
   ptStart: POINT_Type
 }
-
-export const LPALTTABINFO = ptr
-export const ALTTABINFO_Name = key
-export const ALTTABINFO_Init: typeof init = init
 

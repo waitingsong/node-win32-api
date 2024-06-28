@@ -13,6 +13,10 @@ const init: StructInitType = {
   pDatatype: D.WString,
 } as const
 
+export const LPDOC_INFO_1 = ptr
+export const DOC_INFO_1_Name = key
+export const DOC_INFO_1_Init: typeof init = init
+
 /**
  * DOC_INFO_1 structure,
  * Describes a document that will be printed.
@@ -32,8 +36,4 @@ export interface DOC_INFO_1_Type {
   pOutputFile: T.WString | null
   pDatatype: T.WString
 }
-
-export const LPDOC_INFO_1 = ptr
-export const DOC_INFO_1_Name = key
-export const DOC_INFO_1_Init: typeof init = init
 

@@ -15,6 +15,9 @@ const init: StructInitType = {
   usUsage: D.USHORT,
 } as const
 
+export const PRID_DEVICE_INFO_HID = ptr
+export const RID_DEVICE_INFO_HID_Name = key
+export const RID_DEVICE_INFO_HID_Init: typeof init = init
 
 /**
  * RID_DEVICE_INFO_HID structure
@@ -35,8 +38,3 @@ export interface RID_DEVICE_INFO_HID_Type {
   usUsagePage: T.USHORT
   usUsage: T.USHORT
 }
-
-export const PRID_DEVICE_INFO_HID = ptr
-export const RID_DEVICE_INFO_HID_Name = key
-export const RID_DEVICE_INFO_HID_Init: typeof init = init
-

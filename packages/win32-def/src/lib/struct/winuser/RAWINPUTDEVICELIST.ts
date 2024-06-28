@@ -12,6 +12,9 @@ const init: StructInitType = {
   dwType: D.DWORD,
 } as const
 
+export const LPRAWINPUTDEVICELIST = ptr
+export const RAWINPUTDEVICELIST_Name = key
+export const RAWINPUTDEVICELIST_Init: typeof init = init
 
 /**
  * RAWINPUTDEVICELIST structure
@@ -29,8 +32,3 @@ export interface RAWINPUTDEVICELIST_Type {
   hDevice: T.HANDLE
   dwType: T.DWORD
 }
-
-export const LPRAWINPUTDEVICELIST = ptr
-export const RAWINPUTDEVICELIST_Name = key
-export const RAWINPUTDEVICELIST_Init: typeof init = init
-

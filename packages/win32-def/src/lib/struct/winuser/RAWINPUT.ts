@@ -21,6 +21,9 @@ const init: StructInitType = {
   },
 } as const
 
+export const LPRAWINPUT = ptr
+export const RAWINPUT_Name = key
+export const RAWINPUT_Init: typeof init = init
 
 /**
  * RAWINPUT structure
@@ -40,8 +43,3 @@ export interface RAWINPUT_Type {
   /** bRawData[1] */
   bRawData: T.BYTE
 }
-
-export const LPRAWINPUT = ptr
-export const RAWINPUT_Name = key
-export const RAWINPUT_Init: typeof init = init
-

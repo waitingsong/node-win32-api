@@ -12,6 +12,9 @@ const init: StructInitType = {
   dwHighDateTime: D.DWORD,
 } as const
 
+export const LPFILETIME = ptr
+export const LPFILETIME_Name = key
+export const FILETIME_Init: typeof init = init
 
 /**
  * FILETIME structure
@@ -29,8 +32,3 @@ export interface FILETIME_Type {
   dwLowDateTime: T.DWORD
   dwHighDateTime: T.DWORD
 }
-
-export const LPFILETIME = ptr
-export const LPFILETIME_Name = key
-export const FILETIME_Init: typeof init = init
-
