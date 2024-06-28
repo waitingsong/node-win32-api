@@ -5,8 +5,6 @@ export * as Spoolss from './lib/spoolss/index.js'
 export * as User32 from './lib/user32/index.js'
 export * as Winspool from './lib/winspool/index.js'
 
-export * as Constants from './lib/winmsg.js'
-
 export * from './lib/types.js'
 export * from './lib/helper.js'
 
