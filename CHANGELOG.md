@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [22.3.0](https://github.com/waitingsong/node-win32-api/compare/v22.2.0...v22.3.0) (2024-06-28)
+
+
+### Features
+
+* **win32-api:** user32 GetRawInputData() ([645ce4b](https://github.com/waitingsong/node-win32-api/commit/645ce4b59a44728b7a1d649c397e72e652fdeba3))
+
+
+
+
+
 # [22.2.0](https://github.com/waitingsong/node-win32-api/compare/v22.1.0...v22.2.0) (2024-06-28)
 
 
