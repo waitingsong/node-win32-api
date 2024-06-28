@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 
-import { fileShortPath } from '@waiting/shared-core'
+import { fileShortPath, isWin32 } from '@waiting/shared-core'
 
 import { LoadOptions, load } from '##/index.js'
 import { LPDISPLAY_DEVICEW, LPPOINT } from '##/index.struct.js'
@@ -16,8 +16,8 @@ describe(fileShortPath(import.meta.url), () => {
   }
 
   describe('load() run first', () => {
-    // run first
     it('autoCreateStruct=false', async () => {
+      if (! isWin32) { return }
       try {
         load<Win32>({
           ...options,
@@ -31,7 +31,6 @@ describe(fileShortPath(import.meta.url), () => {
       }
       assert(false, 'Should throw Error')
     })
-
   })
 })
 

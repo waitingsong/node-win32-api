@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 
-import { fileShortPath } from '@waiting/shared-core'
+import { fileShortPath, isWin32 } from '@waiting/shared-core'
 
 import type { KoffiFunction } from '##/index.js'
 import type { MultipleChoiceMapperList, MultipleChoiceMapper, MultipleChoiceMapperSet } from '##/index.types.js'
@@ -20,6 +20,7 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe('LoaderCache', () => {
     it('lib', async () => {
+      if (! isWin32) { return }
       assert(! LoaderCache.getLibByName(dll))
 
       const ffiLIb = loadIKoffiLib(dll)
@@ -31,7 +32,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('RegisteredFunc', async () => {
-
+      if (! isWin32) { return }
       const ffiLIb = loadIKoffiLib(dll)
       assert(! LoaderCache.getRegisteredFuncMap(ffiLIb, fnName))
 
@@ -45,6 +46,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('eMultipleChoiceListMapper', async () => {
+      if (! isWin32) { return }
       const ffiLIb = loadIKoffiLib(dll)
       assert(! LoaderCache.getMultipleChoiceListMapperSet(ffiLIb, fnName))
 

@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 
-import { fileShortPath } from '@waiting/shared-core'
+import { fileShortPath, isWin32 } from '@waiting/shared-core'
 
 import { LoadOptions, load } from '##/index.js'
 
@@ -15,6 +15,7 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe('load()', () => {
     it('GetTickCount', async () => {
+      if (! isWin32) { return }
       const lib = load<Kernel32Fns>(options)
 
       const res = lib.GetTickCount()

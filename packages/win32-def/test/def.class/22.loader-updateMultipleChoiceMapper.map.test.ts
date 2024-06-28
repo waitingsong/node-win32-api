@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 
-import { fileShortPath } from '@waiting/shared-core'
+import { fileShortPath, isWin32 } from '@waiting/shared-core'
 
 import { PrinterEnumFlags } from '##/index.consts.js'
 import { load } from '##/index.js'
@@ -23,6 +23,7 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe('load()', () => {
     it('using Map', async () => {
+      if (! isWin32) { return }
       const lib = load<Winspool>({
         dll: 'winspool.drv',
         dllFuncs: DefWinspool,

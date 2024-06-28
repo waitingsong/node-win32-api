@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 
-import { fileShortPath } from '@waiting/shared-core'
+import { fileShortPath, isWin32 } from '@waiting/shared-core'
 
 import { PrinterEnumFlags } from '##/index.consts.js'
 import { CallingConvention, load } from '##/index.js'
@@ -25,6 +25,7 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe('load()', () => {
     it('using Map (before)', async () => {
+      if (! isWin32) { return }
       const lib = load<Winspool>({
         dll: 'winspool.drv',
         dllFuncs: DefWinspool,
@@ -52,6 +53,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('using fnName+Map (before)', async () => {
+      if (! isWin32) { return }
       const lib = load<Winspool>({
         dll: 'winspool.drv',
         dllFuncs: DefWinspool,
@@ -83,6 +85,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('multi params Level=1', async () => {
+      if (! isWin32) { return }
       const lib = load<Winspool>({
         dll: 'winspool.drv',
         dllFuncs: DefWinspool,
@@ -110,6 +113,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('multi params Level=4', async () => {
+      if (! isWin32) { return }
       const lib = load<Winspool>({
         dll: 'winspool.drv',
         dllFuncs: DefWinspool,
@@ -137,6 +141,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('multi params Level=5', async () => {
+      if (! isWin32) { return }
       const lib = load<Winspool>({
         dll: 'winspool.drv',
         dllFuncs: DefWinspool,
@@ -166,6 +171,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('multi params Level=2(not support)', async () => {
+      if (! isWin32) { return }
       const lib = load<Winspool>({
         dll: 'winspool.drv',
         dllFuncs: DefWinspool,
@@ -197,6 +203,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('multi params Level=999(invalid)', async () => {
+      if (! isWin32) { return }
       const lib = load<Winspool>({
         dll: 'winspool.drv',
         dllFuncs: DefWinspool,
@@ -228,6 +235,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('multi params invalid param', async () => {
+      if (! isWin32) { return }
       const lib = load<Winspool>({
         dll: 'winspool.drv',
         dllFuncs: DefWinspool,

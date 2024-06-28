@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 
-import { fileShortPath } from '@waiting/shared-core'
+import { fileShortPath, isWin32 } from '@waiting/shared-core'
 
 import { LoadOptions, load } from '##/index.js'
 import { POINT_Factory, POINT_Type } from '##/index.struct.js'
@@ -16,6 +16,7 @@ describe(fileShortPath(import.meta.url), () => {
 
   describe('load()', () => {
     it('normal', async () => {
+      if (! isWin32) { return }
       const lib = load<Win32Fns>(options)
       const { payload: pos } = POINT_Factory()
 
@@ -26,6 +27,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('usedFuncNames', async () => {
+      if (! isWin32) { return }
       const { payload: pos } = POINT_Factory()
       const lib = load<Win32Fns>({
         ...options,
@@ -41,6 +43,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('usedFuncNames _Async', async () => {
+      if (! isWin32) { return }
       const { payload: pos } = POINT_Factory()
       const lib = load<Win32Fns>({
         ...options,
@@ -56,6 +59,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('sync + async', async () => {
+      if (! isWin32) { return }
       const { payload: pos } = POINT_Factory()
       const lib = load<Win32Fns>(options)
 
@@ -71,6 +75,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('sync + async with different inst', async () => {
+      if (! isWin32) { return }
       const comb = POINT_Factory()
       const pos = comb.payload
       const lib = load<Win32Fns>(options)
@@ -89,6 +94,7 @@ describe(fileShortPath(import.meta.url), () => {
     })
 
     it('fake struct in param', async () => {
+      if (! isWin32) { return }
       try {
         load({
           ...options,

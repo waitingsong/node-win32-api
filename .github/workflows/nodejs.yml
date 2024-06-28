@@ -90,6 +90,15 @@ jobs:
         env:
           CI: true
 
+      - name: Testing
+        shell: bash
+        run: |
+          export cwd=`pwd`
+          . .scripts/ci/ci-env.sh
+          .scripts/ci/ci-prepare.sh
+          lerna run test --scope win32-def
+        env:
+          CI: true
 
     # services:
     #   postgres:
