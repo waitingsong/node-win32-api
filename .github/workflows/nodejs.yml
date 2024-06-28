@@ -98,6 +98,7 @@ jobs:
           .scripts/ci/ci-prepare.sh
           rm -rf packages/win32-def/test/def.class packages/win32-def/test/def.const
           rm -rf packages/win32-def/test/lib/consts packages/win32-def/test/lib/struct
+          rm -rf packages/win32-def/test/mapper
           lerna run test --scope win32-def
         env:
           CI: true
