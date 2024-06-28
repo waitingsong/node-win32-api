@@ -1,7 +1,7 @@
 import * as D from 'win32-def/def'
 import * as S from 'win32-def/struct'
 
-import { DefUser32_B } from './B.def.js'
+import { DefUser32_B } from './AB.def.js'
 
 
 export class DefUser32_C extends DefUser32_B {

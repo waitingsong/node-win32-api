@@ -1,7 +1,7 @@
 /* c8 ignore start */
 import * as T from 'win32-def/types'
 
-import { DefUser32_B } from './B.def.js'
+import { DefUser32_B } from './AB.def.js'
 
 
 export class User32_B implements T.LibDef2Type<typeof DefUser32_B> {
