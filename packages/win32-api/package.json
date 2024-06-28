@@ -55,7 +55,7 @@
     "@waiting/shared-core": "^23.19.0"
   },
   "engines": {
-    "node": ">=18.12.0"
+    "node": ">=16.12.0"
   },
   "files": [
     "README.*.md",
