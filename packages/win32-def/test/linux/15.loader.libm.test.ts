@@ -10,7 +10,7 @@ import { type Libm, DefLibm } from './api.helper.js'
 describe(fileShortPath(import.meta.url), () => {
   const dll = 'libm.so'
   const options: LoadOptions<Libm> = {
-    dll,
+    dll: '/usr/lib/x86_64-linux-gnu/libm.so',
     dllFuncs: DefLibm,
   }
 
