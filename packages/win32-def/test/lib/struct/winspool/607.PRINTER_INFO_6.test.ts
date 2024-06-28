@@ -7,7 +7,7 @@ import { assertStructUnion } from '#@/helper.js'
 const name = 'PRINTER_INFO_6'
 const pointer = PPRINTER_INFO_6
 const factory = PRINTER_INFO_6_Factory
-const size = 32
+const size = 4
 const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {
