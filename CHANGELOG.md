@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [22.7.0](https://github.com/waitingsong/node-win32-api/compare/v22.6.0...v22.7.0) (2024-06-28)
+
+
+### Features
+
+* **win32-api:** user32 ShowWindowAsync() ([de0b542](https://github.com/waitingsong/node-win32-api/commit/de0b5428d64991577a3f234d76e0947b191563b9))
+
+
+
+
+
 # [22.6.0](https://github.com/waitingsong/node-win32-api/compare/v22.5.1...v22.6.0) (2024-06-28)
 
 
