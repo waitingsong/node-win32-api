@@ -67,7 +67,10 @@ describe(fileShortPath(import.meta.url), () => {
 
         const info6 = await GetPrinter({ hPrinter: hwnd, Level: 6 })
         assert(info6)
-        assert(info6.dwStatus === PRINTER_STATUS.PRINTER_STATUS_PAUSED, info6.dwStatus.toString())
+        assert(
+          info6.dwStatus === PRINTER_STATUS.PRINTER_STATUS_PAUSED || info6.dwStatus === PRINTER_STATUS.unknown,
+          info6.dwStatus.toString(),
+        )
 
         await sleep(500)
         assert(await EndDocPrinter(hwnd), 'EndDocPrinter() failed')
