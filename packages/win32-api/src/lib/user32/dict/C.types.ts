@@ -1,7 +1,7 @@
 /* c8 ignore start */
 import * as T from 'win32-def/types'
 
-import { User32_B } from './B.types.js'
+import { User32_B } from './AB.types.js'
 
 
 export class User32_C extends User32_B {
