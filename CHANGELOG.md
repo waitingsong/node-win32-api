@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [22.2.0](https://github.com/waitingsong/node-win32-api/compare/v22.1.0...v22.2.0) (2024-06-28)
+
+
+### Features
+
+* **win32-def:** struct RAWINPUT ([4b492ba](https://github.com/waitingsong/node-win32-api/commit/4b492ba086369e760e5af7054dc147bc527122b3))
+* **win32-def:** struct RAWMOUSE ([1f0c54b](https://github.com/waitingsong/node-win32-api/commit/1f0c54bf94ca53f4a2926582a1a6266b76adfdb4))
+
+
+
+
+
 # [22.1.0](https://github.com/waitingsong/node-win32-api/compare/v22.0.0...v22.1.0) (2024-06-28)
 
 
