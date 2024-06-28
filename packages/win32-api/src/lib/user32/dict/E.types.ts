@@ -24,4 +24,20 @@ export class User32_E extends User32_D {
 
 }
 
+export class User32_F extends User32_E {
+
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-findwindowexw */
+  FindWindowExW: (
+    hwndParent: T.HWND,
+    hwndChildAfter: T.HWND,
+    lpszClass: T.LPCTSTR | null,
+    lpszWindow: T.LPCTSTR | null,
+  ) => T.HWND
+
+  FlashWindow: (hWnd: T.HWND, bInvert: T.BOOL) => T.BOOL
+
+  FlashWindowEx: (pfwi: S.FLASHWINFO_Type) => T.BOOL
+
+}
+
 /* c8 ignore stop */
