@@ -10,7 +10,7 @@ import * as S from 'win32-def/struct'
 
 console.info('Running EnumDisplayDevicesW()')
 
-const { size, payload } = S.DISPLAY_DEVICEW_Factory()
+const { payload } = S.DISPLAY_DEVICEW_Factory()
 
 const user32 = ffi.load('user32.dll')
 try {
