@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [22.5.0](https://github.com/waitingsong/node-win32-api/compare/v22.4.0...v22.5.0) (2024-06-28)
+
+
+### Features
+
+* **win32-api:** user32 EnumChildWindows() ([28912b4](https://github.com/waitingsong/node-win32-api/commit/28912b495bea5beb34adfa0350a9887121a29339))
+
+
+
+
+
 # [22.4.0](https://github.com/waitingsong/node-win32-api/compare/v22.3.0...v22.4.0) (2024-06-28)
 
 
