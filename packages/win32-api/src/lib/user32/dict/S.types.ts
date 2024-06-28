@@ -2,7 +2,7 @@
 import * as S from 'win32-def/struct'
 import * as T from 'win32-def/types'
 
-import { User32_R } from './R.types.js'
+import { User32_R } from './PR.types.js'
 
 
 export class User32_S extends User32_R {

@@ -1,4 +1,5 @@
 import * as D from 'win32-def/def'
+import * as S from 'win32-def/struct'
 
 import { DefUser32_M } from './IM.def.js'
 
