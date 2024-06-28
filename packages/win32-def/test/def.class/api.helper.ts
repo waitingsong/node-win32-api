@@ -70,6 +70,29 @@ export class DefWinspool implements T.LibDefBase {
       D.LPDWORD,
       D.LPDWORD,
     ]] as const
+
+
+  /**
+  * Retrieves information about a specified printer.
+  * @link https://learn.microsoft.com/en-us/windows/win32/printdocs/getprinter
+  */
+  static GetPrinterW = [D.BOOL, [
+    D.HANDLE,
+    D.DWORD,
+    // multiple choice instead of `_Out_ ${D.LPBYTE}`,
+    // @TODO 2|7
+    [
+      `_Out_ ${S.PPRINTER_INFO_1}`,
+      `_Out_ ${S.PPRINTER_INFO_4}`,
+      `_Out_ ${S.PPRINTER_INFO_5}`,
+      `_Out_ ${S.PPRINTER_INFO_6}`,
+      `_Out_ ${S.PPRINTER_INFO_8}`,
+      `_Out_ ${S.PPRINTER_INFO_9}`,
+    ],
+    D.DWORD,
+    `_Out_ ${D.LPDWORD}`,
+  ]] as const // `as const` is required for multipleChoice
+
 }
 
 export class Winspool implements T.LibDef2Type<typeof DefWinspool> {
@@ -98,6 +121,28 @@ export class Winspool implements T.LibDef2Type<typeof DefWinspool> {
     pcbNeeded: T.LPDWORD,
     pcReturned: T.LPDWORD,
   ) => Promise<T.BOOL>
+
+  /**
+ * Retrieves information about a specified printer.
+ * @docs https://learn.microsoft.com/en-us/windows/win32/printdocs/getprinter
+ * @docs https://learn.microsoft.com/zh-cn/windows/win32/printdocs/getprinter
+ */
+  GetPrinterW: <Level extends S.PRINTER_INFO_LEVEL> (
+    hPrinter: T.HANDLE,
+    Level: T.DWORD,
+    pPrinter: S.PRINTER_INFO_X_Type<Level>, // multiple choice
+    cbBuf: T.DWORD,
+    pcbNeeded: T.LPDWORD,
+  ) => T.BOOL
+
+  GetPrinterW_Async: <Level extends S.PRINTER_INFO_LEVEL> (
+    hPrinter: T.HANDLE,
+    Level: T.DWORD,
+    pPrinter: S.PRINTER_INFO_X_Type<Level>, // multiple choice
+    cbBuf: T.DWORD,
+    pcbNeeded: T.LPDWORD,
+  ) => Promise<T.BOOL>
+
 }
 
 // #region Winspool2
@@ -108,15 +153,15 @@ export class DefWinspool2 implements T.LibDefBase {
   [x: string]: T.FnDefFullParams
 
   static EnumPrintersW = [D.BOOL,
-    [
-      D.DWORD,
-      D.WString,
-      D.DWORD,
-      `_Out_ ${D.LPBYTE}`,
-      D.DWORD,
-      D.LPDWORD,
-      D.LPDWORD,
-    ]] as const
+  [
+    D.DWORD,
+    D.WString,
+    D.DWORD,
+    `_Out_ ${D.LPBYTE}`,
+    D.DWORD,
+    D.LPDWORD,
+    D.LPDWORD,
+  ]] as const
 }
 
 export class Winspool2 implements T.LibDef2Type<typeof DefWinspool2> {
