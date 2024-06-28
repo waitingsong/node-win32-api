@@ -99,6 +99,7 @@ It must define multipleChoice mapper for this method: [`GetPrinterW_mapper`]
 - exposed `DTypes` changed to `Def`
 - exposed `DStruct` changed to `Struct`
 - exposed `DModle` changed to `Types`
+- exposed `/func` changed to '/util'
 - `winmsg.ts` moved to `win32-def/winmsg.enum.ts` as `WIN_MSG`
 - `kernel32/consts.ts` moved to `win32-def/consts/winbase.enum.ts`
 - `user32/consts.ts` moved `win32-def/consts/user32.enum.ts`
@@ -108,7 +109,7 @@ It must define multipleChoice mapper for this method: [`GetPrinterW_mapper`]
 
 [koffi]: https://github.com/node-ffi-napi/node-ffi-napi/issues/269
 
-[`POINT`]: https://github.com/waitingsong/node-win32-api/packages/win32-def/src/lib/struct/windef/POINT.ts
-[`DEVMODEW`]: https://github.com/waitingsong/node-win32-api/packages/win32-def/src/lib/struct/wingdi/DEVMODEW.ts
-[`DISPLAY_DEVICEW`]: https://github.com/waitingsong/node-win32-api/packages/win32-def/src/lib/struct/wingdi/DISPLAY_DEVICEW.ts 
-[`GetPrinterW_mapper`]: https://github.com/waitingsong/node-win32-api/packages/win32-api/src/lib/winspool/mapper/GetPrinterW.mapper.ts
+[`POINT`]: https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-def/src/lib/struct/windef/POINT.ts
+[`DEVMODEW`]: https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-def/src/lib/struct/wingdi/DEVMODEW.ts
+[`DISPLAY_DEVICEW`]: https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-def/src/lib/struct/wingdi/DISPLAY_DEVICEW.ts 
+[`GetPrinterW_mapper`]: https://github.com/waitingsong/node-win32-api/blob/main/packages/win32-api/src/lib/winspool/mapper/GetPrinterW.mapper.ts
