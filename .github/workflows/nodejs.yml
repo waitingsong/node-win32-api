@@ -96,6 +96,8 @@ jobs:
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
+          rm -rf packages/win32-def/test/def.class packages/win32-def/test/def.const
+          rm -rf packages/win32-def/test/lib/consts packages/win32-def/test/lib/struct
           lerna run test --scope win32-def
         env:
           CI: true
