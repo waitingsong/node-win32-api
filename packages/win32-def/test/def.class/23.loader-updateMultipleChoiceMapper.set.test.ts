@@ -5,7 +5,8 @@ import { fileShortPath } from '@waiting/shared-core'
 import { PrinterEnumFlags } from '##/index.consts.js'
 import { load } from '##/index.js'
 import { PRINTER_INFO_1_Type, PRINTER_INFO_4_Type } from '##/index.struct.js'
-import { fnName, multipleChoiceMapperSet } from '#@/mapper/EnumPrintersW.mapper.js'
+import { funcName } from '#@/mapper/EnumPrintersW.mapper.js'
+import { multipleChoiceMapperSet } from '#@/mapper/index.mapper.js'
 import { expectPrinterInfo } from '#@/test.config.js'
 
 import { DefWinspool, Winspool } from './api.helper.js'
@@ -29,7 +30,7 @@ describe(fileShortPath(import.meta.url), () => {
         // multipleChoiceMapperList: multipleChoiceMapperList, // using lib.updateMultipleChoiceMapper() method instead
       })
       lib.updateMultipleChoiceMapper({
-        fnName,
+        fnName: funcName,
         mapperSet: multipleChoiceMapperSet,
       })
 
