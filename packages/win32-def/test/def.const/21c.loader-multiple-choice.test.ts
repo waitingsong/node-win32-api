@@ -9,7 +9,7 @@ import type {
   PRINTER_INFO_4_Type,
   PRINTER_INFO_5_Type,
 } from '##/index.struct.js'
-import { multipleChoiceMapperList, multipleChoiceMapperSet } from '#@/mapper/EnumPrintersW.mapper.js'
+import { multipleChoiceMapperList, multipleChoiceMapperSet } from '#@/mapper/index.mapper.js'
 import { expectPrinterInfo } from '#@/test.config.js'
 
 import { defWinspool, WinspoolFns } from './api.helper.js'
