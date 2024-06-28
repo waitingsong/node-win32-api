@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [22.4.0](https://github.com/waitingsong/node-win32-api/compare/v22.3.0...v22.4.0) (2024-06-28)
+
+
+### Features
+
+* **win32-api:** /util/ MessageBox() ([dc2e3d6](https://github.com/waitingsong/node-win32-api/commit/dc2e3d66ed1111b7d0581d1b13d32e9b9f1d0180))
+* **win32-api:** user32 MessageBoxExW() ([435a07c](https://github.com/waitingsong/node-win32-api/commit/435a07c58994ff1b4194f591722c52fd2ca9bb55))
+
+
+
+
+
 # [22.3.0](https://github.com/waitingsong/node-win32-api/compare/v22.2.0...v22.3.0) (2024-06-28)
 
 
