@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "FFI definitions of windows win32 api for node-ffi",
   "private": true,
+  "type": "module",
   "devDependencies": {
     "@commitlint/cli": "19",
     "@commitlint/config-conventional": "19",
