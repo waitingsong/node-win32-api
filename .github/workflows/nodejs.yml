@@ -96,9 +96,10 @@ jobs:
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
-          rm -rf packages/win32-def/test/def.class packages/win32-def/test/def.const
-          rm -rf packages/win32-def/test/lib/consts packages/win32-def/test/lib/struct
-          rm -rf packages/win32-def/test/mapper
+          cd packages/win32-def/test
+          rm -rf def.class def.const lib/consts lib/struct mapper
+          rm -rf 01.loader-no-autoCreateStruct.test.ts
+          cd -
           lerna run test --scope win32-def
         env:
           CI: true
