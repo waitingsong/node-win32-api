@@ -36,6 +36,15 @@ export class User32_G extends User32_F {
 
   GetParent: (hWnd: T.HWND) => T.HWND
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getrawinputdata */
+  GetRawInputData: (
+    hRawInput: S.RAWINPUT_Type,
+    uiCommand: T.UINT,
+    pData: T.LPVOID | null,
+    pcbSize: T.PUINT,
+    cbSizeHeader: T.UINT,
+  ) => T.UINT
+
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getrawinputdeviceinfow */
   GetRawInputDeviceInfoW: (
     hDevice: T.HANDLE,

@@ -30,6 +30,9 @@ export class DefUser32_G extends DefUser32_F {
 
   static GetParent = [D.HWND, [D.HWND]]
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getrawinputdata */
+  static GetRawInputData = [D.UINT, [S.LPRAWINPUT, D.UINT, D.LPVOID, `_Inout_ ${D.PUINT}`, D.UINT]]
+
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getrawinputdeviceinfow */
   static GetRawInputDeviceInfoW = [D.UINT, [D.HANDLE, D.UINT, `_Inout_ ${D.LPVOID}`, D.PUINT]]
 
