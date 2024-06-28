@@ -36,18 +36,18 @@ export function RAWMOUSE_Factory(): StructFactoryResult<RAWMOUSE_Type> {
  * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-RAWMOUSE
  */
 export interface RAWMOUSE_Type {
-  usFlags: T.USHORT,
+  usFlags: T.USHORT
   u: {
     ulButtons: T.ULONG,
     s: {
       usButtonFlags: T.USHORT,
       usButtonData: T.USHORT,
     },
-  },
-  ulRawButtons: T.ULONG,
-  lLastX: T.LONG,
-  lLastY: T.LONG,
-  ulExtraInformation: T.ULONG,
+  }
+  ulRawButtons: T.ULONG
+  lLastX: T.LONG
+  lLastY: T.LONG
+  ulExtraInformation: T.ULONG
 }
 
 export const LPRAWMOUSE = ptr

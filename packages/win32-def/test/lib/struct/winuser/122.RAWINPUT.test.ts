@@ -2,14 +2,14 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { RAWMOUSE_Factory, LPRAWMOUSE } from '##/index.struct.js'
+import { RAWINPUT_Factory, LPRAWINPUT } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 
-const name = 'RAWMOUSE'
-const pointer = LPRAWMOUSE
-const factory = RAWMOUSE_Factory
-const size = 24
+const name = 'RAWINPUT'
+const pointer = LPRAWINPUT
+const factory = RAWINPUT_Factory
+const size = 48
 const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {
