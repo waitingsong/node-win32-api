@@ -12,4 +12,13 @@ export class User32_I extends User32_G {
 
 }
 
+export class User32_M extends User32_I {
+
+  /**
+   * @learn https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-monitorfromwindow
+   */
+  MonitorFromWindow: (hWnd: T.HWND, dwFlags: T.DWORD) => T.HMONITOR
+
+}
+
 /* c8 ignore stop */

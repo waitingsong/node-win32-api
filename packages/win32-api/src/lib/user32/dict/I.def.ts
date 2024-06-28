@@ -11,3 +11,9 @@ export class DefUser32_I extends DefUser32_G {
 
 }
 
+
+export class DefUser32_M extends DefUser32_I {
+
+  static MonitorFromWindow = [D.HWND, [D.HANDLE, D.DWORD]]
+
+}
