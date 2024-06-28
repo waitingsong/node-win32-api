@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [22.6.0](https://github.com/waitingsong/node-win32-api/compare/v22.5.1...v22.6.0) (2024-06-28)
+
+
+### Features
+
+* **win32-api:** user32 ChangeDisplaySettingsExW() ([1f0d8f9](https://github.com/waitingsong/node-win32-api/commit/1f0d8f95fc1528a592ec6ae297edb35004a3f08f))
+
+
+
+
+
 ## [22.5.1](https://github.com/waitingsong/node-win32-api/compare/v22.5.0...v22.5.1) (2024-06-28)
 
 **Note:** Version bump only for package win32-api
