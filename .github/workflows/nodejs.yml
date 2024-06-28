@@ -58,6 +58,7 @@ jobs:
           netstat -tunpl
           export cwd=`pwd`
           git config --global --add safe.directory $cwd
+          whereis libm.so
 
       - name: Install Dependencies
         timeout-minutes: 15
