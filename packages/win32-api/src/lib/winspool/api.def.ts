@@ -26,7 +26,7 @@ export class DefWinspool implements T.LibDefBase {
       D.DWORD,
       D.LPDWORD,
       D.LPDWORD,
-    ]] // as const // `as const` is required for multipleChoice
+    ]]
 
   /**
    * Enumerates the print processors installed on the specified server.
