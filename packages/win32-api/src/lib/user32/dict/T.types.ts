@@ -15,4 +15,12 @@ export class User32_T extends User32_S {
 
 }
 
+export class User32_U extends User32_T {
+
+  UnhookWinEvent: (hWinEventHook: T.HWINEVENTHOOK) => T.BOOL
+
+  UpdateWindow: (hWnd: T.HWND) => T.BOOL
+
+}
+
 /* c8 ignore stop */

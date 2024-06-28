@@ -14,3 +14,11 @@ export class DefUser32_T extends DefUser32_S {
 
 }
 
+export class DefUser32_U extends DefUser32_T {
+
+  static UnhookWinEvent = [D.BOOL, [D.HWINEVENTHOOK]]
+
+  static UpdateWindow = [D.BOOL, [D.HWND]]
+
+}
+
