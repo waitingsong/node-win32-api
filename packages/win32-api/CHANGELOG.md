@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [22.0.0](https://github.com/waitingsong/node-win32-api/compare/v21.0.2...v22.0.0) (2024-06-28)
+
+
+### Features
+
+* use koffi instead of ffi-napi to support nodejs >= 18 ([3e8f7b5](https://github.com/waitingsong/node-win32-api/commit/3e8f7b5bb7087aada2f6d49197866fb815f644ab))
+* **win32-api:** change const enum to normal enum ([21b8d17](https://github.com/waitingsong/node-win32-api/commit/21b8d17ab4d72d5653a7ceda0112c1e128f5ad1d))
+
+
+
+
+
 ## [21.0.2](https://github.com/waitingsong/node-win32-api/compare/v21.0.1...v21.0.2) (2024-06-16)
 
 **Note:** Version bump only for package win32-api

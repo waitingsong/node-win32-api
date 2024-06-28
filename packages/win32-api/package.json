@@ -1,7 +1,7 @@
 {
   "name": "win32-api",
   "author": "waiting",
-  "version": "21.0.2",
+  "version": "22.0.0",
   "description": "FFI definitions of windows win32 api for node-ffi",
   "keywords": [
     "windows",
@@ -49,7 +49,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "win32-def": "^21.0.2"
+    "win32-def": "^22.0.0"
   },
   "devDependencies": {
     "@waiting/shared-core": "^23.19.0"
