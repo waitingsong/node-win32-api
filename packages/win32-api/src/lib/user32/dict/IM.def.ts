@@ -16,4 +16,7 @@ export class DefUser32_M extends DefUser32_I {
 
   static MonitorFromWindow = [D.HWND, [D.HANDLE, D.DWORD]]
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messageboxexw */
+  static MessageBoxExW = [D.INT, [D.HWND, D.WString, D.WString, D.UINT, D.WORD]]
+
 }

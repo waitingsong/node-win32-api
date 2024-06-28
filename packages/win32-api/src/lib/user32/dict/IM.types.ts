@@ -19,6 +19,15 @@ export class User32_M extends User32_I {
    */
   MonitorFromWindow: (hWnd: T.HWND, dwFlags: T.DWORD) => T.HMONITOR
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messageboxexw */
+  MessageBoxExW: (
+    hWnd: T.HWND | null,
+    lpText: T.WString | null,
+    lpCaption: T.WString | null,
+    uType: T.UINT,
+    wLanguageId: T.WORD,
+  ) => T.INT
+
 }
 
 /* c8 ignore stop */
