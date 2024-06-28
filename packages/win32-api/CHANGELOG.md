@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [22.1.0](https://github.com/waitingsong/node-win32-api/compare/v22.0.0...v22.1.0) (2024-06-28)
+
+
+### Features
+
+* **win32-api:** user32 SetParent() ([421b405](https://github.com/waitingsong/node-win32-api/commit/421b4057be18eaed02c2bb60ede44bc3310ea309))
+
+
+
+
+
 # [22.0.0](https://github.com/waitingsong/node-win32-api/compare/v21.0.2...v22.0.0) (2024-06-28)
 
 
