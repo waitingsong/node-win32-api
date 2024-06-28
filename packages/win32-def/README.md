@@ -6,7 +6,8 @@ Definitions of Windows Date Types for [koffi]
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![](https://img.shields.io/badge/lang-TypeScript-blue.svg)
 ![Available platform](https://img.shields.io/badge/platform-win32-blue.svg)
-[![ci](https://github.com/waitingsong/node-win32-api/workflows/ci-win/badge.svg)](https://github.com/waitingsong/node-win32-api/actions?query=workflow%3A%22ci-win%22)
+[![ci](https://github.com/waitingsong/node-win32-api/actions/workflows/nodejs-win.yml/badge.svg
+)](https://github.com/waitingsong/node-win32-api/actions)
 [![codecov](https://codecov.io/gh/waitingsong/node-win32-api/branch/main/graph/badge.svg?token=WXbZvnAaYO)](https://codecov.io/gh/waitingsong/node-win32-api)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
