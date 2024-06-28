@@ -76,20 +76,9 @@ jobs:
           # github project/settings/Secrets/New repository secret: NPM_TOKEN
           npm ping
           npm whoami
-          psql -V
-          dig postgres
-          echo "\l" | psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d postgres
-          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "\d+"
-          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "SHOW TIMEZONE;"
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          POSTGRES_HOST: postgres
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-          POSTGRES_DB: db_ci_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          PGPASSWORD: postgres
 
       - name: Install Dependencies
         timeout-minutes: 15
@@ -141,6 +130,5 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 
 
