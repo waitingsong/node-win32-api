@@ -152,8 +152,7 @@ export type LibWinspool2 = T.FLib<Winspool>
 export class DefWinspool2 implements T.LibDefBase {
   [x: string]: T.FnDefFullParams
 
-  static EnumPrintersW = [D.BOOL,
-  [
+  static EnumPrintersW = [D.BOOL, [
     D.DWORD,
     D.WString,
     D.DWORD,
