@@ -13,6 +13,8 @@
     "winspool",
     "printer",
     "ffi",
+    "koffi",
+    "Electron",
     "ESM",
     "typescript",
     "ts"
@@ -21,46 +23,19 @@
   "bin": {},
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "imports": {
+    "#package.json": "./package.json",
+    "##/*": "./src/*",
+    "#@/*": "./test/*"
+  },
   "exports": {
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./promise": {
-      "import": "./dist/index.promise.js",
-      "require": "./dist/index.promise.cjs"
-    },
-    "./consts": {
-      "import": "./dist/index.consts.js",
-      "require": "./dist/index.consts.cjs"
-    },
-    "./comctl32": {
-      "import": "./dist/index.comctl32.js",
-      "require": "./dist/index.comctl32.cjs"
-    },
-    "./kernel32": {
-      "import": "./dist/index.kernel32.js",
-      "require": "./dist/index.kernel32.cjs"
-    },
-    "./ntdll": {
-      "import": "./dist/index.ntdll.js",
-      "require": "./dist/index.ntdll.cjs"
-    },
-    "./spoolss": {
-      "import": "./dist/index.spoolss.js",
-      "require": "./dist/index.spoolss.cjs"
-    },
-    "./user32": {
-      "import": "./dist/index.user32.js",
-      "require": "./dist/index.user32.cjs"
-    },
-    "./winspool": {
-      "import": "./dist/index.winspool.js",
-      "require": "./dist/index.winspool.cjs"
-    },
-    "./fun": {
-      "import": "./dist/index.fun.js",
-      "require": "./dist/index.fun.cjs"
+    "./util": {
+      "import": "./dist/index.util.js",
+      "require": "./dist/index.util.cjs"
     },
     "./package.json": "./package.json"
   },
@@ -77,47 +52,43 @@
     "win32-def": "^21.0.2"
   },
   "devDependencies": {
-    "@types/ffi-napi": "*",
-    "@types/ref-napi": "^3.0.6",
-    "@types/ref-struct-di": "^1.1.8",
-    "@types/ref-union-di": "^1.0.5",
-    "@waiting/shared-core": "^20.11.4",
-    "cross-env": "7",
-    "ffi-napi": "^4.0.3",
-    "ref-napi": "^3.0.3",
-    "ref-struct-di": "^1.1.1",
-    "ref-union-di": "^1.0.1"
-  },
-  "peerDependencies": {
-    "ffi-napi": "^4.0.3",
-    "ref-napi": "^3.0.3",
-    "ref-struct-di": "^1.1.1",
-    "ref-union-di": "^1.0.1"
+    "@waiting/shared-core": "^23.19.0"
   },
   "engines": {
-    "node": ">=14.15.0"
+    "node": ">=16.12.0"
   },
   "files": [
+    "README.*.md",
+    "Dockerfile",
+    "npm-shrinkwrap.json",
     "tsconfig.json",
+    "tsconfig.base.json",
+    "asset",
     "src/**/*.ts",
-    "bin/*.js",
-    "dist"
+    "bin",
+    "database",
+    "dist",
+    "!**/*.spec.*",
+    "!**/*.tsbuildinfo"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "npm run tsc && npm run rp",
-    "clean": "npm run clean:lock & npm run clean:cache & rm -rf dist/*",
-    "clean:cache": "rm -rf .eslintcache .vscode/.tsbuildinfo .vscode/.tsbuildinfo.*",
-    "clean:lock": "rm package-lock.json -f",
-    "cov": "cross-env TS_NODE_PROJECT=test/tsconfig.json c8 mocha --loader=ts-node/esm --parallel=false",
-    "lint": "eslint --fix --cache {src,test}/**/*.ts",
-    "lint:nofix": "eslint --cache {src,test}/**/*.ts",
-    "purge": "npm run clean && rm node_modules -rf",
+    "build": "npm run tsc && tsc-alias && npm run rp",
+    "build:unit": "tsc -p test/tsconfig.json",
+    "clean": "npm run clean:lock && npm run clean:dist && npm run clean:log",
+    "clean:cache": "rm -rf .eslintcache .tsbuildinfo",
+    "clean:dist": "npm run clean:cache && rm -rf dist/*",
+    "clean:lock": "rm -f package-lock.json",
+    "clean:log": "rm -rf ./logs ./run",
+    "cov": "c8 --all npm run test -- --parallel=false",
+    "lint": "eslint --fix --cache src test demo",
+    "lint:nofix": "eslint --cache src test",
+    "pretest": "npm run build:unit",
     "rp": "rollup -c rollup.config.js --context this",
-    "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --loader=ts-node/esm --parallel=false",
-    "test:local": "cross-env TS_NODE_PROJECT=test/tsconfig.json ../../node_modules/.bin/mocha --loader=ts-node/esm --parallel=false",
-    "tsc": "tsc -b "
+    "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
+    "deb8g": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
+    "tsc": "tsc -p tsconfig.json"
   }
 }

@@ -1,24 +1,21 @@
-import { ExpandFnModel, FnName, LoadSettings } from 'win32-def'
+import { type FLib, type LoadOptions, load as _load } from 'win32-def'
 
-import { load as hload } from '../helper.js'
-import { DllNames } from '../types.js'
+import { DllNames } from '##/lib/types.js'
 
-import { apiDef, Win32Fns } from './api.js'
+import { DefKernel32 } from './api.def.js'
+import { Kernel32 } from './api.types.js'
 
 
-export { apiDef }
-export { Win32Fns }
+export {
+  DefKernel32, Kernel32,
+}
+
 export const dllName = DllNames.kernel32
-/**
- * @deprecated use promise instead
- * ```ts
- * import { Kernel32 } from 'win32-api/promise'
- * const knl32 = Kernel32.load()
- * const times = await knl32.GetSystemTimes(...)
- * ```
- */
-export const load = (
-  fns?: FnName[],
-  settings?: LoadSettings,
-) => hload<ExpandFnModel<Win32Fns>>(dllName, apiDef, fns, settings)
+export type LibKernel32 = FLib<Kernel32>
+
+export const load = (fns?: LoadOptions['usedFuncNames']) => _load<Kernel32>({
+  dll: dllName + '.dll',
+  dllFuncs: DefKernel32,
+  usedFuncNames: fns,
+})
 

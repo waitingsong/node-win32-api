@@ -5,15 +5,19 @@
  * @license MIT
  * @link https://github.com/waitingsong/node-win32-api
  */
+import ffi from 'koffi'
+
 
 export * from './lib/config.js'
 export * from './lib/def.enum.js'
 
 export * from './lib/common.types.js'
-export * from './lib/helper.js'
+export * from './lib/loader/loader.js'
 export * from './lib/ffi.types.js'
-export * from './lib/fixed-buffer.js'
+export * from './lib/struct/struct.helper.js'
+export * from './lib/struct/struct.factory-map.js'
+export * from './lib/types.js'
+export * from './lib/util.js'
 
-export * from './lib/struct/index.struct.types.js'
-export * from './lib/union/index.union.types.js'
+export { ffi }
 

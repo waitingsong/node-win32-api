@@ -1,4 +1,6 @@
 
+export type { KoffiFunction } from 'koffi'
+
 export const enum DllNames {
   comctl32 = 'comctl32',
   gdi32 = 'gdi32',
@@ -8,4 +10,5 @@ export const enum DllNames {
   user32 = 'user32',
   winspool = 'winspool.drv',
 }
+
 

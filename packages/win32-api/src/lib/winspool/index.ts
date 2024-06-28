@@ -1,24 +1,23 @@
-import { ExpandFnModel, FnName, LoadSettings } from 'win32-def'
+import { type FLib, type LoadOptions, load as _load } from 'win32-def'
 
-import { load as hload } from '../helper.js'
-import { DllNames } from '../types.js'
+import { DllNames } from '##/lib/types.js'
 
-import { apiDef, Win32Fns } from './api.js'
+import { DefWinspool } from './api.def.js'
+import { Winspool } from './api.types.js'
+import { multipleChoiceMapperList } from './mapper/index.mapper.js'
 
 
-export { apiDef }
-export { Win32Fns }
+export {
+  DefWinspool, Winspool,
+}
+
 export const dllName = DllNames.winspool
-/**
- * @deprecated use promise instead
- * ```ts
- * import { User32 } from 'win32-api/promise'
- * const user32 = User32.load()
- * const hWnd = await user32.FindWindowExW(...)
- * ```
- */
-export const load = (
-  fns?: FnName[],
-  settings?: LoadSettings,
-) => hload<ExpandFnModel<Win32Fns>>(dllName, apiDef, fns, settings)
+export type LibWinspool = FLib<Winspool>
+
+export const load = (fns?: LoadOptions['usedFuncNames']) => _load<Winspool>({
+  dll: dllName,
+  dllFuncs: DefWinspool,
+  usedFuncNames: fns,
+  multipleChoiceMapperList: multipleChoiceMapperList,
+})
 

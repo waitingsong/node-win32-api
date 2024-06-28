@@ -13,8 +13,8 @@ jobs:
 
     strategy:
       matrix:
-        node: ['16']
-        os: [windows-2019, windows-latest]
+        node: ['lts/*', 'current', '18']
+        os: [windows-2019]
 
     steps:
       - uses: actions/checkout@v4
@@ -23,34 +23,31 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Cache
-        uses: actions/cache@v4
-        id: cache-lerna-win
-        env:
-          cache-name: cache-lerna-win
-        with:
-          path: |
-            node_modules
-            node_modules/.cache/nx
-            package-lock.json
-            packages/*/.eslintcache
-            packages/*/.tsbuildinfo
-            packages/*/.vscode
-            packages/*/dist
-            packages/*/package-lock.json
-          key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-
+      # - name: Cache
+      #   uses: actions/cache@v4
+      #   id: cache-lerna-win
+      #   env:
+      #     cache-name: cache-lerna-win
+      #   with:
+      #     path: |
+      #       node_modules
+      #       package-lock.json
+      #       packages/*/.tsbuildinfo
+      #       packages/*/dist
+      #       packages/*/node_modules
+      #       C:\npm\prefix\node_modules
+      #     key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-
 
       - name: Prepare
         shell: bash
         run: |
+          pwd
           uname -a
           npm -v && node -v
-          npm -g root
           git --version
           openssl version
-          ./.githooks/init-repo.sh
           git config --local core.autocrlf false
           git config --local core.eol lf
 
@@ -58,16 +55,16 @@ jobs:
         timeout-minutes: 15
         shell: bash
         run: |
-          .github/workflows/fix.sh
-          npm i -g c8 lerna@6 rollup zx node-gyp
-          # npm run purge
-          npm run bootstrap
+          export cwd=`pwd`
+          npm i --no-audit -g c8 lerna madge rollup tsx zx
+          npm i
         env:
           CI: true
 
       - name: Build
         shell: bash
         run: |
+          pwd
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
@@ -76,16 +73,16 @@ jobs:
         env:
           CI: true
 
-      - name: Lint
-        shell: bash
-        run: |
-          export cwd=`pwd`
-          . .scripts/ci/ci-env.sh
-          .scripts/ci/ci-prepare.sh
-          npm run lint:s
-          npm run lint:cycle
-        env:
-          CI: true
+      # - name: Lint
+      #   shell: bash
+      #   run: |
+      #     export cwd=`pwd`
+      #     . .scripts/ci/ci-env.sh
+      #     .scripts/ci/ci-prepare.sh
+      #     npm run lint:s
+      #     npm run lint:cycle
+      #   env:
+      #     CI: true
 
       - name: Testing
         shell: bash

@@ -1,26 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "incremental": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "outDir": "dist",
-    "paths": {
-      "~/*": ["./src/*"],
-      "@/*": ["./test/*"]
-    },
-    "target": "ES2022",
-    "tsBuildInfoFile": ".tsbuildinfo"
-  },
-  "ts-node": {
-    "esm": true,
-    "experimentalResolver": true,
-    "experimentalSpecifierResolution": "node",
-    "preferTsExts": true,
-    "transpileOnly": false
-  },
-  "include": [
-    "src/**/*.ts"
-  ]
+  }
 }

@@ -1,24 +1,21 @@
-import { ExpandFnModel, FnName, LoadSettings } from 'win32-def'
+import { type FLib, type LoadOptions, load as _load } from 'win32-def'
 
-import { load as hload } from '../helper.js'
-import { DllNames } from '../types.js'
+import { DllNames } from '##/lib/types.js'
 
-import { apiDef, Win32Fns } from './api.js'
+import { DefGdi32 } from './api.def.js'
+import { Gdi32 } from './api.types.js'
 
 
-export { apiDef }
-export { Win32Fns }
+export {
+  DefGdi32, Gdi32,
+}
+
 export const dllName = DllNames.gdi32
-/**
- * @deprecated use promise instead
- * ```ts
- * import { User32 } from 'win32-api/promise'
- * const user32 = User32.load()
- * const hWnd = await user32.FindWindowExW(...)
- * ```
- */
-export const load = (
-  fns?: FnName[],
-  settings?: LoadSettings,
-) => hload<ExpandFnModel<Win32Fns>>(dllName, apiDef, fns, settings)
+export type LibGdi32 = FLib<Gdi32>
+
+export const load = (fns?: LoadOptions['usedFuncNames']) => _load<Gdi32>({
+  dll: dllName + '.dll',
+  dllFuncs: DefGdi32,
+  usedFuncNames: fns,
+})
 

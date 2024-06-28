@@ -1,16 +1,14 @@
 /*  ---------- data types for TypeScript ----------- */
-// https://docs.microsoft.com/en-us/windows/win32/winprog/windows-data-types
-// https://docs.microsoft.com/en-us/windows/win32/winprog64/the-new-data-types
-// https://docs.microsoft.com/en-us/windows/win32/intl/windows-data-types-for-strings
+// https://learn.microsoft.com/en-us/windows/win32/winprog/windows-data-types
+// https://learn.microsoft.com/en-us/windows/win32/winprog64/the-new-data-types
+// https://learn.microsoft.com/en-us/windows/win32/intl/windows-data-types-for-strings
 
 import { BigIntStr } from '@waiting/shared-types'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import ref from 'ref-napi'
 
 
 export type _POINTER = Buffer
 export type WNDPROC = Buffer
-/** number: 32bit, bitint: 64bit  */
+/** number: 32bit, bigint: 64bit  */
 export type PTR_Addr = number | BigIntStr
 
 /**
@@ -22,7 +20,7 @@ export type DWORD = number
 export type PVOID = Buffer
 /**
  * `uint32` or `uint64` used as value usage (memory address) instead of PVOID (Buffer),
- * Use `HANDLE` (number) for params defintion of the api,
+ * Use `HANDLE` (number) for params definition of the api,
  * @see https://stackoverflow.com/questions/18266626/what-is-the-range-of-a-windows-handle-on-a-64-bits-application/29526711#29526711
  */
 export type HANDLE = number | BigIntStr
@@ -50,7 +48,7 @@ export type COLORREF = number
 export type DWORDLONG = number
 export type DWORD_PTR = ULONG_PTR
 export type DWORD32 = number
-export type DWORD64 = number
+export type DWORD64 = BigIntStr
 export type FLOAT = number
 export type HACCEL = HANDLE
 export type HALF_PTR = number
@@ -88,7 +86,7 @@ export type HRSRC = HANDLE
 export type HSZ = HANDLE
 export type HWINEVENTHOOK = HANDLE
 export type HWINSTA = HANDLE
-export type HWND = HANDLE // for use of hWnd.ref(), deref() etc
+export type HWND = HANDLE
 /** A 32-bit signed integer */
 export type INT = number
 export type INT_PTR = PTR_Addr
@@ -109,19 +107,19 @@ export type LPBOOL = _POINTER
 export type LPBYTE = _POINTER
 export type LPCOLORREF = _POINTER
 export type LPCSTR = _POINTER
-export type LPCWSTR = PUINT8
-export type LPCTSTR = PUINT16
+export type LPCWSTR = PUINT16 | string
+export type LPCTSTR = PUINT16 | string
 export type LPVOID = _POINTER
 export type LPCVOID = LPVOID
-export type LPDWORD = PUINT16
+export type LPDWORD = PUINT16 | string
 export type LPHANDLE = _POINTER
 export type LPINT = PINT
 export type LPLONG = PINT32
 export type LPMSG = _POINTER
 export type LPPOINT = _POINTER
-export type LPSTR = _POINTER
-export type LPWSTR = PUINT16
-export type LPTSTR = _POINTER
+export type LPSTR = _POINTER | string
+export type LPWSTR = PUINT16 | string
+export type LPTSTR = _POINTER | string
 export type LPWORD = PUINT16
 export type LRESULT = number
 export type NTSTATUS = UINT32
@@ -131,7 +129,7 @@ export type PBYTE = _POINTER
 export type PCHAR = _POINTER
 export type PCSTR = PUINT8
 export type PCTSTR = _POINTER
-export type PCWSTR = PUINT16
+export type PCWSTR = PUINT16 | string
 export type PDWORD = PUINT32
 export type PDWORDLONG = PUINT64
 export type PDWORD_PTR = DWORD_PTR
@@ -209,42 +207,7 @@ export type WNDENUMPROC = WNDPROC
 export type WORD = INT16
 export type WPARAM = UINT_PTR
 
-
-
 export type va_list = _POINTER
-
-/* ------------------ struct ---------------------- */
-// see src/lib/win-model/struct.ts
-
-
-export interface StructInstanceBase {
-  ref: () => Buffer
-}
-
-export interface UnionInstanceBase {
-  ref: () => Buffer
-}
-
-
-export interface StringBuffer extends ref.Type<string> {
-  size: number
-  encoding: BufferEncoding | void
-  set: (
-    buffer: Buffer,
-    offset: number,
-    value: string | number[] | Buffer,
-  ) => void
-}
-
-
-/**
- * @docs https://docs.microsoft.com/en-us/windows/win32/printdocs/getprinter#parameters
- */
-export type PRINTER_INFO_LEVEL = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
-/**
- * @docs https://docs.microsoft.com/zh-cn/windows/win32/printdocs/enumprinters
- */
-export type EnumPrinters_Level = 1 | 2 | 4 | 5
 
 
 /**
@@ -263,4 +226,22 @@ export type StructPropToBuffer<T> = {
     ? Buffer
     : T[P]
 }
+
+
+/**
+ * Generate a fixed-length array of int16_t,
+ * via genFixedInt16Array()
+ */
+export interface WCHAR_Array {
+  buffer: object
+  byteLength: number
+  byteOffset: number
+  length: number
+}
+
+/**
+ * For 'str16' and 'str' from https://koffi.dev/input
+ */
+export type WString = string
+export type String = string
 

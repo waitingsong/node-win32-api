@@ -4,17 +4,14 @@
     "noEmit": true
   },
   "include": [
-    "src/**/*.ts",
-    "test/**/*.ts",
-    "packages/*/src/**/*.ts",
-    "packages/*/test/**/*.ts"
-  ],
-  "exclude": [
-    "asset",
-    "app/public",
-    "app/views",
-    "dist",
-    "node_modules*",
-    "**/*.d.ts"
+    "${configDir}/demo/**/*.mts",
+    "${configDir}/demo/**/*.ts",
+    "${configDir}/src/**/*.ts",
+    "${configDir}/src/**/*.mts",
+    "${configDir}/test/**/*.ts",
+    "${configDir}/test/**/*.mts",
+    "${configDir}/test_browser/**/*.ts",
+    "${configDir}/packages/*/src/**/*.ts",
+    "${configDir}/packages/*/test/**/*.ts"
   ]
 }

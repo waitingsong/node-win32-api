@@ -13,6 +13,7 @@ const { _WIN64 } = config
 export const ACCESS_MASK = Def.int32
 export const ATOM = Def.uint16
 export const DWORD = Def.uint32
+export const ptr = _WIN64 ? Def.uint64Ptr : Def.uint32Ptr
 export const PVOID = _WIN64 ? Def.uint64Ptr : Def.uint32Ptr
 /**
  * `uint32` or `uint64` used as value usage (memory address) instead of PVOID (Buffer),
@@ -30,10 +31,10 @@ export const VOID = Def.void
 export const WCHAR = Def.uint16
 export const WORD = Def.int16
 
-export const BOOL = Def.int
+export const BOOL = Def.int32
 export const BOOLEAN = Def.bool
 export const BYTE = Def.byte
-export const CALLBACK = Def.ptr // https://msdn.microsoft.com/en-us/library/windows/desktop/ms633573(v=vs.85).aspx
+export const CALLBACK = ptr // https://msdn.microsoft.com/en-us/library/windows/desktop/ms633573(v=vs.85).aspx
 export const CCHAR = Def.uint8
 export const CHAR = Def.uint8
 export const COLORREF = DWORD
@@ -99,24 +100,23 @@ export const LPARAM = LONG_PTR
 export const LPBOOL = BOOL
 export const LPBYTE = Def.bytePtr
 export const LPCOLORREF = DWORD
-export const LPCSTR = Def.uint8Ptr
-export const LPCWSTR = Def.uint16Ptr
-export const LPCTSTR = Def.uint16Ptr
+export const LPCSTR = Def.int8Ptr
+export const LPCWSTR = Def.int16Ptr
+export const LPCTSTR = Def.int16Ptr
 export const LPVOID = Def.voidPtr
 export const LPCVOID = LPVOID
 export const LPDWORD = Def.uint16Ptr
 export const LPHANDLE = _WIN64 ? Def.int64Ptr : Def.int32Ptr
-export const LPINT = Def.intPtr
+export const LPINT = ptr
 export const LPLONG = Def.int32Ptr
-export const LPMSG = Def.ptr
-export const LPPOINT = Def.ptr
+export const LPMSG = ptr
 export const LPSTR = Def.charPtr
 export const LPWSTR = Def.uint16Ptr
 export const LPTSTR = Def.uint16Ptr
 export const LPWORD = Def.uint16Ptr
 export const LRESULT = LONG_PTR
 export const NTSTATUS = Def.uint32
-export const PBOOL = Def.intPtr
+export const PBOOL = ptr
 export const PBOOLEAN = Def.boolPtr
 export const PBYTE = Def.bytePtr
 export const PCHAR = Def.charPtr
@@ -129,10 +129,10 @@ export const PDWORD_PTR = DWORD_PTR
 export const PDWORD32 = Def.uint32Ptr
 export const PDWORD64 = Def.uint64Ptr
 export const PFLOAT = Def.floatPtr
-export const PHALF_PTR = Def.ptr
+export const PHALF_PTR = ptr
 export const PHANDLE = _WIN64 ? Def.uint64PtrPtr : Def.uint32PtrPtr
 export const PHKEY = _WIN64 ? Def.uint64PtrPtr : Def.uint32PtrPtr
-export const PINT = Def.intPtr
+export const PINT = ptr
 export const PINT_PTR = Def.intPtrPtr
 export const PINT8 = Def.int8Ptr
 export const PINT16 = Def.int16Ptr
@@ -141,7 +141,7 @@ export const PINT64 = Def.int64Ptr
 export const PLCID = Def.uint32Ptr
 export const PLONG = Def.longPtr
 export const PLONGLONG = Def.int64Ptr
-export const PLONG_PTR = Def.ptr
+export const PLONG_PTR = ptr
 export const PLONG32 = Def.int32Ptr
 export const PLONG64 = Def.int64Ptr
 // ? A 32-bit pointer. On a 32-bit system, this is a native pointer.
@@ -150,17 +150,17 @@ export const POINTER_32 = _WIN64 ? Def.int32Ptr : Def.int32Ptr
 // ? A 64-bit pointer. On a 64-bit system, this is a native pointer.
 // On a 32-bit system, this is a sign-extended 32-bit pointer.
 export const POINTER_64 = _WIN64 ? Def.int64Ptr : Def.int32Ptr
-export const POINTER_SIGNED = Def.ptr
-export const POINTER_UNSIGNED = Def.ptr
+export const POINTER_SIGNED = ptr
+export const POINTER_UNSIGNED = ptr
 export const PSHORT = Def.int16Ptr
 export const PSIZE_T = ULONG_PTR
-export const PSSIZE_T = Def.ptr
+export const PSSIZE_T = ptr
 export const PSTR = Def.charPtr
 export const PTBYTE = Def.int16Ptr
 export const PTCHAR = Def.uint16Ptr
 export const PTSTR = Def.uint16Ptr
-export const PUCHAR = Def.ptr
-export const PUHALF_PTR = Def.ptr
+export const PUCHAR = ptr
+export const PUHALF_PTR = ptr
 export const PUINT = Def.uintPtr
 export const PUINT_PTR = Def.uintPtrPtr
 export const PUINT8 = Def.uint8Ptr
@@ -200,23 +200,22 @@ export const ULONG64 = Def.uint64
 export const USHORT = Def.ushort
 export const USN = LONGLONG
 // export const WINAPI;
-export const WINEVENTPROC = Def.ptr
-export const WNDENUMPROC = Def.ptr
-export const WNDPROC = Def.ptr
+export const WINEVENTPROC = ptr
+export const WNDENUMPROC = ptr
+export const WNDPROC = ptr
 
 /**
  * Note: original be typedef UINT_PTR WPARAM;
  * CALLBACK WNDCLASSEX.lpfnWndProc may pass negative number and cause process exit.
  */
 export const WPARAM = UINT_PTR
-// A pointer to an INITCOMMONCONTROLSEX
-export const LPINITCOMMONCONTROLSEX = Def.ptr
-export const LPWNDCLASSEX = Def.ptr // A pointer to a WNDCLASSEX
-export const PWINDOWINFO = Def.ptr // A pointer to a WINDOWINFO structure
 
-export const PFILETIME = Def.ptr // A pointer to a FILETIME
-export const LPFILETIME = Def.ptr // A pointer to a FILETIME
 
-export const va_list = Def.charPtr
-
+// from https://koffi.dev/input
+export const va_list = 'str16'
+/**
+ * For 'str16' from https://koffi.dev/input
+ */
+export const WString = 'str16'
+export const String = 'str'
 

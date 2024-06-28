@@ -1,24 +1,21 @@
-import { ExpandFnModel, FnName, LoadSettings } from 'win32-def'
+import { type FLib, type LoadOptions, load as _load } from 'win32-def'
 
-import { load as hload } from '../helper.js'
-import { DllNames } from '../types.js'
+import { DllNames } from '##/lib/types.js'
 
-import { apiDef, Win32Fns } from './api.js'
+import { DefComctl32 } from './api.def.js'
+import { Comctl32 } from './api.types.js'
 
 
-export { apiDef }
-export { Win32Fns }
+export {
+  DefComctl32, Comctl32,
+}
+
 export const dllName = DllNames.comctl32
-/**
- * @deprecated use promise instead
- * ```ts
- * import { Comctl32 } from 'win32-api/promise'
- * const comctl32 = Comctl32 .load()
- * const ret = await comctl32.InitCommonControlsEx(...)
- * ```
- */
-export const load = (
-  fns?: FnName[],
-  settings?: LoadSettings,
-) => hload<ExpandFnModel<Win32Fns>>(dllName, apiDef, fns, settings)
+export type LibComctl32 = FLib<Comctl32>
+
+export const load = (fns?: LoadOptions['usedFuncNames']) => _load<Comctl32>({
+  dll: dllName + '.dll',
+  dllFuncs: DefComctl32,
+  usedFuncNames: fns,
+})
 

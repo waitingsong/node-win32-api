@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "declaration": false,
-    "module": "commonjs",
+    "module": "ESNext",
     "newLine": "lf",
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "noEmit": true,
     "outDir": "./",
     "pretty": true,
     "skipLibCheck": true,
@@ -13,7 +14,7 @@
     "target": "esnext"
   },
   "include": [
-    "init-repo/**/*.ts"
+    "*.ts"
   ],
   "exclude": [
   ]

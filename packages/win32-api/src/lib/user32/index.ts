@@ -1,27 +1,21 @@
-import { ExpandFnModel, FnName, LoadSettings } from 'win32-def'
+import { type FLib, type LoadOptions, load as _load } from 'win32-def'
 
-import { load as hload } from '../helper.js'
-import { DllNames } from '../types.js'
+import { DllNames } from '##/lib/types.js'
 
-import { apiDef, Win32Fns } from './api.js'
-// for user32.constants
-import * as constants from './constants.js'
+import { DefUser32 } from './api.def.js'
+import { User32 } from './api.types.js'
 
 
-export { apiDef }
-export { constants }
-export { Win32Fns }
+export {
+  DefUser32, User32,
+}
+
 export const dllName = DllNames.user32
-/**
- * @deprecated use promise instead
- * ```ts
- * import { User32 } from 'win32-api/promise'
- * const user32 = User32.load()
- * const hWnd = await user32.FindWindowExW(...)
- * ```
- */
-export const load = (
-  fns?: FnName[],
-  settings?: LoadSettings,
-) => hload<ExpandFnModel<Win32Fns>>(dllName, apiDef, fns, settings)
+export type LibUser32 = FLib<User32>
+
+export const load = (fns?: LoadOptions['usedFuncNames']) => _load<User32>({
+  dll: dllName + '.dll',
+  dllFuncs: DefUser32,
+  usedFuncNames: fns,
+})
 
