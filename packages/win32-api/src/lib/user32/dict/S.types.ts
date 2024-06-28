@@ -28,6 +28,9 @@ export class User32_S extends User32_R {
   /** https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-setforegroundwindow */
   SetForegroundWindow: (hWnd: T.HWND) => T.BOOL
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setparent */
+  SetParent: (hWndChild: T.HWND, hWndNewParent: T.HWND) => T.HWND
+
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowpos */
   SetWindowPos: (
     hWnd: T.HWND,

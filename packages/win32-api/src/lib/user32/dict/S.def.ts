@@ -16,7 +16,11 @@ export class DefUser32_S extends DefUser32_R {
 
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendmessagetimeoutw */
   static SendMessageTimeoutW = [D.LRESULT, [D.HWND, D.UINT, D.WPARAM, D.LPARAM, D.UINT, D.UINT, D.DWORD_PTR]]
+
   static SetForegroundWindow = [D.BOOL, [D.HWND]]
+
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setparent */
+  static SetParent = [D.HWND, [D.HWND, D.HWND]]
 
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowpos */
   static SetWindowPos = [D.BOOL, [D.HWND, D.HWND, D.INT, D.INT, D.INT, D.INT, D.UINT]]
