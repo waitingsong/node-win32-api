@@ -6,6 +6,9 @@ import { DefUser32_B } from './AB.def.js'
 
 export class DefUser32_C extends DefUser32_B {
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-changedisplaysettingsexw */
+  static ChangeDisplaySettingsExW = [D.LONG, [D.WString, S.LPDEVMODEW, D.HWND, D.DWORD, D.LPVOID]]
+
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-clienttoscreen */
   static ClientToScreen = [D.BOOL, [D.HWND, `_Inout_ ${S.LPPOINT}`]]
 

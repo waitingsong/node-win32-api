@@ -1,10 +1,20 @@
 /* c8 ignore start */
+import * as S from 'win32-def/struct'
 import * as T from 'win32-def/types'
 
 import { User32_B } from './AB.types.js'
 
 
 export class User32_C extends User32_B {
+
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-changedisplaysettingsexw */
+  ChangeDisplaySettingsExW: (
+    lpszDeviceName: T.WString,
+    lpDevMode: S.DEVMODEW_Type,
+    hWnd: T.HWND,
+    dwFlags: T.DWORD,
+    lpVoid: T.LPVOID,
+  ) => T.LONG
 
   ClientToScreen: (hWnd: T.HWND, lpPoint: T.LPPOINT) => T.BOOL
 
