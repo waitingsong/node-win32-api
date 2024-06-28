@@ -56,6 +56,9 @@ export class User32_S extends User32_R {
 
   ShowWindow: (hWnd: T.HWND, nCmdShow: T.INT) => T.BOOL
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindowasync */
+  ShowWindowAsync: (hWnd: T.HWND, nCmdShow: T.INT) => T.BOOL
+
 }
 
 /* c8 ignore stop */

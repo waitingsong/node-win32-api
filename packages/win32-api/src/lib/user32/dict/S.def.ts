@@ -33,5 +33,8 @@ export class DefUser32_S extends DefUser32_R {
 
   static ShowWindow = [D.BOOL, [D.HWND, D.INT]]
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindowasync */
+  static ShowWindowAsync = [D.BOOL, [D.HWND, D.INT]]
+
 }
 
