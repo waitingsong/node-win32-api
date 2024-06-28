@@ -21,7 +21,7 @@ export class User32_M extends User32_I {
 
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messageboxexw */
   MessageBoxExW: (
-    hWnd: T.HWND | null,
+    hWnd: T.HWND,
     lpText: T.WString | null,
     lpCaption: T.WString | null,
     uType: T.UINT,
