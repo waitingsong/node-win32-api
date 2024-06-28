@@ -33,10 +33,6 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./consts": {
-      "import": "./dist/index.consts.js",
-      "require": "./dist/index.consts.cjs"
-    },
     "./util": {
       "import": "./dist/index.util.js",
       "require": "./dist/index.util.cjs"
