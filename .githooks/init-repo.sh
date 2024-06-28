@@ -28,7 +28,7 @@ if [ -z "$CI" ]; then
 fi;
 
 echo It may going for a long time. Plese wait...
-.githooks/gen-file-from-example.mts
+.githooks/gen-file-from-example.js
 
 lerna list
 set +e
