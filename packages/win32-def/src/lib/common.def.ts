@@ -83,7 +83,7 @@ export const HWINSTA: Def.uint32 | Def.uint64 = HANDLE
 export const HWND: Def.uint32 | Def.uint64 = HANDLE
 /** A 32-bit signed integer */
 export const INT: Def.int = Def.int
-export const INT_PTR: Def.int32 | Def.int64 = _WIN64 ? Def.int64 : Def.int32
+export const INT_PTR: Def.int32Ptr | Def.int64Ptr = _WIN64 ? Def.int64Ptr : Def.int32Ptr
 export const INT8: Def.int8 = Def.int8
 export const INT16: Def.int16 = Def.int16
 export const INT32: Def.int32 = Def.int32
