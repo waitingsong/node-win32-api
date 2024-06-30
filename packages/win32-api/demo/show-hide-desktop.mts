@@ -5,7 +5,8 @@ import assert from 'node:assert/strict'
 import { sleep } from '@waiting/shared-core'
 import { User32 } from 'win32-api'
 import { INPUT, KEYBDINPUT, VirtualKey } from 'win32-def/consts'
-import { INPUT_Factory, type INPUT_Type } from 'win32-def/struct'
+import { INPUT_Factory } from 'win32-def/struct'
+import type { INPUT_Type } from 'win32-def/struct'
 
 
 console.info('Show/hide desktop with Win+D shortcut')

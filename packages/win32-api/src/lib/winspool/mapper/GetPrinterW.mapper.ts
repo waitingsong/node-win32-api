@@ -4,7 +4,7 @@ import type { FlattenNestedTuple } from '@waiting/shared-types'
 import { getPRINTER_INFO_X_Ptr } from 'win32-def/struct'
 import type { EnumPrinters_Level, MultipleChoiceMapper } from 'win32-def/types'
 
-import { DefWinspool } from '../api.def.js'
+import type { DefWinspool } from '../api.def.js'
 import type { Winspool } from '../api.types.js'
 
 

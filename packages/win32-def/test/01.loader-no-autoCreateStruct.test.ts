@@ -4,7 +4,8 @@ import { fileShortPath } from '@waiting/shared-core'
 
 import { LoadOptions, load } from '##/index.js'
 import { LPDISPLAY_DEVICEW, LPPOINT } from '##/index.struct.js'
-import { type Win32, DefWin32 } from '#@/def.class/api.helper.js'
+import { DefWin32 } from '#@/def.class/api.helper.js'
+import type { Win32 } from '#@/def.class/api.helper.js'
 
 
 // Make sure this suit run as early as possible, for testing Struct not created case !

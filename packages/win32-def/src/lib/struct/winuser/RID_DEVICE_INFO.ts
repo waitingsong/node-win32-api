@@ -1,12 +1,15 @@
 import * as D from '##/lib/common.def.js'
-import * as T from '##/lib/common.types.js'
+import type * as T from '##/lib/common.types.js'
 import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
 
 import { genStruct } from '../struct.helper.js'
 
-import { RID_DEVICE_INFO_HID_Factory, type RID_DEVICE_INFO_HID_Type } from './RID_DEVICE_INFO_HID.js'
-import { RID_DEVICE_INFO_KEYBOARD_Factory, type RID_DEVICE_INFO_KEYBOARD_Type } from './RID_DEVICE_INFO_KEYBOARD.js'
-import { RID_DEVICE_INFO_MOUSE_Factory, type RID_DEVICE_INFO_MOUSE_Type } from './RID_DEVICE_INFO_MOUSE.js'
+import { RID_DEVICE_INFO_HID_Factory } from './RID_DEVICE_INFO_HID.js'
+import type { RID_DEVICE_INFO_HID_Type } from './RID_DEVICE_INFO_HID.js'
+import { RID_DEVICE_INFO_KEYBOARD_Factory } from './RID_DEVICE_INFO_KEYBOARD.js'
+import type { RID_DEVICE_INFO_KEYBOARD_Type } from './RID_DEVICE_INFO_KEYBOARD.js'
+import { RID_DEVICE_INFO_MOUSE_Factory } from './RID_DEVICE_INFO_MOUSE.js'
+import type { RID_DEVICE_INFO_MOUSE_Type } from './RID_DEVICE_INFO_MOUSE.js'
 
 
 const key = 'RID_DEVICE_INFO'

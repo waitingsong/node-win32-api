@@ -1,4 +1,5 @@
-import { type FLib, type LoadOptions, load as _load } from 'win32-def'
+import { load as _load } from 'win32-def'
+import type { FLib, LoadOptions } from 'win32-def'
 
 import { DllNames } from '##/lib/types.js'
 

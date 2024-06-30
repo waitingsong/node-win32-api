@@ -1,6 +1,6 @@
 import * as D from 'win32-def/def'
 import * as S from 'win32-def/struct'
-import * as T from 'win32-def/types'
+import type * as T from 'win32-def/types'
 
 
 export class DefComctl32 implements T.LibDefBase {

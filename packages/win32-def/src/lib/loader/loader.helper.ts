@@ -5,12 +5,8 @@ import koffi from 'koffi'
 
 import { loadOptionsDefault } from '##/lib/config.js'
 import { Def } from '##/lib/def.enum.js'
-import {
-  type FuncDefListInner,
-  type FnDefArgs,
-  type FnDefFullParams,
-  CallingConvention,
-} from '##/lib/ffi.types.js'
+import { CallingConvention } from '##/lib/ffi.types.js'
+import type { FuncDefListInner, FnDefArgs, FnDefFullParams } from '##/lib/ffi.types.js'
 import { structFactoryMap } from '##/lib/struct/struct.factory-map.js'
 import type {
   FLib,

@@ -1,5 +1,5 @@
 /* c8 ignore start */
-import * as T from 'win32-def/types'
+import type * as T from 'win32-def/types'
 
 import { User32_G } from './G.types.js'
 

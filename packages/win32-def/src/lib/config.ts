@@ -1,6 +1,6 @@
 // dict of windef value
 import { CallingConvention } from './ffi.types.js'
-import { LoadOptions } from './types.js'
+import type { LoadOptions } from './types.js'
 
 
 export const config: Config = {

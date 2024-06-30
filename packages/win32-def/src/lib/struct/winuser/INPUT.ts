@@ -1,12 +1,15 @@
 import * as D from '##/lib/common.def.js'
-import * as T from '##/lib/common.types.js'
+import type * as T from '##/lib/common.types.js'
 import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
 
 import { genStruct } from '../struct.helper.js'
 
-import { HARDWAREINPUT_Factory, type HARDWAREINPUT_TYPE } from './HARDWAREINPUT.js'
-import { KEYBDINPUT_Factory, type KEYBDINPUT_Type } from './KEYBDINPUT.js'
-import { MOUSEINPUT_Factory, type MOUSEINPUT_Type } from './MOUSEINPUT.js'
+import { HARDWAREINPUT_Factory } from './HARDWAREINPUT.js'
+import type { HARDWAREINPUT_TYPE } from './HARDWAREINPUT.js'
+import { KEYBDINPUT_Factory } from './KEYBDINPUT.js'
+import type { KEYBDINPUT_Type } from './KEYBDINPUT.js'
+import { MOUSEINPUT_Factory } from './MOUSEINPUT.js'
+import type { MOUSEINPUT_Type } from './MOUSEINPUT.js'
 
 
 const key = 'INPUT'

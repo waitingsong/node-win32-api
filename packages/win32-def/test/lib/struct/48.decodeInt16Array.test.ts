@@ -4,7 +4,8 @@ import { fileShortPath, sleep } from '@waiting/shared-core'
 
 import { LoadOptions, load, decodeInt16Array } from '##/index.js'
 import { DISPLAY_DEVICEW_Factory } from '##/index.struct.js'
-import { type Win32, DefWin32 } from '#@/def.class/api.helper.js'
+import { DefWin32 } from '#@/def.class/api.helper.js'
+import type { Win32 } from '#@/def.class/api.helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

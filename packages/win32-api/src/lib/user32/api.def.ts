@@ -1,4 +1,4 @@
-import * as T from 'win32-def/types'
+import type * as T from 'win32-def/types'
 
 import { DefUser32Combo } from './dict/index.def.js'
 

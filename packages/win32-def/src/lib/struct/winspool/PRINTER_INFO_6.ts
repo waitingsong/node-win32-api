@@ -1,5 +1,5 @@
 import * as D from '##/lib/common.def.js'
-import { PRINTER_STATUS } from '##/lib/consts/index.consts.js'
+import type { PRINTER_STATUS } from '##/lib/consts/index.consts.js'
 import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
 
 import { genStruct } from '../struct.helper.js'

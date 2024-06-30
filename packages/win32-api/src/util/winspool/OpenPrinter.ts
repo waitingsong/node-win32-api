@@ -1,6 +1,7 @@
 import type { HWND } from 'win32-def/types'
 
-import { load, LibWinspool } from '##/lib/winspool/index.js'
+import { load } from '##/lib/winspool/index.js'
+import type { LibWinspool } from '##/lib/winspool/index.js'
 
 
 const funcName: keyof LibWinspool = 'OpenPrinterW'

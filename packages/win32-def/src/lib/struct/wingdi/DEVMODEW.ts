@@ -1,9 +1,10 @@
 import * as D from '##/lib/common.def.js'
-import * as T from '##/lib/common.types.js'
+import type * as T from '##/lib/common.types.js'
 import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
 
 import { genFixedInt16Array, genStruct } from '../struct.helper.js'
-import { POINT_Factory, POINT_Type } from '../windef/POINT.js'
+import { POINT_Factory } from '../windef/POINT.js'
+import type { POINT_Type } from '../windef/POINT.js'
 
 
 const key = 'DEVMODEW'

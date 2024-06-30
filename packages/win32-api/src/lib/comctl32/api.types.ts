@@ -1,8 +1,8 @@
 /* c8 ignore start */
-import * as S from 'win32-def/struct'
-import * as T from 'win32-def/types'
+import type * as S from 'win32-def/struct'
+import type * as T from 'win32-def/types'
 
-import { DefComctl32 } from './api.def.js'
+import type { DefComctl32 } from './api.def.js'
 
 
 export class Comctl32 implements T.LibDef2Type<typeof DefComctl32> {

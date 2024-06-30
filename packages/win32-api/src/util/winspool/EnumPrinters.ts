@@ -3,13 +3,15 @@ import assert from 'node:assert'
 // must use ffi from 'win32-def'
 import { ffi } from 'win32-def'
 import {
-  type EnumPrinters_Level,
-  type EnumPrinters_Level_X_Type,
+
+
   PRINTER_INFO_X_Factory,
   getPRINTER_INFO_X_Ptr,
 } from 'win32-def/struct'
+import type { EnumPrinters_Level, EnumPrinters_Level_X_Type } from 'win32-def/struct'
 
-import { load, LibWinspool } from '##/lib/winspool/index.js'
+import { load } from '##/lib/winspool/index.js'
+import type { LibWinspool } from '##/lib/winspool/index.js'
 
 import type { EnumPrintersOptions } from './winspool.types.js'
 

@@ -1,8 +1,9 @@
 import * as D from '##/lib/common.def.js'
-import * as T from '##/lib/common.types.js'
+import type * as T from '##/lib/common.types.js'
 import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
 
-import { SYSTEMTIME_Factory, type SYSTEMTIME_Type } from '../minwinbase/SYSTEMTIME.js'
+import { SYSTEMTIME_Factory } from '../minwinbase/SYSTEMTIME.js'
+import type { SYSTEMTIME_Type } from '../minwinbase/SYSTEMTIME.js'
 import { genStruct } from '../struct.helper.js'
 
 

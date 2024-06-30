@@ -2,7 +2,7 @@ import assert from 'assert'
 
 import ffi from 'koffi'
 
-import { WCHAR_Array } from './common.types.js'
+import type { WCHAR_Array } from './common.types.js'
 
 
 export function decodeInt16Array(input: WCHAR_Array, length = -1): string {

@@ -3,7 +3,7 @@
 // https://learn.microsoft.com/en-us/windows/win32/winprog64/the-new-data-types
 // https://learn.microsoft.com/en-us/windows/win32/intl/windows-data-types-for-strings
 
-import { BigIntStr } from '@waiting/shared-types'
+import type { BigIntStr } from '@waiting/shared-types'
 
 
 export type _POINTER = Buffer

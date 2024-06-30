@@ -1,6 +1,6 @@
 /* c8 ignore start */
-import * as S from 'win32-def/struct'
-import * as T from 'win32-def/types'
+import type * as S from 'win32-def/struct'
+import type * as T from 'win32-def/types'
 
 import { User32_B } from './AB.types.js'
 

@@ -4,7 +4,8 @@ import { fileShortPath } from '@waiting/shared-core'
 
 import { LoadOptions, load } from '##/index.js'
 
-import { type Kernel32, DefKernel32 } from './api.helper.js'
+import { DefKernel32 } from './api.helper.js'
+import type { Kernel32 } from './api.helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

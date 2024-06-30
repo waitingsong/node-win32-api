@@ -1,7 +1,7 @@
 /* c8 ignore start */
-import * as T from 'win32-def/types'
+import type * as T from 'win32-def/types'
 
-import { DefGdi32 } from './api.def.js'
+import type { DefGdi32 } from './api.def.js'
 
 
 export class Gdi32 implements T.LibDef2Type<typeof DefGdi32> {

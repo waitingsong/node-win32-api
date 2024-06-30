@@ -1,6 +1,7 @@
 import assert from 'node:assert'
 
-import { load, LibWinspool } from '##/lib/winspool/index.js'
+import { load } from '##/lib/winspool/index.js'
+import type { LibWinspool } from '##/lib/winspool/index.js'
 
 import type { StartDocPrinterOptions } from './winspool.types.js'
 

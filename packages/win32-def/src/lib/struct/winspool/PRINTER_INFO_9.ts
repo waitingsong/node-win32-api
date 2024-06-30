@@ -1,7 +1,8 @@
 import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
 
 import { genStruct } from '../struct.helper.js'
-import { DEVMODEW_Factory, type DEVMODEW_Type } from '../wingdi/wingdi.index.js'
+import { DEVMODEW_Factory } from '../wingdi/wingdi.index.js'
+import type { DEVMODEW_Type } from '../wingdi/wingdi.index.js'
 
 
 const key = 'PRINTER_INFO_9'

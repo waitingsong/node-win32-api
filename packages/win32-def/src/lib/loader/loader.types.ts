@@ -1,16 +1,8 @@
 /* c8 ignore start */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AsyncMethodType, MethodType } from '@waiting/shared-types'
+import type { AsyncMethodType, MethodType } from '@waiting/shared-types'
 
-import {
-  type FuncDefListInner,
-  type DllFuncsType,
-  type FnDefFullParams,
-  type FnDefRetType,
-  type FnDefParam,
-  CallingConvention,
-  FnDefCallParams,
-} from '##/lib/ffi.types.js'
+import type { CallingConvention, FnDefCallParams, FuncDefListInner, DllFuncsType, FnDefFullParams, FnDefRetType, FnDefParam } from '##/lib/ffi.types.js'
 import type { IKoffiLib, FLib, LoadOptions, MultipleChoiceMapperList } from '##/lib/types.js'
 
 

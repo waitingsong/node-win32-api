@@ -26,12 +26,13 @@ import * as StructDi from 'ref-struct-di'
 import {
   C,
   // Config,
-  DModel as M,
+
   DStruct as DS,
   DTypes as W,
   // K,
   U,
 } from '../src/index'
+import type { DModel as M } from '../src/index'
 // as local
 
 const Struct = StructDi(ref)

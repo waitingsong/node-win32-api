@@ -1,7 +1,7 @@
 /* c8 ignore start */
-import * as T from 'win32-def/types'
+import type * as T from 'win32-def/types'
 
-import { DefSpoolss } from './api.def.js'
+import type { DefSpoolss } from './api.def.js'
 
 
 export class Spoolss implements T.LibDef2Type<typeof DefSpoolss> {

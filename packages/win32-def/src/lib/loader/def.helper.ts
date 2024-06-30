@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 
-import { MethodTypeUnknown } from '@waiting/shared-types'
+import type { MethodTypeUnknown } from '@waiting/shared-types'
 
 import type {
   FnDefFullParams,

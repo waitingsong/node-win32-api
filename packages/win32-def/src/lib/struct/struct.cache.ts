@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 
-import { StructDetail } from '##/lib/types.js'
+import type { StructDetail } from '##/lib/types.js'
 
 
 export class StructUnionCache {

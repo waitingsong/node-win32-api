@@ -1,9 +1,10 @@
 import * as D from '##/lib/common.def.js'
-import * as T from '##/lib/common.types.js'
+import type * as T from '##/lib/common.types.js'
 import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
 
 import { genStruct } from '../struct.helper.js'
-import { RECT_Factory, type RECT_Type } from '../windef/RECT.js'
+import { RECT_Factory } from '../windef/RECT.js'
+import type { RECT_Type } from '../windef/RECT.js'
 
 
 const key = 'WINDOWINFO'

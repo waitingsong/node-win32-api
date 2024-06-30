@@ -10,7 +10,7 @@ export * from './lib/helper.js'
 
 
 export {
-  Config,
+  type Config,
   config,
   ffi,
 } from 'win32-def'

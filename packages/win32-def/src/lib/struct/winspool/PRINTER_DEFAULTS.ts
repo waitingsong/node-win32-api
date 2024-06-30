@@ -1,9 +1,10 @@
 import * as D from '##/lib/common.def.js'
-import * as T from '##/lib/common.types.js'
+import type * as T from '##/lib/common.types.js'
 import type { StructFactoryResult, StructInitType } from '##/lib/types.js'
 
 import { genStruct } from '../struct.helper.js'
-import { DEVMODEW_Factory, DEVMODEW_Type } from '../wingdi/DEVMODEW.js'
+import { DEVMODEW_Factory } from '../wingdi/DEVMODEW.js'
+import type { DEVMODEW_Type } from '../wingdi/DEVMODEW.js'
 
 
 const key = 'PRINTER_DEFAULTS'

@@ -2,7 +2,8 @@ import assert from 'node:assert'
 
 import { ucsBufferToString } from 'win32-def'
 
-import { load, LibWinspool } from '##/lib/winspool/index.js'
+import { load } from '##/lib/winspool/index.js'
+import type { LibWinspool } from '##/lib/winspool/index.js'
 
 
 const funcName: keyof LibWinspool = 'GetDefaultPrinterW'

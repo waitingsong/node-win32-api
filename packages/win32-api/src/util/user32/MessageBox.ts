@@ -1,6 +1,7 @@
 import assert from 'assert'
 
-import { type LibUser32, load } from '##/lib/user32/index.js'
+import { load } from '##/lib/user32/index.js'
+import type { LibUser32 } from '##/lib/user32/index.js'
 
 
 const fnName: keyof LibUser32 = 'MessageBoxExW'

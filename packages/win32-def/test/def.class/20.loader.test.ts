@@ -5,7 +5,8 @@ import { fileShortPath } from '@waiting/shared-core'
 import { CallingConvention, LoadOptions, load } from '##/index.js'
 import { POINT_Factory, POINT_Type } from '##/index.struct.js'
 
-import { type Win32, DefWin32Fake, DefWin32 } from './api.helper.js'
+import { DefWin32Fake, DefWin32 } from './api.helper.js'
+import type { Win32 } from './api.helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

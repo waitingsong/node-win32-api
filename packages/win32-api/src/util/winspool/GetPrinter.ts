@@ -1,6 +1,7 @@
 import type { PRINTER_INFO_LEVEL, PRINTER_INFO_X_Type } from 'win32-def/struct'
 
-import { load, LibWinspool } from '##/lib/winspool/index.js'
+import { load } from '##/lib/winspool/index.js'
+import type { LibWinspool } from '##/lib/winspool/index.js'
 
 import type { GetPrinterOptions } from './winspool.types.js'
 
