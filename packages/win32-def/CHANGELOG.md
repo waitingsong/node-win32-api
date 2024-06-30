@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [24.0.0](https://github.com/waitingsong/node-win32-api/compare/v23.3.0...v24.0.0) (2024-06-30)
+
+
+### Features
+
+* remove types T.LPMSG, T.LPPOINT ([1d7e972](https://github.com/waitingsong/node-win32-api/commit/1d7e972f27d8b3c9a7999c7a5fb928fcb2ed56ab))
+
+
+
+
+
 # [23.0.0](https://github.com/waitingsong/node-win32-api/compare/v22.7.3...v23.0.0) (2024-06-30)
 
 
