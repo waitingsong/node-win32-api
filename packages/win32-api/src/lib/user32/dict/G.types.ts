@@ -27,6 +27,10 @@ export class User32_G extends User32_F {
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getclassinfoexw */
   GetClassInfoExW: (hinst: T.HINSTANCE, lpszClass: T.LPCTSTR, LPWNDCLASSEX: S.WNDCLASSEXW_Type) => T.BOOL
 
+
+  /** https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getclassnamew */
+  GetClassNameW: (hWnd: T.HWND, lpClassName: T.LPTSTR, nMaxCount: T.INT) => T.INT
+
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos */
   GetCursorPos: (lpPoint: S.POINT_Type) => T.BOOL
 
