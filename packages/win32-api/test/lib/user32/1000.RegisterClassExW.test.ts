@@ -60,7 +60,7 @@ describe(fileShortPath(import.meta.url), () => {
         assert(atom2)
         try {
           const atom3 = lib.RegisterClassExW(p1)
-          assert(!atom3)
+          assert(! atom3)
         }
         finally {
           lib.UnregisterClassW(atom2, 0)
