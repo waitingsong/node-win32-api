@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [22.7.2](https://github.com/waitingsong/node-win32-api/compare/v22.7.1...v22.7.2) (2024-06-30)
+
+
+### Bug Fixes
+
+* **win32-def:** INT_PTR ([b740901](https://github.com/waitingsong/node-win32-api/commit/b740901f235699d86ac194f556b652ff07dd98ae))
+
+
+
+
+
 ## [22.7.1](https://github.com/waitingsong/node-win32-api/compare/v22.7.0...v22.7.1) (2024-06-30)
 
 **Note:** Version bump only for package win32-def
