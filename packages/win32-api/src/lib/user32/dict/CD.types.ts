@@ -7,6 +7,9 @@ import { User32_B } from './AB.types.js'
 
 export class User32_C extends User32_B {
 
+  /** https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-callwindowprocw */
+  CallWindowProcW: (lpPrevWndFunc: T.WNDPROC, hWnd: T.HWND, Msg: T.UINT, wParam: T.WPARAM, lParam: T.LPARAM) => T.LRESULT
+
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-changedisplaysettingsexw */
   ChangeDisplaySettingsExW: (
     lpszDeviceName: T.WString,
