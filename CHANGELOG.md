@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [24.1.0](https://github.com/waitingsong/node-win32-api/compare/v24.0.0...v24.1.0) (2024-06-30)
+
+
+### Features
+
+* **api:** user32 CallWindowProcW() ([3aa6467](https://github.com/waitingsong/node-win32-api/commit/3aa6467b520d00432139ea7465e84cbba027869c))
+
+
+
+
+
 # [24.0.0](https://github.com/waitingsong/node-win32-api/compare/v23.3.0...v24.0.0) (2024-06-30)
 
 
