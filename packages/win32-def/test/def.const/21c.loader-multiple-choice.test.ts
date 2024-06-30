@@ -12,7 +12,8 @@ import type {
 import { multipleChoiceMapperList, multipleChoiceMapperSet } from '#@/mapper/index.mapper.js'
 import { expectPrinterInfo } from '#@/test.config.js'
 
-import { defWinspool, WinspoolFns } from './api.helper.js'
+import { defWinspool } from './api.helper.js'
+import type { WinspoolFns } from './api.helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

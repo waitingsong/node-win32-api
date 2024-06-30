@@ -1,6 +1,6 @@
 import * as D from '##/index.def.js'
 import * as S from '##/index.struct.js'
-import * as T from '##/index.types.js'
+import type * as T from '##/index.types.js'
 
 
 // #region Win32

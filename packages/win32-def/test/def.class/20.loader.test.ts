@@ -2,8 +2,10 @@ import assert from 'node:assert'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { CallingConvention, LoadOptions, load } from '##/index.js'
-import { POINT_Factory, POINT_Type } from '##/index.struct.js'
+import { CallingConvention, load } from '##/index.js'
+import type { LoadOptions } from '##/index.js'
+import { POINT_Factory } from '##/index.struct.js'
+import type { POINT_Type } from '##/index.struct.js'
 
 import { DefWin32Fake, DefWin32 } from './api.helper.js'
 import type { Win32 } from './api.helper.js'

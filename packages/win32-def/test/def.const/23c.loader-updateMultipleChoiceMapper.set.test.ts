@@ -4,12 +4,13 @@ import { fileShortPath } from '@waiting/shared-core'
 
 import { PrinterEnumFlags } from '##/index.consts.js'
 import { load } from '##/index.js'
-import { PRINTER_INFO_1_Type, PRINTER_INFO_4_Type } from '##/index.struct.js'
+import type { PRINTER_INFO_1_Type, PRINTER_INFO_4_Type } from '##/index.struct.js'
 import { funcName } from '#@/mapper/EnumPrintersW.mapper.js'
 import { multipleChoiceMapperSet } from '#@/mapper/index.mapper.js'
 import { expectPrinterInfo } from '#@/test.config.js'
 
-import { defWinspool, WinspoolFns } from './api.helper.js'
+import { defWinspool } from './api.helper.js'
+import type { WinspoolFns } from './api.helper.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

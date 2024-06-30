@@ -2,7 +2,8 @@ import assert from 'node:assert'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { LoadOptions, load } from '##/index.js'
+import { load } from '##/index.js'
+import type { LoadOptions } from '##/index.js'
 
 import { DefKernel32 } from './api.helper.js'
 import type { Kernel32 } from './api.helper.js'

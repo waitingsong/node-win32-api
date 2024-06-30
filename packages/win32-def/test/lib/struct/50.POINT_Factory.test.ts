@@ -2,7 +2,7 @@ import assert from 'node:assert'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { POINT_Factory, POINT_Type, LPPOINT } from '##/index.struct.js'
+import { POINT_Factory } from '##/index.struct.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

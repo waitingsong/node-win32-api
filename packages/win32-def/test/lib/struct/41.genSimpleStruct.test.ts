@@ -2,7 +2,7 @@ import assert from 'node:assert'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { StructInitPlainType } from '##/index.js'
+import type { StructInitPlainType } from '##/index.js'
 import { POINT_Init, LPPOINT, genSimpleStruct } from '##/index.struct.js'
 
 

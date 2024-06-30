@@ -4,9 +4,11 @@ import { fileShortPath } from '@waiting/shared-core'
 import ffi from 'koffi'
 
 import { PrinterEnumFlags } from '##/index.consts.js'
-import { LoadOptions, load } from '##/index.js'
+import { load } from '##/index.js'
+import type { LoadOptions } from '##/index.js'
 import * as S from '##/index.struct.js'
-import { Winspool2 as Winspool, DefWinspool2 as DefWinspool } from '#@/def.class/api.helper.js'
+import { DefWinspool2 as DefWinspool } from '#@/def.class/api.helper.js'
+import type { Winspool2 as Winspool } from '#@/def.class/api.helper.js'
 
 // run as last as possible
 

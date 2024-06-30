@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 
-import { StructDetail } from '##/index.js'
+import type { StructDetail } from '##/index.js'
 
 
 type ExpectData = Omit<StructDetail, 'CType'>

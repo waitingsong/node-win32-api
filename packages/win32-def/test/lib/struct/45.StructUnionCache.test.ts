@@ -3,7 +3,7 @@ import assert from 'node:assert'
 import { fileShortPath } from '@waiting/shared-core'
 
 import * as D from '##/index.def.js'
-import { StructInitPlainType } from '##/index.js'
+import type { StructInitPlainType } from '##/index.js'
 import { genSimpleStruct, genUnion, POINT_Init } from '##/index.struct.js'
 import { StructUnionCache } from '##/lib/struct/struct.cache.js'
 
