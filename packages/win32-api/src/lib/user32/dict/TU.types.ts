@@ -19,6 +19,9 @@ export class User32_U extends User32_T {
 
   UnhookWinEvent: (hWinEventHook: T.HWINEVENTHOOK) => T.BOOL
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-unregisterclassw */
+  UnregisterClassW: (lpClassName: T.LPCTSTR | T.ATOM, hInstance: T.HINSTANCE) => T.BOOL
+
   UpdateWindow: (hWnd: T.HWND) => T.BOOL
 
 }

@@ -6,7 +6,7 @@ import { ucsBufferFrom } from 'win32-def'
 import { Kernel32 as Lib, DllNames } from '##/index.js'
 
 
-describe.only(fileShortPath(import.meta.url), () => {
+describe(fileShortPath(import.meta.url), () => {
   describe('GetModuleHandleExW()', () => {
     const name = DllNames.kernel32 + '.dll'
 

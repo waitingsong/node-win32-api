@@ -5,6 +5,7 @@ import { DllNames } from '##/lib/types.js'
 
 import { DefUser32 } from './api.def.js'
 import { User32 } from './api.types.js'
+import { multipleChoiceMapperList } from './mapper/index.mapper.js'
 
 
 export {
@@ -18,5 +19,6 @@ export const load = (fns?: LoadOptions['usedFuncNames']) => _load<User32>({
   dll: dllName + '.dll',
   dllFuncs: DefUser32,
   usedFuncNames: fns,
+  multipleChoiceMapperList: multipleChoiceMapperList,
 })
 

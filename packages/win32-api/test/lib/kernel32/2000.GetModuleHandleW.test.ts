@@ -10,6 +10,14 @@ describe(fileShortPath(import.meta.url), () => {
   describe('GetModuleHandleW()', () => {
     const name = DllNames.kernel32 + '.dll'
 
+    it('null', () => {
+      const lib = Lib.load()
+      assert(lib)
+
+      const hModule = lib.GetModuleHandleW(null)
+      assert(hModule)
+    })
+
     it('string', () => {
       const lib = Lib.load()
       assert(lib)

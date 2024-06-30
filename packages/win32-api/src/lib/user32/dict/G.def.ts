@@ -19,7 +19,10 @@ export class DefUser32_G extends DefUser32_F {
   static GetCaretPos = [D.BOOL, [`_Out_ ${S.LPPOINT}`]]
 
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getclassinfoexw */
-  static GetClassInfoExW = [D.BOOL, [D.HINSTANCE, D.LPCTSTR, `_Out_ ${S.LPWNDCLASSEXW}`]]
+  static GetClassInfoExW = [D.BOOL, [D.HINSTANCE, [D.WString], `_Out_ ${S.LPWNDCLASSEXW}`]] as const
+
+  // /** https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getclassnamew */
+  // static GetClassNameW = [D.INT, [D.HWND, D.LPTSTR, D.INT]]
 
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos */
   static GetCursorPos = [D.BOOL, [`_Out_ ${S.LPPOINT}`]]

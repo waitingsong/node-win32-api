@@ -18,6 +18,9 @@ export class DefUser32_U extends DefUser32_T {
 
   static UnhookWinEvent = [D.BOOL, [D.HWINEVENTHOOK]]
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-unregisterclassw */
+  static UnregisterClassW = [D.BOOL, [D.WString, D.HINSTANCE]]
+
   static UpdateWindow = [D.BOOL, [D.HWND]]
 
 }
