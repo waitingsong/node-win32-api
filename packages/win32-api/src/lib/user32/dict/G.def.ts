@@ -29,6 +29,9 @@ export class DefUser32_G extends DefUser32_F {
 
   static GetForegroundWindow = [D.HWND, []]
 
+  /** https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getclasslongptrw */
+  static GetClassLongPtrW = [D.ULONG_PTR, [D.HWND, D.INT]]
+
   static GetMessageW = [D.BOOL, [D.LPMSG, D.HWND, D.UINT, D.UINT]]
 
   static GetParent = [D.HWND, [D.HWND]]

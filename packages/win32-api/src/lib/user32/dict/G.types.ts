@@ -36,6 +36,9 @@ export class User32_G extends User32_F {
 
   GetForegroundWindow: () => T.HWND
 
+  /** https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getclasslongptrw */
+  GetClassLongPtrW: (hWnd: T.HWND, nIndex: T.INT) => T.ULONG_PTR
+
   GetMessageW: (lpMsg: T.LPMSG, HWND: T.HWND, wMsgFilterMin: T.UINT, wMsgFilterMax: T.UINT) => T.BOOL
 
   GetParent: (hWnd: T.HWND) => T.HWND
