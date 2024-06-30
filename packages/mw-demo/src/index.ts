@@ -1,9 +1,5 @@
 
-import {
-  Config,
-  ConfigKey,
-  MiddlewareConfig,
-} from './lib/types.js'
+import type { Config, ConfigKey, MiddlewareConfig } from './lib/types.js'
 
 
 export { AutoConfiguration as Configuration } from './configuration.js'

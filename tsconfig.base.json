@@ -9,6 +9,7 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
+    "isolatedDeclarations": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "newLine": "lf",
@@ -35,7 +36,8 @@
     "stripInternal": true,
     "target": "ES2022",
     "tsBuildInfoFile": ".tsbuildinfo",
-    "types" : ["mocha", "node"]
+    "types" : ["mocha", "node"],
+    "verbatimModuleSyntax": true
   },
   "include": [
     "${configDir}/src/**/*.ts"

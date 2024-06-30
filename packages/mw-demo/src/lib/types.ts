@@ -1,4 +1,4 @@
-import { BaseConfig } from '@mwcp/share'
+import type { BaseConfig } from '@mwcp/share'
 import type { MiddlewareConfig as MWConfig } from '@waiting/shared-types'
 
 

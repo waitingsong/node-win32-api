@@ -4,10 +4,7 @@ import {
   initialMiddlewareConfig,
   initMiddlewareOptions,
 } from '##/lib/config.js'
-import {
-  Config,
-  MiddlewareConfig,
-} from '##/lib/types.js'
+import type { Config, MiddlewareConfig } from '##/lib/types.js'
 
 
 export const demoConfig: Readonly<Config> = {
