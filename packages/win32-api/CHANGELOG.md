@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [23.2.0](https://github.com/waitingsong/node-win32-api/compare/v23.1.0...v23.2.0) (2024-06-30)
+
+
+### Features
+
+* **win32-api:** user32 GetClassNameW() ([3b7913f](https://github.com/waitingsong/node-win32-api/commit/3b7913f3635b72fc1efafef16490995b33c79108))
+
+
+
+
+
 # [23.1.0](https://github.com/waitingsong/node-win32-api/compare/v23.0.0...v23.1.0) (2024-06-30)
 
 
