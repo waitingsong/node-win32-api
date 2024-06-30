@@ -28,11 +28,13 @@ export function ucsBufferToString(input: Buffer, charNum = 0): string {
     const n2 = input.length / 2
     const offset = Math.min(charNum, n2)
     const txt = input.toString('ucs2', 0, offset * 2)
-    return last === 0 && charNum >= n2 ? txt.slice(0, -1) : txt
+    // return last === 0 && charNum >= n2 ? txt.slice(0, -1) : txt
+    const ret = last === 0 ? txt.replace(/\0+$/u, '') : txt
+    return ret
   }
 
   if (last === 0) { // remove the last '\0'
-    return input.toString('ucs2').slice(0, -1)
+    return input.toString('ucs2').replace(/\0+$/u, '')
   }
   return input.toString('ucs2')
 }
