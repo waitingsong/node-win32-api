@@ -18,8 +18,8 @@ const init: StructInitType = {
   hIcon: D.HICON,
   hCursor: D.HCURSOR,
   hbrBackground: D.HBRUSH,
-  lpszMenuName: D.LPCTSTR,
-  lpszClassName: D.LPCTSTR,
+  lpszMenuName: D.WString,
+  lpszClassName: D.WString,
   hIconSm: D.HICON,
 } as const
 
@@ -50,7 +50,7 @@ export interface WNDCLASSEXW_Type {
   hIcon: T.HICON
   hCursor: T.HCURSOR
   hbrBackground: T.HBRUSH
-  lpszMenuName: T.LPCTSTR
-  lpszClassName: T.LPCTSTR
+  lpszMenuName: T.WCHAR_String
+  lpszClassName: T.WCHAR_String
   hIconSm: T.HICON
 }
