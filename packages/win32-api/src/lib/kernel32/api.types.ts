@@ -28,7 +28,7 @@ export class Kernel32 implements T.LibDef2Type<typeof DefKernel32> {
 
   GetModuleHandleW: (lpModuleName: T.LPCTSTR | null) => T.HMODULE
 
-  GetModuleHandleExW: (dwFlags: T.DWORD, lpModuleName: T.LPCTSTR | null, phModule: T.HMODULE) => T.BOOL
+  GetModuleHandleExW: (dwFlags: T.DWORD, lpModuleName: T.LPCTSTR | null, phModule: Buffer) => T.BOOL
 
   GetProcessHeaps: (NumberOfHeaps: T.DWORD, ProcessHeaps: T.PHANDLE) => T.DWORD
 

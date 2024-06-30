@@ -18,10 +18,10 @@ export class DefKernel32 implements T.LibDefBase {
   static GetLastError = [D.DWORD, []]
 
   /** retrieve value from buf by readUInt32() */
-  static GetModuleHandleW = [D.HMODULE, [D.LPCTSTR]]
+  static GetModuleHandleW = [D.HMODULE, [D.WString]]
 
   /** flags, optional LPCTSTR name, ref hModule */
-  static GetModuleHandleExW = [D.BOOL, [D.DWORD, D.LPCTSTR, D.HMODULE]]
+  static GetModuleHandleExW = [D.BOOL, [D.DWORD, D.WString, `_Out_ ${D.HMODULE}*`]]
 
   static GetProcessHeaps = [D.DWORD, [D.DWORD, D.PHANDLE]]
 
