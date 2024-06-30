@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [22.7.3](https://github.com/waitingsong/node-win32-api/compare/v22.7.2...v22.7.3) (2024-06-30)
+
+
+### Bug Fixes
+
+* **win32-def:** ucsBufferToString() ([cb68da5](https://github.com/waitingsong/node-win32-api/commit/cb68da5b6deb071d1f69717b231945fa411841ba))
+
+
+
+
+
 ## [22.7.2](https://github.com/waitingsong/node-win32-api/compare/v22.7.1...v22.7.2) (2024-06-30)
 
 
