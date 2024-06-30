@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [23.0.0](https://github.com/waitingsong/node-win32-api/compare/v22.7.3...v23.0.0) (2024-06-30)
+
+
+### Features
+
+* **win32-def:** breaking change WNDCLASSEXW ([72e6432](https://github.com/waitingsong/node-win32-api/commit/72e6432b707a2603cc684695dfaea2ec8f24bb60))
+
+
+
+
+
 ## [22.7.3](https://github.com/waitingsong/node-win32-api/compare/v22.7.2...v22.7.3) (2024-06-30)
 
 
