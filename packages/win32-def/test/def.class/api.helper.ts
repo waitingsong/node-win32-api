@@ -29,7 +29,7 @@ export class DefWin32Fake implements T.LibDefBase {
 
 export class Win32 implements T.LibDef2Type<typeof DefWin32> {
   // test fake struct LPPOINT
-  ClientToScreen: (hWnd: T.HWND, lpPoint: T.LPPOINT) => T.BOOL
+  ClientToScreen: (hWnd: T.HWND, lpPoint: S.POINT_Type) => T.BOOL
 
   EnumDisplayDevicesW: (
     lpDevice: T.LPCWSTR | null,

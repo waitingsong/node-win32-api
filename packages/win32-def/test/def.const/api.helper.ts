@@ -24,7 +24,7 @@ export interface Win32Fns {
   ) => T.BOOL
 
   // test fake struct
-  ClientToScreen: (hWnd: T.HWND, lpPoint: T.LPPOINT) => T.BOOL
+  ClientToScreen: (hWnd: T.HWND, lpPoint: S.POINT_Type) => T.BOOL
 }
 
 // skip ClientToScreen

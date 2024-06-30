@@ -7,8 +7,9 @@ import { User32_M } from './IM.types.js'
 
 export class User32_P extends User32_M {
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-peekmessagew */
   PeekMessageW: (
-    lpMsg: T.LPMSG,
+    lpMsg: S.MSG_Type,
     HWND: T.HWND,
     wMsgFilterMin: T.UINT,
     wMsgFilterMax: T.UINT,

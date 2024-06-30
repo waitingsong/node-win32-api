@@ -20,9 +20,9 @@ export class User32_G extends User32_F {
 
   /**
    * Copies the caret's position to the specified POINT structure.
-   * @link https://leran.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcaretpos
+   * @link https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcaretpos
    */
-  GetCaretPos: (lpPoint: T.LPPOINT) => T.BOOL
+  GetCaretPos: (lpPoint: S.POINT_Type) => T.BOOL
 
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getclassinfoexw */
   GetClassInfoExW: (hinst: T.HINSTANCE, lpszClass: T.LPCTSTR, LPWNDCLASSEX: S.WNDCLASSEXW_Type) => T.BOOL
@@ -39,7 +39,8 @@ export class User32_G extends User32_F {
   /** https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getclasslongptrw */
   GetClassLongPtrW: (hWnd: T.HWND, nIndex: T.INT) => T.ULONG_PTR
 
-  GetMessageW: (lpMsg: T.LPMSG, HWND: T.HWND, wMsgFilterMin: T.UINT, wMsgFilterMax: T.UINT) => T.BOOL
+  /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessagew */
+  GetMessageW: (lpMsg: S.MSG_Type, HWND: T.HWND, wMsgFilterMin: T.UINT, wMsgFilterMax: T.UINT) => T.BOOL
 
   GetParent: (hWnd: T.HWND) => T.HWND
 

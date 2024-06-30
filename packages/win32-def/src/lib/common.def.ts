@@ -109,7 +109,6 @@ export const LPDWORD: Def.uint16Ptr = Def.uint16Ptr
 export const LPHANDLE: Def.int32Ptr | Def.int64Ptr = _WIN64 ? Def.int64Ptr : Def.int32Ptr
 export const LPINT: Def.uint32Ptr | Def.uint64Ptr = ptr
 export const LPLONG: Def.int32Ptr = Def.int32Ptr
-export const LPMSG: Def.uint32Ptr | Def.uint64Ptr = ptr
 export const LPSTR: Def.charPtr = Def.charPtr
 export const LPWSTR: Def.uint16Ptr = Def.uint16Ptr
 export const LPTSTR: Def.uint16Ptr = Def.uint16Ptr

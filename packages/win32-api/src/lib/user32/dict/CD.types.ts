@@ -16,7 +16,7 @@ export class User32_C extends User32_B {
     lpVoid: T.LPVOID,
   ) => T.LONG
 
-  ClientToScreen: (hWnd: T.HWND, lpPoint: T.LPPOINT) => T.BOOL
+  ClientToScreen: (hWnd: T.HWND, lpPoint: S.POINT_Type) => T.BOOL
 
   /** https://learn.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-closewindow */
   CloseWindow: (hWnd: T.HWND) => T.BOOL
@@ -47,7 +47,7 @@ export class User32_D extends User32_C {
   DestroyWindow: (hWnd: T.HWND) => T.BOOL
 
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-dispatchmessagew */
-  DispatchMessageW: (lpMsg: T.LPMSG) => T.LRESULT
+  DispatchMessageW: (lpMsg: S.MSG_Type) => T.LRESULT
 
 }
 
