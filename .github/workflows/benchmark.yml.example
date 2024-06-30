@@ -1,0 +1,139 @@
+name: benchmark
+
+on:
+  push:
+    paths-ignore:
+      - 'site/**'
+      - '*.md'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    container: node:current
+    timeout-minutes: 60
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }} && ${{ github.actor != 'dependabot[bot]' }}
+    # if: github.actor != 'dependabot[bot]'
+
+    strategy:
+      matrix:
+        node: ['lts/*']
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Cache
+        uses: actions/cache@v4
+        id: cache-lerna
+        env:
+          cache-name: cache-lerna
+        with:
+          path: |
+            node_modules
+            package-lock.json
+            packages/*/.tsbuildinfo
+            packages/*/dist
+          key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-
+
+      - name: Prepare
+        run: |
+          uname -a
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get update -qq --yes > /dev/null
+          # apt-get upgrade -qq --yes > /dev/null
+          apt-get install -qq --yes --no-install-recommends bash dnsutils git jq locales net-tools wget > /dev/null
+          apt-get install -qq --yes postgresql-client libpq-dev > /dev/null
+          uname -a
+          npm -v && node -v
+          git --version
+          openssl version
+          cat /etc/*release
+          sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen
+          locale-gen
+          locale -a
+          netstat -tunpl
+          dig jaeger
+          export cwd=`pwd`
+          git config --global --add safe.directory $cwd
+
+      - name: Verify
+        run: |
+          psql -V
+          dig postgres
+          echo "\l" | psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d postgres
+          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "\d+"
+          psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U$POSTGRES_USER -d $POSTGRES_DB -c "SHOW TIMEZONE;"
+        env:
+          CI: true
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          POSTGRES_DB: db_ci_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          PGPASSWORD: postgres
+
+      - name: Install Dependencies
+        timeout-minutes: 15
+        run: |
+          export cwd=`pwd`
+          npm i --no-audit -g c8 lerna madge rollup tsx zx
+          npm i
+        env:
+          CI: true
+
+      - name: Build
+        run: |
+          whoami
+          export cwd=`pwd`
+          . .scripts/ci/ci-env.sh
+          .scripts/ci/ci-prepare.sh
+          npm run build --if-present
+        env:
+          CI: true
+
+      - name: Benchmark demo
+        timeout-minutes: 10
+        run: |
+          pwd
+          .scripts/benchmark/start-benchmark.mjs --qps=1600 --api=_demo/hello --p=mw-demo
+          # .benchmark.mjs --api=demo/hello
+        env:
+          CI: true
+          OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
+
+    services:
+      postgres:
+        image: postgres:alpine
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: db_ci_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        # needed because the postgres container does not provide a healthcheck
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      jaeger:
+        image: jaegertracing/all-in-one
+        env:
+          TZ: 'Asia/Chongqing'
+          COLLECTOR_OTLP_ENABLED: 'true'
+        ports:
+          - 4317:4317
+          - 4318:4318
+          - 5778:5778
+          - 6831:6831/udp
+          - 6832:6832/udp
+          - 14250:14250
+          - 16686:16686
+

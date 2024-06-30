@@ -6,32 +6,9 @@ import { dirname, join, sep } from 'node:path'
 import { cp, mkdir, readdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 
-// import { folderArr, globalConfigFileArr } from './init.config.js'
+import { folderArr, globalConfigFileArr } from './init.config.js'
 import { genFileFromExample } from './init-example-file.js'
 
-
-const folderArr: string[] = [
-  './',
-  '.vscode',
-  '.settings',
-  'resource',
-  'configs',
-  'config', // egg
-  'src/config', // midway
-]
-
-const globalConfigFileArr: string[] = [
-  '.vscode/tasks.json.example',
-  '.vscode/launch.json.example',
-  '.vscode/settings.json.example',
-  '.vscode/ci.code-snippets.example',
-  '.vscode/midway.code-snippets.example',
-  '.vscode/promise.code-snippets.example',
-  './tsconfig.base.json',
-  './tsconfig.eslint.json',
-  // './rollup.config.js',
-  './bin-hashbang.js',
-]
 
 const currentURL = import.meta.url
 const currentPath = fileURLToPath(currentURL)

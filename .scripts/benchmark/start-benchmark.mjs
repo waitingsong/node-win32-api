@@ -26,9 +26,9 @@ const tplDir = `./${pkgDir}`
 console.log({ tplDir })
 
 const files = [
-  ['start.js'],
+  ['start-for-perf.mjs'],
   ['benchmark.mjs'],
-  [`${tplDir}/configuration.ts`, `src/configuration.ts`],
+  // [`${tplDir}/configuration.ts`, `src/configuration.ts`],
 ]
 for (const [file, dst] of files) {
   const filePath = join(__dirname, file)
@@ -59,7 +59,7 @@ try {
   await $`zx benchmark.mjs --api=${httpPath} --qps=${qps} --wait=${sleepTime}`
 }
 catch (ex) {
-  //console.error(ex)
+  console.error(ex)
   gotError = true
   throw ex
 }
@@ -84,7 +84,7 @@ finally {
   }
 
   if (gotError) {
-    console.error(chalk.red('\n[benchmark] benchmark failed'))
+    console.error(chalk.red('\n[benchmark] benchmark failed with error'))
     process.exit(1)
   }
   else {
