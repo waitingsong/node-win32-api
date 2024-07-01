@@ -11,7 +11,10 @@ import type {
 } from './ffi.types.js'
 
 
-export type { KoffiFunction } from 'koffi'
+export type {
+  IKoffiRegisteredCallback,
+  KoffiFunction,
+} from 'koffi'
 export type { IKoffiLib }
 
 

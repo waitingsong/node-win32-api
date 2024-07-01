@@ -5,9 +5,11 @@
 
 import type { BigIntStr } from '@waiting/shared-types'
 
+import type { IKoffiRegisteredCallback } from './types.js'
+
 
 export type _POINTER = Buffer
-export type WNDPROC = Buffer
+export type WNDPROC = IKoffiRegisteredCallback
 /** number: 32bit, bigint: 64bit  */
 export type PTR_Addr = number | BigIntStr
 

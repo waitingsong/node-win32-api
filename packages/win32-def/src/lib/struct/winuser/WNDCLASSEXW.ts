@@ -10,7 +10,6 @@ const ptr = `${key}*` as const
 const init: StructInitType = {
   cbSize: D.UINT,
   style: D.UINT,
-  // 'lpfnWndProc': ffi.Function('int32', ['pointer', 'uint32', 'int32', 'uint32']) ,
   lpfnWndProc: D.WNDPROC,
   cbClsExtra: D.INT,
   cbWndExtra: D.INT,
@@ -42,7 +41,6 @@ export function WNDCLASSEXW_Factory(): StructFactoryResult<WNDCLASSEXW_Type> {
 export interface WNDCLASSEXW_Type {
   cbSize: T.UINT
   style: T.UINT
-  // 'lpfnWndProc': ffi.Function('int32', ['pointer', 'uint32', 'int32', 'uint32']) ,
   lpfnWndProc: T.WNDPROC
   cbClsExtra: T.INT
   cbWndExtra: T.INT

@@ -201,7 +201,7 @@ export const USN: Def.longlong = LONGLONG
 // export const WINAPI;
 export const WINEVENTPROC: Def.uint32Ptr | Def.uint64Ptr = ptr
 export const WNDENUMPROC: Def.uint32Ptr | Def.uint64Ptr = ptr
-export const WNDPROC: Def.uint32Ptr | Def.uint64Ptr = ptr
+export const WNDPROC: Def.voidPtr = Def.voidPtr
 
 /**
  * Note: original be typedef UINT_PTR WPARAM;
