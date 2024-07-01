@@ -28,7 +28,7 @@ describe(fileShortPath(import.meta.url), () => {
 
       const atom = lib.RegisterClassExW(payload)
       assert(atom)
-      lib.UnregisterClassW(atom, 0)
+      assert(lib.UnregisterClassW(atom, 0))
     })
 
     it('hInstance', () => {
@@ -40,7 +40,7 @@ describe(fileShortPath(import.meta.url), () => {
 
       const atom = lib.RegisterClassExW(payload)
       assert(atom)
-      lib.UnregisterClassW(atom, 0)
+      assert(lib.UnregisterClassW(atom, 0))
     })
 
 
