@@ -25,6 +25,9 @@ export class DefKernel32 implements T.LibDefBase {
 
   static GetProcessHeaps = [D.DWORD, [D.DWORD, D.PHANDLE]]
 
+  /** https://learn.microsoft.com/zh-cn/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress */
+  static GetProcAddress = ['intptr_t', [D.HMODULE, D.WString]] // FARPROC
+
   static GetSystemTimes = [D.BOOL, [`_Out_ ${S.LPFILETIME}`, `_Out_ ${S.LPFILETIME}`, `_Out_ ${S.LPFILETIME}`]]
 
   /** https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-gettickcount */
