@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [24.2.0](https://github.com/waitingsong/node-win32-api/compare/v24.1.0...v24.2.0) (2024-07-01)
+
+
+### Features
+
+* **api:** kernel32 GetProcAddress() ([9cec31a](https://github.com/waitingsong/node-win32-api/commit/9cec31a14ac1b844a7c421fc2d8b49bed2b4ba34))
+* **api:** kernel32 LoadLibraryExW() ([de59df2](https://github.com/waitingsong/node-win32-api/commit/de59df2d4b74a719636520155f803fb6d91c8267))
+
+
+
+
+
 # [24.1.0](https://github.com/waitingsong/node-win32-api/compare/v24.0.0...v24.1.0) (2024-06-30)
 
 
