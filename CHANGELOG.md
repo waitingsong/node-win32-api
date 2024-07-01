@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [25.0.0](https://github.com/waitingsong/node-win32-api/compare/v24.2.0...v25.0.0) (2024-07-01)
+
+
+### Bug Fixes
+
+* **def:** type WNDPROC, WNDCLASSEXW_Type ([3e8e72a](https://github.com/waitingsong/node-win32-api/commit/3e8e72a4a923a079b7222530c181fa0898c70915))
+
+
+### Features
+
+* **api:** change user32 parameters def to D.WString ([e6b7389](https://github.com/waitingsong/node-win32-api/commit/e6b73892924808af7d5f84f74d21ac2824182f53))
+* **def:** change LPVOID to HANDLE ([1308dca](https://github.com/waitingsong/node-win32-api/commit/1308dca0612f67a2bf4d9e440de6b050a8df733d))
+
+
+
+
+
 # [24.2.0](https://github.com/waitingsong/node-win32-api/compare/v24.1.0...v24.2.0) (2024-07-01)
 
 
