@@ -26,7 +26,7 @@ export class DefUser32_S extends DefUser32_R {
   static SetWindowPos = [D.BOOL, [D.HWND, D.HWND, D.INT, D.INT, D.INT, D.INT, D.UINT]]
 
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowtextw */
-  static SetWindowTextW = [D.BOOL, [D.HWND, D.LPCWSTR]]
+  static SetWindowTextW = [D.BOOL, [D.HWND, D.WString]]
 
   // @TODO WINEVENTPROC
   static SetWinEventHook = [D.HWINEVENTHOOK, [D.UINT, D.UINT, D.HMODULE, D.WINEVENTPROC, D.DWORD, D.DWORD, D.UINT]]

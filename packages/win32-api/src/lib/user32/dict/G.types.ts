@@ -34,10 +34,10 @@ export class User32_G extends User32_F {
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos */
   GetCursorPos: (lpPoint: S.POINT_Type) => T.BOOL
 
-  GetForegroundWindow: () => T.HWND
-
   /** https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getclasslongptrw */
   GetClassLongPtrW: (hWnd: T.HWND, nIndex: T.INT) => T.ULONG_PTR
+
+  GetForegroundWindow: () => T.HWND
 
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessagew */
   GetMessageW: (lpMsg: S.MSG_Type, HWND: T.HWND, wMsgFilterMin: T.UINT, wMsgFilterMax: T.UINT) => T.BOOL

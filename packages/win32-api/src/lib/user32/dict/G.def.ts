@@ -27,10 +27,10 @@ export class DefUser32_G extends DefUser32_F {
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos */
   static GetCursorPos = [D.BOOL, [`_Out_ ${S.LPPOINT}`]]
 
-  static GetForegroundWindow = [D.HWND, []]
-
   /** https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-getclasslongptrw */
   static GetClassLongPtrW = [D.ULONG_PTR, [D.HWND, D.INT]]
+
+  static GetForegroundWindow = [D.HWND, []]
 
   /** https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessagew */
   static GetMessageW = [D.BOOL, [`_Out_ ${S.LPMSG}`, D.HWND, D.UINT, D.UINT]]

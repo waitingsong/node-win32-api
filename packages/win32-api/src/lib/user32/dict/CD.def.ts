@@ -21,8 +21,8 @@ export class DefUser32_C extends DefUser32_B {
   static CreateWindowExW = [
     D.HWND, [
       D.DWORD,
-      D.LPCTSTR,
-      D.LPCTSTR,
+      D.WString,
+      D.WString,
       D.DWORD,
       D.INT,
       D.INT,
