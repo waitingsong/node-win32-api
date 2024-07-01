@@ -42,6 +42,9 @@ export class Kernel32 implements T.LibDef2Type<typeof DefKernel32> {
 
   OpenProcess: (dwDesiredAccess: T.DWORD, bInheritHandle: T.BOOL, dwProcessId: T.DWORD) => T.HANDLE
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryexw */
+  LoadLibraryExW: (lpLibFileName: T.WString, hFile: T.HANDLE, dwFlags: T.DWORD) => T.HMODULE
+
   /** https://learn.microsoft.com/en-us/windows/win32/api/debugapi/nf-debugapi-outputdebugstringw */
   OutputDebugStringW: (lpOutputString: T.LPCTSTR) => T.VOID
 

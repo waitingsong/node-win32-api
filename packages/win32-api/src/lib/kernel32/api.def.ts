@@ -32,6 +32,9 @@ export class DefKernel32 implements T.LibDefBase {
 
   static HeapFree = [D.BOOL, [D.HANDLE, D.DWORD, D.LPVOID]]
 
+  /** https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryexw */
+  static LoadLibraryExW = [D.HMODULE, [D.WString, D.HANDLE, D.DWORD]]
+
   static OpenProcess = [D.HANDLE, [D.DWORD, D.BOOL, D.DWORD]]
 
   static OutputDebugStringW = [D.VOID, [D.LPCTSTR]]
