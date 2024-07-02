@@ -90,6 +90,7 @@ jobs:
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
+          npm run test
           npm run ci
         env:
           CI: true
