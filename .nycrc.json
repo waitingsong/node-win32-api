@@ -20,5 +20,7 @@
     "json",
     "text-summary"
   ],
+  "skip-full": true,
+  "error-limit": 10,
   "all": true
 }
