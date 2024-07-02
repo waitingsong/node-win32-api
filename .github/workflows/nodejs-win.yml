@@ -84,26 +84,26 @@ jobs:
       #   env:
       #     CI: true
 
-      - name: Testing
-        shell: bash
-        run: |
-          export cwd=`pwd`
-          . .scripts/ci/ci-env.sh
-          .scripts/ci/ci-prepare.sh
-          npm run test
-        env:
-          CI: true
-          # use `localhost` if running the job on the VM
-          # use `postgres` if running the job on a container
-          POSTGRES_HOST: postgres
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-          POSTGRES_DB: db_ci_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          PGPASSWORD: postgres
-          # redis
-          REDIS_HOST: redis
-          REDIS_PORT: 6379
+      # - name: Testing
+      #   shell: bash
+      #   run: |
+      #     export cwd=`pwd`
+      #     . .scripts/ci/ci-env.sh
+      #     .scripts/ci/ci-prepare.sh
+      #     npm run test
+      #   env:
+      #     CI: true
+      #     # use `localhost` if running the job on the VM
+      #     # use `postgres` if running the job on a container
+      #     POSTGRES_HOST: postgres
+      #     POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+      #     POSTGRES_DB: db_ci_test
+      #     POSTGRES_USER: postgres
+      #     POSTGRES_PASSWORD: postgres
+      #     PGPASSWORD: postgres
+      #     # redis
+      #     REDIS_HOST: redis
+      #     REDIS_PORT: 6379
 
       - name: Coverage
         shell: bash
