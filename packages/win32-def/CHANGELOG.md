@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [26.0.1](https://github.com/waitingsong/node-win32-api/compare/v26.0.0...v26.0.1) (2024-07-02)
+
+
+### Bug Fixes
+
+* **def:** revert HANDLE def to uint32 | uint64 ([22c8002](https://github.com/waitingsong/node-win32-api/commit/22c8002fc914d69f790f02a84c69b5244eaf55d7))
+
+
+
+
+
 # [26.0.0](https://github.com/waitingsong/node-win32-api/compare/v25.0.0...v26.0.0) (2024-07-02)
 
 
