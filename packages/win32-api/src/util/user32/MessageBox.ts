@@ -1,3 +1,4 @@
+/* c8 ignore start */
 import assert from 'assert'
 
 import { load } from '##/lib/user32/index.js'
@@ -29,4 +30,6 @@ export async function MessageBox(options: MessageBoxOptions): RetType {
   const res = await fn(hWnd, lpText, lpCaption, uType, wLanguageId)
   return res
 }
+
+/* c8 ignore stop */
 
