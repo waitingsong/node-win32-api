@@ -31,7 +31,7 @@ describe(fileShortPath(import.meta.url), () => {
       const { name, pointer, CType, size } = genUnion(u2, key, ptr)
 
       assert(name === key, `name: ${name}, key: ${key}`)
-      assert(pointer === `${key}*`)
+      assert(pointer === `${key}*`, `pointer: ${pointer}, key: "${key}*"`)
       assert(CType)
       assert(size === expectSize, `size: ${size} !== ${expectSize}`)
     })
