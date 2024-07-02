@@ -15,6 +15,7 @@ describe(fileShortPath(import.meta.url), () => {
   assert(libKnl)
   const hModule = libKnl.GetModuleHandleW(null)
   assert(hModule)
+  assert(typeof hModule === 'number' || typeof hModule === 'bigint')
 
   const lpszClassName = 'test-class-' + Date.now().toString()
   const lpszMenuName = 'test-menu-' + Date.now().toString()
