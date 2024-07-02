@@ -8,6 +8,7 @@ describe(fileShortPath(import.meta.url), () => {
   describe('should work', () => {
     it('always passed', () => {
       assert(true)
+      assert(false)
     })
   })
 

@@ -16,7 +16,6 @@ describe(fileShortPath(import.meta.url), () => {
     it('Def', () => {
       assert(Def)
       assert(Object.keys(Def).length > 0)
-      assert(false, 'debug')
     })
   })
 
