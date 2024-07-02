@@ -47,6 +47,7 @@ export type CCHAR = UINT8
 export type CHAR = UINT8
 export type COLORREF = number
 
+export type DLGPROC = CALLBACK
 export type DWORDLONG = number
 export type DWORD_PTR = ULONG_PTR
 export type DWORD32 = number
