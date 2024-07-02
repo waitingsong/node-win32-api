@@ -41,6 +41,8 @@ describe(fileShortPath(import.meta.url), () => {
         assert(p2.hInstance === hModule)
         assert(p2.style === 0x1000)
         assert(ret === atom)
+
+        assert(false, 'DEBUG')
       }
       finally {
         lib.UnregisterClassW(atom, 0)
