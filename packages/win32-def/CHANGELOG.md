@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [26.0.0](https://github.com/waitingsong/node-win32-api/compare/v25.0.0...v26.0.0) (2024-07-02)
+
+
+### Features
+
+* **def:** add DLGPROC ([6423edc](https://github.com/waitingsong/node-win32-api/commit/6423edc6026210a83ceaf11381963eb6f764de4b))
+* **def:** change HANDLE def to 'void*' ([01a3df8](https://github.com/waitingsong/node-win32-api/commit/01a3df8c45debd554e497cdda18c96f964a45eb1))
+
+
+
+
+
 # [25.0.0](https://github.com/waitingsong/node-win32-api/compare/v24.2.0...v25.0.0) (2024-07-01)
 
 
