@@ -9,7 +9,7 @@ import { assertStructUnion } from '#@/helper.js'
 const name = 'RAWHID'
 const pointer = LPRAWHID
 const factory = RAWHID_Factory
-const size = 16 // ? 12
+const size = 12
 const fn = `${name}_Factory`
 
 describe(fileShortPath(import.meta.url), () => {

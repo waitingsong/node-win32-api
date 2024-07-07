@@ -6,7 +6,7 @@
  */
 export enum Def {
   bool = 'bool',
-  byte = 'int*',
+  byte = 'uint8_t',
   int = 'int',
   int8 = 'int8_t',
   int16 = 'int16_t',
@@ -28,9 +28,9 @@ export enum Def {
   void = 'void',
 
   boolPtr = 'bool*',
-  bytePtr = 'int*',
+  bytePtr = 'uint8_t*',
   charPtr = 'char*',
-  intPtr = 'int',
+  intPtr = 'int*',
   int8Ptr = 'int8_t*',
   int16Ptr = 'int16_t*',
   int32Ptr = 'int32_t*',
