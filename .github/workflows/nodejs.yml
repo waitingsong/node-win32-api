@@ -9,7 +9,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     container: node:current
     timeout-minutes: 60
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    # if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[perf]') }}
 
     strategy:
       matrix:
@@ -17,28 +18,23 @@ jobs:
         os: [ubuntu-latest]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
 
       - name: Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: cache-lerna
         env:
           cache-name: cache-lerna
         with:
           path: |
             node_modules
-            # node_modules/.cache/nx
             package-lock.json
-            # packages/*/.eslintcache
             packages/*/.tsbuildinfo
-            packages/*/.vscode
             packages/*/dist
-            packages/*/node_modules
-            packages/*/package-lock.json
           key: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-${{ env.cache-name }}-${{ github.ref }}-${{ matrix.node }}-
@@ -61,7 +57,6 @@ jobs:
           locale-gen
           locale -a
           netstat -tunpl
-          chmod a+w -R .
           dig jaeger
           export cwd=`pwd`
           git config --global --add safe.directory $cwd
@@ -82,14 +77,12 @@ jobs:
           POSTGRES_PASSWORD: postgres
           PGPASSWORD: postgres
 
-      - name: Inatall Dependencies
+      - name: Install Dependencies
         timeout-minutes: 15
         run: |
-          chown -R 1001:121 "/github/home/.npm"
           # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
-          # .github/workflows/fix.sh
-          npm i --no-audit -g autocannon c8 lerna rollup tsx zx
+          npm i --no-audit -g c8 lerna madge tsx zx
           npm i
         env:
           CI: true
@@ -149,24 +142,25 @@ jobs:
           # redis
           REDIS_HOST: redis
           REDIS_PORT: 6379
-
+          # otel
+          OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
+          # aliyun
           ALI_ALB_IPS: ${{ secrets.ALI_ALB_IPS }}
           ALI_ALB_GROUPID: ${{ secrets.ALI_ALB_GROUPID }}
-
           ALI_ECS_AID: ${{ secrets.ALI_ECS_AID }}
           ALI_ECS_ASECRET: ${{ secrets.ALI_ECS_ASECRET }}
           ALI_ECS_IDS: ${{ secrets.ALI_ECS_IDS }}
           ALI_ECS_IPS: ${{ secrets.ALI_ECS_IPS }}
-
           ALI_OSS_AID: ${{ secrets.ALI_OSS_AID }}
           ALI_OSS_ASECRET: ${{ secrets.ALI_OSS_ASECRET }}
           ALI_OSS_ENDPOINT: ${{ secrets.ALI_OSS_ENDPOINT }}
           ALI_OSS_BUCKET: ${{ secrets.ALI_OSS_BUCKET }}
 
-          OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 
     services:
@@ -186,7 +180,7 @@ jobs:
           --health-retries 5
 
       jaeger:
-        image: jaegertracing/all-in-one
+        image: jaegertracing/all-in-one:1.57
         env:
           TZ: 'Asia/Chongqing'
           COLLECTOR_OTLP_ENABLED: 'true'

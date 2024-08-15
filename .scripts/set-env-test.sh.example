@@ -1,0 +1,23 @@
+#!/bin/bash
+
+
+export MIDWAY_SERVER_ENV=unittest
+export NODE_ENV=unittest
+export OTEL_EXPORTER_OTLP_ENDPOINT="http://127.0.0.1:4317"
+export TS_NODE_PROJECT="test/tsconfig.json"
+export POSTGRES_HOST="127.0.0.1"
+export POSTGRES_PORT="5432"
+export POSTGRES_DB=""
+export POSTGRES_USER="postgres"
+export POSTGRES_PASSWORD="postgres"
+export ALI_ALB_IPS="120.55"
+export ALI_ALB_GROUPID="sgp-7z"
+export ALI_ECS_AID="LTAI5"
+export ALI_ECS_ASECRET="Dr"
+export ALI_ECS_IDS=""
+export ALI_ECS_IPS=""
+export ALI_OSS_AID="LTAI4"
+export ALI_OSS_ASECRET="FRK"
+export ALI_OSS_ENDPOINT="https://oss-cn-hangzhou.aliyuncs.com"
+export ALI_OSS_BUCKET=""
+

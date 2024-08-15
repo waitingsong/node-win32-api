@@ -22,7 +22,7 @@ jobs:
         os: [ubuntu-latest]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           # pulls all commits (needed for lerna / semantic release to correctly version)
           fetch-depth: "0"
@@ -31,16 +31,16 @@ jobs:
         # pulls all tags (needed for lerna / semantic release to correctly version)
         run: |
           export cwd=`pwd`
-          git config --global --add safe.directory $cwd
-          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+          git config --global --add safe.directory $cwd || true
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/* || true
       - name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
           registry-url: 'https://registry.npmjs.org'
 
       - name: Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: cache-lerna
         env:
           cache-name: cache-lerna
@@ -69,7 +69,6 @@ jobs:
           locale-gen
           locale -a
           netstat -tunpl
-          chmod a+w -R .
 
       - name: Verify
         run: |
@@ -81,27 +80,21 @@ jobs:
           CI: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Inatall Dependencies
+      - name: Install Dependencies
         timeout-minutes: 15
         run: |
-          chmod a+w -R .
-          # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
-          # .github/workflows/fix.sh
-          npm i --no-audit -g autocannon c8 lerna rollup tsx zx
-          # npm run purge
+          npm i --no-audit -g lerna rollup tsx zx madge
           npm i --no-audit
         env:
           CI: true
 
       - name: Build
         run: |
-          chmod a+w -R .
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           .scripts/ci/ci-prepare.sh
-          # .github/workflows/fix.sh
           npm run build --if-present
         env:
           CI: true
@@ -120,12 +113,10 @@ jobs:
         run: |
           npm ping
           npm whoami
-          chmod a+w -R .
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
           # fix: fatal: detected dubious ownership in repository
           git config --global --add safe.directory $cwd
-          # git restore .
           git reset --hard
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com

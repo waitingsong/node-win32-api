@@ -1,5 +1,5 @@
 
-export {
+export type {
   JsonObject,
   JsonResp,
   JsonType,

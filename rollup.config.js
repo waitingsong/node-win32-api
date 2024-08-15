@@ -1,7 +1,7 @@
 import { basename, dirname } from 'node:path'
 import assert from 'node:assert'
 
-import pkg from './package.json' assert { type: 'json' }
+import pkg from './package.json' with { type: 'json' }
 
 // `npm run build` -> `production` is true
 // `npm run dev` -> `production` is false

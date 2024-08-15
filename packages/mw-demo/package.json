@@ -15,7 +15,7 @@
   "types": "dist/index.d.ts",
   "imports": {
     "#package.json": "./package.json",
-    "##/*": "./dist/*",
+    "##/*": "./src/*",
     "#@/*": "./test/*"
   },
   "exports": {
@@ -32,14 +32,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@midwayjs/info": "^3.14.0",
-    "@mwcp/share": "*"
+    "@mwcp/otel": "^37.2.0"
   },
   "devDependencies": {
   },
   "engines": {
     "node": ">=18.12.0",
-    "@midwayjs/core": ">=3.14.0"
+    "@midwayjs/core": ">=3.16.0"
   },
   "files": [
     "README.*.md",
@@ -51,14 +50,15 @@
     "bin",
     "database",
     "dist",
-    "!**/*.spec.*",
-    "!**/*.tsbuildinfo"
+    "src",
+    "!**/*.spec.*"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "npm run tsc && tsc-alias",
+    "build": "npm run tsc",
+    "build:unit": "tsc -p test/tsconfig.json",
     "clean": "npm run clean:lock && npm run clean:dist && npm run clean:log",
     "clean:cache": "rm -rf .eslintcache .tsbuildinfo",
     "clean:dist": "npm run clean:cache && rm -rf dist/*",
@@ -67,12 +67,15 @@
     "cov": "c8 --all npm run test -- --parallel=false",
     "db:gen": "kmore gen --path ./src",
     "dev": "cross-env MIDWAY_SERVER_ENV=local mwtsc --watch --run @midwayjs/mock/app",
-    "lint": "eslint --fix --cache {src,test}/**/*.ts",
-    "lint:nofix": "eslint --cache {src,test}/**/*.ts",
+    "lint": "eslint --fix --cache src test",
+    "lint:nofix": "eslint --cache src test",
+    "postbuild": "tsc-alias",
     "predev": "npm run build",
-    "pretest": "npm run build",
+    "pretest": "npm run build:unit",
     "start": "cross-env NODE_ENV=production node ./bootstrap.js",
+    "start:gc": "cross-env NODE_ENV=local node --trace_gc ./bootstrap.js",
     "test": "cross-env MIDWAY_SERVER_ENV=unittest TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
+    "test:deb": "npm run test",
     "tsc": "tsc -b"
   }
 }

@@ -2,22 +2,20 @@ import assert from 'node:assert/strict'
 
 import {
   App,
-  Config as _Config,
   Init,
-  Provide,
-  Scope,
-  ScopeEnum,
+  Singleton,
 } from '@midwayjs/core'
+import { MConfig } from '@mwcp/share'
 import type { Application } from '@mwcp/share'
 
-import { Config, ConfigKey } from './types.js'
+import { ConfigKey } from './types.js'
+import type { Config } from './types.js'
 
 
-@Provide()
-@Scope(ScopeEnum.Singleton)
+@Singleton()
 export class DemoComponent {
 
-  @_Config(ConfigKey.config) protected readonly config: Config
+  @MConfig(ConfigKey.config) protected readonly config: Config
 
   @App() readonly app: Application
 

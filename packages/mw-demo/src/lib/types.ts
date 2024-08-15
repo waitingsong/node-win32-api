@@ -1,4 +1,4 @@
-import { BaseConfig } from '@mwcp/share'
+import type { BaseConfig } from '@mwcp/share'
 import type { MiddlewareConfig as MWConfig } from '@waiting/shared-types'
 
 
@@ -7,7 +7,7 @@ export enum ConfigKey {
   config = 'demoConfig',
   middlewareConfig = 'demoMiddlewareConfig',
   componentName = 'demoComponent',
-  middlewareName = 'demoMiddleware'
+  middlewareName = 'demoMiddleware',
 }
 
 export enum Msg {

@@ -10,9 +10,10 @@
 remote="$1"
 url="$2"
 
-
-if [[ -f $HOME/.nvm/nvm.sh ]]; then
-  . $HOME/.nvm/nvm.sh
+if [[ -z $NVM_DIR ]]; then
+  if [[ -f $HOME/.nvm/nvm.sh ]]; then
+    . $HOME/.nvm/nvm.sh
+  fi
 fi
 
 z40=0000000000000000000000000000000000000000

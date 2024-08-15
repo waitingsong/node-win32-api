@@ -21,17 +21,19 @@
     "outDir": "dist",
     "paths": {
       "##/*": ["src/*"],
+      "#a/*": ["src/app/*"],
       "#@/*": ["test/*"]
     },
     "preserveConstEnums": true,
     "pretty": true,
     "resolveJsonModule": true,
+    "rootDir": "src",
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "strictPropertyInitialization": false,
     "stripInternal": true,
-    "target": "ES2022",
+    "target": "ES2023",
     "tsBuildInfoFile": ".tsbuildinfo",
     "types" : ["mocha", "node"]
   },
@@ -43,6 +45,7 @@
     "app/public",
     "app/views",
     "dist",
+    "fixtures",
     "node_modules*",
     "**/*.d.ts",
     "**/*.spec.ts"

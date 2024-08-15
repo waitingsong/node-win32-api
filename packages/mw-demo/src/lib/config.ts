@@ -1,8 +1,4 @@
-import {
-  Config,
-  MiddlewareConfig,
-  MiddlewareOptions,
-} from './types.js'
+import type { Config, MiddlewareConfig, MiddlewareOptions } from './types.js'
 
 
 export const initialConfig: Readonly<Config> = {
