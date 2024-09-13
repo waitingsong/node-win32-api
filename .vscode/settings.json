@@ -137,6 +137,9 @@
   "typescript.format.semicolons": "remove",
   "typescript.locale": "zh-CN",
   "typescript.preferences.quoteStyle": "single",
+  "typescript.preferences.autoImportSpecifierExcludeRegexes": [
+    "^node:console$",
+  ],
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "[markdown]": {
