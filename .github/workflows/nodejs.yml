@@ -71,7 +71,7 @@ jobs:
         env:
           CI: true
           POSTGRES_HOST: postgres
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          POSTGRES_PORT: 5432
           POSTGRES_DB: db_ci_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -117,7 +117,7 @@ jobs:
       #   env:
       #     CI: true
       #     POSTGRES_HOST: postgres
-      #     POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+      #     POSTGRES_PORT: 5432
       #     POSTGRES_DB: db_ci_test
       #     POSTGRES_USER: postgres
       #     POSTGRES_PASSWORD: postgres
@@ -134,7 +134,7 @@ jobs:
           # use `localhost` if running the job on the VM
           # use `postgres` if running the job on a container
           POSTGRES_HOST: postgres
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          POSTGRES_PORT: 5432
           POSTGRES_DB: db_ci_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
