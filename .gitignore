@@ -1,3 +1,4 @@
+.env
 .nx
 .ssh/
 dbconfig.json
