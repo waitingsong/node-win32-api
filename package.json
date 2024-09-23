@@ -7,7 +7,7 @@
   "devDependencies": {
     "@commitlint/cli": "19",
     "@commitlint/config-conventional": "19",
-    "@rollup/plugin-commonjs": "26",
+    "@rollup/plugin-commonjs": "28",
     "@rollup/plugin-node-resolve": "15",
     "@types/mocha": "10",
     "@types/node": "20",
