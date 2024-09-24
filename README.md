@@ -11,7 +11,7 @@
 
 以下所有命令行操作都在 `git-bash` 窗口中执行
 
-## Install global deps
+## Install global deps for development
 ```sh
 npm i -g c8 lerna madge rollup tsx zx
 ```
