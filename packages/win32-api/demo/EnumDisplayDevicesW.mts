@@ -36,9 +36,9 @@ try {
 
   console.info({ res, DeviceID, DeviceKey, DeviceName, DeviceString })
 
-  assert(DeviceID.startsWith('PCI\\VEN_') || DeviceID.includes('VMBUS') || DeviceID === '', DeviceID)
+  assert(DeviceID.startsWith(String.raw`PCI\VEN_`) || DeviceID.includes('VMBUS') || DeviceID === '', DeviceID)
   assert(typeof DeviceKey === 'string', DeviceKey)
-  assert(DeviceName === '\\\\.\\DISPLAY1', DeviceName)
+  assert(DeviceName === String.raw`\\.\DISPLAY1`, DeviceName)
   assert(DeviceString.length > 0)
   const flag = ['Microsoft Hyper-V', 'Intel', 'AMD', 'Radeon'].some(val => DeviceString.includes(val))
   assert(flag, DeviceString)

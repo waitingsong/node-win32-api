@@ -11,7 +11,7 @@
  * @author waiting
  * @link https://github.com/waitingsong/node-win32-api
  */
-import assert from 'assert'
+import assert from 'node:assert'
 
 import { sleep } from '@waiting/shared-core'
 import { ffi, User32, Kernel32 } from 'win32-api'

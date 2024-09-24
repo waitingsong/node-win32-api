@@ -51,7 +51,7 @@ export class LoaderCache {
     const cacheMap = LoaderCache.regCacheMap.get(lib)
     const map = cacheMap?.get(fnName)
     if (map?.size) {
-      const arr = map.entries().next().value as [FnDefArgs, KoffiFunction] | undefined
+      const arr = map.entries().next().value
       const ret = arr?.[1]
       return ret
     }

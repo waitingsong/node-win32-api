@@ -1,4 +1,4 @@
-import assert from 'assert'
+import assert from 'node:assert'
 
 import type { FlattenNestedTuple } from '@waiting/shared-types'
 import { getPRINTER_INFO_X_Ptr } from 'win32-def/struct'

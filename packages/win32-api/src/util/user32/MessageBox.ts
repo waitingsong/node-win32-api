@@ -1,5 +1,5 @@
 /* c8 ignore start */
-import assert from 'assert'
+import assert from 'node:assert'
 
 import { load } from '##/lib/user32/index.js'
 import type { LibUser32 } from '##/lib/user32/index.js'

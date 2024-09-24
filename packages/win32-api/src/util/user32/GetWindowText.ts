@@ -1,4 +1,4 @@
-import assert from 'assert'
+import assert from 'node:assert'
 
 import { ucsBufferToString } from 'win32-def'
 
