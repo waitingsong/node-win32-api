@@ -1,9 +1,9 @@
 import type { RouterOption } from '@midwayjs/core'
 
 import {
+  initMiddlewareOptions,
   initialConfig,
   initialMiddlewareConfig,
-  initMiddlewareOptions,
 } from '##/lib/config.js'
 import type { Config, MiddlewareConfig } from '##/lib/types.js'
 

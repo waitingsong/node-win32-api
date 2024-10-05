@@ -1,4 +1,4 @@
-/* eslint-disable import/max-dependencies */
+
 import assert from 'node:assert'
 
 import {
@@ -14,8 +14,8 @@ import type { ILifeCycle, ILogger } from '@midwayjs/core'
 import { TraceInit } from '@mwcp/otel'
 import {
   MConfig,
-  registerMiddleware,
   deleteRouter,
+  registerMiddleware,
 } from '@mwcp/share'
 import type { Application, IMidwayContainer } from '@mwcp/share'
 

@@ -5,9 +5,9 @@ export { Demo2Component } from './component-request.js'
 
 export {
   type Config as DemoConfig,
-  ConfigKey as DemoConfigKey,
   type MiddlewareConfig as DemoMiddlewareConfig,
   type MiddlewareOptions as DemoMiddlewareOptions,
+  ConfigKey as DemoConfigKey,
   Msg as DemoMsg,
 } from './types.js'
 

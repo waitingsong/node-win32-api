@@ -2,7 +2,7 @@
 // https://mochajs.org/#root-hook-plugins
 import assert from 'node:assert'
 
-import { createApp, close, createHttpRequest } from '@midwayjs/mock'
+import { close, createApp, createHttpRequest } from '@midwayjs/mock'
 import { ValidateService } from '@midwayjs/validate'
 import type { Application } from '@mwcp/share'
 import type { Suite } from 'mocha'
