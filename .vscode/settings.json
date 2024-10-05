@@ -86,6 +86,10 @@
   "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
   "git.ignoreLimitWarning": true,
+  "javascript.preferences.autoImportSpecifierExcludeRegexes": [
+    "^node:console$",
+    "^console$",
+  ],
   "markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
   "markdown-pdf.outputDirectory": "d:/",
   "plantuml.render": "PlantUMLServer",
@@ -139,6 +143,7 @@
   "typescript.preferences.quoteStyle": "single",
   "typescript.preferences.autoImportSpecifierExcludeRegexes": [
     "^node:console$",
+    "^console$",
   ],
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.updateImportsOnFileMove.enabled": "always",
