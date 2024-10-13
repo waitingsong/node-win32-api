@@ -6,7 +6,7 @@
 [![](https://img.shields.io/badge/lang-TypeScript-blue.svg)]()
 [![ci](https://github.com/waitingsong/npm-mono-base/actions/workflows/nodejs.yml/badge.svg
 )](https://github.com/waitingsong/npm-mono-base/actions)
-[![codecov](https://codecov.io/gh/waitingsong/npm-mono-base/branch/main/graph/badge.svg?token=Voxor5PtnG)](https://codecov.io/gh/waitingsong/npm-mono-base)
+[![codecov](https://codecov.io/gh/waitingsong/npm-mono-base/graph/badge.svg?token=Voxor5PtnG)](https://codecov.io/gh/waitingsong/npm-mono-base)
 
 
 以下所有命令行操作都在 `git-bash` 窗口中执行
@@ -21,10 +21,10 @@ npm i -g c8 lerna madge rollup tsx zx
 
 ## Packages
 
-| Package      | Version                | Dependencies                 | DevDependencies                |
-| ------------ | ---------------------- | ---------------------------- | ------------------------------ |
-| [`demo`]     | [![main-svg]][main-ch] | [![main-d-svg]][main-d-link] | [![main-dd-svg]][main-dd-link] |
-| [`demo-cli`] | [![cli-svg]][cli-ch]   | [![cli-d-svg]][cli-d-link]   | [![cli-dd-svg]][cli-dd-link]   |
+| Package      | Version                |
+| ------------ | ---------------------- |
+| [`demo`]     | [![main-svg]][main-ch] |
+| [`demo-cli`] | [![cli-svg]][cli-ch]   |
 
 
 ## License
@@ -38,12 +38,12 @@ npm i -g c8 lerna madge rollup tsx zx
 <br>
 
 [`demo`]: https://github.com/waitingsong/npm-mono-base/tree/main/packages/demo
-[main-svg]: https://img.shields.io/npm/v/kmore.svg?maxAge=7200
+[main-svg]: https://img.shields.io/npm/v/kmore.svg?maxAge=300
 [main-ch]: https://github.com/waitingsong/kmore/tree/main/packages/demo/CHANGELOG.md
 
 
 [`demo-cli`]: https://github.com/waitingsong/kmore/tree/main/packages/kmore-cli
-[cli-svg]: https://img.shields.io/npm/v/kmore-cli.svg?maxAge=7200
+[cli-svg]: https://img.shields.io/npm/v/kmore-cli.svg?maxAge=300
 [cli-ch]: https://github.com/waitingsong/kmore/tree/main/packages/kmore-clie/CHANGELOG.md
 
 
