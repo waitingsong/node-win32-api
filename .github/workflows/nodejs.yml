@@ -41,7 +41,6 @@ jobs:
 
       - name: Prepare
         run: |
-          pwd
           uname -a
           export DEBIAN_FRONTEND=noninteractive
           apt-get update -qq --yes > /dev/null
@@ -81,16 +80,14 @@ jobs:
       - name: Install Dependencies
         timeout-minutes: 15
         run: |
-          # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
           npm i --no-audit -g c8 lerna madge tsx zx
-          npm i
+          npm i --no-audit
         env:
           CI: true
 
       - name: Build
         run: |
-          pwd
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
