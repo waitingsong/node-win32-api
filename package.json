@@ -16,7 +16,7 @@
     "@waiting/eslint-config": "^15.0.0",
     "@waiting/shared-core": "^23.21.0",
     "@waiting/shared-types": "^23.21.0",
-    "autocannon": "7",
+    "autocannon": "8",
     "cross-env": "7",
     "mocha": "10",
     "mwtsc": "^1.11.2",
