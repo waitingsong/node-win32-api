@@ -34,6 +34,7 @@ const languageOptions = {
 export default eslint.config(
   {
     files: ['packages/*/src/**/*.ts', 'src/**/*.ts', 'packages/*/demo/**/*.mts' , 'packages/*/demo/**/*.ts'],
+    ignores: ['**/*.d.ts'],
     extends: [
       ...srcConfig,
     ],
@@ -42,6 +43,7 @@ export default eslint.config(
   },
   {
     files: ['packages/*/test/**/*.ts', 'test/**/*.ts'],
+    ignores: ['**/*.d.ts'],
     extends: [
       ...testConfig,
     ],
