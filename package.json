@@ -7,23 +7,23 @@
   "devDependencies": {
     "@commitlint/cli": "19",
     "@commitlint/config-conventional": "19",
-    "@midwayjs/mock": "^3.18.0",
-    "@midwayjs/swagger": "^3.18.1",
-    "@midwayjs/validate": "^3.18.0",
+    "@midwayjs/mock": "^3.18.2",
+    "@midwayjs/swagger": "^3.18.2",
+    "@midwayjs/validate": "^3.18.2",
     "@types/koa": "2",
     "@types/mocha": "10",
     "@types/node": "22",
-    "@waiting/eslint-config": "^15.0.0",
-    "@waiting/shared-core": "^23.21.0",
-    "@waiting/shared-types": "^23.21.0",
+    "@waiting/eslint-config": "^15.1.0",
+    "@waiting/shared-core": "^23.22.0",
+    "@waiting/shared-types": "^23.22.0",
     "autocannon": "8",
     "cross-env": "7",
     "mocha": "10",
-    "mwtsc": "^1.11.2",
+    "mwtsc": "^1.12.0",
     "swagger-ui-dist": "^5.17.14",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.3"
   },
   "engines": {
     "node": ">=20.11.0"
@@ -33,6 +33,7 @@
   ],
   "scripts": {
     "add:pkg": "sh .scripts/add-pkg.sh",
+    "add:mwcp": "sh .scripts/add-mwcp.sh",
     "bp:add": "git remote add bp https://github.com/waitingsong/npm-mono-base",
     "bp:sync": "git fetch --all -v && git pull origin && git merge bp/main -m \"Merge remote-tracking branch 'bp/main'\" ",
     "bp:sync-force": "git fetch --all -v && git pull origin && git merge bp/main --allow-unrelated-histories -m \"Merge remote-tracking branch 'bp/main'\" ",
