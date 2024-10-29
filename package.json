@@ -14,7 +14,7 @@
     "@types/mocha": "10",
     "@types/node": "22",
     "@waiting/eslint-config": "^15.1.0",
-    "@waiting/shared-core": "^23.22.0",
+    "@waiting/shared-core": "^23.23.0",
     "@waiting/shared-types": "^23.22.0",
     "autocannon": "8",
     "cross-env": "7",
