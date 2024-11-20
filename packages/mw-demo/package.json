@@ -32,12 +32,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@mwcp/otel": "^40.0.0"
+    "@mwcp/otel": "^40.1.1"
   },
   "devDependencies": {
   },
   "engines": {
-    "node": ">=18.12.0",
+    "node": ">=20.11.0",
     "@midwayjs/core": ">=3.16.0"
   },
   "files": [
