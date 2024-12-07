@@ -25,9 +25,10 @@ if [ -z "$CI" ]; then
   git config --local remote.origin.prune true
   git config --local remote.origin.tagopt --tags
   git config --local remote.pushdefault origin
+  git config --local rerere.enabled true
 fi;
 
-echo It may going for a long time. Plese wait...
+echo It may going for a long time. Please wait...
 .githooks/gen-file-from-example.mts
 
 lerna list
