@@ -51,9 +51,6 @@
   "dependencies": {
     "win32-def": "^26.0.3"
   },
-  "devDependencies": {
-    "@waiting/shared-core": "^23.19.0"
-  },
   "engines": {
     "node": ">=16.12.0"
   },
