@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [26.0.4](https://github.com/waitingsong/node-win32-api/compare/v26.0.3...v26.0.4) (2024-12-13)
+
+
+### Bug Fixes
+
+* deps missing ([0ef6ac0](https://github.com/waitingsong/node-win32-api/commit/0ef6ac051793e21863a2a25dc4e52f091b9b4389))
+
+
+
+
+
 ## [26.0.3](https://github.com/waitingsong/node-win32-api/compare/v26.0.2...v26.0.3) (2024-09-24)
 
 **Note:** Version bump only for package win32-api
