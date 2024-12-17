@@ -16,7 +16,7 @@
     "@waiting/shared-types": "^23.24.0",
     "autocannon": "8",
     "cross-env": "7",
-    "mocha": "10",
+    "mocha": "11",
     "rollup-plugin-dts": "^6.1.1",
     "rxjs": "^7.8.1",
     "ts-node": "^10.9.2",
