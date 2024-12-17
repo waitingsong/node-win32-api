@@ -64,7 +64,7 @@ git config --local i18n.commitencoding utf-8 \
 
 git push origin
 
-sed -i '/^## 创建新项目/,+50 d' README.md
+# sed -i '/^## 创建新项目/,+50 d' README.md
 
 if [ -n "$projectScope" ]; then
   sed -i "s#\(NPM scope: \`\)@scope#\1$projectScope#" README.md
@@ -85,23 +85,7 @@ fi
 git add README.md
 git commit -nm "docs: clean and update README"
 
-# sed -i 's#\(lerna run build\)#\1 --ignore demo#g' .scripts/build.sh
-# sed -i 's#\(lerna run lint\s\+\)#\1 --ignore demo #g' .scripts/lint.sh
-# sed -i 's#\(lerna run lint:\w\+\)#\1 --ignore demo#g' .scripts/lint-no-fix.sh
-# sed -i 's#\(lerna run lint:\w\+\)#\1 --ignore demo#g' .scripts/lint-no-fix-s.sh
-# sed -i 's#\(lerna run test\)#\1 --ignore demo#g' .scripts/test.sh
-# sed -i 's#\(lerna run cov\)#\1 --ignore demo#g' .scripts/cov.sh
-
 sed -i 's#\("ignore": \)""#\1["demo"]#' lerna.json
-
-git add -- \
-  .scripts/build.sh \
-  .scripts/lint.sh \
-  .scripts/lint-no-fix.sh \
-  .scripts/lint-no-fix-s.sh \
-  .scripts/test.sh \
-  .scripts/cov.sh \
-  lerna.json \
 
 git commit -nm "chore: initialize"
 

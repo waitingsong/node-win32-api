@@ -6,12 +6,12 @@ input="$@"
 scope=''
 
 if [ -z "$input" ]; then
-  lerna run build
+  lerna run build:prod
 else
   for mod in $input
   do
     scope="$scope --scope $mod"
   done
-  lerna run build $scope
+  lerna run build:prod $scope
 fi
 

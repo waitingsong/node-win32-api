@@ -6,7 +6,8 @@
     "noImplicitThis": false,
     "noPropertyAccessFromIndexSignature": false,
     "noUnusedLocals": false,
-    "rootDir": ".."
+    "rootDir": "..",
+    "sourceMap": false
   },
   "include": [
     "../src",

@@ -4,5 +4,75 @@
   // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+    {
+      "name": "Mocha Tests",
+      "type": "node",
+      "args": [
+        "-u",
+        "bdd",
+        "--timeout",
+        "999999",
+        "--colors",
+        "--parallel=false"
+      ],
+      "console": "internalConsole",
+      "env": {
+        "MIDWAY_SERVER_ENV": "unittest",
+        "NODE_ENV": "unittest",
+        "TS_NODE_PROJECT": "test/tsconfig.json"
+      },
+      "internalConsoleOptions": "openOnFirstSessionStart",
+      "request": "launch",
+      "restart": false,
+      "runtimeArgs": [
+        "run",
+        "test",
+        "--",
+        "--runInBand",
+        "--preserve-symlinks"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "**/node_modules/rxjs/**",
+        "**/node_modules/mocha/**",
+        "<node_internals>/**",
+        "<node_internals>/**/*.js"
+      ],
+      "smartStep": false,
+      "timeout": 30000
+    },
+    {
+      "name": "Midway Dev",
+      "type": "node",
+      "autoAttachChildProcesses": true,
+      "env": {
+        "MIDWAY_SERVER_ENV": "local",
+        "NODE_ENV": "local",
+        "OTEL_EXPORTER_OTLP_ENDPOINT": "http://127.0.0.1:4317",
+        "TS_NODE_TYPE_CHECK": "false",
+        "TS_NODE_TRANSPILE_ONLY": "true",
+        "POSTGRES_HOST": "127.0.0.1",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_DB": "postgres",
+        "POSTGRES_USER": "postgres",
+        "POSTGRES_PASSWORD": "postgres"
+      },
+      "request": "launch",
+      "restart": true,
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--preserve-symlinks"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "**/node_modules/rxjs/**",
+        "**/node_modules/mocha/**",
+        "<node_internals>/**",
+        "<node_internals>/**/*.js"
+      ],
+      "timeout": 30000
+    }
   ]
 }

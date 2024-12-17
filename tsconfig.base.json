@@ -27,13 +27,13 @@
     "preserveConstEnums": true,
     "pretty": true,
     "resolveJsonModule": true,
-    "rootDir": "${configDir}/src",
+    "rootDir": "src",
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "strictPropertyInitialization": false,
     "stripInternal": true,
-    "target": "ES2022",
+    "target": "ES2023",
     "tsBuildInfoFile": ".tsbuildinfo",
     "types" : ["mocha", "node"],
     "verbatimModuleSyntax": true
@@ -47,6 +47,7 @@
     "${configDir}/app/views",
     "${configDir}/dist",
     "${configDir}/fixtures",
+    "fixtures",
     "node_modules*",
     "**/*.d.ts",
     "**/*.spec.ts"

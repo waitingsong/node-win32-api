@@ -41,7 +41,6 @@ jobs:
 
       - name: Prepare
         run: |
-          pwd
           uname -a
           export DEBIAN_FRONTEND=noninteractive
           apt-get update -qq --yes > /dev/null
@@ -57,22 +56,21 @@ jobs:
           locale-gen
           locale -a
           netstat -tunpl
+          dig jaeger
           export cwd=`pwd`
           git config --global --add safe.directory $cwd
 
       - name: Install Dependencies
         timeout-minutes: 15
         run: |
-          # DO NOT execute: npm config set unsafe-perm=true
           export cwd=`pwd`
           npm i --no-audit -g c8 lerna madge rollup tsx zx
-          npm i
+          npm i --no-audit
         env:
           CI: true
 
       - name: Build
         run: |
-          pwd
           whoami
           export cwd=`pwd`
           . .scripts/ci/ci-env.sh
@@ -103,4 +101,6 @@ jobs:
     #       POSTGRES_PASSWORD: postgres
     #     # needed because the postgres container does not provide a healthcheck
     #     options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-
+          # otel
+          OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
+          # aliyun

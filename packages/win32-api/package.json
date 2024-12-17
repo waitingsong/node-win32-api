@@ -52,7 +52,7 @@
     "win32-def": "^26.0.4"
   },
   "engines": {
-    "node": ">=16.12.0"
+    "node": ">=20.11.0"
   },
   "files": [
     "README.*.md",
@@ -61,18 +61,18 @@
     "tsconfig.json",
     "tsconfig.base.json",
     "asset",
-    "src/**/*.ts",
     "bin",
     "database",
     "dist",
-    "!**/*.spec.*",
-    "!**/*.tsbuildinfo"
+    "src",
+    "!**/*.spec.*"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "npm run tsc && tsc-alias && npm run rp",
+    "build": "npm run tsc",
+    "build:unit": "tsc -p test/tsconfig.json",
     "build:unit": "tsc -p test/tsconfig.json",
     "clean": "npm run clean:lock && npm run clean:dist && npm run clean:log",
     "clean:cache": "rm -rf .eslintcache .tsbuildinfo",
@@ -80,12 +80,13 @@
     "clean:lock": "rm -f package-lock.json",
     "clean:log": "rm -rf ./logs ./run",
     "cov": "c8 --all npm run test -- --parallel=false",
-    "lint": "eslint --fix --cache src test demo",
+    "lint": "eslint --fix --cache src test",
     "lint:nofix": "eslint --cache src test",
+    "postbuild": "tsc-alias && npm run rp",
     "pretest": "npm run build:unit",
     "rp": "rollup -c rollup.config.js --context this",
     "test": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
-    "deb8g": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
+    "test:deb": "cross-env NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --parallel=false",
     "tsc": "tsc -p tsconfig.json"
   }
 }

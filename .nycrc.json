@@ -20,5 +20,6 @@
     "json",
     "text-summary"
   ],
+  "skip-full": true,
   "all": true
 }

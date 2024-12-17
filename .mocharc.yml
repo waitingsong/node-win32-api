@@ -6,6 +6,7 @@ node-option:
   - no-warnings
   - "loader=ts-node/esm"
   - "enable-source-maps"
+  - "env-file=.env"
 require:
   - tsconfig-paths/register.js
   - test/setup.ts

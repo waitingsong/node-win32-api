@@ -16,18 +16,11 @@ const srcRules = {
       '.',
       await genModuleAbsolutePathIfExists(projectDir, 'node_modules/@waiting/shared-core') ?? '.',
       await genModuleAbsolutePathIfExists(projectDir, 'node_modules/@mwcp/share') ?? '.',
-      await genModuleAbsolutePathIfExists(projectDir, 'node_modules/win32-def') ?? '.',
     ],
   }],
-  'id-length': 0,
-  'unicorn/filename-case': 0,
-  '@typescript-eslint/no-duplicate-enum-values': 0,
 }
 const testRules = {
   '@typescript-eslint/no-explicit-any': 0,
-  'id-length': 0,
-  'unicorn/filename-case': 0,
-  '@typescript-eslint/no-duplicate-enum-values': 0,
 }
 
 const languageOptions = {
@@ -41,6 +34,7 @@ const languageOptions = {
 export default eslint.config(
   {
     files: ['packages/*/src/**/*.ts', 'src/**/*.ts', 'packages/*/demo/**/*.mts' , 'packages/*/demo/**/*.ts'],
+    ignores: ['**/*.d.ts'],
     extends: [
       ...srcConfig,
     ],
@@ -49,6 +43,7 @@ export default eslint.config(
   },
   {
     files: ['packages/*/test/**/*.ts', 'test/**/*.ts'],
+    ignores: ['**/*.d.ts'],
     extends: [
       ...testConfig,
     ],
