@@ -2,7 +2,7 @@ import assert from 'node:assert'
 
 import { fileShortPath, sleep } from '@waiting/shared-core'
 
-import { load, decodeInt16Array } from '##/index.js'
+import { decodeInt16Array, load } from '##/index.js'
 import type { LoadOptions } from '##/index.js'
 import { DISPLAY_DEVICEW_Factory } from '##/index.struct.js'
 import { DefWin32 } from '#@/def.class/api.helper.js'

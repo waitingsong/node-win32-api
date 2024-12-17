@@ -23,6 +23,7 @@ export const GetClassInfoExW_mapper: MultipleChoiceMapper<Params, DefParams> = (
     assert(Array.isArray(row))
     const defArg = row[1]
 
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     switch (typeof lpszClass) {
       case 'string': {
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition

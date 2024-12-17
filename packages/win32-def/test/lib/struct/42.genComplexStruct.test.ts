@@ -2,7 +2,7 @@ import assert from 'node:assert'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { POINT_Init, LPPOINT, genComplexStruct } from '##/index.struct.js'
+import { LPPOINT, POINT_Init, genComplexStruct } from '##/index.struct.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

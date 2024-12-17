@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { RAWHID_Factory, LPRAWHID } from '##/index.struct.js'
+import { LPRAWHID, RAWHID_Factory } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

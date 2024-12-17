@@ -1,5 +1,5 @@
 
-export * from './winspool.types.js'
+export type * from './winspool.types.js'
 export * from './ClosePrinter.js'
 export * from './EndDocPrinter.js'
 export * from './EnumPrinters.js'

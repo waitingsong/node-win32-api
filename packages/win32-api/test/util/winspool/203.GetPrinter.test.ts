@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath, sleep } from '@waiting/shared-core'
 
-import { OpenPrinter, GetPrinter, ClosePrinter } from '##/index.util.js'
+import { ClosePrinter, GetPrinter, OpenPrinter } from '##/index.util.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

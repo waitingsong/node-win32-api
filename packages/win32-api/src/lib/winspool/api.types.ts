@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-parameters */
 /* c8 ignore start */
 import type * as S from 'win32-def/struct'
 import type * as T from 'win32-def/types'

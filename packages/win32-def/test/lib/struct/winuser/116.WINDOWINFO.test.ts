@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { WINDOWINFO_Factory, LPWINDOWINFO } from '##/index.struct.js'
+import { LPWINDOWINFO, WINDOWINFO_Factory } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

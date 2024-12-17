@@ -33,6 +33,7 @@ export type PRINTER_INFO_X_Ptr_Type<X extends PRINTER_INFO_LEVEL> = X extends 1
 
 
 export function getPRINTER_INFO_X_Ptr<X extends PRINTER_INFO_LEVEL>(level: X): PRINTER_INFO_X_Ptr_Type<X> {
+  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
   switch (level) {
     case 1: return PPRINTER_INFO_1 as PRINTER_INFO_X_Ptr_Type<X>
 
@@ -53,6 +54,7 @@ export function getPRINTER_INFO_X_Ptr<X extends PRINTER_INFO_LEVEL>(level: X): P
 }
 
 export function PRINTER_INFO_X_Factory<X extends PRINTER_INFO_LEVEL>(level: X): StructFactoryResult<PRINTER_INFO_X_Type<X>> {
+  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
   switch (level) {
     case 1: return PRINTER_INFO_1_Factory() as StructFactoryResult<PRINTER_INFO_X_Type<X>>
 

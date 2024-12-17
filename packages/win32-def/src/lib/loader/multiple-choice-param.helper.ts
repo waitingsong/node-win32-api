@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-parameters */
 import assert from 'node:assert'
 
 import type { FnDefArgs } from '##/lib/ffi.types.js'
 import type { IKoffiLib, MultipleChoiceMapperList, MultipleChoiceMapperSet } from '##/lib/types.js'
 
 import { LoaderCache } from './loader.cache.js'
-import type { CreateProxyMethodOptions, CreateKoffiFunctionOpts, KoffiFunctionLike } from './loader.types.js'
+import type { CreateKoffiFunctionOpts, CreateProxyMethodOptions, KoffiFunctionLike } from './loader.types.js'
 
 
 export function createProxyMethod(options: CreateProxyMethodOptions): KoffiFunctionLike {
@@ -31,7 +32,7 @@ interface CreateFnOptions {
   args: unknown[]
 }
 
-function createExecutionFn<R>(options: CreateFnOptions): R {
+function createExecutionFn<R = unknown>(options: CreateFnOptions): R {
   const { lib, name, args, type } = options
 
   // args includes the last callback function for async call

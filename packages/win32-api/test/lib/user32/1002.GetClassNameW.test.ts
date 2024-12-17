@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process'
 import { fileShortPath, sleep } from '@waiting/shared-core'
 import { ucsBufferToString } from 'win32-def'
 
-import { User32 as Lib, Kernel32 } from '##/index.js'
+import { Kernel32, User32 as Lib } from '##/index.js'
 import { FindWindowEx } from '##/index.util.js'
 
 

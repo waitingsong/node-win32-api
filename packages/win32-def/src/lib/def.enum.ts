@@ -1,4 +1,3 @@
-/* eslint-disable id-length */
 
 /**
  * @link https://koffi.dev/input

@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { AsyncMethodType, MethodType } from '@waiting/shared-types'
 
-import type { CallingConvention, FnDefCallParams, FuncDefListInner, DllFuncsType, FnDefFullParams, FnDefRetType, FnDefParam } from '##/lib/ffi.types.js'
-import type { IKoffiLib, FLib, LoadOptions, MultipleChoiceMapperList } from '##/lib/types.js'
+import type { CallingConvention, DllFuncsType, FnDefCallParams, FnDefFullParams, FnDefParam, FnDefRetType, FuncDefListInner } from '##/lib/ffi.types.js'
+import type { FLib, IKoffiLib, LoadOptions, MultipleChoiceMapperList } from '##/lib/types.js'
 
 
 export interface BindOptions<T extends object = DllFuncsType> {

@@ -56,11 +56,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-core": "^23.19.0",
-    "koffi": "^2.8.11"
+    "@waiting/shared-core": "^23.25.3",
+    "koffi": "^2.9.2"
   },
   "engines": {
-    "node": ">=16.12.0"
+    "node": ">=18.11.0"
   },
   "files": [
     "README.*.md",

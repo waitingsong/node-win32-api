@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
+
 import type { BigIntStr, MethodTypeUnknown } from '@waiting/shared-types'
 
 

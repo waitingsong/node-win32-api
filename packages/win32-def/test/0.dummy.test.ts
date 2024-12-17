@@ -4,6 +4,7 @@ import { fileShortPath } from '@waiting/shared-core'
 
 import { testConfig } from '#@/root.config.js'
 
+
 describe(fileShortPath(import.meta.url), () => {
 
   describe('should work', () => {

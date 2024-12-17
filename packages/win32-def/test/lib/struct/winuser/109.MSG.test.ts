@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { MSG_Factory, LPMSG } from '##/index.struct.js'
+import { LPMSG, MSG_Factory } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

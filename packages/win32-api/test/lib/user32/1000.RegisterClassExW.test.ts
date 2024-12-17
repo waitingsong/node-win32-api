@@ -4,7 +4,7 @@ import { fileShortPath } from '@waiting/shared-core'
 import { WNDCLASSEXW_Factory } from 'win32-def/struct'
 import type { WNDCLASSEXW_Type } from 'win32-def/struct'
 
-import { User32 as Lib, Kernel32 } from '##/index.js'
+import { Kernel32, User32 as Lib } from '##/index.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

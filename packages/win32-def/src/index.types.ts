@@ -1,7 +1,7 @@
 
-export * from './lib/common.types.js'
+export type * from './lib/common.types.js'
 export * from './lib/ffi.types.js'
-export * from './lib/types.js'
+export type * from './lib/types.js'
 
 export type{
   EnumPrinters_Level,

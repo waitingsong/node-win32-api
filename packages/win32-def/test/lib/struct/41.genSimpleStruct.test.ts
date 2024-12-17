@@ -3,7 +3,7 @@ import assert from 'node:assert'
 import { fileShortPath } from '@waiting/shared-core'
 
 import type { StructInitPlainType } from '##/index.js'
-import { POINT_Init, LPPOINT, genSimpleStruct } from '##/index.struct.js'
+import { LPPOINT, POINT_Init, genSimpleStruct } from '##/index.struct.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

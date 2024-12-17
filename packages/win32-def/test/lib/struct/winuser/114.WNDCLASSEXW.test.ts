@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { WNDCLASSEXW_Factory, LPWNDCLASSEXW } from '##/index.struct.js'
+import { LPWNDCLASSEXW, WNDCLASSEXW_Factory } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

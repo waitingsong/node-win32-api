@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { MOUSEINPUT_Factory, LPMOUSEINPUT } from '##/index.struct.js'
+import { LPMOUSEINPUT, MOUSEINPUT_Factory } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

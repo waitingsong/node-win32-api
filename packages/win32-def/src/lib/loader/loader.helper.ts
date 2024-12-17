@@ -6,7 +6,7 @@ import koffi from 'koffi'
 import { loadOptionsDefault } from '##/lib/config.js'
 import { Def } from '##/lib/def.enum.js'
 import { CallingConvention } from '##/lib/ffi.types.js'
-import type { FuncDefListInner, FnDefArgs, FnDefFullParams } from '##/lib/ffi.types.js'
+import type { FnDefArgs, FnDefFullParams, FuncDefListInner } from '##/lib/ffi.types.js'
 import { structFactoryMap } from '##/lib/struct/struct.factory-map.js'
 import type {
   FLib,
@@ -14,8 +14,8 @@ import type {
   KoffiFunction,
   LoadOptions,
   MultipleChoiceMapperList,
-  UpdateMultipleChoiceMapperOptions,
   StructFactory,
+  UpdateMultipleChoiceMapperOptions,
 } from '##/lib/types.js'
 
 import { LoaderCache } from './loader.cache.js'
@@ -245,7 +245,7 @@ function retrieveStructTypeStringFromParams(params: string[]): string[] {
   // '_Inout_ POINT*' or 'POINT *' or 'POINT*'
   const regex = /\b(\w+)\s?\*$/u
   params.map((val) => {
-    const match = val.match(regex)
+    const match = regex.exec(val)
     const key = match?.[1]?.trim()
     if (key) {
       // if Def contains key, then skip

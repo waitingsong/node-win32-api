@@ -8,7 +8,8 @@ import { Comctl32 } from './api.types.js'
 
 
 export {
-  DefComctl32, Comctl32,
+  Comctl32,
+  DefComctl32,
 }
 
 export const dllName = DllNames.comctl32

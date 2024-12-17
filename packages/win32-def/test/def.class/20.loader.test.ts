@@ -7,7 +7,7 @@ import type { LoadOptions } from '##/index.js'
 import { POINT_Factory } from '##/index.struct.js'
 import type { POINT_Type } from '##/index.struct.js'
 
-import { DefWin32Fake, DefWin32 } from './api.helper.js'
+import { DefWin32, DefWin32Fake } from './api.helper.js'
 import type { Win32 } from './api.helper.js'
 
 

@@ -1,6 +1,6 @@
 import { fileShortPath } from '@waiting/shared-core'
 
-import { PRINTER_INFO_5_Factory, PPRINTER_INFO_5 } from '##/index.struct.js'
+import { PPRINTER_INFO_5, PRINTER_INFO_5_Factory } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

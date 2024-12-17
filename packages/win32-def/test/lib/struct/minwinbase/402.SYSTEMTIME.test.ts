@@ -1,6 +1,6 @@
 import { fileShortPath } from '@waiting/shared-core'
 
-import { SYSTEMTIME_Factory, LPSYSTEMTIME } from '##/index.struct.js'
+import { LPSYSTEMTIME, SYSTEMTIME_Factory } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

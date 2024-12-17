@@ -3,7 +3,7 @@ import assert from 'node:assert'
 import { fileShortPath } from '@waiting/shared-core'
 
 import type { KoffiFunction } from '##/index.js'
-import type { MultipleChoiceMapperList, MultipleChoiceMapper, MultipleChoiceMapperSet } from '##/index.types.js'
+import type { MultipleChoiceMapper, MultipleChoiceMapperList, MultipleChoiceMapperSet } from '##/index.types.js'
 import { LoaderCache } from '##/lib/loader/loader.cache.js'
 import { loadIKoffiLib } from '##/lib/loader/loader.helper.js'
 

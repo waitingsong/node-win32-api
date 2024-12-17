@@ -2,11 +2,11 @@ import assert from 'node:assert'
 import { rm } from 'node:fs/promises'
 import { homedir } from 'node:os'
 
-import { fileShortPath, sleep, isFileExists } from '@waiting/shared-core'
+import { fileShortPath, isFileExists, sleep } from '@waiting/shared-core'
 import { PRINTER_STATUS } from 'win32-def/consts'
 import { DOC_INFO_1_Factory } from 'win32-def/struct'
 
-import { EndDocPrinter, OpenPrinter, GetPrinter, ClosePrinter, StartDocPrinter } from '##/index.util.js'
+import { ClosePrinter, EndDocPrinter, GetPrinter, OpenPrinter, StartDocPrinter } from '##/index.util.js'
 import { testConfig } from '#@/root.config.js'
 
 

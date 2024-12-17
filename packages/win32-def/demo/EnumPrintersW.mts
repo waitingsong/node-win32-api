@@ -1,5 +1,5 @@
 #!/usr/bin/env tsx
-/* eslint-disable import/no-extraneous-dependencies */
+
 
 import ffi from 'koffi'
 import { PrinterEnumFlags } from 'win32-def/consts'

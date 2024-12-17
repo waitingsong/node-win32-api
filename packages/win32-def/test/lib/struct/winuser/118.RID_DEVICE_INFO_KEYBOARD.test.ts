@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { RID_DEVICE_INFO_KEYBOARD_Factory, PRID_DEVICE_INFO_KEYBOARD } from '##/index.struct.js'
+import { PRID_DEVICE_INFO_KEYBOARD, RID_DEVICE_INFO_KEYBOARD_Factory } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

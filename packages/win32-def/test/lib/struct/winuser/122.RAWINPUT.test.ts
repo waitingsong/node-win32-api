@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { RAWINPUT_Factory, LPRAWINPUT } from '##/index.struct.js'
+import { LPRAWINPUT, RAWINPUT_Factory } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

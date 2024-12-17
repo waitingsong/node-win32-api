@@ -2,7 +2,7 @@ import assert from 'node:assert'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { ucsBufferToString, ucsBufferFrom } from '##/lib/util.js'
+import { ucsBufferFrom, ucsBufferToString } from '##/lib/util.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

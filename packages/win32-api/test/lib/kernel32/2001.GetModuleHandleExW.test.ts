@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { fileShortPath } from '@waiting/shared-core'
 import { ucsBufferFrom } from 'win32-def'
 
-import { Kernel32 as Lib, DllNames, ffi } from '##/index.js'
+import { DllNames, Kernel32 as Lib, ffi } from '##/index.js'
 
 
 describe(fileShortPath(import.meta.url), () => {

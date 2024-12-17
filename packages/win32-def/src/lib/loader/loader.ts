@@ -1,7 +1,7 @@
 import assert from 'node:assert'
 
 import type { DllFuncsType } from '##/lib/ffi.types.js'
-import type { LoadOptions, FLib } from '##/lib/types.js'
+import type { FLib, LoadOptions } from '##/lib/types.js'
 
 import { processDefList } from './def.helper.js'
 import { LoaderCache } from './loader.cache.js'

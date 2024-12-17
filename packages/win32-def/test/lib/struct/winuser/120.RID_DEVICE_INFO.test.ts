@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { RID_DEVICE_INFO_Factory, LPRID_DEVICE_INFO } from '##/index.struct.js'
+import { LPRID_DEVICE_INFO, RID_DEVICE_INFO_Factory } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

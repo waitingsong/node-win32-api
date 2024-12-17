@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { RAWINPUTHEADER_Factory, LPRAWINPUTHEADER } from '##/index.struct.js'
+import { LPRAWINPUTHEADER, RAWINPUTHEADER_Factory } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { RAWKEYBOARD_Factory, LPRAWKEYBOARD } from '##/index.struct.js'
+import { LPRAWKEYBOARD, RAWKEYBOARD_Factory } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

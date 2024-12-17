@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ToAsyncFunction } from '@waiting/shared-types'
-import type { IKoffiLib, IKoffiCType, TypeSpecWithAlignment } from 'koffi'
+import type { IKoffiCType, IKoffiLib, TypeSpecWithAlignment } from 'koffi'
 
 import type {
   CallingConvention,
   DllFuncsType,
-  FnDefName,
   FnDefFullParams,
+  FnDefName,
   FuncDefList,
 } from './ffi.types.js'
 

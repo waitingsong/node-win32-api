@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 
 import { fileShortPath } from '@waiting/shared-core'
 
-import { RAWMOUSE_Factory, LPRAWMOUSE } from '##/index.struct.js'
+import { LPRAWMOUSE, RAWMOUSE_Factory } from '##/index.struct.js'
 import { assertStructUnion } from '#@/helper.js'
 
 

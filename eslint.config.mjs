@@ -18,6 +18,14 @@ const srcRules = {
       await genModuleAbsolutePathIfExists(projectDir, 'node_modules/@mwcp/share') ?? '.',
     ],
   }],
+  'id-length': 0,
+  "@typescript-eslint/no-unused-vars": 0,
+  '@typescript-eslint/prefer-ts-expect-error': 0,
+  '@typescript-eslint/no-duplicate-enum-values': 0,
+  'node/no-extraneous-import': 0,
+  'unicorn/filename-case': 0,
+  "linebreak-style": 0,
+  'node/shebang': 0,
 }
 const testRules = {
   '@typescript-eslint/no-explicit-any': 0,
