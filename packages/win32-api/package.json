@@ -1,7 +1,7 @@
 {
   "name": "win32-api",
   "author": "waiting",
-  "version": "26.0.4",
+  "version": "26.1.0",
   "description": "FFI definitions of windows win32 api for node-ffi",
   "keywords": [
     "windows",
@@ -49,7 +49,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "win32-def": "^26.0.4"
+    "win32-def": "^26.1.0"
   },
   "engines": {
     "node": ">=20.11.0"
@@ -72,7 +72,6 @@
   },
   "scripts": {
     "build": "npm run tsc",
-    "build:unit": "tsc -p test/tsconfig.json",
     "build:unit": "tsc -p test/tsconfig.json",
     "clean": "npm run clean:lock && npm run clean:dist && npm run clean:log",
     "clean:cache": "rm -rf .eslintcache .tsbuildinfo",
