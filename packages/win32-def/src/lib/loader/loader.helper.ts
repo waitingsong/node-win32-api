@@ -1,6 +1,5 @@
 import assert from 'node:assert'
 
-import { expandFFIParamArray } from '@waiting/shared-core'
 import koffi from 'koffi'
 
 import { loadOptionsDefault } from '##/lib/config.js'
@@ -17,6 +16,8 @@ import type {
   StructFactory,
   UpdateMultipleChoiceMapperOptions,
 } from '##/lib/types.js'
+
+import { expandFFIParamArray } from '../ffi.js'
 
 import { LoaderCache } from './loader.cache.js'
 import type {

@@ -56,8 +56,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@waiting/shared-core": "^23.25.3",
     "koffi": "^2.9.2"
+  },
+  "devDependencies": {
+    "@waiting/shared-core": "^23.25.5"
   },
   "engines": {
     "node": ">=18.11.0"
