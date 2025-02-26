@@ -36,7 +36,8 @@ export type FnDefFullParams = [FnDefRetType, FnDefCallParams] // def for ffi [re
 export type FuncDefListInner<T = DllFuncsType> = Map<(keyof T) & string, FnDefFullParams>
 // export type FuncDefList<T = DllFuncsType> = Record<(keyof T) & string, any[] | readonly any[]>
 export type FuncDefList<T = DllFuncsType> = {
-  [K in keyof T as K extends `${string}_Async` ? never : `${K & string}`]: any[] | readonly any[]
+  /** eslint-disable-next-line @typescript-eslint/no-unnecessary-template-expression */
+  [K in keyof T as K extends `${string}_Async` ? never : K & string]: any[] | readonly any[]
 }
 
 
