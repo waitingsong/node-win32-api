@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [26.1.2](https://github.com/waitingsong/node-win32-api/compare/v26.1.1...v26.1.2) (2025-02-26)
+
+
+### Bug Fixes
+
+* **win32-def:** missing dep "@waiting/shared-types" ([9e048a4](https://github.com/waitingsong/node-win32-api/commit/9e048a4f2ef92838f95146649aea6c793fe5f7e1))
+
+
+
+
+
 ## [26.1.1](https://github.com/waitingsong/node-win32-api/compare/v26.1.0...v26.1.1) (2024-12-26)
 
 **Note:** Version bump only for package win32-def
